@@ -1,0 +1,19 @@
+# Change ceiling wash lights based on Lifx Cloud scenes.
+- id: ceiling_effect
+  alias: Apply effect to ceiling washlight
+  trigger:
+    # When an effect is received via MQTT.
+    - platform: state
+      entity_id: sensor.ceiling_effect_uuid
+
+  action:
+    - service: notify.group
+      data:
+        title: 'Hass.io'
+        message: "ceiling_effect received: {{ states('sensor.ceiling_effect') }} ({{ states('sensor.ceiling_effect_uuid') }})"
+
+    - service: shell_command.activate_lifx_cloud_scene
+      data_template:
+        uuid: "{{ states('sensor.ceiling_effect_uuid') }}"
+        duration: 10
+        key: !secret lifx_cloud_token

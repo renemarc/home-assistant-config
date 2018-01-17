@@ -1,0 +1,30 @@
+widget_type: basemultisensor
+entity: {{entity}}
+entity2: {{entity}}
+fields:
+  title: {{title}}
+  title2: {{title2}}
+  value: ""
+  value2: ""
+  unit: ""
+  unit2: ""
+  state_text: ""
+static_css:
+  title_style: $multisensor_title_style
+  title2_style: $multisensor_title2_style
+  valueunit_style: $multisensor_valueunit_style
+  unit_style: ""
+  value_style: ""
+  valueunit2_style: $multisensor_valueunit2_style
+  unit2_style: ""
+  value2_style: ""
+  state_text_style: $multisensor_state_text_style
+  widget_style: $multisensor_widget_style
+css:
+  text_style: $multisensor_text_style
+  value_style: $multisensor_value_style
+  unit_style: $multisensor_unit_style
+  value2_style: $multisensor_value2_style
+  unit2_style: $multisensor_unit2_style
+icons: []
+static_icons: []

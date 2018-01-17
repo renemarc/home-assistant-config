@@ -1,0 +1,5 @@
+- name: Shutdown
+  entities:
+    light.bedroom: off
+    light.lounge: off
+    light.middle: off

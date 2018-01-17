@@ -1,0 +1,7 @@
+lights_all_off:
+  alias: Turn off all lights
+  sequence:
+    - service: light.turn_off
+      data:
+        entity_id: group.all_lights
+        transition: 15

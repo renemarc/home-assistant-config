@@ -1,0 +1,16 @@
+# Control Lightpack/Adalight running on Prismatik.
+# see: https://github.com/psieg/Lightpack
+# see: https://community.home-assistant.io/t/question-about-new-telnet-switch/27844
+- platform: command_line
+  switches:
+    lightpack:
+      friendly_name: Lightpack
+      # Command used:
+      # '{ sleep 1; echo -e "apikey:<optional_api_key>"; sleep 1; echo -e "lock"; echo -e "setstatus:on"; echo -e "unlock"; echo -e "exit"; sleep 1; } | telnet <hostname-or-ip-address> <port>'
+      command_on: !secret lightpack_on
+      # Command used:
+      # '{ sleep 1; echo -e "apikey:<optional_api_key>"; sleep 1; echo -e "lock"; echo -e "setstatus:off"; echo -e "unlock"; echo -e "exit"; sleep 1; } | telnet <hostname-or-ip-address> <port>'
+      command_off: !secret lightpack_off
+      # Command used:
+      # '{ sleep 1; echo -e "apikey:<optional_api_key>"; sleep 1; echo -e "getstatus"; echo -e "exit"; sleep 1; } | telnet <hostname-or-ip-address> <port> | grep -q ''status:on'''
+      command_state: !secret lightpack_state

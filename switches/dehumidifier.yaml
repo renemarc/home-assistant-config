@@ -1,0 +1,3 @@
+- platform: tplink
+  name: Dehumidifier
+  host: !secret tplink_dehumidifier_host

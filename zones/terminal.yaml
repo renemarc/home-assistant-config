@@ -1,0 +1,5 @@
+name: Bus Terminal
+latitude: !secret zone_terminal_latitude
+longitude: !secret zone_terminal_longitude
+radius: 500
+icon: mdi:subway

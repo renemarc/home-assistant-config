@@ -1,0 +1,28 @@
+.widget-baseiconsensor-{{id}} {
+	position: relative;
+}
+
+.widget-baseiconsensor-{{id}} .title {
+	position: absolute;
+	top: 5px;
+	width: 100%;
+}
+
+.widget-baseiconsensor-{{id}} .title2 {
+	position: absolute;
+	top: 23px;
+	width: 100%;
+}
+
+.widget-baseiconsensor-{{id}} .state_text {
+	position: absolute;
+	bottom: -3px;
+	width: 100%;
+}
+
+.widget-baseiconsensor-{{id}} .icon {
+	position: absolute;
+	top: 45px;
+	width: 100%;
+}
+

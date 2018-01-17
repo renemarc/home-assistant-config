@@ -1,0 +1,128 @@
+# Schecule the Nanoleaf Aurora based on its loaded-in effects.
+# see: https://forum.nanoleaf.me/docs/openapi
+- id: aurora_schedule
+  alias: Rotate Aurora based on a schedule
+  initial_state: 'on'
+  trigger:
+    # Every hour on the hour.
+    - platform: time
+      # minutes: 00
+      minutes: /5
+      seconds: 00
+
+    # When an item which was off or physically disconnected comes back online.
+    - platform: state
+      entity_id:
+        - light.aurora
+      from: 'off'
+
+    # When alerts are disabled.
+    - platform: state
+      entity_id: input_boolean.alert_mode
+      to: 'off'
+
+    # When scenes are disabled.
+    - platform: state
+      entity_id: input_boolean.scene_mode
+      to: 'off'
+
+    # When Aurora effect override is being released.
+    - platform: state
+      entity_id: input_boolean.aurora_effect_override
+      to: 'off'
+
+  condition:
+    # If the Aurora is active.
+    - condition: state
+      entity_id: light.aurora
+      state: 'on'
+
+    # If no other process is handling the Aurora.
+    - condition: state
+      entity_id: input_boolean.aurora_semaphore
+      state: 'off'
+
+    # If no effect overrides are in place.
+    - condition: state
+      entity_id: input_boolean.aurora_effect_override
+      state: 'off'
+
+    # If no alerts are enabled.
+    - condition: state
+      entity_id: input_boolean.alert_mode
+      state: 'off'
+
+    # If no scenes are enabled.
+    - condition: state
+      entity_id: input_boolean.scene_mode
+      state: 'off'
+
+    # Not during the night mode.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'off'
+
+    # Not during the nap mode.
+    - condition: state
+      entity_id: input_boolean.nap_mode
+      state: 'off'
+
+  action:
+    # Reserve the Aurora.
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.aurora_semaphore
+
+    # Send the effect update via Mosquitto.
+    - service: mqtt.publish
+      data_template:
+        topic: 'home/aurora/effect'
+        payload: >-
+          {% set hour = states('sensor.time').split(':')[0] %}
+          {% set effects = {
+            '00':{'brightness':'35', 'name':'Be Productive'},
+            '01':{'brightness':'30', 'name':'Canada Day'},
+            '02':{'brightness':'25', 'name':'Color Burst'},
+            '03':{'brightness':'20', 'name':'Fifty shades'},
+            '04':{'brightness':'20', 'name':'Flames'},
+            '05':{'brightness':'25', 'name':'Forest'},
+
+            '06':{'brightness':'45', 'name':'Inner Peace'},
+            '07':{'brightness':'60', 'name':'Movie Night'},
+            '08':{'brightness':'75', 'name':'Nemo'},
+            '09':{'brightness':'80', 'name':'Northern Lights'},
+            '10':{'brightness':'85', 'name':'Rain'},
+            '11':{'brightness':'90', 'name':'Retro Future'},
+
+            '12':{'brightness':'100','name':'Romantic'},
+            '13':{'brightness':'90', 'name':'Serve warm and chilled'},
+            '14':{'brightness':'85', 'name':'Snowfall'},
+            '15':{'brightness':'80', 'name':'Stranger Things'},
+            '16':{'brightness':'75', 'name':'Synthwave'},
+            '17':{'brightness':'70', 'name':'Tron Legacy'},
+
+            '18':{'brightness':'65', 'name':'Tron2'},
+            '19':{'brightness':'60', 'name':'Vibrant Sunrise'},
+            '20':{'brightness':'55', 'name':'Inner Peace'},
+            '21':{'brightness':'50', 'name':'Nemo'},
+            '22':{'brightness':'45', 'name':'Flames'},
+            '23':{'brightness':'40', 'name':'Retro Future'}
+          } %}
+
+          {
+            "name": "{{ effects[hour]['name'] }}",
+            "brightness": "{{ effects[hour]['brightness'] }}"
+          }
+
+    # Notify the owner.
+    # - service: notify.group
+    #   data:
+    #     title: 'Hass.io'
+    #     message: "aurora effects sent."
+
+    # Pause a while, to minimize race conditions.
+    - delay:
+        seconds: 5
+
+    # Release the Aurora.
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.aurora_semaphore

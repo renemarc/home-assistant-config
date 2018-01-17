@@ -1,0 +1,42 @@
+# Warn whenever the front door is opening.
+# Todo: map door sensor state values to binary values.
+- id: front_door_opens
+  alias: 'Front door opens'
+  trigger:
+    - platform: state
+      entity_id: sensor.aeotec_zw120_door_window_sensor_gen5_access_control
+      from: '23'
+      to: '22'
+
+  action:
+    # Flash the shower light, in case one didn't hear the door opening.
+    - service: light.lifx_effect_pulse
+      data:
+        entity_id:
+          - light.shower
+        mode: breathe
+        color_name: cyan
+        brightness: 120
+        period: 1
+        cycles: 1
+
+# Warn whenever the front door is closing.
+- id: front_door_closes
+  alias: 'Front door closes'
+  trigger:
+    - platform: state
+      entity_id: sensor.aeotec_zw120_door_window_sensor_gen5_access_control
+      from: '22'
+      to: '23'
+
+  action:
+    # Flash the shower light, in case one didn't hear the door closing.
+    - service: light.lifx_effect_pulse
+      data:
+        entity_id:
+          - light.shower
+        mode: blink
+        color_name: purple
+        brightness: 120
+        period: 1
+        cycles: 1

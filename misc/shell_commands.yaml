@@ -1,0 +1,1 @@
+activate_lifx_cloud_scene: 'curl -X PUT -H "Authorization: Bearer {{key}}" -H "Content-Type: application/json" -d ''{"duration":"{{duration|default(3)}}"}'' "https://api.lifx.com/v1/scenes/scene_id:{{uuid}}/activate"'

@@ -1,0 +1,16 @@
+AppDaemon:
+  logfile: STDOUT
+  errorfile: STDERR
+  threads: 10
+  app_dir: /config/appdaemon/apps
+  disable_apps: 1
+HASS:
+  ha_url: http://homeassistant:8123
+HADashboard:
+  dash_url: http://127.0.0.1:5050
+  dash_dir: /config/appdaemon/dashboards
+
+# Apps
+hello_world:
+  module: hello
+  class: HelloWorld

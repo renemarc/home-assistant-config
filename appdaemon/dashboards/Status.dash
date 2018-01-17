@@ -1,0 +1,155 @@
+#
+# Main arguments, all optional
+#
+title: Status
+widget_dimensions: [120, 114]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 10
+rows: 6
+global_parameters:
+    use_comma: 0
+    precision: 0
+    use_hass_icon: 1
+
+
+#
+# Common widgets
+#
+
+nav_main:
+    widget_type: navigate
+    dashboard: Main
+    title2: Home
+    icon_inactive: mdi-home-assistant
+    widget_style: "background: DARKSLATEBLUE;"
+
+nav_switchboard:
+    widget_type: navigate
+    dashboard: Switchboard
+    title2: Switchboard
+    icon_inactive: mdi-nintendo-switch
+    widget_style: "background: DARKSLATEBLUE;"
+
+nav_weather:
+    widget_type: navigate
+    dashboard: Weather
+    title2: Weather
+    icon_inactive: mdi-weather-partlycloudy
+    widget_style: "background: DARKSLATEBLUE;"
+
+nav_status:
+    widget_type: navigate
+    dashboard: Status
+    title2: Status
+    icon_inactive: mdi-information-outline
+    widget_style: "background: MEDIUMSLATEBLUE;"
+
+nav_spacer:
+    widget_type: label
+    widget_style: "background: DARKSLATEBLUE;"
+
+
+#
+# Custom widgets
+#
+
+label:
+    widget_type: sensor
+    title2: Status
+    entity: sensor.home_assistant_version_string
+    sub_entity: sensor.update_available
+    widget_style: "background: MEDIUMSLATEBLUE;"
+    title2_style: "text-transform: uppercase; letter-spacing: 0.35em;"
+    text_style: "font-size: 300%;"
+    state_text_style: "font-size:125%;padding-bottom:0.15em;background-color:MEDIUMSLATEBLUE;"
+
+uptime:
+    widget_type: sensor
+    title: Uptime
+    entity: sensor.uptime_hass_friendly
+    sub_entity: sensor.uptime_host
+
+cpu_temp:
+    widget_type: gauge
+    entity: sensor.cpu_temp
+    min: 30
+    max: 100
+    units: "°C"
+    title: CPU Temp
+    color: white
+    low_color: 00FF00
+    med_color: FFFF00
+    high_color: FF0000
+
+cpu_used:
+    widget_type: gauge
+    entity: sensor.cpu_used
+    min: 0
+    max: 100
+    units: "%"
+    title: CPU Used
+    color: white
+    low_color: 00FF00
+    med_color: FFFF00
+    high_color: FF0000
+
+ram_used:
+    widget_type: gauge
+    entity: sensor.ram_used
+    min: 0
+    max: 100
+    units: "%"
+    title: RAM Used
+    color: white
+    low_color: 00FF00
+    med_color: FFFF00
+    high_color: FF0000
+
+
+disk_used:
+    widget_type: gauge
+    entity: sensor.disk_used_home
+    min: 0
+    max: 100
+    units: "%"
+    title: Disk Used
+    color: white
+    low_color: 00FF00
+    med_color: FFFF00
+    high_color: FF0000
+
+upspeed:
+    widget_type: gauge
+    entity: sensor.speedtest_upload
+    min: 0
+    max: 20
+    units: ""
+    title: Upspeed
+    title2: Mbit/s
+    color: white
+    title2_style: "font-size: x-small;"
+
+downspeed:
+    widget_type: gauge
+    entity: sensor.speedtest_download
+    min: 0
+    max: 120
+    units: ""
+    title: Downspeed
+    title2: Mbit/s
+    color: white
+    title2_style: "font-size: x-small;"
+
+#
+# Layout
+#
+
+layout:
+    - include: header
+    - nav_main,         label(6x1), reload, temperature, clock
+    - nav_switchboard,  uptime, cpu_temp, cpu_used, ram_used, disk_used, spacer, sensor.speedtest_ping, upspeed, downspeed
+    - nav_weather
+    - nav_spacer(1x2),  sensor.bedroom_humidity, sensor.lounge_humidity
+    -
+    - nav_status

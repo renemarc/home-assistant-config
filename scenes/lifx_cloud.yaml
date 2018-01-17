@@ -1,0 +1,4 @@
+# LIFX Cloud Scenes
+- platform: lifx_cloud
+  token: !secret lifx_cloud_token
+  timeout: 10

@@ -1,0 +1,16 @@
+# see: http://forum.nanoleaf.me/docs/openapi
+aurora_set_effect:
+  # URL used:
+  # "http://<hostname-or-ip-address>:<port>/api/v1/<token>/effects"
+  url: !secret aurora_set_effect
+  method: 'put'
+  content_type: 'application/json'
+  payload: '{"select": "{{ name }}"}'
+
+aurora_set_brightness:
+  # URL used:
+  # "http://<hostname-or-ip-address>:<port>/api/v1/<token>/state"
+  url: !secret aurora_set_brightness
+  method: 'put'
+  content_type: 'application/json'
+  payload: '{"brightness": "{{ brightness }}"}'

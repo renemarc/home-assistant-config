@@ -1,0 +1,45 @@
+- id: nap_time
+  alias: Nap time
+  trigger:
+    # Bedsite Flic button is pressed once.
+    - platform: event
+      event_type: flic_click
+      event_data:
+        button_name: flic_80e4da737711
+        click_type: single
+
+  condition:
+    # If nap time is not currently enabled.
+    - condition: state
+      entity_id: input_boolean.nap_mode
+      state: 'off'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.take_a_nap
+
+- id: nap_time_over
+  alias: Nap time over
+  trigger:
+    # Bedsite Flic button is pressed once.
+    - platform: event
+      event_type: flic_click
+      event_data:
+        button_name: flic_80e4da737711
+        click_type: single
+
+  condition:
+    # If nap time is in effect.
+    - condition: state
+      entity_id: input_boolean.nap_mode
+      state: 'on'
+
+  action:
+    - service: homeassistant.turn_on
+      entity_id:
+        - switch.nightstand_light
+        - switch.bedside_light
+
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.nap_mode

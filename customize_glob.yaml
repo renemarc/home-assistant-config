@@ -1,0 +1,20 @@
+"*.*":
+  custom_ui_state_card: state-card-custom-ui
+sensor.*_humidity:
+  group:
+    group.bedroom:
+      friendly_name: Humidity
+    group.lounge:
+      friendly_name: Humidity
+sensor.*_temperature:
+  group:
+    group.bedroom:
+      friendly_name: Temperature
+    group.lounge:
+      friendly_name: Temperature
+sensor.*_luminance:
+  group:
+    group.bedroom:
+      friendly_name: Luminance
+    group.lounge:
+      friendly_name: Luminance

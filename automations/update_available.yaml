@@ -1,0 +1,19 @@
+# Warns someone when a new version of Home Assistant is available.
+# An updated Hass.io version usually follows shortly.
+- id: update_available
+  alias: Update Available
+  initial_state: 'off'
+  trigger:
+    platform: state
+    entity_id: updater.updater
+
+  action:
+    # Mark update as available.
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.update_available
+
+    # Send notification to owner.
+    - service: notify.group
+      data:
+        title: 'Hass.io'
+        message: 'Update for Home Assistant is available.'

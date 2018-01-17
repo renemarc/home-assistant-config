@@ -1,0 +1,57 @@
+.widget-basemultisensor-{{id}} .unit {
+	font-size: 200%;
+	font-weight: 400;
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 2px;
+}
+
+.widget-basemultisensor-{{id}} .value {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.widget-basemultisensor-{{id}} .valueunit {
+	position: absolute;
+	top: 53px;
+	width: 50%;
+}
+
+.widget-basemultisensor-{{id}} .unit2 {
+	font-size: 200%;
+	font-weight: 400;
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 2px;
+}
+
+.widget-basemultisensor-{{id}} .value2 {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.widget-basemultisensor-{{id}} .valueunit2 {
+	position: absolute;
+	top: 53px;
+	width: 50%;
+	margin-left: 50%;
+}
+
+.widget-basemultisensor-{{id}} .title {
+	position: absolute;
+	top: 5px;
+	width: 100%;
+}
+
+.widget-basemultisensor-{{id}} .title2 {
+	position: absolute;
+	top: 23px;
+	width: 100%;
+}
+
+.widget-basemultisensor-{{id}} .state_text {
+	position: absolute;
+	bottom: -3px;
+	width: 100%;
+}
+

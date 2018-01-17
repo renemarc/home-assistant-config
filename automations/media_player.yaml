@@ -1,0 +1,83 @@
+- id: media_player
+  alias: "Media player starts"
+  trigger:
+    - platform: state
+      entity_id: media_player.kodi
+      from: 'idle'
+      to: 'playing'
+
+  condition:
+    # Sun has set.
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+    # Not during the nap mode.
+    - condition: state
+      entity_id: input_boolean.nap_mode
+      state: 'off'
+
+  action:
+    - service: scene.turn_on
+      entity_id: scene.movies
+
+- id: media_player_resume
+  alias: "Media player resumes"
+  trigger:
+    - platform: state
+      entity_id: media_player.kodi
+      to: 'playing'
+
+  condition:
+    # Sun has set.
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+    # Not during the nap mode.
+    - condition: state
+      entity_id: input_boolean.nap_mode
+      state: 'off'
+
+  action:
+    # Activate scene mode.
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.scene_mode
+
+    # Dim the spot lights.
+    - service: light.lifx_set_state
+      data:
+        entity_id:
+          - light.shower
+          - light.spotlight
+      data_template:
+        brightness: 100
+        transition: 2
+
+    # If ceiling wash lights are on, set them to their dedicated Movie scene.
+    - condition: state
+      entity_id: group.ceiling
+      state: 'on'
+    - service: mqtt.publish
+      data_template:
+        topic: 'home/ceiling/effect'
+        payload: >-
+          {
+            "name": "Movie",
+            "uuid": "ba3ac9bf-ae54-4e11-a8a8-d7ec6862293d"
+          }
+
+    # If the Aurora is active, set it to its dedicated Movie scene.
+    - condition: state
+      entity_id: light.aurora
+      state: 'on'
+    - service: mqtt.publish
+      data_template:
+        topic: 'home/aurora/effect'
+        payload: >-
+          {
+            "name": "Flames",
+            "brightness": 21
+          }
+
+

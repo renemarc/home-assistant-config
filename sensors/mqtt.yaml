@@ -1,0 +1,24 @@
+- platform: mqtt
+  name: Ceiling Effect
+  state_topic: 'home/ceiling/effect'
+  value_template: '{{ value_json.name }}'
+  qos: 1
+
+- platform: mqtt
+  name: Ceiling Effect UUID
+  state_topic: 'home/ceiling/effect'
+  value_template: '{{ value_json.uuid }}'
+  qos: 1
+
+- platform: mqtt
+  name: Aurora Effect
+  state_topic: 'home/aurora/effect'
+  value_template: '{{ value_json.name }}'
+  qos: 1
+
+- platform: mqtt
+  name: Aurora Brightness
+  state_topic: 'home/aurora/effect'
+  value_template: '{{ value_json.brightness }}'
+  qos: 1
+

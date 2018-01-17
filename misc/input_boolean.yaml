@@ -1,0 +1,47 @@
+alert_mode:
+  name: Alert mode
+  initial: off
+
+windows_open:
+  name: Windows are open
+  initial: off
+
+doors_open:
+  name: Doors are open
+  initial: off
+
+scene_mode:
+  name: Scene mode
+  initial: off
+
+night_mode:
+  name: Night mode
+  initial: off
+
+nap_mode:
+  name: Nap mode
+  initial: off
+
+quiet_mode:
+  name: Quiet mode
+  initial: off
+
+update_available:
+  name: Update available
+  initial: off
+
+aurora_semaphore:
+  name: Aurora is being updated
+  initial: off
+
+aurora_effect_override:
+  name: Aurora has overriding effect set
+  initial: off
+
+ceiling_semaphore:
+  name: Ceiling washlights are being updated
+  initial: off
+
+ceiling_effect_override:
+  name: Ceiling washlights have overriding effect set
+  initial: off

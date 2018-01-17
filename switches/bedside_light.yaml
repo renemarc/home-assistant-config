@@ -1,0 +1,3 @@
+- platform: tplink
+  name: Bedside Light
+  host: !secret tplink_bedside_light_host

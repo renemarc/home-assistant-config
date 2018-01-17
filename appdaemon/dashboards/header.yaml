@@ -1,0 +1,21 @@
+
+#
+# Common widgets
+#
+
+temperature:
+    widget_type: sensor
+    entity: sensor.average_temperature
+    units: "&deg;C"
+    widget_style: "background: DARKSLATEBLUE;"
+
+clock:
+    widget_type: clock
+    time_format: 24hr
+    widget_style: "background: DARKSLATEBLUE;"
+
+reload:
+    widget_type: reload
+    title2: Reload
+    widget_style: "background: MEDIUMSLATEBLUE;"
+

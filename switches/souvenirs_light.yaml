@@ -1,0 +1,3 @@
+- platform: tplink
+  name: Souvenirs Light
+  host: !secret tplink_souvenirs_light_host

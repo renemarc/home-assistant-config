@@ -1,0 +1,202 @@
+switch.dehumidifier:
+  homebridge_hidden: false
+  icon: mdi:cup-water
+  confirm_controls_show_lock: true
+device_tracker.cellphone_her:
+  friendly_name: !secret nickname_her
+  icon: mdi:cellphone-iphone
+device_tracker.cellphone_him:
+  friendly_name: !secret nickname_him
+  gravatar: !secret gravatar_him
+  icon: mdi:cellphone-iphone
+sensor.uptime_os:
+  icon: mdi:pi
+sensor.ipv4_address_eth0:
+  friendly_name: Local IP Address
+sensor.speedtest_ping:
+  friendly_name: Ping
+sensor.speedtest_upload:
+  friendly_name: Upspeed
+  icon: mdi:upload-network
+sensor.speedtest_download:
+  friendly_name: Downspeed
+  icon: mdi:download-network
+sensor.ebox_upload_before_offpeak:
+  homebridge_hidden: false
+  friendly_name: Uploads
+sensor.ebox_download_before_offpeak:
+  homebridge_hidden: false
+  friendly_name: Downloads
+sensor.ebox_usage:
+  homebridge_hidden: false
+  friendly_name: Monthly usage
+sensor.bedroom_temperature:
+  homebridge_hidden: false
+  icon: mdi:thermometer
+sensor.bedroom_humidity:
+  homebridge_hidden: false
+  icon: mdi:water-percent
+light.shower:
+  extra_data_template: if (attributes.brightness) return Math.round(1000000 / attributes.color_temp
+    / 10) * 10 + ' Kelvin @ ' + Math.round(attributes.brightness / 255 * 100) + '%';
+    else return null;
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+  state_card_mode: break-slider
+switch.souvenirs_light:
+  homebridge_hidden: false
+  friendly_name: Souvenirs Light
+  icon: mdi:trophy
+switch.bedside_light:
+  homebridge_hidden: false
+  icon: mdi:creation
+switch.bedroom_fan:
+  homebridge_hidden: false
+  icon: mdi:fan
+switch.nightstand_light:
+  homebridge_hidden: false
+  icon: mdi:lamp
+light.bedroom:
+  extra_data_template: if (attributes.brightness) return Math.round(attributes.brightness
+    / 255 * 100) + '%'; else return null;
+  icon: mdi:led-strip
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+  state_card_mode: break-slider
+light.lounge:
+  extra_data_template: if (attributes.brightness) return Math.round(attributes.brightness
+    / 255 * 100) + '%'; else return null;
+  icon: mdi:led-strip
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+  state_card_mode: break-slider
+light.middle:
+  extra_data_template: if (attributes.brightness) return Math.round(attributes.brightness
+    / 255 * 100) + '%'; else return null;
+  icon: mdi:led-strip
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+  state_card_mode: break-slider
+light.spotlight:
+  extra_data_template: if (attributes.brightness) return Math.round(1000000 / attributes.color_temp
+    / 10) * 10 + ' Kelvin @ ' + Math.round(attributes.brightness / 255 * 100) + '%';
+    else return null;
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+  state_card_mode: break-slider
+light.lightpack:
+  homebridge_hidden: false
+  icon: mdi:television
+switch.window_light:
+  icon: mdi:creation
+binary_sensor.flic_80e4da737711:
+  friendly_name: Flic blue
+switch.aurora:
+  icon: mdi:vector-triangle
+sensor.aqi_friendly:
+  extra_badge:
+    entity_id: sensor.aqi
+sensor.aqi_particles_friendly:
+  extra_badge:
+    entity_id: sensor.aqi_particles
+sensor.aqi_ozone_friendly:
+  extra_badge:
+    entity_id: sensor.aqi_ozone
+sensor.aqi_carbon_monoxide_friendly:
+  extra_badge:
+    entity_id: sensor.aqi_carbon_monoxide
+sensor.aqi_nitrogen_dioxide_friendly:
+  extra_badge:
+    entity_id: sensor.aqi_nitrogen_dioxide
+sensor.uv_friendly:
+  extra_badge:
+    entity_id: sensor.uv
+sensor.home_to_metro_hour:
+  extra_badge:
+    entity_id: sensor.home_to_metro
+sensor.home_to_metro_2_hour:
+  icon: mdi:blank
+  friendly_name: Next
+  extra_badge:
+    entity_id: sensor.home_to_metro_2_countdown
+sensor.home_to_metro_3_hour:
+  icon: mdi:blank
+  friendly_name: After
+  extra_badge:
+    entity_id: sensor.home_to_metro_3_countdown
+sensor.home_to_groceries_hour:
+  icon: mdi:cart
+  extra_badge:
+    entity_id: sensor.home_to_groceries
+sensor.home_to_groceries_2_hour:
+  icon: mdi:blank
+  friendly_name: Next
+  extra_badge:
+    entity_id: sensor.home_to_groceries_2_countdown
+sensor.home_to_groceries_3_hour:
+  icon: mdi:blank
+  friendly_name: After
+  extra_badge:
+    entity_id: sensor.home_to_groceries_3_countdown
+sensor.wind_speed:
+  extra_badge:
+    entity_id: sensor.wind_bearing_cardinal
+  extra_data_template: ${entities['sensor.wind_scale_friendly'].state}
+sensor.outside_temperature:
+  extra_data_template: ${entities['sensor.feels_like'].state}
+sensor.dark_sky_summary:
+  extra_data_template: ${entities['sensor.dark_sky_minutely_summary'].state}
+camera.environment_canada_rain:
+  friendly_name: Rain
+camera.environment_canada_snow:
+  friendly_name: Snow
+camera.noaa_shortwave:
+  friendly_name: Shortwave
+camera.noaa_water_vapour:
+  friendly_name: Water Vapour
+sensor.dark_sky_hourly_summary:
+  friendly_name: ''
+sensor.dark_sky_daily_summary:
+  extra_data_template: ${entities['sensor.dark_sky_daily_summary'].state}
+  hide_control: true
+sensor.average_humidity_friendly:
+  extra_badge:
+    entity_id: sensor.average_humidity
+input_select.aurora_effect:
+  extra_data_template: ${entities['sensor.aurora_effect'].state}
+  icon: mdi:blank
+light.aurora:
+  extra_data_template: if (attributes.brightness) return attributes.effect + ' @ '
+    + Math.round(attributes.brightness / 255 * 100) + '%'; else return null;
+  icon: mdi:vector-triangle
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+  state_card_mode: break-slider
+group.all_automations: {}
+input_select.ceiling_effect:
+  friendly_name: Effect
+group.ceiling: {}

@@ -1,0 +1,3 @@
+- platform: lifx
+  # server: !secret pi_ip
+  # broadcast: !secret broadcast

@@ -1,0 +1,96 @@
+# see: https://thebulletin.org/doomsday-dashboard
+# see: https://github.com/mattbierner/MinutesToMidnight/blob/master/index.js
+
+# Doomsday Clock
+- platform: doomsday_clock
+
+- platform: template
+  sensors:
+    aurora_effect_loaded:
+      friendly_name: Aurora Effect Loaded
+      value_template: '{{ states.light.aurora.attributes.effect }}'
+
+- platform: template
+  sensors:
+    ceiling_effect_loaded:
+      friendly_name: Ceiling Effect Loaded
+      value_template: >-
+        {% if is_state('group.ceiling', 'on') %}
+          {{ states('sensor.ceiling_effect') }}
+        {% endif %}
+
+# Bing Wallpaper
+- platform: rest
+  resource: http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US
+  name: Bing Wallpaper
+  scan_interval: 3600
+  value_template: "http://www.bing.com{{ value_json.images[0].urlbase }}_800x600.jpg"
+
+- platform: rest
+  resource: http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US
+  name: Bing Wallpaper Title
+  entity_id: sensor.bing_wallpaper
+  value_template: "{{ value_json.images[0].copyright.split(' (')[0] }}"
+
+- platform: random
+  name: Good vibes index
+  scan_interval: 60
+  minimum: 0
+  maximum: 43
+
+# Templates
+# see: http://www.lifestalker.com/2017/04/four-word-quotes.html
+- platform: template
+  sensors:
+    good_vibes:
+      friendly_name: Good vibes
+      icon_template: mdi:emoticon-happy
+      value_template: >-
+        {% set index = states('sensor.good_vibes_index') | int %}
+        {% set vibes = [
+          "Be great.",
+          "Be happy!",
+          "Be the hero.",
+          "Begin anywhere. —John Cage",
+          "Compliment someone today.",
+          "Do something great.",
+          "Don't worry, be happy.",
+          "Dream big dreams",
+          "Enjoy life!",
+          "Enjoy the little things.",
+          "Everybody loves you!",
+          "Follow your own star.",
+          "Grab life by the balls.",
+          "Hello gorgeous!",
+          "It's never too late.",
+          "Just go for it.",
+          "Just ship it.",
+          "Live with passion.",
+          "Never doubt your instinct.",
+          "People envy you",
+          "People want to be you",
+          "Pick one thing and do it.",
+          "Ride like the wind.",
+          "Seize the day!",
+          "Start something.",
+          "Think big!",
+          "Think less. Feel more.",
+          "Work hard, stay humble.",
+          "You are a kind soul.",
+          "You are a winner!",
+          "You are an inspiration.",
+          "You are awesome!",
+          "You are fabulous!",
+          "You are the best!",
+          "You are the champion, no time for losers.",
+          "You are the most awesome!",
+          "You are your choices. —Seneca",
+          "You can do great things!",
+          "You can move mountains",
+          "You live only once.",
+          "You look delicious!",
+          "You make people happy.",
+          "Your time is now."
+        ] %}
+
+        {{ vibes[index] }}

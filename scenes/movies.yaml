@@ -1,0 +1,9 @@
+- name: Movies
+  entities:
+    # Turn on the TV backlight and accent lights
+    light.lightpack:
+      state: on
+    switch.souvenirs_light:
+      state: on
+    switch.window_light:
+      state: on

@@ -1,0 +1,65 @@
+aurora_effect:
+  name: Aurora Effect
+  options:
+   - Auto
+   - Be Productive
+   - Canada Day
+   - Color Burst
+   - Cool Blues
+   - Cosmos
+   - Daylight
+   - Fifty shades
+   - Fireworks And Firecrackers
+   - Flames
+   - Forest
+   - Great Yarmouth River Crossing
+   - Holodek
+   - Hot Romance
+   - Inner Peace
+   - Japanese Streets
+   - Koi Pond
+   - Movie Night
+   - Natural Light
+   - Nemo
+   - Night Patrol
+   - Northern Lights
+   - Ocean
+   - Rain
+   - Retro
+   - Retro Future
+   - Romantic
+   - Serve warm and chilled
+   - Snowfall
+   - Sparrows
+   - Starry Night
+   - Stranger Things
+   - Synthwave
+   - Triluminox Energy Crystal
+   - Tron Legacy
+   - Tron2
+   - Tropical Waterfall
+   - Vibrant Sunrise
+  initial: Auto
+  icon: mdi:star
+
+ceiling_effect:
+  name: Ceiling Washlights Effect
+  options:
+   - Auto
+   - Blissful
+   - Aurora
+   - Celebrations
+   - Cheerful
+   - Daylight
+   - Focusing
+   - Intense
+   - Mellow
+   - Movie
+   - Powerful
+   - Relaxing
+   - Serene
+   - Soothing
+   - Tranquil
+   - Warming
+  initial: Auto
+  icon: mdi:home

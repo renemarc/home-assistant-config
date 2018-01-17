@@ -1,0 +1,141 @@
+# Setup basic location information
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret zone_home_latitude
+  longitude: !secret zone_home_longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret zone_home_elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  time_zone: America/Toronto
+  customize: !include customize.yaml
+  customize_glob: !include customize_glob.yaml
+
+# Show links to resources in log and frontend
+#introduction:
+
+# Logs everything
+logger:
+  default: warning
+  # logs:
+  #   homeassistant.automations: debug
+  #   homeassistant.components.scene: debug
+  #   homeassistant.components.shell_command: debug
+
+# Enables the frontend
+frontend:
+  extra_html_url:
+    - /www/custom_ui/state-card-custom-ui.html
+  # themes:
+  #   green_example:
+  #     label-badge-red: '#0DA035'
+
+# Enables configuration UI
+config:
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  # api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  # base_url: example.duckdns.org:8123
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  include_used_components: true
+
+# Discover some devices automatically
+# discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# MQTT
+mqtt:
+  broker: core-mosquitto
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+
+# Text to speech
+tts:
+  - platform: google
+
+#######
+
+# hassio:
+
+# IFTTT
+ifttt:
+  key: !secret ifttt_key
+
+# Ubiquiti Unifi WAP
+# device_tracker:
+#   - platform: owntracks
+#   - platform: unifi
+#     host: !secret unifi_host
+#     port: !secret unifi_port
+#     username: !secret unifi_username
+#     password: !secret unifi_password
+#     verify_ssl: false
+#     track_new_devices: false
+#     interval_seconds: 10
+#     consider_home: 180
+
+# Custom UI
+customizer:
+  custom_ui: local
+
+# ZWave
+# zwave:
+#   usb_path: /dev/ttyACM1
+
+# Custom panels
+# panel_iframe:
+  # dark_sky:
+  #   title: 'Dark Sky'
+  #   icon: mdi:weather-partlycloudy
+  #   url: 'https://forecast.io/embed/#lat=45.508&lon=-73.463&units=ca12'
+  # weather:
+  #   title: 'Weather'
+  #   icon: mdi:weather-partlycloudy
+  #   url: 'https://darksky.net/forecast/45.5084,-73.4616/ca12/en'
+  # dashboard:
+  #   title: Dashboard
+  #   icon: mdi:tablet
+  #   url: http://hassio.local:5050/Main?skin=modern
+
+automation: !include_dir_merge_list automations/
+binary_sensor: !include misc/binary_sensors.yaml
+camera: !include_dir_merge_list cameras/
+input_boolean: !include misc/input_boolean.yaml
+input_select: !include misc/input_select.yaml
+input_text: !include misc/input_text.yaml
+light: !include_dir_merge_list lights/
+group: !include_dir_merge_named groups/
+media_player: !include misc/media_players.yaml
+notify: !include_dir_merge_list notifications/
+scene: !include_dir_merge_list scenes/
+script: !include_dir_merge_named scripts/
+sensor: !include_dir_merge_list sensors/
+rest_command: !include misc/rest_commands.yaml
+shell_command: !include misc/shell_commands.yaml
+switch: !include_dir_merge_list switches/
+zone: !include_dir_list zones/

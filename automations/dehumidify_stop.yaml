@@ -1,0 +1,39 @@
+# Turn off the Dehumidifier when it's no longer relevant.
+- id: dehumidify_stop
+  alias: Stop dehumidifying
+  trigger:
+    # Humidity is getting too low.
+    - platform: numeric_state
+      entity_id: sensor.average_humidity
+      below: 35
+
+    # Dehumidifier has been running for a while.
+    - platform: state
+      entity_id: switch.dehumidifier
+      to: 'on'
+      for:
+        hours: 2
+
+    # Outside doors have been open for a while.
+    - platform: state
+      entity_id: input_boolean.doors_open
+      to: 'on'
+      for:
+        minutes: 10
+
+    # Windows have been open for a while.
+    - platform: state
+      entity_id: input_boolean.windows_open
+      to: 'on'
+      for:
+        minutes: 2
+
+    # It's quiet time.
+    - platform: state
+      entity_id: input_boolean.quiet_mode
+      to: 'on'
+
+  action:
+    # Turn dehumidifier off.
+    - service: switch.turn_off
+      entity_id: switch.dehumidifier

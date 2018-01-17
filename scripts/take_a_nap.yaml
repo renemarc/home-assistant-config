@@ -1,0 +1,38 @@
+take_a_nap:
+  alias: Take a nap
+  sequence:
+    - event: LOGBOOK_ENTRY
+      event_data:
+        name: EVENT
+        message: "Nap Time! Turning some lights and noises off."
+
+    # - service: notify.group
+    #   data:
+    #     message: "Nap Time! Turning some lights and noises off."
+
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.shower
+          - light.bedroom
+          - light.lounge
+          - light.middle
+        transition: 10
+
+    - service: switch.turn_off
+      data:
+        entity_id:
+          - switch.dehumidifier
+
+    - service: switch.turn_off
+      data:
+        entity_id:
+          - light.aurora
+          - switch.bedroom_fan
+          - switch.nightstand_light
+          - switch.bedside_light
+
+    # Enable nap mode.
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.nap_mode

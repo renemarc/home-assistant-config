@@ -1,0 +1,15 @@
+# Basic control of Nanoleaf Aurora until component becomes availaable in Hass.io.
+# see: https://community.home-assistant.io/t/nanoleaf-aurora-component/21054
+- platform: command_line
+  switches:
+    aurora:
+      friendly_name: Nanoleaf Aurora
+      # Command used:
+      # 'curl -X PUT -d ''{ "on":{"value":true} }'' "http://<hostname-or-ip-address>:<port>/api/v1/<token>/state"'
+      command_on: !secret aurora_on
+      # Command used:
+      # 'curl -X PUT -d ''{ "on":{"value":false} }'' "http://<hostname-or-ip-address>:<port>/api/v1/<token>/state"'
+      command_off: !secret aurora_off
+      # Command used:
+      # 'curl "http://<hostname-or-ip-address>:<port>/api/v1/<token>/state/on" | grep -q ''true'''
+      command_state: !secret aurora_state

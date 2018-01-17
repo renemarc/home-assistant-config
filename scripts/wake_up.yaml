@@ -1,0 +1,49 @@
+wake_up:
+  alias: Wake up
+  sequence:
+    - event: LOGBOOK_ENTRY
+      event_data:
+        name: EVENT
+        message: "Good Morning! Turning lights and fan on."
+
+    # - service: notify.group
+    #   data:
+    #     message: "Good Morning! Turning lights and fan on."
+
+    # Disable night mode.
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.night_mode
+
+    # Disable quiet mode.
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.quiet_mode
+
+    # Fade in smart lights.
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.shower
+          - light.spotlight
+          - light.bedroom
+          - light.lounge
+          - light.middle
+          - light.aurora
+          - light.lightpack
+        transition: 5
+
+    # Turn on regular lights.
+    - service: switch.turn_on
+      data:
+        entity_id:
+          - switch.nightstand_light
+          - switch.bedside_light
+          - switch.souvenirs_light
+          - switch.window_light
+
+    # Turn on appliances.
+    - service: switch.turn_on
+      data:
+        entity_id:
+          - switch.bedroom_fan

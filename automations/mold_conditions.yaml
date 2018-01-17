@@ -1,0 +1,39 @@
+# Warns someone if humidity levels may lead to mold issues.
+# Only triggers if windows and doors are open, because we're not responsible
+# for what's happening outside.
+- id: mold_conditions
+  alias: 'Mold conditions'
+  trigger:
+    # Mold grows above 55% relative humidity, and thrives above 70%.
+    - platform: numeric_state
+      entity_id: sensor.average_humidity
+      above: 55
+
+  condition:
+    # Doors have been closed for a while.
+    - condition: state
+      entity_id: input_boolean.doors_open
+      state: 'off'
+      for:
+        minutes: 60
+
+    # Windows have been closed for a while.
+    - condition: state
+      entity_id: input_boolean.doors_open
+      state: 'off'
+      for:
+        minutes: 60
+
+  action:
+    # Warn the primary user to take action (like empty the dehumidifier's
+    # collection bucket).
+    - service: notify.group
+      data:
+        title: 'Home Assistant'
+        message: "Humidity is too high ({{ states('sensor.average_humidity') }}%), risk of mold! Check the dehumidifier."
+
+    - service: persistent_notification.create
+      data:
+        notification_id: mold
+        title: "Humidity is too high: {{ states('sensor.average_humidity') }}%"
+        message: "Risk of mold! Check the dehumidifier."

@@ -1,0 +1,5 @@
+- platform: generic
+  name: Bing Wallpaper
+  still_image_url: >-
+    {{ states('sensor.bing_wallpaper') }}
+  content_type: image/jpg

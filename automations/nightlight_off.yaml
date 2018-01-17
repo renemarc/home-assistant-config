@@ -1,0 +1,22 @@
+- id: nightlight_off
+  alias: Turn off night lights
+  trigger:
+    # Lounge motion no longer detected.
+    - platform: state
+      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
+      to: '0'
+
+  condition:
+    # If during the night mode.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'on'
+
+  action:
+    # Turn night lights off.
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.shower
+          - light.spotlight
+        transition: 5

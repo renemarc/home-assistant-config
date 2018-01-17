@@ -1,0 +1,39 @@
+# Turn on the dehumidifier when appropriate if humidify levels are too high.
+- id: dehumidity
+  alias: Dehumidify
+  trigger:
+    # Humidity is getting too high.
+    - platform: numeric_state
+      entity_id: sensor.average_humidity
+      above: 45
+
+  condition:
+    # It's the afternoon.
+    - condition: time
+      after: '12:00:00'
+      before: '18:00:00'
+
+    # It's not quiet time.
+    - condition: state
+      entity_id: input_boolean.quiet_mode
+      state: 'off'
+
+    # Dehumidifier isn't already running.
+    - condition: state
+      entity_id: switch.dehumidifier
+      state: 'off'
+
+    # Doors are closed.
+    - condition: state
+      entity_id: input_boolean.doors_open
+      state: 'off'
+
+    # Windows are closed.
+    - condition: state
+      entity_id: input_boolean.windows_open
+      state: 'off'
+
+  action:
+    # Turn dehumidifier on.
+    - service: switch.turn_on
+      entity_id: switch.dehumidifier

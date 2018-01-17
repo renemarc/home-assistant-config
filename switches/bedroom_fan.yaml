@@ -1,0 +1,3 @@
+- platform: tplink
+  name: Bedroom Fan
+  host: !secret tplink_bedroom_fan_host

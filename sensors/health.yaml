@@ -1,0 +1,215 @@
+# World Air Quality Index
+# Ratings for templates below are USA ones instead of Canadians.
+# see: https://en.wikipedia.org/wiki/Air_quality_index
+- platform: waqi
+  token: !secret waqi_token
+  locations:
+    - !secret waqi_location1
+    - !secret waqi_location2
+
+# WAQI: Average
+- platform: template
+  sensors:
+    aqi:
+      friendly_name: AQI
+      icon_template: mdi:chemical-weapon
+      value_template: >-
+        {% set indexes = [
+            states('sensor.waqi_rivesud_de_montreal_quebec_canada') | float,
+            states('sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada') | float
+        ] %}
+        {% set index = (indexes|sum / indexes|count) | round %}
+
+        {{ index }}
+
+    aqi_friendly:
+      friendly_name: AQI
+      icon_template: mdi:chemical-weapon
+      value_template: >-
+        {% set indexes = [
+            states('sensor.waqi_rivesud_de_montreal_quebec_canada') | float,
+            states('sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada') | float
+        ] %}
+        {% set index = (indexes|sum / indexes|count) | round %}
+
+        {% if 0 <= index <= 50 %}
+          Good
+        {% elif 51 <= index <= 100 %}
+          Moderate
+        {% elif 101 <= index <= 150 %}
+          Unhealthy for Sensitive Groups
+        {% elif 151 <= index <= 200 %}
+          Unhealthy
+        {% elif 201 <= index <= 300 %}
+          Very Unhealthy
+        {% elif 301 <= index %}
+          Hazardous
+        {% else %}
+          N/A
+        {% endif %}
+
+# WAQI: Particulate matter 2.5μm
+- platform: template
+  sensors:
+    aqi_particles:
+      friendly_name: PM2.5
+      icon_template: mdi:factory
+      unit_of_measurement: 'PPM'
+      value_template: >-
+        {% set levels = [
+            states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.pm_2_5 | float,
+            states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.pm_2_5 | float
+        ] %}
+        {% set pm25 = (levels|sum / levels|count) | round %}
+
+        {{ pm25 }}
+
+    aqi_particles_friendly:
+      friendly_name: PM2.5
+      icon_template: mdi:factory
+      value_template: >-
+        {% set levels = [
+            states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.pm_2_5 | float,
+            states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.pm_2_5 | float
+        ] %}
+        {% set pm25 = (levels|sum / levels|count) | round %}
+
+        {% if 0 <= pm25 <= 50 %}
+          Good
+        {% elif 51 <= pm25 <= 100 %}
+          Moderate
+        {% elif 101 <= pm25 <= 150 %}
+          Unhealthy for Sensitive Groups
+        {% elif 151 <= pm25 <= 200 %}
+          Unhealthy
+        {% elif 201 <= pm25 <= 300 %}
+          Very Unhealthy
+        {% elif 301 <= pm25 %}
+          Hazardous
+        {% else %}
+          N/A
+        {% endif %}
+
+# WAQI: Ozone
+- platform: template
+  sensors:
+    aqi_ozone:
+      friendly_name: Ozone
+      icon_template: mdi:earth
+      unit_of_measurement: 'PPM'
+      value_template: >-
+        {% set levels = [
+            states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.ozone | float,
+            states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.ozone | float
+        ] %}
+        {% set ozone = (levels|sum / levels|count) | round %}
+
+        {{ ozone }}
+
+    aqi_ozone_friendly:
+      friendly_name: Ozone
+      icon_template: mdi:earth
+      value_template: >-
+        {% set levels = [
+            states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.ozone | float,
+            states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.ozone | float
+        ] %}
+        {% set ozone = (levels|sum / levels|count) | round %}
+
+        {% if 0 <= ozone <= 50 %}
+          Good
+        {% elif 51 <= ozone <= 100 %}
+          Moderate
+        {% elif 101 <= ozone <= 150 %}
+          Unhealthy for Sensitive Groups
+        {% elif 151 <= ozone <= 200 %}
+          Unhealthy
+        {% elif 201 <= ozone <= 300 %}
+          Very Unhealthy
+        {% elif 301 <= ozone %}
+          Hazardous
+        {% else %}
+          N/A
+        {% endif %}
+
+# WAQI: Nitrogen dioxide
+- platform: template
+  sensors:
+    aqi_nitrogen_dioxide:
+      friendly_name: Nitrogen Dioxide
+      icon_template: mdi:car
+      unit_of_measurement: 'PPM'
+      value_template: >-
+        {% set levels = [
+            states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.nitrogen_dioxide | float
+        ] %}
+        {% set nox = (levels|sum / levels|count) | round %}
+
+        {{ nox }}
+
+    aqi_nitrogen_dioxide_friendly:
+      friendly_name: Nitrogen Dioxide
+      icon_template: mdi:car
+      value_template: >-
+        {% set levels = [
+            states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.nitrogen_dioxide | float
+        ] %}
+        {% set nox = (levels|sum / levels|count) | round %}
+
+        {% if 0 <= nox <= 50 %}
+          Good
+        {% elif 51 <= nox <= 100 %}
+          Moderate
+        {% elif 101 <= nox <= 150 %}
+          Unhealthy for Sensitive Groups
+        {% elif 151 <= nox <= 200 %}
+          Unhealthy
+        {% elif 201 <= nox <= 300 %}
+          Very Unhealthy
+        {% elif 301 <= nox %}
+          Off the Scale
+        {% else %}
+          N/A
+        {% endif %}
+
+# WAQI: Carbon monoxide
+- platform: template
+  sensors:
+    aqi_carbon_monoxide:
+      friendly_name: Carbon Monoxide
+      icon_template: mdi:fire
+      unit_of_measurement: 'PPM'
+      value_template: >-
+        {% set levels = [
+            states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.co | float,
+            states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.co | float
+        ] %}
+        {% set co = (levels|sum / levels|count) | round %}
+
+        {{ co }}
+
+    aqi_carbon_monoxide_friendly:
+      friendly_name: Carbon Monoxide
+      icon_template: mdi:fire
+      value_template: >-
+        {% set levels = [
+            states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.co | float,
+            states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.co | float
+        ] %}
+        {% set co = (levels|sum / levels|count) | round %}
+
+        {% if 0 <= co <= 50 %}
+          Good
+        {% elif 51 <= co <= 100 %}
+          Moderate
+        {% elif 101 <= co <= 150 %}
+          Unhealthy for Sensitive Groups
+        {% elif 151 <= co <= 200 %}
+          Unhealthy
+        {% elif 201 <= co <= 300 %}
+          Very Unhealthy
+        {% elif 301 <= co %}
+          Hazardous
+        {% else %}
+          N/A
+        {% endif %}

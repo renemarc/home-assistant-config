@@ -1,0 +1,40 @@
+# When noise makers should be allowed to run.
+- id: quiet_time_stop
+  alias: End quiet time
+  trigger:
+    # It's daytime.
+    - platform: time
+      at: '07:30:00'
+
+    # Sleep time is over.
+    - platform: state
+      entity_id: input_boolean.night_mode
+      from: 'on'
+      to: 'off'
+
+    # Nap time is over.
+    - platform: state
+      entity_id: input_boolean.nap_mode
+      from: 'on'
+      to: 'off'
+
+  condition:
+    # It has been quiet time.
+    - condition: state
+      entity_id: input_boolean.quiet_mode
+      state: 'on'
+
+    # It's not during sleep time.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'off'
+
+    # It's not during nap time.
+    - condition: state
+      entity_id: input_boolean.nap_mode
+      state: 'off'
+
+  action:
+    # Disable quiet mode.
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.quiet_mode

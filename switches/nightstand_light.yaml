@@ -1,0 +1,3 @@
+- platform: tplink
+  name: Nightstand Light
+  host: !secret tplink_nightstand_light_host

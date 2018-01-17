@@ -1,0 +1,272 @@
+#
+# Main arguments, all optional
+#
+title: Main Panel
+widget_dimensions: [120, 114]
+widget_size: [1, 1]
+widget_margins: [5, 5]
+columns: 10
+rows: 6
+global_parameters:
+    use_comma: 0
+    precision: 0
+    use_hass_icon: 1
+
+
+#
+# Common widgets
+#
+
+nav_main:
+    widget_type: navigate
+    dashboard: Main
+    title2: Home
+    icon_inactive: mdi-home-assistant
+    widget_style: "background: DARKSLATEBLUE;"
+
+nav_switchboard:
+    widget_type: navigate
+    dashboard: Switchboard
+    title2: Switchboard
+    icon_inactive: mdi-nintendo-switch
+    widget_style: "background: DARKSLATEBLUE;"
+
+nav_weather:
+    widget_type: navigate
+    dashboard: Weather
+    title2: Weather
+    icon_inactive: mdi-weather-partlycloudy
+    widget_style: "background: MEDIUMSLATEBLUE;"
+
+nav_status:
+    widget_type: navigate
+    dashboard: Status
+    title2: Status
+    icon_inactive: mdi-information-outline
+    widget_style: "background: DARKSLATEBLUE;"
+
+nav_spacer:
+    widget_type: label
+    widget_style: "background: DARKSLATEBLUE;"
+
+
+
+#
+# Custom widgets
+#
+
+label:
+    widget_type: sensor
+    title2: Weather
+    entity: sensor.weather_summary
+    sub_entity: sensor.weather_details
+    widget_style: "background: MEDIUMSLATEBLUE;"
+    title2_style: "text-transform: uppercase; letter-spacing: 0.35em;"
+    text_style: "font-size: 300%;"
+    state_text_style: "font-size:125%;padding-bottom:0.15em;background-color:MEDIUMSLATEBLUE;"
+
+
+#
+# Current weather
+#
+
+camera_noaa_shortwave:
+    widget_type: camera
+    title: Shortwave
+    entity_picture: http://hassio.local:8123/api/camera_proxy/camera.noaa_shortwave?token=ac78d1632dcbaeb6c60a65863ae89b94c665842771f99355c43985933ef6dd79
+    title_style: "background-color: rgba(0, 0, 0, 1);"
+
+camera_noaa_water_vapour:
+    widget_type: camera
+    title: Water Vapour
+    entity_picture: http://hassio.local:8123/api/camera_proxy/camera.noaa_water_vapour?token=7fd911b8f9a660eb61a46d5181a0be874c4f53bf47c0f74204920351ef3034c4
+    title_style: "background-color: rgba(0, 0, 0, 1);"
+
+camera_environment_canada_rain:
+    widget_type: camera
+    title: Rain
+    entity_picture: http://hassio.local:8123/api/camera_proxy/camera.environment_canada_rain?token=d484e6eed7b461cc8e50b5633fc9ac1e3cda21327d6af261126382d1de5a24eb
+    title_style: "background-color: rgba(0, 0, 0, 1);"
+
+camera_environment_canada_snow:
+    widget_type: camera
+    title: Snow
+    entity_picture: http://hassio.local:8123/api/camera_proxy/camera.environment_canada_snow?token=72401f9a299bbf9f8521bd46bb8e2366d29d59af19006522910aaed73502cb47
+    title_style: "background-color: rgba(0, 0, 0, 1);"
+
+wind:
+    widget_type: entitysensor
+    entity: sensor.wind_speed
+    title2_entity: sensor.wind_scale_friendly
+    sub_entity: sensor.wind_bearing_cardinal_friendly
+    widget_style: "background-color:inherit;"
+    state_text_style: "background-color:inherit;"
+
+
+#
+# Weather forecasts
+#
+
+daily_forecast:
+    widget_type: sensor
+    title: 24h Forecast
+    entity: sensor.dark_sky_hourly_summary
+
+weekly_forecast:
+    widget_type: sensor
+    title: Weekly Forecast
+    entity: sensor.dark_sky_daily_summary
+
+temperature_today:
+    widget_type: entitysensor
+    title: Today
+    entity: sensor.dark_sky_daily_high_temperature
+    sub_entity: sensor.weather_low_friendly
+    title2_entity: sensor.feels_like
+    widget_style: "background-color:inherit;"
+    title_style: "background-color:#555;padding:5px 52% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
+    title2_style: "margin-top:3px;"
+    state_text_style: "background-color:inherit"
+
+temperature_tomorrow:
+    widget_type: entitysensor
+    title: Tomorrow
+    entity: sensor.dark_sky_daily_high_temperature_1
+    sub_entity: sensor.weather_low_1_friendly
+    title2_entity: sensor.feels_like_1
+    widget_style: "background-color:inherit;"
+    title_style: "background-color:#555;padding:5px 52% 3px;margin-top:-5px;border-radius: 5px 5px 0 0"
+    title2_style: "margin-top:3px;"
+    state_text_style: "background-color:inherit"
+
+temperature_after_tomorrow:
+    widget_type: entitysensor
+    title: After Tomorrow
+    entity: sensor.dark_sky_daily_high_temperature_2
+    sub_entity: sensor.weather_low_2_friendly
+    title2_entity: sensor.feels_like_2
+    widget_style: "background-color:inherit;"
+    title_style: "background-color:#555;padding:5px 52% 3px;margin-top:-5px;border-radius: 5px 5px 0 0"
+    title2_style: "margin-top:3px;"
+    state_text_style: "background-color:inherit"
+
+weather_icon_today:
+    widget_type: iconsensor
+    entity: sensor.dark_sky_icon
+    state_icons:
+        clear-day: mdi-weather-sunny
+        clear-night: mdi-weather-night
+        rain: mdi-weather-rainy
+        snow: mdi-weather-snowy
+        sleet: mdi-weather-snowy-rainy
+        wind: mdi-weather-windy
+        fog: mdi-weather-fog
+        cloudy: mdi-weather-cloudy
+        partly-cloudy-day: mdi-weather-partlycloudy
+        partly-cloudy-night: mdi-weather-partlycloudy
+    title2_entity: sensor.weather_icon_friendly
+    sub_entity: sensor.precip_probability_friendly
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
+    state_text_style: "background-color:inherit"
+
+weather_icon_tomorrow:
+    widget_type: iconsensor
+    entity: sensor.dark_sky_icon_1
+    state_icons:
+        clear-day: mdi-weather-sunny
+        clear-night: mdi-weather-night
+        rain: mdi-weather-rainy
+        snow: mdi-weather-snowy
+        sleet: mdi-weather-snowy-rainy
+        wind: mdi-weather-windy
+        fog: mdi-weather-fog
+        cloudy: mdi-weather-cloudy
+        partly-cloudy-day: mdi-weather-partlycloudy
+        partly-cloudy-night: mdi-weather-partlycloudy
+    title2_entity: sensor.weather_icon_friendly_1
+    sub_entity: sensor.precip_probability_friendly_1
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
+    state_text_style: "background-color:inherit"
+
+weather_icon_after_tomorrow:
+    widget_type: iconsensor
+    entity: sensor.dark_sky_icon_2
+    state_icons:
+        clear-day: mdi-weather-sunny
+        clear-night: mdi-weather-night
+        rain: mdi-weather-rainy
+        snow: mdi-weather-snowy
+        sleet: mdi-weather-snowy-rainy
+        wind: mdi-weather-windy
+        fog: mdi-weather-fog
+        cloudy: mdi-weather-cloudy
+        partly-cloudy-day: mdi-weather-partlycloudy
+        partly-cloudy-night: mdi-weather-partlycloudy
+    title2_entity: sensor.weather_icon_friendly_2
+    sub_entity: sensor.precip_probability_friendly_2
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
+    state_text_style: "background-color:inherit"
+
+
+#
+# Air quality
+#
+
+aqi:
+    widget_type: sensor
+    title: Air Quality Index
+    entity: sensor.aqi
+    sub_entity: sensor.aqi_friendly
+    state_text_style: "background-color:#555;"
+
+aqi_particles:
+    widget_type: sensor
+    title: 2.5PM
+    entity: sensor.aqi_particles
+    sub_entity: sensor.aqi_particles_friendly
+    state_text_style: "background-color:#555;"
+
+aqi_ozone:
+    widget_type: sensor
+    title: Ozone
+    entity: sensor.aqi_ozone
+    sub_entity: sensor.aqi_ozone_friendly
+    state_text_style: "background-color:#555;"
+
+aqi_carbon_monoxide:
+    widget_type: sensor
+    title: Carbon Monoxide
+    entity: sensor.aqi_carbon_monoxide
+    sub_entity: sensor.aqi_carbon_monoxide_friendly
+    state_text_style: "background-color:#555;"
+
+aqi_nitrogen_dioxide:
+    widget_type: sensor
+    title: Nitrogen Dioxide
+    entity: sensor.aqi_nitrogen_dioxide
+    sub_entity: sensor.aqi_nitrogen_dioxide_friendly
+    state_text_style: "background-color:#555;"
+
+uv:
+    widget_type: sensor
+    title: UV
+    entity: sensor.uv
+    sub_entity: sensor.uv_friendly
+    state_text_style: "background-color:#555;"
+
+
+#
+# Layout
+#
+
+layout:
+    - include: header
+    - nav_main,         label(6x1), reload, temperature, clock
+    - nav_switchboard,  camera_environment_canada_rain(3x2), camera_environment_canada_snow(3x2), wind, daily_forecast(2x1)
+    - nav_weather,      spacer, weekly_forecast(2x1)
+    - nav_spacer(1x2),  camera_noaa_shortwave(3x2), camera_noaa_water_vapour(3x2), spacer, temperature_today, weather_icon_today
+    - spacer,           temperature_tomorrow, weather_icon_tomorrow
+    - nav_status,       aqi, aqi_particles, aqi_ozone, aqi_carbon_monoxide, aqi_nitrogen_dioxide, uv, spacer, temperature_after_tomorrow, weather_icon_after_tomorrow

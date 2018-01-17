@@ -1,0 +1,6 @@
+# Group notification
+- platform: group
+  name: group
+  services:
+    - service: pushover
+    # - service: kodi

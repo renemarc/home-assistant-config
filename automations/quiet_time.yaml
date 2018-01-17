@@ -1,0 +1,22 @@
+# When noise makers should not be running.
+- id: quiet_time
+  alias: Declare quiet time
+  trigger:
+    # It's too late.
+    - platform: time
+      at: '21:30:00'
+
+    # It's during sleep time.
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'on'
+
+    # It's during nap time.
+    - platform: state
+      entity_id: input_boolean.nap_mode
+      to: 'on'
+
+  action:
+    # Enable quiet mode.
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.quiet_mode
