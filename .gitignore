@@ -4,7 +4,6 @@
 *.db-journal
 *.db-shm
 *.db-wal
-*.html
 *.json
 *.key
 *.pid
@@ -14,7 +13,7 @@
 *.xml
 .*
 __pycache__/
-config
+config/
 deps/
 gtfs/
 home-assistant.log
@@ -28,7 +27,8 @@ OZW_Log.txt
 plex.conf
 pyozw.sqlite
 secrets.yaml
-tts
+tts/
 zwcfg_*.xml
 
 !.gitignore
+!.gitkeep
