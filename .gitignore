@@ -8,7 +8,6 @@
 *.json
 *.key
 *.pid
-*.py
 *.sqlite
 *.sqlite-shm
 *.sqlite-wal
