@@ -1,33 +1,15 @@
 - platform: generic
   name: Environment Canada Rain
-  scan_interval: 600
+  entity_id:
+    - sensor.environment_canada_rain
   still_image_url: >-
-    {% set location = states('sensor.environment_canada_radar') %}
-    {# Radar images are batch created every 10 minutes on the dot, but can take
-      up to 10 minutes to be generated and stored on Environment Canada's
-      servers. We therefore fetch the image for the last batch, which may be up
-      to 19 minute stale. #}
-    {% set offset = 10*60 %}
-    {% set timestamp = as_timestamp(utcnow()) - offset %}
-    {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-    {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-    http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_RAIN.gif
+    {{ states('sensor.environment_canada_rain')}}
   content_type: image/gif
 
 - platform: generic
   name: Environment Canada Snow
-  scan_interval: 600
+  entity_id:
+    - sensor.environment_canada_snow
   still_image_url: >-
-    {% set location = states('sensor.environment_canada_radar') %}
-    {# Radar images are batch created every 10 minutes on the dot, but can take
-      up to 10 minutes to be generated and stored on Environment Canada's
-      servers. We therefore fetch the image for the last batch, which may be up
-      to 19 minute stale. #}
-    {% set offset = 10*60 %}
-    {% set timestamp = as_timestamp(utcnow()) - offset %}
-    {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-    {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-    http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_SNOW.gif
+    {{ states('sensor.environment_canada_snow')}}
   content_type: image/gif
