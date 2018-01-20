@@ -202,3 +202,7 @@ group.all_automations: {}
 input_select.ceiling_effect:
   friendly_name: Effect
 group.ceiling: {}
+sensor.database_size:
+  icon: mdi:database
+sensor.logfile_size:
+  icon: mdi:history

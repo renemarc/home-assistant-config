@@ -38,9 +38,13 @@
       friendly_name: Home Assistant version
       icon_template: mdi:update
       entity_id:
-        - sensor.version
+        - sensor.current_version
       value_template: >-
-        HASS v{{ states('sensor.version') }}
+        {% if states('sensor.current_version') != "unknown" %}
+          HASS v{{ states('sensor.current_version') }}
+        {% else %}
+          HASS
+        {% endif %}
 
     update_available:
       friendly_name: Update available
@@ -51,6 +55,22 @@
         {% if is_state('input_boolean.update_available', 'on') %}
           Update available.
         {% endif %}
+
+# Database size
+# see: https://community.home-assistant.io/t/recorder-purge-function/17154/12
+- platform: command_line
+  name: Database Size
+  scan_interval: 600
+  command: "du -m /config/home-assistant_v2.db | cut -f1"
+  unit_of_measurement: 'MB'
+
+# Logfile size
+# see: https://community.home-assistant.io/t/recorder-purge-function/17154/12
+- platform: command_line
+  name: Logfile Size
+  scan_interval: 600
+  command: "du -k /config/home-assistant.log | cut -f1"
+  unit_of_measurement: 'kB'
 
 # Free disk space
 - platform: template

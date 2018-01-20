@@ -187,7 +187,8 @@ system:
     - sensor.cpu_used
     - sensor.ram_free_percent
     - sensor.disk_free_percent
-    - script.restart_ha
+    - sensor.database_size
+    - sensor.logfile_size
 
 weather:
   name: Current Weather
