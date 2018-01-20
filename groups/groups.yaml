@@ -181,7 +181,7 @@ system:
   icon: mdi:home-assistant
   entities:
     - sensor.ipv4_address_eth0
-    - sensor.uptime_hass_friendly
+    - sensor.uptime_friendly
     - sensor.uptime_host
     - sensor.cpu_temp
     - sensor.cpu_used

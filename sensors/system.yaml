@@ -9,7 +9,7 @@
 
 # Hass uptime
 - platform: uptime
-  name: Uptime HASS
+  name: Uptime
   scan_interval: 60
   unit_of_measurement: hours
 
@@ -79,13 +79,13 @@
 # Home Assistant uptime
 - platform: template
   sensors:
-    uptime_hass_friendly:
-      friendly_name: Hass uptime
+    uptime_friendly:
+      friendly_name: Uptime
       icon_template: mdi:home-assistant
       entity_id:
-        - sensor.uptime_hass
+        - sensor.uptime
       value_template: >-
-        {% set uptime = states('sensor.uptime_hass')|float %}
+        {% set uptime = states('sensor.uptime')|float %}
         {% set time = (3600 * uptime) | int %}
         {% set minutes = ((time % 3600) / 60) | int %}
         {% set hours = ((time % 86400) / 3600) | int %}

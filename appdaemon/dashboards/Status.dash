@@ -67,7 +67,7 @@ label:
 uptime:
     widget_type: sensor
     title: Uptime
-    entity: sensor.uptime_hass_friendly
+    entity: sensor.uptime_friendly
     sub_entity: sensor.uptime_host
 
 cpu_temp:
