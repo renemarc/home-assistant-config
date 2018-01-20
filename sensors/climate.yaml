@@ -98,7 +98,7 @@
 
 - platform: template
   sensors:
-    average_humidity:
+    average_temperature:
       friendly_name: Average Temperature
       unit_of_measurement: '°C'
       icon_template: mdi:thermometer
