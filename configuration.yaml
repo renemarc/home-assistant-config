@@ -21,16 +21,11 @@ logger:
   default: warning
   # logs:
   #   homeassistant.automations: debug
-  #   homeassistant.components.scene: debug
-  #   homeassistant.components.shell_command: debug
 
 # Enables the frontend
 frontend:
   extra_html_url:
     - /www/custom_ui/state-card-custom-ui.html
-  # themes:
-  #   green_example:
-  #     label-badge-red: '#0DA035'
 
 # Enables configuration UI
 config:
@@ -78,15 +73,19 @@ mqtt:
 tts:
   - platform: google
 
-#######
 
-# hassio:
+#
+# Extra configurations
+#
 
-# IFTTT
+# Hass.io panel
+hassio:
+
+# IFTTT integration
 ifttt:
   key: !secret ifttt_key
 
-# Ubiquiti Unifi WAP
+# Tracking
 # device_tracker:
 #   - platform: owntracks
 #   - platform: unifi
@@ -103,25 +102,52 @@ ifttt:
 customizer:
   custom_ui: local
 
-# ZWave
+# Database recorder
+# Reduce number of tracked entities and length of history.
+recorder:
+  purge_interval: 2
+  purge_keep_days: 5
+  exclude:
+    domains:
+      - camera
+      - group
+      - scene
+      - sensor
+      - sun
+    entities:
+      - switch.aeotec_zstick_disco_light
+      - switch.restart_system
+  include:
+    entities:
+      - sensor.aqi
+      - sensor.aqi_carbon_monoxide
+      - sensor.aqi_carbon_monoxide_friendly
+      - sensor.aqi_friendly
+      - sensor.aqi_nitrogen_dioxide
+      - sensor.aqi_nitrogen_dioxide_friendly
+      - sensor.aqi_ozone
+      - sensor.aqi_ozone_friendly
+      - sensor.aqi_particles
+      - sensor.aqi_particles_friendly
+      - sensor.average_humidity
+      - sensor.average_humidity_friendly
+      - sensor.average_temperature
+      - sensor.bedroom_humidity
+      - sensor.bedroom_temperature
+      - sensor.lounge_humidity
+      - sensor.lounge_luminance
+      - sensor.lounge_temperature
+      - sensor.outside_humidity
+      - sensor.outside_temperature
+      - sensor.uv
+      - sensor.uv_friendly
+      - sensor.wind_speed
+
+# ZWave integration
 # zwave:
 #   usb_path: /dev/ttyACM1
 
-# Custom panels
-# panel_iframe:
-  # dark_sky:
-  #   title: 'Dark Sky'
-  #   icon: mdi:weather-partlycloudy
-  #   url: 'https://forecast.io/embed/#lat=45.508&lon=-73.463&units=ca12'
-  # weather:
-  #   title: 'Weather'
-  #   icon: mdi:weather-partlycloudy
-  #   url: 'https://darksky.net/forecast/45.5084,-73.4616/ca12/en'
-  # dashboard:
-  #   title: Dashboard
-  #   icon: mdi:tablet
-  #   url: http://hassio.local:5050/Main?skin=modern
-
+# Modular configuration
 automation: !include_dir_merge_list automations/
 binary_sensor: !include misc/binary_sensors.yaml
 camera: !include_dir_merge_list cameras/
