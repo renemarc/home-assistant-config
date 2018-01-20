@@ -1,18 +1,21 @@
 # CPU temperature
 - platform: command_line
   name: CPU Temp
-  command: cat /sys/class/thermal/thermal_zone0/temp
+  scan_interval: 60
   unit_of_measurement: °C
+  command: cat /sys/class/thermal/thermal_zone0/temp
   value_template: '{{ (value | multiply(0.001)) | round(0) }}'
   icon_template: mdi:thermometer
 
 # Hass uptime
 - platform: uptime
   name: Uptime HASS
+  scan_interval: 60
   unit_of_measurement: hours
 
 # System monitor
 - platform: systemmonitor
+  scan_interval: 60
   resources:
     - type: disk_use_percent
       arg: /home
@@ -38,6 +41,7 @@
         - sensor.version
       value_template: >-
         HASS v{{ states('sensor.version') }}
+
     update_available:
       friendly_name: Update available
       icon_template: mdi:update
@@ -171,4 +175,3 @@
             {%- endif -%}
           {%- endif -%}
         {% endif %}
-
