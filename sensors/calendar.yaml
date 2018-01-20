@@ -12,14 +12,21 @@
 # Templates
 - platform: template
   sensors:
-    date_friendly:
-      friendly_name: Date
-      icon_template: mdi:calendar
+    day:
+      friendly_name: Day
+      icon_template: mdi:calendar-today
       entity_id:
         - sensor.date
       value_template: >-
-        {% set weekday = now().strftime('%A') %}
-        {% set month = now().strftime('%b') %}
+        {{ now().strftime('%A') }}
+
+    date_friendly:
+      friendly_name: Date
+      icon_template: mdi:calendar-today
+      entity_id:
+        - sensor.date
+      value_template: >-
+        {% set month = now().strftime('%B') %}
         {% set day = now().strftime('%d') | int %}
         {%
           set suffix = "st" if (day % 10 == 1 and day != 11)
@@ -28,7 +35,15 @@
           else "th"
         %}
 
-        {{ weekday }}, {{ month }} {{ day }}{{ suffix }}
+        {{ month }} {{ day }}
+
+    time_friendly:
+      friendly_name: Time
+      icon_template: mdi:clock
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ states('sensor.time').lstrip('0') }}
 
 # Number of days in a month
 - platform: template

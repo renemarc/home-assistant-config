@@ -173,7 +173,7 @@ status:
   name: Status
   entities:
     - sensor.date_friendly
-    - sensor.time
+    - sensor.time_friendly
     - sensor.sun_state
 
 system:

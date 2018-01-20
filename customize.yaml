@@ -1,3 +1,5 @@
+sensor.date_friendly:
+  extra_data_template: ${entities['sensor.day'].state}
 switch.dehumidifier:
   homebridge_hidden: false
   icon: mdi:cup-water
