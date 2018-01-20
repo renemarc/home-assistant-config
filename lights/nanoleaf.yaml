@@ -1,5 +1,5 @@
 - platform: aurora
   name: Aurora
   host: !secret aurora_host
-  api_key: !secret aurora_api_key
   token: !secret aurora_api_key
+  # api_key: !secret aurora_api_key

@@ -16,6 +16,8 @@
       friendly_name: Monthly usage
       icon_template: mdi:percent
       unit_of_measurement: '%'
+      entity_id:
+        - sensor.ebox_usage
       value_template: >-
         {% set usage = states('sensor.ebox_usage') %}
 
@@ -31,6 +33,9 @@
       friendly_name: Remaining downloads
       icon_template: mdi:briefcase-download
       unit_of_measurement: 'Gb'
+      entity_id:
+        - sensor.ebox_data_limit
+        - sensor.ebox_download
       value_template: >-
         {% set limit = states('sensor.ebox_data_limit') %}
         {% set download = states('sensor.ebox_download') %}
@@ -47,6 +52,9 @@
       friendly_name: Daily capacity
       icon_template: mdi:speedometer
       unit_of_measurement: 'Gb'
+      entity_id:
+        - sensor.ebox_download_remaining
+        - sensor.days_remaining_in_month
       value_template: >-
         {% set download = states('sensor.ebox_download_remaining') %}
         {% set days = states('sensor.days_remaining_in_month') %}

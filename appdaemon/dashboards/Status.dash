@@ -57,7 +57,7 @@ nav_spacer:
 label:
     widget_type: sensor
     title2: Status
-    entity: sensor.home_assistant_version_string
+    entity: sensor.version_friendly
     sub_entity: sensor.update_available
     widget_style: "background: MEDIUMSLATEBLUE;"
     title2_style: "text-transform: uppercase; letter-spacing: 0.35em;"

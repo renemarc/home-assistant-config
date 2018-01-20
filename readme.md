@@ -44,7 +44,7 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 
 ### Weather report
 - **Easy to read status and forecasts** using Dark Sky data and only showcasing parameters that actually matter.
-- **Outdoor quality monitoring** with numeric levels and human-friendly categorization for ozone, carbon monoxide, sulphur dioxide, 2.5μm particulate matter and UV light, averaged from multiple surrounding local stations.
+- **Outdoor quality monitoring** with numeric levels and human-friendly categorization for ozone, carbon monoxide, nitrogen dioxide, 2.5μm particulate matter and UV light, averaged from multiple surrounding local stations.
 - **Weather radar and satellite maps** for [local rain and snow](https://weather.gc.ca/radar/index_e.html) from Environment Canada and [regional air masses](http://www.nhc.noaa.gov/satellite.php) from the U.S. National Oceanic and Atmospheric Administration.
 
 ### Lighting control

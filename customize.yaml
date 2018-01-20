@@ -144,20 +144,20 @@ sensor.home_to_metro_3_hour:
   friendly_name: After
   extra_badge:
     entity_id: sensor.home_to_metro_3_countdown
-sensor.home_to_groceries_hour:
+sensor.home_to_market_hour:
   icon: mdi:cart
   extra_badge:
-    entity_id: sensor.home_to_groceries
-sensor.home_to_groceries_2_hour:
+    entity_id: sensor.home_to_market
+sensor.home_to_market_2_hour:
   icon: mdi:blank
   friendly_name: Next
   extra_badge:
-    entity_id: sensor.home_to_groceries_2_countdown
-sensor.home_to_groceries_3_hour:
+    entity_id: sensor.home_to_market_2_countdown
+sensor.home_to_market_3_hour:
   icon: mdi:blank
   friendly_name: After
   extra_badge:
-    entity_id: sensor.home_to_groceries_3_countdown
+    entity_id: sensor.home_to_market_3_countdown
 sensor.wind_speed:
   extra_badge:
     entity_id: sensor.wind_bearing_cardinal

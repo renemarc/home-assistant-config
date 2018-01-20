@@ -1,7 +1,3 @@
-# CPU speed
-# - platform: cpuspeed
-#   # name: CPU Speed
-
 # CPU temperature
 - platform: command_line
   name: CPU Temp
@@ -27,21 +23,26 @@
     - type: since_last_boot
 
 # Version checker
-- platform: command_line
-  name: "HASS version"
-  command: "cat /config/.HA_VERSION"
+# - platform: command_line
+#   name: "HASS version"
+#   command: "cat /config/.HA_VERSION"
+- platform: version
 
 # Friendly version report (useful for HADashboard)
 - platform: template
   sensors:
-    home_assistant_version_string:
-      friendly_name: Home Assistant version string
+    version_friendly:
+      friendly_name: Home Assistant version
       icon_template: mdi:update
+      entity_id:
+        - sensor.version
       value_template: >-
-        HASS v{{ states('sensor.hass_version') }}
+        HASS v{{ states('sensor.version') }}
     update_available:
       friendly_name: Update available
       icon_template: mdi:update
+      entity_id:
+        - input_boolean.update_available
       value_template: >-
         {% if is_state('input_boolean.update_available', 'on') %}
           Update available.
@@ -54,8 +55,10 @@
       friendly_name: Disk free /home
       icon_template: mdi:harddisk
       unit_of_measurement: '%'
+      entity_id:
+        - sensor.disk_used_home
       value_template: >-
-        {{ (100 - states.sensor.disk_used_home.state|float) | int }}
+        {{ (100 - states('sensor.disk_used_home')|float) | int }}
 
 # Free RAM space
 - platform: template
@@ -64,8 +67,10 @@
       friendly_name: RAM free
       icon_template: mdi:memory
       unit_of_measurement: '%'
+      entity_id:
+        - sensor.ram_used
       value_template: >-
-        {{ (100 - states.sensor.ram_used.state|float) | int }}
+        {{ (100 - states('sensor.ram_used')|float) | int }}
 
 # Home Assistant uptime
 - platform: template
@@ -73,8 +78,10 @@
     uptime_hass_friendly:
       friendly_name: Hass uptime
       icon_template: mdi:home-assistant
+      entity_id:
+        - sensor.uptime_hass
       value_template: >-
-        {% set uptime = states.sensor.uptime_hass.state|float %}
+        {% set uptime = states('sensor.uptime_hass')|float %}
         {% set time = (3600 * uptime) | int %}
         {% set minutes = ((time % 3600) / 60) | int %}
         {% set hours = ((time % 86400) / 3600) | int %}
@@ -119,8 +126,10 @@
     uptime_host:
       friendly_name: Server uptime
       icon_template: mdi:server
+      entity_id:
+        - sensor.since_last_boot
       value_template: >-
-        {% set slb = states.sensor.since_last_boot.state.split(' ') %}
+        {% set slb = states('sensor.since_last_boot').split(' ') %}
         {% set count = slb | length %}
         {% set hms = slb[count - 1] %}
         {% set hms_trimmed = hms.split('.')[0] %}

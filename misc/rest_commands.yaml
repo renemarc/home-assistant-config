@@ -1,4 +1,5 @@
 # see: http://forum.nanoleaf.me/docs/openapi
+# Legacy, no longer used.
 aurora_set_effect:
   # URL used:
   # "http://<hostname-or-ip-address>:<port>/api/v1/<token>/effects"
@@ -7,6 +8,7 @@ aurora_set_effect:
   content_type: 'application/json'
   payload: '{"select": "{{ name }}"}'
 
+# Legacy, no longer used.
 aurora_set_brightness:
   # URL used:
   # "http://<hostname-or-ip-address>:<port>/api/v1/<token>/state"

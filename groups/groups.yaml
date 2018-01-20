@@ -4,9 +4,9 @@ public_transit:
     - sensor.home_to_metro_hour
     - sensor.home_to_metro_2_hour
     - sensor.home_to_metro_3_hour
-    - sensor.home_to_groceries_hour
-    - sensor.home_to_groceries_2_hour
-    - sensor.home_to_groceries_3_hour
+    - sensor.home_to_market_hour
+    - sensor.home_to_market_2_hour
+    - sensor.home_to_market_3_hour
 
 air_quality:
   name: Outdoor Air Quality
@@ -172,7 +172,7 @@ scenes:
 status:
   name: Status
   entities:
-    - sensor.date_time_textual
+    - sensor.date_friendly
     - sensor.time
     - sensor.sun_state
 

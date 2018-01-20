@@ -1,4 +1,4 @@
-# Flic Smart Button
+# Flic smart button
 - platform: flic
   discovery: true
   timeout: 3

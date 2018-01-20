@@ -21,19 +21,22 @@
       friendly_name: Lounge Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      entity_id: sensor.aeotec_zw100_multisensor_6_relative_humidity
+      entity_id:
+        - sensor.aeotec_zw100_multisensor_6_relative_humidity
       value_template: "{{ states('sensor.aeotec_zw100_multisensor_6_relative_humidity') }}"
     lounge_temperature:
       friendly_name: Lounge Temperature
       unit_of_measurement: '°C'
       icon_template: mdi:thermometer
-      entity_id: sensor.aeotec_zw100_multisensor_6_temperature
+      entity_id:
+        - sensor.aeotec_zw100_multisensor_6_temperature
       value_template: "{{ states('sensor.aeotec_zw100_multisensor_6_temperature') }}"
     lounge_luminance:
       friendly_name: Lounge Luminance
       unit_of_measurement: 'lux'
       icon_template: mdi:blur
-      entity_id: sensor.aeotec_zw100_multisensor_6_luminance
+      entity_id:
+        - sensor.aeotec_zw100_multisensor_6_luminance
       value_template: "{{ states('sensor.aeotec_zw100_multisensor_6_luminance') }}"
 
 # Average humidity to compensate for lack of accuracy of each active sensor.
@@ -52,7 +55,8 @@
       friendly_name: Average Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      entity_id: sensor.average_humidity_exact
+      entity_id:
+        - sensor.average_humidity_exact
       value_template: "{{ states('sensor.average_humidity_exact')|round }}"
 
  # Human-readable humidity evaluation.
@@ -61,6 +65,8 @@
     average_humidity_friendly:
       friendly_name: Humidity
       icon_template: mdi:water-percent
+      entity_id:
+        - sensor.average_humidity
       value_template: >-
         {% set humidity = states('sensor.average_humidity') | int %}
 
@@ -96,5 +102,6 @@
       friendly_name: Average Temperature
       unit_of_measurement: '°C'
       icon_template: mdi:thermometer
-      entity_id: sensor.average_temperature_exact
+      entity_id:
+        - sensor.average_temperature_exact
       value_template: "{{ states('sensor.average_temperature_exact')|round }}"

@@ -1,13 +1,13 @@
 # Public Transit
 - platform: gtfs
-  name: 'Home to metro'
+  name: 'Home to Metro'
   origin: !secret gtfs_origin_1
   destination: !secret gtfs_destination_1
   data: !secret gtfs_data
   scan_interval: 60
 
 - platform: gtfs
-  name: 'Home to metro 2'
+  name: 'Home to Metro 2'
   origin: !secret gtfs_origin_1
   destination: !secret gtfs_destination_1
   data: !secret gtfs_data
@@ -15,7 +15,7 @@
   position: 2
 
 - platform: gtfs
-  name: 'Home to metro 3'
+  name: 'Home to Metro 3'
   origin: !secret gtfs_origin_1
   destination: !secret gtfs_destination_1
   data: !secret gtfs_data
@@ -23,14 +23,14 @@
   position: 3
 
 - platform: gtfs
-  name: 'Home to groceries'
+  name: 'Home to Market'
   origin: !secret gtfs_origin_2
   destination: !secret gtfs_destination_2
   data: !secret gtfs_data
   scan_interval: 60
 
 - platform: gtfs
-  name: 'Home to groceries 2'
+  name: 'Home to Market 2'
   origin: !secret gtfs_origin_2
   destination: !secret gtfs_destination_2
   data: !secret gtfs_data
@@ -38,7 +38,7 @@
   position: 2
 
 - platform: gtfs
-  name: 'Home to groceries 3'
+  name: 'Home to Market 3'
   origin: !secret gtfs_origin_2
   destination: !secret gtfs_destination_2
   data: !secret gtfs_data
@@ -48,8 +48,10 @@
 - platform: template
   sensors:
     home_to_metro_countdown:
-      friendly_name: Bus to metro
+      friendly_name: Bus to Metro
       icon_template: mdi:bus
+      entity_id:
+        - sensor.home_to_metro
       value_template: >-
         {% set countdown = states('sensor.home_to_metro') | int %}
         {% if countdown > 60 %}
@@ -64,8 +66,10 @@
         {% endif %}
 
     home_to_metro_2_countdown:
-      friendly_name: Bus to metro 2
+      friendly_name: Bus to Metro 2
       icon_template: mdi:bus
+      entity_id:
+        - sensor.home_to_metro_2
       value_template: >-
         {% set countdown = states('sensor.home_to_metro_2') | int %}
         {% if countdown > 60 %}
@@ -80,8 +84,10 @@
         {% endif %}
 
     home_to_metro_3_countdown:
-      friendly_name: Bus to metro 3
+      friendly_name: Bus to Metro 3
       icon_template: mdi:bus
+      entity_id:
+        - sensor.home_to_metro_3
       value_template: >-
         {% set countdown = states('sensor.home_to_metro_3') | int %}
         {% if countdown > 60 %}
@@ -95,11 +101,13 @@
           {{countdown}}
         {% endif %}
 
-    home_to_groceries_countdown:
-      friendly_name: Bus to groceries
+    home_to_market_countdown:
+      friendly_name: Bus to Market
       icon_template: mdi:bus
+      entity_id:
+        - sensor.home_to_market
       value_template: >-
-        {% set countdown = states('sensor.home_to_groceries') | int %}
+        {% set countdown = states('sensor.home_to_market') | int %}
         {% if countdown > 60 %}
           {% set hours = (countdown / 60) | int %}
           {% set minutes = (countdown % 60) | int %}
@@ -111,11 +119,13 @@
           {{countdown}}
         {% endif %}
 
-    home_to_groceries_2_countdown:
-      friendly_name: Bus to groceries 2
+    home_to_market_2_countdown:
+      friendly_name: Bus to Market 2
       icon_template: mdi:bus
+      entity_id:
+        - sensor.home_to_market_2
       value_template: >-
-        {% set countdown = states('sensor.home_to_groceries_2') | int %}
+        {% set countdown = states('sensor.home_to_market_2') | int %}
         {% if countdown > 60 %}
           {% set hours = (countdown / 60) | int %}
           {% set minutes = (countdown % 60) | int %}
@@ -127,11 +137,13 @@
           {{countdown}}
         {% endif %}
 
-    home_to_groceries_3_countdown:
-      friendly_name: Bus to groceries 3
+    home_to_market_3_countdown:
+      friendly_name: Bus to Market 3
       icon_template: mdi:bus
+      entity_id:
+        - sensor.home_to_market_3
       value_template: >-
-        {% set countdown = states('sensor.home_to_groceries_3') | int %}
+        {% set countdown = states('sensor.home_to_market_3') | int %}
         {% if countdown > 60 %}
           {% set hours = (countdown / 60) | int %}
           {% set minutes = (countdown % 60) | int %}
@@ -144,8 +156,10 @@
         {% endif %}
 
     home_to_metro_hour:
-      friendly_name: Bus to metro
+      friendly_name: Bus to Metro
       icon_template: mdi:bus
+      entity_id:
+        - sensor.home_to_metro
       value_template: >-
         {% set departure = states.sensor.home_to_metro.attributes['Origin Stop Departure Time'].split(' ') %}
         {% set hms = departure[1].split(':') %}
@@ -153,8 +167,10 @@
         {{hms[0]}}:{{hms[1]}}
 
     home_to_metro_2_hour:
-      friendly_name: Bus to metro (Next)
+      friendly_name: Bus to Metro (Next)
       icon_template: mdi:bus
+      entity_id:
+        - sensor.home_to_metro_2
       value_template: >-
         {% set departure = states.sensor.home_to_metro_2.attributes['Origin Stop Departure Time'].split(' ') %}
         {% set hms = departure[1].split(':') %}
@@ -162,37 +178,45 @@
         {{hms[0]}}:{{hms[1]}}
 
     home_to_metro_3_hour:
-      friendly_name: Bus to metro (After)
+      friendly_name: Bus to Metro (After)
       icon_template: mdi:bus
+      entity_id:
+        - sensor.home_to_metro_3
       value_template: >-
         {% set departure = states.sensor.home_to_metro_3.attributes['Origin Stop Departure Time'].split(' ') %}
         {% set hms = departure[1].split(':') %}
 
         {{hms[0]}}:{{hms[1]}}
 
-    home_to_groceries_hour:
-      friendly_name: Bus to market
+    home_to_market_hour:
+      friendly_name: Bus to Market
       icon_template: mdi:bus
+      entity_id:
+        - sensor.home_to_market
       value_template: >-
-        {% set departure = states.sensor.home_to_groceries.attributes['Origin Stop Departure Time'].split(' ') %}
+        {% set departure = states.sensor.home_to_market.attributes['Origin Stop Departure Time'].split(' ') %}
         {% set hms = departure[1].split(':') %}
 
         {{hms[0]}}:{{hms[1]}}
 
-    home_to_groceries_2_hour:
-      friendly_name: Bus to market (Next)
+    home_to_market_2_hour:
+      friendly_name: Bus to Market (Next)
       icon_template: mdi:bus
+      entity_id:
+        - sensor.home_to_market_2
       value_template: >-
-        {% set departure = states.sensor.home_to_groceries_2.attributes['Origin Stop Departure Time'].split(' ') %}
+        {% set departure = states.sensor.home_to_market_2.attributes['Origin Stop Departure Time'].split(' ') %}
         {% set hms = departure[1].split(':') %}
 
         {{hms[0]}}:{{hms[1]}}
 
-    home_to_groceries_3_hour:
-      friendly_name: Bus to market (After)
+    home_to_market_3_hour:
+      friendly_name: Bus to Market (After)
       icon_template: mdi:bus
+      entity_id:
+        - sensor.home_to_market_3
       value_template: >-
-        {% set departure = states.sensor.home_to_groceries_3.attributes['Origin Stop Departure Time'].split(' ') %}
+        {% set departure = states.sensor.home_to_market_3.attributes['Origin Stop Departure Time'].split(' ') %}
         {% set hms = departure[1].split(':') %}
 
         {{hms[0]}}:{{hms[1]}}

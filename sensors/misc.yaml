@@ -14,6 +14,8 @@
   sensors:
     ceiling_effect_loaded:
       friendly_name: Ceiling Effect Loaded
+      entity_id:
+        - group.ceiling
       value_template: >-
         {% if is_state('group.ceiling', 'on') %}
           {{ states('sensor.ceiling_effect') }}
@@ -28,15 +30,16 @@
 
 - platform: rest
   resource: http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US
-  name: Bing Wallpaper Title
-  entity_id: sensor.bing_wallpaper
+  name: Bing Wallpaper Info
+  entity_id:
+    - sensor.bing_wallpaper
   value_template: "{{ value_json.images[0].copyright.split(' (')[0] }}"
 
-- platform: random
-  name: Good vibes index
-  scan_interval: 60
-  minimum: 0
-  maximum: 43
+# - platform: random
+#   name: Good vibes index
+#   scan_interval: 60
+#   minimum: 0
+#   maximum: 1
 
 # Templates
 # see: http://www.lifestalker.com/2017/04/four-word-quotes.html
@@ -44,9 +47,10 @@
   sensors:
     good_vibes:
       friendly_name: Good vibes
+      entity_id:
+        - sensor.time
       icon_template: mdi:emoticon-happy
       value_template: >-
-        {% set index = states('sensor.good_vibes_index') | int %}
         {% set vibes = [
           "Be great.",
           "Be happy!",
@@ -90,7 +94,7 @@
           "You live only once.",
           "You look delicious!",
           "You make people happy.",
-          "Your time is now."
+          "Your time is now.",
         ] %}
 
-        {{ vibes[index] }}
+        {{ vibes|random }}

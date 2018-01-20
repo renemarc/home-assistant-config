@@ -12,9 +12,11 @@
 # Templates
 - platform: template
   sensors:
-    date_time_textual:
+    date_friendly:
       friendly_name: Date
       icon_template: mdi:calendar
+      entity_id:
+        - sensor.date
       value_template: >-
         {% set weekday = now().strftime('%A') %}
         {% set month = now().strftime('%b') %}
@@ -34,6 +36,8 @@
     days_in_month:
       friendly_name: Days in month
       icon_template: mdi:calendar
+      entity_id:
+        - sensor.date
       value_template: >-
         {% set month = now().month %}
         {% set year = now().year %}
@@ -51,6 +55,8 @@
     days_remaining_in_month:
       friendly_name: Days remaining in month
       icon_template: mdi:calendar
+      entity_id:
+        - sensor.date
       value_template: >-
         {% set days_in_month = states.sensor.days_in_month.state|int %}
 
@@ -61,16 +67,18 @@
   sensors:
     sun_state:
       friendly_name: Sun
-      value_template: >-
-        {% if is_state('sun.sun', 'above_horizon') %}
-          sets at {% set timestamp = as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%H:%M") %} {{ timestamp.lstrip("0") }}
-        {% else %}
-          rises at {% set timestamp = as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%H:%M") %} {{ timestamp.lstrip("0") }}
-        {% endif %}
+      entity_id:
+        - sun.sun
       icon_template: >-
         {% if is_state('sun.sun', 'above_horizon') %}
           mdi:weather-sunny
         {% else %}
           mdi:weather-night
+        {% endif %}
+      value_template: >-
+        {% if is_state('sun.sun', 'above_horizon') %}
+          sets at {% set timestamp = as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%H:%M") %} {{ timestamp.lstrip("0") }}
+        {% else %}
+          rises at {% set timestamp = as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%H:%M") %} {{ timestamp.lstrip("0") }}
         {% endif %}
 

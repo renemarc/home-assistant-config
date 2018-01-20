@@ -1,9 +1,11 @@
-- platform: generic
-  name: NOAA Shortwave
-  still_image_url: http://www.ssd.noaa.gov/goes/east/eaus/ir2-animated.gif
-  content_type: image/gif
+# - platform: generic
+#   name: NOAA Shortwave
+#   scan_interval: 10800
+#   still_image_url: http://www.ssd.noaa.gov/goes/east/eaus/ir2-animated.gif
+#   content_type: image/gif
 
-- platform: generic
-  name: NOAA Water Vapour
-  still_image_url: http://www.ssd.noaa.gov/goes/east/eaus/wv-animated.gif
-  content_type: image/gif
+# - platform: generic
+#   name: NOAA Water Vapour
+#   scan_interval: 10800
+#   still_image_url: http://www.ssd.noaa.gov/goes/east/eaus/wv-animated.gif
+#   content_type: image/gif

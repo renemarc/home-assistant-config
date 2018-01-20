@@ -1,5 +1,6 @@
 - platform: generic
   name: Environment Canada Rain
+  scan_interval: 600
   still_image_url: >-
     {% set location = states('sensor.environment_canada_radar') %}
     {# Radar images are batch created every 10 minutes on the dot, but can take
@@ -16,6 +17,7 @@
 
 - platform: generic
   name: Environment Canada Snow
+  scan_interval: 600
   still_image_url: >-
     {% set location = states('sensor.environment_canada_radar') %}
     {# Radar images are batch created every 10 minutes on the dot, but can take

@@ -1,5 +1,7 @@
 - platform: generic
   name: Bing Wallpaper
+  entity_id:
+    - sensor.bing_wallpaper
   still_image_url: >-
     {{ states('sensor.bing_wallpaper') }}
   content_type: image/jpg
