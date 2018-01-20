@@ -1,3 +1,4 @@
+# 12v fairy lights on a smart plug.
 - platform: tplink
   name: Window Light
   host: !secret tplink_window_light_host

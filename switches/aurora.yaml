@@ -1,4 +1,4 @@
-# Basic control of Nanoleaf Aurora until component becomes availaable in Hass.io.
+# Simple control of Nanoleaf Aurora until component becomes availaable in Hass.io.
 # see: https://community.home-assistant.io/t/nanoleaf-aurora-component/21054
 - platform: command_line
   switches:

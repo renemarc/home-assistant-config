@@ -1,3 +1,4 @@
+# Legacy.
 - platform: command_line
   switches:
     restart_system:
