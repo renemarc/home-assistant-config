@@ -87,7 +87,6 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - Dashboard: daily picture slideshow
 
 #### Backlog
-- Code: Adjust sensor polling rates.
 - UI: State card for text only (weather, quotes...)
 - Component: fix unlimited bandwidth consumption bug
 - Status: Update available.
@@ -165,12 +164,13 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - **[Docker](https://www.docker.com/)** on local machine (for development).
 
 ### Hass.io add-ons
-- **[AppDaemon](https://github.com/home-assistant/appdaemon)** for HADashboard tablet UI.
+- **[AppDaemon2](https://github.com/home-assistant/appdaemon)** for HADashboard tablet UI.
 - **[Bluetooth BCM43xx](https://home-assistant.io/addons/bluetooth_bcm43xx/)** to use Raspberry Pi's bluetooth.
 - **[Flicd](https://github.com/pschmitt/hassio-addons)** to connect with Flic bluetooth buttons.
 - **[Mosquitto MQTT broker](https://home-assistant.io/addons/mosquitto/)** for standard IoT messaging.
 - **[Homebridge](https://github.com/hassio-addons/addon-homebridge)** to control non-HomeKit compatible devices using iPhones.
-- **[Samba](https://home-assistant.io/addons/samba/)** for configuration file sharing.
+- **[RTL_433 to MQTT Bridge](https://github.com/james-fry/hassio-addons/)** to receive and decode AcuRite radio signals.
+- **[Samba share](https://home-assistant.io/addons/samba/)** for configuration file sharing.
 
 ## Thanks
 
