@@ -14,9 +14,8 @@ global_parameters:
 
 
 #
-# Common widgets
+# Common navigation
 #
-
 nav_main:
     widget_type: navigate
     dashboard: Main
@@ -51,9 +50,8 @@ nav_spacer:
 
 
 #
-# Custom widgets
+# Header
 #
-
 label:
     widget_type: sensor
     title2: Home Assistant
@@ -63,20 +61,32 @@ label:
     title2_style: "text-transform: uppercase; letter-spacing: 0.35em;"
 
 
-daily_picture:
+#
+# Slideshow
+#
+slideshow:
     widget_type: camera
-    title: Bing Wallpaper
-    refresh: 10
+    refresh: 5
     img_list:
         - http://hassio.local:8123/api/camera_proxy/camera.bing_wallpaper?token=bc9ccd0575dfb05d63df105cc8ed76d6578d63e60083e48fe265a07513a9861d
         - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_snow?token=72401f9a299bbf9f8521bd46bb8e2366d29d59af19006522910aaed73502cb47
-    title_style: "background-color: rgba(0, 0, 0, 1);"
-    sub_entity: sensor.bing_wallpaper_info
+        - http://hassio.local:8123/api/camera_proxy/camera.astronomy_picture_of_the_day?token=8a93f72de0a6538bd4c8348a338bd13a65be0bab41545f1b2f97676fb584c150
+        - http://hassio.local:8123/api/camera_proxy/camera.noaa_geocolor?token=c5c3e871bce6c743f4bb50b41cfed061fb9ac474735d22710d6d44d23725a961
 
-daily_picture_decription:
+slideshow_apod:
+    widget_type: sensor
+    entity: sensor.apod_title
+    widget_style: "background-color:inherit;"
+
+slideshow_bing:
     widget_type: sensor
     entity: sensor.bing_wallpaper_info
+    widget_style: "background-color:inherit;"
 
+
+#
+# Actions
+#
 good_morning:
     widget_type: script
     entity: script.wake_up
@@ -98,27 +108,71 @@ go_to_sleep:
     icon_on: mdi-weather-night
     icon_off: mdi-weather-night
 
-# doors_state:
-#     widget_type: binary_sensor
-#     title: Doors
-#     entity: input_boolean.doors_open
-#     icon_on: mdi-home
-#     icon_off: mdi-home-outline
 
-# windows_state:
-#     widget_type: binary_sensor
-#     title: Windows
-#     entity: input_boolean.windows_open
-#     icon_on: mdi-window-open
-#     icon_off: mdi-window-closed
+#
+# Weather
+#
+temperature_now:
+    widget_type: entitysensor
+    entity: sensor.dark_sky_temperature
+    sub_entity: sensor.weather_low_friendly
+    title2_entity: sensor.feels_like
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
+    state_text_style: "background-color:inherit"
 
-# label_transit:
-#     widget_type: label
-#     title: Public transit
-#     widget_style: "background-color:inherit;"
-#     title_style: "position:absolute;top:80px;text-align:left;font-size:200%;font-weight:400;"
+weather_icon_now:
+    widget_type: iconsensor
+    entity: sensor.dark_sky_icon
+    state_icons:
+        clear-day: mdi-weather-sunny
+        clear-night: mdi-weather-night
+        rain: mdi-weather-rainy
+        snow: mdi-weather-snowy
+        sleet: mdi-weather-snowy-rainy
+        wind: mdi-weather-windy
+        fog: mdi-weather-fog
+        cloudy: mdi-weather-cloudy
+        partly-cloudy-day: mdi-weather-partlycloudy
+        partly-cloudy-night: mdi-weather-partlycloudy
+    title2_entity: sensor.weather_icon_friendly
+    sub_entity: sensor.precip_probability_friendly
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
+    state_text_style: "background-color:inherit"
+
+daily_forecast:
+    widget_type: entitysensor
+    title: 24h Forecast
+    title_entity: sensor.dark_sky_minutely_summary
+    entity: sensor.dark_sky_hourly_summary
+    widget_style: "background-color:inherit;"
+    title_style: "background-color:#555;width:150%;margin-left:-50%;margin-top:-5px;padding:5px 0 3px;border-radius:5px;"
+
+wind:
+    widget_type: entitysensor
+    entity: sensor.wind_speed
+    title2_entity: sensor.wind_scale_friendly
+    sub_entity: sensor.wind_bearing_cardinal_friendly
+    widget_style: "background-color:inherit;"
+    state_text_style: "background-color:inherit;"
 
 
+#
+# Outdoor quality
+#
+outdoor_safety:
+    widget_type: multisensor
+    title2: "AQI           UV "
+    entity: sensor.aqi
+    entity2: sensor.uv
+    widget_style: "background-color:inherit;"
+    title2_style: "top:35px;"
+
+
+#
+# Public Transit
+#
 to_metro:
     widget_type: sensor
     title: Bus to Metro
@@ -143,7 +197,6 @@ to_metro_3:
     sub_entity: sensor.home_to_metro_3_hour
     text_style: "color:#00aaff;font-size:250%;"
     state_text_style: "background-color:#555;"
-
 
 to_market:
     widget_type: sensor
@@ -173,12 +226,11 @@ to_market_3:
 #
 # Layout
 #
-
 layout:
     - include: header
     - nav_main,         label(6x1), reload, temperature, clock
-    - nav_switchboard,  daily_picture(6x4), daily_picture_decription(1x2)
-    - nav_weather
+    - nav_switchboard,  slideshow(6x4), wind, temperature_now, weather_icon_now
+    - nav_weather,      outdoor_safety, daily_forecast(2x1)
     - nav_spacer(1x2),  spacer, to_metro, to_market
-    - spacer(1x1),      to_metro_2, to_market_2
-    - nav_status,       good_morning, take_a_nap, go_to_sleep, spacer(4x1), to_metro_3, to_market_3
+    -                   spacer, to_metro_2, to_market_2
+    - nav_status,       good_morning, take_a_nap, go_to_sleep, spacer, slideshow_bing, slideshow_apod, spacer, to_metro_3, to_market_3

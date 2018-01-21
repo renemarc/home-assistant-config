@@ -14,9 +14,8 @@ global_parameters:
 
 
 #
-# Common widgets
+# Common navigation
 #
-
 nav_main:
     widget_type: navigate
     dashboard: Main
@@ -51,9 +50,8 @@ nav_spacer:
 
 
 #
-# Custom widgets
+# Header
 #
-
 label:
     widget_type: label
     title2: Switchboard
@@ -65,7 +63,6 @@ label:
 #
 # Exterior
 #
-
 label_exterior:
     widget_type: multisensor
     title2: Exterior
@@ -83,7 +80,6 @@ light_front_door:
 #
 # Ceiling
 #
-
 label_ceiling:
     widget_type: input_select
     title2: Ceiling

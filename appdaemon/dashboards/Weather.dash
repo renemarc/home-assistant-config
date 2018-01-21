@@ -14,9 +14,8 @@ global_parameters:
 
 
 #
-# Common widgets
+# Common navigation
 #
-
 nav_main:
     widget_type: navigate
     dashboard: Main
@@ -52,9 +51,8 @@ nav_spacer:
 
 
 #
-# Custom widgets
+# Header
 #
-
 label:
     widget_type: sensor
     title2: Weather
@@ -69,44 +67,51 @@ label:
 #
 # Current weather
 #
-
-camera_noaa_shortwave:
+camera_environment_canada:
     widget_type: camera
-    title: Shortwave
-    entity_picture: http://hassio.local:8123/api/camera_proxy/camera.noaa_shortwave?token=ac78d1632dcbaeb6c60a65863ae89b94c665842771f99355c43985933ef6dd79
+    refresh: 1
+    img_list:
+        - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_rain?token=d660cfd7fc10367a52571370758a826b697b4c43c0a91a40ab04327e7a791487
+        - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_rain_2?token=3df6d563b3d938aadb132e4b9e4c00c3311c55eae4361a70b1e13cfa32114340
+        - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_rain_3?token=21543de1f2ce8ca84d2114b452f839ddd98a9ca5147b37f01c4f14adb62ed6f0
+        - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_snow?token=de27298acdc2fabc70a4f18e2f73cc13f4d63a091d6b7969514e34e8acf488df
+        - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_snow_2?token=b63878776c5c84d4fb46f9fc0ad82a47991894d40bfc9c383cb78871c4b441e4
+        - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_snow_3?token=42607ab03e61e5b8d72e90d6ceda618fac2e66ff7e92d3fb8af9e1ef45cfcdc7
     title_style: "background-color: rgba(0, 0, 0, 1);"
 
-camera_noaa_water_vapour:
+camera_noaa:
     widget_type: camera
-    title: Water Vapour
-    entity_picture: http://hassio.local:8123/api/camera_proxy/camera.noaa_water_vapour?token=7fd911b8f9a660eb61a46d5181a0be874c4f53bf47c0f74204920351ef3034c4
-    title_style: "background-color: rgba(0, 0, 0, 1);"
-
-camera_environment_canada_rain:
-    widget_type: camera
-    title: Rain
-    entity_picture: http://hassio.local:8123/api/camera_proxy/camera.environment_canada_rain?token=d484e6eed7b461cc8e50b5633fc9ac1e3cda21327d6af261126382d1de5a24eb
-    title_style: "background-color: rgba(0, 0, 0, 1);"
-
-camera_environment_canada_snow:
-    widget_type: camera
-    title: Snow
-    entity_picture: http://hassio.local:8123/api/camera_proxy/camera.environment_canada_snow?token=72401f9a299bbf9f8521bd46bb8e2366d29d59af19006522910aaed73502cb47
+    refresh: 3
+    img_list:
+        - http://hassio.local:8123/api/camera_proxy/camera.noaa_geocolor?token=5d9b9b5a6681e174ce772563564c6f9eacfa8d060c6eb53c82e1f9a9dfbab623
+        - http://hassio.local:8123/api/camera_proxy/camera.noaa_water_vapour?token=af621c3ed64cb4c7e1383fc275ff5d71e4a01174596d70d80b23fe913029d803
     title_style: "background-color: rgba(0, 0, 0, 1);"
 
 wind:
     widget_type: entitysensor
     entity: sensor.wind_speed
     title2_entity: sensor.wind_scale_friendly
-    sub_entity: sensor.wind_bearing_cardinal_friendly
     widget_style: "background-color:inherit;"
-    state_text_style: "background-color:inherit;"
+
+wind_icon:
+    widget_type: iconsensor
+    entity: sensor.wind_bearing_cardinal
+    title2_entity: sensor.wind_bearing_cardinal_friendly
+    state_icons:
+        N: mdi-arrow-up
+        NE: mdi-arrow-top-right
+        E: mdi-arrow-right
+        SE: mdi-arrow-bottom-right
+        S: mdi-arrow-sown
+        SW: mdi-arrow-bottom-left
+        W: mdi-arrow-left
+        NW: mdi-arrow-top-left
+    widget_style: "background-color:inherit;"
 
 
 #
 # Weather forecasts
 #
-
 daily_forecast:
     widget_type: sensor
     title: 24h Forecast
@@ -144,6 +149,7 @@ temperature_after_tomorrow:
     title: After Tomorrow
     entity: sensor.dark_sky_daily_high_temperature_2
     sub_entity: sensor.weather_low_2_friendly
+    title_entity: sensor.after_tomorrow
     title2_entity: sensor.feels_like_2
     widget_style: "background-color:inherit;"
     title_style: "background-color:#555;padding:5px 52% 3px;margin-top:-5px;border-radius: 5px 5px 0 0"
@@ -212,9 +218,8 @@ weather_icon_after_tomorrow:
 
 
 #
-# Air quality
+# Outdoor life quality
 #
-
 aqi:
     widget_type: sensor
     title: Air Quality Index
@@ -261,12 +266,11 @@ uv:
 #
 # Layout
 #
-
 layout:
     - include: header
     - nav_main,         label(6x1), reload, temperature, clock
-    - nav_switchboard,  camera_environment_canada_rain(3x2), camera_environment_canada_snow(3x2), wind, daily_forecast(2x1)
-    - nav_weather,      spacer, weekly_forecast(2x1)
-    - nav_spacer(1x2),  camera_noaa_shortwave(3x2), camera_noaa_water_vapour(3x2), spacer, temperature_today, weather_icon_today
-    - spacer,           temperature_tomorrow, weather_icon_tomorrow
+    - nav_switchboard,  camera_noaa(3x3), camera_environment_canada(3x3), wind, daily_forecast(2x1)
+    - nav_weather,      wind_icon, weekly_forecast(2x1)
+    - nav_spacer(1x2),  spacer, temperature_today, weather_icon_today
+    - spacer,           spacer(6x1), temperature_tomorrow, weather_icon_tomorrow
     - nav_status,       aqi, aqi_particles, aqi_ozone, aqi_carbon_monoxide, aqi_nitrogen_dioxide, uv, spacer, temperature_after_tomorrow, weather_icon_after_tomorrow

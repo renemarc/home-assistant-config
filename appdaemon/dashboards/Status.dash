@@ -14,9 +14,8 @@ global_parameters:
 
 
 #
-# Common widgets
+# Common navigation
 #
-
 nav_main:
     widget_type: navigate
     dashboard: Main
@@ -51,9 +50,8 @@ nav_spacer:
 
 
 #
-# Custom widgets
+# Header
 #
-
 label:
     widget_type: sensor
     title2: Status
@@ -64,11 +62,29 @@ label:
     text_style: "font-size: 300%;"
     state_text_style: "font-size:125%;padding-bottom:0.15em;background-color:MEDIUMSLATEBLUE;"
 
+
+#
+# System
+#
 uptime:
     widget_type: sensor
-    title: Uptime
+    title: Uptime HASS
     entity: sensor.uptime_friendly
-    sub_entity: sensor.uptime_host
+
+uptime_host:
+    widget_type: sensor
+    title: Uptime Host
+    entity: sensor.uptime_host
+
+database_size:
+    widget_type: sensor
+    title: Database
+    entity: sensor.database_size
+
+logfile_size:
+    widget_type: sensor
+    title: Logfile
+    entity: sensor.logfile_size
 
 cpu_temp:
     widget_type: gauge
@@ -106,7 +122,6 @@ ram_used:
     med_color: FFFF00
     high_color: FF0000
 
-
 disk_used:
     widget_type: gauge
     entity: sensor.disk_used_home
@@ -119,6 +134,10 @@ disk_used:
     med_color: FFFF00
     high_color: FF0000
 
+
+#
+# Network
+#
 upspeed:
     widget_type: gauge
     entity: sensor.speedtest_upload
@@ -144,12 +163,11 @@ downspeed:
 #
 # Layout
 #
-
 layout:
     - include: header
     - nav_main,         label(6x1), reload, temperature, clock
-    - nav_switchboard,  uptime, cpu_temp, cpu_used, ram_used, disk_used, spacer, sensor.speedtest_ping, upspeed, downspeed
-    - nav_weather
-    - nav_spacer(1x2),  sensor.bedroom_humidity, sensor.lounge_humidity
-    -
-    - nav_status
+    - nav_switchboard,  uptime, uptime_host, database_size, logfile_size
+    - nav_weather,      cpu_temp, cpu_used, ram_used, disk_used, spacer(2x1), sensor.speedtest_ping, upspeed, downspeed
+    - nav_spacer(1x2)
+    -                   sensor.bedroom_temperature, sensor.bedroom_humidity
+    - nav_status,       sensor.lounge_temperature, sensor.lounge_humidity
