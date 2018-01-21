@@ -4,13 +4,12 @@ import telnetlib
 import voluptuous as vol
 
 # Import the device class from the component that you want to support
-from homeassistant.components.light import Light, PLATFORM_SCHEMA
+from homeassistant.components.light import Light, DOMAIN, PLATFORM_SCHEMA
 from homeassistant.const import CONF_HOST, CONF_PORT, CONF_API_KEY
 import homeassistant.helpers.config_validation as cv
 
 _LOGGER = logging.getLogger(__name__)
 
-DOMAIN = 'lightpack'
 ATTR_NAME = 'profile'
 
 # Validation of the user's configuration
@@ -21,7 +20,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 })
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
-    # Assign configuration variables. The configuration check takes care they are present. 
+    # Assign configuration variables. The configuration check takes care they are present.
     host = config.get(CONF_HOST)
     port = config.get(CONF_PORT)
     api_key = config.get(CONF_API_KEY)
@@ -104,7 +103,7 @@ class Lightpack(Light):
             _LOGGER.error('Command "%s" failed with exception: %s', command, repr(error))
             self._state = False
             return None
-            
+
     def update(self):
         """Periodically check to see if the light is on."""
         self._state = self.is_on
