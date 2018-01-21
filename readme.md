@@ -78,26 +78,20 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - **Flic button on nightstand** for wake-up, sleep time, and nightstand light control, depending on current state and click sequence.
 - **[Homebridge](https://github.com/nfarina/homebridge)** for using some key sensors and devices with iPhones (only if using the same VLAN though).
 - **[Home Assistant Companion](https://itunes.apple.com/us/app/home-assistant-companion/id1099568401?mt=8) iPhone app** for full UI access in the palm of your hand. Muahahaha!
-- **[HADashboard](https://home-assistant.io/docs/ecosystem/hadashboard/)** for wall-mounted tablet, featuring indoor sensors reports, transit schedules, weather forecast and radar maps, wrapped in an obvious navigation scheme for much UX goodness. You'll like!
+- **[HADashboard](https://home-assistant.io/docs/ecosystem/hadashboard/)** for wall-mounted tablet, featuring indoor sensors reports, transit schedules, weather forecast and radar/sattelite maps, wrapped in an obvious navigation scheme for much UX goodness. You'll like!
 
 
 ### Task list
 
 #### Work in progress
-- Dashboard: daily picture slideshow
 
 #### Backlog
 - UI: State card for text only (weather, quotes...)
 - Component: fix unlimited bandwidth consumption bug
-- Status: Update available.
 - Scene: Romantic
 - Scene: Gaming/Party
-- Dashboard: finish main panel
-- Dashboard: organize status panel
-- Dashboard: adjust sensors refresh rate
-- Interface: Overrides for each automation
-- Interface: Voice command (snips.ai)
 - Automation: Away mode
+- Interface: Voice command (snips.ai)
 - Presence detection: Cellphones
 - Presence detection: Router
 - Contribute: GTFS sensor optimization and documentation

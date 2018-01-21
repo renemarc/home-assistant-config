@@ -19,8 +19,9 @@ homeassistant:
 # Logs everything
 logger:
   default: warning
-  # logs:
-  #   homeassistant.automations: debug
+  logs:
+    # homeassistant.automations: debug
+    homeassistant.components.ebox: debug
 
 # Enables the frontend
 frontend:

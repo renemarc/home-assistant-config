@@ -113,8 +113,6 @@ switch.window_light:
   icon: mdi:creation
 binary_sensor.flic_80e4da737711:
   friendly_name: Flic blue
-switch.aurora:
-  icon: mdi:vector-triangle
 sensor.aqi_friendly:
   extra_badge:
     entity_id: sensor.aqi
@@ -167,18 +165,20 @@ sensor.wind_speed:
 sensor.outside_temperature:
   extra_data_template: ${entities['sensor.feels_like'].state}
 sensor.dark_sky_summary:
+  friendly_name: Summary
   extra_data_template: ${entities['sensor.dark_sky_minutely_summary'].state}
 camera.environment_canada_rain:
   friendly_name: Rain
 camera.environment_canada_snow:
   friendly_name: Snow
-camera.noaa_shortwave:
-  friendly_name: Shortwave
+camera.noaa_geocolor:
+  friendly_name: GeoColor
 camera.noaa_water_vapour:
   friendly_name: Water Vapour
 sensor.dark_sky_hourly_summary:
-  friendly_name: ''
+  friendly_name: 24h Summary
 sensor.dark_sky_daily_summary:
+  friendly_name: Weekly Forecast
   extra_data_template: ${entities['sensor.dark_sky_daily_summary'].state}
   hide_control: true
 sensor.average_humidity_friendly:
