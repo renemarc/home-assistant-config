@@ -28,7 +28,7 @@
     - service: persistent_notification.create
       data:
         notification_id: humidity
-        title: "Humidity is too low: {{ states.sensor.average_humidity.state }}%"
+        title: "Humidity is too low: {{ states('sensor.average_humidity') }}%"
         message: "Take a long hot shower or install a humidifier."
 
 # Check if humidity is too high.
@@ -61,5 +61,5 @@
     - service: persistent_notification.create
       data:
         notification_id: humidity
-        title: "Humidity is too high: {{ states.sensor.average_humidity.state }}%"
+        title: "Humidity is too high: {{ states('sensor.average_humidity') }}%"
         message: "Check the dehumidifier."
