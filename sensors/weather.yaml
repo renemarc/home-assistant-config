@@ -434,7 +434,6 @@
 #
 - platform: template
   sensors:
-    feels_like:
     wind_bearing_cardinal:
       friendly_name: Wind bearing
       entity_id:

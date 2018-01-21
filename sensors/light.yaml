@@ -1,5 +1,5 @@
 #
-# Ceiling wash lights effect
+# Ceiling wash lights effects
 #
 - platform: mqtt
   name: Ceiling Effect
@@ -13,16 +13,10 @@
   value_template: '{{ value_json.uuid }}'
   qos: 1
 
-
-#
-# Ceiling wash lights active effect
-#
 - platform: template
   sensors:
     ceiling_effect_loaded:
       friendly_name: Ceiling Effect Loaded
-      entity_id:
-        - group.ceiling
       value_template: >-
         {% if is_state('group.ceiling', 'on') %}
           {{ states('sensor.ceiling_effect') }}
@@ -30,7 +24,7 @@
 
 
 #
-# Nanoleaf Aurora effect and brightness reception
+# Nanoleaf Aurora effect and brightness
 #
 - platform: mqtt
   name: Aurora Effect
@@ -44,10 +38,6 @@
   value_template: '{{ value_json.brightness }}'
   qos: 1
 
-
-#
-# Nanoleaf Aurora active effect
-#
 - platform: template
   sensors:
     aurora_effect_loaded:

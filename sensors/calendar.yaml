@@ -49,6 +49,13 @@
       value_template: >-
         {{ states('sensor.time').lstrip('0') }}
 
+    after_tomorrow:
+      friendly_name: After Tomorrow
+      value_template: >-
+        {% set timestamp = as_timestamp(now()) + 2*24*60*60 %}
+
+        {{ timestamp | timestamp_custom('%A') }}
+
 
 #
 # Number of days in a month
@@ -71,12 +78,6 @@
 
         {{ days }}
 
-
-#
-# Number of days left this month
-#
-- platform: template
-  sensors:
     days_remaining_in_month:
       friendly_name: Days remaining in month
       icon_template: mdi:calendar

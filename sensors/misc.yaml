@@ -10,7 +10,7 @@
       icon_template: mdi:emoticon-happy
       value_template: >-
         {# Fetch a scheduled sensor to avoid updating this template non-stop. #}
-        {# set time = states('sensor.time') #}
+        {% set time = states('sensor.time') %}
         {% set vibes = [
           "Be great.",
           "Be happy!",
