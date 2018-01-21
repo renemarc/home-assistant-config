@@ -57,7 +57,7 @@ bedroom:
 washroom:
   name: Washroom
   entities:
-    - light.spotlight
+    - light.shower
 
 climate:
   name: Climate control
@@ -204,5 +204,5 @@ weather_maps:
   entities:
     - camera.environment_canada_rain
     - camera.environment_canada_snow
-    - camera.noaa_shortwave
+    - camera.noaa_geocolor
     - camera.noaa_water_vapour
