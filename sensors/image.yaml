@@ -1,4 +1,6 @@
+#
 # Bing Wallpaper
+#
 - platform: rest
   resource: http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US
   name: Bing Wallpaper
@@ -13,6 +15,18 @@
   entity_id:
     - sensor.bing_wallpaper
   value_template: "{{ value_json.images[0].copyright.split(' (')[0] }}"
+
+
+#
+# Environment Canada radar maps
+#
+
+# Environment Canada radar location (placeholder)
+- platform: template
+  sensors:
+    environment_canada_radar:
+      friendly_name: Environment Canada Radar
+      value_template: !secret environment_canada_radar
 
 # Environment Canada radar image URLs.
 # Radar images are batch created every 10 minutes on the dot, but can take up

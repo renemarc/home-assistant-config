@@ -1,4 +1,6 @@
-# # Plex
+#
+# Plex
+#
 # - platform: plex
 #   name: Plex HTPC
 #   host: !secret plex_host

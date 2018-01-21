@@ -1,4 +1,6 @@
+#
 # Basic oscillating fan on a smart plug.
+#
 - platform: tplink
   name: Bedroom Fan
   host: !secret tplink_bedroom_fan_host

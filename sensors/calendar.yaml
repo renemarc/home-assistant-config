@@ -1,7 +1,12 @@
+#
 # Moon phases
+#
 - platform: moon
 
+
+#
 # Time & Date
+#
 - platform: time_date
   display_options:
     - 'time'
@@ -9,7 +14,6 @@
     - 'date_time'
     - 'time_date'
 
-# Templates
 - platform: template
   sensors:
     day:
@@ -45,7 +49,10 @@
       value_template: >-
         {{ states('sensor.time').lstrip('0') }}
 
+
+#
 # Number of days in a month
+#
 - platform: template
   sensors:
     days_in_month:
@@ -64,7 +71,10 @@
 
         {{ days }}
 
+
+#
 # Number of days left this month
+#
 - platform: template
   sensors:
     days_remaining_in_month:
@@ -73,11 +83,14 @@
       entity_id:
         - sensor.date
       value_template: >-
-        {% set days_in_month = states.sensor.days_in_month.state|int %}
+        {% set days_in_month = states('sensor.days_in_month') | int %}
 
         {{ days_in_month - now().day }}
 
+
+#
 # Report on the next sun event (risings or settings)
+#
 - platform: template
   sensors:
     sun_state:
@@ -96,4 +109,3 @@
         {% else %}
           rises at {% set timestamp = as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%H:%M") %} {{ timestamp.lstrip("0") }}
         {% endif %}
-

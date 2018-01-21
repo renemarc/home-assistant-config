@@ -1,5 +1,8 @@
+#
 # Activate/deactivate Aeotec Zstick LED.
+#
 # see: https://community.home-assistant.io/t/aeotec-gen5-z-stick-strobing-led-question-in-hass-io/28635/9
+#
 - platform: command_line
   switches:
     aeotec_zstick_disco_light:

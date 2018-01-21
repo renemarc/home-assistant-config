@@ -1,13 +1,29 @@
+#
+# Doomsday Clock
+#
+# see: https://thebulletin.org/doomsday-dashboard
+# see: https://github.com/mattbierner/MinutesToMidnight/blob/master/index.js
+#
+- platform: doomsday_clock
+
+
+#
 # World Air Quality Index
+#
 # Ratings for templates below are USA ones instead of Canadians.
+#
 # see: https://en.wikipedia.org/wiki/Air_quality_index
+#
 - platform: waqi
   token: !secret waqi_token
   locations:
     - !secret waqi_location1
     - !secret waqi_location2
 
+
+#
 # WAQI: Average
+#
 - platform: min_max
   name: AQI exact
   type: mean
@@ -58,15 +74,10 @@
           {% endif %}
         {% endif %}
 
-# WAQI: Particulate matter 2.5μm
-# - platform: min_max
-#   name: AQI Particles Exact
-#   type: mean
-#   round_digits: 0
-#   entity_ids:
-#     - sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.pm_2_5
-#     - sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.pm_2_5
 
+#
+# WAQI: Particulate matter 2.5μm
+#
 - platform: template
   sensors:
     aqi_particles:
@@ -118,7 +129,10 @@
           N/A
         {% endif %}
 
+
+#
 # WAQI: Ozone
+#
 - platform: template
   sensors:
     aqi_ozone:
@@ -171,7 +185,9 @@
         {% endif %}
 
 
+#
 # WAQI: Nitrogen dioxide
+#
 - platform: template
   sensors:
     aqi_nitrogen_dioxide:
@@ -223,7 +239,10 @@
           N/A
         {% endif %}
 
+
+#
 # WAQI: Carbon monoxide
+#
 - platform: template
   sensors:
     aqi_carbon_monoxide:
@@ -271,6 +290,44 @@
           Very Unhealthy
         {% elif 301 <= co %}
           Hazardous
+        {% else %}
+          N/A
+        {% endif %}
+
+
+#
+# Dark Sky: Ultraviolet rays
+#
+# see: https://en.wikipedia.org/wiki/Ultraviolet_index
+#
+- platform: template
+  sensors:
+    uv:
+      friendly_name: UV Index
+      icon_template: mdi:sunglasses
+      entity_id:
+        - sensor.dark_sky_uv_index
+      value_template: >-
+        {{ states('sensor.dark_sky_uv_index') }}
+
+    uv_friendly:
+      friendly_name: UV Index
+      icon_template: mdi:sunglasses
+      entity_id:
+        - sensor.dark_sky_uv_index
+      value_template: >-
+        {% set uv = states('sensor.dark_sky_uv_index') | float %}
+
+        {% if 0 <= uv < 3 %}
+          Low
+        {% elif 3 <= uv < 6 %}
+          Moderate
+        {% elif 6 <= uv < 8 %}
+          High
+        {% elif 8 <= uv < 11 %}
+          Very high
+        {% elif 11 <= uv %}
+          Extreme
         {% else %}
           N/A
         {% endif %}

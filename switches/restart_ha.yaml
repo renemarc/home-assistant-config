@@ -1,5 +1,5 @@
 # Legacy.
-- platform: command_line
-  switches:
-    restart_system:
-      command_off: "sudo /sbin/shutdown -r now"
+# - platform: command_line
+#   switches:
+#     restart_system:
+#       command_off: "sudo /sbin/shutdown -r now"

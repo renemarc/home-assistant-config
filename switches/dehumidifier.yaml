@@ -1,5 +1,7 @@
+#
 # Frigidaire FFAD7033R1 with auto-restart in case of a power outage,
 # on a smart plug.
+#
 - platform: tplink
   name: Dehumidifier
   host: !secret tplink_dehumidifier_host

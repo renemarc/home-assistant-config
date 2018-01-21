@@ -25,7 +25,7 @@ weather_view:
   name: Weather
   icon: mdi:weather-partlycloudy
   entities:
-    - group.air_quality
+    - group.life_quality
     - group.weather
     - group.weather_forecast
     - group.weather_maps

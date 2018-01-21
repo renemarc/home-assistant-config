@@ -1,4 +1,6 @@
+#
 # Public Transit
+#
 - platform: gtfs
   name: 'Home to Metro'
   origin: !secret gtfs_origin_1
@@ -220,4 +222,3 @@
         {% set hms = departure[1].split(':') %}
 
         {{hms[0]}}:{{hms[1]}}
-

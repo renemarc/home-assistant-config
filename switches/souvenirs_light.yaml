@@ -1,4 +1,6 @@
+#
 # 12v fairy lights on a smart plug.
+#
 - platform: tplink
   name: Souvenirs Light
   host: !secret tplink_souvenirs_light_host

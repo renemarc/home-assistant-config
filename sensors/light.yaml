@@ -1,0 +1,55 @@
+#
+# Ceiling wash lights effect
+#
+- platform: mqtt
+  name: Ceiling Effect
+  state_topic: 'home/ceiling/effect'
+  value_template: '{{ value_json.name }}'
+  qos: 1
+
+- platform: mqtt
+  name: Ceiling Effect UUID
+  state_topic: 'home/ceiling/effect'
+  value_template: '{{ value_json.uuid }}'
+  qos: 1
+
+
+#
+# Ceiling wash lights active effect
+#
+- platform: template
+  sensors:
+    ceiling_effect_loaded:
+      friendly_name: Ceiling Effect Loaded
+      entity_id:
+        - group.ceiling
+      value_template: >-
+        {% if is_state('group.ceiling', 'on') %}
+          {{ states('sensor.ceiling_effect') }}
+        {% endif %}
+
+
+#
+# Nanoleaf Aurora effect and brightness reception
+#
+- platform: mqtt
+  name: Aurora Effect
+  state_topic: 'home/aurora/effect'
+  value_template: '{{ value_json.name }}'
+  qos: 1
+
+- platform: mqtt
+  name: Aurora Brightness
+  state_topic: 'home/aurora/effect'
+  value_template: '{{ value_json.brightness }}'
+  qos: 1
+
+
+#
+# Nanoleaf Aurora active effect
+#
+- platform: template
+  sensors:
+    aurora_effect_loaded:
+      friendly_name: Aurora Effect Loaded
+      value_template: '{{ states.light.aurora.attributes.effect }}'

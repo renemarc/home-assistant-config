@@ -8,16 +8,16 @@ public_transit:
     - sensor.home_to_market_2_hour
     - sensor.home_to_market_3_hour
 
-air_quality:
-  name: Outdoor Air Quality
+life_quality:
+  name: Outdoor Life Quality
   entities:
+    - sensor.doomsday_clock
     - sensor.aqi_friendly
     - sensor.aqi_particles_friendly
     - sensor.aqi_ozone_friendly
     - sensor.aqi_carbon_monoxide_friendly
     - sensor.aqi_nitrogen_dioxide_friendly
     - sensor.uv_friendly
-    - sensor.doomsday_clock
 
 ceiling:
   name: Ceiling washlights
@@ -33,9 +33,9 @@ lounge:
     - light.aurora
     - input_select.aurora_effect
     - light.spotlight
+    - light.lightpack
     - switch.souvenirs_light
     - switch.window_light
-    - light.lightpack
     - sensor.lounge_humidity
     - sensor.lounge_temperature
     - sensor.lounge_luminance
@@ -119,14 +119,6 @@ scripts:
   name: Scripts
   control: hidden
   entities:
-    # - automation.adjust_white_light_temperature
-    # - automation.update_available
-    # - automation.rotate_nanoleaf_aurora_based_on_a_schedule
-    # - automation.rotate_ceiling_wash_lights_based_on_a_schedule
-    # - automation.dehumidify
-    # - automation.apply_lifx_cloud_scene_to_ceiling_lights
-    # - automation.apply_nanoleaf_aurora_brightness
-    # - automation.apply_nanoleaf_aurora_scene
     - script.wake_up
     - script.go_to_sleep
     - script.take_a_nap
@@ -172,6 +164,7 @@ scenes:
 status:
   name: Status
   entities:
+    - sensor.good_vibes
     - sensor.date_friendly
     - sensor.time_friendly
     - sensor.sun_state
@@ -199,7 +192,6 @@ weather:
     - sensor.wind_speed
     - sensor.dark_sky_hourly_summary
     - sensor.dark_sky_daily_summary
-    # - sensor.wind_scale_friendly
     # - sensor.moon
 
 weather_forecast:

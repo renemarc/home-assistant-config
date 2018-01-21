@@ -1,4 +1,6 @@
+#
 # Fast.com
+#
 # - platform: fastdotcom
 #   hour:
 #     - 3
@@ -8,7 +10,10 @@
 #   minute:
 #     - 15
 
+
+#
 # Speedtest.net
+#
 - platform: speedtest
   monitored_conditions:
     - ping

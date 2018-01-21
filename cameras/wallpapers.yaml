@@ -1,3 +1,4 @@
+# Daly Bing wallpaper
 - platform: generic
   name: Bing Wallpaper
   entity_id:

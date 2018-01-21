@@ -1,4 +1,6 @@
-# EBOX.com
+#
+# EBOX.com usage
+#
 - platform: ebox
   username: !secret ebox_username
   password: !secret ebox_password
@@ -27,8 +29,6 @@
           unknown
         {% endif %}
 
-- platform: template
-  sensors:
     ebox_download_remaining:
       friendly_name: Remaining downloads
       icon_template: mdi:briefcase-download
@@ -46,8 +46,6 @@
           unknown
         {% endif %}
 
-- platform: template
-  sensors:
     ebox_download_daily_capacity:
       friendly_name: Daily capacity
       icon_template: mdi:speedometer
