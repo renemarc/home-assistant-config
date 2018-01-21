@@ -1,8 +1,23 @@
-# Daly Bing wallpaper
+#
+# Bing daily wallpaper
+#
 - platform: generic
   name: Bing Wallpaper
   entity_id:
     - sensor.bing_wallpaper
   still_image_url: >-
-    {{ states('sensor.bing_wallpaper') }}
+    http://www.bing.com{{ states('sensor.bing_wallpaper') }}_800x600.jpg
+  content_type: image/jpg
+
+#
+# NASA's Astronomy picture of the day
+#
+# see: https://apod.nasa.gov
+#
+- platform: generic
+  name: Astronomy Picture of the Day
+  entity_id:
+    - sensor.apod
+  still_image_url: >-
+    https://apod.nasa.gov/apod/{{ states('sensor.apod') }}
   content_type: image/jpg
