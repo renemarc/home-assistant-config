@@ -65,7 +65,7 @@ label:
 # Slideshow
 #
 slideshow:
-    widget_type: camera
+    widget_type: entitycamera
     refresh: 5
     img_list:
         - http://hassio.local:8123/api/camera_proxy/camera.bing_wallpaper?token=bc9ccd0575dfb05d63df105cc8ed76d6578d63e60083e48fe265a07513a9861d

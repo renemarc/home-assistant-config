@@ -68,7 +68,7 @@ label:
 # Current weather
 #
 camera_environment_canada:
-    widget_type: camera
+    widget_type: entitycamera
     refresh: 1
     img_list:
         - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_rain_3?token=21543de1f2ce8ca84d2114b452f839ddd98a9ca5147b37f01c4f14adb62ed6f0
@@ -80,7 +80,7 @@ camera_environment_canada:
     title_style: "background-color: rgba(0, 0, 0, 1);"
 
 camera_noaa:
-    widget_type: camera
+    widget_type: entitycamera
     refresh: 3
     img_list:
         - http://hassio.local:8123/api/camera_proxy/camera.noaa_geocolor?token=5d9b9b5a6681e174ce772563564c6f9eacfa8d060c6eb53c82e1f9a9dfbab623
