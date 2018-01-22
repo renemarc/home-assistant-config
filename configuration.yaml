@@ -145,8 +145,8 @@ recorder:
       - sensor.wind_speed
 
 # ZWave integration
-# zwave:
-#   usb_path: /dev/ttyACM1
+zwave:
+  usb_path: /dev/ttyACM0
 
 # Modular configuration
 automation: !include_dir_merge_list automations/
