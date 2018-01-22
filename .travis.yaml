@@ -1,0 +1,9 @@
+language: python
+python:
+  - "3.5"
+before_install:
+  - cp secrets-dummy.yaml secrets.yaml
+install:
+  - pip3 install homeassistant
+script:
+  - hass -c . --script check_config

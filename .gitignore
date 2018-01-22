@@ -28,3 +28,4 @@ secrets.yaml
 
 !.gitignore
 !.gitkeep
+!/.travis.yaml
