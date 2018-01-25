@@ -36,7 +36,7 @@ CONF_ATTRIBUTION = "Bulletin of the Atomic Scientists"
 CONF_RESOURCE = 'https://thebulletin.org/timeline'
 CONF_SELECTOR = '#content .view-content .node-title'
 
-MIN_TIME_BETWEEN_UPDATES = timedelta(days=1)
+MIN_TIME_BETWEEN_UPDATES = timedelta(hours=1)
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
