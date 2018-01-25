@@ -70,7 +70,7 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 
 ### General information
 - **[Local bus schedules](https://home-assistant.io/components/sensor.gtfs/)** with the next 3 departures.
-- **[Doomsday Clock](https://thebulletin.org/timeline)** in case egocentric psychopaths keep on playing Russian roulette with humanity's future. 
+- **[Doomsday Clock](https://github.com/renemarc/home-assistant-custom-components)** in case egocentric psychopaths keep on playing Russian roulette with humanity's future. 
 - **Network status monitoring** for latency, upspeed, downspeed.
 - **Home Assistant status monitoring** for geek cred with average load, RAM use, disk use, uptime, and update availability.
 
