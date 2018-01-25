@@ -18,17 +18,17 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - **As an apartment dweller** I want to have a discrete, non-permanent installation that takes as little space as possible.
 - **As a developer** I want to use an open-source platform that is feature-rich, accessible, flexible and actively maintained.
 - **As a consumer** I want to pick and choose which devices I wish to acquire without necessarily being locked into a closed ecosystem.
-- **As a couple** we want to be able to control lights and get quick overview of weather forecasts and public transit schedules through simple to use interfaces.
+- **As a couple** we want to be able to operate lights and climate-control appliances as well as get quick overview of weather forecasts and public transit schedules through simple to use interfaces.
 
 ### Goals
 - **Inconspicuous**: I like tech alright, but like good butlers it should stay out of sight but summonable when desired. Think Fiji villa, not server room.
 - **Modular**: Both code and devices should be easily replaceable.
 - **Internet independent**: As much local processing as possible for the essential features.
-- **Accessible through multiple ways:** Computers, tablet (kiosk), voice, smart phones, buttons.
-- **Intuitive user interfaces:** One look as a group of sensors/switches should be sufficient for anyone to understand the current conditions and how to operate an interface.
+- **Accessible through multiple ways:** Computers, tablet (kiosk), voice, smart phones, wireless buttons.
+- **Intuitive user interfaces:** One look as a group of sensors/switches should be sufficient for anyone to understand the current states and how to operate an interface.
 - **Redundant controls:** Multiple interfaces should be able to control devices without interference, and state changes from manual interventions or dedicated manufacturer apps should be tracked when possible.
-- **No information overload:** Provide just enough insight to get an ideas of what's going on. And no need for data that's best consumed on more interactive devices (like stock prices, Steam community status)
-- **Not everything should be networked:** Bathroom fan, pantry and laundry room lights have their independent motion sensors and that's a good thing. Same with the smoke detector, because I sure don't want to require extensive skin grafts because I forgot an extra space in a YAML file. Eek!
+- **No information overload:** Provide just enough insights to get an ideas of what's going on. And no need for data that's best consumed on more interactive devices (like stock prices, Steam community status...)
+- **Not everything should be networked:** Bathroom fan, pantry and laundry room lights have their independent motion sensors and that's a good thing. Same independence goes for the smoke detector: I sure don't want to require extensive skin grafts because I forgot an extra space in a YAML file. Eek!
 - **No Alexa/Cortana/Google Voice:** I don't want to have advertising agencies, online stores, or other AI-feeding Big Brother tech-monsters listening in to everything we say just for the dubious convenience of turning on a light using my voice.
 
 
@@ -37,47 +37,47 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 ### Climate control
 - **Temperature monitoring**, averaged to compensate for sensor calibration inaccuracies, then rounded.
 - **Humidity monitoring**, also averaged and rounded.
-- **Turn dehumidifier on/off when needed**, based on humidity averaged from multiple sensors, and only during the afternoon so not to bother anyone.
-- **Turn dehumidifier off when windows/door opened are opened**, instantly for windows and after 5 minutes for doors.
-- **Low/High humidity status and alerts**, in case something is wrong with the dehumidifier or the eventual humidifier.
-- **Mold conditions status and alert**, in case dehumidifier is full/overwhelmed or someone transformed the place into a steam room. Again.
+- **Toggle dehumidifier when needed**, based on humidity averaged from multiple sensors, and only during the afternoon so not to bother anyone.
+- **Turn dehumidifier off when windows/doors are opened**, instantly for windows and after 5 minutes for doors.
+- **Low/High humidity status and alerts**, in case something is wrong with the dehumidifier or the (eventual) humidifier.
+- **Mold conditions status and alert**, in case dehumidifier is full/overwhelmed or someone transformed the place into a steam room.
 
 ### Weather report
-- **Easy to read status and forecasts** using Dark Sky data and only showcasing parameters that actually matter.
-- **Outdoor quality monitoring** with numeric levels and human-friendly categorization for ozone, carbon monoxide, nitrogen dioxide, 2.5μm particulate matter and UV light, averaged from multiple surrounding local stations.
+- **Easy to read status and forecasts** using Dark Sky data and only showcasing parameters that actually matter, shown in obvious ways.
+- **Outdoor quality monitoring** with numeric levels and human-friendly categorization for ozone, carbon monoxide, nitrogen dioxide, 2.5μm particulate matter and UV light, averaged from multiple surrounding public local stations.
 - **Weather radar and satellite maps** for [local rain and snow](https://weather.gc.ca/radar/index_e.html) from Environment Canada and [regional air masses](http://www.nhc.noaa.gov/satellite.php) from the U.S. National Oceanic and Atmospheric Administration.
 
 ### Lighting control
-- **Control for all pluggable lights**, dumb and smart.
+- **Control for all pluggable lights**, dumb ones and smart ones.
 - **Nanoleaf Aurora control**:
     + Manual theme selection.
     + Automatically rotate through device-based themes based on time of day (unless manually selected above).
 - **LIFX Z ceiling wash lights control**:
     + Manual theme selection.
     + Automatically rotate through cloud-based themes based on time of day (unless manually selected above).
-- **Automatically correlated color temperature (CCT)**, for [f.lux](https://justgetflux.com/)-like white temperature shift to gradually remove blue light based on a custom color and brightness curve and preset active hours, not daylight.
-- **Presence-based nightlights**, where strategic lights fade in, dimmed very low, when walking around at night, say when someone wakes up to go the bathroom.
+- **Automatically correlated color temperature (CCT)**, for [f.lux](https://justgetflux.com/)-like white temperature shift to gradually remove blue light based on a custom color and brightness curve and preset active hours, not simply based on the sun otherwise Canadian winters would be pretty yellow.
+- **Presence-based nightlights**, where strategic lights fade in, dimmed very low, when walking around at night, say when someone wakes up to go the bathroom ...again.
 
 ### Presence
 - **Front door binary sensor**, to know if someone left the door open.
-- **Front door indicator in shower** where the shower stall's light changes color briefly and subtly when front door opens/closes, to indicate a showering partner that the better half left or came in.
+- **Front door indicator in shower** where the shower stall's light changes color briefly and subtly when the front door opens/closes, to indicate a showering partner that their better half has left or just came in.
 
 ### Scenes and actions
-- **Good morning** action where all lights turn on gradually, and noise-making devices are allowed to run if needed.
-- **Nap time** action where that fade out lights in and near bedroom, turn off noise makers.
-- **Good night** action fade out all lights outside of bedroom.
-- **Movie scene** turn on ambiance light and dim smart lights when playing a movie, then return to standard automations when pausing/stopping.
+- **Good morning action** where all lights turn on gradually, and noise-making devices are allowed to run if needed.
+- **Nap time action** that fades out lights in and near bedroom, turns off noise makers.
+- **Good night action** fades out all lights outside of bedroom, turns off noise makers too.
+- **Movie scene** turns on ambiance lighting and dims smart lights when playing a movie, then returns to standard automations when pausing/stopping.
 
 ### General information
-- **[Local bus schedules](https://home-assistant.io/components/sensor.gtfs/)** with next 3 departures.
+- **[Local bus schedules](https://home-assistant.io/components/sensor.gtfs/)** with the next 3 departures.
 - **[Doomsday Clock](https://thebulletin.org/timeline)** in case egocentric psychopaths keep on playing Russian roulette with humanity's future. 
 - **Network status monitoring** for latency, upspeed, downspeed.
 - **Home Assistant status monitoring** for geek cred with average load, RAM use, disk use, uptime, and update availability.
 
 ### Human interfaces
-- **Flic button on nightstand** for wake-up, sleep time, and nightstand light control, depending on current state and click sequence.
+- **Flic button on nightstand** for trigerring _good morning_ and _nap time_ actions, as well as bedroom light control, depending on current state and click sequence.
 - **[Homebridge](https://github.com/nfarina/homebridge)** for using some key sensors and devices with iPhones (only if using the same VLAN though).
-- **[Home Assistant Companion](https://itunes.apple.com/us/app/home-assistant-companion/id1099568401?mt=8) iPhone app** for full UI access in the palm of your hand. Muahahaha!
+- **[Home Assistant Companion](https://itunes.apple.com/us/app/home-assistant-companion/id1099568401?mt=8) iPhone app** for full UI access in the palm of my hand. Muahahaha!
 - **[HADashboard](https://home-assistant.io/docs/ecosystem/hadashboard/)** for wall-mounted tablet, featuring indoor sensors reports, transit schedules, weather forecast and radar/sattelite maps, wrapped in an obvious navigation scheme for much UX goodness. You'll like!
 
 
@@ -86,7 +86,7 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 #### Work in progress
 
 #### Backlog
-- UI: State card for text only (weather, quotes...)
+- UI: Text-only state cards (weather, quotes...)
 - Component: fix unlimited bandwidth consumption bug
 - Scene: Romantic
 - Scene: Gaming/Party
@@ -94,28 +94,28 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - Interface: Voice command (snips.ai)
 - Presence detection: Cellphones
 - Presence detection: Router
-- Contribute: GTFS sensor optimization and documentation
-- Contribute: HADashboard widget optimizations
+- Contribute back: GTFS sensor optimization and documentation
+- Contribute back: HADashboard widget optimizations
 
 #### Wishlist
 - Dashboard: context-aware link widgets
-- Automation: Welcome home front door trigger
+- Automation: Welcome home theme song front door trigger
 - Automation: Door/Window sensor temper alert
 - Component: UPS monitoring
 - Component: Read rooftop weather station (Fine Offset WH1080)
-- Network: use USB gigabit connection to test above 80MB/s downspeeds
+- Network: use USB gigabit connection to test for above 80MB/s downspeeds
 - Device: Increase nightlight movement detection coverage
-- Device: LIFX Z strips under bed
-- Device: Kitchen under-cabinet lighting
+- Device: LIFX Z strips under bed with dedicated scenes. How romantic!
+- Device: Kitchen under-cabinet CCT lighting
 - Device: Flic button (kitchen)
-- Device: Window binary sensors
+- Device: Window binary sensors/state overview
 - Device: Indoor air quality sensing and report
 - Device: Exterior light
 - Device: Monitor humidity in humidor
-- Device: Light patterns in windowed cabinets
+- Device: Light patterns in windowed cabinets using H801 devices
 - Device: Motion nightlight in bathroom under mirror
-- Device: Fade in/out fairy lights and bedside lamp
-- Device: Timer-based, fade in/out, twinkling Christmas tree
+- Device: Fade in/out fairy lights and nightstand lamp using ESP8266 devices
+- Device: Timer-based, fade in/out, twinkling Christmas tree using Arduino
 
 
 ## Setup
@@ -124,11 +124,11 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - **Ubiquiti router and access point** because forking over some dough for reliable, rock-solid prosumer networking gear makes everything run smoothly. And because hearing one less complaint (dropped wifi signal) from the girlfriend is priceless. \*sigh\*
 - **Uninterruptible power supply** to ride over transient power failures.
 - **Z-Wave** for reliability and guaranteed interoperability between vendors (unlike Zigbee...)
-- **Wifi** for its cheapness, omnipresence and non requirement for vendor-specific hubs.
+- **Wifi** for its cheapness, omnipresence and non requirement of vendor-specific hubs.
 
 ### Configuration
-- **Dedicated VLAN** (Virtual LAN) to segregate all IoT devices from other devices ...because I cannot trust that my vacuum cleaner won't go on a killing spree. Remember [Runaway with Tom Selleck](http://www.imdb.com/title/tt0088024/)? Eek!
-- **Local static IPs** for all devices to avoid random drops.
+- **Dedicated, firewalled VLAN** (Virtual LAN) to segregate all IoT devices from other equipment ...because I cannot trust that my vacuum cleaner won't go on a killing spree. Remember [Runaway with Tom Selleck](http://www.imdb.com/title/tt0088024/)? Eek!
+- **Local static IPs** for all devices to minimize random drops.
 - **Local development** on a local virtual machine using Docker, then pushed by GIT to a Raspberry Pi.
 - **Shareable code** with all identifiers kept in a non-committed, secrets file.
 
@@ -136,13 +136,14 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - **[Raspberry Pi 3 Model B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)** running Hass.io.
 - **[Aeotec Z-Stick Gen5](https://aeotec.com/z-wave-usb-stick)** Z-Wave USB dongle.
 - **[NooElec NESDR SMArt](http://www.nooelec.com/store/nesdr-smart.html)** RTL-SDR (software-defined radio) USB dongle for reading AcuRite sensors.
+- **[Plugable USB Bluetooth Adapter](https://plugable.com/products/usb-bt4le/)** for Bluetooth Low Energy connections.
 - **[Acer Iconia One 10" tablet](https://www.acer.com/ac/en/CA/content/series/iconiaone10)** (1280x800 IPS screen) wallmounted as a kiosk.
 
 ### Devices and sensors
 - **[Nanoleaf Aurora](https://nanoleaf.me/en-ca/)** light panels kit. Pretty!
 - **[LIFX+](https://www.lifx.com/products/lifx-plus)** A19 RGB light bulb (x2).
 - **[LIFX Z](https://www.lifx.com/products/lifx-z-starter-kit-without-homekit)** light strip without HomeKit as ceiling wash lights (x3).
-- **[Flic](https://flic.io/)** bluetooth button.
+- **[Flic](https://flic.io/)** bluetooth low energy button.
 - **[Aeotec Door / Window Sensor Gen5](https://aeotec.com/z-wave-door-window-sensor)** for front door.
 - **[Aeotec MultiSensor 6](https://aeotec.com/z-wave-sensor)** for temperature/humidity/presence detection.
 - **[Adalight](https://learn.adafruit.com/adalight-diy-ambient-tv-lighting)** DIY 100-dots TV backlighting controlled by [Lightpack+Prismatik](https://github.com/psieg/Lightpack) on HTPC.
