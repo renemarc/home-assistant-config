@@ -15,6 +15,11 @@
         - light.underbed
       to: 'on'
 
+    # When alerts are disabled.
+    - platform: state
+      entity_id: input_boolean.alert_mode
+      to: 'off'
+
     # When scenes are disabled.
     - platform: state
       entity_id: input_boolean.scene_mode
@@ -34,6 +39,11 @@
     # If no effect overrides are in place.
     - condition: state
       entity_id: input_boolean.bed_effect_override
+      state: 'off'
+
+    # If no alerts are enabled.
+    - condition: state
+      entity_id: input_boolean.alert_mode
       state: 'off'
 
     # If no scenes are enabled.

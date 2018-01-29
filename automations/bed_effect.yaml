@@ -11,7 +11,7 @@
     - service: shell_command.activate_lifx_cloud_scene
       data_template:
         uuid: >-
-         {% set effects = {
+          {% set effects = {
             'Neon':             '2910cd6c-1644-4b6b-b2bf-8eb26f254288',
             'Reading':          '444b1097-1e26-40f7-a1a8-7f68a161550c',
             'Relaxing':         '48c32539-48f8-4bcc-826a-e88b2b0c9b8e',

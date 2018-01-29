@@ -42,10 +42,6 @@ bed_effect_override:
   name: Bed washlights have overriding effect set
   initial: off
 
-ceiling_semaphore:
-  name: Ceiling washlights are being updated
-  initial: off
-
 ceiling_effect_override:
   name: Ceiling washlights have overriding effect set
   initial: off

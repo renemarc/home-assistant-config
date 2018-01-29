@@ -1,6 +1,18 @@
+#
+# Bed wash lights effects
+#
 bed_effect:
   value: False
   restore: true
   attributes:
       uuid: ''
 
+
+#
+# Ceiling wash lights effects
+#
+ceiling_effect:
+  value: False
+  restore: true
+  attributes:
+      uuid: ''

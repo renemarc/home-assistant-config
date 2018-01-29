@@ -96,14 +96,14 @@ automations:
   entities:
     - automation.adjust_white_light_temperature
     - automation.apply_effect_to_bed_washlights
-    - automation.apply_effect_to_ceiling_washlight
+    - automation.apply_effect_to_ceiling_washlights
     - automation.apply_aurora_brightness
     - automation.apply_aurora_effect
     - automation.check_high_humidity
     - automation.check_low_humidity
     - automation.declare_quiet_time
-    - automation.default_bed_washlight_effect
-    - automation.default_ceiling_washlight_effect
+    - automation.default_bed_washlights_effect
+    - automation.default_ceiling_washlights_effect
     - automation.default_aurora_effect
     - automation.dehumidify
     - automation.door_left_open

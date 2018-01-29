@@ -2,11 +2,10 @@
 # see: https://api.developer.lifx.com/docs/activate-scene
 - id: ceiling_lights_schedule
   alias: Rotate ceiling washlights based on a schedule
-  initial_state: 'on'
   trigger:
     # Every hour on the hour.
     - platform: time
-      minutes: /5
+      minutes: 00
       seconds: 00
 
     # When an item which was off comes back online.
@@ -33,6 +32,13 @@
       to: 'off'
 
   condition:
+    # If automation was not trigered lately.
+    - condition: template
+      value_template: >-
+      {% set current = as_timestamp(utcnow()) %}
+      {% set last_triggered = as_timestamp(states.automation.rotate_bed_washlights_based_on_a_schedule.attributes.last_triggered) %}
+      {{ current - last_triggered > 1}}
+
     # If ceiling lights are on.
     - condition: state
       entity_id: group.ceiling
@@ -41,11 +47,6 @@
     # If no effect overrides are in place.
     - condition: state
       entity_id: input_boolean.ceiling_effect_override
-      state: 'off'
-
-    # If no other process is handling the ceiling lights.
-    - condition: state
-      entity_id: input_boolean.ceiling_semaphore
       state: 'off'
 
     # If no alerts are enabled.
@@ -69,14 +70,11 @@
       state: 'off'
 
   action:
-    # Reserve the ceilight lights.
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.ceilight_semaphore
-
-    - service: mqtt.publish
-      data_template:
-        topic: 'home/ceiling/effect'
-        payload: >-
+    # Update the effect variables.
+    - service: variable.set_variable
+      data:
+        variable: ceiling_effect
+        value_template: >-
           {% set hour = states('sensor.time').split(':')[0] %}
           {% set schedule = {
             '00': 'Warming',
@@ -107,40 +105,5 @@
             '22': 'Soothing',
             '23': 'Tranquil',
           } %}
-          {% set effects = {
-            'Blissful':         'e1cd000b-2780-40e9-8ae5-2ca55b67b01d',
-            'Celebrations':     '9428fffc-8466-489e-b93a-c7f062c45a81',
-            'Cheerful':         '2223a575-b13d-468f-875c-1d8275b2f718',
-            'Daylight':         '40d6b6a6-0eb7-48bc-81c1-b469e91a9b6d',
-            'Focusing':         '83bfebf8-ab73-483f-9987-5c6a8a340609',
-            'Intense':          'd8a58aca-0e9a-4379-8668-363e237316b2',
-            'Mellow':           '4cc1d4fe-cf9e-4391-899b-0bb5f13f4c73',
-            'Movie':            'ba3ac9bf-ae54-4e11-a8a8-d7ec6862293d',
-            'Northern Lights':  '7e85572c-facc-46d9-a3fa-832ed82a9496',
-            'Powerful':         'afed3ed6-c918-44d5-9207-7e895c6d3d0f',
-            'Relaxing':         'c4d42b21-8d79-4637-a04a-0ace24824c30',
-            'Serene':           '66d389bc-fd2a-460d-9d70-3063db2ea509',
-            'Soothing':         'a09a3137-98f1-41a8-b9ae-64a1cec54c1a',
-            'Tranquil':         '34cacbbe-d4ad-4abf-b108-6973431d63d3',
-            'Warming':          '8b85e701-0189-4c4b-a703-cfa3d0f0ab64',
-          } %}
-          {% set selected = schedule[hour] %}
 
-          {
-            "name": "{{ selected }}",
-            "uuid": "{{ effects[selected] }}"
-          }
-
-    # Notify the owner.
-    # - service: notify.group
-    #   data:
-    #     title: 'Hass.io'
-    #     message: "ceiling_lifx_cloud_scenes sent."
-
-    # Pause a while, to minimize race conditions.
-    - delay:
-        seconds: 5
-
-    # Release the cealing lights.
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.ceilight_semaphore
+          {{ schedule[hour] }}

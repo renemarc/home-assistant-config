@@ -1,6 +1,6 @@
 # Manually select a LIFX cloud effect for the bed washlights.
 - id: bed_select
-  alias: Select Bed Washlight Effect
+  alias: Select Bed Washlights Effect
   trigger:
     - platform: state
       entity_id: input_select.bed_effect
