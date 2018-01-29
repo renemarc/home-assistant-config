@@ -38,6 +38,10 @@ aurora_effect_override:
   name: Aurora has overriding effect set
   initial: off
 
+bed_effect_override:
+  name: Bed washlights have overriding effect set
+  initial: off
+
 ceiling_semaphore:
   name: Ceiling washlights are being updated
   initial: off

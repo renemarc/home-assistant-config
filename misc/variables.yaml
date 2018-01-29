@@ -1,0 +1,6 @@
+bed_effect:
+  value: False
+  restore: true
+  attributes:
+      uuid: ''
+

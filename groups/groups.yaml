@@ -19,6 +19,13 @@ life_quality:
     - sensor.aqi_nitrogen_dioxide_friendly
     - sensor.uv_friendly
 
+bed:
+  name: Ceiling washlights
+  entities:
+    - input_select.bed_effect
+    - light.underbed
+    - light.headboard
+
 ceiling:
   name: Ceiling washlights
   entities:
@@ -48,6 +55,9 @@ notifications:
 bedroom:
   name: Bedroom
   entities:
+    - input_select.bed_effect
+    - light.underbed
+    - light.headboard
     - switch.nightstand_light
     - switch.bedside_light
     - switch.bedroom_fan
@@ -85,12 +95,14 @@ automations:
   control: hidden
   entities:
     - automation.adjust_white_light_temperature
+    - automation.apply_effect_to_bed_washlights
     - automation.apply_effect_to_ceiling_washlight
     - automation.apply_aurora_brightness
     - automation.apply_aurora_effect
     - automation.check_high_humidity
     - automation.check_low_humidity
     - automation.declare_quiet_time
+    - automation.default_bed_washlight_effect
     - automation.default_ceiling_washlight_effect
     - automation.default_aurora_effect
     - automation.dehumidify
@@ -105,6 +117,7 @@ automations:
     - automation.mold_conditions
     - automation.nap_time
     - automation.nap_time_over
+    - automation.rotate_bed_washlights_based_on_a_schedule
     - automation.rotate_ceiling_washlights_based_on_a_schedule
     - automation.rotate_aurora_based_on_a_schedule
     - automation.select_ceiling_washlight_effect

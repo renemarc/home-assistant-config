@@ -24,11 +24,13 @@ wake_up:
     - service: light.turn_on
       data:
         entity_id:
-          - light.shower
-          - light.spotlight
+          - light.headboard
+          - light.underbed
           - light.bedroom
           - light.lounge
           - light.middle
+          - light.shower
+          - light.spotlight
           - light.aurora
           - light.lightpack
         transition: 5

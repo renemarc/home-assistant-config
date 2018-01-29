@@ -13,10 +13,13 @@ take_a_nap:
     - service: light.turn_off
       data:
         entity_id:
-          - light.shower
+          - light.headboard
+          - light.underbed
           - light.bedroom
           - light.lounge
           - light.middle
+          - light.shower
+          - light.aurora
         transition: 10
 
     - service: switch.turn_off
@@ -27,7 +30,6 @@ take_a_nap:
     - service: switch.turn_off
       data:
         entity_id:
-          - light.aurora
           - switch.bedroom_fan
           - switch.nightstand_light
           - switch.bedside_light

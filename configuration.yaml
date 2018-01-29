@@ -165,4 +165,5 @@ sensor: !include_dir_merge_list sensors/
 rest_command: !include misc/rest_commands.yaml
 shell_command: !include misc/shell_commands.yaml
 switch: !include_dir_merge_list switches/
+variable: !include misc/variables.yaml
 zone: !include_dir_list zones/

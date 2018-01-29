@@ -52,7 +52,7 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - **Nanoleaf Aurora control**:
     + Manual theme selection.
     + Automatically rotate through device-based themes based on time of day (unless manually selected above).
-- **LIFX Z ceiling wash lights control**:
+- **LIFX Z under bed and ceiling wash lights control**:
     + Manual theme selection.
     + Automatically rotate through cloud-based themes based on time of day (unless manually selected above).
 - **Automatically correlated color temperature (CCT)**, for [f.lux](https://justgetflux.com/)-like white temperature shift to gradually remove blue light based on a custom color and brightness curve and preset active hours, not simply based on the sun otherwise Canadian winters would be pretty yellow.
@@ -84,6 +84,7 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 ### Task list
 
 #### Work in progress
+- Code: Refactor smart light automations for increased simplicity 
 
 #### Backlog
 - UI: Text-only state cards (weather, quotes...)
@@ -105,7 +106,6 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - Component: Read rooftop weather station (Fine Offset WH1080)
 - Network: use USB gigabit connection to test for above 80MB/s downspeeds
 - Device: Increase nightlight movement detection coverage
-- Device: LIFX Z strips under bed with dedicated scenes. How romantic!
 - Device: Kitchen under-cabinet CCT lighting
 - Device: Flic button (kitchen)
 - Device: Window binary sensors/state overview

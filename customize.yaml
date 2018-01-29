@@ -38,17 +38,6 @@ sensor.bedroom_temperature:
 sensor.bedroom_humidity:
   homebridge_hidden: false
   icon: mdi:water-percent
-light.shower:
-  extra_data_template: if (attributes.brightness) return Math.round(1000000 / attributes.color_temp
-    / 10) * 10 + ' Kelvin @ ' + Math.round(attributes.brightness / 255 * 100) + '%';
-    else return null;
-  slider_theme:
-    max: 255
-    min: 0
-    off_when_min: true
-    pin: true
-    report_when_not_changed: false
-  state_card_mode: break-slider
 switch.souvenirs_light:
   homebridge_hidden: false
   friendly_name: Souvenirs Light
@@ -95,10 +84,45 @@ light.middle:
     pin: true
     report_when_not_changed: false
   state_card_mode: break-slider
+light.headboard:
+  extra_data_template: if (attributes.brightness) return Math.round(attributes.brightness
+    / 255 * 100) + '%'; else return null;
+  icon: mdi:gate
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+  state_card_mode: break-slider
+light.underbed:
+  extra_data_template: if (attributes.brightness) return Math.round(attributes.brightness
+    / 255 * 100) + '%'; else return null;
+  icon: mdi:hotel
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+  state_card_mode: break-slider
 light.spotlight:
   extra_data_template: if (attributes.brightness) return Math.round(1000000 / attributes.color_temp
     / 10) * 10 + ' Kelvin @ ' + Math.round(attributes.brightness / 255 * 100) + '%';
     else return null;
+  icon: mdi:spotlight-beam
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+  state_card_mode: break-slider
+light.shower:
+  extra_data_template: if (attributes.brightness) return Math.round(1000000 / attributes.color_temp
+    / 10) * 10 + ' Kelvin @ ' + Math.round(attributes.brightness / 255 * 100) + '%';
+    else return null;
+  icon: mdi:spotlight
   slider_theme:
     max: 255
     min: 0

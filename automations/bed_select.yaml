@@ -1,0 +1,37 @@
+# Manually select a LIFX cloud effect for the bed washlights.
+- id: bed_select
+  alias: Select Bed Washlight Effect
+  trigger:
+    - platform: state
+      entity_id: input_select.bed_effect
+
+  condition:
+    # If an actual effect is selected.
+    - condition: template
+      value_template: "{% if not is_state('input_select.bed_effect', 'Auto') %}true{% endif %}"
+
+  action:
+    # Override any bed washlight effect.
+    - service: input_boolean.turn_on
+      entity_id: input_boolean.bed_effect_override
+
+    # Update the effect variables.
+    - service: variable.set_variable
+      data:
+        variable: bed_effect
+        value_template: >-
+          {{ states('input_select.bed_effect') }}
+
+# Return the bed washlights to the default scheduled effect.
+- id: bed_washlight_default
+  alias: Default Bed Washlight Effect
+  trigger:
+    # If the default effect is selected.
+    - platform: state
+      entity_id: input_select.bed_effect
+      to: Auto
+
+  action:
+    # Remove the effect override.
+    - service: input_boolean.turn_off
+      entity_id: input_boolean.bed_effect_override
