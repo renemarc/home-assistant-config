@@ -2,7 +2,6 @@
 # An updated Hass.io version usually follows shortly.
 - id: update_available
   alias: Update Available
-  initial_state: 'off'
   trigger:
     platform: state
     entity_id: updater.updater
@@ -16,4 +15,4 @@
     - service: notify.group
       data:
         title: 'Hass.io'
-        message: 'Update for Home Assistant is available.'
+        message: "Home Assistant {{ states('updater.updater') }} is available. Installed version: {{ states('sensor.current_version') }}"

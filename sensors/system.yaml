@@ -27,11 +27,9 @@
     version_friendly:
       friendly_name: Home Assistant version
       icon_template: mdi:update
-      entity_id:
-        - sensor.current_version
       value_template: >-
         {% if states('sensor.current_version') != "unknown" %}
-          HASS v{{ states('sensor.current_version') }}
+          HASS {{ states('sensor.current_version') }}
         {% else %}
           HASS
         {% endif %}
@@ -39,11 +37,9 @@
     update_available:
       friendly_name: Update available
       icon_template: mdi:update
-      entity_id:
-        - input_boolean.update_available
       value_template: >-
-        {% if is_state('input_boolean.update_available', 'on') %}
-          Update available.
+        {% if states('updater.updater') != "unknown" %}
+          Update available: {{ states('updater.updater') }}
         {% endif %}
 
 
