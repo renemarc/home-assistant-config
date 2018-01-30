@@ -1,5 +1,5 @@
 #
-# Bed wash lights effects
+# Bed wash lights loaded effect.
 #
 - platform: template
   sensors:
@@ -12,7 +12,7 @@
 
 
 #
-# Ceiling wash lights effects
+# Ceiling wash lights loaded effect.
 #
 - platform: template
   sensors:
@@ -25,20 +25,8 @@
 
 
 #
-# Nanoleaf Aurora effect and brightness
+# Nanoleaf Aurora loaded effect.
 #
-- platform: mqtt
-  name: Aurora Effect
-  state_topic: 'home/aurora/effect'
-  value_template: '{{ value_json.name }}'
-  qos: 1
-
-- platform: mqtt
-  name: Aurora Brightness
-  state_topic: 'home/aurora/effect'
-  value_template: '{{ value_json.brightness }}'
-  qos: 1
-
 - platform: template
   sensors:
     aurora_effect_loaded:

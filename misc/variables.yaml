@@ -1,5 +1,21 @@
 #
-# Bed wash lights effects
+# Nanoleaf Aurora effect.
+#
+aurora_effect:
+  value: False
+  restore: true
+
+
+#
+# Nanoleaf Aurora brightness.
+#
+aurora_brightness:
+  value: False
+  restore: true
+
+
+#
+# Bed wash lights effect.
 #
 bed_effect:
   value: False
@@ -9,7 +25,7 @@ bed_effect:
 
 
 #
-# Ceiling wash lights effects
+# Ceiling wash lights effect.
 #
 ceiling_effect:
   value: False

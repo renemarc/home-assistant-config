@@ -31,6 +31,13 @@
       to: 'off'
 
   condition:
+     # If automation was not trigered lately.
+    - condition: template
+      value_template: >-
+        {% set current = as_timestamp(utcnow()) %}
+        {% set last_triggered = as_timestamp(states.automation.rotate_bed_washlights_based_on_a_schedule.attributes.last_triggered) %}
+        {{ current - last_triggered > 1}}
+
     # If bed lights are on.
     - condition: state
       entity_id: group.bed
@@ -62,7 +69,7 @@
       state: 'off'
 
   action:
-    # Update the effect variables.
+    # Update the effect variable.
     - service: variable.set_variable
       data:
         variable: bed_effect

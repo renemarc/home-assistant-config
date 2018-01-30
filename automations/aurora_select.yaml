@@ -6,11 +6,6 @@
       entity_id: input_select.aurora_effect
 
   condition:
-    # If no other process is handling the Aurora.
-    - condition: state
-      entity_id: input_boolean.aurora_semaphore
-      state: 'off'
-
     # If an actual effect is selected.
     - condition: template
       value_template: "{% if not is_state('input_select.aurora_effect', 'Auto') %}true{% endif %}"
@@ -21,31 +16,22 @@
         title: 'Hass.io'
         message: "aurora_select sent: {{ states('input_select.aurora_effect') }}"
 
-    # Reserve the Aurora.
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.aurora_semaphore
-
     # Override the Aurora effect.
     - service: input_boolean.turn_on
       entity_id: input_boolean.aurora_effect_override
 
-    # Send the effect update via Mosquitto.
-    - service: mqtt.publish
-      data_template:
-        topic: 'home/aurora/effect'
-        payload: >-
-          {
-            "name": "{{ states('input_select.aurora_effect') }}"
-          }
+    # Update the effect variable.
+    - service: variable.set_variable
+      data:
+        variable: aurora_effect
+        value_template: >-
+          {{ states('input_select.aurora_effect') }}
 
-    # Release the Aurora.
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.aurora_semaphore
-
-# Return the aurora to its default scheduled effect.
+# Return the Aurora to its default scheduled effect.
 - id: aurora_default
   alias: Default Nanoleaf Aurora effect
   trigger:
+    # If the default effect is selected.
     - platform: state
       entity_id: input_select.aurora_effect
       to: Auto

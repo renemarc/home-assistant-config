@@ -15,7 +15,7 @@
     - service: input_boolean.turn_on
       entity_id: input_boolean.bed_effect_override
 
-    # Update the effect variables.
+    # Update the effect variable.
     - service: variable.set_variable
       data:
         variable: bed_effect

@@ -2,12 +2,10 @@
 # see: https://forum.nanoleaf.me/docs/openapi
 - id: aurora_schedule
   alias: Rotate Aurora based on a schedule
-  initial_state: 'on'
   trigger:
     # Every hour on the hour.
     - platform: time
-      # minutes: 00
-      minutes: /5
+      minutes: 00
       seconds: 00
 
     # When an item which was off or physically disconnected comes back online.
@@ -32,15 +30,17 @@
       to: 'off'
 
   condition:
+    # If automation was not trigered lately.
+    - condition: template
+      value_template: >-
+        {% set current = as_timestamp(utcnow()) %}
+        {% set last_triggered = as_timestamp(states.automation.rotate_aurora_based_on_a_schedule.attributes.last_triggered) %}
+        {{ current - last_triggered > 1}}
+
     # If the Aurora is active.
     - condition: state
       entity_id: light.aurora
       state: 'on'
-
-    # If no other process is handling the Aurora.
-    - condition: state
-      entity_id: input_boolean.aurora_semaphore
-      state: 'off'
 
     # If no effect overrides are in place.
     - condition: state
@@ -68,61 +68,78 @@
       state: 'off'
 
   action:
-    # Reserve the Aurora.
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.aurora_semaphore
-
-    # Send the effect update via Mosquitto.
-    - service: mqtt.publish
-      data_template:
-        topic: 'home/aurora/effect'
-        payload: >-
+    # Update the effect variable.
+    - service: variable.set_variable
+      data:
+        variable: aurora_effect
+        value_template: >-
           {% set hour = states('sensor.time').split(':')[0] %}
-          {% set effects = {
-            '00':{'brightness':'35', 'name':'Be Productive'},
-            '01':{'brightness':'30', 'name':'Canada Day'},
-            '02':{'brightness':'25', 'name':'Color Burst'},
-            '03':{'brightness':'20', 'name':'Fifty shades'},
-            '04':{'brightness':'20', 'name':'Flames'},
-            '05':{'brightness':'25', 'name':'Forest'},
+          {% set schedule = {
+            '00': 'Be Productive',
+            '01': 'Canada Day',
+            '02': 'Color Burst',
+            '03': 'Fifty shades',
+            '04': 'Flames',
+            '05': 'Forest',
 
-            '06':{'brightness':'45', 'name':'Inner Peace'},
-            '07':{'brightness':'60', 'name':'Movie Night'},
-            '08':{'brightness':'75', 'name':'Nemo'},
-            '09':{'brightness':'80', 'name':'Northern Lights'},
-            '10':{'brightness':'85', 'name':'Rain'},
-            '11':{'brightness':'90', 'name':'Retro Future'},
+            '06': 'Inner Peace',
+            '07': 'Movie Night',
+            '08': 'Nemo',
+            '09': 'Northern Lights',
+            '10': 'Rain',
+            '11': 'Retro Future',
 
-            '12':{'brightness':'100','name':'Romantic'},
-            '13':{'brightness':'90', 'name':'Serve warm and chilled'},
-            '14':{'brightness':'85', 'name':'Snowfall'},
-            '15':{'brightness':'80', 'name':'Stranger Things'},
-            '16':{'brightness':'75', 'name':'Synthwave'},
-            '17':{'brightness':'70', 'name':'Tron Legacy'},
+            '12': 'Romantic',
+            '13': 'Serve warm and chilled',
+            '14': 'Snowfall',
+            '15': 'Stranger Things',
+            '16': 'Synthwave',
+            '17': 'Tron Legacy',
 
-            '18':{'brightness':'65', 'name':'Tron2'},
-            '19':{'brightness':'60', 'name':'Vibrant Sunrise'},
-            '20':{'brightness':'55', 'name':'Inner Peace'},
-            '21':{'brightness':'50', 'name':'Nemo'},
-            '22':{'brightness':'45', 'name':'Flames'},
-            '23':{'brightness':'40', 'name':'Retro Future'}
+            '18': 'Tron2',
+            '19': 'Vibrant Sunrise',
+            '20': 'Inner Peace',
+            '21': 'Nemo',
+            '22': 'Flames',
+            '23': 'Retro Future',
           } %}
 
-          {
-            "name": "{{ effects[hour]['name'] }}",
-            "brightness": "{{ effects[hour]['brightness'] }}"
-          }
+          {{ schedule[hour] }}
 
-    # Notify the owner.
-    # - service: notify.group
-    #   data:
-    #     title: 'Hass.io'
-    #     message: "aurora effects sent."
+    # Update the brightness variable.
+    - service: variable.set_variable
+      data:
+        variable: aurora_brightness
+        value_template: >-
+          {% set hour = states('sensor.time').split(':')[0] %}
+          {% set schedule = {
+            '00': '35',
+            '01': '30',
+            '02': '25',
+            '03': '20',
+            '04': '20',
+            '05': '25',
 
-    # Pause a while, to minimize race conditions.
-    - delay:
-        seconds: 5
+            '06': '45',
+            '07': '60',
+            '08': '75',
+            '09': '80',
+            '10': '85',
+            '11': '95',
 
-    # Release the Aurora.
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.aurora_semaphore
+            '12': '100',
+            '13': '100',
+            '14': '95',
+            '15': '90',
+            '16': '85',
+            '17': '80',
+
+            '18': '75',
+            '19': '70',
+            '20': '65',
+            '21': '60',
+            '22': '55',
+            '23': '50',
+          } %}
+
+          {{ schedule[hour] }}

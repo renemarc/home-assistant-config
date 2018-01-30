@@ -67,7 +67,7 @@ sun:
 # MQTT
 mqtt:
   broker: !secret mqtt_broker
-  broker: !secret mqtt_port
+  port: !secret mqtt_port
   username: !secret mqtt_username
   password: !secret mqtt_password
 

@@ -35,9 +35,9 @@
     # If automation was not trigered lately.
     - condition: template
       value_template: >-
-      {% set current = as_timestamp(utcnow()) %}
-      {% set last_triggered = as_timestamp(states.automation.rotate_bed_washlights_based_on_a_schedule.attributes.last_triggered) %}
-      {{ current - last_triggered > 1}}
+        {% set current = as_timestamp(utcnow()) %}
+        {% set last_triggered = as_timestamp(states.automation.rotate_ceiling_washlights_based_on_a_schedule.attributes.last_triggered) %}
+        {{ current - last_triggered > 1}}
 
     # If ceiling lights are on.
     - condition: state
