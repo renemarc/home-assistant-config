@@ -84,7 +84,6 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 ### Task list
 
 #### Work in progress
-- Code: Refactor smart light automations for increased simplicity 
 
 #### Backlog
 - UI: Text-only state cards (weather, quotes...)

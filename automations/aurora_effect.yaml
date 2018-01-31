@@ -1,38 +1,16 @@
+#
 # Change Nanoleaf Aurora based on its loaded-in effects.
+#
 - id: aurora_effect
-  alias: Apply Aurora effect
+  alias: Aurora EFFECT
   trigger:
     # When an effect is changed.
     - platform: state
       entity_id: variable.aurora_effect
 
   action:
-    - service: notify.group
-      data:
-        title: 'Hass.io'
-        message: "aurora_effect received: {{ states('variable.aurora_effect') }}"
-
     - service: light.turn_on
       data_template:
         entity_id:
           - light.aurora
         effect: "{{ states('variable.aurora_effect') }}"
-
-# Change Nanoleaf Aurora's brightness.
-- id: aurora_brightness
-  alias: Apply Nanoleaf Aurora brightness
-  trigger:
-    # When a brightness level is changed.
-    - platform: state
-      entity_id: variable.aurora_brightness
-
-  action:
-    - service: notify.group
-      data:
-        title: 'Hass.io'
-        message: "aurora_brightness received: {{ states('variable.aurora_brightness') }}"
-
-    - service: light.turn_on
-      data_template:
-        entity_id: light.aurora
-        brightness: "{{ states('variable.aurora_brightness') }}"

@@ -1,6 +1,8 @@
+#
 # Change bed wash lights based on Lifx Cloud scenes.
+#
 - id: bed_effect
-  alias: Apply effect to bed washlights
+  alias: Bed EFFECT
   trigger:
     # When an effect is changed.
     - platform: state

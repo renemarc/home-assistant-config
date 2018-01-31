@@ -1,6 +1,8 @@
+#
 # When noise makers should be allowed to run.
-- id: quiet_time_stop
-  alias: End quiet time
+#
+- id: quiet_mode_stop
+  alias: Quiet mode STOP
   trigger:
     # It's daytime.
     - platform: time

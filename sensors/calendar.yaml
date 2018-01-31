@@ -47,7 +47,10 @@
       entity_id:
         - sensor.time
       value_template: >-
-        {{ states('sensor.time').lstrip('0') }}
+        {% set hour = states('sensor.time').split(':')[0] | int %}
+        {% set minutes = states('sensor.time').split(':')[1] %}
+
+        {{ hour }}:{{ minutes }}
 
     after_tomorrow:
       friendly_name: After Tomorrow

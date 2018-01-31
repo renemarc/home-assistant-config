@@ -1,6 +1,8 @@
+#
 # Turn on the dehumidifier when appropriate if humidify levels are too high.
-- id: dehumidity
-  alias: Dehumidify
+#
+- id: dehumidifier_on
+  alias: Dehumidifier ON
   trigger:
     # Humidity is getting too high.
     - platform: numeric_state

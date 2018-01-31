@@ -1,7 +1,10 @@
+#
 # Schecule the Nanoleaf Aurora based on its loaded-in effects.
+#
 # see: https://forum.nanoleaf.me/docs/openapi
+#
 - id: aurora_schedule
-  alias: Rotate Aurora based on a schedule
+  alias: Aurora SCHEDULE
   trigger:
     # Every hour on the hour.
     - platform: time
@@ -13,11 +16,6 @@
       entity_id:
         - light.aurora
       from: 'off'
-
-    # When alerts are disabled.
-    - platform: state
-      entity_id: input_boolean.alert_mode
-      to: 'off'
 
     # When scenes are disabled.
     - platform: state
@@ -34,7 +32,8 @@
     - condition: template
       value_template: >-
         {% set current = as_timestamp(utcnow()) %}
-        {% set last_triggered = as_timestamp(states.automation.rotate_aurora_based_on_a_schedule.attributes.last_triggered) %}
+        {% set last_triggered = as_timestamp(states.automation.aurora_schedule.attributes.last_triggered) | float %}
+
         {{ current - last_triggered > 1}}
 
     # If the Aurora is active.
@@ -45,11 +44,6 @@
     # If no effect overrides are in place.
     - condition: state
       entity_id: input_boolean.aurora_effect_override
-      state: 'off'
-
-    # If no alerts are enabled.
-    - condition: state
-      entity_id: input_boolean.alert_mode
       state: 'off'
 
     # If no scenes are enabled.

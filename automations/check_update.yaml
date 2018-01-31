@@ -1,7 +1,10 @@
-# Warns someone when a new version of Home Assistant is available.
+#
+# Notifies when a new version of Home Assistant is available.
+#
 # An updated Hass.io version usually follows shortly.
-- id: update_available
-  alias: Update Available
+#
+- id: check_update_availability
+  alias: Check update availability
   trigger:
     platform: state
     entity_id: updater.updater

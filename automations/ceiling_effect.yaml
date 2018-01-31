@@ -1,6 +1,8 @@
+#
 # Change ceiling wash lights based on Lifx Cloud scenes.
+#
 - id: ceiling_effect
-  alias: Apply effect to ceiling washlights
+  alias: Ceiling EFFECT
   trigger:
     # When an effect is changed.
     - platform: state

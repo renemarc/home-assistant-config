@@ -1,19 +1,15 @@
 wake_up:
   alias: Wake up
   sequence:
-    - event: LOGBOOK_ENTRY
-      event_data:
-        name: EVENT
-        message: "Good Morning! Turning lights and fan on."
-
-    # - service: notify.group
-    #   data:
-    #     message: "Good Morning! Turning lights and fan on."
-
     # Disable night mode.
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.night_mode
+
+    # Disable nap mode.
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.nap_mode
 
     # Disable quiet mode.
     - service: input_boolean.turn_off

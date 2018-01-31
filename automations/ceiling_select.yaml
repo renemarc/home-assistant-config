@@ -1,7 +1,10 @@
+#
 # Manually select a LIFX cloud effect for the ceiling washlights.
+#
 - id: ceiling_select
-  alias: Select Ceiling Washlights Effect
+  alias: Ceiling SELECT
   trigger:
+    # An effect has been selected.
     - platform: state
       entity_id: input_select.ceiling_effect
 
@@ -21,17 +24,3 @@
         variable: ceiling_effect
         value_template: >-
           {{ states('input_select.ceiling_effect') }}
-
-# Return the ceiling washlights to the default scheduled effect.
-- id: ceiling_washlight_default
-  alias: Default Ceiling Washlight Effect
-  trigger:
-    # If the default effect is selected.
-    - platform: state
-      entity_id: input_select.ceiling_effect
-      to: Auto
-
-  action:
-    # Remove the effect override.
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.ceiling_effect_override

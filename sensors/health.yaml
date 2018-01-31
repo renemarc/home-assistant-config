@@ -1,10 +1,12 @@
 #
 # Doomsday Clock
 #
+# see: https://github.com/renemarc/home-assistant-custom-components
 # see: https://thebulletin.org/doomsday-dashboard
 # see: https://github.com/mattbierner/MinutesToMidnight/blob/master/index.js
 #
 - platform: doomsday_clock
+  scan_interval: 86400
 
 
 #

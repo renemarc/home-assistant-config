@@ -1,12 +1,19 @@
+#
 # Schedule bed wash lights based on Lifx Cloud scenes.
+#
 # see: https://api.developer.lifx.com/docs/activate-scene
-- id: bed_lights_schedule
-  alias: Rotate bed washlights based on a schedule
+#
+- id: bed_schedule
+  alias: Bed SCHEDULE
   trigger:
     # Every hour on the hour.
     - platform: time
       minutes: 00
       seconds: 00
+
+    # When Home Assistant starts.
+    - platform: homeassistant
+      event: start
 
     # When an item which was off comes back online.
     - platform: state
@@ -14,11 +21,6 @@
         - light.headboard
         - light.underbed
       to: 'on'
-
-    # When alerts are disabled.
-    - platform: state
-      entity_id: input_boolean.alert_mode
-      to: 'off'
 
     # When scenes are disabled.
     - platform: state
@@ -35,7 +37,8 @@
     - condition: template
       value_template: >-
         {% set current = as_timestamp(utcnow()) %}
-        {% set last_triggered = as_timestamp(states.automation.rotate_bed_washlights_based_on_a_schedule.attributes.last_triggered) %}
+        {% set last_triggered = as_timestamp(states.automation.bed_schedule.attributes.last_triggered) | float %}
+
         {{ current - last_triggered > 1}}
 
     # If bed lights are on.
@@ -46,11 +49,6 @@
     # If no effect overrides are in place.
     - condition: state
       entity_id: input_boolean.bed_effect_override
-      state: 'off'
-
-    # If no alerts are enabled.
-    - condition: state
-      entity_id: input_boolean.alert_mode
       state: 'off'
 
     # If no scenes are enabled.

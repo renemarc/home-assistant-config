@@ -7,15 +7,14 @@ default_view:
     - group.public_transit
     - group.climate
     - group.scripts
-    - group.scenes
 
 switchboard_view:
   view: yes
   name: Switchboard
   icon: mdi:nintendo-switch
   entities:
-    - group.ceiling
     - group.climate
+    - group.ceiling
     - group.washroom
     - group.bedroom
     - group.lounge
@@ -25,10 +24,13 @@ weather_view:
   name: Weather
   icon: mdi:weather-partlycloudy
   entities:
-    - group.life_quality
     - group.weather
+    - group.radar_rain
+    - group.radar_snow
     - group.weather_forecast
-    - group.weather_maps
+    - group.atmospheric_safety
+    - group.satellite_visual
+    - group.satellite_water
 
 status_view:
   view: yes
@@ -43,5 +45,8 @@ configuration_view:
   name: Configuration
   icon: mdi:settings
   entities:
+    - group.modes
     - group.automations
-    - group.all_automations
+    - group.automations_modes
+    - group.automations_devices
+    - group.automations_areas

@@ -1,12 +1,19 @@
+#
 # Schedule ceiling wash lights based on Lifx Cloud scenes.
+#
 # see: https://api.developer.lifx.com/docs/activate-scene
-- id: ceiling_lights_schedule
-  alias: Rotate ceiling washlights based on a schedule
+#
+- id: ceiling_schedule
+  alias: Ceiling SCHEDULE
   trigger:
     # Every hour on the hour.
     - platform: time
       minutes: 00
       seconds: 00
+
+    # When Home Assistant starts.
+    - platform: homeassistant
+      event: start
 
     # When an item which was off comes back online.
     - platform: state
@@ -15,11 +22,6 @@
         - light.lounge
         - light.middle
       to: 'on'
-
-    # When alerts are disabled.
-    - platform: state
-      entity_id: input_boolean.alert_mode
-      to: 'off'
 
     # When scenes are disabled.
     - platform: state
@@ -36,7 +38,8 @@
     - condition: template
       value_template: >-
         {% set current = as_timestamp(utcnow()) %}
-        {% set last_triggered = as_timestamp(states.automation.rotate_ceiling_washlights_based_on_a_schedule.attributes.last_triggered) %}
+        {% set last_triggered = as_timestamp(states.automation.ceiling_schedule.attributes.last_triggered) | float %}
+
         {{ current - last_triggered > 1}}
 
     # If ceiling lights are on.
@@ -47,11 +50,6 @@
     # If no effect overrides are in place.
     - condition: state
       entity_id: input_boolean.ceiling_effect_override
-      state: 'off'
-
-    # If no alerts are enabled.
-    - condition: state
-      entity_id: input_boolean.alert_mode
       state: 'off'
 
     # If no scenes are enabled.

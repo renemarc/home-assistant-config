@@ -1,0 +1,26 @@
+#
+# Turn off bedroom.
+#
+- id: bedroom_off
+  alias: Bedroom OFF
+  trigger:
+    # When nap mode is enabled.
+    - platform: state
+      entity_id: input_boolean.nap_mode
+      to: 'on'
+
+  action:
+    # Turn off smart lights.
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.headboard
+          - light.underbed
+        transition: 10
+
+    # Turn off binary devices
+    - service: homeassistant.turn_off
+      entity_id:
+        - switch.nightstand_light
+        - switch.bedside_light
+        - switch.bedroom_fan
