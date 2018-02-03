@@ -48,6 +48,21 @@ device_tracker.cellphone_him:
 
 
 #
+# Groups.
+#
+group.configuration_view:
+  order: 5
+group.default_view:
+  order: 1
+group.status_view:
+  order: 4
+group.switchboard_view:
+  order: 2
+group.weather_view:
+  order: 3
+
+
+#
 # Input booleans.
 #
 input_boolean.low_mode:
@@ -66,10 +81,13 @@ input_boolean.scene_mode:
 # Input selectors.
 #
 input_select.aurora_effect:
-  extra_data_template: ${entities['sensor.aurora_effect'].state}
+  icon: mdi:blank
+input_select.bed_effect:
+  friendly_name: Bed Effect
   icon: mdi:blank
 input_select.ceiling_effect:
   friendly_name: Effect
+  icon: mdi:blank
 
 
 #
@@ -87,8 +105,9 @@ light.aurora:
     report_when_not_changed: false
   state_card_mode: break-slider
 light.bedroom:
-  extra_data_template: if (attributes.brightness) return entities['sensor.ceiling_effect_loaded'].state
-    + ' @ ' + Math.round(attributes.brightness / 255 * 100) + '%'; else return null;
+  extra_data_template: >-
+      return (entities['sensor.ceiling_effect_loaded'].state) ?
+      entities['sensor.ceiling_effect_loaded'].state : null;
   icon: mdi:led-strip
   slider_theme:
     max: 255
@@ -97,8 +116,9 @@ light.bedroom:
     pin: true
     report_when_not_changed: false
 light.headboard:
-  extra_data_template: if (attributes.brightness) return entities['sensor.bed_effect_loaded'].state
-    + ' @ ' + Math.round(attributes.brightness / 255 * 100) + '%'; else return null;
+  extra_data_template: >-
+      return (entities['sensor.bed_effect_loaded'].state) ?
+      entities['sensor.bed_effect_loaded'].state : null;
   icon: mdi:gate
   slider_theme:
     max: 255
@@ -110,8 +130,9 @@ light.lightpack:
   homebridge_hidden: false
   icon: mdi:television
 light.lounge:
-  extra_data_template: if (attributes.brightness) return entities['sensor.ceiling_effect_loaded'].state
-    + ' @ ' + Math.round(attributes.brightness / 255 * 100) + '%'; else return null;
+  extra_data_template: >-
+      return (entities['sensor.ceiling_effect_loaded'].state) ?
+      entities['sensor.ceiling_effect_loaded'].state : null;
   icon: mdi:led-strip
   slider_theme:
     max: 255
@@ -120,8 +141,9 @@ light.lounge:
     pin: true
     report_when_not_changed: false
 light.middle:
-  extra_data_template: if (attributes.brightness) return entities['sensor.ceiling_effect_loaded'].state
-    + ' @ ' + Math.round(attributes.brightness / 255 * 100) + '%'; else return null;
+  extra_data_template: >-
+      return (entities['sensor.ceiling_effect_loaded'].state) ?
+      entities['sensor.ceiling_effect_loaded'].state : null;
   icon: mdi:led-strip
   slider_theme:
     max: 255
@@ -154,8 +176,9 @@ light.spotlight:
     report_when_not_changed: false
   state_card_mode: break-slider
 light.underbed:
-  extra_data_template: if (attributes.brightness) return entities['sensor.bed_effect_loaded'].state
-    + ' @ ' + Math.round(attributes.brightness / 255 * 100) + '%'; else return null;
+  extra_data_template: >-
+      return (entities['sensor.bed_effect_loaded'].state) ?
+      entities['sensor.bed_effect_loaded'].state : null;
   icon: mdi:hotel
   slider_theme:
     max: 255
@@ -173,9 +196,21 @@ sensor.average_humidity_friendly:
 sensor.bedroom_humidity:
   homebridge_hidden: false
   icon: mdi:water-percent
+  group:
+    group.bedroom:
+      friendly_name: Humidity
+    group.humidity:
+      friendly_name: Bedroom
+      icon: mdi:hotel
 sensor.bedroom_temperature:
   homebridge_hidden: false
   icon: mdi:thermometer
+  group:
+    group.bedroom:
+      friendly_name: Temperature
+    group.temperature:
+      friendly_name: Bedroom
+      icon: mdi:hotel
 sensor.date_friendly:
   extra_data_template: ${entities['sensor.day'].state}
 
@@ -200,8 +235,23 @@ sensor.uv_friendly:
     entity_id: sensor.uv
 
 # Sensors: System.
+sensor.cpu_used:
+  friendly_name: CPU Load
+  icon: mdi:chip
+  extra_data_template: >-
+    return
+    parseFloat(entities['sensor.average_load_1m'].state).toFixed(2) + ' ' +
+    parseFloat(entities['sensor.average_load_5m'].state).toFixed(2) + ' ' +
+    parseFloat(entities['sensor.average_load_15m'].state).toFixed(2) + ' ' +
+    '(' + entities['sensor.cpu_cores'].state + ' cores)';
 sensor.database_size:
   icon: mdi:database
+sensor.disk_used_percent:
+  extra_data_template: >-
+    return
+    Math.round(parseFloat(entities['sensor.disk_free_home'].state)) + ' ' +
+    entities['sensor.disk_free_home'].attributes['unit_of_measurement'] +
+    ' available';
 sensor.ebox_download_before_offpeak:
   homebridge_hidden: false
   friendly_name: Downloads
@@ -215,6 +265,12 @@ sensor.ipv4_address_eth0:
   friendly_name: Local IP Address
 sensor.logfile_size:
   icon: mdi:history
+sensor.ram_used_percent:
+  extra_data_template: >-
+    return
+    Math.round(parseFloat(entities['sensor.ram_available'].state)) + ' ' +
+    entities['sensor.ram_available'].attributes['unit_of_measurement'] +
+    ' available';
 sensor.speedtest_download:
   friendly_name: Downspeed
   icon: mdi:download-network
@@ -297,6 +353,9 @@ script.wake_up:
 switch.bedroom_fan:
   homebridge_hidden: false
   icon: mdi:fan
+  group:
+    group.bedroom:
+      friendly_name: Fan
 switch.bedside_light:
   homebridge_hidden: false
   icon: mdi:creation

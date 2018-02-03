@@ -1,0 +1,69 @@
+#
+# View.
+#
+default_view:
+  view: yes
+  icon: mdi:home-assistant
+  entities:
+    - group.notifications
+    - group.time
+    - group.public_transit
+    - group.climate
+    - group.actions
+
+
+#
+# Groups.
+#
+actions:
+  name: Actions
+  control: hidden
+  entities:
+    - scene.romantic
+    - scene.shutdown
+    - script.wake_up
+    - script.go_to_sleep
+    - script.take_a_nap
+
+climate:
+  name: Climate Control
+  entities:
+    - sensor.average_temperature
+    - sensor.average_humidity_friendly
+    - switch.dehumidifier
+
+notifications:
+  name: Notifications
+  entities:
+    - persistent_notification.humidity
+
+public_transit:
+  name: Public Transit
+  entities:
+    - sensor.home_to_metro_hour
+    - sensor.home_to_metro_2_hour
+    - sensor.home_to_metro_3_hour
+    - sensor.home_to_market_hour
+    - sensor.home_to_market_2_hour
+    - sensor.home_to_market_3_hour
+
+time:
+  name: Time
+  entities:
+    - sensor.good_vibes
+    - sensor.date_friendly
+    - sensor.time_friendly
+    - sensor.sun_state
+
+# media:
+#   name: Media
+#   entities:
+#     - media_player.kodi
+#     - media_player.plex
+#     - sensor.plex_htpc
+
+# presence:
+#   name: Presence
+#   entities:
+#     - device_tracker.cellphone_him
+#     - device_tracker.cellphone_her

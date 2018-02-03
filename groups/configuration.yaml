@@ -1,0 +1,94 @@
+#
+# View.
+#
+configuration_view:
+  view: yes
+  name: Configuration
+  icon: mdi:settings
+  entities:
+    - group.modes
+    - group.automations
+    - group.automations_modes
+    - group.automations_devices
+    - group.automations_areas
+
+
+#
+# Groups.
+#
+modes:
+  name: Modes
+  control: hidden
+  entities:
+    - input_boolean.night_mode
+    - input_boolean.nap_mode
+    - input_boolean.quiet_mode
+    - input_boolean.low_mode
+    - input_boolean.scene_mode
+
+automations:
+  name: Automations
+  control: hidden
+  entities:
+    - automation.cct
+    - automation.check_door_left_open
+    - automation.check_humidity_high
+    - automation.check_humidity_low
+    - automation.check_mold_conditions
+    - automation.check_update_availability
+    - automation.front_door_closed
+    - automation.front_door_opened
+    - automation.go_to_sleep
+    - automation.wake_up
+
+automations_areas:
+  name: Areas Automations
+  control: hidden
+  entities:
+    - automation.bedroom_low_power
+    - automation.bedroom_off
+    - automation.bedroom_on
+    - automation.ceiling_default
+    - automation.ceiling_effect
+    - automation.ceiling_off
+    - automation.ceiling_on
+    - automation.ceiling_schedule
+    - automation.ceiling_select
+    - automation.lounge_low_power
+    - automation.lounge_off
+    - automation.lounge_on
+    - automation.washroom_low_power
+    - automation.washroom_off
+    - automation.washroom_on
+
+automations_devices:
+  name: Devices Automations
+  control: hidden
+  entities:
+    - automation.aurora_brightness
+    - automation.aurora_default
+    - automation.aurora_effect
+    - automation.aurora_schedule
+    - automation.aurora_select
+    - automation.bed_default
+    - automation.bed_effect
+    - automation.bed_schedule
+    - automation.bed_select
+    - automation.dehumidifier_off
+    - automation.dehumidifier_on
+    - automation.media_player_resume
+    - automation.media_player_start
+    - automation.media_player_stop
+    - automation.nightlight_off
+    - automation.nightlight_on
+
+automations_modes:
+  name: Modes Automations
+  control: hidden
+  entities:
+    - automation.low_power_mode_start
+    - automation.low_power_mode_stop
+    - automation.quiet_mode_start
+    - automation.quiet_mode_stop
+    - automation.nap_mode_start
+    - automation.nap_mode_stop

@@ -37,7 +37,7 @@
 - platform: template
   sensors:
     aqi:
-      friendly_name: AQI
+      friendly_name: Air Quality Index
       icon_template: mdi:chemical-weapon
       entity_id:
         - sensor.aqi_exact
@@ -49,7 +49,7 @@
         {% endif %}
 
     aqi_friendly:
-      friendly_name: AQI
+      friendly_name: Air Quality Index
       icon_template: mdi:chemical-weapon
       entity_id:
         - sensor.aqi_exact

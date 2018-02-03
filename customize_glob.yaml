@@ -60,10 +60,16 @@ input_boolean.*:
 #
 # Sensors.
 #
+sensor.*_fan:
+  group:
+    group.bedroom:
+      friendly_name: Fan
 sensor.*_humidity:
   group:
     group.bedroom:
       friendly_name: Humidity
+    # group.humidity:
+    #   friendly_name: Humidity
     group.lounge:
       friendly_name: Humidity
 sensor.*_luminance:
@@ -78,3 +84,5 @@ sensor.*_temperature:
       friendly_name: Temperature
     group.lounge:
       friendly_name: Temperature
+    # group.temperature:
+    #   friendly_name: Temperature

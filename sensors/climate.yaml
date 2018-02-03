@@ -65,7 +65,7 @@
 - platform: template
   sensors:
     average_temperature:
-      friendly_name: Average Temperature
+      friendly_name: Temperature
       unit_of_measurement: '°C'
       icon_template: mdi:thermometer
       entity_id:
@@ -90,7 +90,7 @@
 - platform: template
   sensors:
     average_humidity:
-      friendly_name: Average Humidity
+      friendly_name: Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
       entity_id:

@@ -1,5 +1,5 @@
 #
-# Dark Dky weather
+# Dark Sky weather
 #
 - platform: darksky
   api_key: !secret darksky_api_key
@@ -51,7 +51,7 @@
 - platform: template
   sensors:
     outside_humidity:
-      friendly_name: Relative humidity
+      friendly_name: Humidity
       icon_template: mdi:water-percent
       unit_of_measurement: '%'
       entity_id:
@@ -66,7 +66,7 @@
 - platform: template
   sensors:
     feels_like:
-      friendly_name: Feels like
+      friendly_name: Feels Like
       entity_id:
         - sensor.outside_temperature
         - sensor.dark_sky_apparent_temperature
@@ -79,7 +79,7 @@
         {% endif %}
 
     feels_like_1:
-      friendly_name: Feels like
+      friendly_name: Feels Like
       entity_id:
         - sensor.dark_sky_daily_high_temperature_1
         - sensor.dark_sky_daily_high_apparent_temperature_1
@@ -92,7 +92,7 @@
         {% endif %}
 
     feels_like_2:
-      friendly_name: Feels like
+      friendly_name: Feels Like
       entity_id:
         - sensor.dark_sky_daily_high_temperature_2
         - sensor.dark_sky_daily_high_apparent_temperature_2
@@ -105,7 +105,7 @@
         {% endif %}
 
     weather_summary:
-      friendly_name: Weather summary
+      friendly_name: Weather Summary
       entity_id:
         - sensor.dark_sky_temperature
         - sensor.dark_sky_summary
@@ -113,7 +113,7 @@
         {{ states('sensor.dark_sky_temperature') | round(0) }}˚ {{ states('sensor.dark_sky_summary') }}.
 
     weather_details:
-      friendly_name: Weather details
+      friendly_name: Weather Details
       entity_id:
         - sensor.dark_sky_temperature
         - sensor.dark_sky_apparent_temperature
@@ -140,7 +140,7 @@
 - platform: template
   sensors:
     precip_probability:
-      friendly_name: Probability of precipitation
+      friendly_name: Probability of Precipitation
       entity_id:
         - sensor.dark_sky_precip_probability
       value_template: >-
@@ -153,7 +153,7 @@
         {% endif %}
 
     precip_probability_friendly:
-      friendly_name: Probability of precipitation
+      friendly_name: Probability of Precipitation
       entity_id:
         - sensor.dark_sky_precip_probability
       value_template: >-
@@ -166,7 +166,7 @@
         {% endif %}
 
     precip_probability_1:
-      friendly_name: Probability of precipitation
+      friendly_name: Probability of Precipitation
       entity_id:
         - sensor.dark_sky_precip_probability_1
       value_template: >-
@@ -179,7 +179,7 @@
         {% endif %}
 
     precip_probability_friendly_1:
-      friendly_name: Probability of precipitation
+      friendly_name: Probability of Precipitation
       entity_id:
         - sensor.dark_sky_precip_probability_1
       value_template: >-
@@ -192,7 +192,7 @@
         {% endif %}
 
     precip_probability_2:
-      friendly_name: Probability of precipitation
+      friendly_name: Probability of Precipitation
       entity_id:
         - sensor.dark_sky_precip_probability_2
       value_template: >-
@@ -205,7 +205,7 @@
         {% endif %}
 
     precip_probability_friendly_2:
-      friendly_name: Probability of precipitation
+      friendly_name: Probability of Precipitation
       entity_id:
         - sensor.dark_sky_precip_probability_2
       value_template: >-
@@ -224,14 +224,14 @@
 - platform: template
   sensors:
     weather_low:
-      friendly_name: Low temperature
+      friendly_name: Low Temperature
       entity_id:
         - sensor.dark_sky_daily_low_temperature
       value_template: >-
         {{ states('sensor.dark_sky_daily_low_temperature') | round }}
 
     weather_low_friendly:
-      friendly_name: Low temperature
+      friendly_name: Low Temperature
       entity_id:
         - sensor.dark_sky_daily_low_temperature
       value_template: >-
@@ -240,14 +240,14 @@
         min: {{ temp }}˚
 
     weather_low_1:
-      friendly_name: Low temperature
+      friendly_name: Low Temperature
       entity_id:
         - sensor.dark_sky_daily_low_temperature_1
       value_template: >-
         {{ states('sensor.dark_sky_daily_low_temperature_1') | round }}
 
     weather_low_1_friendly:
-      friendly_name: Low temperature
+      friendly_name: Low Temperature
       entity_id:
         - sensor.dark_sky_daily_low_temperature_1
       value_template: >-
@@ -256,14 +256,14 @@
         min: {{ temp }}˚
 
     weather_low_2:
-      friendly_name: Low temperature
+      friendly_name: Low Temperature
       entity_id:
         - sensor.dark_sky_daily_low_temperature_2
       value_template: >-
         {{ states('sensor.dark_sky_daily_low_temperature_2') | round }}
 
     weather_low_2_friendly:
-      friendly_name: Low temperature
+      friendly_name: Low Temperature
       entity_id:
         - sensor.dark_sky_daily_low_temperature_2
       value_template: >-
@@ -367,7 +367,7 @@
 - platform: template
   sensors:
     wind_speed:
-      friendly_name: Wind speed
+      friendly_name: Wind Speed
       unit_of_measurement: 'km/h'
       entity_id:
         - sensor.dark_sky_wind_speed
@@ -383,7 +383,7 @@
         {% endif %}
 
     wind_scale_friendly:
-      friendly_name: Wind scale
+      friendly_name: Wind Scale
       entity_id:
         - sensor.dark_sky_wind_speed
       value_template: >-
@@ -435,7 +435,7 @@
 - platform: template
   sensors:
     wind_bearing_cardinal:
-      friendly_name: Wind bearing
+      friendly_name: Wind Bearing
       entity_id:
         - sensor.dark_sky_wind_bearing
       value_template: >-
@@ -446,7 +446,7 @@
         {{ directions[(val % 8)] }}
 
     wind_bearing_cardinal_friendly:
-      friendly_name: Wind bearing
+      friendly_name: Wind Bearing
       entity_id:
         - sensor.dark_sky_wind_bearing
       value_template: >-
@@ -466,7 +466,7 @@
         {{ directions[(val % 8)] }}
 
     wind_bearing_cardinal_16:
-      friendly_name: Wind bearing
+      friendly_name: Wind Bearing
       entity_id:
         - sensor.dark_sky_wind_bearing
       value_template: >-
@@ -477,7 +477,7 @@
         {{ directions[(val % 16)] }}
 
     wind_bearing_cardinal_16_friendly:
-      friendly_name: Wind bearing
+      friendly_name: Wind Bearing
       entity_id:
         - sensor.dark_sky_wind_bearing
       value_template: >-
