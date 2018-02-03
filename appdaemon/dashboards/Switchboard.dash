@@ -149,25 +149,30 @@ label_kitchen:
     widget_style: "background-color:SADDLEBROWN;"
     title2_style: "font-size:175%;font-weight:400;"
 
-light_sink:
-    widget_type: label
-    title: Sink
-    widget_style: "background-color:SADDLEBROWN;"
-
 light_countertop:
-    widget_type: label
+    widget_type: light
     title: Countertop
+    entity: light.countertop
     widget_style: "background-color:SADDLEBROWN;"
 
 light_island:
-    widget_type: label
+    widget_type: light
     title: Island
+    entity: light.island
     widget_style: "background-color:SADDLEBROWN;"
 
-light_cupboard:
-    widget_type: label
-    title: Cupboard
+light_microwave:
+    widget_type: light
+    title: Microwave
+    entity: light.microwave
     widget_style: "background-color:SADDLEBROWN;"
+
+light_sink:
+    widget_type: light
+    title: Sink
+    entity: light.sink
+    widget_style: "background-color:SADDLEBROWN;"
+
 
 #
 # Washroom
@@ -336,7 +341,7 @@ layout:
     - include: header
     - nav_main,         label(6x1), reload, temperature, clock
     - nav_switchboard,  spacer, label_exterior, light_front_door, spacer(2x1), label_ceiling, washlight_bedroom, washlight_middle, washlight_lounge
-    - nav_weather,      label_kitchen, light_island, spacer, label_washroom, light_shower, spacer, label_climate, switch_air_filter
-    - nav_spacer(1x2),  light_cupboard, light_sink, light_countertop, spacer, light_lavatory, spacer, switch_dehumidifier, switch_humidifier
+    - nav_weather,      label_kitchen, light_microwave, spacer, label_washroom, light_shower, spacer, label_climate, switch_air_filter
+    - nav_spacer(1x2),  light_island, light_sink, light_countertop, spacer, light_lavatory, spacer, switch_dehumidifier, switch_humidifier
     -                   label_bedroom, light_bed_effect, light_headboard, light_underbed, spacer_tetris, label_lounge, light_aurora_effect, light_aurora, light_tv_backlight
     - nav_status,       light_nightstand, light_bedside, fan_bedroom, spacer(2x1), light_spotlight, light_souvenirs, light_window, light_lamp

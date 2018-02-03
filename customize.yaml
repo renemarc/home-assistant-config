@@ -94,8 +94,11 @@ input_select.ceiling_effect:
 # Lights.
 #
 light.aurora:
-  extra_data_template: if (attributes.brightness) return attributes.effect + ' @ '
-    + Math.round(attributes.brightness / 255 * 100) + '%'; else return null;
+  extra_data_template: >-
+    return (attributes.brightness) ?
+    attributes.effect + ' @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
   icon: mdi:vector-triangle
   slider_theme:
     max: 255
@@ -109,6 +112,32 @@ light.bedroom:
       return (entities['sensor.ceiling_effect_loaded'].state) ?
       entities['sensor.ceiling_effect_loaded'].state : null;
   icon: mdi:led-strip
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+light.countertop:
+  extra_data_template: >-
+      return (attributes.brightness) ?
+      Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+      Math.round(attributes.brightness / 255 * 100) + '%'
+      : null;
+  icon: mdi:border-top
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+light.island:
+  extra_data_template: >-
+      return (attributes.brightness) ?
+      Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+      Math.round(attributes.brightness / 255 * 100) + '%'
+      : null;
+  icon: mdi:table-column
   slider_theme:
     max: 255
     min: 0
@@ -140,6 +169,19 @@ light.lounge:
     off_when_min: true
     pin: true
     report_when_not_changed: false
+light.microwave:
+  extra_data_template: >-
+      return (attributes.brightness) ?
+      Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+      Math.round(attributes.brightness / 255 * 100) + '%'
+      : null;
+  icon: mdi:gradient
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
 light.middle:
   extra_data_template: >-
       return (entities['sensor.ceiling_effect_loaded'].state) ?
@@ -152,9 +194,11 @@ light.middle:
     pin: true
     report_when_not_changed: false
 light.shower:
-  extra_data_template: if (attributes.brightness) return Math.round(1000000 / attributes.color_temp
-    / 10) * 10 + ' Kelvin @ ' + Math.round(attributes.brightness / 255 * 100) + '%';
-    else return null;
+  extra_data_template: >-
+    return (attributes.brightness) ?
+    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
   icon: mdi:spotlight
   slider_theme:
     max: 255
@@ -163,10 +207,25 @@ light.shower:
     pin: true
     report_when_not_changed: false
   state_card_mode: break-slider
+light.sink:
+  extra_data_template: >-
+      return (attributes.brightness) ?
+      Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+      Math.round(attributes.brightness / 255 * 100) + '%'
+      : null;
+  icon: mdi:water-pump
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
 light.spotlight:
-  extra_data_template: if (attributes.brightness) return Math.round(1000000 / attributes.color_temp
-    / 10) * 10 + ' Kelvin @ ' + Math.round(attributes.brightness / 255 * 100) + '%';
-    else return null;
+  extra_data_template: >-
+    return (attributes.brightness) ?
+    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
   icon: mdi:spotlight-beam
   slider_theme:
     max: 255

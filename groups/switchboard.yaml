@@ -6,17 +6,16 @@ switchboard_view:
   name: Switchboard
   icon: mdi:nintendo-switch
   entities:
-    - group.climate
     - group.ceiling
     - group.washroom
-    - group.bedroom
+    - group.kitchen
     - group.lounge
+    - group.bedroom
 
 
 #
 # Groups.
 #
-
 bed:
   name: Bed
   entities:
@@ -43,6 +42,14 @@ ceiling:
     - light.bedroom
     - light.middle
     - light.lounge
+
+kitchen:
+  name: Kitchen
+  entities:
+    - light.countertop
+    - light.sink
+    - light.microwave
+    - light.island
 
 lounge:
   name: Lounge
