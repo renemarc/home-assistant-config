@@ -46,6 +46,8 @@
 
         {% if index != "unknown" %}
           {{ index | float | round }}
+        {% else %}
+          {{ index }}
         {% endif %}
 
     aqi_friendly:
@@ -103,6 +105,8 @@
 
         {% if counter > 0 %}
           {{ (levels / counter) | round }}
+        {% else %}
+          unknown
         {% endif %}
 
     aqi_particles_friendly:
@@ -158,6 +162,8 @@
 
         {% if counter > 0 %}
           {{ (levels / counter) | round }}
+        {% else %}
+          unknown
         {% endif %}
 
     aqi_ozone_friendly:
@@ -213,6 +219,8 @@
 
         {% if counter > 0 %}
           {{ (levels / counter) | round }}
+        {% else %}
+          unknown
         {% endif %}
 
     aqi_nitrogen_dioxide_friendly:
@@ -268,6 +276,8 @@
 
         {% if counter > 0 %}
           {{ (levels / counter) | round }}
+        {% else %}
+          unknown
         {% endif %}
 
     aqi_carbon_monoxide_friendly:
