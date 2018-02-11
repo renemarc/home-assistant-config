@@ -109,8 +109,9 @@ light.aurora:
   state_card_mode: break-slider
 light.bedroom:
   extra_data_template: >-
-      return (entities['sensor.ceiling_effect_loaded'].state) ?
-      entities['sensor.ceiling_effect_loaded'].state : null;
+    return (entities['sensor.ceiling_effect_loaded'].state) ?
+    entities['sensor.ceiling_effect_loaded'].state
+    : null;
   icon: mdi:led-strip
   slider_theme:
     max: 255
@@ -120,10 +121,10 @@ light.bedroom:
     report_when_not_changed: false
 light.countertop:
   extra_data_template: >-
-      return (attributes.brightness) ?
-      Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
-      Math.round(attributes.brightness / 255 * 100) + '%'
-      : null;
+    return (attributes.brightness) ?
+    Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
   icon: mdi:border-top
   slider_theme:
     max: 255
@@ -133,10 +134,10 @@ light.countertop:
     report_when_not_changed: false
 light.island:
   extra_data_template: >-
-      return (attributes.brightness) ?
-      Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
-      Math.round(attributes.brightness / 255 * 100) + '%'
-      : null;
+    return (attributes.brightness) ?
+    Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
   icon: mdi:table-column
   slider_theme:
     max: 255
@@ -146,8 +147,9 @@ light.island:
     report_when_not_changed: false
 light.headboard:
   extra_data_template: >-
-      return (entities['sensor.bed_effect_loaded'].state) ?
-      entities['sensor.bed_effect_loaded'].state : null;
+    return (entities['sensor.bed_effect_loaded'].state) ?
+    entities['sensor.bed_effect_loaded'].state
+    : null;
   icon: mdi:gate
   slider_theme:
     max: 255
@@ -160,8 +162,9 @@ light.lightpack:
   icon: mdi:television
 light.lounge:
   extra_data_template: >-
-      return (entities['sensor.ceiling_effect_loaded'].state) ?
-      entities['sensor.ceiling_effect_loaded'].state : null;
+    return (entities['sensor.ceiling_effect_loaded'].state) ?
+    entities['sensor.ceiling_effect_loaded'].state
+    : null;
   icon: mdi:led-strip
   slider_theme:
     max: 255
@@ -171,10 +174,10 @@ light.lounge:
     report_when_not_changed: false
 light.microwave:
   extra_data_template: >-
-      return (attributes.brightness) ?
-      Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
-      Math.round(attributes.brightness / 255 * 100) + '%'
-      : null;
+    return (attributes.brightness) ?
+    Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
   icon: mdi:gradient
   slider_theme:
     max: 255
@@ -184,8 +187,9 @@ light.microwave:
     report_when_not_changed: false
 light.middle:
   extra_data_template: >-
-      return (entities['sensor.ceiling_effect_loaded'].state) ?
-      entities['sensor.ceiling_effect_loaded'].state : null;
+    return (entities['sensor.ceiling_effect_loaded'].state) ?
+    entities['sensor.ceiling_effect_loaded'].state
+    : null;
   icon: mdi:led-strip
   slider_theme:
     max: 255
@@ -209,10 +213,10 @@ light.shower:
   state_card_mode: break-slider
 light.sink:
   extra_data_template: >-
-      return (attributes.brightness) ?
-      Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
-      Math.round(attributes.brightness / 255 * 100) + '%'
-      : null;
+    return (attributes.brightness) ?
+    Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
   icon: mdi:water-pump
   slider_theme:
     max: 255
@@ -236,8 +240,9 @@ light.spotlight:
   state_card_mode: break-slider
 light.underbed:
   extra_data_template: >-
-      return (entities['sensor.bed_effect_loaded'].state) ?
-      entities['sensor.bed_effect_loaded'].state : null;
+    return (entities['sensor.bed_effect_loaded'].state) ?
+    entities['sensor.bed_effect_loaded'].state
+    : null;
   icon: mdi:hotel
   slider_theme:
     max: 255
@@ -249,9 +254,48 @@ light.underbed:
 #
 # Sensors.
 #
+sensor.bedroom_multisensor_battery:
+  group:
+    group.battery:
+      friendly_name: Bedroom
+      icon: mdi:hotel
+    group.bedroom:
+      friendly_name: Multisensor Battery
+sensor.front_door_sensor_battery:
+  group:
+    group.battery:
+      friendly_name: Front Door
+      icon: mdi:door
+    group.kitchen:
+      friendly_name: Front Door Battery
+sensor.lounge_multisensor_battery:
+  group:
+    group.battery:
+      friendly_name: Lounge
+      icon: mdi:sofa
+    group.lounge:
+      friendly_name: Multisensor Battery
+sensor.bing_wallpaper_info:
+  custom_ui_state_card: state-card-value_only
+sensor.date_friendly:
+  extra_data_template: >-
+    ${entities['sensor.day'].state}
+sensor.good_vibes:
+  custom_ui_state_card: state-card-value_only
+
+
+# Sensors: Climate.
+sensor.average_humidity:
+  group:
+    group.humidity:
+      friendly_name: Average
 sensor.average_humidity_friendly:
   extra_badge:
     entity_id: sensor.average_humidity
+sensor.average_temperature:
+  group:
+    group.temperature:
+      friendly_name: Average
 sensor.bedroom_humidity:
   homebridge_hidden: false
   icon: mdi:water-percent
@@ -270,25 +314,53 @@ sensor.bedroom_temperature:
     group.temperature:
       friendly_name: Bedroom
       icon: mdi:hotel
-sensor.date_friendly:
-  extra_data_template: ${entities['sensor.day'].state}
+sensor.lounge_humidity:
+  homebridge_hidden: false
+  icon: mdi:water-percent
+  group:
+    group.lounge:
+      friendly_name: Humidity
+    group.humidity:
+      friendly_name: Lounge
+      icon: mdi:sofa
+sensor.lounge_temperature:
+  homebridge_hidden: false
+  icon: mdi:thermometer
+  group:
+    group.lounge:
+      friendly_name: Temperature
+    group.temperature:
+      friendly_name: Lounge
+      icon: mdi:sofa
 
 # Sensors: Outdoor Life Quality.
 sensor.aqi_carbon_monoxide_friendly:
-  extra_badge:
-    entity_id: sensor.aqi_carbon_monoxide
+  extra_data_template: >-
+    return entities['sensor.aqi_carbon_monoxide'].state != 'unknown' ?
+    entities['sensor.aqi_carbon_monoxide'].state + ' ' +
+    entities['sensor.aqi_carbon_monoxide'].attributes['unit_of_measurement']
+    : null;
 sensor.aqi_friendly:
   extra_badge:
     entity_id: sensor.aqi
 sensor.aqi_nitrogen_dioxide_friendly:
-  extra_badge:
-    entity_id: sensor.aqi_nitrogen_dioxide
+  extra_data_template: >-
+    return entities['sensor.aqi_nitrogen_dioxide'].state != 'unknown' ?
+    entities['sensor.aqi_nitrogen_dioxide'].state + ' ' +
+    entities['sensor.aqi_nitrogen_dioxide'].attributes['unit_of_measurement']
+    : null;
 sensor.aqi_ozone_friendly:
-  extra_badge:
-    entity_id: sensor.aqi_ozone
+  extra_data_template: >-
+    return entities['sensor.aqi_ozone'].state != 'unknown' ?
+    entities['sensor.aqi_ozone'].state + ' ' +
+    entities['sensor.aqi_ozone'].attributes['unit_of_measurement']
+    : null;
 sensor.aqi_particles_friendly:
-  extra_badge:
-    entity_id: sensor.aqi_particles
+  extra_data_template: >-
+    return entities['sensor.aqi_particles'].state != 'unknown' ?
+    entities['sensor.aqi_particles'].state + ' ' +
+    entities['sensor.aqi_particles'].attributes['unit_of_measurement']
+    : null;
 sensor.uv_friendly:
   extra_badge:
     entity_id: sensor.uv
@@ -333,11 +405,14 @@ sensor.ram_used_percent:
 sensor.speedtest_download:
   friendly_name: Downspeed
   icon: mdi:download-network
+  show_last_changed: true
 sensor.speedtest_ping:
   friendly_name: Ping
+  show_last_changed: true
 sensor.speedtest_upload:
   friendly_name: Upspeed
   icon: mdi:upload-network
+  show_last_changed: true
 sensor.uptime_os:
   icon: mdi:pi
 
@@ -371,21 +446,29 @@ sensor.home_to_metro_3_hour:
     entity_id: sensor.home_to_metro_3_countdown
 
 # Sensors: Weather
+sensor.weather_details:
+  custom_ui_state_card: state-card-value_only
+sensor.dark_sky_minutely_summary:
+  custom_ui_state_card: state-card-value_only
 sensor.dark_sky_daily_summary:
   friendly_name: Weekly Forecast
-  extra_data_template: ${entities['sensor.dark_sky_daily_summary'].state}
+  extra_data_template: >-
+    ${entities['sensor.dark_sky_daily_summary'].state}
   hide_control: true
+  custom_ui_state_card: state-card-value_only
 sensor.dark_sky_hourly_summary:
   friendly_name: 24h Summary
+  custom_ui_state_card: state-card-value_only
 sensor.dark_sky_summary:
-  friendly_name: Summary
-  extra_data_template: ${entities['sensor.dark_sky_minutely_summary'].state}
-sensor.outside_temperature:
-  extra_data_template: ${entities['sensor.feels_like'].state}
+  friendly_name: " "
+  extra_data_template: >-
+    ${entities['sensor.outside_temperature'].state}${entities['sensor.outside_temperature'].attributes['unit_of_measurement']}
 sensor.wind_speed:
+  friendly_name: " "
   extra_badge:
     entity_id: sensor.wind_bearing_cardinal
-  extra_data_template: ${entities['sensor.wind_scale_friendly'].state}
+  extra_data_template: >-
+    ${entities['sensor.wind_scale_friendly'].state}
 
 
 #

@@ -9,8 +9,8 @@ weather_view:
     - group.weather
     - group.radar_rain
     - group.radar_snow
-    - group.weather_forecast
     - group.atmospheric_safety
+    - group.weather_forecast
     - group.satellite_geocolor
     - group.satellite_water
 
@@ -50,15 +50,16 @@ satellite_water:
     - camera.noaa_water_vapour
 
 weather:
-  name: Current Weather
+  name: " "
   entities:
     - sensor.dark_sky_summary
-    - sensor.outside_temperature
+    - sensor.weather_details
+    # - sensor.outside_temperature
     - sensor.outside_humidity
     - sensor.wind_speed
     - sensor.dark_sky_hourly_summary
-    - sensor.dark_sky_daily_summary
     # - sensor.moon
+
 
 weather_forecast:
   name: Weekly Forecast

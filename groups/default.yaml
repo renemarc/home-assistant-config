@@ -6,7 +6,8 @@ default_view:
   icon: mdi:home-assistant
   entities:
     - group.notifications
-    - group.time
+    - group.wallpaper
+    - group.now
     - group.public_transit
     - group.climate
     - group.actions
@@ -47,10 +48,15 @@ public_transit:
     - sensor.home_to_market_2_hour
     - sensor.home_to_market_3_hour
 
-time:
-  name: Time
+wallpaper:
+  name: " "
   entities:
-    - sensor.good_vibes
+    - camera.bing_wallpaper
+    - sensor.bing_wallpaper_info
+
+now:
+  name: " "
+  entities:
     - sensor.date_friendly
     - sensor.time_friendly
     - sensor.sun_state

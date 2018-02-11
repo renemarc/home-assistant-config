@@ -8,6 +8,7 @@ status_view:
   entities:
     - group.system
     - group.network
+    - group.battery
     - group.humidity
     - group.temperature
 
@@ -15,12 +16,20 @@ status_view:
 #
 # Groups.
 #
+battery:
+  name: Battery Levels
+  entities:
+    - sensor.front_door_sensor_battery
+    - sensor.bedroom_multisensor_battery
+    - sensor.lounge_multisensor_battery
+
+
 humidity:
   name: Humidity
   entities:
     - sensor.average_humidity
     - sensor.bedroom_humidity
-    - sensor.aeotec_zw100_multisensor_6_relative_humidity
+    - sensor.lounge_humidity
 
 network:
   name: Network
@@ -56,4 +65,4 @@ temperature:
   entities:
     - sensor.average_temperature
     - sensor.bedroom_temperature
-    - sensor.aeotec_zw100_multisensor_6_temperature
+    - sensor.lounge_temperature

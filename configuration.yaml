@@ -10,8 +10,8 @@ homeassistant:
   # metric for Metric, imperial for Imperial
   unit_system: metric
   time_zone: America/Toronto
-  customize: !include customize.yaml
   customize_glob: !include customize_glob.yaml
+  customize: !include customize.yaml
 
 # Show links to resources in log and frontend
 #introduction:
@@ -25,8 +25,13 @@ logger:
 
 # Enables the frontend
 frontend:
+  # javascript_version: es5
   extra_html_url:
-    - /www/custom_ui/state-card-custom-ui.html
+    - /local/custom_ui/state-card-custom-ui.html
+    - /local/custom_ui/state-card-value_only.html
+  extra_html_url_es5:
+    - /local/custom_ui/state-card-custom-ui-es5.html
+    - /local/custom_ui/state-card-value_only.html
 
 # Enables configuration UI
 config:
