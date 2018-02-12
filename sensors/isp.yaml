@@ -15,7 +15,7 @@
 - platform: template
   sensors:
     ebox_usage_friendly:
-      friendly_name: Monthly usage
+      friendly_name: Monthly Usage
       icon_template: mdi:percent
       unit_of_measurement: '%'
       entity_id:
@@ -30,7 +30,7 @@
         {% endif %}
 
     ebox_download_remaining:
-      friendly_name: Remaining downloads
+      friendly_name: Remaining Downloads
       icon_template: mdi:briefcase-download
       unit_of_measurement: 'Gb'
       entity_id:
@@ -47,7 +47,7 @@
         {% endif %}
 
     ebox_download_daily_capacity:
-      friendly_name: Daily capacity
+      friendly_name: Daily Capacity
       icon_template: mdi:speedometer
       unit_of_measurement: 'Gb'
       entity_id:

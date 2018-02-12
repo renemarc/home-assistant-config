@@ -1,0 +1,23 @@
+#
+# Turn off ceiling washlights.
+#
+- id: ceiling_off
+  alias: Ceiling OFF
+  trigger:
+    # When nap mode is enabled.
+    - platform: state
+      entity_id: input_boolean.nap_mode
+      to: 'on'
+
+    # When night mode is enabled.
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'on'
+
+  action:
+    # Turn off ceiling washlights.
+    - service: homeassistant.turn_off
+      data:
+        entity_id:
+          - group.ceiling
+        transition: 10

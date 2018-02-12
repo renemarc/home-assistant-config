@@ -1,5 +1,8 @@
+#
+# Media player paused/stopped.
+#
 - id: media_player_stop
-  alias: "Media player paused/stopped"
+  alias: Media player STOP
   trigger:
     - platform: state
       entity_id: media_player.kodi
@@ -9,6 +12,13 @@
       entity_id: media_player.kodi
       to: 'idle'
 
+    - platform: state
+      entity_id: media_player.kodi
+      to: 'off'
+
   action:
     - service: input_boolean.turn_off
       entity_id: input_boolean.scene_mode
+
+    - service: scene.turn_off
+      entity_id: scene.movies

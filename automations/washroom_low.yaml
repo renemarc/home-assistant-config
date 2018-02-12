@@ -1,0 +1,20 @@
+#
+# Set washroom in low-power mode.
+#
+# Todo: force dim lights.
+#
+- id: washroom_low_power
+  alias: Washroom LOW POWER
+  trigger:
+    # When low-power mode is enabled.
+    - platform: state
+      entity_id: input_boolean.low_mode
+      to: 'on'
+
+  action:
+    # Turn on some devices.
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+          - light.shower
+        transition: 5

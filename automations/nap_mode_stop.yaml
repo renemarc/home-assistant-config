@@ -1,0 +1,29 @@
+#
+# When someone ends their nap.
+#
+- id: nap_mode_stop
+  alias: Nap mode STOP
+  trigger:
+    # When night mode is enabled.
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'on'
+
+    # Bedsite Flic button is pressed once.
+    - platform: event
+      event_type: flic_click
+      event_data:
+        button_name: flic_80e4da737711
+        click_type: single
+
+  condition:
+    # If nap time is in effect.
+    - condition: state
+      entity_id: input_boolean.nap_mode
+      state: 'on'
+
+  action:
+    # Disable nap mode.
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.nap_mode

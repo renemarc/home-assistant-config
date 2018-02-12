@@ -1,6 +1,8 @@
+#
 # Turn off the Dehumidifier when it's no longer relevant.
-- id: dehumidify_stop
-  alias: Stop dehumidifying
+#
+- id: dehumidifier_off
+  alias: Dehumidifier OFF
   trigger:
     # Humidity is getting too low.
     - platform: numeric_state

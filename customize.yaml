@@ -1,9 +1,43 @@
-sensor.date_friendly:
-  extra_data_template: ${entities['sensor.day'].state}
-switch.dehumidifier:
-  homebridge_hidden: false
-  icon: mdi:cup-water
-  confirm_controls_show_lock: true
+#
+# Automations.
+#
+automation.cct:
+  icon: mdi:white-balance-auto
+automation.check_door_left_open:
+  icon: mdi:door-open
+automation.check_mold_conditions:
+  icon: mdi:biohazard
+automation.check_update_availability:
+  icon: mdi:cloud-upload
+automation.go_to_sleep:
+  icon: mdi:weather-night
+automation.wake_up:
+  icon: mdi:weather-sunny
+
+
+#
+# Binary sensors.
+#
+binary_sensor.flic_80e4da737711:
+  friendly_name: Flic blue
+
+
+#
+# Cameras.
+#
+camera.environment_canada_rain:
+  friendly_name: Rain
+camera.environment_canada_snow:
+  friendly_name: Snow
+camera.noaa_geocolor:
+  friendly_name: GeoColor
+camera.noaa_water_vapour:
+  friendly_name: Water Vapour
+
+
+#
+# Device trackers.
+#
 device_tracker.cellphone_her:
   friendly_name: !secret nickname_her
   icon: mdi:cellphone-iphone
@@ -11,37 +45,61 @@ device_tracker.cellphone_him:
   friendly_name: !secret nickname_him
   gravatar: !secret gravatar_him
   icon: mdi:cellphone-iphone
-sensor.uptime_os:
-  icon: mdi:pi
-sensor.ipv4_address_eth0:
-  friendly_name: Local IP Address
-sensor.speedtest_ping:
-  friendly_name: Ping
-sensor.speedtest_upload:
-  friendly_name: Upspeed
-  icon: mdi:upload-network
-sensor.speedtest_download:
-  friendly_name: Downspeed
-  icon: mdi:download-network
-sensor.ebox_upload_before_offpeak:
-  homebridge_hidden: false
-  friendly_name: Uploads
-sensor.ebox_download_before_offpeak:
-  homebridge_hidden: false
-  friendly_name: Downloads
-sensor.ebox_usage:
-  homebridge_hidden: false
-  friendly_name: Monthly usage
-sensor.bedroom_temperature:
-  homebridge_hidden: false
-  icon: mdi:thermometer
-sensor.bedroom_humidity:
-  homebridge_hidden: false
-  icon: mdi:water-percent
-light.shower:
-  extra_data_template: if (attributes.brightness) return Math.round(1000000 / attributes.color_temp
-    / 10) * 10 + ' Kelvin @ ' + Math.round(attributes.brightness / 255 * 100) + '%';
-    else return null;
+
+
+#
+# Groups.
+#
+group.configuration_view:
+  order: 5
+group.default_view:
+  order: 1
+group.status_view:
+  order: 4
+group.switchboard_view:
+  order: 2
+group.weather_view:
+  order: 3
+
+
+#
+# Input booleans.
+#
+input_boolean.low_mode:
+  icon: mdi:weather-sunset-down
+input_boolean.nap_mode:
+  icon: mdi:sleep
+input_boolean.night_mode:
+  icon: mdi:weather-night
+input_boolean.quiet_mode:
+  icon: mdi:volume-mute
+input_boolean.scene_mode:
+  icon: mdi:looks
+
+
+#
+# Input selectors.
+#
+input_select.aurora_effect:
+  icon: mdi:blank
+input_select.bed_effect:
+  friendly_name: Bed Effect
+  icon: mdi:blank
+input_select.ceiling_effect:
+  friendly_name: Effect
+  icon: mdi:blank
+
+
+#
+# Lights.
+#
+light.aurora:
+  extra_data_template: >-
+    return (attributes.brightness) ?
+    attributes.effect + ' @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
+  icon: mdi:vector-triangle
   slider_theme:
     max: 255
     min: 0
@@ -49,22 +107,11 @@ light.shower:
     pin: true
     report_when_not_changed: false
   state_card_mode: break-slider
-switch.souvenirs_light:
-  homebridge_hidden: false
-  friendly_name: Souvenirs Light
-  icon: mdi:trophy
-switch.bedside_light:
-  homebridge_hidden: false
-  icon: mdi:creation
-switch.bedroom_fan:
-  homebridge_hidden: false
-  icon: mdi:fan
-switch.nightstand_light:
-  homebridge_hidden: false
-  icon: mdi:lamp
 light.bedroom:
-  extra_data_template: if (attributes.brightness) return Math.round(attributes.brightness
-    / 255 * 100) + '%'; else return null;
+  extra_data_template: >-
+    return (entities['sensor.ceiling_effect_loaded'].state) ?
+    entities['sensor.ceiling_effect_loaded'].state
+    : null;
   icon: mdi:led-strip
   slider_theme:
     max: 255
@@ -72,78 +119,304 @@ light.bedroom:
     off_when_min: true
     pin: true
     report_when_not_changed: false
-  state_card_mode: break-slider
-light.lounge:
-  extra_data_template: if (attributes.brightness) return Math.round(attributes.brightness
-    / 255 * 100) + '%'; else return null;
-  icon: mdi:led-strip
+light.countertop:
+  extra_data_template: >-
+    return (attributes.brightness) ?
+    Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
+  icon: mdi:border-top
   slider_theme:
     max: 255
     min: 0
     off_when_min: true
     pin: true
     report_when_not_changed: false
-  state_card_mode: break-slider
-light.middle:
-  extra_data_template: if (attributes.brightness) return Math.round(attributes.brightness
-    / 255 * 100) + '%'; else return null;
-  icon: mdi:led-strip
+light.island:
+  extra_data_template: >-
+    return (attributes.brightness) ?
+    Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
+  icon: mdi:table-column
   slider_theme:
     max: 255
     min: 0
     off_when_min: true
     pin: true
     report_when_not_changed: false
-  state_card_mode: break-slider
-light.spotlight:
-  extra_data_template: if (attributes.brightness) return Math.round(1000000 / attributes.color_temp
-    / 10) * 10 + ' Kelvin @ ' + Math.round(attributes.brightness / 255 * 100) + '%';
-    else return null;
+light.headboard:
+  extra_data_template: >-
+    return (entities['sensor.bed_effect_loaded'].state) ?
+    entities['sensor.bed_effect_loaded'].state
+    : null;
+  icon: mdi:gate
   slider_theme:
     max: 255
     min: 0
     off_when_min: true
     pin: true
     report_when_not_changed: false
-  state_card_mode: break-slider
 light.lightpack:
   homebridge_hidden: false
   icon: mdi:television
-switch.window_light:
-  icon: mdi:creation
-binary_sensor.flic_80e4da737711:
-  friendly_name: Flic blue
+light.lounge:
+  extra_data_template: >-
+    return (entities['sensor.ceiling_effect_loaded'].state) ?
+    entities['sensor.ceiling_effect_loaded'].state
+    : null;
+  icon: mdi:led-strip
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+light.microwave:
+  extra_data_template: >-
+    return (attributes.brightness) ?
+    Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
+  icon: mdi:gradient
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+light.middle:
+  extra_data_template: >-
+    return (entities['sensor.ceiling_effect_loaded'].state) ?
+    entities['sensor.ceiling_effect_loaded'].state
+    : null;
+  icon: mdi:led-strip
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+light.shower:
+  extra_data_template: >-
+    return (attributes.brightness) ?
+    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
+  icon: mdi:spotlight
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+  state_card_mode: break-slider
+light.sink:
+  extra_data_template: >-
+    return (attributes.brightness) ?
+    Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
+  icon: mdi:water-pump
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+light.spotlight:
+  extra_data_template: >-
+    return (attributes.brightness) ?
+    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
+    Math.round(attributes.brightness / 255 * 100) + '%'
+    : null;
+  icon: mdi:spotlight-beam
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+  state_card_mode: break-slider
+light.underbed:
+  extra_data_template: >-
+    return (entities['sensor.bed_effect_loaded'].state) ?
+    entities['sensor.bed_effect_loaded'].state
+    : null;
+  icon: mdi:hotel
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+
+#
+# Sensors.
+#
+sensor.bedroom_multisensor_battery:
+  group:
+    group.battery:
+      friendly_name: Bedroom
+      icon: mdi:hotel
+    group.bedroom:
+      friendly_name: Multisensor Battery
+sensor.front_door_sensor_battery:
+  group:
+    group.battery:
+      friendly_name: Front Door
+      icon: mdi:door
+    group.kitchen:
+      friendly_name: Front Door Battery
+sensor.lounge_multisensor_battery:
+  group:
+    group.battery:
+      friendly_name: Lounge
+      icon: mdi:sofa
+    group.lounge:
+      friendly_name: Multisensor Battery
+sensor.bing_wallpaper_info:
+  custom_ui_state_card: state-card-value_only
+sensor.date_friendly:
+  extra_data_template: >-
+    ${entities['sensor.day'].state}
+sensor.good_vibes:
+  custom_ui_state_card: state-card-value_only
+
+
+# Sensors: Climate.
+sensor.average_humidity:
+  group:
+    group.humidity:
+      friendly_name: Average
+sensor.average_humidity_friendly:
+  extra_badge:
+    entity_id: sensor.average_humidity
+sensor.average_temperature:
+  group:
+    group.temperature:
+      friendly_name: Average
+sensor.bedroom_humidity:
+  homebridge_hidden: false
+  icon: mdi:water-percent
+  group:
+    group.bedroom:
+      friendly_name: Humidity
+    group.humidity:
+      friendly_name: Bedroom
+      icon: mdi:hotel
+sensor.bedroom_temperature:
+  homebridge_hidden: false
+  icon: mdi:thermometer
+  group:
+    group.bedroom:
+      friendly_name: Temperature
+    group.temperature:
+      friendly_name: Bedroom
+      icon: mdi:hotel
+sensor.lounge_humidity:
+  homebridge_hidden: false
+  icon: mdi:water-percent
+  group:
+    group.lounge:
+      friendly_name: Humidity
+    group.humidity:
+      friendly_name: Lounge
+      icon: mdi:sofa
+sensor.lounge_temperature:
+  homebridge_hidden: false
+  icon: mdi:thermometer
+  group:
+    group.lounge:
+      friendly_name: Temperature
+    group.temperature:
+      friendly_name: Lounge
+      icon: mdi:sofa
+
+# Sensors: Outdoor Life Quality.
+sensor.aqi_carbon_monoxide_friendly:
+  extra_data_template: >-
+    return entities['sensor.aqi_carbon_monoxide'].state != 'unknown' ?
+    entities['sensor.aqi_carbon_monoxide'].state + ' ' +
+    entities['sensor.aqi_carbon_monoxide'].attributes['unit_of_measurement']
+    : null;
 sensor.aqi_friendly:
   extra_badge:
     entity_id: sensor.aqi
-sensor.aqi_particles_friendly:
-  extra_badge:
-    entity_id: sensor.aqi_particles
-sensor.aqi_ozone_friendly:
-  extra_badge:
-    entity_id: sensor.aqi_ozone
-sensor.aqi_carbon_monoxide_friendly:
-  extra_badge:
-    entity_id: sensor.aqi_carbon_monoxide
 sensor.aqi_nitrogen_dioxide_friendly:
-  extra_badge:
-    entity_id: sensor.aqi_nitrogen_dioxide
+  extra_data_template: >-
+    return entities['sensor.aqi_nitrogen_dioxide'].state != 'unknown' ?
+    entities['sensor.aqi_nitrogen_dioxide'].state + ' ' +
+    entities['sensor.aqi_nitrogen_dioxide'].attributes['unit_of_measurement']
+    : null;
+sensor.aqi_ozone_friendly:
+  extra_data_template: >-
+    return entities['sensor.aqi_ozone'].state != 'unknown' ?
+    entities['sensor.aqi_ozone'].state + ' ' +
+    entities['sensor.aqi_ozone'].attributes['unit_of_measurement']
+    : null;
+sensor.aqi_particles_friendly:
+  extra_data_template: >-
+    return entities['sensor.aqi_particles'].state != 'unknown' ?
+    entities['sensor.aqi_particles'].state + ' ' +
+    entities['sensor.aqi_particles'].attributes['unit_of_measurement']
+    : null;
 sensor.uv_friendly:
   extra_badge:
     entity_id: sensor.uv
-sensor.home_to_metro_hour:
-  extra_badge:
-    entity_id: sensor.home_to_metro
-sensor.home_to_metro_2_hour:
-  icon: mdi:blank
-  friendly_name: Next
-  extra_badge:
-    entity_id: sensor.home_to_metro_2_countdown
-sensor.home_to_metro_3_hour:
-  icon: mdi:blank
-  friendly_name: After
-  extra_badge:
-    entity_id: sensor.home_to_metro_3_countdown
+
+# Sensors: System.
+sensor.cpu_used:
+  friendly_name: CPU Load
+  icon: mdi:chip
+  extra_data_template: >-
+    return
+    parseFloat(entities['sensor.average_load_1m'].state).toFixed(2) + ' ' +
+    parseFloat(entities['sensor.average_load_5m'].state).toFixed(2) + ' ' +
+    parseFloat(entities['sensor.average_load_15m'].state).toFixed(2) + ' ' +
+    '(' + entities['sensor.cpu_cores'].state + ' cores)';
+sensor.database_size:
+  icon: mdi:database
+sensor.disk_used_percent:
+  extra_data_template: >-
+    return
+    Math.round(parseFloat(entities['sensor.disk_free_home'].state)) + ' ' +
+    entities['sensor.disk_free_home'].attributes['unit_of_measurement'] +
+    ' available';
+sensor.ebox_download_before_offpeak:
+  homebridge_hidden: false
+  friendly_name: Downloads
+sensor.ebox_upload_before_offpeak:
+  homebridge_hidden: false
+  friendly_name: Uploads
+sensor.ebox_usage:
+  homebridge_hidden: false
+  friendly_name: Monthly usage
+sensor.ipv4_address_eth0:
+  friendly_name: Local IP Address
+sensor.logfile_size:
+  icon: mdi:history
+sensor.ram_used_percent:
+  extra_data_template: >-
+    return
+    Math.round(parseFloat(entities['sensor.ram_available'].state)) + ' ' +
+    entities['sensor.ram_available'].attributes['unit_of_measurement'] +
+    ' available';
+sensor.speedtest_download:
+  friendly_name: Downspeed
+  icon: mdi:download-network
+  show_last_changed: true
+sensor.speedtest_ping:
+  friendly_name: Ping
+  show_last_changed: true
+sensor.speedtest_upload:
+  friendly_name: Upspeed
+  icon: mdi:upload-network
+  show_last_changed: true
+sensor.uptime_os:
+  icon: mdi:pi
+
+# Sensors: Transit.
 sensor.home_to_market_hour:
   icon: mdi:cart
   extra_badge:
@@ -158,51 +431,86 @@ sensor.home_to_market_3_hour:
   friendly_name: After
   extra_badge:
     entity_id: sensor.home_to_market_3_countdown
-sensor.wind_speed:
+sensor.home_to_metro_hour:
   extra_badge:
-    entity_id: sensor.wind_bearing_cardinal
-  extra_data_template: ${entities['sensor.wind_scale_friendly'].state}
-sensor.outside_temperature:
-  extra_data_template: ${entities['sensor.feels_like'].state}
-sensor.dark_sky_summary:
-  friendly_name: Summary
-  extra_data_template: ${entities['sensor.dark_sky_minutely_summary'].state}
-camera.environment_canada_rain:
-  friendly_name: Rain
-camera.environment_canada_snow:
-  friendly_name: Snow
-camera.noaa_geocolor:
-  friendly_name: GeoColor
-camera.noaa_water_vapour:
-  friendly_name: Water Vapour
-sensor.dark_sky_hourly_summary:
-  friendly_name: 24h Summary
+    entity_id: sensor.home_to_metro
+sensor.home_to_metro_2_hour:
+  icon: mdi:blank
+  friendly_name: Next
+  extra_badge:
+    entity_id: sensor.home_to_metro_2_countdown
+sensor.home_to_metro_3_hour:
+  icon: mdi:blank
+  friendly_name: After
+  extra_badge:
+    entity_id: sensor.home_to_metro_3_countdown
+
+# Sensors: Weather
+sensor.weather_details:
+  custom_ui_state_card: state-card-value_only
+sensor.dark_sky_minutely_summary:
+  custom_ui_state_card: state-card-value_only
 sensor.dark_sky_daily_summary:
   friendly_name: Weekly Forecast
-  extra_data_template: ${entities['sensor.dark_sky_daily_summary'].state}
+  extra_data_template: >-
+    ${entities['sensor.dark_sky_daily_summary'].state}
   hide_control: true
-sensor.average_humidity_friendly:
+  custom_ui_state_card: state-card-value_only
+sensor.dark_sky_hourly_summary:
+  friendly_name: 24h Summary
+  custom_ui_state_card: state-card-value_only
+sensor.dark_sky_summary:
+  friendly_name: " "
+  extra_data_template: >-
+    ${entities['sensor.outside_temperature'].state}${entities['sensor.outside_temperature'].attributes['unit_of_measurement']}
+sensor.wind_speed:
+  friendly_name: " "
   extra_badge:
-    entity_id: sensor.average_humidity
-input_select.aurora_effect:
-  extra_data_template: ${entities['sensor.aurora_effect'].state}
-  icon: mdi:blank
-light.aurora:
-  extra_data_template: if (attributes.brightness) return attributes.effect + ' @ '
-    + Math.round(attributes.brightness / 255 * 100) + '%'; else return null;
-  icon: mdi:vector-triangle
-  slider_theme:
-    max: 255
-    min: 0
-    off_when_min: true
-    pin: true
-    report_when_not_changed: false
-  state_card_mode: break-slider
-group.all_automations: {}
-input_select.ceiling_effect:
-  friendly_name: Effect
-group.ceiling: {}
-sensor.database_size:
-  icon: mdi:database
-sensor.logfile_size:
-  icon: mdi:history
+    entity_id: sensor.wind_bearing_cardinal
+  extra_data_template: >-
+    ${entities['sensor.wind_scale_friendly'].state}
+
+
+#
+# Scenes.
+#
+scene.romantic:
+  icon: mdi:heart
+scene.shutdown:
+  icon: mdi:power
+
+
+#
+# Scripts.
+#
+script.go_to_sleep:
+  icon: mdi:weather-night
+script.wake_up:
+  icon: mdi:weather-sunny
+
+
+#
+# Switches.
+#
+switch.bedroom_fan:
+  homebridge_hidden: false
+  icon: mdi:fan
+  group:
+    group.bedroom:
+      friendly_name: Fan
+switch.bedside_light:
+  homebridge_hidden: false
+  icon: mdi:creation
+switch.dehumidifier:
+  homebridge_hidden: false
+  icon: mdi:water-off
+  confirm_controls_show_lock: true
+switch.nightstand_light:
+  homebridge_hidden: false
+  icon: mdi:page-layout-body
+switch.souvenirs_light:
+  homebridge_hidden: false
+  friendly_name: Souvenirs Light
+  icon: mdi:trophy
+switch.window_light:
+  icon: mdi:creation

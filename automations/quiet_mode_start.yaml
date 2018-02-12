@@ -1,6 +1,8 @@
+#
 # When noise makers should not be running.
-- id: quiet_time
-  alias: Declare quiet time
+#
+- id: quiet_mode_start
+  alias: Quiet mode START
   trigger:
     # It's too late.
     - platform: time

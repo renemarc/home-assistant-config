@@ -1,0 +1,68 @@
+#
+# View.
+#
+status_view:
+  view: yes
+  name: Status
+  icon: mdi:server
+  entities:
+    - group.system
+    - group.network
+    - group.battery
+    - group.humidity
+    - group.temperature
+
+
+#
+# Groups.
+#
+battery:
+  name: Battery Levels
+  entities:
+    - sensor.front_door_sensor_battery
+    - sensor.bedroom_multisensor_battery
+    - sensor.lounge_multisensor_battery
+
+
+humidity:
+  name: Humidity
+  entities:
+    - sensor.average_humidity
+    - sensor.bedroom_humidity
+    - sensor.lounge_humidity
+
+network:
+  name: Network
+  icon: mdi:home-assistant
+  entities:
+    - sensor.speedtest_ping
+    - sensor.speedtest_upload
+    - sensor.speedtest_download
+    # - sensor.fastcom_download
+    - sensor.ebox_upload_before_offpeak
+    - sensor.ebox_download_before_offpeak
+    - sensor.ebox_usage_friendly
+    - sensor.ebox_download_remaining
+    - sensor.ebox_download_daily_capacity
+
+system:
+  name: System
+  icon: mdi:home-assistant
+  entities:
+    - updater.updater
+    - sensor.ipv4_address_eth0
+    - sensor.uptime_friendly
+    - sensor.uptime_host
+    - sensor.cpu_temp
+    - sensor.cpu_used
+    - sensor.ram_used_percent
+    - sensor.disk_used_percent
+    - sensor.database_size
+    - sensor.logfile_size
+
+temperature:
+  name: Temperature
+  entities:
+    - sensor.average_temperature
+    - sensor.bedroom_temperature
+    - sensor.lounge_temperature

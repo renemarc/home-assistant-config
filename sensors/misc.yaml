@@ -6,7 +6,7 @@
 - platform: template
   sensors:
     good_vibes:
-      friendly_name: Good vibes
+      friendly_name: Good Vibes
       icon_template: mdi:emoticon-happy
       value_template: >-
         {# Fetch a scheduled sensor to avoid updating this template non-stop. #}

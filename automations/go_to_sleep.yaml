@@ -1,0 +1,24 @@
+#
+# Go to sleep.
+#
+# Todo: convert script into night mode and automations.
+#
+- id: go_to_sleep
+  alias: Go to sleep
+  trigger:
+    # Bedsite Flic button is held.
+    - platform: event
+      event_type: flic_click
+      event_data:
+        button_name: flic_80e4da737711
+        click_type: hold
+
+  condition:
+    # Not during the night mode.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'off'
+
+  action:
+    - service: script.turn_on
+      entity_id: script.go_to_sleep

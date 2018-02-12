@@ -1,0 +1,28 @@
+#
+# Change bed wash lights based on Lifx Cloud scenes.
+#
+- id: bed_effect
+  alias: Bed EFFECT
+  trigger:
+    # When an effect is changed.
+    - platform: state
+      entity_id: variable.bed_effect
+
+  action:
+    # Send the effect's UUID to the Lifx Cloud scenes service.
+    - service: shell_command.activate_lifx_cloud_scene
+      data_template:
+        uuid: >-
+          {% set effects = {
+            'Neon':             '2910cd6c-1644-4b6b-b2bf-8eb26f254288',
+            'Reading':          '444b1097-1e26-40f7-a1a8-7f68a161550c',
+            'Relaxing':         '48c32539-48f8-4bcc-826a-e88b2b0c9b8e',
+            'Warming':          '33975782-8725-4b27-a96b-d87018da999b',
+          } %}
+          {% set selected = states('variable.bed_effect') %}
+
+          {% if effects[selected] %}
+            {{ effects[selected] }}
+          {% endif %}
+        duration: 5
+        key: !secret lifx_cloud_token

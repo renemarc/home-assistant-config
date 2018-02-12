@@ -1,7 +1,10 @@
+#
 # Turn on nightlights when appropriate.
+#
 # Todo: map door sensor state values to binary values.
-- id: nightlight
-  alias: Turn on night lights
+#
+- id: nightlight_on
+  alias: Nightlight ON
   trigger:
     # Lounge motion detected.
     - platform: state

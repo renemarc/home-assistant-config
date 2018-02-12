@@ -1,5 +1,10 @@
+#
+# Turn off nightlights when appropriate.
+#
+# Todo: use a timer.
+#
 - id: nightlight_off
-  alias: Turn off night lights
+  alias: Nightlight OFF
   trigger:
     # Lounge motion no longer detected.
     - platform: state
@@ -19,4 +24,4 @@
         entity_id:
           - light.shower
           - light.spotlight
-        transition: 5
+        transition: 10

@@ -1,0 +1,70 @@
+#
+# View.
+#
+switchboard_view:
+  view: yes
+  name: Switchboard
+  icon: mdi:nintendo-switch
+  entities:
+    - group.ceiling
+    - group.washroom
+    - group.kitchen
+    - group.lounge
+    - group.bedroom
+
+
+#
+# Groups.
+#
+bed:
+  name: Bed
+  entities:
+    - input_select.bed_effect
+    - light.underbed
+    - light.headboard
+
+bedroom:
+  name: Bedroom
+  entities:
+    - input_select.bed_effect
+    - light.underbed
+    - light.headboard
+    - switch.nightstand_light
+    - switch.bedside_light
+    - switch.bedroom_fan
+    - sensor.bedroom_temperature
+    - sensor.bedroom_humidity
+
+ceiling:
+  name: Ceiling
+  entities:
+    - input_select.ceiling_effect
+    - light.bedroom
+    - light.middle
+    - light.lounge
+
+kitchen:
+  name: Kitchen
+  entities:
+    - light.countertop
+    - light.sink
+    - light.microwave
+    - light.island
+
+lounge:
+  name: Lounge
+  entities:
+    - input_select.aurora_effect
+    - light.aurora
+    - light.spotlight
+    - light.lightpack
+    - switch.souvenirs_light
+    - switch.window_light
+    - sensor.lounge_temperature
+    - sensor.lounge_humidity
+    - sensor.lounge_luminance
+
+washroom:
+  name: Washroom
+  entities:
+    - light.shower

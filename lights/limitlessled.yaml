@@ -1,0 +1,21 @@
+- platform: limitlessled
+  bridges:
+    - host: !secret limitleddled_bridge_host
+      port: !secret limitleddled_bridge_port
+      groups:
+      - number: 4
+        type: white
+        name: Island
+        fade: on
+      - number: 1
+        type: white
+        name: Countertop
+        fade: on
+      - number: 2
+        type: white
+        name: Sink
+        fade: on
+      - number: 3
+        type: white
+        name: Microwave
+        fade: on

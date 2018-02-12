@@ -12,9 +12,15 @@
   resources:
     - type: disk_use_percent
       arg: /home
+    - type: disk_free
+      arg: /home
     - type: ipv4_address
       arg: eth0
+    - type: load_1m
+    - type: load_5m
+    - type: load_15m
     - type: memory_use_percent
+    - type: memory_free
     - type: processor_use
     - type: since_last_boot
 
@@ -25,56 +31,62 @@
 - platform: template
   sensors:
     version_friendly:
-      friendly_name: Home Assistant version
+      friendly_name: Home Assistant Version
       icon_template: mdi:update
-      entity_id:
-        - sensor.current_version
       value_template: >-
         {% if states('sensor.current_version') != "unknown" %}
-          HASS v{{ states('sensor.current_version') }}
+          HASS {{ states('sensor.current_version') }}
         {% else %}
           HASS
         {% endif %}
 
     update_available:
-      friendly_name: Update available
+      friendly_name: Update Available
       icon_template: mdi:update
-      entity_id:
-        - input_boolean.update_available
       value_template: >-
-        {% if is_state('input_boolean.update_available', 'on') %}
-          Update available.
+        {% if states('updater.updater') != "unknown" %}
+          Update available: {{ states('updater.updater') }}
         {% endif %}
 
 
 #
-# Available disk space
+# Disk space
 #
 - platform: template
   sensors:
-    disk_free_percent:
-      friendly_name: Disk free /home
+    disk_used_percent:
+      friendly_name: Disk Used /home
       icon_template: mdi:harddisk
       unit_of_measurement: '%'
-      entity_id:
-        - sensor.disk_used_home
       value_template: >-
-        {{ (100 - states('sensor.disk_used_home')|float) | int }}
+         {{ states('sensor.disk_used_home') | float | round }}
+
+    disk_free_percent:
+      friendly_name: Disk Free /home
+      icon_template: mdi:harddisk
+      unit_of_measurement: '%'
+      value_template: >-
+        {{ 100 - states('sensor.disk_used_home') | float | round }}
 
 
 #
-# Available RAM space
+# RAM space
 #
 - platform: template
   sensors:
-    ram_free_percent:
-      friendly_name: RAM free
+    ram_used_percent:
+      friendly_name: RAM Used
       icon_template: mdi:memory
       unit_of_measurement: '%'
-      entity_id:
-        - sensor.ram_used
       value_template: >-
-        {{ (100 - states('sensor.ram_used')|float) | int }}
+        {{ states('sensor.ram_used') | float | round }}
+
+    ram_free_percent:
+      friendly_name: RAM Free
+      icon_template: mdi:memory
+      unit_of_measurement: '%'
+      value_template: >-
+        {{ 100 - states('sensor.ram_used') | float | round }}
 
 
 #
@@ -83,7 +95,7 @@
 - platform: template
   sensors:
     uptime_host:
-      friendly_name: Server uptime
+      friendly_name: Server Uptime
       icon_template: mdi:server
       entity_id:
         - sensor.since_last_boot
@@ -186,6 +198,16 @@
             {%- endif -%}
           {%- endif -%}
         {% endif %}
+
+
+#
+# CPU cores count
+#
+- platform: command_line
+  name: CPU Cores
+  scan_interval: 86400
+  command: "grep 'model name' /proc/cpuinfo | wc -l"
+  icon_template: mdi:chip
 
 
 #

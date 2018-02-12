@@ -150,19 +150,29 @@ label_kitchen:
     title2_style: "font-size:175%;font-weight:400;"
 
 light_countertop:
-    widget_type: label
+    widget_type: light
     title: Countertop
+    entity: light.countertop
     widget_style: "background-color:SADDLEBROWN;"
 
 light_island:
-    widget_type: label
+    widget_type: light
     title: Island
+    entity: light.island
     widget_style: "background-color:SADDLEBROWN;"
 
-light_cupboard:
-    widget_type: label
-    title: Cupboard
+light_microwave:
+    widget_type: light
+    title: Microwave
+    entity: light.microwave
     widget_style: "background-color:SADDLEBROWN;"
+
+light_sink:
+    widget_type: light
+    title: Sink
+    entity: light.sink
+    widget_style: "background-color:SADDLEBROWN;"
+
 
 #
 # Washroom
@@ -201,6 +211,27 @@ label_bedroom:
     widget_style: "background-color:INDIGO;"
     title2_style: "font-size:175%;font-weight:400;"
 
+light_bed_effect:
+    widget_type: input_select
+    title2: Bed Effect
+    entity: input_select.bed_effect
+    sub_entity: sensor.bed_effect_loaded
+    widget_style: "background-color:INDIGO;"
+    state_text_style: "background-color:PURPLE;"
+    select_style: "background-color:PURPLE;color:$white;"
+
+light_headboard:
+    widget_type: light
+    title: Headboard
+    entity: light.headboard
+    widget_style: "background-color:INDIGO;"
+
+light_underbed:
+    widget_type: light
+    title: Underbed
+    entity: light.underbed
+    widget_style: "background-color:INDIGO;"
+
 light_bedside:
     widget_type: switch
     title: Bedside
@@ -211,16 +242,6 @@ light_nightstand:
     widget_type: switch
     title: Nightstand
     entity: switch.nightstand_light
-    widget_style: "background-color:INDIGO;"
-
-light_headboard:
-    widget_type: label
-    title: Headboard
-    widget_style: "background-color:INDIGO;"
-
-light_underbed:
-    widget_type: label
-    title: Underbed
     widget_style: "background-color:INDIGO;"
 
 fan_bedroom:
@@ -270,9 +291,9 @@ light_spotlight:
     entity: light.spotlight
     widget_style: "background-color:DARKRED;"
 
-light_torch:
+light_lamp:
     widget_type: label
-    title: Torch
+    title: Lamp
     widget_style: "background-color:DARKRED;"
 
 light_souvenirs:
@@ -320,7 +341,7 @@ layout:
     - include: header
     - nav_main,         label(6x1), reload, temperature, clock
     - nav_switchboard,  spacer, label_exterior, light_front_door, spacer(2x1), label_ceiling, washlight_bedroom, washlight_middle, washlight_lounge
-    - nav_weather,      label_kitchen, light_island, spacer, label_washroom, light_shower, spacer, label_climate, switch_air_filter
-    - nav_spacer(1x2),  light_cupboard, light_countertop, spacer, light_lavatory, spacer(2x1), switch_dehumidifier, switch_humidifier
-    -                   label_bedroom, light_nightstand, light_bedside, spacer_tetris, label_lounge, light_tv_backlight, light_aurora, light_aurora_effect
-    - nav_status,       fan_bedroom, light_headboard, light_underbed, spacer, light_spotlight, light_souvenirs, light_window, light_torch
+    - nav_weather,      label_kitchen, light_microwave, spacer, label_washroom, light_shower, spacer, label_climate, switch_air_filter
+    - nav_spacer(1x2),  light_island, light_sink, light_countertop, spacer, light_lavatory, spacer, switch_dehumidifier, switch_humidifier
+    -                   label_bedroom, light_bed_effect, light_headboard, light_underbed, spacer_tetris, label_lounge, light_aurora_effect, light_aurora, light_tv_backlight
+    - nav_status,       light_nightstand, light_bedside, fan_bedroom, spacer(2x1), light_spotlight, light_souvenirs, light_window, light_lamp

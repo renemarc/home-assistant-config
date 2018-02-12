@@ -52,7 +52,7 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - **Nanoleaf Aurora control**:
     + Manual theme selection.
     + Automatically rotate through device-based themes based on time of day (unless manually selected above).
-- **LIFX Z ceiling wash lights control**:
+- **LIFX Z under bed and ceiling wash lights control**:
     + Manual theme selection.
     + Automatically rotate through cloud-based themes based on time of day (unless manually selected above).
 - **Automatically correlated color temperature (CCT)**, for [f.lux](https://justgetflux.com/)-like white temperature shift to gradually remove blue light based on a custom color and brightness curve and preset active hours, not simply based on the sun otherwise Canadian winters would be pretty yellow.
@@ -84,10 +84,12 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 ### Task list
 
 #### Work in progress
+- Device: Kitchen under-cabinet CCT lighting
+- Device: Flic button (kitchen)
 
 #### Backlog
 - UI: Text-only state cards (weather, quotes...)
-- Component: fix unlimited bandwidth consumption bug
+- Component: Fix unlimited bandwidth consumption bug
 - Scene: Romantic
 - Scene: Gaming/Party
 - Automation: Away mode
@@ -98,16 +100,16 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - Contribute back: HADashboard widget optimizations
 
 #### Wishlist
-- Dashboard: context-aware link widgets
+- Dashboard: Context-aware link widgets
 - Automation: Welcome home theme song front door trigger
 - Automation: Door/Window sensor temper alert
+- Component: Airthings BLE custom component
+- Component: Monitor indoor air quality
 - Component: UPS monitoring
 - Component: Read rooftop weather station (Fine Offset WH1080)
-- Network: use USB gigabit connection to test for above 80MB/s downspeeds
+- Device: Use USB gigabit connection to test for above 80MB/s downspeeds
+- Device: Replace Wifi plug-in outlets with Z-Wave for stability
 - Device: Increase nightlight movement detection coverage
-- Device: LIFX Z strips under bed with dedicated scenes. How romantic!
-- Device: Kitchen under-cabinet CCT lighting
-- Device: Flic button (kitchen)
 - Device: Window binary sensors/state overview
 - Device: Indoor air quality sensing and report
 - Device: Exterior light
@@ -137,12 +139,15 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - **[Aeotec Z-Stick Gen5](https://aeotec.com/z-wave-usb-stick)** Z-Wave USB dongle.
 - **[NooElec NESDR SMArt](http://www.nooelec.com/store/nesdr-smart.html)** RTL-SDR (software-defined radio) USB dongle for reading AcuRite sensors.
 - **[Plugable USB Bluetooth Adapter](https://plugable.com/products/usb-bt4le/)** for Bluetooth Low Energy connections.
+- **[Milight iBox2 Wifi Bridge](https://www.futlight.com/productdetails.aspx?id=239&typeid=125)** for kitchen RF LED strip controllers, using [LimitlessLED](https://home-assistant.io/components/light.limitlessled/) integration.
 - **[Acer Iconia One 10" tablet](https://www.acer.com/ac/en/CA/content/series/iconiaone10)** (1280x800 IPS screen) wallmounted as a kiosk.
 
 ### Devices and sensors
 - **[Nanoleaf Aurora](https://nanoleaf.me/en-ca/)** light panels kit. Pretty!
 - **[LIFX+](https://www.lifx.com/products/lifx-plus)** A19 RGB light bulb (x2).
-- **[LIFX Z](https://www.lifx.com/products/lifx-z-starter-kit-without-homekit)** light strip without HomeKit as ceiling wash lights (x3).
+- **[LIFX Z](https://www.lifx.com/products/lifx-z-starter-kit-without-homekit)** light strip without HomeKit as ceiling wash lights (x3) and bed underglow (x2)
+- **[Milight CCT LED RF Controller](https://www.futlight.com/productdetails.aspx?id=293&typeid=146)** for white-adjustable undercabinet kitchen lights (x4), connected to appropriate Ul-listed power supplies.
+- **[24V 3014 Warm White Cool White LED Strip](http://ledmontreal.com/en/led-strips-without-accessories/24v-led-strips-without-accessories/cct-adjustable-led-strip.html)** encased in custom cut and assembled [light-diffusing aluminum profiles](http://ledmontreal.com/en/led-bars-and-profiles-led-montreal/continuous-lighting-aluminum-profile.html), connected to above RF controllers.
 - **[Flic](https://flic.io/)** bluetooth low energy button.
 - **[Aeotec Door / Window Sensor Gen5](https://aeotec.com/z-wave-door-window-sensor)** for front door.
 - **[Aeotec MultiSensor 6](https://aeotec.com/z-wave-sensor)** for temperature/humidity/presence detection.

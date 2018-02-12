@@ -1,0 +1,106 @@
+#
+# Schedule bed wash lights based on Lifx Cloud scenes.
+#
+# see: https://api.developer.lifx.com/docs/activate-scene
+#
+- id: bed_schedule
+  alias: Bed SCHEDULE
+  trigger:
+    # Every hour on the hour.
+    - platform: time
+      minutes: 00
+      seconds: 00
+
+    # When Home Assistant starts.
+    - platform: homeassistant
+      event: start
+
+    # When an item which was off comes back online.
+    - platform: state
+      entity_id:
+        - light.headboard
+        - light.underbed
+      to: 'on'
+
+    # When scenes are disabled.
+    - platform: state
+      entity_id: input_boolean.scene_mode
+      to: 'off'
+
+    # When bed washlight effect override is being released.
+    - platform: state
+      entity_id: input_boolean.bed_effect_override
+      to: 'off'
+
+  condition:
+     # If automation was not trigered lately.
+    - condition: template
+      value_template: >-
+        {% set current = as_timestamp(utcnow()) %}
+        {% set last_triggered = as_timestamp(states.automation.bed_schedule.attributes.last_triggered) | float %}
+
+        {{ current - last_triggered > 1}}
+
+    # If bed lights are on.
+    - condition: state
+      entity_id: group.bed
+      state: 'on'
+
+    # If no effect overrides are in place.
+    - condition: state
+      entity_id: input_boolean.bed_effect_override
+      state: 'off'
+
+    # If no scenes are enabled.
+    - condition: state
+      entity_id: input_boolean.scene_mode
+      state: 'off'
+
+    # Not during the night mode.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'off'
+
+    # Not during the nap mode.
+    - condition: state
+      entity_id: input_boolean.nap_mode
+      state: 'off'
+
+  action:
+    # Update the effect variable.
+    - service: variable.set_variable
+      data:
+        variable: bed_effect
+        value_template: >-
+          {% set hour = states('sensor.time').split(':')[0] %}
+          {% set schedule = {
+            '00': 'Neon',
+            '01': 'Warming',
+            '02': 'Relaxing',
+            '03': 'Neon',
+            '04': 'Warming',
+            '05': 'Relaxing',
+
+            '06': 'Neon',
+            '07': 'Warming',
+            '08': 'Relaxing',
+            '09': 'Neon',
+            '10': 'Warming',
+            '11': 'Relaxing',
+
+            '12': 'Neon',
+            '13': 'Warming',
+            '14': 'Relaxing',
+            '15': 'Neon',
+            '16': 'Warming',
+            '17': 'Relaxing',
+
+            '18': 'Neon',
+            '19': 'Warming',
+            '20': 'Relaxing',
+            '21': 'Neon',
+            '22': 'Warming',
+            '23': 'Relaxing',
+          } %}
+
+          {{ schedule[hour] }}

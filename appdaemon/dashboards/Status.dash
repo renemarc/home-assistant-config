@@ -161,6 +161,46 @@ downspeed:
     title2_style: "font-size: x-small;"
 
 #
+# Battery
+#
+front_door_sensor_battery:
+    widget_type: gauge
+    entity: sensor.front_door_sensor_battery
+    min: 0
+    max: 100
+    units: "%"
+    title: Front Door Sensor Battery
+    color: white
+    low_color: FF0000
+    med_color: FFFF00
+    high_color: 00FF00
+
+bedroom_multisensor_battery:
+    widget_type: gauge
+    entity: sensor.bedroom_multisensor_battery
+    min: 0
+    max: 100
+    units: "%"
+    title: Bedroom Sensor Battery
+    color: white
+    low_color: FF0000
+    med_color: FFFF00
+    high_color: 00FF00
+
+lounge_multisensor_battery:
+    widget_type: gauge
+    entity: sensor.lounge_multisensor_battery
+    min: 0
+    max: 100
+    units: "%"
+    title: Lounge Sensor Battery
+    color: white
+    low_color: FF0000
+    med_color: FFFF00
+    high_color: 00FF00
+
+
+#
 # Layout
 #
 layout:
@@ -169,5 +209,5 @@ layout:
     - nav_switchboard,  uptime, uptime_host, database_size, logfile_size
     - nav_weather,      cpu_temp, cpu_used, ram_used, disk_used, spacer(2x1), sensor.speedtest_ping, upspeed, downspeed
     - nav_spacer(1x2)
-    -                   sensor.bedroom_temperature, sensor.bedroom_humidity
-    - nav_status,       sensor.lounge_temperature, sensor.lounge_humidity
+    -                   sensor.bedroom_temperature, sensor.lounge_temperature, spacer(4x1), front_door_sensor_battery, bedroom_multisensor_battery, lounge_multisensor_battery
+    - nav_status,       sensor.bedroom_humidity, sensor.lounge_humidity

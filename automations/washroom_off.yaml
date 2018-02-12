@@ -1,0 +1,23 @@
+#
+# Turn off washroom.
+#
+- id: washroom_off
+  alias: Washroom OFF
+  trigger:
+    # When nap mode is enabled.
+    - platform: state
+      entity_id: input_boolean.nap_mode
+      to: 'on'
+
+    # When night mode is enabled.
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'on'
+
+  action:
+    # Turn off devices.
+    - service: homeassistant.turn_off
+      data:
+        entity_id:
+          - group.washroom
+        transition: 5

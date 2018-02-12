@@ -47,7 +47,10 @@
       entity_id:
         - sensor.time
       value_template: >-
-        {{ states('sensor.time').lstrip('0') }}
+        {% set hour = states('sensor.time').split(':')[0] | int %}
+        {% set minutes = states('sensor.time').split(':')[1] %}
+
+        {{ hour }}:{{ minutes }}
 
     after_tomorrow:
       friendly_name: After Tomorrow
@@ -63,7 +66,7 @@
 - platform: template
   sensors:
     days_in_month:
-      friendly_name: Days in month
+      friendly_name: Days in Month
       icon_template: mdi:calendar
       entity_id:
         - sensor.date
@@ -79,7 +82,7 @@
         {{ days }}
 
     days_remaining_in_month:
-      friendly_name: Days remaining in month
+      friendly_name: Days Remaining in Month
       icon_template: mdi:calendar
       entity_id:
         - sensor.date

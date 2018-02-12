@@ -42,12 +42,22 @@ aurora_effect:
   initial: Auto
   icon: mdi:star
 
+bed_effect:
+  name: Bed Washlights Effect
+  options:
+   - Auto
+   - Neon
+   - Reading
+   - Relaxing
+   - Warming
+  initial: Auto
+  icon: mdi:motel
+
 ceiling_effect:
   name: Ceiling Washlights Effect
   options:
    - Auto
    - Blissful
-   - Aurora
    - Celebrations
    - Cheerful
    - Daylight
@@ -55,6 +65,7 @@ ceiling_effect:
    - Intense
    - Mellow
    - Movie
+   - Northen Lights
    - Powerful
    - Relaxing
    - Serene

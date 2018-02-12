@@ -1,8 +1,11 @@
+#
 # Warns someone if humidity levels may lead to mold issues.
+#
 # Only triggers if windows and doors are open, because we're not responsible
 # for what's happening outside.
-- id: mold_conditions
-  alias: 'Mold conditions'
+#
+- id: check_mold_conditions
+  alias: Check mold conditions
   trigger:
     # Mold grows above 55% relative humidity, and thrives above 70%.
     - platform: numeric_state

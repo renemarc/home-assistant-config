@@ -1,0 +1,15 @@
+#
+# Change Nanoleaf Aurora's brightness.
+#
+- id: aurora_brightness
+  alias: Aurora BRIGHTNESS
+  trigger:
+    # When a brightness level is changed.
+    - platform: state
+      entity_id: variable.aurora_brightness
+
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.aurora
+        brightness: "{{ states('variable.aurora_brightness') }}"
