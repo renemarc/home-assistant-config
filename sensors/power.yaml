@@ -1,6 +1,14 @@
 #
 # AcuRite battery monitoring
 #
+# This device only has two power state: `OK` (1) and `low` (0). If no signal is
+# received we assume that the battery is dead.
+#
+# @see /rtl4332mqtt/rtl2mqtt.sh
+#
+# @link https://www.acurite.com/indoor-temperature-sensor-and-humidity-gauge.html
+# @link https://home-assistant.io/components/mqtt/
+#
 - platform: mqtt
   name: Bedroom AcuRite Battery
   state_topic: "home/bedroom/bedroom"
@@ -37,6 +45,9 @@
 
 #
 # Aeotec battery monitoring
+#
+# @link https://aeotec.com/z-wave-door-window-sensor
+# @link https://aeotec.com/z-wave-sensor
 #
 - platform: template
   sensors:

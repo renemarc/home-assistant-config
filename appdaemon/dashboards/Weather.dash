@@ -102,7 +102,7 @@ wind_icon:
         NE: mdi-arrow-top-right
         E: mdi-arrow-right
         SE: mdi-arrow-bottom-right
-        S: mdi-arrow-sown
+        S: mdi-arrow-down
         SW: mdi-arrow-bottom-left
         W: mdi-arrow-left
         NW: mdi-arrow-top-left

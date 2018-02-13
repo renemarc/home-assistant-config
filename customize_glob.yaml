@@ -1,12 +1,21 @@
 #
-# Global.
+# Global
 #
 "*.*":
   custom_ui_state_card: state-card-custom-ui
 
 
 #
-# Automations.
+# Scripts
+#
+script.*:
+  custom_ui_state_card: state-card-custom-ui
+  extra_data_template: >-
+    return attributes.last_triggered ? window.hassUtil.relativeTime(new Date(attributes.last_triggered)) : null;
+
+
+#
+# Automations
 #
 automation.*:
   extra_data_template: >-
@@ -44,21 +53,19 @@ automation.washroom_*:
 
 
 #
-# Input Booleans.
+# Input Booleans
 #
 input_boolean.*:
   show_last_changed: true
 
 
 #
-# Sensors.
+# Sensors
 #
 sensor.*_fan:
   group:
     group.bedroom:
       friendly_name: Fan
-sensor.hline_*:
-  custom_ui_state_card: state-card-hline
 sensor.*_humidity:
   group:
     group.bedroom:
@@ -81,3 +88,5 @@ sensor.*_temperature:
       friendly_name: Temperature
     # group.temperature:
     #   friendly_name: Temperature
+sensor.hline_*:
+  custom_ui_state_card: state-card-hline

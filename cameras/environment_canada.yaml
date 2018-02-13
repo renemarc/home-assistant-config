@@ -6,6 +6,11 @@
 # We therefore fetch the image for the last batch, which may be up
 # to 19 minute stale.
 #
+# Todo: Replace this opportunistic fetcher with a webpage scraper.
+#
+# @see /appdaemon/dashboards/Weather.dash
+# @see /groups/weather.yaml
+#
 - platform: generic
   name: Environment Canada Rain
   scan_interval: 600

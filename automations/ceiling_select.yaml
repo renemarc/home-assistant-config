@@ -1,5 +1,9 @@
 #
-# Manually select a LIFX cloud effect for the ceiling washlights.
+# Manually select a LIFX cloud effect for the ceiling wash lights.
+#
+# @publish variable.ceiling_effect
+#
+# @see /scenes/lifx_cloud.yaml
 #
 - id: ceiling_select
   alias: Ceiling SELECT
@@ -9,16 +13,16 @@
       entity_id: input_select.ceiling_effect
 
   condition:
-    # If an actual effect is selected.
+    # If an actual effect is selected, not the default.
     - condition: template
       value_template: "{% if not is_state('input_select.ceiling_effect', 'Auto') %}true{% endif %}"
 
   action:
-    # Override any ceiling washlight effect.
+    # Prevent the ceiling scheduler from replacing the selected effect.
     - service: input_boolean.turn_on
       entity_id: input_boolean.ceiling_effect_override
 
-    # Update the effect variables.
+    # Update the ceiling effect variables.
     - service: variable.set_variable
       data:
         variable: ceiling_effect

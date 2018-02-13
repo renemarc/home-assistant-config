@@ -1,5 +1,7 @@
 #
-# Set lounge to low-power mode.
+# Set lounge to low-power mode
+#
+# @subscribe input_boolean.low_mode
 #
 - id: lounge_low_power
   alias: Lounge LOW POWER

@@ -1,5 +1,11 @@
 #
-# Fast.com
+# Fast.com network speed testing
+#
+# Actual performance is limited by the hosts NIC throughout.
+#
+# Todo: Check if this disabled sensor is superfluous.
+#
+# @link https://home-assistant.io/components/sensor.fastdotcom/
 #
 # - platform: fastdotcom
 #   hour:
@@ -12,7 +18,11 @@
 
 
 #
-# Speedtest.net
+# Speedtest.net network speed testing
+#
+# Actual performance is limited by the hosts NIC throughout.
+#
+# @link https://home-assistant.io/components/sensor.speedtest/
 #
 - platform: speedtest
   monitored_conditions:
@@ -22,8 +32,12 @@
   server_id: !secret speedtest_server_id
   hour:
     - 0
+    - 3
     - 6
+    - 9
     - 12
+    - 15
     - 18
+    - 21
   minute:
     - 15

@@ -1,6 +1,12 @@
+#
 # Group notification
+#
+# All notifications are sent to groups to avoid hard-coding notification
+# services throughout the code base.
+#
+# @link https://home-assistant.io/components/notify.group/
+#
 - platform: group
   name: group
   services:
     - service: pushover
-    # - service: kodi

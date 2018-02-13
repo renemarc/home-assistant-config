@@ -1,5 +1,5 @@
 #
-# Turn on ceiling washlights.
+# Turn on ceiling wash lights.
 #
 - id: ceiling_on
   alias: Ceiling ON
@@ -26,7 +26,7 @@
       state: 'off'
 
   action:
-    # Turn on ceiling washlights.
+    # Turn on ceiling wash lights.
     - service: homeassistant.turn_on
       data:
         entity_id:

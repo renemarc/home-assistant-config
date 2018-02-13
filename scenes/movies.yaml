@@ -1,3 +1,8 @@
+#
+# Movies scene
+#
+# @link /automations/media_player_start.yaml
+#
 - name: Movies
   entities:
     # Turn on the TV backlight and accent lights

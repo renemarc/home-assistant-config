@@ -1,31 +1,32 @@
+#
 # Setup basic location information
+#
 homeassistant:
-  # Name of the location where Home Assistant is running
   name: Home
-  # Location required to calculate the time the sun rises and sets
   latitude: !secret zone_home_latitude
   longitude: !secret zone_home_longitude
-  # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: !secret zone_home_elevation
-  # metric for Metric, imperial for Imperial
   unit_system: metric
   time_zone: America/Toronto
   customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
 
-# Show links to resources in log and frontend
-#introduction:
-
-# Logs everything
+#
+# Log some details
+#
+# @link https://home-assistant.io/components/frontend/
+#
 logger:
   default: warning
   logs:
-    # homeassistant.automations: debug
     homeassistant.components.ebox: debug
 
-# Enables the frontend
+#
+# Enable the official UI
+#
+# @link https://home-assistant.io/components/frontend/
+#
 frontend:
-  # javascript_version: es5
   extra_html_url:
     - /local/custom_ui/state-card-custom-ui.html
     - /local/custom_ui/state-card-hline.html
@@ -35,52 +36,95 @@ frontend:
     - /local/custom_ui/state-card-hline.html
     - /local/custom_ui/state-card-value_only.html
 
-# Enables configuration UI
+#
+# Enable the configuration UI
+#
+# @link https://home-assistant.io/components/config/
+#
 config:
 
+#
+# Enable the web server
+#
+# @link https://home-assistant.io/components/http/
+#
 http:
-  # Secrets are defined in the file secrets.yaml
   # api_password: !secret http_password
-  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   # base_url: example.duckdns.org:8123
 
-# Checks for available updates
+#
+# Check for available updates
+#
 # Note: This component will send some information about your system to
 # the developers to assist with development of Home Assistant.
-# For more information, please see:
-# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+# Optionally allow Home Assistant developers to focus on popular components.
+#
+# @link https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+# @link https://home-assistant.io/components/updater/
+#
 updater:
-  # Optional, allows Home Assistant developers to focus on popular components.
   include_used_components: true
 
+#
 # Discover some devices automatically
+#
+# @link https://home-assistant.io/components/discovery/
+#
 discovery:
   ignore:
     - plex_mediaserver
 
-# Allows you to issue voice commands from the frontend in enabled browsers
+#
+# Allow you to issue voice commands from the frontend in enabled browsers
+#
+# @link https://home-assistant.io/components/conversation/
+#
 conversation:
 
-# Enables support for tracking state changes over time
+#
+# Enable support for tracking state changes over time
+#
+# @link https://home-assistant.io/components/history/
+#
 history:
 
+#
 # View all events in a logbook
+#
+# @link https://home-assistant.io/components/logbook/
+#
 logbook:
 
-# Enables a map showing the location of tracked devices
+#
+# Enable a map showing the location of tracked devices
+#
+# @link https://home-assistant.io/components/map/
+#
 map:
 
+#
 # Track the sun
+#
+# @link https://home-assistant.io/components/sun/
+#
 sun:
 
-# MQTT
+#
+# MQTT Integration
+#
+# @link https://home-assistant.io/components/mqtt/
+#
 mqtt:
   broker: !secret mqtt_broker
   port: !secret mqtt_port
   username: !secret mqtt_username
   password: !secret mqtt_password
 
+#
 # Text to speech
+#
+# @link https://home-assistant.io/components/tts/
+#
 tts:
   - platform: google
 
@@ -89,14 +133,24 @@ tts:
 # Extra configurations
 #
 
-# Hass.io panel
+#
+# Enable the Hass.io panel
+#
 hassio:
 
+#
 # IFTTT integration
+#
+# @link https://home-assistant.io/components/ifttt/
+#
 ifttt:
   key: !secret ifttt_key
 
-# Tracking
+#
+# Device tracking
+#
+# @link https://home-assistant.io/components/device_tracker/
+#
 # device_tracker:
 #   - platform: owntracks
 #   - platform: unifi
@@ -109,12 +163,21 @@ ifttt:
 #     interval_seconds: 10
 #     consider_home: 180
 
-# Custom UI
+#
+# Enable the UI customizer
+#
+# @link https://github.com/andrey-git/home-assistant-customizer
+#
 customizer:
   custom_ui: local
 
+#
 # Database recorder
-# Reduce number of tracked entities and length of history.
+#
+# Reduce the number of tracked entities and length of history.
+#
+# @link https://home-assistant.io/components/recorder/
+#
 recorder:
   purge_interval: 2
   purge_keep_days: 5
@@ -122,12 +185,16 @@ recorder:
     domains:
       - camera
       - group
+      - light
       - scene
+      - script
       - sensor
       - sun
+      - updater
+      - zone
+      - zwave
     entities:
       - switch.aeotec_zstick_disco_light
-      - switch.restart_system
   include:
     entities:
       - sensor.aqi
@@ -154,17 +221,22 @@ recorder:
       - sensor.uv_friendly
       - sensor.wind_speed
 
+#
 # ZWave integration
+#
+# @link https://home-assistant.io/components/zwave/
+#
 zwave:
   usb_path: /dev/ttyACM0
 
+#
 # Modular configuration
+#
 automation: !include_dir_merge_list automations/
 binary_sensor: !include misc/binary_sensors.yaml
 camera: !include_dir_merge_list cameras/
-input_boolean: !include misc/input_boolean.yaml
-input_select: !include misc/input_select.yaml
-input_text: !include misc/input_text.yaml
+input_boolean: !include misc/input_booleans.yaml
+input_select: !include misc/input_selects.yaml
 light: !include_dir_merge_list lights/
 group: !include_dir_merge_named groups/
 media_player: !include misc/media_players.yaml
@@ -172,7 +244,6 @@ notify: !include_dir_merge_list notifications/
 scene: !include_dir_merge_list scenes/
 script: !include_dir_merge_named scripts/
 sensor: !include_dir_merge_list sensors/
-rest_command: !include misc/rest_commands.yaml
 shell_command: !include misc/shell_commands.yaml
 switch: !include_dir_merge_list switches/
 variable: !include misc/variables.yaml

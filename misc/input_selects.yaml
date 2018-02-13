@@ -1,3 +1,9 @@
+#
+# Nanoleaf Aurora effects
+#
+# @see /automations/aurora_effect.yaml
+# @see /automations/aurora_select.yaml
+#
 aurora_effect:
   name: Aurora Effect
   options:
@@ -42,8 +48,15 @@ aurora_effect:
   initial: Auto
   icon: mdi:star
 
+
+#
+# Bed underglow lights effects
+#
+# @see /automations/bed_effect.yaml
+# @see /automations/bed_select.yaml
+#
 bed_effect:
-  name: Bed Washlights Effect
+  name: Bed Underglow Lights Effect
   options:
    - Auto
    - Neon
@@ -53,8 +66,15 @@ bed_effect:
   initial: Auto
   icon: mdi:motel
 
+
+#
+# Ceiling wash lights effect
+#
+# @see /automations/ceiling_effect.yaml
+# @see /automations/ceiling_select.yaml
+#
 ceiling_effect:
-  name: Ceiling Washlights Effect
+  name: Ceiling Wash Lights Effect
   options:
    - Auto
    - Blissful

@@ -1,5 +1,5 @@
 #
-# View.
+# View
 #
 configuration_view:
   view: yes
@@ -11,10 +11,11 @@ configuration_view:
     - group.automations_modes
     - group.automations_devices
     - group.automations_areas
+    - group.configuration_switches
 
 
 #
-# Groups.
+# Groups
 #
 modes:
   name: Modes
@@ -92,3 +93,9 @@ automations_modes:
     - automation.quiet_mode_stop
     - automation.nap_mode_start
     - automation.nap_mode_stop
+
+configuration_switches:
+  name: Configuration Switches
+  control: hidden
+  entities:
+    - switch.aeotec_zstick_disco_light

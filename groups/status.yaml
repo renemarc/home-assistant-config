@@ -1,5 +1,5 @@
 #
-# View.
+# View
 #
 status_view:
   view: yes
@@ -14,7 +14,7 @@ status_view:
 
 
 #
-# Groups.
+# Groups
 #
 battery:
   name: Battery Levels

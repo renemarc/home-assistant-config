@@ -1,7 +1,9 @@
 #
-# Wake up.
+# Wake up
 #
 # Todo: convert script into night mode and automations.
+#
+# @subscribe input_boolean.night_mode
 #
 - id: wake_up
   alias: Wake up
@@ -20,5 +22,6 @@
       state: 'on'
 
   action:
+    # Trigger the wake-up script.
     - service: script.turn_on
       entity_id: script.wake_up

@@ -1,5 +1,15 @@
 #
-# Change Nanoleaf Aurora based on its loaded-in effects.
+# Change Nanoleaf Aurora based on its loaded-in effects
+#
+# The Aurora has effects in its internal memory that are programmed with the
+# Nanoleaf mobile app. They have unique names, which are invoked to change the
+# effect that is displayed with panels.
+#
+# @subscribe variable.aurora_effect
+#
+# @see /automations/aurora_schedule.yaml
+# @see /automations/aurora_select.yaml
+# @see /lights/nanoleaf.yaml
 #
 - id: aurora_effect
   alias: Aurora EFFECT
@@ -9,6 +19,7 @@
       entity_id: variable.aurora_effect
 
   action:
+    # Set the Aurora's internal effect according to the received name.
     - service: light.turn_on
       data_template:
         entity_id:

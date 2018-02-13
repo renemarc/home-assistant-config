@@ -1,6 +1,8 @@
 #
 # Set bedroom to low-power mode.
 #
+# @subscribe input_boolean.low_mode
+#
 - id: bedroom_low_power
   alias: Bedroom LOW POWER
   trigger:

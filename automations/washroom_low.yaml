@@ -1,5 +1,7 @@
 #
-# Set washroom in low-power mode.
+# Set washroom in low-power mode
+#
+# @subscribe input_boolean.low_mode
 #
 # Todo: force dim lights.
 #

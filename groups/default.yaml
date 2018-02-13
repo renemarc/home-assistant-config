@@ -1,5 +1,5 @@
 #
-# View.
+# View
 #
 default_view:
   view: yes
@@ -14,7 +14,7 @@ default_view:
 
 
 #
-# Groups.
+# Groups
 #
 actions:
   name: Actions

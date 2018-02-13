@@ -1,11 +1,14 @@
 #
-# Warns someone if a door was left open for too long.
+# Warns someone if a door was left open for too long
 #
 # Todo: Add condition that no one has been detected at home.
+#
+# @subscribe input_boolean.doors_open
 #
 - id: check_door_left_open
   alias: Check door left open
   trigger:
+    # A door has been left open for a while.
     - platform: state
       entity_id: input_boolean.doors_open
       to: 'on'
@@ -13,8 +16,8 @@
         minutes: 10
 
   action:
-    # Warn the primary user to take action.
+    # Warn someone to take action.
     - service: notify.group
       data:
-        title: 'Hass.io'
+        title: 'Security issue'
         message: "A door has been left open for too long."

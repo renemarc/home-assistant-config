@@ -1,5 +1,5 @@
 #
-# Automations.
+# Automations
 #
 automation.cct:
   icon: mdi:white-balance-auto
@@ -16,14 +16,14 @@ automation.wake_up:
 
 
 #
-# Binary sensors.
+# Binary sensors
 #
 binary_sensor.flic_80e4da737711:
   friendly_name: Flic blue
 
 
 #
-# Cameras.
+# Cameras
 #
 camera.environment_canada_rain:
   friendly_name: Rain
@@ -36,7 +36,7 @@ camera.noaa_water_vapour:
 
 
 #
-# Device trackers.
+# Device trackers
 #
 device_tracker.cellphone_her:
   friendly_name: !secret nickname_her
@@ -48,7 +48,7 @@ device_tracker.cellphone_him:
 
 
 #
-# Groups.
+# Groups
 #
 group.configuration_view:
   order: 5
@@ -63,7 +63,7 @@ group.weather_view:
 
 
 #
-# Input booleans.
+# Input booleans
 #
 input_boolean.low_mode:
   icon: mdi:weather-sunset-down
@@ -78,7 +78,7 @@ input_boolean.scene_mode:
 
 
 #
-# Input selectors.
+# Input selectors
 #
 input_select.aurora_effect:
   icon: mdi:blank
@@ -91,7 +91,7 @@ input_select.ceiling_effect:
 
 
 #
-# Lights.
+# Lights
 #
 light.aurora:
   extra_data_template: >-
@@ -253,7 +253,7 @@ light.underbed:
 
 
 #
-# Sensors.
+# Sensors: Miscellaneous
 #
 sensor.bing_wallpaper_info:
   custom_ui_state_card: state-card-value_only
@@ -269,7 +269,10 @@ sensor.hline_dashed:
 sensor.good_vibes:
   custom_ui_state_card: state-card-value_only
 
-# Sensors: Climate.
+
+#
+# Sensors: Climate
+#
 sensor.average_humidity:
   group:
     group.humidity:
@@ -318,7 +321,10 @@ sensor.lounge_temperature:
       friendly_name: Lounge
       icon: mdi:sofa
 
-# Sensors: Outdoor Life Quality.
+
+#
+# Sensors: Outdoor Life Quality
+#
 sensor.aqi_carbon_monoxide_friendly:
   extra_data_template: >-
     return entities['sensor.aqi_carbon_monoxide'].state != 'unknown' ?
@@ -350,7 +356,10 @@ sensor.uv_friendly:
   extra_badge:
     entity_id: sensor.uv
 
-# Sensors: Power.
+
+#
+# Sensors: Power
+#
 sensor.bedroom_multisensor_battery:
   group:
     group.battery:
@@ -373,7 +382,10 @@ sensor.lounge_multisensor_battery:
     group.lounge:
       friendly_name: Multisensor Battery
 
-# Sensors: System.
+
+#
+# Sensors: System
+#
 sensor.cpu_used:
   friendly_name: CPU Load
   icon: mdi:chip
@@ -424,7 +436,10 @@ sensor.speedtest_upload:
 sensor.uptime_os:
   icon: mdi:pi
 
-# Sensors: Transit.
+
+#
+# Sensors: Transit
+#
 sensor.home_to_market_hour:
   icon: mdi:cart
   extra_badge:
@@ -453,15 +468,16 @@ sensor.home_to_metro_3_hour:
   extra_badge:
     entity_id: sensor.home_to_metro_3_countdown
 
+
+#
 # Sensors: Weather
+#
 sensor.weather_details:
   custom_ui_state_card: state-card-value_only
 sensor.dark_sky_minutely_summary:
   custom_ui_state_card: state-card-value_only
 sensor.dark_sky_daily_summary:
   friendly_name: Weekly Forecast
-  extra_data_template: >-
-    ${entities['sensor.dark_sky_daily_summary'].state}
   hide_control: true
   custom_ui_state_card: state-card-value_only
 sensor.dark_sky_hourly_summary:
@@ -480,7 +496,7 @@ sensor.wind_speed:
 
 
 #
-# Scenes.
+# Scenes
 #
 scene.romantic:
   icon: mdi:heart
@@ -489,16 +505,18 @@ scene.shutdown:
 
 
 #
-# Scripts.
+# Scripts
 #
 script.go_to_sleep:
   icon: mdi:weather-night
 script.wake_up:
   icon: mdi:weather-sunny
+  extra_data_template: >-
+    ${entities['sensor.wind_scale_friendly'].state}
 
 
 #
-# Switches.
+# Switches
 #
 switch.bedroom_fan:
   homebridge_hidden: false

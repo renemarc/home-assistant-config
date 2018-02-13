@@ -1,5 +1,12 @@
 #
-# Check if humidity is too high.
+# Check if humidity is too high
+#
+# Only verify if doors and windows are closed.
+#
+# Todo: check more regularly
+#
+# @subscribe input_boolean.doors_open
+# @subscribe input_boolean.windows_open
 #
 - id: check_humidity_high
   alias: Check humidity HIGH
@@ -27,6 +34,7 @@
       state: 'off'
 
   action:
+    # Warn someone to take action.
     - service: persistent_notification.create
       data:
         notification_id: humidity

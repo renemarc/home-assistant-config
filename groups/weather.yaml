@@ -1,5 +1,5 @@
 #
-# View.
+# View
 #
 weather_view:
   view: yes
@@ -16,7 +16,7 @@ weather_view:
 
 
 #
-# Groups.
+# Groups
 #
 atmospheric_safety:
   name: Atmospheric Safety

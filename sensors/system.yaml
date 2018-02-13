@@ -1,11 +1,9 @@
 #
-# Version checker
-#
-- platform: version
-
-
-#
 # System monitor
+#
+# Lots of geeky details about the server hardware.
+#
+# @link https://home-assistant.io/components/sensor.systemmonitor/
 #
 - platform: systemmonitor
   scan_interval: 60
@@ -26,7 +24,11 @@
 
 
 #
-# Friendly version report (useful for HADashboard)
+# Friendly version report
+#
+# Useful for HADashboard.
+#
+# @see /appdaemon/dashboards/Status.dash
 #
 - platform: template
   sensors:
@@ -52,6 +54,9 @@
 #
 # Disk space
 #
+# @see /appdaemon/dashboards/Status.dash
+# @see /groups/status.yaml
+#
 - platform: template
   sensors:
     disk_used_percent:
@@ -71,6 +76,9 @@
 
 #
 # RAM space
+#
+# @see /appdaemon/dashboards/Status.dash
+# @see /groups/status.yaml
 #
 - platform: template
   sensors:
@@ -92,13 +100,14 @@
 #
 # Host uptime
 #
+# @see /appdaemon/dashboards/Status.dash
+# @see /groups/status.yaml
+#
 - platform: template
   sensors:
     uptime_host:
       friendly_name: Server Uptime
       icon_template: mdi:server
-      entity_id:
-        - sensor.since_last_boot
       value_template: >-
         {% set slb = states('sensor.since_last_boot').split(' ') %}
         {% set count = slb | length %}
@@ -145,7 +154,14 @@
 
 
 #
-# Hass uptime
+# Home Assistant uptime
+#
+# For Home Assistant process/container.
+#
+# @see /appdaemon/dashboards/Status.dash
+# @see /groups/status.yaml
+#
+# @link https://home-assistant.io/components/sensor.uptime/
 #
 - platform: uptime
   name: Uptime
@@ -157,8 +173,6 @@
     uptime_friendly:
       friendly_name: Uptime
       icon_template: mdi:home-assistant
-      entity_id:
-        - sensor.uptime
       value_template: >-
         {% set uptime = states('sensor.uptime')|float %}
         {% set time = (3600 * uptime) | int %}
@@ -203,6 +217,14 @@
 #
 # CPU cores count
 #
+# Useful to get an idea of the system load. Scan interval is set to daily,
+# because it's quite unlikely that cores change ...often unless one plays with
+# the VM's settings all the time.
+#
+# @see /customize.yaml
+#
+# @link https://home-assistant.io/components/sensor.command_line/
+#
 - platform: command_line
   name: CPU Cores
   scan_interval: 86400
@@ -212,6 +234,11 @@
 
 #
 # CPU temperature
+#
+# @see /appdaemon/dashboards/Status.dash
+# @see /groups/status.yaml
+#
+# @link https://home-assistant.io/components/sensor.command_line/
 #
 - platform: command_line
   name: CPU Temp
@@ -225,22 +252,30 @@
 #
 # Database size
 #
-# see: https://community.home-assistant.io/t/recorder-purge-function/17154/12
+# @see /appdaemon/dashboards/Status.dash
+# @see /groups/status.yaml
+#
+# @link https://community.home-assistant.io/t/recorder-purge-function/17154/12
+# @link https://home-assistant.io/components/sensor.command_line/
 #
 - platform: command_line
   name: Database Size
   scan_interval: 600
-  command: "du -m /config/home-assistant_v2.db | cut -f1"
   unit_of_measurement: 'MB'
+  command: "du -m /config/home-assistant_v2.db | cut -f1"
 
 
 #
-# Logfile size
+# Log file size
 #
-# see: https://community.home-assistant.io/t/recorder-purge-function/17154/12
+# @see /appdaemon/dashboards/Status.dash
+# @see /groups/status.yaml
+#
+# @link https://community.home-assistant.io/t/recorder-purge-function/17154/12
+# @link https://home-assistant.io/components/sensor.command_line/
 #
 - platform: command_line
   name: Logfile Size
   scan_interval: 600
-  command: "du -k /config/home-assistant.log | cut -f1"
   unit_of_measurement: 'kB'
+  command: "du -k /config/home-assistant.log | cut -f1"

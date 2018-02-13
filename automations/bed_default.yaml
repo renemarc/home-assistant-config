@@ -1,5 +1,13 @@
 #
-# Return the bed washlights to the default scheduled effect.
+# Return the bed underglow lights to the default scheduled effect.
+#
+# By removing the manual override, the bed lights will automatically fall back
+# to the regularly schedule effect.
+#
+# @subscribe variable.bed_effect
+#
+# @see /automations/bed_schedule.yaml
+# @see /scenes/lifx_cloud.yaml
 #
 - id: bed_default
   alias: Bed DEFAULT

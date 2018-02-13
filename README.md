@@ -1,15 +1,24 @@
 # René-Marc's Home Assistant configuration
 
-Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bedroom apartment, offering convenience automations over lights and climate while providing multiple intuitive user controls.
+[![Build Status][img-travis-ci]][link-travis-ci]
+[![GitHub Release][img-github-release]][link-repo]
+[![Repo Size][img-repo-size]][link-repo]
+[![Code Size][img-code-size]][link-repo]
+[![Hass.io][img-hassio]][link-hassio]
 
+Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io](https://home-assistant.io/hassio/) on a Raspberry Pi for a one bedroom apartment, offering convenience automations over lights and climate while providing multiple intuitive user controls.
 
 ## Contents
+1. **[TL;DR](#tldr)**.
 1. **[Overview](#overview):** [User stories](#user-stories), [Goals](#goals). 
 1. **[Key features](#Goals):** [Climate control](#climate-control), [Weather report](#weather-report), [Lighting control](#lighting-control), [Presence](#presence), [Scenes and actions](#scenes-and-actions), [General information](#general-information), [Human interfaces](#human-interfaces). 
 1. **[Task list](#task-list):** [Work in progress](#work-in-progress), [Backlog](#backlog), [Wishlist](wWishlist). 
-1. **[Setup](#setup):** [System and interfaces](#system-and-interfaces), [Devices and sensors](#devices-and-sensors), [Software](#software), [Hass.io add-ons](#hassio-add-ons). 
+1. **[Setup](#setup):** [System and interfaces](#system-and-interfaces), [Devices and sensors](#devices-and-sensors), [Software](#software), [Hass.io add-ons](#hassio-add-ons), [Community components and widgets](#community-components-and-widgets). 
 1. **[Thanks](#thanks)**.
 
+## TL;DR
+
+This is a fully documented working configuration for Home Assistant, with screenshots, hints and comments. [Browse the code](#) to have a look!
 
 ## Overview
 
@@ -86,9 +95,9 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 #### Work in progress
 - Device: Kitchen under-cabinet CCT lighting
 - Device: Flic button (kitchen)
+- Contribute back: Full documentation
 
 #### Backlog
-- UI: Text-only state cards (weather, quotes...)
 - Component: Fix unlimited bandwidth consumption bug
 - Scene: Romantic
 - Scene: Gaming/Party
@@ -143,34 +152,34 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - **[Acer Iconia One 10" tablet](https://www.acer.com/ac/en/CA/content/series/iconiaone10)** (1280x800 IPS screen) wallmounted as a kiosk.
 
 ### Devices and sensors
-- **[Nanoleaf Aurora](https://nanoleaf.me/en-ca/)** light panels kit. Pretty!
+- **[Nanoleaf Aurora](https://nanoleaf.me)** light panels kit. Pretty!
 - **[LIFX+](https://www.lifx.com/products/lifx-plus)** A19 RGB light bulb (x2).
 - **[LIFX Z](https://www.lifx.com/products/lifx-z-starter-kit-without-homekit)** light strip without HomeKit as ceiling wash lights (x3) and bed underglow (x2)
 - **[Milight CCT LED RF Controller](https://www.futlight.com/productdetails.aspx?id=293&typeid=146)** for white-adjustable undercabinet kitchen lights (x4), connected to appropriate Ul-listed power supplies.
 - **[24V 3014 Warm White Cool White LED Strip](http://ledmontreal.com/en/led-strips-without-accessories/24v-led-strips-without-accessories/cct-adjustable-led-strip.html)** encased in custom cut and assembled [light-diffusing aluminum profiles](http://ledmontreal.com/en/led-bars-and-profiles-led-montreal/continuous-lighting-aluminum-profile.html), connected to above RF controllers.
-- **[Flic](https://flic.io/)** bluetooth low energy button.
+- **[Flic](https://flic.io)** bluetooth low energy buttons.
 - **[Aeotec Door / Window Sensor Gen5](https://aeotec.com/z-wave-door-window-sensor)** for front door.
 - **[Aeotec MultiSensor 6](https://aeotec.com/z-wave-sensor)** for temperature/humidity/presence detection.
 - **[Adalight](https://learn.adafruit.com/adalight-diy-ambient-tv-lighting)** DIY 100-dots TV backlighting controlled by [Lightpack+Prismatik](https://github.com/psieg/Lightpack) on HTPC.
 - **[AcuRite 06044M Wireless Sensor](https://www.acurite.com/indoor-temperature-sensor-and-humidity-gauge.html)** for cheap temperature and humidity monitoring.
 - **[TP-Link Smart Wi-Fi Plug Mini outlets](http://www.tp-link.com/us/products/details/cat-5516_HS105.html)** to control dumb devices (x6).
-- **[Frigidaire dehumidifier](http://www.dehumidifierbuyersguide.com/frigidaire-ffad7033r1-review/)** via TP-Link wifi outlet.
+- **[Frigidaire dehumidifier](http://www.dehumidifierbuyersguide.com/frigidaire-ffad7033r1-review)** via TP-Link wifi outlet.
 - **Oscillating fan** via TP-Link wifi outlet.
 - **Fairy lights** via TP-Link wifi outlets (x3).
 - **DIY LED nightstand** via TP-Link wifi outlet.
 
 ### Software
-- **[Hass.io](https://home-assistant.io/)** on Raspberry Pi (production setup).
-- **[Docker](https://www.docker.com/)** on local machine (for development).
+- **[Hass.io](https://home-assistant.io)** on Raspberry Pi (production setup).
+- **[Docker](https://www.docker.com)** on local machine (for development).
 
 ### Hass.io add-ons
 - **[AppDaemon2](https://github.com/home-assistant/appdaemon)** for HADashboard tablet UI.
-- **[Bluetooth BCM43xx](https://home-assistant.io/addons/bluetooth_bcm43xx/)** to use Raspberry Pi's bluetooth.
+- **[Bluetooth BCM43xx](https://home-assistant.io/addons/bluetooth_bcm43xx)** to use Raspberry Pi's bluetooth.
 - **[Flicd](https://github.com/pschmitt/hassio-addons)** to connect with Flic bluetooth buttons.
-- **[Mosquitto MQTT broker](https://home-assistant.io/addons/mosquitto/)** for standard IoT messaging.
+- **[Mosquitto MQTT broker](https://home-assistant.io/addons/mosquitto)** for standard IoT messaging.
 - **[Homebridge](https://github.com/hassio-addons/addon-homebridge)** to control non-HomeKit compatible devices using iPhones.
-- **[RTL_433 to MQTT Bridge](https://github.com/james-fry/hassio-addons/)** to receive and decode AcuRite radio signals.
-- **[Samba share](https://home-assistant.io/addons/samba/)** for configuration file sharing.
+- **[RTL_433 to MQTT Bridge](https://github.com/james-fry/hassio-addons)** to receive and decode AcuRite radio signals.
+- **[Samba share](https://home-assistant.io/addons/samba)** for configuration file sharing.
 
 ### Community components and widgets
 - **[Custom UI elements](https://github.com/andrey-git/home-assistant-custom-ui)** to improve the display of sensors and jazz up the interface a bit.
@@ -182,9 +191,27 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 ## Thanks
 
 Kudos to:
-- **The [dedicated core team](https://home-assistant.io/blog/)** that builds and manages Home Assistant, they work fast and humbly.
+- **The [dedicated core team](https://home-assistant.io/blog)** that builds and manages Home Assistant, they work fast and humbly.
 - **The horde of volunteer developers** of all components and add-ons.
-- **The [vibrant community](https://community.home-assistant.io/)**, always willing to help and share code samples.
+- **The [vibrant community](https://community.home-assistant.io)**, always willing to help and share code samples.
 - **The [BRUH Automation](https://www.youtube.com/c/bruhautomation1) YouTube channel**, Ben's videos got me hooked on using Home Assistant.
 
 Thank you for all your dedication, helpfulness and valuable insights. Cheers! :-)
+
+<!--
+Image references.
+-->
+
+[img-travis-ci]:https://img.shields.io/travis/renemarc/home-assistant-config.svg?branch=master&style=for-the-badge&logo=travis
+[img-github-release]:https://img.shields.io/github/release/renemarc/home-assistant-config/all.svg?style=for-the-badge&logo=github
+[img-repo-size]:https://img.shields.io/github/repo-size/renemarc/home-assistant-config.svg?style=for-the-badge
+[img-code-size]:https://img.shields.io/github/languages/code-size/renemarc/home-assistant-config.svg?style=for-the-badge
+[img-hassio]:https://img.shields.io/badge/Config_for-Hass.io-53c1f1.svg?style=for-the-badge
+
+<!--
+Link references.
+-->
+
+[link-repo]:https://github.com/renemarc/home-assistant-config
+[link-travis-ci]:https://travis-ci.org/renemarc/home-assistant-config
+[link-hassio]:https://home-assistant.io/hassio/

@@ -1,5 +1,16 @@
 #
-# Change bed wash lights based on Lifx Cloud scenes.
+# Change bed underglow lights based on Lifx Cloud scenes.
+#
+# The LIFX strips have effects programmed with the LIFX mobile and stored on
+# their servers. Each effect mentions which device will receive which color
+# pattern. Also, each effect has a UUID that can be used to load the effect from
+# the servers and program the LIFX devices accordingly.
+#
+# @subscribe variable.bed_effect
+#
+# @see /automations/bed_schedule.yaml
+# @see /automations/bed_select.yaml
+# @see /scenes/lifx_cloud.yaml
 #
 - id: bed_effect
   alias: Bed EFFECT

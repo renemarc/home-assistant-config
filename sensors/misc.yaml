@@ -3,7 +3,7 @@
 #
 # Actual styling is done in `customize.yaml` and `customize_glob.yaml`.
 #
-# @see: https://github.com/covrig/homeassistant-hline
+# @link https://github.com/covrig/homeassistant-hline
 #
 - platform: template
   sensors:
@@ -14,7 +14,7 @@
 #
 # Random positive quotes, to brighten up the day!
 #
-# @see: http://www.lifestalker.com/2017/04/four-word-quotes.html
+# @link http://www.lifestalker.com/2017/04/four-word-quotes.html
 #
 - platform: template
   sensors:

@@ -1,3 +1,8 @@
+#
+# Romantic scene (beta)
+#
+# Todo: revise, replace or delete.
+#
 - name: Romantic
   entities:
     light.bedroom:

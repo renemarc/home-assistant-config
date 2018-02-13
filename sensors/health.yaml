@@ -1,9 +1,9 @@
 #
 # Doomsday Clock
 #
-# see: https://github.com/renemarc/home-assistant-custom-components
-# see: https://thebulletin.org/doomsday-dashboard
-# see: https://github.com/mattbierner/MinutesToMidnight/blob/master/index.js
+# @link https://github.com/renemarc/home-assistant-custom-components
+# @link https://thebulletin.org/doomsday-dashboard
+# @link https://github.com/mattbierner/MinutesToMidnight/blob/master/index.js
 #
 - platform: doomsday_clock
   scan_interval: 86400
@@ -14,7 +14,8 @@
 #
 # Ratings for templates below are USA ones instead of Canadians.
 #
-# see: https://en.wikipedia.org/wiki/Air_quality_index
+# @link https://en.wikipedia.org/wiki/Air_quality_index
+# @link https://home-assistant.io/components/sensor.waqi/
 #
 - platform: waqi
   token: !secret waqi_token
@@ -39,8 +40,6 @@
     aqi:
       friendly_name: Air Quality Index
       icon_template: mdi:chemical-weapon
-      entity_id:
-        - sensor.aqi_exact
       value_template: >-
         {% set index = states('sensor.aqi_exact') %}
 
@@ -53,8 +52,6 @@
     aqi_friendly:
       friendly_name: Air Quality Index
       icon_template: mdi:chemical-weapon
-      entity_id:
-        - sensor.aqi_exact
       value_template: >-
         {% set index = states('sensor.aqi_exact') %}
 
@@ -112,8 +109,6 @@
     aqi_particles_friendly:
       friendly_name: PM2.5
       icon_template: mdi:factory
-      entity_id:
-        - sensor.aqi_particles
       value_template: >-
         {% set pm25 = states('sensor.aqi_particles') | int(-1) %}
 
@@ -169,8 +164,6 @@
     aqi_ozone_friendly:
       friendly_name: Ozone
       icon_template: mdi:earth
-      entity_id:
-        - sensor.aqi_ozone
       value_template: >-
         {% set ozone = states('sensor.aqi_ozone') | int(-1) %}
 
@@ -226,8 +219,6 @@
     aqi_nitrogen_dioxide_friendly:
       friendly_name: Nitrogen Dioxide
       icon_template: mdi:car
-      entity_id:
-        - sensor.aqi_nitrogen_dioxide
       value_template: >-
         {% set nox = states('sensor.aqi_nitrogen_dioxide') | int(-1) %}
 
@@ -283,8 +274,6 @@
     aqi_carbon_monoxide_friendly:
       friendly_name: Carbon Monoxide
       icon_template: mdi:fire
-      entity_id:
-        - sensor.aqi_carbon_monoxide
       value_template: >-
         {% set co = states('sensor.aqi_carbon_monoxide') | int(-1) %}
 
@@ -308,25 +297,24 @@
 
 
 #
-# Dark Sky: Ultraviolet rays
+# Ultraviolet rays
 #
-# see: https://en.wikipedia.org/wiki/Ultraviolet_index
+# Makes the sensor agnostic from its Dark Sky data source in case of eventual
+# replacement.
+#
+# @link https://en.wikipedia.org/wiki/Ultraviolet_index
 #
 - platform: template
   sensors:
     uv:
       friendly_name: UV Index
       icon_template: mdi:sunglasses
-      entity_id:
-        - sensor.dark_sky_uv_index
       value_template: >-
         {{ states('sensor.dark_sky_uv_index') }}
 
     uv_friendly:
       friendly_name: UV Index
       icon_template: mdi:sunglasses
-      entity_id:
-        - sensor.dark_sky_uv_index
       value_template: >-
         {% set uv = states('sensor.dark_sky_uv_index') | float %}
 

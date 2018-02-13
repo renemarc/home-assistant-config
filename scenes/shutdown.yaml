@@ -1,3 +1,8 @@
+#
+# Shutdown scene (beta)
+#
+# Todo: revise, replace or delete.
+#
 - name: Shutdown
   entities:
     light.bedroom: off

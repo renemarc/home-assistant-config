@@ -1,7 +1,11 @@
 #
-# Go to sleep.
+# Go to sleep
 #
 # Todo: convert script into night mode and automations.
+#
+# @subscribe: input_boolean.night_mode
+#
+# @see /scripts/script.go_to_sleep
 #
 - id: go_to_sleep
   alias: Go to sleep
@@ -20,5 +24,6 @@
       state: 'off'
 
   action:
+    # Trigger the sleep script.
     - service: script.turn_on
       entity_id: script.go_to_sleep

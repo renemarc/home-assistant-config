@@ -1,5 +1,15 @@
+#
+# Nanoleaf Aurora smart light panels
+#
+# @see /automations/aurora_effect.yaml
+# @see /automations/aurora_schedule.yaml
+# @see /configure.yaml
+#
+# @link https://nanoleaf.me/
+# @link https://github.com/software-2/ha-aurora
+# @link https://github.com/Oro/home-assistant/tree/light-aurora
+#
 - platform: aurora
   name: Aurora
   host: !secret aurora_host
   token: !secret aurora_api_key
-  # api_key: !secret aurora_api_key

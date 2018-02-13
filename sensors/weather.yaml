@@ -1,6 +1,8 @@
 #
 # Dark Sky weather
 #
+# @link https://home-assistant.io/components/sensor.darksky/
+#
 - platform: darksky
   api_key: !secret darksky_api_key
   forecast:
@@ -31,7 +33,11 @@
 
 
 #
-#  Outside temperature
+# Outside temperature and humidity
+#
+# Information is rounded to integers, because decimal points here are not useful
+# for human consumption ...and because the hyper-local temperature is likely off
+# by a few degrees anyway. This isn't a laboratory after all!
 #
 - platform: template
   sensors:
@@ -39,23 +45,13 @@
       friendly_name: Temperature
       icon_template: mdi:thermometer
       unit_of_measurement: '°C'
-      entity_id:
-        - sensor.dark_sky_temperature
       value_template: >-
         {{ states('sensor.dark_sky_temperature') | round(0) }}
 
-
-#
-# Outside relative humidity
-#
-- platform: template
-  sensors:
     outside_humidity:
       friendly_name: Humidity
       icon_template: mdi:water-percent
       unit_of_measurement: '%'
-      entity_id:
-        - sensor.dark_sky_humidity
       value_template: >-
         {{ states('sensor.dark_sky_humidity') | round(0) }}
 
@@ -63,13 +59,13 @@
 #
 # Friedly weather report
 #
+# These add "Feels like X˚" to the apparent reading if any, to make this data
+# easier to consume.
+#
 - platform: template
   sensors:
     feels_like:
       friendly_name: Feels Like
-      entity_id:
-        - sensor.outside_temperature
-        - sensor.dark_sky_apparent_temperature
       value_template: >-
         {% set temperature = states('sensor.outside_temperature') %}
         {% set apparent = states('sensor.dark_sky_apparent_temperature') | round(0) %}
@@ -80,9 +76,6 @@
 
     feels_like_1:
       friendly_name: Feels Like
-      entity_id:
-        - sensor.dark_sky_daily_high_temperature_1
-        - sensor.dark_sky_daily_high_apparent_temperature_1
       value_template: >-
         {% set temperature = states('sensor.dark_sky_daily_high_temperature_1') %}
         {% set apparent = states('sensor.dark_sky_daily_high_apparent_temperature_1') | round(0) %}
@@ -93,9 +86,6 @@
 
     feels_like_2:
       friendly_name: Feels Like
-      entity_id:
-        - sensor.dark_sky_daily_high_temperature_2
-        - sensor.dark_sky_daily_high_apparent_temperature_2
       value_template: >-
         {% set temperature = states('sensor.dark_sky_daily_high_temperature_2') %}
         {% set apparent = states('sensor.dark_sky_daily_high_apparent_temperature_2') | round(0) %}
@@ -106,18 +96,11 @@
 
     weather_summary:
       friendly_name: Weather Summary
-      entity_id:
-        - sensor.dark_sky_temperature
-        - sensor.dark_sky_summary
       value_template: >-
         {{ states('sensor.dark_sky_temperature') | round(0) }}˚ {{ states('sensor.dark_sky_summary') }}.
 
     weather_details:
       friendly_name: Weather Details
-      entity_id:
-        - sensor.dark_sky_temperature
-        - sensor.dark_sky_apparent_temperature
-        - sensor.dark_sky_minutely_summary
       value_template: >-
         {% set temperature = states('sensor.dark_sky_temperature') | round(0) %}
         {% set apparent = states('sensor.dark_sky_apparent_temperature') | round(0) %}
@@ -137,12 +120,14 @@
 #
 # Chances of precipitation
 #
+# These templates improve the reading comprehension about the chances of rain.
+#
+# @see /appdaemon/dashboards/Weather.dash
+#
 - platform: template
   sensors:
     precip_probability:
       friendly_name: Probability of Precipitation
-      entity_id:
-        - sensor.dark_sky_precip_probability
       value_template: >-
         {% set precip = states('sensor.dark_sky_precip_probability') | int %}
 
@@ -154,8 +139,6 @@
 
     precip_probability_friendly:
       friendly_name: Probability of Precipitation
-      entity_id:
-        - sensor.dark_sky_precip_probability
       value_template: >-
         {% set precip = states('sensor.dark_sky_precip_probability') | int %}
 
@@ -167,8 +150,6 @@
 
     precip_probability_1:
       friendly_name: Probability of Precipitation
-      entity_id:
-        - sensor.dark_sky_precip_probability_1
       value_template: >-
         {% set precip = states('sensor.dark_sky_precip_probability_1') | int %}
 
@@ -180,8 +161,6 @@
 
     precip_probability_friendly_1:
       friendly_name: Probability of Precipitation
-      entity_id:
-        - sensor.dark_sky_precip_probability_1
       value_template: >-
         {% set precip = states('sensor.dark_sky_precip_probability_1') | int %}
 
@@ -193,8 +172,6 @@
 
     precip_probability_2:
       friendly_name: Probability of Precipitation
-      entity_id:
-        - sensor.dark_sky_precip_probability_2
       value_template: >-
         {% set precip = states('sensor.dark_sky_precip_probability_2') | int %}
 
@@ -206,8 +183,6 @@
 
     precip_probability_friendly_2:
       friendly_name: Probability of Precipitation
-      entity_id:
-        - sensor.dark_sky_precip_probability_2
       value_template: >-
         {% set precip = states('sensor.dark_sky_precip_probability_2') | int %}
 
@@ -221,19 +196,20 @@
 #
 # Friendly low temperatures
 #
+# Makes temperature readings easier to understand by rounding them and adding
+# strings.
+#
+# @see /appdaemon/dashboards/Weather.dash
+#
 - platform: template
   sensors:
     weather_low:
       friendly_name: Low Temperature
-      entity_id:
-        - sensor.dark_sky_daily_low_temperature
       value_template: >-
         {{ states('sensor.dark_sky_daily_low_temperature') | round }}
 
     weather_low_friendly:
       friendly_name: Low Temperature
-      entity_id:
-        - sensor.dark_sky_daily_low_temperature
       value_template: >-
         {% set temp = states('sensor.dark_sky_daily_low_temperature') | round %}
 
@@ -241,15 +217,11 @@
 
     weather_low_1:
       friendly_name: Low Temperature
-      entity_id:
-        - sensor.dark_sky_daily_low_temperature_1
       value_template: >-
         {{ states('sensor.dark_sky_daily_low_temperature_1') | round }}
 
     weather_low_1_friendly:
       friendly_name: Low Temperature
-      entity_id:
-        - sensor.dark_sky_daily_low_temperature_1
       value_template: >-
         {% set temp = states('sensor.dark_sky_daily_low_temperature_1') | round %}
 
@@ -257,15 +229,11 @@
 
     weather_low_2:
       friendly_name: Low Temperature
-      entity_id:
-        - sensor.dark_sky_daily_low_temperature_2
       value_template: >-
         {{ states('sensor.dark_sky_daily_low_temperature_2') | round }}
 
     weather_low_2_friendly:
       friendly_name: Low Temperature
-      entity_id:
-        - sensor.dark_sky_daily_low_temperature_2
       value_template: >-
         {% set temp = states('sensor.dark_sky_daily_low_temperature_2') | round %}
 
@@ -275,12 +243,12 @@
 #
 # Friendly icon equivalents
 #
+# Turns icon names into words.
+#
 - platform: template
   sensors:
     weather_icon_friendly:
       friendly_name: Weather
-      entity_id:
-        - sensor.dark_sky_icon
       value_template: >-
         {% set icon = states('sensor.dark_sky_icon') %}
 
@@ -306,8 +274,6 @@
 
     weather_icon_friendly_1:
       friendly_name: Weather 1
-      entity_id:
-        - sensor.dark_sky_icon_1
       value_template: >-
         {% set icon = states('sensor.dark_sky_icon_1') %}
 
@@ -333,8 +299,6 @@
 
     weather_icon_friendly_2:
       friendly_name: Weather 2
-      entity_id:
-        - sensor.dark_sky_icon_2
       value_template: >-
         {% set icon = states('sensor.dark_sky_icon_2') %}
 
@@ -362,15 +326,19 @@
 #
 # Wind speed
 #
-# see: https://en.wikipedia.org/wiki/Beaufort_scale
+# The default readings of meters per second is precise, but isn't something
+# common mortals use in everyday life. Give me kilometers and wind strenght,
+# now *that* I can relate to!
+#
+# @see /customize.yaml
+#
+# @link https://en.wikipedia.org/wiki/Beaufort_scale
 #
 - platform: template
   sensors:
     wind_speed:
       friendly_name: Wind Speed
       unit_of_measurement: 'km/h'
-      entity_id:
-        - sensor.dark_sky_wind_speed
       value_template: >-
         {{ (states('sensor.dark_sky_wind_speed')|float * 3600 / 1000) | round(0) }}
       icon_template: >-
@@ -384,8 +352,6 @@
 
     wind_scale_friendly:
       friendly_name: Wind Scale
-      entity_id:
-        - sensor.dark_sky_wind_speed
       value_template: >-
         {% set speed = (states('sensor.dark_sky_wind_speed')|float * 3600 / 1000) | round(0) %}
 
@@ -429,15 +395,18 @@
 #
 # Wind direction
 #
-# see: http://www.themethodology.net/2013/12/how-to-convert-degrees-to-cardinal.html
-# see: https://stackoverflow.com/questions/7490660/converting-wind-direction-in-angles-to-text-words
+# Wind provenance in degrees is great for computers, but pointless for humans.
+# Cardinal points make more sense to humans.
+#
+# @see /customize.yaml
+#
+# @link http://www.themethodology.net/2013/12/how-to-convert-degrees-to-cardinal.html
+# @link https://stackoverflow.com/questions/7490660/converting-wind-direction-in-angles-to-text-words
 #
 - platform: template
   sensors:
     wind_bearing_cardinal:
       friendly_name: Wind Bearing
-      entity_id:
-        - sensor.dark_sky_wind_bearing
       value_template: >-
         {% set degrees = states('sensor.dark_sky_wind_bearing') | int %}
         {% set val = (degrees / 45) | int %}
@@ -447,8 +416,6 @@
 
     wind_bearing_cardinal_friendly:
       friendly_name: Wind Bearing
-      entity_id:
-        - sensor.dark_sky_wind_bearing
       value_template: >-
         {% set degrees = states('sensor.dark_sky_wind_bearing') | int %}
         {% set val = (degrees / 45) | int %}
@@ -467,8 +434,6 @@
 
     wind_bearing_cardinal_16:
       friendly_name: Wind Bearing
-      entity_id:
-        - sensor.dark_sky_wind_bearing
       value_template: >-
         {% set degrees = states('sensor.dark_sky_wind_bearing') | int %}
         {% set val = (degrees / 22.5 + 0.5) | int %}
@@ -478,8 +443,6 @@
 
     wind_bearing_cardinal_16_friendly:
       friendly_name: Wind Bearing
-      entity_id:
-        - sensor.dark_sky_wind_bearing
       value_template: >-
         {% set degrees = states('sensor.dark_sky_wind_bearing') | int %}
         {% set val = (degrees / 22.5 + 0.5) | int %}
@@ -503,38 +466,3 @@
         ] %}
 
         {{ directions[(val % 16)] }}
-
-
-#
-# Heat index, if temperature is between 40 and 80 Fahrenheit (or equivalent)
-#
-# - platform: template
-#   sensors:
-#     heat_index_c:
-#       friendly_name: 'Heat Index'
-#       unit_of_measurement: '°C'
-#       entity_id:
-#         - sensor.weather_temperature
-#       value_template: >-
-#         {% set temperature = states('sensor.outside_temperature')|float * 1.8 + 32 %}
-#         {% set humidity = states('sensor.outside_humidity')|float %}
-#         {% if temperature < 80 or humidity < 40 %}
-#           {% set heat_index = states('sensor.outside_temperature') %}
-#         {% else %}
-#           {%
-#             set heat_index = (
-#             -42.379
-#             + 2.04901523 * temperature
-#             + 10.14333127 * humidity
-#             - 0.22475541 * temperature * humidity
-#             - 6.83783 * 10**(-3) * temperature**2
-#             - 5.481717 * 10**(-2) * humidity**2
-#             + 1.22874 * 10**(-3) * temperature**2 * humidity
-#             + 8.5282 * 10**(-4) * temperature * humidity**2
-#             - 1.99 * 10**(-6) * temperature**2 * humidity**2
-#             - 32) / 1.8
-#             | round(0)
-#           %}
-#         {% endif %}
-
-#         {{ heat_index }}

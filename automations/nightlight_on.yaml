@@ -1,7 +1,10 @@
 #
-# Turn on nightlights when appropriate.
+# Turn on nightlights when appropriate
 #
-# Todo: map door sensor state values to binary values.
+# Todo: split motion detectors into their own automation + input_boolean..
+# Todo: map motion sensor state values to binary values.
+#
+# @subscribe input_boolean.night_mode
 #
 - id: nightlight_on
   alias: Nightlight ON

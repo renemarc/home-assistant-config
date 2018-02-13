@@ -1,5 +1,9 @@
 #
-# Turn off the Dehumidifier when it's no longer relevant.
+# Turn off the dehumidifier when it's no longer relevant
+#
+# @subscribe input_boolean.doors_open
+# @subscribe input_boolean.quiet_mode
+# @subscribe input_boolean.windows_open
 #
 - id: dehumidifier_off
   alias: Dehumidifier OFF

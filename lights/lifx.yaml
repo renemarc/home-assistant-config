@@ -1,1 +1,18 @@
+#
+# LIFX smart WiFi lights
+#
+# All devices are discovered by the platform, so no need to manage them here.
+#
+# @see /automations/cct.yaml
+# @see /automations/bed_effect.yaml
+# @see /automations/bed_schedule.yaml
+# @see /automations/ceiling_effect.yaml
+# @see /automations/ceiling_schedule.yaml
+# @see /configure.yaml
+#
+# @link https://www.lifx.com/products/lifx-plus
+# @link https://www.lifx.com/products/lifx-z-with-homekit
+# @link https://home-assistant.io/components/light.lifx/
+# @link https://home-assistant.io/components/scene.lifx_cloud/
+#
 - platform: lifx

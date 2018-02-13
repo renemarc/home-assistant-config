@@ -1,5 +1,5 @@
 #
-# View.
+# View
 #
 switchboard_view:
   view: yes
@@ -14,7 +14,7 @@ switchboard_view:
 
 
 #
-# Groups.
+# Groups
 #
 bed:
   name: Bed

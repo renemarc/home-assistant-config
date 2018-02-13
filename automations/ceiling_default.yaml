@@ -1,5 +1,13 @@
 #
-# Return the ceiling washlights to the default scheduled effect.
+# Return the ceiling wash lights to the default scheduled effect.
+#
+# By removing the manual override, the ceiling lights will automatically fall
+# back to the regularly schedule effect.
+#
+# @subscribe variable.ceiling_effect
+#
+# @see /automations/ceiling_schedule.yaml
+# @see /scenes/lifx_cloud.yaml
 #
 - id: ceiling_default
   alias: Ceiling DEFAULT

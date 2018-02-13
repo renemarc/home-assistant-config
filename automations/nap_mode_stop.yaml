@@ -1,5 +1,9 @@
 #
-# When someone ends their nap.
+# When someone ends their nap
+#
+# @subscribe input_boolean.night_mode
+#
+# @publish input_boolean.nap_mode
 #
 - id: nap_mode_stop
   alias: Nap mode STOP

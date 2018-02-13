@@ -1,6 +1,14 @@
 #
 # Public Transit
 #
+# @see /custom_components/sensor/gtfs.py
+# @see /appdaemon/dashboards/Main.dash
+# @see /groups/default.yaml
+# @see /customize.yaml
+#
+# @link http://gtfs.org/
+# @link https://home-assistant.io/components/sensor.gtfs/
+#
 - platform: gtfs
   name: 'Home to Metro'
   origin: !secret gtfs_origin_1
@@ -52,8 +60,6 @@
     home_to_metro_countdown:
       friendly_name: Bus to Metro
       icon_template: mdi:bus
-      entity_id:
-        - sensor.home_to_metro
       value_template: >-
         {% set countdown = states('sensor.home_to_metro') | int %}
         {% if countdown > 60 %}
@@ -70,8 +76,6 @@
     home_to_metro_2_countdown:
       friendly_name: Bus to Metro 2
       icon_template: mdi:bus
-      entity_id:
-        - sensor.home_to_metro_2
       value_template: >-
         {% set countdown = states('sensor.home_to_metro_2') | int %}
         {% if countdown > 60 %}
@@ -88,8 +92,6 @@
     home_to_metro_3_countdown:
       friendly_name: Bus to Metro 3
       icon_template: mdi:bus
-      entity_id:
-        - sensor.home_to_metro_3
       value_template: >-
         {% set countdown = states('sensor.home_to_metro_3') | int %}
         {% if countdown > 60 %}
@@ -106,8 +108,6 @@
     home_to_market_countdown:
       friendly_name: Bus to Market
       icon_template: mdi:bus
-      entity_id:
-        - sensor.home_to_market
       value_template: >-
         {% set countdown = states('sensor.home_to_market') | int %}
         {% if countdown > 60 %}
@@ -124,8 +124,6 @@
     home_to_market_2_countdown:
       friendly_name: Bus to Market 2
       icon_template: mdi:bus
-      entity_id:
-        - sensor.home_to_market_2
       value_template: >-
         {% set countdown = states('sensor.home_to_market_2') | int %}
         {% if countdown > 60 %}
@@ -142,8 +140,6 @@
     home_to_market_3_countdown:
       friendly_name: Bus to Market 3
       icon_template: mdi:bus
-      entity_id:
-        - sensor.home_to_market_3
       value_template: >-
         {% set countdown = states('sensor.home_to_market_3') | int %}
         {% if countdown > 60 %}

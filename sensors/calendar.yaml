@@ -1,11 +1,19 @@
 #
 # Moon phases
 #
-- platform: moon
+# Todo: verify the need for dis disabled snesor.
+#
+# @link https://home-assistant.io/components/sensor.moon/
+#
+# - platform: moon
 
 
 #
 # Time & Date
+#
+# Manipulates time and dates to make them more human-friendly.
+#
+# @link https://home-assistant.io/components/sensor.time_date/
 #
 - platform: time_date
   display_options:
@@ -44,8 +52,6 @@
     time_friendly:
       friendly_name: Time
       icon_template: mdi:clock
-      entity_id:
-        - sensor.time
       value_template: >-
         {% set hour = states('sensor.time').split(':')[0] | int %}
         {% set minutes = states('sensor.time').split(':')[1] %}
@@ -54,6 +60,8 @@
 
     after_tomorrow:
       friendly_name: After Tomorrow
+      entity_id:
+        - sensor.date
       value_template: >-
         {% set timestamp = as_timestamp(now()) + 2*24*60*60 %}
 
@@ -62,6 +70,10 @@
 
 #
 # Number of days in a month
+#
+# Used to calculate remaining bandwidth capacity from ISP.
+#
+# @see /sensors/isp.yaml
 #
 - platform: template
   sensors:
@@ -99,8 +111,6 @@
   sensors:
     sun_state:
       friendly_name: Sun
-      entity_id:
-        - sun.sun
       icon_template: >-
         {% if is_state('sun.sun', 'above_horizon') %}
           mdi:weather-sunny

@@ -83,7 +83,7 @@ database_size:
 
 logfile_size:
     widget_type: sensor
-    title: Logfile
+    title: Log File
     entity: sensor.logfile_size
 
 cpu_temp:

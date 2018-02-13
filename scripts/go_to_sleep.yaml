@@ -6,10 +6,6 @@ go_to_sleep:
         name: EVENT
         message: "Good Night! Turning lights and noises off."
 
-    # - service: notify.group
-    #   data:
-    #     message: "Good Night! Turning lights and noises off."
-
     # Fade out smart lights anywhere but near bed.
     - service: light.turn_off
       data:
@@ -36,17 +32,6 @@ go_to_sleep:
         entity_id:
           - switch.bedroom_fan
           - switch.dehumidifier
-
-    # # Allow time to hit the hay.
-    # - delay:
-    #     seconds: 30
-
-    # # Turn off bed lights.
-    # - service: switch.turn_off
-    #   data:
-    #     entity_id:
-    #       - switch.nightstand_light
-    #       - switch.bedside_light
 
     # Enable night mode.
     - service: input_boolean.turn_on

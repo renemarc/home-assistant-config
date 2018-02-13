@@ -1,4 +1,9 @@
+#
 # Kodi
+#
+# @link https://kodi.tv/
+# @link https://home-assistant.io/components/media_player.kodi/
+#
 - platform: kodi
   name: Kodi
   host: !secret kodi_host
@@ -8,10 +13,16 @@
   password: !secret kodi_password
   enable_websocket: true
 
-# # Plex
+#
+# Plex
+#
+# Todo: revise the buggy connection to this media player.
+#
+# @link https://www.plex.tv/
+# @link https://home-assistant.io/components/media_player.plex/
+#
 # - platform: plex
 #   name: Plex
-#   entity_namespace: 'plex'
 #   include_non_clients: true
 #   scan_interval: 5
 #   show_all_controls: false

@@ -1,5 +1,12 @@
 #
-# Turn on the dehumidifier when appropriate if humidify levels are too high.
+# Turn on the dehumidifier when appropriate if humidify levels are too high
+#
+# Only if doors and windows are closed, and when we're allowed to mame some
+# noise.
+#
+# @subscribe input_boolean.doors_open
+# @subscribe input_boolean.quiet_mode
+# @subscribe input_boolean.windows_open
 #
 - id: dehumidifier_on
   alias: Dehumidifier ON
@@ -7,7 +14,7 @@
     # Humidity is getting too high.
     - platform: numeric_state
       entity_id: sensor.average_humidity
-      above: 45
+      above: 50
 
   condition:
     # It's the afternoon.

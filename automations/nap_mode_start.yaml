@@ -1,8 +1,12 @@
 #
-# When someone takes a nap.
+# When someone takes a nap
 #
 # Should lower lights and minimize noises without preventing someone else
 # from being active.
+#
+# @publish input_boolean.nap_mode
+#
+# @see /automations/quiet_mode_start.yaml
 #
 - id: nap_mode_start
   alias: Nap mode START

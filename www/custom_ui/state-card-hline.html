@@ -1,13 +1,13 @@
 <!--
 Horizontal line state card for Home Assistant
 v20180211
-`-->
+-->
 <dom-module id="state-card-hline">
 <template>
 <style>
 .hrdiv {
-   height: calc(100% + 32px);
-   width: calc(100% + 32px);
+   height: calc(100% + 32px); 
+   width: calc(100% + 32px); 
    margin: -16px;
    margin-top: -8px;
 }
@@ -38,7 +38,7 @@ class HLine extends Polymer.Element {
     };
   }
 
-  computeConfig(stateObj) {
+  computeConfig(stateObj) {     
     return stateObj.attributes.config;
   }
   ready() {

@@ -1,5 +1,10 @@
 #
-# Change Nanoleaf Aurora's brightness.
+# Change Nanoleaf Aurora's brightness
+#
+# @subscribe variable.aurora_brightness
+#
+# @see /automations/aurora_schedule.yaml
+# @see /lights/nanoleaf.yaml
 #
 - id: aurora_brightness
   alias: Aurora BRIGHTNESS
@@ -9,6 +14,7 @@
       entity_id: variable.aurora_brightness
 
   action:
+    # Set the Aurora's brightness according to the new level.
     - service: light.turn_on
       data_template:
         entity_id: light.aurora
