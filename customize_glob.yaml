@@ -57,6 +57,8 @@ sensor.*_fan:
   group:
     group.bedroom:
       friendly_name: Fan
+sensor.hline_*:
+  custom_ui_state_card: state-card-hline
 sensor.*_humidity:
   group:
     group.bedroom:

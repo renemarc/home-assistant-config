@@ -172,6 +172,13 @@ Configuration for Home Assistant running Hass.io on a Raspberry Pi for a one bed
 - **[RTL_433 to MQTT Bridge](https://github.com/james-fry/hassio-addons/)** to receive and decode AcuRite radio signals.
 - **[Samba share](https://home-assistant.io/addons/samba/)** for configuration file sharing.
 
+### Community components and widgets
+- **[Custom UI elements](https://github.com/andrey-git/home-assistant-custom-ui)** to improve the display of sensors and jazz up the interface a bit.
+- **[Horizontal line state card](https://github.com/covrig/homeassistant-hline)** to visually separate long lists of sensors.
+- **[Text-only state card](https://community.home-assistant.io/t/display-only-text-in-card/20536/26)** for wordy sensor states.
+- **[Nanoleaf Aurora](https://github.com/software-2/ha-aurora)** ([Fork](https://github.com/Oro/home-assistant/tree/light-aurora)) component.
+- **[Lightpack](https://github.com/kklemm91/Lightpack-HASS)** component.
+
 ## Thanks
 
 Kudos to:

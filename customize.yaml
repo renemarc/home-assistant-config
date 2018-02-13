@@ -251,38 +251,23 @@ light.underbed:
     pin: true
     report_when_not_changed: false
 
+
 #
 # Sensors.
 #
-sensor.bedroom_multisensor_battery:
-  group:
-    group.battery:
-      friendly_name: Bedroom
-      icon: mdi:hotel
-    group.bedroom:
-      friendly_name: Multisensor Battery
-sensor.front_door_sensor_battery:
-  group:
-    group.battery:
-      friendly_name: Front Door
-      icon: mdi:door
-    group.kitchen:
-      friendly_name: Front Door Battery
-sensor.lounge_multisensor_battery:
-  group:
-    group.battery:
-      friendly_name: Lounge
-      icon: mdi:sofa
-    group.lounge:
-      friendly_name: Multisensor Battery
 sensor.bing_wallpaper_info:
   custom_ui_state_card: state-card-value_only
 sensor.date_friendly:
   extra_data_template: >-
     ${entities['sensor.day'].state}
+sensor.hline_dashed:
+  config:
+    width: 90
+    height: 0
+    backgroundcolor: inherit
+    bordertop: '1px dashed silver'
 sensor.good_vibes:
   custom_ui_state_card: state-card-value_only
-
 
 # Sensors: Climate.
 sensor.average_humidity:
@@ -364,6 +349,29 @@ sensor.aqi_particles_friendly:
 sensor.uv_friendly:
   extra_badge:
     entity_id: sensor.uv
+
+# Sensors: Power.
+sensor.bedroom_multisensor_battery:
+  group:
+    group.battery:
+      friendly_name: Bedroom
+      icon: mdi:hotel
+    group.bedroom:
+      friendly_name: Multisensor Battery
+sensor.front_door_sensor_battery:
+  group:
+    group.battery:
+      friendly_name: Front Door
+      icon: mdi:door
+    group.kitchen:
+      friendly_name: Front Door Battery
+sensor.lounge_multisensor_battery:
+  group:
+    group.battery:
+      friendly_name: Lounge
+      icon: mdi:sofa
+    group.lounge:
+      friendly_name: Multisensor Battery
 
 # Sensors: System.
 sensor.cpu_used:
