@@ -5,7 +5,9 @@
 
 **[TP-Link smart plug mini outlets](http://www.tp-link.com/us/products/details/cat-5516_HS105.html)** are used to control dumb devices.
 
-![TP-Link HS105 Smart Wi-Fi Plug Mini outlets](../screenshots/device-tplink-mini.jpg)
+<p align="center">
+    <img src="../screenshots/device-tplink-mini@2x.jpg" alt="TP-Link HS105 Smart Wi-Fi Plug Mini outlets" width="274">
+</p>
 
  They were first setup with the manufaturer's [Kasa app](https://www.tp-link.com/us/home-networking/smart-home/kasa.html). Then they were assigned static IP addresses in my router to avoid occasional drops due to DHCP renewal limbo.
  

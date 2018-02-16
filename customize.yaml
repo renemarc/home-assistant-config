@@ -511,8 +511,6 @@ script.go_to_sleep:
   icon: mdi:weather-night
 script.wake_up:
   icon: mdi:weather-sunny
-  extra_data_template: >-
-    ${entities['sensor.wind_scale_friendly'].state}
 
 
 #

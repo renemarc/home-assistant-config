@@ -6,15 +6,6 @@
 
 
 #
-# Scripts
-#
-script.*:
-  custom_ui_state_card: state-card-custom-ui
-  extra_data_template: >-
-    return attributes.last_triggered ? window.hassUtil.relativeTime(new Date(attributes.last_triggered)) : null;
-
-
-#
 # Automations
 #
 automation.*:

@@ -7,21 +7,27 @@ These third-party state cards are used to adapt the looks of Home Assistant sens
 
 **[Custom UI elements](https://github.com/andrey-git/home-assistant-custom-ui)** help improve the display of sensors and jazz up the interface a bit.
 
-[![Custom UI + Value-only state card](../../screenshots/ui-current-conditions.png)](../../screenshots/ui-current-conditions@2x.png)
+<p align="center">
+    <img src="../../screenshots/ui-current-conditions@2x.png" alt="Custom UI + Value-only state card" width="325">
+</p>
 
 
 ## Horizontal line state card
 
 **[Horizontal line state card](https://github.com/covrig/homeassistant-hline)** to visually separate long lists of sensors.
 
-[![Custom UI + Horizontal line state card](../../screenshots/ui-horizontal-line.png)](../../screenshots/ui-horizontal-line@2x.png)
+<p align="center">
+    <img src="../../screenshots/ui-horizontal-line@2x.png" alt="Custom UI + Horizontal line state card" width="325">
+</p>
 
 
 ## Value-only state card
 
 **[Value-only state card](https://community.home-assistant.io/t/display-only-text-in-card/20536/26)** for wordy sensor states.
 
-[![Value-only state card](../../screenshots/ui-weekly-forecast.png)](../../screenshots/ui-weekly-forecast@2x.png)
+<p align="center">
+    <img src="../../screenshots/ui-weekly-forecast@2x.png" alt="Value-only state card" width="325">
+</p>
 
 
 ## Customization

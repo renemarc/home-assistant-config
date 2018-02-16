@@ -7,24 +7,24 @@ LIFX devices are directly controlled by WiWi-FiFi, so no bridges are needed. The
 
 ### LIFX+ A19 RGBW light bulbs
 
-These **[LIFX+ A19 RGBW](https://www.lifx.com/products/lifx-plus)** Homekit-compatible light bulbs have a few good points compared to other offerins I was looking at:
-- Their colors are vivid and have 1200 lumens of goodness.
+These **[LIFX+ A19 RGBW](https://www.lifx.com/products/lifx-plus)** Homekit-compatible light bulbs have a few good points compared to other offerings I was looking at:
+- Their colours are vivid and have 1200 lumens of goodness.
 - They can be dimmed quite low.
 - They are safe to use in humid environments.
 - Each has an optional IR illuminator feature to help out security cameras.
-- Their color can be changed even when disabled, which is ideal to have an automation prepare them for the perfect color and brightness for the next time they are turned on.
+- Their colour can be changed even when disabled, which is ideal to have an automation prepare them for the perfect colour and brightness for the next time they are turned on.
 
 They do have couple of minor annoyances however:
 - They're expensive. Seriously, $100 CAD **each**? Better wait for a special.
-- There have a slight high-pitch noise. While it feels more noticeable in higher-frequency brightness levels, it occurs more or less randomly. Some of my luminaires increased this noise, so I only use these bulbs where I cannot hear them regularly.
+- There have a slight high-pitch noise. While it feels more noticeable in higher-frequency brightness levels, it occurs more or less randomly. Some of my light fixtures increased this noise, so I only use these bulbs where I cannot hear them regularly.
 - They sometimes drop off the network for a few seconds, despite having static IP addresses assigned. Not cool.
 
-I have their white color dradually shift from daylight to warm white with varying intensity based on the time of day in [`/automations/cct.yaml`](../automations/cct.yaml). They also serve as nightlights through [`/automations/nightlight_on.yaml`](../automations/nightlight_on.yaml), IR illuminators and for some alerts like [`/automations/front_door_opened.yaml`](../automations/front_door_opened.yaml).
+I have their white colour gradually shift from daylight to warm white with varying intensity based on the time of day in [`/automations/cct.yaml`](../automations/cct.yaml). They also serve as nightlights through [`/automations/nightlight_on.yaml`](../automations/nightlight_on.yaml), IR illuminators and for some alerts like [`/automations/front_door_opened.yaml`](../automations/front_door_opened.yaml).
 
 
 ### LIFX Z RGBW LED strips
 
-**[LIFX Z RGBW strips](https://www.lifx.com/products/lifx-z)** are used as ceiling wash lights and bed underglow lights. These are not the newer HomeKit versions, but the non-Homekit 3-meters versions were on clearance! Each kit comes with 1-meter strips, and up to 10 strips can be used per 24v 3A controller. Still a bit pricier than DIY solutions, but the design simplicity, time savings, UL-rating and clearance price make this a no-brainer. Plus they look better and brighter than HUE strips thanks to the added white LEDs!
+**[LIFX Z RGBW strips](https://www.lifx.com/products/lifx-z)** are used as ceiling wash lights and bed underglow lights. These are not the newer HomeKit versions, but the non-HomeKit 3-meters versions were on clearance! Each kit comes with 1-meter strips, and up to 10 strips can be used per 24v 3A controller. Still a bit pricier than DIY solutions, but the design simplicity, time savings, UL-rating and clearance price make this a no-brainer. Plus they look better and brighter than HUE strips thanks to the added white LEDs!
 
 To make the ceiling strips glow prettily in unison:
 1. First, ceiling strips are organized in a dedicated group using the LIFX app.
@@ -34,7 +34,7 @@ To make the ceiling strips glow prettily in unison:
 1. Scenes can then either be changed manually using an **input_select** with [`/automations/ceiling_select.yaml`](../automations/ceiling_select.yaml) or automatically throughout the day with [`/automations/ceiling_schedule.yaml`](../automations/ceiling_schedule.yaml).
 1. Finally, to make them extra special, the LIFX app is used to apply a slow motion effect to each LED strip, so that colors gradually move/fade along the strips. So pretty! :-)
 
-Same goes for the underbed glow.
+Same goes for the bed underglow lights.
 
 This setup works well, but the strips themselves are a bit buggy even before being used with Home Assistant:
 - Sometimes the motion stops in one or more strips. I have to use the LIFX app to kick them back into motion.
@@ -43,7 +43,7 @@ This setup works well, but the strips themselves are a bit buggy even before bei
 
 ## Lightpack dynamic TV bias light
 
-The original [Lightpack](https://store.lightpack.tv) is a lighting device placed behind a monitor or computer-connected television screen to provide an Ambilight-like animated glow. Controlled by the [Prismatik](https://github.com/woodenshark/Lightpack) software on an attached computer, it projects lights on the wall in tune with the image displayed on the screen. It helps to reduce eye strain and makes movies and videogames that much more immersive. Plus it looks really cool when displaying video artwork!
+The original [Lightpack](https://store.lightpack.tv) is a lighting device placed behind a monitor or computer-connected television screen to provide an Ambilight-like animated glow. Controlled by the [Prismatik](https://github.com/woodenshark/Lightpack) software on an attached computer, it projects lights on the wall in tune with the image displayed on the screen. It helps to reduce eye strain and makes movies and video games that much more immersive. Plus it looks really cool when displaying video artwork!
 
 For my HTPC I use a 100-LEDs DIY build of the [Adalight](https://learn.adafruit.com/adalight-diy-ambient-tv-lighting) ambient TV light project by Adafruit that I crafted years ago. This Adalight device is also compatible with Prismatik. The open source software's development was halted a while back however, but [a kind soul has since forked the project](https://github.com/psieg/Lightpack) and keeps on improving it.
 
@@ -58,12 +58,12 @@ The 12v-24v LED controllers receive their commands via a [proprietary RF protoco
 
 In this case I use a USB-powered [MiLight iBox2 Wifi bridge](http://www.limitlessled.com/shop/wifi-bridge-v6/) to send signals to four [FUT035 CCT controllers](https://www.futlight.com/productdetails.aspx?id=293&typeid=146), each in their own group, that are connected to custom-cut UL-Listed [high-CRI CCT LED strips](http://ledmontreal.com/en/led-strips-without-accessories/24v-led-strips-without-accessories/cct-adjustable-led-strip.html) encased in [light diffusing aluminum profiles](http://ledmontreal.com/en/led-bars-and-profiles-led-montreal/continuous-lighting-aluminum-profile.html) and placed in various locations in the kitchen. 24v DC power is provided by UL-Listed [plug-in and hard-wired adapters](http://ledmontreal.com/en/12v-24v-power-supplies/24v-power-supplies/).
 
-The lights are controlled via a [Flic smart button](https://flic.io). Their white color slowly changes from daylight to warm white depending on the time of day, and their brightness is also gradually altered on a schedule. These changes are subtle but noticeable, since the controllers only have limited precision.
+The lights are controlled via a [Flic smart button](https://flic.io). Their white colour slowly changes from daylight to warm white depending on the time of day, and their brightness is also gradually altered on a schedule. These changes are subtle but noticeable, since the controllers only have limited precision.
 
 
 ## Nanoleaf Aurora smart light panels
 
-What an awesome decorative lighting kit! Makes any place feel like a sofisticated café or designer cocktail bar.
+What an awesome decorative lighting kit! Makes any place feel like a sophisticated café or designer cocktail bar.
 
 The [Aurora](https://nanoleaf.me) is managed directly through WiFi, so no need for a hub, and is HomeKit compatible. It is integrated into Home Assistant through a third party component in [`/custom_components/light/aurora.yaml`](../custom_components/light/aurora.yaml) (actually, I am using this forked version compatible with Hass.io)
 

@@ -9,12 +9,16 @@
 Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io](https://home-assistant.io/hassio/) on a Raspberry Pi for a one bedroom apartment, offering convenience automations over lights and climate while providing multiple intuitive user controls.
 
 ## Contents
-1. **[TL;DR](#tldr)**.
-1. **[Overview](#overview):** [User stories](#user-stories), [Goals](#goals). 
-1. **[Key features](#Goals):** [Climate control](#climate-control), [Weather report](#weather-report), [Lighting control](#lighting-control), [Presence](#presence), [Scenes and actions](#scenes-and-actions), [General information](#general-information), [Human interfaces](#human-interfaces). 
-1. **[Task list](#task-list):** [Work in progress](#work-in-progress), [Backlog](#backlog), [Wishlist](wWishlist). 
-1. **[Setup](#setup):** [System and interfaces](#system-and-interfaces), [Devices and sensors](#devices-and-sensors), [Software](#software), [Hass.io add-ons](#hassio-add-ons), [Community components and widgets](#community-components-and-widgets). 
-1. **[Thanks](#thanks)**.
+1. **[TL;DR](#tldr)**
+1. **[Overview](#overview)**
+    [User stories](#user-stories) | [Goals](#goals)
+1. **[Key features](#Goals)**
+    [Climate control](#climate-control) | [Weather report](#weather-report) | [Lighting control](#lighting-control) | [Presence](#presence) | [Scenes and actions](#scenes-and-actions) | [General information](#general-information) | [Human interfaces](#human-interfaces)
+1. **[Task list](#task-list)**
+    [Work in progress](#work-in-progress) | [Backlog](#backlog) | [Wishlist](wWishlist)
+1. **[Setup](#setup)**
+    [System and interfaces](#system-and-interfaces) | [Devices and sensors](#devices-and-sensors) | [Software](#software) | [Hass.io add-ons](#hassio-add-ons) | [Community components and widgets](#community-components-and-widgets)
+1. **[Thanks](#thanks)**
 
 ## TL;DR
 
@@ -37,7 +41,7 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **Intuitive user interfaces:** One look as a group of sensors/switches should be sufficient for anyone to understand the current states and how to operate an interface.
 - **Redundant controls:** Multiple interfaces should be able to control devices without interference, and state changes from manual interventions or dedicated manufacturer apps should be tracked when possible.
 - **No information overload:** Provide just enough insights to get an ideas of what's going on. And no need for data that's best consumed on more interactive devices (like stock prices, Steam community status...)
-- **Not everything should be networked:** Bathroom fan, pantry and laundry room lights have their independent motion sensors and that's a good thing. Same independence goes for the smoke detector: I sure don't want to require extensive skin grafts because I forgot an extra space in a YAML file. Eek!
+- **Not everything should be networked:** Bathroom fan, pantry and laundry room lights have their independent motion sensors and that's a good thing. Same independence goes for the smoke detector: I sure don't want to require extensive skin grafts because I forgot an extra space in a YAML file. _Eek!_
 - **No Alexa/Cortana/Google Voice:** I don't want to have advertising agencies, online stores, or other AI-feeding Big Brother tech-monsters listening in to everything we say just for the dubious convenience of turning on a light using my voice.
 
 
@@ -47,7 +51,7 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **Temperature monitoring**, averaged to compensate for sensor calibration inaccuracies, then rounded.
 - **Humidity monitoring**, also averaged and rounded.
 - **Toggle dehumidifier when needed**, based on humidity averaged from multiple sensors, and only during the afternoon so not to bother anyone.
-- **Turn dehumidifier off when windows/doors are opened**, instantly for windows and after 5 minutes for doors.
+- **Turn dehumidifier off when windows/doors are opened**, instantly for windows and after a few minutes for doors.
 - **Low/High humidity status and alerts**, in case something is wrong with the dehumidifier or the (eventual) humidifier.
 - **Mold conditions status and alert**, in case dehumidifier is full/overwhelmed or someone transformed the place into a steam room.
 
@@ -55,21 +59,23 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **Easy to read status and forecasts** using Dark Sky data and only showcasing parameters that actually matter, shown in obvious ways.
 - **Outdoor quality monitoring** with numeric levels and human-friendly categorization for ozone, carbon monoxide, nitrogen dioxide, 2.5μm particulate matter and UV light, averaged from multiple surrounding public local stations.
 - **Weather radar and satellite maps** for [local rain and snow](https://weather.gc.ca/radar/index_e.html) from Environment Canada and [regional air masses](http://www.nhc.noaa.gov/satellite.php) from the U.S. National Oceanic and Atmospheric Administration.
+- See [`/groups`](groups) and [`/appdeamon/dashboards`](appdeamon/dashboards).
 
 ### Lighting control
-- **Control for all pluggable lights**, dumb ones and smart ones.
+- **Control for all pluggable lights**, smart ones at [`/lights`](lights) and dumb ones using [`/switches`](switches).
 - **Nanoleaf Aurora control**:
     + Manual theme selection.
     + Automatically rotate through device-based themes based on time of day (unless manually selected above).
-- **LIFX Z under bed and ceiling wash lights control**:
+- **LIFX Z bed underglow lights and ceiling wash lights control**:
     + Manual theme selection.
     + Automatically rotate through cloud-based themes based on time of day (unless manually selected above).
 - **Automatically correlated color temperature (CCT)**, for [f.lux](https://justgetflux.com/)-like white temperature shift to gradually remove blue light based on a custom color and brightness curve and preset active hours, not simply based on the sun otherwise Canadian winters would be pretty yellow.
 - **Presence-based nightlights**, where strategic lights fade in, dimmed very low, when walking around at night, say when someone wakes up to go the bathroom ...again.
+- See [`/automations`](automations).
 
 ### Presence
-- **Front door binary sensor**, to know if someone left the door open.
-- **Front door indicator in shower** where the shower stall's light changes color briefly and subtly when the front door opens/closes, to indicate a showering partner that their better half has left or just came in.
+- **Opened door binary sensor**, to know if someone left a door open.
+- **Opened door indicator in shower** where the shower stall's light changes color briefly and subtly when the front door opens/closes, to indicate a showering partner that their better half has left or just came in.
 
 ### Scenes and actions
 - **Good morning action** where all lights turn on gradually, and noise-making devices are allowed to run if needed.
@@ -78,7 +84,7 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **Movie scene** turns on ambiance lighting and dims smart lights when playing a movie, then returns to standard automations when pausing/stopping.
 
 ### General information
-- **[Local bus schedules](https://home-assistant.io/components/sensor.gtfs/)** with the next 3 departures.
+- **[Local bus schedules](https://home-assistant.io/components/sensor.gtfs/)** with the next 3 departures. See [`/gtfs`](gtfs) for optimization hints.
 - **[Doomsday Clock](https://github.com/renemarc/home-assistant-custom-components)** in case egocentric psychopaths keep on playing Russian roulette with humanity's future. 
 - **Network status monitoring** for latency, upspeed, downspeed.
 - **Home Assistant status monitoring** for geek cred with average load, RAM use, disk use, uptime, and update availability.
@@ -86,8 +92,8 @@ This is a fully documented working configuration for Home Assistant, with screen
 ### Human interfaces
 - **Flic button on nightstand** for trigerring _good morning_ and _nap time_ actions, as well as bedroom light control, depending on current state and click sequence.
 - **[Homebridge](https://github.com/nfarina/homebridge)** for using some key sensors and devices with iPhones (only if using the same VLAN though).
-- **[Home Assistant Companion](https://itunes.apple.com/us/app/home-assistant-companion/id1099568401?mt=8) iPhone app** for full UI access in the palm of my hand. Muahahaha!
-- **[HADashboard](https://home-assistant.io/docs/ecosystem/hadashboard/)** for wall-mounted tablet, featuring indoor sensors reports, transit schedules, weather forecast and radar/sattelite maps, wrapped in an obvious navigation scheme for much UX goodness. You'll like!
+- **[Home Assistant Companion](https://itunes.apple.com/us/app/home-assistant-companion/id1099568401?mt=8) iPhone app** for full UI access in the palm of my hand. _Muahahaha!__
+- **[HADashboard](https://home-assistant.io/docs/ecosystem/hadashboard/)** for wall-mounted tablet, featuring indoor sensors reports, transit schedules, weather forecast and radar/sattelite maps, wrapped in an obvious navigation scheme for much UX goodness. Have a look at [`/appdeamon/dashboards`](appdeamon/dashboards), you'll like!
 
 
 ### Task list
@@ -149,7 +155,7 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **[NooElec NESDR SMArt](http://www.nooelec.com/store/nesdr-smart.html)** RTL-SDR (software-defined radio) USB dongle for reading AcuRite sensors.
 - **[Plugable USB Bluetooth Adapter](https://plugable.com/products/usb-bt4le/)** for Bluetooth Low Energy connections.
 - **[Milight iBox2 Wifi Bridge](https://www.futlight.com/productdetails.aspx?id=239&typeid=125)** for kitchen RF LED strip controllers, using [LimitlessLED](https://home-assistant.io/components/light.limitlessled/) integration.
-- **[Acer Iconia One 10" tablet](https://www.acer.com/ac/en/CA/content/series/iconiaone10)** (1280x800 IPS screen) wallmounted as a kiosk.
+- **[Acer Iconia One 10" tablet](https://www.acer.com/ac/en/CA/content/series/iconiaone10)** (1280x800 IPS screen) wallmounted as a kiosk. See [`/appdaemon/dashboards/`](appdaemon/dashboards)
 
 ### Devices and sensors
 - **[Nanoleaf Aurora](https://nanoleaf.me)** light panels kit. Pretty!

@@ -1,6 +1,6 @@
 # Sensors
 
-Eash YAML file groups together all related sensors and contains details on usage.
+Each YAML file groups together all related sensors and contains details on usage.
 
 - [`calendar.yaml`](calendar.yaml): Everything time related.
 - [`climate.yaml`](climate.yaml): Indoor climate conditions.
@@ -8,7 +8,7 @@ Eash YAML file groups together all related sensors and contains details on usage
 - [`health.yaml`](health.yaml): [Atmospheric pollution](https://waqi.info/), UV Index and [chances of Armageddon](https://thebulletin.org/timeline).
 - [`image.yaml`](image.yaml): Data sources for some [`/cameras`](../cameras).
 - [`isp.yaml`](isp.yaml): Internet service provider consumption details.
-- [`light.yaml`](light.yaml): Reports on loaded effects for smart ligths.
+- [`light.yaml`](light.yaml): Reports on loaded effects for smart lights.
 - [`misc.yaml`](misc.yaml): Everything else.
 - [`network.yaml`](network.yaml): Internet connection speed and latency testing. 
 - [`power.yaml`](power.yaml): Battery states.
@@ -18,7 +18,7 @@ Eash YAML file groups together all related sensors and contains details on usage
 
 ## Usage
 
-Some sensors are used for information display only in [groups](../groups) and [dashboards](../appdaemon/dashboards), while others are also used for [automations](../automations).
+Some sensors are used for information display only in [`/groups`](../groups) and [`/appdaemon/dashboards`](../appdaemon/dashboards), while others are also used for [`/automations`](../automations).
 
 
 ## Customization

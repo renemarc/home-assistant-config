@@ -6,6 +6,8 @@
 #
 aurora_effect:
   name: Aurora Effect
+  icon: mdi:star
+  initial: Auto
   options:
    - Auto
    - Be Productive
@@ -45,8 +47,6 @@ aurora_effect:
    - Tron2
    - Tropical Waterfall
    - Vibrant Sunrise
-  initial: Auto
-  icon: mdi:star
 
 
 #
@@ -57,14 +57,14 @@ aurora_effect:
 #
 bed_effect:
   name: Bed Underglow Lights Effect
+  icon: mdi:motel
+  initial: Auto
   options:
    - Auto
    - Neon
    - Reading
    - Relaxing
    - Warming
-  initial: Auto
-  icon: mdi:motel
 
 
 #
@@ -75,6 +75,8 @@ bed_effect:
 #
 ceiling_effect:
   name: Ceiling Wash Lights Effect
+  icon: mdi:home
+  initial: Auto
   options:
    - Auto
    - Blissful
@@ -92,5 +94,3 @@ ceiling_effect:
    - Soothing
    - Tranquil
    - Warming
-  initial: Auto
-  icon: mdi:home

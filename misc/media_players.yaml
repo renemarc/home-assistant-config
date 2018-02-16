@@ -13,10 +13,11 @@
   password: !secret kodi_password
   enable_websocket: true
 
+
 #
 # Plex
 #
-# Todo: revise the buggy connection to this media player.
+# Todo: Investigate the buggy connection to this media player.
 #
 # @link https://www.plex.tv/
 # @link https://home-assistant.io/components/media_player.plex/

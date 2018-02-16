@@ -16,7 +16,7 @@ Essentially, using this sensor leads to lags and hangs in Home Assistant while t
 
 ## Speed-up solutions
 
-The way to regain speed is to add missing indexes and delete all schedule data for every stops you don't need. You'll end up with a speedy database that can handle multiple queries per second. [This thread](https://community.home-assistant.io/t/faster-gtfs-schedule-lookups/37624) discussses it.
+The way to regain speed is to add missing indexes and delete all schedule data for every stops you don't need. You'll end up with a speedy database that can handle multiple queries per second. [This thread](https://community.home-assistant.io/t/faster-gtfs-schedule-lookups/37624) discusses it.
 
 Ideally do perform the following steps on a better machine, like a Docker build of Home Assistant on your desktop computer. Mind you, you could still use a Raspberry Pi but it will just take longer to do all those steps and it will bore you to death.
 
@@ -57,4 +57,4 @@ I use a modified GTFS sensor at [`/custom_components/sensor/gtfs.py`](../custom_
 
 ## Customization
 
-Customization for the GTFS sensor is done in [`/customize.yaml`](../customize.yaml). For privacy as well as for development and testing purposes any sensitive data is hidden and referenced in the non-commited [`/secrets.yaml`](../secrets-dummy.yaml) file.
+Customization for the GTFS sensor is done in [`/customize.yaml`](../customize.yaml). For privacy as well as for development and testing purposes any sensitive data is hidden and referenced in the non-committed [`/secrets.yaml`](../secrets-dummy.yaml) file.
