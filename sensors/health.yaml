@@ -85,9 +85,6 @@
       friendly_name: PM2.5
       icon_template: mdi:factory
       unit_of_measurement: 'PPM'
-      entity_id:
-        - sensor.waqi_rivesud_de_montreal_quebec_canada
-        - sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada
       value_template: >-
         {% set levels = 0 %}
         {% set counter = 0 %}
@@ -140,9 +137,6 @@
       friendly_name: Ozone
       icon_template: mdi:earth
       unit_of_measurement: 'PPM'
-      entity_id:
-        - sensor.waqi_rivesud_de_montreal_quebec_canada
-        - sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada
       value_template: >-
         {% set levels = 0 %}
         {% set counter = 0 %}
@@ -195,9 +189,6 @@
       friendly_name: Nitrogen Dioxide
       icon_template: mdi:car
       unit_of_measurement: 'PPM'
-      entity_id:
-        - sensor.waqi_rivesud_de_montreal_quebec_canada
-        - sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada
       value_template: >-
         {% set levels = 0 %}
         {% set counter = 0 %}
@@ -250,9 +241,6 @@
       friendly_name: Carbon Monoxide
       icon_template: mdi:fire
       unit_of_measurement: 'PPM'
-      entity_id:
-        - sensor.waqi_rivesud_de_montreal_quebec_canada
-        - sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada
       value_template: >-
         {% set levels = 0 %}
         {% set counter = 0 %}

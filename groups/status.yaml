@@ -23,7 +23,6 @@ battery:
     - sensor.bedroom_multisensor_battery
     - sensor.lounge_multisensor_battery
 
-
 humidity:
   name: Humidity
   entities:
