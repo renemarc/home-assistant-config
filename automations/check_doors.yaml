@@ -19,5 +19,5 @@
     # Warn someone to take action.
     - service: notify.group
       data:
-        title: 'Security issue'
+        title: "Home security issue"
         message: "A door has been left open for too long."

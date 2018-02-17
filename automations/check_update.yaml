@@ -18,5 +18,7 @@
     # Send notification to owner.
     - service: notify.group
       data:
-        title: "Home Assistant {{ states('updater.updater') }} is available."
-        message: "Installed version: {{ states('sensor.current_version') }}"
+        title: "Home Assistant update"
+        message: >-
+          Version {{ states('updater.updater') }} is available.
+          Installed version: {{ states('sensor.current_version') }}

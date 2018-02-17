@@ -24,6 +24,14 @@
 
 
 #
+# Version
+#
+# @link https://home-assistant.io/components/sensor.version/
+#
+- platform: version
+
+
+#
 # Friendly version report
 #
 # Useful for HADashboard.
