@@ -11,6 +11,8 @@ automation.check_update_availability:
   icon: mdi:cloud-upload
 automation.go_to_sleep:
   icon: mdi:weather-night
+automation.theme_auto:
+  icon: mdi:theme-light-dark
 automation.wake_up:
   icon: mdi:weather-sunny
 
@@ -258,8 +260,10 @@ light.underbed:
 sensor.bing_wallpaper_info:
   custom_ui_state_card: state-card-value_only
 sensor.date_friendly:
+  friendly_name: " "
   extra_data_template: >-
     ${entities['sensor.day'].state}
+  theme: card-secondary-title
 sensor.hline_dashed:
   config:
     width: 90
@@ -280,6 +284,12 @@ sensor.average_humidity:
 sensor.average_humidity_friendly:
   extra_badge:
     entity_id: sensor.average_humidity
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.average_humidity'].state);
+      return v > 55 || v < 30 ? 'card-critical'
+      : v > 50 || v < 35 ? 'card-warning'
+      : null;
 sensor.average_temperature:
   group:
     group.temperature:
@@ -331,31 +341,66 @@ sensor.aqi_carbon_monoxide_friendly:
     entities['sensor.aqi_carbon_monoxide'].state + ' ' +
     entities['sensor.aqi_carbon_monoxide'].attributes['unit_of_measurement']
     : null;
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.aqi_carbon_monoxide'].state);
+      return v > 100 ? 'card-critical'
+      : v > 50 ? 'card-warning'
+      : null;
 sensor.aqi_friendly:
   extra_badge:
     entity_id: sensor.aqi
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.aqi'].state);
+      return v > 100 ? 'card-critical'
+      : v > 50 ? 'card-warning'
+      : null;
 sensor.aqi_nitrogen_dioxide_friendly:
   extra_data_template: >-
     return entities['sensor.aqi_nitrogen_dioxide'].state != 'unknown' ?
     entities['sensor.aqi_nitrogen_dioxide'].state + ' ' +
     entities['sensor.aqi_nitrogen_dioxide'].attributes['unit_of_measurement']
     : null;
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.aqi_nitrogen_dioxide'].state);
+      return v > 100 ? 'card-critical'
+      : v > 50 ? 'card-warning'
+      : null;
 sensor.aqi_ozone_friendly:
   extra_data_template: >-
     return entities['sensor.aqi_ozone'].state != 'unknown' ?
     entities['sensor.aqi_ozone'].state + ' ' +
     entities['sensor.aqi_ozone'].attributes['unit_of_measurement']
     : null;
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.aqi_ozone'].state);
+      return v > 100 ? 'card-critical'
+      : v > 50 ? 'card-warning'
+      : null;
 sensor.aqi_particles_friendly:
   extra_data_template: >-
     return entities['sensor.aqi_particles'].state != 'unknown' ?
     entities['sensor.aqi_particles'].state + ' ' +
     entities['sensor.aqi_particles'].attributes['unit_of_measurement']
     : null;
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.aqi_particles'].state);
+      return v > 100 ? 'card-critical'
+      : v > 50 ? 'card-warning'
+      : null;
 sensor.uv_friendly:
   extra_badge:
     entity_id: sensor.uv
-
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.uv'].state);
+      return v >= 6 ? 'card-critical'
+      : v >= 3 ? 'card-warning'
+      : null;
 
 #
 # Sensors: Power
@@ -444,6 +489,12 @@ sensor.home_to_market_hour:
   icon: mdi:cart
   extra_badge:
     entity_id: sensor.home_to_market
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.home_to_market'].state);
+      return v <= 5 ? 'card-critical'
+      : v <= 10 ? 'card-warning'
+      : null;
 sensor.home_to_market_2_hour:
   icon: mdi:blank
   friendly_name: Next
@@ -457,6 +508,12 @@ sensor.home_to_market_3_hour:
 sensor.home_to_metro_hour:
   extra_badge:
     entity_id: sensor.home_to_metro
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.home_to_metro'].state);
+      return v <= 5 ? 'card-critical'
+      : v <= 10 ? 'card-warning'
+      : null;
 sensor.home_to_metro_2_hour:
   icon: mdi:blank
   friendly_name: Next
@@ -472,8 +529,6 @@ sensor.home_to_metro_3_hour:
 #
 # Sensors: Weather
 #
-sensor.weather_details:
-  custom_ui_state_card: state-card-value_only
 sensor.dark_sky_minutely_summary:
   custom_ui_state_card: state-card-value_only
 sensor.dark_sky_daily_summary:
@@ -487,13 +542,21 @@ sensor.dark_sky_summary:
   friendly_name: " "
   extra_data_template: >-
     ${entities['sensor.outside_temperature'].state}${entities['sensor.outside_temperature'].attributes['unit_of_measurement']}
+  theme: card-secondary-title
+sensor.weather_details:
+  custom_ui_state_card: state-card-value_only
 sensor.wind_speed:
   friendly_name: " "
   extra_badge:
     entity_id: sensor.wind_bearing_cardinal
   extra_data_template: >-
     ${entities['sensor.wind_scale_friendly'].state}
-
+  templates:
+    theme: >-
+      var v = parseInt(state);
+      return v >= 89 ? 'card-critical'
+      : v >= 39 ? 'card-warning'
+      : 'card-secondary-title';
 
 #
 # Scenes

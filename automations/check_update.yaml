@@ -19,6 +19,6 @@
     - service: notify.group
       data:
         title: "Home Assistant update"
-        message: >-
+        message: |
           Version {{ states('updater.updater') }} is available.
           Installed version: {{ states('sensor.current_version') }}

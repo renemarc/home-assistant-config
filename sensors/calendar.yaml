@@ -51,7 +51,7 @@
           else "th"
         %}
 
-        {{ month }} {{ day }}{{ suffix }}
+        {{ month }} {{ day }}
 
     time_friendly:
       friendly_name: Time

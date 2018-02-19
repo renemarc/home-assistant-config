@@ -40,6 +40,7 @@ automations:
     - automation.front_door_closed
     - automation.front_door_opened
     - automation.go_to_sleep
+    - automation.theme_auto
     - automation.wake_up
 
 automations_areas:

@@ -38,7 +38,7 @@
     - service: notify.group
       data:
         title: "Home humidity is way too high"
-        message: >-
+        message: |
           {{ states('sensor.average_humidity') }}% = Risk of mold!
           Check the dehumidifier.
 
@@ -48,5 +48,5 @@
         notification_id: mold
         title: "Risk of mold!"
         message: >-
-          Humidity is way too high: {{ states('sensor.average_humidity') }}%
+          Humidity is way too high: {{ states('sensor.average_humidity') }}%\n
           Check the dehumidifier.

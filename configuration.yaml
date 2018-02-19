@@ -79,6 +79,7 @@ frontend:
     - /local/custom_ui/state-card-custom-ui-es5.html
     - /local/custom_ui/state-card-hline.html
     - /local/custom_ui/state-card-value_only.html
+  themes: !include_dir_named themes/
 
 
 #
@@ -124,7 +125,7 @@ homeassistant:
 #
 http:
   # api_password: !secret http_password
-  # base_url: example.duckdns.org:8123
+  # base_url: !secret http_base_url
 
 
 #

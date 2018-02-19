@@ -38,8 +38,8 @@
     - service: notify.group
       data:
         title: "Home humidity is too high"
-        message: >-
-          {{ states('sensor.average_humidity') }}% is excessive
+        message: |
+          {{ states('sensor.average_humidity') }}% is excessive.
           Check the dehumidifier.
 
     # Pin a warning message in the frontend.
@@ -48,5 +48,5 @@
         notification_id: humidity
         title: "Humidity is too high"
         message: >-
-          {{ states('sensor.average_humidity') }}% is excessive
+          {{ states('sensor.average_humidity') }}% is excessive.\n
           Check the dehumidifier.

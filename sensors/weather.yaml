@@ -344,7 +344,7 @@
       icon_template: >-
         {% set speed = (states('sensor.dark_sky_wind_speed')|float * 3600 / 1000) | round(0) %}
 
-        {% if 40 <= speed %}
+        {% if 39 <= speed %}
           mdi:weather-windy
         {% else %}
           mdi:airballoon

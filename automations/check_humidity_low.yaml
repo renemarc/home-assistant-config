@@ -12,7 +12,7 @@
     # Comfort level should be between 35% and 55%.
     - platform: numeric_state
       entity_id: sensor.average_humidity
-      above: 35
+      below: 35
 
   condition:
     # Doors are closed.
@@ -34,8 +34,8 @@
     - service: notify.group
       data:
         title: "Home humidity is too low"
-        message: >-
-          {{ states('sensor.average_humidity') }}% is too dry
+        message: |
+          {{ states('sensor.average_humidity') }}% is too dry.
           Check the humidifier.
 
     # Pin a warning message in the frontend.
@@ -44,5 +44,5 @@
         notification_id: humidity
         title: "Humidity is too low"
         message: >-
-          {{ states('sensor.average_humidity') }}% is too dry
+          {{ states('sensor.average_humidity') }}% is too dry.\n
           Check the humidifier.
