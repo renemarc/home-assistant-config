@@ -59,7 +59,7 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **Easy to read status and forecasts** using Dark Sky data and only showcasing parameters that actually matter, shown in obvious ways.
 - **Outdoor quality monitoring** with numeric levels and human-friendly categorization for ozone, carbon monoxide, nitrogen dioxide, 2.5μm particulate matter and UV light, averaged from multiple surrounding public local stations.
 - **Weather radar and satellite maps** for [local rain and snow](https://weather.gc.ca/radar/index_e.html) from Environment Canada and [regional air masses](http://www.nhc.noaa.gov/satellite.php) from the U.S. National Oceanic and Atmospheric Administration.
-- See [`/groups`](groups) and [`/appdeamon/dashboards`](appdeamon/dashboards).
+- See [`/groups`](groups) and [`/appdaemon/dashboards`](appdaemon/dashboards).
 
 ### Lighting control
 - **Control for all pluggable lights**, smart ones at [`/lights`](lights) and dumb ones using [`/switches`](switches).

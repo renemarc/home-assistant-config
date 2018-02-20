@@ -570,8 +570,6 @@ scene.shutdown:
 #
 # Scripts
 #
-script.go_to_sleep:
-  icon: mdi:weather-night
 script.wake_up:
   icon: mdi:weather-sunny
 

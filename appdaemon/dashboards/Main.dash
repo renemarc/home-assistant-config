@@ -94,19 +94,25 @@ good_morning:
     icon_on: mdi-weather-sunny
     icon_off: mdi-weather-sunny
 
-take_a_nap:
-    widget_type: script
-    entity: script.take_a_nap
-    title2: Take a nap
-    icon_on: mdi-sleep
-    icon_off: mdi-sleep
+quiet_mode:
+    widget_type: input_boolean
+    entity: input_boolean.quiet_mode
+    title2: Be quiet
 
-go_to_sleep:
-    widget_type: script
-    entity: script.go_to_sleep
+low_power_mode:
+    widget_type: input_boolean
+    entity: input_boolean.low_mode
+    title2: Dim lights
+
+nap_mode:
+    widget_type: input_boolean
+    entity: input_boolean.nap_mode
+    title2: Take a nap
+
+night_mode:
+    widget_type: input_boolean
+    entity: input_boolean.night_mode
     title2: Go to sleep
-    icon_on: mdi-weather-night
-    icon_off: mdi-weather-night
 
 
 #
@@ -231,6 +237,6 @@ layout:
     - nav_main,         label(6x1), reload, temperature, clock
     - nav_switchboard,  slideshow(6x4), wind, temperature_now, weather_icon_now
     - nav_weather,      outdoor_safety, daily_forecast(2x1)
-    - nav_spacer(1x2),  spacer, to_metro, to_market
-    -                   spacer, to_metro_2, to_market_2
-    - nav_status,       good_morning, take_a_nap, go_to_sleep, spacer, slideshow_bing, slideshow_apod, spacer, to_metro_3, to_market_3
+    - nav_spacer(1x2),  slideshow_bing, to_metro, to_market
+    -                   slideshow_apod, to_metro_2, to_market_2
+    - nav_status,       good_morning, night_mode, nap_mode, quiet_mode, low_power_mode, spacer(2x1), to_metro_3, to_market_3

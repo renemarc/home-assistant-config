@@ -1,14 +1,14 @@
 #
-# Go to sleep
+# Enable night mode to shut off all lights
 #
-# Todo: convert script into night mode and automations.
+# @subscribe input_boolean.nap_mode
 #
-# @subscribe: input_boolean.night_mode
+# @publish input_boolean.nap_mode
 #
-# @see /scripts/script.go_to_sleep
+# @see /automations/quiet_mode_start.yaml
 #
-- id: go_to_sleep
-  alias: Go to sleep
+- id: night_mode_start
+  alias: Night mode START
   trigger:
     # Bedsite Flic button is held.
     - platform: event
@@ -24,6 +24,7 @@
       state: 'off'
 
   action:
-    # Trigger the sleep script.
-    - service: script.turn_on
-      entity_id: script.go_to_sleep
+    # Enable night mode.
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.night_mode

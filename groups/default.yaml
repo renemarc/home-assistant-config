@@ -20,11 +20,11 @@ actions:
   name: Actions
   control: hidden
   entities:
-    - scene.romantic
-    - scene.shutdown
     - script.wake_up
-    - script.go_to_sleep
-    - script.take_a_nap
+    - input_boolean.night_mode
+    - input_boolean.nap_mode
+    - input_boolean.quiet_mode
+    - input_boolean.low_mode
 
 climate:
   name: Climate Control

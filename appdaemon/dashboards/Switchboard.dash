@@ -93,19 +93,19 @@ label_ceiling:
     select_style: "background-color:GOLDENROD;color:$white;"
 
 washlight_bedroom:
-    widget_type: light
+    widget_type: switch
     title: Bedroom
     entity: light.bedroom
     widget_style: "background-color:DARKGOLDENROD;"
 
 washlight_middle:
-    widget_type: light
+    widget_type: switch
     title: Middle
     entity: light.middle
     widget_style: "background-color:DARKGOLDENROD;"
 
 washlight_lounge:
-    widget_type: light
+    widget_type: switch
     title: Lounge
     entity: light.lounge
     widget_style: "background-color:DARKGOLDENROD;"

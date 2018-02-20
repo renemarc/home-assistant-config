@@ -13,6 +13,12 @@
       entity_id: input_boolean.nap_mode
       to: 'on'
 
+  condition:
+    # If night mode is not currently enabled.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'off'
+
   action:
     # Enable low-power mode.
     - service: input_boolean.turn_on

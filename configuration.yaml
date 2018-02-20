@@ -280,7 +280,7 @@ scene: !include_dir_merge_list scenes/
 #
 # @link https://home-assistant.io/components/script/
 #
-script: !include_dir_merge_named scripts/
+script: !include_dir_named scripts/
 
 
 #

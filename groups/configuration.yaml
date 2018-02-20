@@ -94,6 +94,8 @@ automations_modes:
     - automation.quiet_mode_stop
     - automation.nap_mode_start
     - automation.nap_mode_stop
+    - automation.night_mode_start
+    - automation.night_mode_stop
 
 configuration_switches:
   name: Configuration Switches
