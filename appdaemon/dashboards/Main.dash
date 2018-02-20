@@ -2,7 +2,7 @@
 # Main arguments, all optional
 #
 title: Main Panel
-widget_dimensions: [120, 114]
+widget_dimensions: [121, 122]
 widget_size: [1, 1]
 widget_margins: [5, 5]
 columns: 10
@@ -208,8 +208,8 @@ to_market:
     widget_type: sensor
     title: Bus to Market
     entity: sensor.home_to_market_countdown
-    value_style: "color:orange;"
     sub_entity: sensor.home_to_market_hour
+    value_style: "color:orange;"
     text_style: "color:orange;font-size:250%;"
     state_text_style: "background-color:#555;"
 

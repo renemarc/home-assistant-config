@@ -149,7 +149,13 @@ function baseentitydisplay(widget_id, url, skin, parameters)
             }
             else
             {
-                self.set_field(self, "state_text", self.format_number(self, value));
+                self.set_field(self, 'state_text',
+                    self.format_number(self, value) +
+                    (state.attributes.unit_of_measurement ?
+                        ' ' + state.attributes.unit_of_measurement :
+                        ''
+                    )
+                );
             }
         }
     }

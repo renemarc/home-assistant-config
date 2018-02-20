@@ -2,7 +2,7 @@
 # Main arguments, all optional
 #
 title: Switchboard
-widget_dimensions: [120, 114]
+widget_dimensions: [121, 122]
 widget_size: [1, 1]
 widget_margins: [5, 5]
 columns: 10

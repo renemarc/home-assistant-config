@@ -1,8 +1,8 @@
-# HADashboard
+# AppDaemon 2.0 dashboards
 
 These are dashboards to be used in a wall-mounted tablet to control Home Assistant the same way you would on a computer, only in a more appropriate interface for casual and often-on display.
 
-Most implementations of HADashboard focus on having a car-like in-dash interface and overloading the screen with tons of sensors. That leads to a poor user experience in my opinion.
+Most implementations of AppDaemon/HADashboard focus on having a car-like in-dash interface and overloading the screen with tons of sensors. That leads to a poor user experience in my opinion.
 
 When using a large-enough format tablet, I prefer intuitive interfaces like the ones you are familiar with on fixed-width websites. Intuitive navigation, just enough data to feel at ease without being overwhelmed. And it must be pretty-enough to be hung on a wall ...literally!
 

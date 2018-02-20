@@ -8,7 +8,7 @@
 - platform: systemmonitor
   scan_interval: 60
   resources:
-    - type: disk_use_percent
+    - type: disk_use
       arg: /home
     - type: disk_free
       arg: /home
@@ -17,7 +17,7 @@
     - type: load_1m
     - type: load_5m
     - type: load_15m
-    - type: memory_use_percent
+    - type: memory_use
     - type: memory_free
     - type: processor_use
     - type: since_last_boot
@@ -45,9 +45,9 @@
       icon_template: mdi:update
       value_template: >-
         {% if states('sensor.current_version') != "unknown" %}
-          HASS {{ states('sensor.current_version') }}
+          Home Assistant {{ states('sensor.current_version') }}
         {% else %}
-          HASS
+          Home Assistant
         {% endif %}
 
     update_available:
@@ -72,14 +72,17 @@
       icon_template: mdi:harddisk
       unit_of_measurement: '%'
       value_template: >-
-         {{ states('sensor.disk_used_home') | float | round }}
+        {% set disk_used = states('sensor.disk_used_home') | float %}
+        {% set disk_free = states('sensor.disk_free_home') | float %}
+
+        {{ (100 * disk_used / (disk_used + disk_free)) | round }}
 
     disk_free_percent:
       friendly_name: Disk Free /home
       icon_template: mdi:harddisk
       unit_of_measurement: '%'
       value_template: >-
-        {{ 100 - states('sensor.disk_used_home') | float | round }}
+        {{ 100 - states('sensor.disk_used_percent') | float | round }}
 
 
 #
@@ -95,14 +98,17 @@
       icon_template: mdi:memory
       unit_of_measurement: '%'
       value_template: >-
-        {{ states('sensor.ram_used') | float | round }}
+        {% set ram_used = states('sensor.ram_used') | float %}
+        {% set ram_free = states('sensor.ram_available') | float %}
+
+        {{ (100 * ram_used / (ram_used + ram_free)) | round }}
 
     ram_free_percent:
       friendly_name: RAM Free
       icon_template: mdi:memory
       unit_of_measurement: '%'
       value_template: >-
-        {{ 100 - states('sensor.ram_used') | float | round }}
+        {{ 100 - states('sensor.ram_used_percent') | float | round }}
 
 
 #
@@ -182,7 +188,7 @@
       friendly_name: Uptime
       icon_template: mdi:home-assistant
       value_template: >-
-        {% set uptime = states('sensor.uptime')|float %}
+        {% set uptime = states('sensor.uptime') | float %}
         {% set time = (3600 * uptime) | int %}
         {% set minutes = ((time % 3600) / 60) | int %}
         {% set hours = ((time % 86400) / 3600) | int %}
@@ -220,6 +226,26 @@
             {%- endif -%}
           {%- endif -%}
         {% endif %}
+
+
+#
+# CPU average load
+#
+# @see /appdaemon/dashboards/Status.dash
+# @see /groups/status.yaml
+#
+- platform: template
+  sensors:
+    average_load:
+      friendly_name: Average load
+      icon_template: mdi:chip
+      unit_of_measurement: '%'
+      value_template: >-
+         {% set load1 = '{0:0.2f}'.format(states('sensor.average_load_1m') | float) %}
+         {% set load5 = '{0:0.2f}'.format(states('sensor.average_load_5m') | float) %}
+         {% set load15 = '{0:0.2f}'.format(states('sensor.average_load_15m') | float) %}
+
+         {{ load1 }} {{ load5 }} {{ load15 }}
 
 
 #
@@ -269,7 +295,7 @@
 - platform: command_line
   name: Database Size
   scan_interval: 600
-  unit_of_measurement: 'MB'
+  unit_of_measurement: 'MiB'
   command: "du -m /config/home-assistant_v2.db | cut -f1"
 
 
@@ -285,5 +311,5 @@
 - platform: command_line
   name: Logfile Size
   scan_interval: 600
-  unit_of_measurement: 'kB'
+  unit_of_measurement: 'KiB'
   command: "du -k /config/home-assistant.log | cut -f1"

@@ -436,9 +436,7 @@ sensor.cpu_used:
   icon: mdi:chip
   extra_data_template: >-
     return
-    parseFloat(entities['sensor.average_load_1m'].state).toFixed(2) + ' ' +
-    parseFloat(entities['sensor.average_load_5m'].state).toFixed(2) + ' ' +
-    parseFloat(entities['sensor.average_load_15m'].state).toFixed(2) + ' ' +
+    entities['sensor.average_load'].state + ' ' +
     '(' + entities['sensor.cpu_cores'].state + ' cores)';
 sensor.database_size:
   icon: mdi:database

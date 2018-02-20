@@ -9,8 +9,3 @@ HASS:
 HADashboard:
   dash_url: http://127.0.0.1:5050
   dash_dir: /config/appdaemon/dashboards
-
-# Apps
-hello_world:
-  module: hello
-  class: HelloWorld
