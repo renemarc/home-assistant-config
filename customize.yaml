@@ -111,7 +111,7 @@ light.aurora:
   state_card_mode: break-slider
 light.bedroom:
   extra_data_template: >-
-    return (entities['sensor.ceiling_effect_loaded'].state) ?
+    return (state === 'on' && entities['sensor.ceiling_effect_loaded'].state) ?
     entities['sensor.ceiling_effect_loaded'].state
     : null;
   icon: mdi:led-strip
@@ -149,7 +149,7 @@ light.island:
     report_when_not_changed: false
 light.headboard:
   extra_data_template: >-
-    return (entities['sensor.bed_effect_loaded'].state) ?
+    return (state === 'on'  && entities['sensor.bed_effect_loaded'].state) ?
     entities['sensor.bed_effect_loaded'].state
     : null;
   icon: mdi:gate
@@ -164,7 +164,7 @@ light.lightpack:
   icon: mdi:television
 light.lounge:
   extra_data_template: >-
-    return (entities['sensor.ceiling_effect_loaded'].state) ?
+    return (state === 'on' && entities['sensor.ceiling_effect_loaded'].state) ?
     entities['sensor.ceiling_effect_loaded'].state
     : null;
   icon: mdi:led-strip
@@ -189,7 +189,7 @@ light.microwave:
     report_when_not_changed: false
 light.middle:
   extra_data_template: >-
-    return (entities['sensor.ceiling_effect_loaded'].state) ?
+    return (state === 'on'  && entities['sensor.ceiling_effect_loaded'].state) ?
     entities['sensor.ceiling_effect_loaded'].state
     : null;
   icon: mdi:led-strip
@@ -242,7 +242,7 @@ light.spotlight:
   state_card_mode: break-slider
 light.underbed:
   extra_data_template: >-
-    return (entities['sensor.bed_effect_loaded'].state) ?
+    return (state === 'on'  && entities['sensor.bed_effect_loaded'].state) ?
     entities['sensor.bed_effect_loaded'].state
     : null;
   icon: mdi:hotel

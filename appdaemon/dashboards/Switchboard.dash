@@ -53,9 +53,10 @@ nav_spacer:
 # Header
 #
 label:
-    widget_type: label
+    widget_type: sensor
     title2: Switchboard
-    text: Night mode
+    entity: sensor.modes_friendly
+    text_style: "font-size: 300%;"
     widget_style: "background: MEDIUMSLATEBLUE;"
     title2_style: "text-transform: uppercase; letter-spacing: 0.35em;"
 
@@ -71,9 +72,9 @@ label_exterior:
     widget_style: "background-color:DARKOLIVEGREEN;"
     title2_style: "font-size:175%;font-weight:400;"
 
-light_front_door:
+light_front_porch:
     widget_type: label
-    title: Front Door
+    title: Front Porch
     widget_style: "background-color:DARKOLIVEGREEN;"
 
 
@@ -340,7 +341,7 @@ light_window:
 layout:
     - include: header
     - nav_main,         label(6x1), reload, temperature, clock
-    - nav_switchboard,  spacer, label_exterior, light_front_door, spacer(2x1), label_ceiling, washlight_bedroom, washlight_middle, washlight_lounge
+    - nav_switchboard,  spacer, label_exterior, light_front_porch, spacer(2x1), label_ceiling, washlight_bedroom, washlight_middle, washlight_lounge
     - nav_weather,      label_kitchen, light_microwave, spacer, label_washroom, light_shower, spacer, label_climate, switch_air_filter
     - nav_spacer(1x2),  light_island, light_sink, light_countertop, spacer, light_lavatory, spacer, switch_dehumidifier, switch_humidifier
     -                   label_bedroom, light_bed_effect, underglow_headboard, underglow_underbed, spacer_tetris, label_lounge, light_aurora_effect, light_aurora, light_tv_backlight

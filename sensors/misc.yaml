@@ -12,6 +12,46 @@
 
 
 #
+# Current modes
+#
+# @see /appdaemon/dashboards/Switchboard.dash
+#
+- platform: template
+  sensors:
+    modes_friendly:
+      friendly_name: Mode
+      icon_template: mdi:emoticon-happy
+      value_template: >-
+        {% set counter = 0 %}
+        {% set modes = "" %}
+        {% if is_state('input_boolean.nap_mode', 'on') %}
+          {% set modes = modes + '+ Nap ' %}
+          {% set counter = counter + 1 %}
+        {% endif %}
+        {% if is_state('input_boolean.night_mode', 'on') %}
+          {% set modes = modes + '+ Night ' %}
+          {% set counter = counter + 1 %}
+        {% endif %}
+        {% if is_state('input_boolean.quiet_mode', 'on') %}
+          {% set modes = modes + '+ Quiet ' %}
+          {% set counter = counter + 1 %}
+        {% endif %}
+        {% if is_state('input_boolean.scene_mode', 'on') %}
+          {% set modes = modes + '+ Scene ' %}
+          {% set counter = counter + 1 %}
+        {% endif %}
+        {% if modes == "" %}
+          {% set modes = 'Regular ' %}
+          {% set counter = counter + 1 %}
+        {% endif %}
+
+        {{modes.lstrip("+")}}mode
+        {%- if counter > 1 -%}
+          s
+        {% endif %}
+
+
+#
 # Random positive quotes, to brighten up the day!
 #
 # @link http://www.lifestalker.com/2017/04/four-word-quotes.html

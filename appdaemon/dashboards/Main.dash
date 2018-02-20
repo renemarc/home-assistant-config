@@ -200,7 +200,7 @@ to_metro_3:
 
 to_market:
     widget_type: sensor
-    title: But to Market
+    title: Bus to Market
     entity: sensor.home_to_market_countdown
     value_style: "color:orange;"
     sub_entity: sensor.home_to_market_hour
