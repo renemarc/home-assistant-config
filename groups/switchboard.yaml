@@ -23,6 +23,12 @@ bed:
     - light.underbed
     - light.headboard
 
+bed_lights:
+  name: Bed Lights
+  entities:
+    - light.underbed
+    - light.headboard
+
 bedroom:
   name: Bedroom
   entities:
@@ -44,6 +50,13 @@ ceiling:
     - light.middle
     - light.lounge
 
+ceiling_lights:
+  name: Ceiling Lights
+  entities:
+    - light.bedroom
+    - light.middle
+    - light.lounge
+
 kitchen:
   name: Kitchen
   entities:
@@ -58,8 +71,10 @@ lounge:
     - input_select.aurora_effect
     - light.aurora
     - sensor.hline_dashed
-    - light.spotlight
+    - input_select.lightpack_effect
     - light.lightpack
+    - sensor.hline_dashed_2
+    - light.spotlight
     - switch.souvenirs_light
     - switch.window_light
     - sensor.lounge_temperature

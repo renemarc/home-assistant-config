@@ -6,7 +6,7 @@
 #
 aurora_effect:
   name: Aurora Effect
-  icon: mdi:star
+  icon: mdi:vector-triangle
   initial: Auto
   options:
    - Auto
@@ -94,3 +94,40 @@ ceiling_effect:
    - Soothing
    - Tranquil
    - Warming
+
+
+#
+# Lightpack effect
+#
+# @see /automations/lightpack_effect.yaml
+# @see /automations/lightpack_select.yaml
+#
+lightpack_effect:
+  name: Lightpack Effect
+  icon: mdi:tv
+  initial: Default
+  options:
+    - Default
+    - Daylight
+    - Gaming
+    - Movie
+    - Party
+    - Romantic
+
+
+#
+# Scene
+#
+# @see /automations/scene_select.yaml
+# @see /misc/input_boolean
+#
+scene:
+  name: Scene
+  icon: mdi:star
+  # initial: Default
+  options:
+    - Default
+    - Daylight
+    - Gaming
+    - Movie
+    - Romantic

@@ -16,8 +16,8 @@
     - service: homeassistant.turn_on
       data:
         entity_id:
-        - switch.nightstand_light
         - switch.bedside_light
+        - switch.nightstand_light
 
     # Turn off some devices.
     - service: homeassistant.turn_off

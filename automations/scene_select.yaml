@@ -1,0 +1,17 @@
+#
+# Manually select a global scene
+#
+# @subscribe input_select.scene
+#
+- id: scene_select
+  alias: Scene SELECT
+  trigger:
+    # A scene has been selected.
+    - platform: state
+      entity_id: input_select.scene
+
+  action:
+    - service: script.turn_on
+      data_template:
+        entity_id: >-
+          script.scene_{{ states('input_select.scene')|lower }}

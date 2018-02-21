@@ -1,16 +1,9 @@
 # Scenes
 
+Except for the LIFX scenes configuration below, all others are smart scenes and therefore have been programmed as [`/scripts`](../scripts).
 
-## LIFX cloud scenes
+## Internet-based scenes
 
-See [Lights](../lights#lifx-smart-wifi-lights) section for more details.
+### [`lifx_cloud.yaml`](lifx_cloud.yaml)
 
-
-## Movies scene
-
-Turns on some ambient lighting.
-
-
-## Other scenes
-
-Need to be removed/worked on.
+:cloud: Simple registration for [LIFX's server-based scenes](https://www.lifx.com/pages/themes-scenes). See [Lights](../lights#lifx-smart-wi-fi-lights) section for more details.

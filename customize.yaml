@@ -90,7 +90,8 @@ input_select.bed_effect:
 input_select.ceiling_effect:
   friendly_name: Effect
   icon: mdi:blank
-
+input_select.lightpack_effect:
+  icon: mdi:blank
 
 #
 # Lights
@@ -149,7 +150,7 @@ light.island:
     report_when_not_changed: false
 light.headboard:
   extra_data_template: >-
-    return (state === 'on'  && entities['sensor.bed_effect_loaded'].state) ?
+    return (state === 'on' && entities['sensor.bed_effect_loaded'].state) ?
     entities['sensor.bed_effect_loaded'].state
     : null;
   icon: mdi:gate
@@ -160,6 +161,10 @@ light.headboard:
     pin: true
     report_when_not_changed: false
 light.lightpack:
+  extra_data_template: >-
+    return (state === 'on' && entities['sensor.lightpack_effect_loaded'].state) ?
+    entities['sensor.lightpack_effect_loaded'].state
+    : null;
   homebridge_hidden: false
   icon: mdi:television
 light.lounge:
@@ -189,7 +194,7 @@ light.microwave:
     report_when_not_changed: false
 light.middle:
   extra_data_template: >-
-    return (state === 'on'  && entities['sensor.ceiling_effect_loaded'].state) ?
+    return (state === 'on' && entities['sensor.ceiling_effect_loaded'].state) ?
     entities['sensor.ceiling_effect_loaded'].state
     : null;
   icon: mdi:led-strip
@@ -242,7 +247,7 @@ light.spotlight:
   state_card_mode: break-slider
 light.underbed:
   extra_data_template: >-
-    return (state === 'on'  && entities['sensor.bed_effect_loaded'].state) ?
+    return (state === 'on' && entities['sensor.bed_effect_loaded'].state) ?
     entities['sensor.bed_effect_loaded'].state
     : null;
   icon: mdi:hotel
@@ -264,12 +269,6 @@ sensor.date_friendly:
   extra_data_template: >-
     ${entities['sensor.day'].state}
   theme: card-secondary-title
-sensor.hline_dashed:
-  config:
-    width: 90
-    height: 0
-    backgroundcolor: inherit
-    bordertop: '1px dashed silver'
 sensor.good_vibes:
   custom_ui_state_card: state-card-value_only
 

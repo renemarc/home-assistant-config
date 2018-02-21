@@ -1,0 +1,46 @@
+#
+# Setup gaming scene
+#
+# @see /automations/scene_select.yaml
+#
+alias: Gaming scene
+sequence:
+  # Enable scene mode.
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.scene_mode
+
+  # Dim the lounge spot lights.
+  - service: light.lifx_set_state
+    data:
+      entity_id:
+        - light.spotlight
+    data_template:
+      rgb_color: [80, 0, 110]
+      brightness_pct: 50
+      transition: 5
+
+  # Set Aurora effect.
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.aurora_effect
+      option: Synthwave
+
+  # Turn on ceiling wash lights.
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+        - group.ceiling_lights
+      transition: 5
+
+  # Set ceiling wash light effect.
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.ceiling_effect
+      option: Blissful
+
+  # Set TV backlight effect.
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.lightpack_effect
+      option: Gaming

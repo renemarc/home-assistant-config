@@ -78,11 +78,15 @@ automations_devices:
     - automation.bed_select
     - automation.dehumidifier_off
     - automation.dehumidifier_on
+    - automation.lightpack_effect
+    - automation.lightpack_select
     - automation.media_player_resume
     - automation.media_player_start
     - automation.media_player_stop
     - automation.nightlight_off
     - automation.nightlight_on
+    - automation.scene_default
+    - automation.scene_effect
 
 automations_modes:
   name: Modes Automations

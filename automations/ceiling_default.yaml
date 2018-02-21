@@ -1,5 +1,5 @@
 #
-# Return the ceiling wash lights to the default scheduled effect.
+# Return the ceiling wash lights to the default scheduled effect
 #
 # By removing the manual override, the ceiling lights will automatically fall
 # back to the regularly schedule effect.

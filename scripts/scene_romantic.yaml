@@ -1,0 +1,67 @@
+#
+# Setup romantic scene
+#
+# @see /automations/scene_select.yaml
+#
+alias: Romantic scene
+sequence:
+  # Enable scene mode.
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.scene_mode
+
+  # Enable quiet mode.
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.quiet_mode
+
+  # Turn on accent lights.
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+        - switch.bedside_light
+        - switch.nightstand_light
+        - switch.souvenirs_light
+        - switch.window_light
+
+  # Dim and colourize the spot lights.
+  - service: light.lifx_set_state
+    data:
+      entity_id:
+        - light.shower
+        - light.spotlight
+    data_template:
+      color_name: magenta
+      brightness_pct: 50
+      transition: 5
+      power: True
+
+  # Set Aurora effect.
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.aurora_effect
+      option: Romantic
+
+  # Set bed underglow light effect.
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.bed_effect
+      option: Neon
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+        - group.bed_lights
+      transition: 5
+
+  # Turn off ceiling wash lights.
+  - service: homeassistant.turn_off
+    data:
+      entity_id:
+        - group.ceiling_lights
+      transition: 10
+
+  # Set TV backlight effect.
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.lightpack_effect
+      option: Romantic

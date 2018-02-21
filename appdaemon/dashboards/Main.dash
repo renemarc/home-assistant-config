@@ -114,6 +114,14 @@ night_mode:
     entity: input_boolean.night_mode
     title2: Go to sleep
 
+scene:
+    widget_type: input_select
+    title2: Set a scene
+    entity: input_select.scene
+    sub_entity: input_select.scene
+    state_text_style: "background-color:#555;"
+    select_style: "background-color:#555;color:$white;"
+
 
 #
 # Weather
@@ -239,4 +247,4 @@ layout:
     - nav_weather,      outdoor_safety, daily_forecast(2x1)
     - nav_spacer(1x2),  slideshow_bing, to_metro, to_market
     -                   slideshow_apod, to_metro_2, to_market_2
-    - nav_status,       good_morning, night_mode, nap_mode, quiet_mode, low_power_mode, spacer(2x1), to_metro_3, to_market_3
+    - nav_status,       good_morning, night_mode, nap_mode, scene, quiet_mode, low_power_mode, spacer, to_metro_3, to_market_3

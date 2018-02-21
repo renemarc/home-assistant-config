@@ -10,6 +10,8 @@
     hline_dashed:
       value_template: hline
 
+    hline_dashed_2:
+      value_template: hline
 
 #
 # Current modes

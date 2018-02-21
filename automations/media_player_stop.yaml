@@ -24,10 +24,12 @@
       to: 'off'
 
   action:
-    # Disable the scene mode.
-    - service: input_boolean.turn_off
-      entity_id: input_boolean.scene_mode
+    # # Disable the scene mode.
+    # - service: input_boolean.turn_off
+    #   entity_id: input_boolean.scene_mode
 
-    # Disable the scene.
-    - service: scene.turn_off
-      entity_id: scene.movies
+    # Return the global scene to default.
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.scene
+        option: Default

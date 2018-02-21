@@ -28,3 +28,11 @@ ceiling_effect:
   restore: true
   attributes:
     uuid: ''
+
+
+#
+# Lightpack effect
+#
+lightpack_effect:
+  value: False
+  restore: true

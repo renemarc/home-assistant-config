@@ -43,6 +43,6 @@
       data:
         notification_id: humidity
         title: "Humidity is too low"
-        message: >-
-          {{ states('sensor.average_humidity') }}% is too dry.\n
+        message: |
+          {{ states('sensor.average_humidity') }}% is too dry.
           Check the humidifier.

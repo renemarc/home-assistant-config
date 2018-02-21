@@ -21,6 +21,7 @@ actions:
   control: hidden
   entities:
     - script.wake_up
+    - input_select.scene
     - input_boolean.night_mode
     - input_boolean.nap_mode
     - input_boolean.quiet_mode

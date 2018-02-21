@@ -28,38 +28,8 @@
       state: 'off'
 
   action:
-    # Activate scene mode.
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.scene_mode
-
-    # Dim the spot lights.
-    - service: light.lifx_set_state
+    # Set the global scene to movies.
+    - service: input_select.select_option
       data:
-        entity_id:
-          - light.shower
-          - light.spotlight
-      data_template:
-        brightness: 100
-        transition: 2
-
-    # If ceiling wash lights are on, set them to their dedicated Movie scene.
-    - condition: state
-      entity_id: group.ceiling
-      state: 'on'
-    - service: variable.set_variable
-      data:
-        variable: ceiling_effect
-        value: "Movie"
-
-    # If the Aurora is active, set it to its dedicated Movie scene.
-    - condition: state
-      entity_id: light.aurora
-      state: 'on'
-    - service: variable.set_variable
-      data:
-        variable: aurora_effect
-        value: "Flames"
-    - service: variable.set_variable
-      data:
-        variable: aurora_brightness
-        value: "21"
+        entity_id: input_select.scene
+        option: Movie

@@ -7,32 +7,28 @@
 [![Hass.io][img-hassio]][link-hassio]
 [![License][img-license]][link-license]
 
+
 Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io](https://home-assistant.io/hassio/) on a Raspberry Pi for a one bedroom apartment, offering convenience automations over lights and climate while providing multiple intuitive user controls.
 
+
 ## Contents
+
 1. **[TL;DR](#tldr)**
-1. **[Overview](#overview)**
-    [User stories](#user-stories) | [Goals](#goals)
-1. **[Key features](#Goals)**
+1. **[Overview](#overview)**  
+    [Goals](#goals) | [Agile development](#agile-development)
+1. **[Key features](#Goals)**  
     [Climate control](#climate-control) | [Weather report](#weather-report) | [Lighting control](#lighting-control) | [Presence](#presence) | [Scenes and actions](#scenes-and-actions) | [General information](#general-information) | [Human interfaces](#human-interfaces)
-1. **[Task list](#task-list)**
-    [Work in progress](#work-in-progress) | [Backlog](#backlog) | [Wishlist](wWishlist)
-1. **[Setup](#setup)**
+1. **[Setup](#setup)**  
     [System and interfaces](#system-and-interfaces) | [Devices and sensors](#devices-and-sensors) | [Software](#software) | [Hass.io add-ons](#hassio-add-ons) | [Community components and widgets](#community-components-and-widgets)
 1. **[Thanks](#thanks)**
+
 
 ## TL;DR
 
 This is a fully documented working configuration for Home Assistant, with screenshots, hints and comments. [Browse the code](#) to have a look!
 
-## Overview
 
-### User stories
-- **As a resident** I want a reliable home automation platform to handle lights and climate that can easily be controlled and overridden in many intuitive ways.
-- **As an apartment dweller** I want to have a discrete, non-permanent installation that takes as little space as possible.
-- **As a developer** I want to use an open-source platform that is feature-rich, accessible, flexible and actively maintained.
-- **As a consumer** I want to pick and choose which devices I wish to acquire without necessarily being locked into a closed ecosystem.
-- **As a couple** we want to be able to operate lights and climate-control appliances as well as get quick overview of weather forecasts and public transit schedules through simple to use interfaces.
+## Overview
 
 ### Goals
 - **Inconspicuous**: I like tech alright, but like good butlers it should stay out of sight but summonable when desired. Think Fiji villa, not server room.
@@ -46,6 +42,19 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **No Alexa/Cortana/Google Voice:** I don't want to have advertising agencies, online stores, or other AI-feeding Big Brother tech-monsters listening in to everything we say just for the dubious convenience of turning on a light using my voice.
 
 
+### Agile development
+
+This configuration is built with an Agile methodology, lead by following main user stories:
+
+- **As a resident** I want a reliable home automation platform to handle lights and climate that can easily be controlled and overridden in many intuitive ways.
+- **As an apartment dweller** I want to have a discrete, non-permanent installation that takes as little space as possible.
+- **As a developer** I want to use an open-source platform that is feature-rich, accessible, flexible and actively maintained.
+- **As a consumer** I want to pick and choose which devices I wish to acquire without necessarily being locked into a closed ecosystem.
+- **As a couple** we want to be able to operate lights and climate-control appliances as well as get quick overview of weather forecasts and public transit schedules through simple to use interfaces.
+
+Tasks are defined in the [issue queue][link-issues] and the development progress is managed using a [lightweight Kanban board][link-board].
+
+
 ## Key features
 
 ### Climate control
@@ -56,11 +65,13 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **Low/High humidity status and alerts**, in case something is wrong with the dehumidifier or the (eventual) humidifier.
 - **Mold conditions status and alert**, in case dehumidifier is full/overwhelmed or someone transformed the place into a steam room.
 
+
 ### Weather report
 - **Easy to read status and forecasts** using Dark Sky data and only showcasing parameters that actually matter, shown in obvious ways.
 - **Outdoor quality monitoring** with numeric levels and human-friendly categorization for ozone, carbon monoxide, nitrogen dioxide, 2.5μm particulate matter and UV light, averaged from multiple surrounding public local stations.
 - **Weather radar and satellite maps** for [local rain and snow](https://weather.gc.ca/radar/index_e.html) from Environment Canada and [regional air masses](http://www.nhc.noaa.gov/satellite.php) from the U.S. National Oceanic and Atmospheric Administration.
 - See [`/groups`](groups) and [`/appdaemon/dashboards`](appdaemon/dashboards).
+
 
 ### Lighting control
 - **Control for all pluggable lights**, smart ones at [`/lights`](lights) and dumb ones using [`/switches`](switches).
@@ -74,15 +85,19 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **Presence-based nightlights**, where strategic lights fade in, dimmed very low, when walking around at night, say when someone wakes up to go the bathroom ...again.
 - See [`/automations`](automations).
 
+
 ### Presence
 - **Opened door binary sensor**, to know if someone left a door open.
 - **Opened door indicator in shower** where the shower stall's light changes color briefly and subtly when the front door opens/closes, to indicate a showering partner that their better half has left or just came in.
+
 
 ### Scenes and actions
 - **Good morning action** where all lights turn on gradually, and noise-making devices are allowed to run if needed.
 - **Nap time action** that fades out lights in and near bedroom, turns off noise makers.
 - **Good night action** fades out all lights outside of bedroom, turns off noise makers too.
 - **Movie scene** turns on ambiance lighting and dims smart lights when playing a movie, then returns to standard automations when pausing/stopping.
+- **Daylight, Gaming and Romantic scenes** fades in and out different lights, sets effects and changes light colors to set a perfect mood.
+
 
 ### General information
 - **[Local bus schedules](https://home-assistant.io/components/sensor.gtfs/)** with the next 3 departures. See [`/gtfs`](gtfs) for optimization hints.
@@ -90,50 +105,12 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **Network status monitoring** for latency, upspeed, downspeed.
 - **Home Assistant status monitoring** for geek cred with average load, RAM use, disk use, uptime, and update availability.
 
+
 ### Human interfaces
 - **Flic button on nightstand** for trigerring _good morning_ and _nap time_ actions, as well as bedroom light control, depending on current state and click sequence.
 - **[Homebridge](https://github.com/nfarina/homebridge)** for using some key sensors and devices with iPhones (only if using the same VLAN though).
 - **[Home Assistant Companion](https://itunes.apple.com/us/app/home-assistant-companion/id1099568401?mt=8) iPhone app** for full UI access in the palm of my hand. _Muahahaha!__
 - **[HADashboard](https://home-assistant.io/docs/ecosystem/hadashboard/)** for wall-mounted tablet, featuring indoor sensors reports, transit schedules, weather forecast and radar/sattelite maps, wrapped in an obvious navigation scheme for much UX goodness. Have a look at [`/appdeamon/dashboards`](appdeamon/dashboards), you'll like!
-
-
-### Task list
-
-#### Work in progress
-- Device: Kitchen under-cabinet CCT lighting
-- Device: Flic button (kitchen)
-- Contribute back: Full documentation
-
-#### Backlog
-- Component: Fix unlimited bandwidth consumption bug
-- Scene: Romantic
-- Scene: Gaming/Party
-- Automation: Away mode
-- Interface: Voice command (snips.ai)
-- Presence detection: Cellphones
-- Presence detection: Router
-- Contribute back: GTFS sensor optimization and documentation
-- Contribute back: HADashboard widget optimizations
-
-#### Wishlist
-- Dashboard: Context-aware link widgets
-- Automation: Welcome home theme song front door trigger
-- Automation: Door/Window sensor temper alert
-- Component: Airthings BLE custom component
-- Component: Monitor indoor air quality
-- Component: UPS monitoring
-- Component: Read rooftop weather station (Fine Offset WH1080)
-- Device: Use USB gigabit connection to test for above 80MB/s downspeeds
-- Device: Replace Wifi plug-in outlets with Z-Wave for stability
-- Device: Increase nightlight movement detection coverage
-- Device: Window binary sensors/state overview
-- Device: Indoor air quality sensing and report
-- Device: Exterior light
-- Device: Monitor humidity in humidor
-- Device: Light patterns in windowed cabinets using H801 devices
-- Device: Motion nightlight in bathroom under mirror
-- Device: Fade in/out fairy lights and nightstand lamp using ESP8266 devices
-- Device: Timer-based, fade in/out, twinkling Christmas tree using Arduino
 
 
 ## Setup
@@ -144,11 +121,13 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **Z-Wave** for reliability and guaranteed interoperability between vendors (unlike Zigbee...)
 - **Wifi** for its cheapness, omnipresence and non requirement of vendor-specific hubs.
 
+
 ### Configuration
 - **Dedicated, firewalled VLAN** (Virtual LAN) to segregate all IoT devices from other equipment ...because I cannot trust that my vacuum cleaner won't go on a killing spree. Remember [Runaway with Tom Selleck](http://www.imdb.com/title/tt0088024/)? Eek!
 - **Local static IPs** for all devices to minimize random drops.
 - **Local development** on a local virtual machine using Docker, then pushed by GIT to a Raspberry Pi.
 - **Shareable code** with all identifiers kept in a non-committed, secrets file.
+
 
 ### System and interfaces
 - **[Raspberry Pi 3 Model B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)** running Hass.io.
@@ -157,6 +136,7 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **[Plugable USB Bluetooth Adapter](https://plugable.com/products/usb-bt4le/)** for Bluetooth Low Energy connections.
 - **[Milight iBox2 Wifi Bridge](https://www.futlight.com/productdetails.aspx?id=239&typeid=125)** for kitchen RF LED strip controllers, using [LimitlessLED](https://home-assistant.io/components/light.limitlessled/) integration.
 - **[Acer Iconia One 10" tablet](https://www.acer.com/ac/en/CA/content/series/iconiaone10)** (1280x800 IPS screen) wallmounted as a kiosk. See [`/appdaemon/dashboards/`](appdaemon/dashboards)
+
 
 ### Devices and sensors
 - **[Nanoleaf Aurora](https://nanoleaf.me)** light panels kit. Pretty!
@@ -175,9 +155,11 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **Fairy lights** via TP-Link wifi outlets (x3).
 - **DIY LED nightstand** via TP-Link wifi outlet.
 
+
 ### Software
 - **[Hass.io](https://home-assistant.io)** on Raspberry Pi (production setup).
 - **[Docker](https://www.docker.com)** on local machine (for development).
+
 
 ### Hass.io add-ons
 - **[AppDaemon2](https://github.com/home-assistant/appdaemon)** for HADashboard tablet UI.
@@ -188,12 +170,14 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **[RTL_433 to MQTT Bridge](https://github.com/james-fry/hassio-addons)** to receive and decode AcuRite radio signals.
 - **[Samba share](https://home-assistant.io/addons/samba)** for configuration file sharing.
 
+
 ### Community components and widgets
 - **[Custom UI elements](https://github.com/andrey-git/home-assistant-custom-ui)** to improve the display of sensors and jazz up the interface a bit.
 - **[Horizontal line state card](https://github.com/covrig/homeassistant-hline)** to visually separate long lists of sensors.
 - **[Text-only state card](https://community.home-assistant.io/t/display-only-text-in-card/20536/26)** for wordy sensor states.
 - **[Nanoleaf Aurora](https://github.com/software-2/ha-aurora)** ([Fork](https://github.com/Oro/home-assistant/tree/light-aurora)) component.
 - **[Lightpack](https://github.com/kklemm91/Lightpack-HASS)** component.
+
 
 ## Thanks
 
@@ -213,7 +197,7 @@ Image references.
 [img-github-release]:https://img.shields.io/github/release/renemarc/home-assistant-config/all.svg?logo=github
 [img-repo-size]:https://img.shields.io/github/repo-size/renemarc/home-assistant-config.svg
 [img-code-size]:https://img.shields.io/github/languages/code-size/renemarc/home-assistant-config.svg
-[img-hassio]:https://img.shields.io/badge/Config_for-Hass.io-53c1f1.svg
+[img-hassio]:https://img.shields.io/badge/config_for-Hass.io-53c1f1.svg
 [img-license]:https://img.shields.io/github/license/renemarc/home-assistant-config.svg
 
 <!--
@@ -221,6 +205,8 @@ Link references.
 -->
 
 [link-repo]:https://github.com/renemarc/home-assistant-config
+[link-issues]:https://github.com/renemarc/home-assistant-config/issues
+[link-board]:https://github.com/renemarc/home-assistant-config/projects/1
 [link-travis-ci]:https://travis-ci.org/renemarc/home-assistant-config
 [link-hassio]:https://home-assistant.io/hassio/
 [link-license]:LICENSE.txt

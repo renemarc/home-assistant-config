@@ -1,0 +1,69 @@
+#
+# Setup daylight smart scene
+#
+# @see /automations/scene_select.yaml
+#
+alias: Daylight scene
+sequence:
+  # Enable scene mode.
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.scene_mode
+
+  # Turn on all simple lights.
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+        - light.countertop
+        - light.island
+        - light.microwave
+        - light.sink
+        - switch.bedside_light
+        - switch.nightstand_light
+        - switch.souvenirs_light
+        - switch.window_light
+
+  # Set smart lights to the max.
+  - service: light.lifx_set_state
+    data:
+      entity_id:
+        - light.shower
+        - light.spotlight
+    data_template:
+      kelvin: 6000
+      brightness_pct: 100
+      transition: 2
+
+  # Set Aurora effect.
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.aurora_effect
+      option: Daylight
+
+  # Set bed underglow light effect.
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.bed_effect
+      option: Reading
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+        - group.bed_lights
+      transition: 5
+
+  # Set ceiling wash light effect.
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.ceiling_effect
+      option: Daylight
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+        - group.ceiling_lights
+      transition: 5
+
+  # Set TV backlight effect.
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.lightpack_effect
+      option: Daylight

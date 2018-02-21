@@ -14,10 +14,17 @@
     - platform: state
       entity_id: input_select.aurora_effect
 
+    # When an item which was off or physically disconnected comes back online.
+    - platform: state
+      entity_id:
+        - light.aurora
+      from: 'off'
+
   condition:
     # If an actual effect is selected, not the default.
     - condition: template
-      value_template: "{% if not is_state('input_select.aurora_effect', 'Auto') %}true{% endif %}"
+      value_template: >-
+        {{ not is_state('input_select.aurora_effect', 'Auto') }}
 
   action:
     # Prevent the Aurora scheduler from replacing the selected effect.

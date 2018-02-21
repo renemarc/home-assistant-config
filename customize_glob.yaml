@@ -27,6 +27,8 @@ automation.dehumidifier_*:
   icon: mdi:water-off
 automation.front_door_*:
   icon: mdi:door
+automation.lightpack_*:
+  icon: mdi:television
 automation.lounge_*:
   icon: mdi:sofa
 automation.low_power_mode_*:
@@ -92,3 +94,9 @@ sensor.[!dark_sky]*_temperature:
       friendly_name: Temperature
 sensor.hline_*:
   custom_ui_state_card: state-card-hline
+sensor.hline_dashed*:
+  config:
+    width: 90
+    height: 0
+    backgroundcolor: inherit
+    bordertop: '1px dashed silver'
