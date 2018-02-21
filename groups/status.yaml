@@ -1,5 +1,5 @@
 #
-# View.
+# View
 #
 status_view:
   view: yes
@@ -14,7 +14,7 @@ status_view:
 
 
 #
-# Groups.
+# Groups
 #
 battery:
   name: Battery Levels
@@ -22,7 +22,6 @@ battery:
     - sensor.front_door_sensor_battery
     - sensor.bedroom_multisensor_battery
     - sensor.lounge_multisensor_battery
-
 
 humidity:
   name: Humidity
@@ -38,7 +37,6 @@ network:
     - sensor.speedtest_ping
     - sensor.speedtest_upload
     - sensor.speedtest_download
-    # - sensor.fastcom_download
     - sensor.ebox_upload_before_offpeak
     - sensor.ebox_download_before_offpeak
     - sensor.ebox_usage_friendly

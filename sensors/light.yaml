@@ -1,5 +1,8 @@
 #
-# Bed wash lights loaded effect.
+# Bed glow lights loaded effect
+#
+# @see /appdaemon/dashboards/Switchboard.dash
+# @see /customize.yaml
 #
 - platform: template
   sensors:
@@ -12,7 +15,10 @@
 
 
 #
-# Ceiling wash lights loaded effect.
+# Ceiling wash lights loaded effect
+#
+# @see /appdaemon/dashboards/Switchboard.dash
+# @see /customize.yaml
 #
 - platform: template
   sensors:
@@ -25,7 +31,10 @@
 
 
 #
-# Nanoleaf Aurora loaded effect.
+# Nanoleaf Aurora loaded effect
+#
+# @see /appdaemon/dashboards/Switchboard.dash
+# @see /customize.yaml
 #
 - platform: template
   sensors:

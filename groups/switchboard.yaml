@@ -1,5 +1,5 @@
 #
-# View.
+# View
 #
 switchboard_view:
   view: yes
@@ -14,7 +14,7 @@ switchboard_view:
 
 
 #
-# Groups.
+# Groups
 #
 bed:
   name: Bed
@@ -29,6 +29,7 @@ bedroom:
     - input_select.bed_effect
     - light.underbed
     - light.headboard
+    - sensor.hline_dashed
     - switch.nightstand_light
     - switch.bedside_light
     - switch.bedroom_fan
@@ -56,6 +57,7 @@ lounge:
   entities:
     - input_select.aurora_effect
     - light.aurora
+    - sensor.hline_dashed
     - light.spotlight
     - light.lightpack
     - switch.souvenirs_light

@@ -2,7 +2,7 @@
 # Main arguments, all optional
 #
 title: Status
-widget_dimensions: [120, 114]
+widget_dimensions: [121, 122]
 widget_size: [1, 1]
 widget_margins: [5, 5]
 columns: 10
@@ -83,121 +83,133 @@ database_size:
 
 logfile_size:
     widget_type: sensor
-    title: Logfile
+    title: Log File
     entity: sensor.logfile_size
 
 cpu_temp:
-    widget_type: gauge
+    widget_type: sensor
     entity: sensor.cpu_temp
-    min: 30
-    max: 100
-    units: "°C"
     title: CPU Temp
-    color: white
-    low_color: 00FF00
-    med_color: FFFF00
-    high_color: FF0000
 
 cpu_used:
-    widget_type: gauge
+    widget_type: sensor
     entity: sensor.cpu_used
-    min: 0
-    max: 100
-    units: "%"
+    sub_entity: sensor.average_load
     title: CPU Used
-    color: white
-    low_color: 00FF00
-    med_color: FFFF00
-    high_color: FF0000
+    state_text_style: "background-color:#555;"
 
 ram_used:
-    widget_type: gauge
-    entity: sensor.ram_used
-    min: 0
-    max: 100
-    units: "%"
+    widget_type: entitysensor
+    entity: sensor.ram_used_percent
+    sub_entity: sensor.ram_used
     title: RAM Used
-    color: white
-    low_color: 00FF00
-    med_color: FFFF00
-    high_color: FF0000
+    state_text_style: "background-color:#555;"
 
 disk_used:
-    widget_type: gauge
-    entity: sensor.disk_used_home
-    min: 0
-    max: 100
-    units: "%"
+    widget_type: entitysensor
+    entity: sensor.disk_used_percent
+    sub_entity: sensor.disk_used_home
     title: Disk Used
-    color: white
-    low_color: 00FF00
-    med_color: FFFF00
-    high_color: FF0000
+    state_text_style: "background-color:#555;"
 
 
 #
 # Network
 #
 upspeed:
-    widget_type: gauge
+    widget_type: sensor
     entity: sensor.speedtest_upload
-    min: 0
-    max: 20
-    units: ""
     title: Upspeed
-    title2: Mbit/s
-    color: white
-    title2_style: "font-size: x-small;"
 
 downspeed:
-    widget_type: gauge
+    widget_type: sensor
     entity: sensor.speedtest_download
-    min: 0
-    max: 120
-    units: ""
     title: Downspeed
-    title2: Mbit/s
-    color: white
-    title2_style: "font-size: x-small;"
+
+
+#
+# Temperatures
+#
+average_temperature:
+    widget_type: sensor
+    entity: sensor.bedroom_temperature
+    title: Temperature
+    title2: Average
+    widget_style: "background-color:inherit;"
+    title_style: "background-color:#555;padding:5px 104% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
+    title2_style: "margin-top:3px;"
+    value_style: "color:orange;"
+    unit_style: "color:orange;"
+
+bedroom_temperature:
+    widget_type: sensor
+    entity: sensor.bedroom_temperature
+    title2: Bedroom
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
+
+lounge_temperature:
+    widget_type: sensor
+    entity: sensor.lounge_temperature
+    title2: Lounge
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
+
+
+#
+# Humidity
+#
+average_humidity:
+    widget_type: sensor
+    entity: sensor.average_humidity
+    title: Humidity
+    title2: Average
+    widget_style: "background-color:inherit;"
+    title_style: "background-color:#555;padding:5px 104% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
+    title2_style: "margin-top:3px;"
+    value_style: "color:orange;"
+    unit_style: "color:orange;"
+
+bedroom_humidity:
+    widget_type: sensor
+    entity: sensor.bedroom_humidity
+    title2: Bedroom
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
+
+lounge_humidity:
+    widget_type: sensor
+    entity: sensor.lounge_humidity
+    title2: Lounge
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
+
 
 #
 # Battery
 #
 front_door_sensor_battery:
-    widget_type: gauge
+    widget_type: sensor
     entity: sensor.front_door_sensor_battery
-    min: 0
-    max: 100
-    units: "%"
-    title: Front Door Sensor Battery
-    color: white
-    low_color: FF0000
-    med_color: FFFF00
-    high_color: 00FF00
+    title: Battery Status
+    title2: Front Door
+    widget_style: "background-color:inherit;"
+    title_style: "background-color:#555;padding:5px 104% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
+    title2_style: "margin-top:3px;"
 
 bedroom_multisensor_battery:
-    widget_type: gauge
+    widget_type: sensor
     entity: sensor.bedroom_multisensor_battery
-    min: 0
-    max: 100
-    units: "%"
-    title: Bedroom Sensor Battery
-    color: white
-    low_color: FF0000
-    med_color: FFFF00
-    high_color: 00FF00
+    title2: Bedroom
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
 
 lounge_multisensor_battery:
-    widget_type: gauge
+    widget_type: sensor
     entity: sensor.lounge_multisensor_battery
-    min: 0
-    max: 100
-    units: "%"
-    title: Lounge Sensor Battery
-    color: white
-    low_color: FF0000
-    med_color: FFFF00
-    high_color: 00FF00
+    title2: Lounge
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
 
 
 #
@@ -205,9 +217,10 @@ lounge_multisensor_battery:
 #
 layout:
     - include: header
+    - include: header
     - nav_main,         label(6x1), reload, temperature, clock
     - nav_switchboard,  uptime, uptime_host, database_size, logfile_size
     - nav_weather,      cpu_temp, cpu_used, ram_used, disk_used, spacer(2x1), sensor.speedtest_ping, upspeed, downspeed
     - nav_spacer(1x2)
-    -                   sensor.bedroom_temperature, sensor.lounge_temperature, spacer(4x1), front_door_sensor_battery, bedroom_multisensor_battery, lounge_multisensor_battery
-    - nav_status,       sensor.bedroom_humidity, sensor.lounge_humidity
+    -                   average_temperature, bedroom_temperature, lounge_temperature, spacer(3x1), front_door_sensor_battery, bedroom_multisensor_battery, lounge_multisensor_battery
+    - nav_status,       average_humidity, bedroom_humidity, lounge_humidity

@@ -1,7 +1,15 @@
 #
-# Activate/deactivate Aeotec Zstick LED.
+# Activate/deactivate Aeotec Z-Stick RGB LED
 #
-# see: https://community.home-assistant.io/t/aeotec-gen5-z-stick-strobing-led-question-in-hass-io/28635/9
+# The Z-Stick USB dongle has a colorful but annoying disco-light status LED.
+# Great for diagnosis, but otherwise very bright and obnoxious when placed in
+# a visible location!
+#
+# Todo: Add command_state.
+#
+# @link https://aeotec.com/z-wave-usb-stick
+# @link https://community.home-assistant.io/t/aeotec-gen5-z-stick-strobing-led-question-in-hass-io/28635/9
+# @link https://home-assistant.io/components/switch.command_line/
 #
 - platform: command_line
   switches:

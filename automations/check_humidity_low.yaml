@@ -1,34 +1,48 @@
 #
-# Check if humidity is too low.
+# Check if humidity is too low
+#
+# Only verify if doors and windows are closed.
+#
+# @subscribe input_boolean.doors_open
+# @subscribe input_boolean.windows_open
 #
 - id: check_humidity_low
   alias: Check humidity LOW
   trigger:
-    # At noon.
-    - platform: time
-      hours: 12
-      minutes: 00
-      seconds: 00
-
-  condition:
-    # Humidity is too low.
-    - condition: numeric_state
+    # Comfort level should be between 35% and 55%.
+    - platform: numeric_state
       entity_id: sensor.average_humidity
       below: 35
 
+  condition:
     # Doors are closed.
     - condition: state
       entity_id: input_boolean.doors_open
       state: 'off'
+      for:
+        minutes: 60
 
     # Windows are closed.
     - condition: state
       entity_id: input_boolean.windows_open
       state: 'off'
+      for:
+        minutes: 60
 
   action:
+    # Warn someone to take action (like refill the humidifier).
+    - service: notify.group
+      data:
+        title: "Home humidity is too low"
+        message: |
+          {{ states('sensor.average_humidity') }}% is too dry.
+          Check the humidifier.
+
+    # Pin a warning message in the frontend.
     - service: persistent_notification.create
       data:
         notification_id: humidity
-        title: "Humidity is too low: {{ states('sensor.average_humidity') }}%"
-        message: "Take a long hot shower or install a humidifier."
+        title: "Humidity is too low"
+        message: >-
+          {{ states('sensor.average_humidity') }}% is too dry.\n
+          Check the humidifier.

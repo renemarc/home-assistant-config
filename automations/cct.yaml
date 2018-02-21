@@ -1,8 +1,16 @@
 #
 # Adjust color temperature (CCT) based on cyrcadian rythm.
 #
-# see: https://community.home-assistant.io/t/lifx-circadian-rhythm-time-of-day-automation/23091
-# see: https://sigmaluminous.com/the-circadian-rhythm-and-color-temperature/
+# White temperature is based on a custom curve, not f.lux nor using the sun,
+# otherwise it would be kind of gloomy to see warm yellows a lot in winter time.
+#
+# Todo: Split LIFX devices from MiLight.
+# Todo: User-configurable targets and hours?
+# Todo: Use sun as basis for color temp boundaries?
+# Todo: Use sin/cos to determine curve?
+#
+# @link https://community.home-assistant.io/t/lifx-circadian-rhythm-time-of-day-automation/23091
+# @link https://sigmaluminous.com/the-circadian-rhythm-and-color-temperature/
 #
 - id: cct
   alias: CCT
@@ -36,8 +44,6 @@
       state: 'off'
 
   action:
-      # Todo: Use sun as basis for color temp boundaries.
-      # Todo: Use sin/cos to determine curve?
     - service: light.lifx_set_state
       data:
         entity_id:

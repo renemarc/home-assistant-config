@@ -1,0 +1,28 @@
+#
+# Set theme to "normal" during daytime and "dark" during night mode
+#
+# @subscribe input_boolean.night_mode
+#
+- id: theme_auto
+  alias: Theme AUTO
+  initial_state: True
+  trigger:
+    # When Home Assistant starts.
+    - platform: homeassistant
+      event: start
+
+    # If night mode is changed.
+    - platform: state
+      entity_id: input_boolean.night_mode
+
+  action:
+    # Set theme to "normal" or "dark".
+    - service: frontend.set_theme
+      data_template:
+        name: >-
+          {% if is_state('input_boolean.night_mode', 'on') %}
+            dark
+          {% else %}
+            normal
+          {% endif %}
+

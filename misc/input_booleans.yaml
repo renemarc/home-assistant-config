@@ -1,0 +1,58 @@
+#
+# Modes
+#
+low_mode:
+  name: Low power mode
+  initial: off
+
+nap_mode:
+  name: Nap mode
+  initial: off
+
+night_mode:
+  name: Night mode
+  initial: off
+
+quiet_mode:
+  name: Quiet mode
+  initial: off
+
+scene_mode:
+  name: Scene mode
+  initial: off
+
+
+#
+# Manual effect overrides
+#
+aurora_effect_override:
+  name: Aurora has overriding effect set
+  initial: off
+
+bed_effect_override:
+  name: Bed underglow lights have overriding effect set
+  initial: off
+
+ceiling_effect_override:
+  name: Ceiling wash lights have overriding effect set
+  initial: off
+
+
+#
+# Permimiter seal
+#
+doors_open:
+  name: Doors are open
+  initial: off
+
+windows_open:
+  name: Windows are open
+  initial: off
+
+
+#
+# Miscellaneous
+#
+update_available:
+  name: Update available
+  initial: off

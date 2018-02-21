@@ -1,3 +1,8 @@
+#
+# Bus terminal zone
+#
+# @link https://home-assistant.io/components/zone/
+#
 name: Bus Terminal
 latitude: !secret zone_terminal_latitude
 longitude: !secret zone_terminal_longitude

@@ -2,7 +2,7 @@
 # Main arguments, all optional
 #
 title: Switchboard
-widget_dimensions: [120, 114]
+widget_dimensions: [121, 122]
 widget_size: [1, 1]
 widget_margins: [5, 5]
 columns: 10
@@ -53,9 +53,10 @@ nav_spacer:
 # Header
 #
 label:
-    widget_type: label
+    widget_type: sensor
     title2: Switchboard
-    text: Night mode
+    entity: sensor.modes_friendly
+    text_style: "font-size: 300%;"
     widget_style: "background: MEDIUMSLATEBLUE;"
     title2_style: "text-transform: uppercase; letter-spacing: 0.35em;"
 
@@ -71,9 +72,9 @@ label_exterior:
     widget_style: "background-color:DARKOLIVEGREEN;"
     title2_style: "font-size:175%;font-weight:400;"
 
-light_front_door:
+light_front_porch:
     widget_type: label
-    title: Front Door
+    title: Front Porch
     widget_style: "background-color:DARKOLIVEGREEN;"
 
 
@@ -92,19 +93,19 @@ label_ceiling:
     select_style: "background-color:GOLDENROD;color:$white;"
 
 washlight_bedroom:
-    widget_type: light
+    widget_type: switch
     title: Bedroom
     entity: light.bedroom
     widget_style: "background-color:DARKGOLDENROD;"
 
 washlight_middle:
-    widget_type: light
+    widget_type: switch
     title: Middle
     entity: light.middle
     widget_style: "background-color:DARKGOLDENROD;"
 
 washlight_lounge:
-    widget_type: light
+    widget_type: switch
     title: Lounge
     entity: light.lounge
     widget_style: "background-color:DARKGOLDENROD;"
@@ -220,13 +221,13 @@ light_bed_effect:
     state_text_style: "background-color:PURPLE;"
     select_style: "background-color:PURPLE;color:$white;"
 
-light_headboard:
+underglow_headboard:
     widget_type: light
     title: Headboard
     entity: light.headboard
     widget_style: "background-color:INDIGO;"
 
-light_underbed:
+underglow_underbed:
     widget_type: light
     title: Underbed
     entity: light.underbed
@@ -340,8 +341,8 @@ light_window:
 layout:
     - include: header
     - nav_main,         label(6x1), reload, temperature, clock
-    - nav_switchboard,  spacer, label_exterior, light_front_door, spacer(2x1), label_ceiling, washlight_bedroom, washlight_middle, washlight_lounge
+    - nav_switchboard,  spacer, label_exterior, light_front_porch, spacer(2x1), label_ceiling, washlight_bedroom, washlight_middle, washlight_lounge
     - nav_weather,      label_kitchen, light_microwave, spacer, label_washroom, light_shower, spacer, label_climate, switch_air_filter
     - nav_spacer(1x2),  light_island, light_sink, light_countertop, spacer, light_lavatory, spacer, switch_dehumidifier, switch_humidifier
-    -                   label_bedroom, light_bed_effect, light_headboard, light_underbed, spacer_tetris, label_lounge, light_aurora_effect, light_aurora, light_tv_backlight
+    -                   label_bedroom, light_bed_effect, underglow_headboard, underglow_underbed, spacer_tetris, label_lounge, light_aurora_effect, light_aurora, light_tv_backlight
     - nav_status,       light_nightstand, light_bedside, fan_bedroom, spacer(2x1), light_spotlight, light_souvenirs, light_window, light_lamp

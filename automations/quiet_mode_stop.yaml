@@ -1,5 +1,10 @@
 #
-# When noise makers should be allowed to run.
+# When noise makers should be allowed to run
+#
+# @subscribe input_boolean.night_mode
+# @subscribe input_boolean.nap_mode
+#
+# @publish input_boolean.quiet_mode
 #
 - id: quiet_mode_stop
   alias: Quiet mode STOP

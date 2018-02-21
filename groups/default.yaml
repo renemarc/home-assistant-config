@@ -1,5 +1,5 @@
 #
-# View.
+# View
 #
 default_view:
   view: yes
@@ -14,17 +14,17 @@ default_view:
 
 
 #
-# Groups.
+# Groups
 #
 actions:
   name: Actions
   control: hidden
   entities:
-    - scene.romantic
-    - scene.shutdown
     - script.wake_up
-    - script.go_to_sleep
-    - script.take_a_nap
+    - input_boolean.night_mode
+    - input_boolean.nap_mode
+    - input_boolean.quiet_mode
+    - input_boolean.low_mode
 
 climate:
   name: Climate Control
@@ -60,16 +60,3 @@ now:
     - sensor.date_friendly
     - sensor.time_friendly
     - sensor.sun_state
-
-# media:
-#   name: Media
-#   entities:
-#     - media_player.kodi
-#     - media_player.plex
-#     - sensor.plex_htpc
-
-# presence:
-#   name: Presence
-#   entities:
-#     - device_tracker.cellphone_him
-#     - device_tracker.cellphone_her

@@ -1,0 +1,67 @@
+<!--
+Horizontal line state card for Home Assistant
+v20180211
+-->
+<dom-module id="state-card-hline">
+<template>
+<style>
+.hrdiv {
+   height: calc(100% + 32px); 
+   width: calc(100% + 32px); 
+   margin: -16px;
+   margin-top: -8px;
+}
+hr {
+  width: var(--width);
+  height: var(--height);
+  border-top: var(--bordertop) !important;
+  border: none;
+  background-color: var(--backgroundcolor);
+  background-image: var(--backgroundimage);
+}
+</style>
+<div class="hrdiv"  on-tap='cardTapped'><hr on-tap='cardTapped'></div>
+</template>
+</dom-module>
+
+<script>
+class HLine extends Polymer.Element {
+  static get is() { return 'state-card-hline'; }
+  static get properties() {
+    return {
+      hass: Object,
+      stateObj: Object,
+      config: {
+        type: Object,
+        computed: 'computeConfig(stateObj)',
+      },
+    };
+  }
+
+  computeConfig(stateObj) {     
+    return stateObj.attributes.config;
+  }
+  ready() {
+    super.ready();
+    var configdummy = {
+       width: 90,
+       height: 0,
+       bordertop: '1px solid black',
+       backgroundcolor: 'white',
+       backgroundimage: 'none'
+    }
+    var config = this.config || configdummy;
+    this.updateStyles({
+      '--width': config.width +'%' ? config.width +'%' : '90%',
+      '--height': config.height+'px' ? config.height+'px' : '0px',
+      '--bordertop': config.bordertop ? config.bordertop : '1px solid black',
+      '--backgroundcolor': config.backgroundcolor ? config.backgroundcolor : 'white',
+      '--backgroundimage': config.backgroundimage ? config.backgroundimage : 'none',
+    });
+  }
+  cardTapped(ev) {
+      ev.stopPropagation();
+  }
+}
+customElements.define(HLine.is, HLine);
+</script>

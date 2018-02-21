@@ -1,0 +1,18 @@
+#
+# Card Warning theme
+#
+# Highlight a card in semi-transparent yellow. It's made to look good and clear
+# for normal and dark themes.
+#
+
+# Backgrounds
+paper-card-background-color: rgba(255, 255, 0, 0.25)
+# Text colors
+primary-text-color: rgb(3, 169, 244)
+secondary-text-color: rgba(3, 169, 244, 0.75)
+# Text Adjustments
+paper-font-body1_-_font-weight: '500'
+# Labels
+label-badge-red: rgb(3, 169, 244)
+label-badge-background-color: rgba(3, 169, 244, 0.66)
+label-badge-text-color: rgb(255, 255, 255)

@@ -1,3 +1,8 @@
+#
+# Home zone
+#
+# @link https://home-assistant.io/components/zone/
+#
 name: Home
 latitude: !secret zone_home_latitude
 longitude: !secret zone_home_longitude

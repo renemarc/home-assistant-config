@@ -1,9 +1,0 @@
-#
-# Plex
-#
-# - platform: plex
-#   name: Plex HTPC
-#   host: !secret plex_host
-#   port: !secret plex_port
-#   username: !secret plex_username
-#   password: !secret plex_password

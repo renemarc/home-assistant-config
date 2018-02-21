@@ -1,11 +1,17 @@
 #
-# Warn whenever the front door is opening.
+# Warn whenever the front door is opening
+#
+# Useful to indicate to an otherwise oblivious showering partner that the front
+# door has opened.
 #
 # Todo: map door sensor state values to binary values.
+#
+# @see /lights/lifx.yaml
 #
 - id: front_door_opened
   alias: Front door OPENED
   trigger:
+    # The front door sensor senses openness.
     - platform: state
       entity_id: sensor.aeotec_zw120_door_window_sensor_gen5_access_control
       from: '23'

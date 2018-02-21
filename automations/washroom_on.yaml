@@ -1,5 +1,8 @@
 #
-# Turn on washroom.
+# Turn on washroom
+#
+# @subscribe input_boolean.nap_mode
+# @subscribe input_boolean.night_mode
 #
 - id: washroom_on
   alias: Washroom ON

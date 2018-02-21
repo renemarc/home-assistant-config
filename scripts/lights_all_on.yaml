@@ -1,9 +1,0 @@
-lights_all_on:
-  alias: Turn all lights on full bright
-  sequence:
-    - service: light.turn_on
-      data:
-        entity_id: group.all_lights
-        brightness: 255
-        color_temp: 260
-        transition: 15

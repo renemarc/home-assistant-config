@@ -1,0 +1,22 @@
+#
+# Owntracks
+#
+# @link https://home-assistant.io/components/device_tracker.owntracks/
+#
+- platform: owntracks
+
+
+#
+# Ubiquiti Unifi wireless access point
+#
+# @link https://home-assistant.io/components/device_tracker.unifi/
+#
+- platform: unifi
+  host: !secret unifi_host
+  port: !secret unifi_port
+  username: !secret unifi_username
+  password: !secret unifi_password
+  verify_ssl: false
+  track_new_devices: false
+  interval_seconds: 10
+  consider_home: 180

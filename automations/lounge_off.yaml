@@ -1,5 +1,7 @@
 #
-# Turn off lounge.
+# Turn off lounge
+#
+# @subscribe input_boolean.night_mode
 #
 - id: lounge_off
   alias: Lounge OFF

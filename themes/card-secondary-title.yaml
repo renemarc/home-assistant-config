@@ -1,0 +1,11 @@
+#
+# Card Secondary Title theme
+#
+# Replace the card's title with the secondary text.
+#
+
+# Text colors
+secondary-text-color: 'var(--primary-text-color)'
+
+# Text Adjustments
+paper-font-body1_-_line-height: 40px

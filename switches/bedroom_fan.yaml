@@ -1,5 +1,8 @@
 #
-# Basic oscillating fan on a smart plug.
+# Basic oscillating fan on a TP-Link Smart Wifi Plug Mini
+#
+# @link https://www.tp-link.com/ca/products/details/cat-5516_HS105.html
+# @link https://home-assistant.io/components/switch.tplink/
 #
 - platform: tplink
   name: Bedroom Fan

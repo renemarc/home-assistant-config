@@ -1,6 +1,12 @@
 #
 # Bing Wallpaper
 #
+# Used for wallpaper cameras.
+#
+# @see /cameras/wallpapers.yaml
+#
+# @link https://bing.com
+#
 - platform: rest
   name: Bing Wallpaper
   resource: http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US
@@ -19,6 +25,12 @@
 #
 # NASA's Astronomy Picture of the Day
 #
+# Used for wallpaper cameras.
+#
+# @see /cameras/wallpapers.yaml
+#
+# @link https://apod.nasa.gov
+#
 - platform: scrape
   name: APOD
   resource: https://apod.nasa.gov/apod/astropix.html
@@ -34,104 +46,14 @@
 
 
 #
-# Environment Canada radar maps
+# Environment Canada radar location
 #
-
-# Environment Canada radar location (placeholder)
+# Used as privacy plaholder for the Environment Canada radar map.
+#
+# @see /cameras/environment_canada.yaml
+#
 - platform: template
   sensors:
     environment_canada_radar:
       friendly_name: Environment Canada Radar
       value_template: !secret environment_canada_radar
-
-# Deprecated.
-# # Environment Canada radar image URLs.
-# # Radar images are batch created every 10 minutes on the dot, but can take up
-# # to 10 minutes to be generated and stored on Environment Canada's servers.
-# # We therefore fetch the image for the last batch, which may be up
-# # to 19 minute stale.
-# - platform: template
-#   sensors:
-#     environment_canada_rain:
-#       friendly_name: Environment Canada Rain
-#       icon_template: mdi:link-variant
-#       value_template: >-
-#         {% set delta = 10 %}
-#         {% set time = states('sensor.time') %}
-#         {% set location = states('sensor.environment_canada_radar') %}
-#         {% set offset = delta * 60 %}
-#         {% set timestamp = as_timestamp(utcnow()) - offset %}
-#         {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-#         {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-#         http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_RAIN.gif
-
-#     environment_canada_rain_2:
-#       friendly_name: Environment Canada Rain 2
-#       icon_template: mdi:link-variant
-#       value_template: >-
-#         {% set delta = 20 %}
-#         {% set time = states('sensor.time') %}
-#         {% set location = states('sensor.environment_canada_radar') %}
-#         {% set offset = delta * 60 %}
-#         {% set timestamp = as_timestamp(utcnow()) - offset %}
-#         {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-#         {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-#         http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_RAIN.gif
-
-#     environment_canada_rain_3:
-#       friendly_name: Environment Canada Rain 3
-#       icon_template: mdi:link-variant
-#       value_template: >-
-#         {% set delta = 30 %}
-#         {% set time = states('sensor.time') %}
-#         {% set location = states('sensor.environment_canada_radar') %}
-#         {% set offset = delta * 60 %}
-#         {% set timestamp = as_timestamp(utcnow()) - offset %}
-#         {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-#         {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-#         http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_RAIN.gif
-
-#     environment_canada_snow:
-#       friendly_name: Environment Canada Snow
-#       icon_template: mdi:link-variant
-#       value_template: >-
-#         {% set delta = 10 %}
-#         {% set time = states('sensor.time') %}
-#         {% set location = states('sensor.environment_canada_radar') %}
-#         {% set offset = delta * 60 %}
-#         {% set timestamp = as_timestamp(utcnow()) - offset %}
-#         {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-#         {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-#         http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_SNOW.gif
-
-#     environment_canada_snow_2:
-#       friendly_name: Environment Canada Snow 2
-#       icon_template: mdi:link-variant
-#       value_template: >-
-#         {% set delta = 20 %}
-#         {% set time = states('sensor.time') %}
-#         {% set location = states('sensor.environment_canada_radar') %}
-#         {% set offset = delta * 60 %}
-#         {% set timestamp = as_timestamp(utcnow()) - offset %}
-#         {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-#         {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-#         http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_SNOW.gif
-
-#     environment_canada_snow_3:
-#       friendly_name: Environment Canada Snow 3
-#       icon_template: mdi:link-variant
-#       value_template: >-
-#         {% set delta = 30 %}
-#         {% set time = states('sensor.time') %}
-#         {% set location = states('sensor.environment_canada_radar') %}
-#         {% set offset = delta * 60 %}
-#         {% set timestamp = as_timestamp(utcnow()) - offset %}
-#         {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-#         {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-#         http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_SNOW.gif

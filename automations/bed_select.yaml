@@ -1,5 +1,9 @@
 #
-# Manually select a LIFX cloud effect for the bed washlights.
+# Manually select a LIFX cloud effect for the bed underglow lights.
+#
+# @publish variable.bed_effect
+#
+# @see /scenes/lifx_cloud.yaml
 #
 - id: bed_select
   alias: Bed SELECT
@@ -9,16 +13,16 @@
       entity_id: input_select.bed_effect
 
   condition:
-    # If an actual effect is selected.
+    # If an actual effect is selected, not the default.
     - condition: template
       value_template: "{% if not is_state('input_select.bed_effect', 'Auto') %}true{% endif %}"
 
   action:
-    # Override any bed washlight effect.
+    # Prevent the bed scheduler from replacing the selected effect.
     - service: input_boolean.turn_on
       entity_id: input_boolean.bed_effect_override
 
-    # Update the effect variable.
+    # Update the bed effect variable.
     - service: variable.set_variable
       data:
         variable: bed_effect

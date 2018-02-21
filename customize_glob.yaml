@@ -1,16 +1,18 @@
 #
-# Global.
+# Global
 #
 "*.*":
   custom_ui_state_card: state-card-custom-ui
 
 
 #
-# Automations.
+# Automations
 #
 automation.*:
   extra_data_template: >-
-    return attributes.last_triggered ? window.hassUtil.relativeTime(new Date(attributes.last_triggered)) : null;
+    return attributes.last_triggered ?
+    window.hassUtil.relativeTime(new Date(attributes.last_triggered))
+    : null;
 automation.aurora_*:
   icon: mdi:vector-triangle
 automation.bed_*:
@@ -44,38 +46,49 @@ automation.washroom_*:
 
 
 #
-# Input Booleans.
+# Input Booleans
 #
 input_boolean.*:
   show_last_changed: true
 
 
 #
-# Sensors.
+# Sensors
 #
+sensor.*_battery:
+  templates:
+    theme: >-
+      var v = parseInt(state);
+      return v <= 5 ? 'card-critical'
+      : v <= 10 ? 'card-warning'
+      : null;
 sensor.*_fan:
   group:
     group.bedroom:
       friendly_name: Fan
-sensor.*_humidity:
+sensor.[!outside]*_humidity:
   group:
     group.bedroom:
       friendly_name: Humidity
-    # group.humidity:
-    #   friendly_name: Humidity
     group.lounge:
       friendly_name: Humidity
+  templates:
+    theme: >-
+      var v = parseInt(state);
+      return v > 55 || v < 30 ? 'card-critical'
+      : v > 50 || v < 35 ? 'card-warning'
+      : null;
 sensor.*_luminance:
   group:
     group.bedroom:
       friendly_name: Luminance
     group.lounge:
       friendly_name: Luminance
-sensor.*_temperature:
+sensor.[!dark_sky]*_temperature:
   group:
     group.bedroom:
       friendly_name: Temperature
     group.lounge:
       friendly_name: Temperature
-    # group.temperature:
-    #   friendly_name: Temperature
+sensor.hline_*:
+  custom_ui_state_card: state-card-hline

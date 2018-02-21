@@ -1,5 +1,5 @@
 #
-# Automations.
+# Automations
 #
 automation.cct:
   icon: mdi:white-balance-auto
@@ -11,19 +11,21 @@ automation.check_update_availability:
   icon: mdi:cloud-upload
 automation.go_to_sleep:
   icon: mdi:weather-night
+automation.theme_auto:
+  icon: mdi:theme-light-dark
 automation.wake_up:
   icon: mdi:weather-sunny
 
 
 #
-# Binary sensors.
+# Binary sensors
 #
 binary_sensor.flic_80e4da737711:
   friendly_name: Flic blue
 
 
 #
-# Cameras.
+# Cameras
 #
 camera.environment_canada_rain:
   friendly_name: Rain
@@ -36,7 +38,7 @@ camera.noaa_water_vapour:
 
 
 #
-# Device trackers.
+# Device trackers
 #
 device_tracker.cellphone_her:
   friendly_name: !secret nickname_her
@@ -48,7 +50,7 @@ device_tracker.cellphone_him:
 
 
 #
-# Groups.
+# Groups
 #
 group.configuration_view:
   order: 5
@@ -63,7 +65,7 @@ group.weather_view:
 
 
 #
-# Input booleans.
+# Input booleans
 #
 input_boolean.low_mode:
   icon: mdi:weather-sunset-down
@@ -78,7 +80,7 @@ input_boolean.scene_mode:
 
 
 #
-# Input selectors.
+# Input selectors
 #
 input_select.aurora_effect:
   icon: mdi:blank
@@ -91,7 +93,7 @@ input_select.ceiling_effect:
 
 
 #
-# Lights.
+# Lights
 #
 light.aurora:
   extra_data_template: >-
@@ -109,7 +111,7 @@ light.aurora:
   state_card_mode: break-slider
 light.bedroom:
   extra_data_template: >-
-    return (entities['sensor.ceiling_effect_loaded'].state) ?
+    return (state === 'on' && entities['sensor.ceiling_effect_loaded'].state) ?
     entities['sensor.ceiling_effect_loaded'].state
     : null;
   icon: mdi:led-strip
@@ -147,7 +149,7 @@ light.island:
     report_when_not_changed: false
 light.headboard:
   extra_data_template: >-
-    return (entities['sensor.bed_effect_loaded'].state) ?
+    return (state === 'on'  && entities['sensor.bed_effect_loaded'].state) ?
     entities['sensor.bed_effect_loaded'].state
     : null;
   icon: mdi:gate
@@ -162,7 +164,7 @@ light.lightpack:
   icon: mdi:television
 light.lounge:
   extra_data_template: >-
-    return (entities['sensor.ceiling_effect_loaded'].state) ?
+    return (state === 'on' && entities['sensor.ceiling_effect_loaded'].state) ?
     entities['sensor.ceiling_effect_loaded'].state
     : null;
   icon: mdi:led-strip
@@ -187,7 +189,7 @@ light.microwave:
     report_when_not_changed: false
 light.middle:
   extra_data_template: >-
-    return (entities['sensor.ceiling_effect_loaded'].state) ?
+    return (state === 'on'  && entities['sensor.ceiling_effect_loaded'].state) ?
     entities['sensor.ceiling_effect_loaded'].state
     : null;
   icon: mdi:led-strip
@@ -240,7 +242,7 @@ light.spotlight:
   state_card_mode: break-slider
 light.underbed:
   extra_data_template: >-
-    return (entities['sensor.bed_effect_loaded'].state) ?
+    return (state === 'on'  && entities['sensor.bed_effect_loaded'].state) ?
     entities['sensor.bed_effect_loaded'].state
     : null;
   icon: mdi:hotel
@@ -251,40 +253,30 @@ light.underbed:
     pin: true
     report_when_not_changed: false
 
+
 #
-# Sensors.
+# Sensors: Miscellaneous
 #
-sensor.bedroom_multisensor_battery:
-  group:
-    group.battery:
-      friendly_name: Bedroom
-      icon: mdi:hotel
-    group.bedroom:
-      friendly_name: Multisensor Battery
-sensor.front_door_sensor_battery:
-  group:
-    group.battery:
-      friendly_name: Front Door
-      icon: mdi:door
-    group.kitchen:
-      friendly_name: Front Door Battery
-sensor.lounge_multisensor_battery:
-  group:
-    group.battery:
-      friendly_name: Lounge
-      icon: mdi:sofa
-    group.lounge:
-      friendly_name: Multisensor Battery
 sensor.bing_wallpaper_info:
   custom_ui_state_card: state-card-value_only
 sensor.date_friendly:
+  friendly_name: " "
   extra_data_template: >-
     ${entities['sensor.day'].state}
+  theme: card-secondary-title
+sensor.hline_dashed:
+  config:
+    width: 90
+    height: 0
+    backgroundcolor: inherit
+    bordertop: '1px dashed silver'
 sensor.good_vibes:
   custom_ui_state_card: state-card-value_only
 
 
-# Sensors: Climate.
+#
+# Sensors: Climate
+#
 sensor.average_humidity:
   group:
     group.humidity:
@@ -292,6 +284,12 @@ sensor.average_humidity:
 sensor.average_humidity_friendly:
   extra_badge:
     entity_id: sensor.average_humidity
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.average_humidity'].state);
+      return v > 55 || v < 30 ? 'card-critical'
+      : v > 50 || v < 35 ? 'card-warning'
+      : null;
 sensor.average_temperature:
   group:
     group.temperature:
@@ -333,47 +331,112 @@ sensor.lounge_temperature:
       friendly_name: Lounge
       icon: mdi:sofa
 
-# Sensors: Outdoor Life Quality.
+
+#
+# Sensors: Outdoor Life Quality
+#
 sensor.aqi_carbon_monoxide_friendly:
   extra_data_template: >-
     return entities['sensor.aqi_carbon_monoxide'].state != 'unknown' ?
     entities['sensor.aqi_carbon_monoxide'].state + ' ' +
     entities['sensor.aqi_carbon_monoxide'].attributes['unit_of_measurement']
     : null;
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.aqi_carbon_monoxide'].state);
+      return v > 100 ? 'card-critical'
+      : v > 50 ? 'card-warning'
+      : null;
 sensor.aqi_friendly:
   extra_badge:
     entity_id: sensor.aqi
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.aqi'].state);
+      return v > 100 ? 'card-critical'
+      : v > 50 ? 'card-warning'
+      : null;
 sensor.aqi_nitrogen_dioxide_friendly:
   extra_data_template: >-
     return entities['sensor.aqi_nitrogen_dioxide'].state != 'unknown' ?
     entities['sensor.aqi_nitrogen_dioxide'].state + ' ' +
     entities['sensor.aqi_nitrogen_dioxide'].attributes['unit_of_measurement']
     : null;
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.aqi_nitrogen_dioxide'].state);
+      return v > 100 ? 'card-critical'
+      : v > 50 ? 'card-warning'
+      : null;
 sensor.aqi_ozone_friendly:
   extra_data_template: >-
     return entities['sensor.aqi_ozone'].state != 'unknown' ?
     entities['sensor.aqi_ozone'].state + ' ' +
     entities['sensor.aqi_ozone'].attributes['unit_of_measurement']
     : null;
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.aqi_ozone'].state);
+      return v > 100 ? 'card-critical'
+      : v > 50 ? 'card-warning'
+      : null;
 sensor.aqi_particles_friendly:
   extra_data_template: >-
     return entities['sensor.aqi_particles'].state != 'unknown' ?
     entities['sensor.aqi_particles'].state + ' ' +
     entities['sensor.aqi_particles'].attributes['unit_of_measurement']
     : null;
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.aqi_particles'].state);
+      return v > 100 ? 'card-critical'
+      : v > 50 ? 'card-warning'
+      : null;
 sensor.uv_friendly:
   extra_badge:
     entity_id: sensor.uv
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.uv'].state);
+      return v >= 6 ? 'card-critical'
+      : v >= 3 ? 'card-warning'
+      : null;
 
-# Sensors: System.
+#
+# Sensors: Power
+#
+sensor.bedroom_multisensor_battery:
+  group:
+    group.battery:
+      friendly_name: Bedroom
+      icon: mdi:hotel
+    group.bedroom:
+      friendly_name: Multisensor Battery
+sensor.front_door_sensor_battery:
+  group:
+    group.battery:
+      friendly_name: Front Door
+      icon: mdi:door
+    group.kitchen:
+      friendly_name: Front Door Battery
+sensor.lounge_multisensor_battery:
+  group:
+    group.battery:
+      friendly_name: Lounge
+      icon: mdi:sofa
+    group.lounge:
+      friendly_name: Multisensor Battery
+
+
+#
+# Sensors: System
+#
 sensor.cpu_used:
   friendly_name: CPU Load
   icon: mdi:chip
   extra_data_template: >-
     return
-    parseFloat(entities['sensor.average_load_1m'].state).toFixed(2) + ' ' +
-    parseFloat(entities['sensor.average_load_5m'].state).toFixed(2) + ' ' +
-    parseFloat(entities['sensor.average_load_15m'].state).toFixed(2) + ' ' +
+    entities['sensor.average_load'].state + ' ' +
     '(' + entities['sensor.cpu_cores'].state + ' cores)';
 sensor.database_size:
   icon: mdi:database
@@ -416,11 +479,20 @@ sensor.speedtest_upload:
 sensor.uptime_os:
   icon: mdi:pi
 
-# Sensors: Transit.
+
+#
+# Sensors: Transit
+#
 sensor.home_to_market_hour:
   icon: mdi:cart
   extra_badge:
     entity_id: sensor.home_to_market
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.home_to_market'].state);
+      return v <= 5 ? 'card-critical'
+      : v <= 10 ? 'card-warning'
+      : null;
 sensor.home_to_market_2_hour:
   icon: mdi:blank
   friendly_name: Next
@@ -434,6 +506,12 @@ sensor.home_to_market_3_hour:
 sensor.home_to_metro_hour:
   extra_badge:
     entity_id: sensor.home_to_metro
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.home_to_metro'].state);
+      return v <= 5 ? 'card-critical'
+      : v <= 10 ? 'card-warning'
+      : null;
 sensor.home_to_metro_2_hour:
   icon: mdi:blank
   friendly_name: Next
@@ -445,15 +523,14 @@ sensor.home_to_metro_3_hour:
   extra_badge:
     entity_id: sensor.home_to_metro_3_countdown
 
+
+#
 # Sensors: Weather
-sensor.weather_details:
-  custom_ui_state_card: state-card-value_only
+#
 sensor.dark_sky_minutely_summary:
   custom_ui_state_card: state-card-value_only
 sensor.dark_sky_daily_summary:
   friendly_name: Weekly Forecast
-  extra_data_template: >-
-    ${entities['sensor.dark_sky_daily_summary'].state}
   hide_control: true
   custom_ui_state_card: state-card-value_only
 sensor.dark_sky_hourly_summary:
@@ -463,16 +540,24 @@ sensor.dark_sky_summary:
   friendly_name: " "
   extra_data_template: >-
     ${entities['sensor.outside_temperature'].state}${entities['sensor.outside_temperature'].attributes['unit_of_measurement']}
+  theme: card-secondary-title
+sensor.weather_details:
+  custom_ui_state_card: state-card-value_only
 sensor.wind_speed:
   friendly_name: " "
   extra_badge:
     entity_id: sensor.wind_bearing_cardinal
   extra_data_template: >-
     ${entities['sensor.wind_scale_friendly'].state}
-
+  templates:
+    theme: >-
+      var v = parseInt(state);
+      return v >= 89 ? 'card-critical'
+      : v >= 39 ? 'card-warning'
+      : 'card-secondary-title';
 
 #
-# Scenes.
+# Scenes
 #
 scene.romantic:
   icon: mdi:heart
@@ -481,16 +566,14 @@ scene.shutdown:
 
 
 #
-# Scripts.
+# Scripts
 #
-script.go_to_sleep:
-  icon: mdi:weather-night
 script.wake_up:
   icon: mdi:weather-sunny
 
 
 #
-# Switches.
+# Switches
 #
 switch.bedroom_fan:
   homebridge_hidden: false

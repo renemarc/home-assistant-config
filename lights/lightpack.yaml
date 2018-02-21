@@ -1,3 +1,14 @@
+#
+# Lightpack: computer-controlled multicolour dynamic TV bias light.
+#
+# Make sure that the Prismatik software has its sockets server enabled.
+#
+# @see /custom_components/light/lightpack.yaml
+#
+# @link https://learn.adafruit.com/adalight-diy-ambient-tv-lighting
+# @link https://github.com/psieg/Lightpack
+# @link https://github.com/kklemm91/Lightpack-HASS
+#
 - platform: lightpack
   name: Lightpack
   host: !secret lightpack_host

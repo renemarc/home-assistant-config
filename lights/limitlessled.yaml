@@ -1,3 +1,14 @@
+#
+# LimitlessLED smart light for MiLight devices
+#
+# @see /automations/cct.yaml
+#
+# @link http://www.limitlessled.com/
+# @link https://www.futlight.com/productdetails.aspx?id=293&typeid=146
+# @link https://www.futlight.com/productdetails.aspx?id=239&typeid=125
+# @link http://www.milight.com/milight-wifi-box/
+# @link https://home-assistant.io/components/light.limitlessled/
+#
 - platform: limitlessled
   bridges:
     - host: !secret limitleddled_bridge_host

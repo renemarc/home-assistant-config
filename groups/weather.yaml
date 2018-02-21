@@ -1,5 +1,5 @@
 #
-# View.
+# View
 #
 weather_view:
   view: yes
@@ -16,7 +16,7 @@ weather_view:
 
 
 #
-# Groups.
+# Groups
 #
 atmospheric_safety:
   name: Atmospheric Safety
@@ -54,11 +54,9 @@ weather:
   entities:
     - sensor.dark_sky_summary
     - sensor.weather_details
-    # - sensor.outside_temperature
     - sensor.outside_humidity
     - sensor.wind_speed
     - sensor.dark_sky_hourly_summary
-    # - sensor.moon
 
 
 weather_forecast:

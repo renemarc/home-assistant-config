@@ -1,7 +1,11 @@
 #
-# Turn off nightlights when appropriate.
+# Turn off nightlights when no longer needed
 #
-# Todo: use a timer.
+# Todo: use an OFF timer instead of relying on motion detector.
+# Todo: split motion detectors into their own automation + input_boolean..
+# Todo: map motion sensor state values to binary values.
+#
+# @subscribe input_boolean.night_mode
 #
 - id: nightlight_off
   alias: Nightlight OFF

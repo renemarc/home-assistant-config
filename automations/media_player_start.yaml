@@ -1,9 +1,14 @@
 #
-# Media player starts, turn on mood lights.
+# Media player starts, turn on mood lights
+#
+# Todo: revise the need for a movie scene.
+#
+# @subscribe input_boolean.nap_mode
 #
 - id: media_player_start
   alias: Media player START
   trigger:
+    # Kodi starts up.
     - platform: state
       entity_id: media_player.kodi
       from: 'idle'
