@@ -5,6 +5,7 @@
 [![Repo Size][img-repo-size]][link-repo]
 [![Code Size][img-code-size]][link-repo]
 [![Hass.io][img-hassio]][link-hassio]
+[![License][img-license]][link-license]
 
 Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io](https://home-assistant.io/hassio/) on a Raspberry Pi for a one bedroom apartment, offering convenience automations over lights and climate while providing multiple intuitive user controls.
 
@@ -208,11 +209,12 @@ Thank you for all your dedication, helpfulness and valuable insights. Cheers! :-
 Image references.
 -->
 
-[img-travis-ci]:https://img.shields.io/travis/renemarc/home-assistant-config.svg?branch=master&style=for-the-badge&logo=travis
-[img-github-release]:https://img.shields.io/github/release/renemarc/home-assistant-config/all.svg?style=for-the-badge&logo=github
-[img-repo-size]:https://img.shields.io/github/repo-size/renemarc/home-assistant-config.svg?style=for-the-badge
-[img-code-size]:https://img.shields.io/github/languages/code-size/renemarc/home-assistant-config.svg?style=for-the-badge
-[img-hassio]:https://img.shields.io/badge/Config_for-Hass.io-53c1f1.svg?style=for-the-badge
+[img-travis-ci]:https://img.shields.io/travis/renemarc/home-assistant-config.svg?branch=master&logo=travis
+[img-github-release]:https://img.shields.io/github/release/renemarc/home-assistant-config/all.svg?logo=github
+[img-repo-size]:https://img.shields.io/github/repo-size/renemarc/home-assistant-config.svg
+[img-code-size]:https://img.shields.io/github/languages/code-size/renemarc/home-assistant-config.svg
+[img-hassio]:https://img.shields.io/badge/Config_for-Hass.io-53c1f1.svg
+[img-license]:https://img.shields.io/github/license/renemarc/home-assistant-config.svg
 
 <!--
 Link references.
@@ -221,3 +223,4 @@ Link references.
 [link-repo]:https://github.com/renemarc/home-assistant-config
 [link-travis-ci]:https://travis-ci.org/renemarc/home-assistant-config
 [link-hassio]:https://home-assistant.io/hassio/
+[link-license]:LICENSE.txt
