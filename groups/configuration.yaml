@@ -56,6 +56,9 @@ automations_areas:
     - automation.ceiling_on
     - automation.ceiling_schedule
     - automation.ceiling_select
+    - automation.kitchen_low_power
+    - automation.kitchen_off
+    - automation.kitchen_on
     - automation.lounge_low_power
     - automation.lounge_off
     - automation.lounge_on

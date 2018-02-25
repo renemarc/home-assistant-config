@@ -10,7 +10,7 @@
 - id: night_mode_start
   alias: Night mode START
   trigger:
-    # Bedsite Flic button is held.
+    # Bedside Flic button is held.
     - platform: event
       event_type: flic_click
       event_data:

@@ -44,3 +44,10 @@ sequence:
     data:
       entity_id: input_select.lightpack_effect
       option: Gaming
+
+  # Turn off some glaring kitchen lights.
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+        - light.countertop
+        - light.island

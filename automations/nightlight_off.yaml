@@ -28,4 +28,11 @@
         entity_id:
           - light.shower
           - light.spotlight
+          - light.microwave
         transition: 10
+
+    # Turn kitchen night lights off.
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+          - group.kitchen_lights

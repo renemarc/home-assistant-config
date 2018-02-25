@@ -20,6 +20,8 @@ automation.wake_up:
 #
 # Binary sensors
 #
+binary_sensor.flic_80e4da72e890:
+  friendly_name: Flic white
 binary_sensor.flic_80e4da737711:
   friendly_name: Flic blue
 
@@ -125,10 +127,11 @@ light.bedroom:
 light.countertop:
   extra_data_template: >-
     return (attributes.brightness) ?
-    Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:border-top
+  # assumed_state: false
   slider_theme:
     max: 255
     min: 0
@@ -138,10 +141,11 @@ light.countertop:
 light.island:
   extra_data_template: >-
     return (attributes.brightness) ?
-    Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:table-column
+  # assumed_state: false
   slider_theme:
     max: 255
     min: 0
@@ -182,10 +186,11 @@ light.lounge:
 light.microwave:
   extra_data_template: >-
     return (attributes.brightness) ?
-    Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:gradient
+  # assumed_state: false
   slider_theme:
     max: 255
     min: 0
@@ -221,10 +226,11 @@ light.shower:
 light.sink:
   extra_data_template: >-
     return (attributes.brightness) ?
-    Math.round(650 - (attributes.color_temp - 154) * 380 / 346) * 10 + ' K @ ' +
+    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:water-pump
+  # assumed_state: false
   slider_theme:
     max: 255
     min: 0

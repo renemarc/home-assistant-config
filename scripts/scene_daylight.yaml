@@ -27,6 +27,15 @@ sequence:
   - service: light.lifx_set_state
     data:
       entity_id:
+        - group.kitchen_lights
+    data_template:
+      kelvin: 6000
+      brightness_pct: 100
+
+  # Set LIFX lights to the max.
+  - service: light.lifx_set_state
+    data:
+      entity_id:
         - light.shower
         - light.spotlight
     data_template:

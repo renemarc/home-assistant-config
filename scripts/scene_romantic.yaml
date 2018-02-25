@@ -23,7 +23,6 @@ sequence:
         - switch.nightstand_light
         - switch.souvenirs_light
         - switch.window_light
-
   # Dim and colourize the spot lights.
   - service: light.lifx_set_state
     data:
@@ -59,6 +58,13 @@ sequence:
       entity_id:
         - group.ceiling_lights
       transition: 10
+
+  # Turn off some glaring kitchen lights.
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+        - light.countertop
+        - light.island
 
   # Set TV backlight effect.
   - service: input_select.select_option

@@ -34,6 +34,13 @@ sequence:
       brightness_pct: 40
       transition: 2
 
+  # Turn off some glaring kitchen lights.
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+        - light.countertop
+        - light.island
+
   # Set TV backlight effect.
   - service: input_select.select_option
     data:

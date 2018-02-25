@@ -1,7 +1,16 @@
 #
 # LimitlessLED smart light for MiLight devices
 #
-# @see /automations/cct.yaml
+# The MiLights led strips controllers I use are the FUT035 for white-temperature
+# control only (for use with high-CRI CCT LED strips where workarea white light
+# primes over colourfulness). However, these controllers do not respond reliably
+# to the "cct" device type, which uses an older inaccurate protocol for legacy
+# CCT lights. Instead, the FUT035 controllers have to use the newer "rgbww"
+# device type, even if they do not provide RGB outputs. This setting then works
+# reliably, even if the frontend UI offers extra colour options that aren't
+# relevant for white-only devices.
+#
+# @see /automations/cct-limitlessled.yaml
 #
 # @link http://www.limitlessled.com/
 # @link https://www.futlight.com/productdetails.aspx?id=293&typeid=146
@@ -14,19 +23,71 @@
     - host: !secret limitleddled_bridge_host
       port: !secret limitleddled_bridge_port
       groups:
-      - number: 4
-        type: white
-        name: Island
-        fade: on
       - number: 1
-        type: white
-        name: Countertop
+        name: Sink
+        type: rgbww
         fade: on
       - number: 2
-        type: white
-        name: Sink
+        name: Countertop
+        type: rgbww
         fade: on
       - number: 3
-        type: white
         name: Microwave
+        type: rgbww
         fade: on
+      - number: 4
+        name: Island
+        type: rgbww
+        fade: on
+
+
+#
+# Milight Hub emulator
+#
+# Controls MiLight devices using a DIY gateway emulator via MQTT. For
+# prototyping purposes.
+# Hardware device is an ESP8266 (NodeMCU 1.0 module) connected to a NRF24L01+
+# radio and running custom firmware by Chris Mullins.
+#
+# MQTT topic formats:
+#   commands: milight/commands/:device_id/:device_type/:group_id
+#   states: milight/states/:device_id/:device_type/:group_id
+# Placeholders:
+#   :device_id = MiLight bridge ID linked to a device.
+#   :device_type = Type of light controlled, based on compatible remote.
+#   :group_id = Group a light is assigned to.
+#
+# @link https://github.com/sidoh/esp8266_milight_hub
+# @link http://blog.christophermullins.com/2017/02/11/milight-wifi-gateway-emulator-on-an-esp8266/
+#
+- platform: mqtt_json
+  name: MQTT Sink
+  command_topic: milight/commands/0xCAFE/rgb_cct/1
+  state_topic: milight/states/0xCAFE/rgb_cct/1
+  qos: 2
+  color_temp: true
+  brightness: true
+
+- platform: mqtt_json
+  name: MQTT Countertop
+  command_topic: milight/commands/0xCAFE/rgb_cct/2
+  state_topic: milight/states/0xCAFE/rgb_cct/2
+  qos: 2
+  color_temp: true
+  brightness: true
+
+- platform: mqtt_json
+  name: MQTT Microwave
+  command_topic: milight/commands/0xCAFE/rgb_cct/3
+  state_topic: milight/states/0xCAFE/rgb_cct/3
+  qos: 2
+  color_temp: true
+  brightness: true
+
+- platform: mqtt_json
+  name: MQTT Island
+  command_topic: milight/commands/0xCAFE/rgb_cct/4
+  state_topic: milight/states/0xCAFE/rgb_cct/4
+  qos: 2
+  color_temp: true
+  brightness: true

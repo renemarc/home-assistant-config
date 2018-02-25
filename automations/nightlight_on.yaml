@@ -32,5 +32,13 @@
         entity_id:
           - light.shower
           - light.spotlight
+          - light.microwave
         brightness: 5
         transition: 5
+
+    # Turn kitchen night lights on.
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+          - group.kitchen_lights
+        effect: night

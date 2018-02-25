@@ -11,7 +11,7 @@
 - id: nap_mode_start
   alias: Nap mode START
   trigger:
-    # Bedsite Flic button is pressed once.
+    # Bedside Flic button is pressed once.
     - platform: event
       event_type: flic_click
       event_data:

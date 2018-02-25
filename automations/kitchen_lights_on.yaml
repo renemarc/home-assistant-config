@@ -1,0 +1,27 @@
+#
+# Turn on kitchen lights
+#
+# Turn on all kitchen lights when Flick button is single clicked.
+#
+- id: kitchen_lights_on
+  alias: Kitchen lights ON
+  trigger:
+    # Kitchen Flic button is pressed once.
+    - platform: event
+      event_type: flic_click
+      event_data:
+        button_name: flic_80e4da72e890
+        click_type: single
+
+  condition:
+    # If all kitchen links are off.
+    - condition: state
+      entity_id: group.kitchen_lights
+      state: 'off'
+
+  action:
+    # Turn on all lights.
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+          - group.kitchen_lights

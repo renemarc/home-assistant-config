@@ -65,6 +65,19 @@ kitchen:
     - light.microwave
     - light.island
 
+    - light.mqtt_countertop
+    - light.mqtt_sink
+    - light.mqtt_microwave
+    - light.mqtt_island
+
+kitchen_lights:
+  name: Kitchen Lights
+  entities:
+    - light.countertop
+    - light.sink
+    - light.microwave
+    - light.island
+
 lounge:
   name: Lounge
   entities:
