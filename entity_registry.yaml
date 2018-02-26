@@ -1,0 +1,66 @@
+light.spotlight:
+  platform: lifx
+  unique_id: d0:73:d5:25:43:1c
+light.headboard:
+  platform: lifx
+  unique_id: d0:73:d5:14:f8:8c
+light.shower:
+  platform: lifx
+  unique_id: d0:73:d5:25:7e:a8
+light.underbed:
+  platform: lifx
+  unique_id: d0:73:d5:15:0c:ae
+light.middle:
+  platform: lifx
+  unique_id: d0:73:d5:14:fc:08
+light.lounge:
+  platform: lifx
+  unique_id: d0:73:d5:14:f7:4d
+light.bedroom:
+  platform: lifx
+  unique_id: d0:73:d5:15:17:21
+binary_sensor.aeotec_zw100_multisensor_6_sensor:
+  platform: zwave
+  unique_id: 2-72057594076463104
+sensor.aeotec_zw100_multisensor_6_temperature:
+  platform: zwave
+  unique_id: 2-72057594076479506
+sensor.aeotec_zw100_multisensor_6_luminance:
+  platform: zwave
+  unique_id: 2-72057594076479538
+sensor.aeotec_zw100_multisensor_6_relative_humidity:
+  platform: zwave
+  unique_id: 2-72057594076479570
+sensor.aeotec_zw100_multisensor_6_ultraviolet:
+  platform: zwave
+  unique_id: 2-72057594076479922
+sensor.aeotec_zw100_multisensor_6_alarm_type:
+  platform: zwave
+  unique_id: 2-72057594077528065
+sensor.aeotec_zw100_multisensor_6_alarm_level:
+  platform: zwave
+  unique_id: 2-72057594077528081
+sensor.aeotec_zw100_multisensor_6_sourcenodeid:
+  platform: zwave
+  unique_id: 2-72057594077528097
+sensor.aeotec_zw100_multisensor_6_burglar:
+  platform: zwave
+  unique_id: 2-72057594077528225
+binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor:
+  platform: zwave
+  unique_id: 3-72057594093240320
+sensor.aeotec_zw120_door_window_sensor_gen5_alarm_type:
+  platform: zwave
+  unique_id: 3-72057594094305281
+sensor.aeotec_zw120_door_window_sensor_gen5_alarm_level:
+  platform: zwave
+  unique_id: 3-72057594094305297
+sensor.aeotec_zw120_door_window_sensor_gen5_sourcenodeid:
+  platform: zwave
+  unique_id: 3-72057594094305313
+sensor.aeotec_zw120_door_window_sensor_gen5_access_control:
+  platform: zwave
+  unique_id: 3-72057594094305425
+sensor.aeotec_zw120_door_window_sensor_gen5_burglar:
+  platform: zwave
+  unique_id: 3-72057594094305441

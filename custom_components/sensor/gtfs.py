@@ -41,8 +41,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_DESTINATION): cv.string,
     vol.Required(CONF_DATA): cv.string,
     vol.Optional(CONF_NAME): cv.string,
-    vol.Optional(CONF_OFFSET, default=datetime.timedelta(0)):
-        cv.time_period_dict,
+    vol.Optional(CONF_OFFSET, default=0): cv.time_period,
     vol.Optional(CONF_POSITION, default=DEFAULT_POSITION): cv.positive_int,
 })
 
@@ -53,7 +52,7 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
     origin_station = sched.stops_by_id(start_station_id)[0]
     destination_station = sched.stops_by_id(end_station_id)[0]
 
-    now = datetime.datetime.now() + offset
+    now = datetime.datetime.now() + datetime.timedelta(seconds=offset)
     day_name = now.strftime('%A').lower()
     now_str = now.strftime('%H:%M:%S')
     today = now.strftime('%Y-%m-%d')
@@ -272,7 +271,7 @@ class GTFSDepartureSensor(Entity):
 
             # Build attributes
             self._attributes = {}
-            self._attributes['offset'] = self._offset.seconds / 60
+            self._attributes['offset'] = self._offset / 60
             self._attributes['position'] = self._position
 
             def dict_for_table(resource):

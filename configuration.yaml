@@ -71,6 +71,7 @@ discovery:
 # @link https://home-assistant.io/components/frontend/
 #
 frontend:
+  # javascript_version: latest
   extra_html_url:
     - /local/custom_ui/state-card-custom-ui.html
     - /local/custom_ui/state-card-hline.html
@@ -172,12 +173,12 @@ logbook:
 #
 # Log some details
 #
-# @link https://home-assistant.io/components/frontend/
+# @link https://home-assistant.io/components/logger/
 #
 logger:
   default: warning
   logs:
-    homeassistant.components.ebox: debug
+    homeassistant.components.light: debug
 
 
 #

@@ -52,11 +52,11 @@ system:
     - sensor.uptime_friendly
     - sensor.uptime_host
     - sensor.cpu_temp
-    - sensor.cpu_used
-    - sensor.ram_used_percent
-    - sensor.disk_used_percent
+    - sensor.processor_use
+    - sensor.memory_use_percent
+    - sensor.disk_use_percent
     - sensor.database_size
-    - sensor.logfile_size
+    - sensor.log_size
 
 temperature:
   name: Temperature
