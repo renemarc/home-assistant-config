@@ -198,10 +198,9 @@ light: !include_dir_merge_list lights/
 logger:
   default: warning
   logs:
-    homeassistant.components.device_tracker: debug
-    # homeassistant.components.light.mqtt_json: debug
-    # homeassistant.components.light.limitlessled: debug
-    # homeassistant.components.mqtt: debug
+    custom_components.display.fully_kiosk: critical
+    # homeassistant.sensor.ebox: debug
+    # custom_components.sensor.ebox: debug
 
 
 #
@@ -296,7 +295,7 @@ recorder:
 #
 # @link https://home-assistant.io/components/scene/
 #
-scene: !include_dir_merge_list scenes/
+scene: !include misc/scenes.yaml
 
 
 #
@@ -377,7 +376,7 @@ variable: !include misc/variables.yaml
 #
 # @link https://home-assistant.io/components/zone/
 #
-zone: !include_dir_list zones/
+zone: !include misc/zones.yaml
 
 
 #

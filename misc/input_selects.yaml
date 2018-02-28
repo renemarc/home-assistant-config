@@ -1,4 +1,11 @@
 #
+# Lists of selectable values
+#
+# @link https://home-assistant.io/components/input_select/
+#
+
+
+#
 # Nanoleaf Aurora effects
 #
 # @see /automations/aurora_effect.yaml

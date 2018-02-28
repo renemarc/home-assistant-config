@@ -30,26 +30,6 @@ automation.wake_up:
 #
 # Binary sensors
 #
-binary_sensor.her:
-  friendly_name: !secret nickname_her
-  icon: mdi:gender-female
-  extra_data_template:
-    - >-
-      ${entities['device_tracker.cellphone_her'].attributes['friendly_name']} is
-      ${entities['device_tracker.cellphone_her'].state}.
-    - >-
-      ${entities['device_tracker.laptop_her'].attributes['friendly_name']} is
-      ${entities['device_tracker.laptop_her'].state}.
-binary_sensor.him:
-  friendly_name: !secret nickname_him
-  icon: mdi:gender-male
-  extra_data_template:
-    - >-
-      ${entities['device_tracker.cellphone_him'].attributes['friendly_name']} is
-      ${entities['device_tracker.cellphone_him'].state}.
-    - >-
-      ${entities['device_tracker.laptop_him'].attributes['friendly_name']} is
-      ${entities['device_tracker.laptop_him'].state}.
 binary_sensor.flic_80e4da72e890:
   friendly_name: Flic white
 binary_sensor.flic_80e4da737711:
@@ -127,7 +107,7 @@ group.weather_view:
 input_boolean.low_mode:
   icon: mdi:weather-sunset-down
 input_boolean.motion_detected:
-  icon: mdi:walk
+  icon: mdi:run
   confirm_controls_show_lock: true
   templates:
     theme: >-
@@ -479,6 +459,18 @@ sensor.aqi_particles_friendly:
       return v > 100 ? 'card-critical'
       : v > 50 ? 'card-warning'
       : null;
+sensor.aqi_sulphur_dioxide_friendly:
+  extra_data_template: >-
+    return entities['sensor.aqi_sulphur_dioxide'].state != 'unknown' ?
+    entities['sensor.aqi_sulphur_dioxide'].state + ' ' +
+    entities['sensor.aqi_sulphur_dioxide'].attributes['unit_of_measurement']
+    : null;
+  templates:
+    theme: >-
+      var v = parseInt(entities['sensor.aqi_sulphur_dioxide'].state);
+      return v > 100 ? 'card-critical'
+      : v > 50 ? 'card-warning'
+      : null;
 sensor.uv_friendly:
   extra_badge:
     entity_id: sensor.uv
@@ -506,6 +498,13 @@ sensor.front_door_sensor_battery:
       icon: mdi:door
     group.kitchen:
       friendly_name: Front Door Battery
+sensor.kiosk_battery:
+  group:
+    group.battery:
+      friendly_name: Kiosk
+      icon: mdi:tablet
+    group.kitchen:
+      friendly_name: Kiosk Battery
 sensor.lounge_multisensor_battery:
   group:
     group.battery:
@@ -558,6 +557,7 @@ sensor.speedtest_download:
   show_last_changed: true
 sensor.speedtest_ping:
   friendly_name: Ping
+  icon: mdi:timer
   show_last_changed: true
 sensor.speedtest_upload:
   friendly_name: Upspeed

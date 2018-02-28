@@ -11,6 +11,8 @@
 # @see /appdaemon/dashboards/Weather.dash
 # @see /groups/weather.yaml
 #
+# @link https://weather.gc.ca/radar/
+#
 - platform: generic
   name: Environment Canada Rain
   scan_interval: 600

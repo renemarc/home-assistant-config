@@ -1,31 +1,43 @@
 # Custom AppDaemon widgets
 
-AppDaemon offers [many widgets](https://github.com/home-assistant/appdaemon/tree/dev/appdaemon/widgets/), but can support some third-party and custom ones.
+[AppDaemon](https://home-assistant.io/docs/ecosystem/appdaemon/) offers [many default widgets](https://github.com/home-assistant/appdaemon/tree/dev/appdaemon/widgets/), but can also support third-party and custom ones.
 
 
 ## Community widgets
 
-- [`baseiconsensor`](baseentitydisplay) from [ReneTode's repo]([)https://github.com/ReneTode/My-AppDaemon/tree/master/custom_widgets), modified with:
-    + Support for entities used as **title** and **title2**.
+### [`💡 iconsensor.yaml`](iconsensor.yaml) and [`baseiconsensor`](baseiconsensor)
 
-- [`baseselect`](baseentitydisplay) also from [ReneTode's repo](https://github.com/ReneTode/My-AppDaemon/tree/master/custom_widgets), modified with:
-    + Support for **sub_entities**.
+Icon widget from [ReneTode's repo](https://github.com/ReneTode/My-AppDaemon/tree/master/custom_widgets/baseiconsensor), modified with:
+- Added support for entities used as **title** and **title2**.
+
+
+### [`🔘 input_select.yaml`](input_select.yaml) and [`baseselect`](baseselect)
+
+Selector widget also from [ReneTode's repo](https://github.com/ReneTode/My-AppDaemon/tree/master/custom_widgets/baseselect), modified with:
+- Added support for **sub_entities**.
 
 
 ## Custom widgets
 
-- [`baseentitydisplay`](baseentitydisplay) is based on the default [basedisplay](https://github.com/home-assistant/appdaemon/tree/dev/appdaemon/widgets/basedisplay) but with the following modifications:
-    + Support for entities used as **title** and **title2**.
-    + Include **unit_of_measurement** to the **sub_entity**, if any.
+### [`👽 entitysensor.yaml`](entitysensor.yaml) and [`baseentitydisplay`](baseentitydisplay)
 
-- [`baseentityiframe`](baseentityiframe) is based on the default [baseiframe](https://github.com/home-assistant/appdaemon/tree/dev/appdaemon/widgets/baseiframe) but includes:
-    + Cache-buster added to already parameterized URLs.
-    + Optional **cache** integer parameter to add longevity to the cache-buster JS parameter.
-
-- [`basemultisensor`](basemultisensor) is like **baseentitydisplay** above, but adds:
-    + List two sensors size by side (useful to showcase both _temperature_ and _humidity_ together). 
+Multipurpose widget based on the default [basedisplay](https://github.com/home-assistant/appdaemon/tree/dev/appdaemon/widgets/basedisplay) but with the following modifications:
+- Support for entities used as **title** and **title2**.
+- Include **unit_of_measurement** to the **sub_entity**, if any.
 
 
-## Configuration
+### [`📸 entitycamera.yaml`](entitycamera.yaml) and [`baseentityiframe`](baseentityiframe)
 
-The extra styling of these widgets is done in the theme [`/appdaemon/custom_css/modern`](../custom_css/modern) as well as directly in [`/appdaemon/dashboards`](../dashboards).
+IFrame widget to showcase images and slideshows, based on the default [baseiframe](https://github.com/home-assistant/appdaemon/tree/dev/appdaemon/widgets/baseiframe) but includes:
+- Cache-buster added to already parameterized URLs.
+- Optional **cache** integer parameter to add longevity to the cache-buster JS parameter.
+
+
+###  [`📶 multisensor.yaml`](multisensor.yaml) and [`basemultisensor`](basemultisensor)
+Multi-sensors widget, like the **entitysensor** above, but adds:
+- List two sensors size by side (useful to showcase both _temperature_ and _humidity_ together). 
+
+
+## Customization
+
+The extra styling of these widgets is done in the theme [`/appdaemon/custom_css/modern/`](../custom_css/modern) as well as directly in [`/appdaemon/dashboards/`](../dashboards).

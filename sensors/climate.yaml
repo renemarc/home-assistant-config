@@ -17,6 +17,7 @@
   unit_of_measurement: '°C'
   value_template: '{{ value_json.temperature_C | round }}'
 
+
 #
 # Lounge climate
 #
@@ -68,7 +69,10 @@
 # Average humidity
 #
 # Helps compensate for lack of accuracy of each active sensor.
-# They all claim to be precise, but precision doesn't mean accuracy!
+# They all claim to be precise, but precision doesn't mean accuracy nor
+# calibration!
+#
+# @todo calibrate all sensors.
 #
 - platform: min_max
   name: Average Humidity Exact

@@ -1,4 +1,11 @@
 #
+# Shell commands
+#
+# @link https://home-assistant.io/components/shell_command/
+#
+
+
+#
 # Fully Kiosk Browser brightness
 #
 # @link https://www.ozerov.de/fully-kiosk-browser/#rest

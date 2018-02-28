@@ -1,4 +1,11 @@
 #
+# Input booleans
+#
+# @link https://home-assistant.io/components/input_boolean/
+#
+
+
+#
 # Modes
 #
 low_mode:

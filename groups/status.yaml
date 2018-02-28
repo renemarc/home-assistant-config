@@ -28,6 +28,7 @@ humidity:
   name: Humidity
   entities:
     - sensor.average_humidity
+    - sensor.hline_dashed
     - sensor.bedroom_humidity
     - sensor.lounge_humidity
 
@@ -63,5 +64,6 @@ temperature:
   name: Temperature
   entities:
     - sensor.average_temperature
+    - sensor.hline_dashed
     - sensor.bedroom_temperature
     - sensor.lounge_temperature

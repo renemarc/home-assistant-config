@@ -63,12 +63,8 @@ presence:
   name: Presence
   control: hidden
   entities:
-    # - binary_sensor.her
     - device_tracker.cellphone_her
-    # - device_tracker.laptop_her
-    # - binary_sensor.him
     - device_tracker.cellphone_him
-    # - device_tracker.laptop_him
 
 security:
   name: Security Status

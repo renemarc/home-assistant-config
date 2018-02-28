@@ -12,7 +12,7 @@
         {% if is_state('input_boolean.doors_open', 'on') %}
           Doors open
         {% else %}
-          Doors
+          External doors
         {% endif %}
       icon_template: >-
         {% if is_state('input_boolean.doors_open', 'on') %}
@@ -33,6 +33,7 @@
         {% else %}
           Closed
         {% endif %}
+
 
 #
 # Motion detection status
@@ -73,6 +74,7 @@
           OK
         {% endif %}
 
+
 #
 # Tampering status
 #
@@ -103,56 +105,3 @@
         {% else %}
           OK
         {% endif %}
-
-# - platform: template
-#   sensors:
-#     doors_status:
-#       friendly_name: Doors
-#       icon_template: >-
-#         {% if is_state('input_boolean.doors_open', 'off') %}
-#           mdi:door-closed
-#         {% else %}
-#           mdi:door-open
-#         {% endif %}
-#       value_template: >-
-#         {% set value = '' %}
-#         {% if is_state('binary_sensor.front_door_sensor', 'on') %}
-#           {% set value = value + 'Front Door,' %}
-#         {% endif %}
-#         {% set value = value[:-1] %}
-
-#         {% if value != '' %}
-#           {{ value }}
-#         {% else %}
-#           OK
-#         {% endif %}
-
-# - platform: template
-#   sensors:
-#     doors_open:
-#       friendly_name_template: >-
-#         {% if is_state('input_boolean.doors_open', 'on') %}
-#           Doors open
-#         {% else %}
-#           Doors
-#         {% endif %}
-#       icon_template: >-
-#         {% if is_state('input_boolean.doors_open', 'on') %}
-#           mdi:door-open
-#         {% else %}
-#           mdi:door-closed
-#         {% endif %}
-#       value_template: >-
-#         {% set dummy = is_state('input_boolean.doors_open', 'off') %}
-#         {% set value = '' %}
-#         {% if is_state('binary_sensor.front_door_sensor', 'on') %}
-#           {% set value = value + 'Front Door,' %}
-#         {% endif %}
-#         {% set value = value[:-1] %}
-
-#         {% if value != '' %}
-#           {{ value }}
-#         {% else %}
-#           OK
-#         {% endif %}
-

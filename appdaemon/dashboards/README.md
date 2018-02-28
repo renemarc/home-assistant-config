@@ -11,7 +11,7 @@ These dashboards target a 10" display tablet with 1024x800 resolution using a fu
 
 ## Organization
 
-Dashboards are split into 4 pages, organized in a similar fashion as [`/groups`](../../groups) only with less administrative features and prettier colours.
+Dashboards are split into 4 pages, organized in a similar fashion as [`/groups/`](../../groups) only with less administrative features and prettier colours.
 
 
 ### Fixed elements
@@ -41,6 +41,6 @@ Geeky details about Home Assistant, network, battery status and per-location tem
 
 ## Theme
 
-The [`/appdeamon/custom_css/modern`](../custom_css/modern) theme is based on an adapted version of the default theme. Only some CSS rules differ, in addition to support for third-party and custom widgets.
+The [`/appdaemon/custom_css/modern/`](../custom_css/modern) theme is based on an adapted version of the default theme. Only some CSS rules differ, in addition to support for third-party and custom widgets.
 
 The contents of many tiles depend on specific [template sensors](../../sensors) to make information easier to digest.

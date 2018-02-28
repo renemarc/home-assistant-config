@@ -22,6 +22,8 @@
         {% else %}
           mdi:battery-outline
         {% endif %}
+
+
 #
 # AcuRite battery monitoring
 #

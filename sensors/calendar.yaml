@@ -1,14 +1,4 @@
 #
-# Moon phases
-#
-# Todo: verify the need for dis disabled snesor.
-#
-# @link https://home-assistant.io/components/sensor.moon/
-#
-# - platform: moon
-
-
-#
 # Time & Date
 #
 # Manipulates time and dates to make them more human-friendly.

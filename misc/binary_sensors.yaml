@@ -1,4 +1,11 @@
 #
+# Binary sensors
+#
+# @link https://home-assistant.io/components/binary_sensor/
+#
+
+
+#
 # Flic smart button
 #
 # This points to the local flicd daemon that handles the actual Flic buttons.
