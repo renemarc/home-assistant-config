@@ -3,7 +3,7 @@
 #
 # All devices are discovered by the platform, so no need to manage them here.
 #
-# @see /automations/cct.yaml
+# @see /automations/cct_lifx.yaml
 # @see /automations/bed_effect.yaml
 # @see /automations/bed_schedule.yaml
 # @see /automations/ceiling_effect.yaml

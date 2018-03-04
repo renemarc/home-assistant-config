@@ -1,10 +1,18 @@
 #
-# Adjust color temperature (CCT) based on cyrcadian rythm.
+# Adjust LIFX bulbs color temperature (CCT) based on cyrcadian rythm
+#
+# LIFX lightbulbs allow their colours to be changed even when their states are
+# off, which we use to our advantage by always setting the light to the desired
+# conditions. Then, when the light is actually turned on it will already be at
+# the right level.
 #
 # White temperature is based on a custom curve, not f.lux nor using the sun,
 # otherwise it would be kind of gloomy to see warm yellows a lot in winter time.
 #
-# Todo: Split LIFX devices from MiLight.
+# LIFX+ bulbs white color range:
+#   Mireds: 111 - 400
+#   Kelvins: 9000K - 2500K
+#
 # Todo: User-configurable targets and hours?
 # Todo: Use sun as basis for color temp boundaries?
 # Todo: Use sin/cos to determine curve?
@@ -12,8 +20,8 @@
 # @link https://community.home-assistant.io/t/lifx-circadian-rhythm-time-of-day-automation/23091
 # @link https://sigmaluminous.com/the-circadian-rhythm-and-color-temperature/
 #
-- id: cct
-  alias: CCT
+- id: cct_lifx
+  alias: CCT LIFX
   trigger:
     # Every five minutes.
     - platform: time
@@ -44,6 +52,8 @@
       state: 'off'
 
   action:
+    # Mireds: 111-400
+    # Kelvins: 9000K - 2500K
     - service: light.lifx_set_state
       data:
         entity_id:

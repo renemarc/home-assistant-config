@@ -1,8 +1,6 @@
 #
 # Automations
 #
-automation.cct:
-  icon: mdi:white-balance-auto
 automation.check_door_left_open:
   icon: mdi:door-open
 automation.check_mold_conditions:
@@ -13,6 +11,8 @@ automation.go_to_sleep:
   icon: mdi:weather-night
 automation.theme_auto:
   icon: mdi:theme-light-dark
+automation.scene_select:
+  icon: mdi:looks
 automation.wake_up:
   icon: mdi:weather-sunny
 
@@ -131,7 +131,7 @@ light.countertop:
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:border-top
-  # assumed_state: false
+  assumed_state: false
   slider_theme:
     max: 255
     min: 0
@@ -145,7 +145,7 @@ light.island:
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:table-column
-  # assumed_state: false
+  assumed_state: false
   slider_theme:
     max: 255
     min: 0
@@ -190,7 +190,7 @@ light.microwave:
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:gradient
-  # assumed_state: false
+  assumed_state: false
   slider_theme:
     max: 255
     min: 0
@@ -230,7 +230,7 @@ light.sink:
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:water-pump
-  # assumed_state: false
+  assumed_state: false
   slider_theme:
     max: 255
     min: 0

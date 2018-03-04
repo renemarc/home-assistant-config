@@ -1,0 +1,172 @@
+#
+# Adjust LimitlessLED/MiLight color temperature (CCT) based on cyrcadian rythm
+#
+# White temperature is based on a custom curve, not f.lux nor using the sun,
+# otherwise it would be kind of gloomy to see warm yellows a lot in winter time.
+#
+# Todo: User-configurable targets and hours?
+#
+# Milight FUT035 controllers color range:
+#   Mireds: 154 - 500
+#   Kelvins: 6500K - 2000K
+#
+# @link https://community.home-assistant.io/t/lifx-circadian-rhythm-time-of-day-automation/23091
+# @link https://sigmaluminous.com/the-circadian-rhythm-and-color-temperature/
+#
+- id: cct_limitlessled
+  alias: CCT LimitlessLED
+  trigger:
+    # Every five minutes.
+    - platform: time
+      minutes: /5
+      seconds: 00
+
+    # When an item which was turned off or disconnected comes back online.
+    - platform: state
+      entity_id:
+        - light.countertop
+        - light.island
+        - light.microwave
+        - light.sink
+      to: 'on'
+
+    # When scenes are disabled.
+    - platform: state
+      entity_id: input_boolean.scene_mode
+      to: 'off'
+
+  condition:
+    # If no scenes are enabled.
+    - condition: state
+      entity_id: input_boolean.scene_mode
+      state: 'off'
+
+    # If not during the night mode.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'off'
+
+  action:
+    # Mireds: 154-500 (6500K - 2000K)
+    - service: light.turn_on
+      data_template:
+        entity_id: >-
+          {% set entities = '' %}
+          {% if is_state('light.countertop', 'on') %}
+            {% set entities = entities + 'light.countertop ' %}
+          {% endif %}
+          {% if is_state('light.island', 'on') %}
+            {% set entities = entities + 'light.island ' %}
+          {% endif %}
+          {% if is_state('light.microwave', 'on') %}
+            {% set entities = entities + 'light.microwave ' %}
+          {% endif %}
+          {% if is_state('light.sink', 'on') %}
+            {% set entities = entities + 'light.sink ' %}
+          {% endif %}
+
+          {{ entities | trim | replace(' ',',') }}
+        color_temp: >-
+          {% set schedule = {
+            '00': 3000,
+            '01': 2750,
+            '02': 2500,
+            '03': 2000,
+            '04': 2500,
+            '05': 2750,
+
+            '06': 3000,
+            '07': 3500,
+            '08': 4000,
+            '09': 4500,
+            '10': 5000,
+            '11': 5500,
+
+            '12': 6000,
+            '13': 6000,
+            '14': 6000,
+            '15': 6000,
+            '16': 6000,
+            '17': 5500,
+
+            '18': 5000,
+            '19': 4500,
+            '20': 4000,
+            '21': 3500,
+            '22': 3500,
+            '23': 3500,
+          } %}
+          {% set hour = now().hour %}
+          {% set next = hour + 1%}
+          {% if next > 23 %}
+            {% set next = 0 %}
+          {% endif %}
+          {% set hour = '%02d' | format(hour) %}
+          {% set next = '%02d' | format(next) %}
+
+          {% set current = schedule[hour] %}
+          {% set target = schedule[next] %}
+          {% set color_temp = current %}
+
+          {% if current != target %}
+            {% set delta = target - current %}
+            {% set seconds = now().second + now().minute * 60 %}
+            {% set diff = (seconds / 3600 * delta) | round(0) %}
+            {% set color_temp = current + diff %}
+          {% endif %}
+
+          {% set color = (1000000 / color_temp) | round(0) %}
+
+          {{ color }}
+        brightness: >-
+          {% set schedule = {
+            '00': 50,
+            '01': 50,
+            '02': 45,
+            '03': 40,
+            '04': 35,
+            '05': 40,
+
+            '06': 45,
+            '07': 50,
+            '08': 60,
+            '09': 70,
+            '10': 80,
+            '11': 90,
+
+            '12': 100,
+            '13': 100,
+            '14': 100,
+            '15': 100,
+            '16': 95,
+            '17': 85,
+
+            '18': 80,
+            '19': 75,
+            '20': 70,
+            '21': 65,
+            '22': 60,
+            '23': 55,
+          } %}
+          {% set hour = now().hour %}
+          {% set next = hour + 1%}
+          {% if next > 23 %}
+            {% set next = 0 %}
+          {% endif %}
+          {% set hour = '%02d' | format(hour) %}
+          {% set next = '%02d' | format(next) %}
+
+          {% set current = schedule[hour] %}
+          {% set target = schedule[next] %}
+          {% set brightness_pct = current %}
+
+          {% if current != target %}
+            {% set delta = target - current %}
+            {% set seconds = now().second + now().minute * 60 %}
+            {% set diff = (seconds / 3600 * delta) | round(0) %}
+            {% set brightness_pct = current + diff %}
+          {% endif %}
+
+          {% set brightness = (brightness_pct / 100 * 255) | round(0) %}
+
+          {{ brightness }}

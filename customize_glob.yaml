@@ -19,6 +19,8 @@ automation.bed_*:
   icon: mdi:hotel
 automation.bedroom_*:
   icon: mdi:hotel
+automation.cct_*:
+  icon: mdi:white-balance-auto
 automation.ceiling_*:
   icon: mdi:led-strip
 automation.check_humidity_*:
@@ -27,6 +29,8 @@ automation.dehumidifier_*:
   icon: mdi:water-off
 automation.front_door_*:
   icon: mdi:door
+automation.kitchen_lights_*:
+  icon: mdi:food-fork-drink
 automation.lightpack_*:
   icon: mdi:television
 automation.lounge_*:

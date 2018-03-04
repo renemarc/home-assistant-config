@@ -32,6 +32,7 @@ automations:
   control: hidden
   entities:
     - automation.cct
+    - automation.cct_limitlessled
     - automation.check_door_left_open
     - automation.check_humidity_high
     - automation.check_humidity_low
@@ -40,6 +41,7 @@ automations:
     - automation.front_door_closed
     - automation.front_door_opened
     - automation.go_to_sleep
+    - automation.scene_select
     - automation.theme_auto
     - automation.wake_up
 
@@ -81,6 +83,10 @@ automations_devices:
     - automation.bed_select
     - automation.dehumidifier_off
     - automation.dehumidifier_on
+    - automation.kitchen_lights_full
+    - automation.kitchen_lights_off
+    - automation.kitchen_lights_on
+    - automation.kitchen_lights_toggle
     - automation.lightpack_effect
     - automation.lightpack_select
     - automation.media_player_resume

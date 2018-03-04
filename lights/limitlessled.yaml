@@ -60,34 +60,34 @@
 # @link https://github.com/sidoh/esp8266_milight_hub
 # @link http://blog.christophermullins.com/2017/02/11/milight-wifi-gateway-emulator-on-an-esp8266/
 #
-- platform: mqtt_json
-  name: MQTT Sink
-  command_topic: milight/commands/0xCAFE/rgb_cct/1
-  state_topic: milight/states/0xCAFE/rgb_cct/1
-  qos: 2
-  color_temp: true
-  brightness: true
+# - platform: mqtt_json
+#   name: MQTT Sink
+#   command_topic: milight/commands/0xCAFE/rgb_cct/1
+#   state_topic: milight/states/0xCAFE/rgb_cct/1
+#   qos: 2
+#   color_temp: true
+#   brightness: true
 
-- platform: mqtt_json
-  name: MQTT Countertop
-  command_topic: milight/commands/0xCAFE/rgb_cct/2
-  state_topic: milight/states/0xCAFE/rgb_cct/2
-  qos: 2
-  color_temp: true
-  brightness: true
+# - platform: mqtt_json
+#   name: MQTT Countertop
+#   command_topic: milight/commands/0xCAFE/rgb_cct/2
+#   state_topic: milight/states/0xCAFE/rgb_cct/2
+#   qos: 2
+#   color_temp: true
+#   brightness: true
 
-- platform: mqtt_json
-  name: MQTT Microwave
-  command_topic: milight/commands/0xCAFE/rgb_cct/3
-  state_topic: milight/states/0xCAFE/rgb_cct/3
-  qos: 2
-  color_temp: true
-  brightness: true
+# - platform: mqtt_json
+#   name: MQTT Microwave
+#   command_topic: milight/commands/0xCAFE/rgb_cct/3
+#   state_topic: milight/states/0xCAFE/rgb_cct/3
+#   qos: 2
+#   color_temp: true
+#   brightness: true
 
-- platform: mqtt_json
-  name: MQTT Island
-  command_topic: milight/commands/0xCAFE/rgb_cct/4
-  state_topic: milight/states/0xCAFE/rgb_cct/4
-  qos: 2
-  color_temp: true
-  brightness: true
+# - platform: mqtt_json
+#   name: MQTT Island
+#   command_topic: milight/commands/0xCAFE/rgb_cct/4
+#   state_topic: milight/states/0xCAFE/rgb_cct/4
+#   qos: 2
+#   color_temp: true
+#   brightness: true
