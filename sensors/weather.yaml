@@ -339,6 +339,8 @@
     wind_speed:
       friendly_name: Wind Speed
       unit_of_measurement: 'km/h'
+      friendly_name_template: >-
+        {{ states('sensor.wind_scale_friendly') }}
       value_template: >-
         {{ (states('sensor.dark_sky_wind_speed')|float * 3600 / 1000) | round(0) }}
       icon_template: >-

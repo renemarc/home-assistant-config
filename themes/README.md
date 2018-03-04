@@ -15,7 +15,7 @@ Automtically set by [`/automations/theme_auto.yaml`](../automations/theme_auto.y
 
 ## [`card-secondary-title.yaml`](card-secondary-title.yaml) theme
 
-Used in [`/customize.yaml`](../customize.yaml) to replace a sensor's title with its dynamic `extra-data-template`.
+Used in [`/customize.yaml`](../customize.yaml) to replace a sensor's title with its dynamic `extra-data-template` when a component does not provide a `friendly_name_template` variable like the [template sensor](https://home-assistant.io/components/sensor.template/) does.
 
 
 ## [`card-warning.yaml`](card-warning.yaml) theme

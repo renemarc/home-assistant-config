@@ -1,24 +1,27 @@
-light.spotlight:
-  platform: lifx
-  unique_id: d0:73:d5:25:43:1c
-light.headboard:
-  platform: lifx
-  unique_id: d0:73:d5:14:f8:8c
-light.shower:
-  platform: lifx
-  unique_id: d0:73:d5:25:7e:a8
-light.underbed:
-  platform: lifx
-  unique_id: d0:73:d5:15:0c:ae
-light.middle:
-  platform: lifx
-  unique_id: d0:73:d5:14:fc:08
-light.lounge:
-  platform: lifx
-  unique_id: d0:73:d5:14:f7:4d
 light.bedroom:
   platform: lifx
   unique_id: d0:73:d5:15:17:21
+light.headboard:
+  platform: lifx
+  unique_id: d0:73:d5:14:f8:8c
+light.lounge:
+  platform: lifx
+  unique_id: d0:73:d5:14:f7:4d
+light.lounge_lamp:
+  platform: lifx
+  unique_id: d0:73:d5:31:37:8c
+light.middle:
+  platform: lifx
+  unique_id: d0:73:d5:14:fc:08
+light.shower:
+  platform: lifx
+  unique_id: d0:73:d5:25:7e:a8
+light.spotlight:
+  platform: lifx
+  unique_id: d0:73:d5:25:43:1c
+light.underbed:
+  platform: lifx
+  unique_id: d0:73:d5:15:0c:ae
 binary_sensor.aeotec_zw100_multisensor_6_sensor:
   platform: zwave
   unique_id: 2-72057594076463104

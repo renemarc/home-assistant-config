@@ -52,7 +52,8 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
     origin_station = sched.stops_by_id(start_station_id)[0]
     destination_station = sched.stops_by_id(end_station_id)[0]
 
-    now = datetime.datetime.now() + datetime.timedelta(seconds=offset)
+    # now = datetime.datetime.now() + datetime.timedelta(seconds=offset)
+    now = datetime.datetime.now() + offset
     day_name = now.strftime('%A').lower()
     now_str = now.strftime('%H:%M:%S')
     today = now.strftime('%Y-%m-%d')
@@ -271,7 +272,7 @@ class GTFSDepartureSensor(Entity):
 
             # Build attributes
             self._attributes = {}
-            self._attributes['offset'] = self._offset / 60
+            self._attributes['offset'] = self._offset.seconds / 60
             self._attributes['position'] = self._position
 
             def dict_for_table(resource):

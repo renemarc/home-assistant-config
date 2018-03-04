@@ -33,7 +33,7 @@
   round_digits: 0
   entity_ids:
     - sensor.waqi_rivesud_de_montreal_quebec_canada
-    - sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada
+    - sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada
 
 - platform: template
   sensors:
@@ -92,8 +92,8 @@
           {% set levels = levels + states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.pm_2_5 %}
           {% set counter = counter + 1 %}
         {% endif %}
-        {% if states('sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada') != "unknown" and states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.pm_2_5 is defined %}
-          {% set levels = levels + states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.pm_2_5 %}
+        {% if states('sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada') != "unknown" and states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.pm_2_5 is defined %}
+          {% set levels = levels + states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.pm_2_5 %}
           {% set counter = counter + 1 %}
         {% endif %}
 
@@ -144,8 +144,8 @@
           {% set levels = levels + states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.ozone %}
           {% set counter = counter + 1 %}
         {% endif %}
-        {% if states('sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada') != "unknown" and states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.ozone is defined %}
-          {% set levels = levels + states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.ozone %}
+        {% if states('sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada') != "unknown" and states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.ozone is defined %}
+          {% set levels = levels + states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.ozone %}
           {% set counter = counter + 1 %}
         {% endif %}
 
@@ -196,8 +196,8 @@
           {% set levels = levels + states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.nitrogen_dioxide %}
           {% set counter = counter + 1 %}
         {% endif %}
-        {% if states('sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada') != "unknown" and states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.nitrogen_dioxide is defined %}
-          {% set levels = levels + states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.nitrogen_dioxide %}
+        {% if states('sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada') != "unknown" and states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.nitrogen_dioxide is defined %}
+          {% set levels = levels + states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.nitrogen_dioxide %}
           {% set counter = counter + 1 %}
         {% endif %}
 
@@ -248,8 +248,8 @@
           {% set levels = levels + states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.co %}
           {% set counter = counter + 1 %}
         {% endif %}
-        {% if states('sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada') != "unknown" and states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.co is defined %}
-          {% set levels = levels + states.sensor.waqi_longueuil__secteur_du_parc_oceanie_brossard_quebec_canada.attributes.co %}
+        {% if states('sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada') != "unknown" and states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.co is defined %}
+          {% set levels = levels + states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.co %}
           {% set counter = counter + 1 %}
         {% endif %}
 

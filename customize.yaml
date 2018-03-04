@@ -264,11 +264,6 @@ light.underbed:
 #
 sensor.bing_wallpaper_info:
   custom_ui_state_card: state-card-value_only
-sensor.date_friendly:
-  friendly_name: " "
-  extra_data_template: >-
-    ${entities['sensor.day'].state}
-  theme: card-secondary-title
 sensor.good_vibes:
   custom_ui_state_card: state-card-value_only
 
@@ -543,17 +538,14 @@ sensor.dark_sky_summary:
 sensor.weather_details:
   custom_ui_state_card: state-card-value_only
 sensor.wind_speed:
-  friendly_name: " "
   extra_badge:
     entity_id: sensor.wind_bearing_cardinal
-  extra_data_template: >-
-    ${entities['sensor.wind_scale_friendly'].state}
   templates:
     theme: >-
       var v = parseInt(state);
       return v >= 89 ? 'card-critical'
       : v >= 39 ? 'card-warning'
-      : 'card-secondary-title';
+      : null;
 
 #
 # Scenes

@@ -24,19 +24,13 @@
 
 - platform: template
   sensors:
-    day:
-      friendly_name: Day
-      icon_template: mdi:calendar-today
-      value_template: >-
-        {# Using a sensor instead of now() to avoid constant updating. #}
-        {% set date = states('sensor.date') %}
-        {% set datetime = strptime(date, '%Y-%m-%d') %}
-
-        {{ datetime.strftime('%A') }}
-
     date_friendly:
       friendly_name: Date
       icon_template: mdi:calendar-today
+      friendly_name_template: >-
+        {% set date = states('sensor.date') %}
+        {% set datetime = strptime(date, '%Y-%m-%d') %}
+        {{ datetime.strftime('%A') }}
       value_template: >-
         {# Using a sensor instead of now() to avoid constant updating. #}
         {% set date = states('sensor.date') %}

@@ -35,7 +35,7 @@ config:
 #
 # @link https://home-assistant.io/components/conversation/
 #
-conversation:
+# conversation:
 
 
 #
@@ -43,8 +43,8 @@ conversation:
 #
 # @link https://github.com/andrey-git/home-assistant-customizer
 #
-customizer:
-  custom_ui: local
+# customizer:
+#   custom_ui: local
 
 
 #
@@ -52,7 +52,7 @@ customizer:
 #
 # @link https://home-assistant.io/components/device_tracker/
 #
-#device_tracker: !include misc/device_trackers.yaml
+# device_tracker: !include misc/device_trackers.yaml
 
 
 #
@@ -94,7 +94,7 @@ group: !include_dir_merge_named groups/
 #
 # Enable the Hass.io panel
 #
-hassio:
+# hassio:
 
 
 #
@@ -102,7 +102,7 @@ hassio:
 #
 # @link https://home-assistant.io/components/history/
 #
-history:
+# history:
 
 
 #
@@ -134,8 +134,8 @@ http:
 #
 # @link https://home-assistant.io/components/ifttt/
 #
-ifttt:
-  key: !secret ifttt_key
+# ifttt:
+#   key: !secret ifttt_key
 
 
 #
@@ -167,7 +167,7 @@ light: !include_dir_merge_list lights/
 #
 # @link https://home-assistant.io/components/logbook/
 #
-logbook:
+# logbook:
 
 
 #
@@ -178,7 +178,9 @@ logbook:
 logger:
   default: warning
   logs:
-    homeassistant.components.light: debug
+    homeassistant.components.light.mqtt_json: debug
+    homeassistant.components.light.limitlessled: debug
+    # homeassistant.components.mqtt: debug
 
 
 #
@@ -186,7 +188,7 @@ logger:
 #
 # @link https://home-assistant.io/components/map/
 #
-map:
+# map:
 
 
 #
