@@ -39,6 +39,8 @@ automation.low_power_mode_*:
   icon: mdi:weather-sunset-down
 automation.media_player_*:
   icon: mdi:kodi
+automation.motion_*:
+  icon: mdi:walk
 automation.nap_mode_*:
   icon: mdi:sleep
 automation.nightlight_*:

@@ -1,19 +1,17 @@
 #
 # Turn off nightlights when no longer needed
 #
-# Todo: use an OFF timer instead of relying on motion detector.
-# Todo: split motion detectors into their own automation + input_boolean..
-# Todo: map motion sensor state values to binary values.
+# Todo: use an OFF timer instead of relying on motion detectors.
 #
 # @subscribe input_boolean.night_mode
 #
 - id: nightlight_off
   alias: Nightlight OFF
   trigger:
-    # Lounge motion no longer detected.
+    # Motion no longer detected.
     - platform: state
-      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
-      to: '0'
+      entity_id: input_boolean.motion_detected
+      to: 'off'
 
   condition:
     # If during the night mode.
@@ -29,8 +27,8 @@
           - group.lifx_lights
         transition: 10
 
-    # Turn kitchen night lights off.
-    - service: homeassistant.turn_on
+    # Disable dedicated kitchen night lights effect.
+    - service: homeassistant.turn_off
       data:
         entity_id:
           - group.kitchen_lights

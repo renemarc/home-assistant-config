@@ -1,0 +1,21 @@
+#
+# Warn when motion is detected
+#
+# Todo: map motion sensor state values to binary values.
+#
+# @publish input_boolean.motion_detected
+#
+- id: motion_detection_start
+  alias: Motion detection START
+  trigger:
+    # Lounge motion detected.
+    - platform: state
+      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
+      from: '0'
+      to: '8'
+
+  action:
+    # Enable motion alert.
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.motion_detected

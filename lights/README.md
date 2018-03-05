@@ -62,6 +62,8 @@ Aside from regular automations, the lights are controlled physically via a [Flic
 
 Their white colour slowly changes from daylight to warm white depending on the time of day with [`/automations/cct_limitlessled.yaml`](../automations/cct_limitlessled.yaml), and their brightness is also gradually altered on a schedule. These changes are subtle but a tad noticeable, since the controllers only have limited precision. At night, they serve as nightlights with [`/automations/nightlight_on.yaml`](../automations/nightlight_on.yaml).
 
+As an alternative to using the MiLight bridge with its limit of four groups, [Chris Mullins has done a kick-ass job](http://blog.christophermullins.com/2017/02/11/milight-wifi-gateway-emulator-on-an-esp8266/) of reverse-engineering the MiLighs protocols and explains how to easily assemble a DIY bridge using [his open-source project](https://github.com/sidoh/esp8266_milight_hub) to allow you to control as many groups as you want, using MQTT too if you wish. All you'll need is an [ESP8266 wifi module](https://en.wikipedia.org/wiki/ESP8266), a [nRF24L01+ transceiver](https://hackaday.com/2015/02/23/nordic-nrf24l01-real-vs-fake/) and some prototyping wire, under about $20. I have built one using a [NodeMCU 1.0](https://frightanic.com/iot/comparison-of-esp8266-nodemcu-development-boards/#v1), and will switch to it when the need to add more MiLight groups arises.
+
 
 ## Nanoleaf Aurora smart light panels
 

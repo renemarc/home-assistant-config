@@ -46,8 +46,8 @@
 #
 # Controls MiLight devices using a DIY gateway emulator via MQTT. For
 # prototyping purposes.
-# Hardware device is an ESP8266 (NodeMCU 1.0 module) connected to a NRF24L01+
-# radio and running custom firmware by Chris Mullins.
+# Hardware device is an ESP8266 (NodeMCU 1.0 module) connected to a nRF24L01+
+# transceiver and running custom firmware by Chris Mullins.
 #
 # MQTT topic formats:
 #   commands: milight/commands/:device_id/:device_type/:group_id

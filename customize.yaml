@@ -71,6 +71,8 @@ group.weather_view:
 #
 input_boolean.low_mode:
   icon: mdi:weather-sunset-down
+input_boolean.motion_detected:
+  icon: mdi:walk
 input_boolean.nap_mode:
   icon: mdi:sleep
 input_boolean.night_mode:

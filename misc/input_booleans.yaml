@@ -39,10 +39,14 @@ ceiling_effect_override:
 
 
 #
-# Permimiter seal
+# Security
 #
 doors_open:
   name: Doors are open
+  initial: off
+
+motion_detected:
+  name: Motion detected
   initial: off
 
 windows_open:

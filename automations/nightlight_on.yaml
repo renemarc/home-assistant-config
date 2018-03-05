@@ -1,19 +1,16 @@
 #
 # Turn on nightlights when appropriate
 #
-# Todo: split motion detectors into their own automation + input_boolean..
-# Todo: map motion sensor state values to binary values.
-#
+# @subscribe input_boolean.motion_detected
 # @subscribe input_boolean.night_mode
 #
 - id: nightlight_on
   alias: Nightlight ON
   trigger:
-    # Lounge motion detected.
+    # When motion is detected.
     - platform: state
-      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
-      from: '0'
-      to: '8'
+      entity_id: input_boolean.motion_detected
+      to: 'on'
 
   condition:
     # If during the night mode.
@@ -21,9 +18,9 @@
       entity_id: input_boolean.night_mode
       state: 'on'
 
-    # And the sun is still down.
-    - condition: sun
-      before: sunrise
+    # # And the sun is still down.
+    # - condition: sun
+    #   before: sunrise
 
   action:
     # Turn night lights on.
@@ -31,10 +28,10 @@
       data:
         entity_id:
           - group.lifx_lights
-        brightness: 5
+        brightness_pct: 8
         transition: 5
 
-    # Turn kitchen night lights on.
+    # Enable dedicated kitchen night lights effect.
     - service: homeassistant.turn_on
       data:
         entity_id:

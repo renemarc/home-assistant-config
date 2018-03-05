@@ -26,6 +26,7 @@ modes:
     - input_boolean.quiet_mode
     - input_boolean.low_mode
     - input_boolean.scene_mode
+    - input_boolean.motion_detected
 
 automations:
   name: Automations
@@ -105,6 +106,8 @@ automations_modes:
     - automation.low_power_mode_stop
     - automation.quiet_mode_start
     - automation.quiet_mode_stop
+    - automation.motion_detection_start
+    - automation.motion_detection_stop
     - automation.nap_mode_start
     - automation.nap_mode_stop
     - automation.night_mode_start
