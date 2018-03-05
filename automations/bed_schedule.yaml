@@ -51,7 +51,7 @@
 
     # If bed lights are on.
     - condition: state
-      entity_id: group.bed
+      entity_id: group.bed_lights
       state: 'on'
 
     # If no effect overrides are in place.

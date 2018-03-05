@@ -31,7 +31,7 @@ automations:
   name: Automations
   control: hidden
   entities:
-    - automation.cct
+    - automation.cct_lifx
     - automation.cct_limitlessled
     - automation.check_door_left_open
     - automation.check_humidity_high

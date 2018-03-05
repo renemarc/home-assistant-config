@@ -26,9 +26,7 @@
     - service: light.turn_off
       data:
         entity_id:
-          - light.shower
-          - light.spotlight
-          - light.microwave
+          - group.lifx_lights
         transition: 10
 
     # Turn kitchen night lights off.

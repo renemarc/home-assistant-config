@@ -36,18 +36,23 @@
       to: 'off'
 
   condition:
+    # If at least one light is on.
+    - condition: state
+      entity_id: group.kitchen_lights
+      state: 'on'
+
     # If no scenes are enabled.
     - condition: state
       entity_id: input_boolean.scene_mode
       state: 'off'
 
-    # If not during the night mode.
+    # It's not during the night mode.
     - condition: state
       entity_id: input_boolean.night_mode
       state: 'off'
 
   action:
-    # Mireds: 154-500 (6500K - 2000K)
+    # Set light colour and brightness.
     - service: light.turn_on
       data_template:
         entity_id: >-

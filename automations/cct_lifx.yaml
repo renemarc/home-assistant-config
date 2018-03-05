@@ -52,13 +52,11 @@
       state: 'off'
 
   action:
-    # Mireds: 111-400
-    # Kelvins: 9000K - 2500K
+    # Set light colour and brightness using LIFX service.
     - service: light.lifx_set_state
       data:
         entity_id:
-          - light.shower
-          - light.spotlight
+          - group.lifx_lights
       data_template:
         color_temp: >
           {% set schedule = {

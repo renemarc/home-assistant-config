@@ -16,19 +16,6 @@ switchboard_view:
 #
 # Groups
 #
-bed:
-  name: Bed
-  entities:
-    - input_select.bed_effect
-    - light.underbed
-    - light.headboard
-
-bed_lights:
-  name: Bed Lights
-  entities:
-    - light.underbed
-    - light.headboard
-
 bedroom:
   name: Bedroom
   entities:
@@ -50,13 +37,6 @@ ceiling:
     - light.middle
     - light.lounge
 
-ceiling_lights:
-  name: Ceiling Lights
-  entities:
-    - light.bedroom
-    - light.middle
-    - light.lounge
-
 kitchen:
   name: Kitchen
   entities:
@@ -68,14 +48,6 @@ kitchen:
     # - light.mqtt_sink
     # - light.mqtt_microwave
     # - light.mqtt_island
-
-kitchen_lights:
-  name: Kitchen Lights
-  entities:
-    - light.countertop
-    - light.sink
-    - light.microwave
-    - light.island
 
 lounge:
   name: Lounge
@@ -96,4 +68,35 @@ lounge:
 washroom:
   name: Washroom
   entities:
+    - light.shower
+
+
+#
+# Invisible groups
+#
+bed_lights:
+  name: Bed Lights
+  entities:
+    - light.underbed
+    - light.headboard
+
+ceiling_lights:
+  name: Ceiling Lights
+  entities:
+    - light.bedroom
+    - light.middle
+    - light.lounge
+
+kitchen_lights:
+  name: Kitchen Lights
+  entities:
+    - light.countertop
+    - light.sink
+    - light.microwave
+    - light.island
+
+lifx_lights:
+  name: LIFX Lights
+  entities:
+    - light.spotlight
     - light.shower

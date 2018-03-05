@@ -30,9 +30,7 @@
     - service: light.turn_on
       data:
         entity_id:
-          - light.shower
-          - light.spotlight
-          - light.microwave
+          - group.lifx_lights
         brightness: 5
         transition: 5
 
