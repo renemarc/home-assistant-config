@@ -26,19 +26,19 @@
       friendly_name: Lounge Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.aeotec_zw100_multisensor_6_relative_humidity') | round }}"
+      value_template: "{{ states('sensor.lounge_multisensor_relative_humidity') | round }}"
 
     lounge_temperature:
       friendly_name: Lounge Temperature
       unit_of_measurement: '°C'
       icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.aeotec_zw100_multisensor_6_temperature') | round }}"
+      value_template: "{{ states('sensor.lounge_multisensor_temperature') | round }}"
 
     lounge_luminance:
       friendly_name: Lounge Luminance
       unit_of_measurement: 'lux'
       icon_template: mdi:blur
-      value_template: "{{ states('sensor.aeotec_zw100_multisensor_6_luminance') | round }}"
+      value_template: "{{ states('sensor.lounge_multisensor_luminance') | round }}"
 
 
 #

@@ -1,8 +1,6 @@
 #
 # Reset flag when no further motion detected
 #
-# Todo: map motion sensor state values to binary values.
-#
 # @publish input_boolean.motion_detected
 #
 - id: motion_detection_start
@@ -10,8 +8,8 @@
   trigger:
     # Lounge motion no longer detected.
     - platform: state
-      entity_id: sensor.aeotec_zw100_multisensor_6_burglar
-      to: '0'
+      entity_id: binary_sensor.lounge_multisensor_sensor
+      to: 'off'
 
   action:
     # Disable motion alert.

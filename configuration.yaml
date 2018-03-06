@@ -177,9 +177,9 @@ light: !include_dir_merge_list lights/
 #
 logger:
   default: warning
-  logs:
-    homeassistant.components.light.mqtt_json: debug
-    homeassistant.components.light.limitlessled: debug
+  # logs:
+    # homeassistant.components.light.mqtt_json: debug
+    # homeassistant.components.light.limitlessled: debug
     # homeassistant.components.mqtt: debug
 
 
@@ -362,7 +362,10 @@ variable: !include misc/variables.yaml
 #
 # ZWave integration
 #
+# @link https://home-assistant.io/docs/z-wave/adding/
+# @link https://home-assistant.io/docs/z-wave/
 # @link https://home-assistant.io/components/zwave/
 #
 zwave:
   usb_path: /dev/ttyACM0
+  network_key: !secret zwave_network_key

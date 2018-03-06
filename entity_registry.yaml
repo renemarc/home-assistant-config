@@ -22,48 +22,50 @@ light.spotlight:
 light.underbed:
   platform: lifx
   unique_id: d0:73:d5:15:0c:ae
-binary_sensor.aeotec_zw100_multisensor_6_sensor:
+
+binary_sensor.front_door_sensor:
   platform: zwave
-  unique_id: 2-72057594076463104
-sensor.aeotec_zw100_multisensor_6_temperature:
+  unique_id: 4-72057594110017536
+binary_sensor.lounge_multisensor_sensor:
   platform: zwave
-  unique_id: 2-72057594076479506
-sensor.aeotec_zw100_multisensor_6_luminance:
+  unique_id: 5-72057594126794752
+
+sensor.front_door_alarm_type:
   platform: zwave
-  unique_id: 2-72057594076479538
-sensor.aeotec_zw100_multisensor_6_relative_humidity:
+  unique_id: 4-72057594111082497
+sensor.front_door_alarm_level:
   platform: zwave
-  unique_id: 2-72057594076479570
-sensor.aeotec_zw100_multisensor_6_ultraviolet:
+  unique_id: 4-72057594111082513
+sensor.front_door_sourcenodeid:
   platform: zwave
-  unique_id: 2-72057594076479922
-sensor.aeotec_zw100_multisensor_6_alarm_type:
+  unique_id: 4-72057594111082529
+sensor.front_door_access_control:
   platform: zwave
-  unique_id: 2-72057594077528065
-sensor.aeotec_zw100_multisensor_6_alarm_level:
+  unique_id: 4-72057594111082641
+sensor.front_door_burglar:
   platform: zwave
-  unique_id: 2-72057594077528081
-sensor.aeotec_zw100_multisensor_6_sourcenodeid:
+  unique_id: 4-72057594111082657
+sensor.lounge_multisensor_temperature:
   platform: zwave
-  unique_id: 2-72057594077528097
-sensor.aeotec_zw100_multisensor_6_burglar:
+  unique_id: 5-72057594126811154
+sensor.lounge_multisensor_luminance:
   platform: zwave
-  unique_id: 2-72057594077528225
-binary_sensor.aeotec_zw120_door_window_sensor_gen5_sensor:
+  unique_id: 5-72057594126811186
+sensor.lounge_multisensor_relative_humidity:
   platform: zwave
-  unique_id: 3-72057594093240320
-sensor.aeotec_zw120_door_window_sensor_gen5_alarm_type:
+  unique_id: 5-72057594126811218
+sensor.lounge_multisensor_ultraviolet:
   platform: zwave
-  unique_id: 3-72057594094305281
-sensor.aeotec_zw120_door_window_sensor_gen5_alarm_level:
+  unique_id: 5-72057594126811570
+sensor.lounge_multisensor_alarm_type:
   platform: zwave
-  unique_id: 3-72057594094305297
-sensor.aeotec_zw120_door_window_sensor_gen5_sourcenodeid:
+  unique_id: 5-72057594127859713
+sensor.lounge_multisensor_alarm_level:
   platform: zwave
-  unique_id: 3-72057594094305313
-sensor.aeotec_zw120_door_window_sensor_gen5_access_control:
+  unique_id: 5-72057594127859729
+sensor.lounge_multisensor_sourcenodeid:
   platform: zwave
-  unique_id: 3-72057594094305425
-sensor.aeotec_zw120_door_window_sensor_gen5_burglar:
+  unique_id: 5-72057594127859745
+sensor.lounge_multisensor_burglar:
   platform: zwave
-  unique_id: 3-72057594094305441
+  unique_id: 5-72057594127859873

@@ -44,7 +44,7 @@
 
 
 #
-# Aeotec battery monitoring
+# ZWave battery monitoring
 #
 # @link https://aeotec.com/z-wave-door-window-sensor
 # @link https://aeotec.com/z-wave-sensor
@@ -55,15 +55,15 @@
       friendly_name: Front Door Sensor Battery
       unit_of_measurement: '%'
       value_template: >-
-        {% set battery_level = states.zwave.aeotec_zw120_door_window_sensor_gen5.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.zwave.front_door.attributes.battery_level | default(0) | int %}
 
         {% if battery_level %}
           {{ battery_level | round }}
         {% else %}
-          {{ states('zwave.aeotec_zw120_door_window_sensor_gen5') }}
+          {{ states('zwave.front_door') }}
         {%- endif %}
       icon_template: >-
-        {% set battery_level = states.zwave.aeotec_zw120_door_window_sensor_gen5.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.zwave.front_door.attributes.battery_level | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
 
         {% if battery_round >= 100 %}
@@ -78,15 +78,15 @@
       friendly_name: Lounge Multisensor Battery
       unit_of_measurement: '%'
       value_template: >-
-        {% set battery_level = states.zwave.aeotec_zw100_multisensor_6.attributes.battery_level | default(0) %}
+        {% set battery_level = states.zwave.lounge_multisensor.attributes.battery_level | default(0) %}
 
         {% if battery_level %}
           {{ battery_level | round }}
         {% else %}
-          {{ states('zwave.aeotec_zw100_multisensor_6') }}
+          {{ states('zwave.lounge_multisensor') }}
         {%- endif %}
       icon_template: >-
-        {% set battery_level = states.zwave.aeotec_zw100_multisensor_6.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.zwave.lounge_multisensor.attributes.battery_level | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
 
         {% if battery_round >= 100 %}

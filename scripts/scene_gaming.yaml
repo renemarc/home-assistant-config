@@ -46,7 +46,7 @@ sequence:
       option: Gaming
 
   # Turn off some glaring kitchen lights.
-  - service: homeassistant.turn_on
+  - service: homeassistant.turn_off
     data:
       entity_id:
         - light.countertop

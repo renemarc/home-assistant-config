@@ -13,9 +13,8 @@
   trigger:
     # The front door sensor senses openness.
     - platform: state
-      entity_id: sensor.aeotec_zw120_door_window_sensor_gen5_access_control
-      from: '23'
-      to: '22'
+      entity_id: binary_sensor.front_door_sensor
+      to: 'on'
 
   action:
     # Flash the shower light, in case one didn't hear the door opening.

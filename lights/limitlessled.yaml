@@ -20,8 +20,8 @@
 #
 - platform: limitlessled
   bridges:
-    - host: !secret limitleddled_bridge_host
-      port: !secret limitleddled_bridge_port
+    - host: !secret limitlessled_bridge_host
+      port: !secret limitlessled_bridge_port
       groups:
       - number: 1
         name: Sink
