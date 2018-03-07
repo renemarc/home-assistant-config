@@ -1,0 +1,18 @@
+#
+# Reset flag when tampered devices have their alart reset
+#
+# @publish input_boolean.tamper_detected
+#
+- id: tamper_detection_start
+  alias: Tamper detection STOP
+  trigger:
+    # Front door tamper no longer detected.
+    - platform: state
+      entity_id: sensor.front_door_burglar
+      to: '0'
+
+  action:
+    # Disable tamper alert.
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.tamper_detected

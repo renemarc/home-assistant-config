@@ -36,3 +36,10 @@ ceiling_effect:
 lightpack_effect:
   value: False
   restore: true
+
+
+#
+# Perimeter tamper detection
+tamper_detected:
+  value: False
+  restore: true

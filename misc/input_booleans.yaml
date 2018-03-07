@@ -49,6 +49,10 @@ motion_detected:
   name: Motion detected
   initial: off
 
+tamper_detected:
+  name: Tamper detected
+  initial: off
+
 windows_open:
   name: Windows are open
   initial: off

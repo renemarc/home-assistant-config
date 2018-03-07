@@ -48,5 +48,5 @@
         notification_id: mold
         title: "Risk of mold!"
         message: |
-          Humidity is way too high: {{ states('sensor.average_humidity') }}%
+          Humidity is way too high: {{ states('sensor.average_humidity') }}%<br>
           Check the dehumidifier.

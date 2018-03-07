@@ -73,6 +73,11 @@ input_boolean.low_mode:
   icon: mdi:weather-sunset-down
 input_boolean.motion_detected:
   icon: mdi:walk
+  confirm_controls_show_lock: true
+  templates:
+    theme: >-
+      return state == 'on' ? 'card-warning'
+      : null;
 input_boolean.nap_mode:
   icon: mdi:sleep
 input_boolean.night_mode:
@@ -81,6 +86,13 @@ input_boolean.quiet_mode:
   icon: mdi:volume-mute
 input_boolean.scene_mode:
   icon: mdi:looks
+input_boolean.tamper_detected:
+  icon: mdi:security-home
+  confirm_controls_show_lock: true
+  templates:
+    theme: >-
+      return state == 'on' ? 'card-critical'
+      : null;
 
 
 #
@@ -96,6 +108,7 @@ input_select.ceiling_effect:
   icon: mdi:blank
 input_select.lightpack_effect:
   icon: mdi:blank
+
 
 #
 # Lights
@@ -597,9 +610,24 @@ switch.souvenirs_light:
 switch.window_light:
   icon: mdi:creation
 
+
 #
-# Updater.
+# Updater
 #
 updater.updater:
   extra_data_template: >-
     Current version: ${entities['sensor.current_version'].state}
+
+
+#
+# Variables
+#
+variable.tamper_detected:
+  friendly_name: Location
+  icon: mdi:security-home
+  templates:
+    theme: >-
+      return state != 'False'
+      ? entities['input_boolean.tamper_detected'].state == 'on' ? 'card-critical'
+      : 'card-warning'
+      : null;

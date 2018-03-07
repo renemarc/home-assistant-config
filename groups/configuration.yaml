@@ -27,6 +27,8 @@ modes:
     - input_boolean.low_mode
     - input_boolean.scene_mode
     - input_boolean.motion_detected
+    - input_boolean.tamper_detected
+    - variable.tamper_detected
 
 automations:
   name: Automations
@@ -43,6 +45,7 @@ automations:
     - automation.front_door_opened
     - automation.go_to_sleep
     - automation.scene_select
+    - automation.tamper_detection_notify
     - automation.theme_auto
     - automation.wake_up
 
@@ -112,6 +115,8 @@ automations_modes:
     - automation.nap_mode_stop
     - automation.night_mode_start
     - automation.night_mode_stop
+    - automation.tamper_detection_start
+    - automation.tamper_detection_stop
 
 configuration_switches:
   name: Configuration Switches

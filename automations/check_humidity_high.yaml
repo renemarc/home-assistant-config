@@ -48,5 +48,5 @@
         notification_id: humidity
         title: "Humidity is too high"
         message: |
-          {{ states('sensor.average_humidity') }}% is excessive.
+          {{ states('sensor.average_humidity') }}% is excessive.<br>
           Check the dehumidifier.

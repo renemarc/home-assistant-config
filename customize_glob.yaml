@@ -49,6 +49,8 @@ automation.night_mode_*:
   icon: mdi:weather-night
 automation.quiet_mode_*:
   icon: mdi:volume-mute
+automation.tamper_*:
+  icon: mdi:security-home
 automation.washroom_*:
   icon: mdi:water-pump
 
