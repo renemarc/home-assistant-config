@@ -13,6 +13,13 @@
         button_name: flic_80e4da72e890
         click_type: double
 
+    # Minimote button 3 is clicked.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 5 # 5 = button #3 clicked.
+
   action:
     # Toggle extra lights.
     - service_template: >

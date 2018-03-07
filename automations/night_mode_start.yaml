@@ -17,6 +17,13 @@
         button_name: flic_80e4da737711
         click_type: hold
 
+    # Minimote button 2 is held.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 4 # 4 = button #2 held.
+
   condition:
     # Not during the night mode.
     - condition: state

@@ -7,14 +7,24 @@ automation.check_mold_conditions:
   icon: mdi:biohazard
 automation.check_update_availability:
   icon: mdi:cloud-upload
+automation.front_door_closed:
+  icon: mdi:door-closed
+automation.front_door_opened:
+  icon: mdi:door-open
 automation.go_to_sleep:
   icon: mdi:weather-night
 automation.theme_auto:
   icon: mdi:theme-light-dark
+automation.scene_daylight:
+  icon: mdi:weather-sunny
+automation.scene_gaming:
+  icon: mdi:gamepad-variant
+automation.scene_romantic:
+  icon: mdi:home-heart
 automation.scene_select:
   icon: mdi:looks
 automation.wake_up:
-  icon: mdi:weather-sunny
+  icon: mdi:power
 
 
 #

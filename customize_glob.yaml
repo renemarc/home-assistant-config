@@ -27,8 +27,6 @@ automation.check_humidity_*:
   icon: mdi:water-percent
 automation.dehumidifier_*:
   icon: mdi:water-off
-automation.front_door_*:
-  icon: mdi:door
 automation.kitchen_lights_*:
   icon: mdi:food-fork-drink
 automation.lightpack_*:

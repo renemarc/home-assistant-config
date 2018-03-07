@@ -13,6 +13,13 @@
         button_name: flic_80e4da72e890
         click_type: hold
 
+    # Minimote button 3 is held.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 6 # 6 = button #3 held.
+
   action:
     # Turn on all lights.
     - service: homeassistant.turn_on

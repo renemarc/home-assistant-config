@@ -1,0 +1,26 @@
+#
+# Toggle the romantic scene
+#
+# @see /scripts/scene_romantic.yaml
+#
+- id: scene_romantic
+  alias: Scene ROMANTIC
+  trigger:
+    # Minimote button 4 is held.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 8 # 8 = button #4 held.
+
+  action:
+    # Toggle the romantic scene.
+    - service: input_select.select_option
+      data_template:
+        entity_id: input_select.scene
+        option: >-
+          {% if is_state('input_select.scene', 'Romantic') %}
+            Default
+          {% else %}
+            Romantic
+          {% endif %}

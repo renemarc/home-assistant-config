@@ -1,0 +1,20 @@
+#
+# Wake up all devices
+#
+# @see /scripts/wake_up.yaml
+#
+- id: wake_up
+  alias: Wake up
+  trigger:
+    # Minimote button 1 is clicked.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 1 # 1 = button #1 clicked.
+
+  action:
+    # Call the wake up sequence.
+    - service: script.turn_on
+      data_template:
+         entity_id: script.wake_up

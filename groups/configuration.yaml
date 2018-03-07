@@ -44,6 +44,9 @@ automations:
     - automation.front_door_closed
     - automation.front_door_opened
     - automation.go_to_sleep
+    - automation.scene_daylight
+    - automation.scene_gaming
+    - automation.scene_romantic
     - automation.scene_select
     - automation.tamper_detection_notify
     - automation.theme_auto

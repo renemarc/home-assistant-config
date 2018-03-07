@@ -18,6 +18,13 @@
         button_name: flic_80e4da737711
         click_type: single
 
+    # Minimote button 2 pressed once.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 3 # 3 = button #2 pressed once.
+
   condition:
     # If nap mode is not currently enabled.
     - condition: state
