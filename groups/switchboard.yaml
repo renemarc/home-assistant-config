@@ -98,5 +98,6 @@ kitchen_lights:
 lifx_lights:
   name: LIFX Lights
   entities:
+    - light.lounge_lamp
     - light.spotlight
     - light.shower

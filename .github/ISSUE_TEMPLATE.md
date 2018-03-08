@@ -6,4 +6,3 @@ As a **actor**, I want **something** so that I can **goal**.
 
 ### Additional details
 - 
-

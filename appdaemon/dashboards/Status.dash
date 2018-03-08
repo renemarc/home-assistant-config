@@ -91,7 +91,7 @@ cpu_temp:
     entity: sensor.cpu_temp
     title: CPU Temp
 
-processor_use:
+cpu_use:
     widget_type: sensor
     entity: sensor.processor_use
     sub_entity: sensor.average_load
@@ -213,14 +213,34 @@ lounge_multisensor_battery:
 
 
 #
+# Security
+#
+status_doors:
+    widget_type: binary_sensor
+    entity: input_boolean.doors_open
+    title: Doors
+    icon_on: mdi-lock-open-outline
+    icon_off: mdi-lock
+
+status_motion:
+    widget_type: binary_sensor
+    entity: input_boolean.motion_detected
+    title: Motion
+
+status_tamper:
+    widget_type: binary_sensor
+    entity: input_boolean.tamper_detected
+    title: Tampering
+
+
+#
 # Layout
 #
 layout:
     - include: header
-    - include: header
     - nav_main,         label(6x1), reload, temperature, clock
-    - nav_switchboard,  uptime, uptime_host, database_size, log_size
-    - nav_weather,      cpu_temp, cpu_used, memory_use, disk_use, spacer(2x1), sensor.speedtest_ping, upspeed, downspeed
+    - nav_switchboard,  uptime, uptime_host, database_size, log_size, spacer(2x1), status_doors, status_motion, status_tamper
+    - nav_weather,      cpu_temp, cpu_use, memory_use, disk_use, spacer(2x1), sensor.speedtest_ping, upspeed, downspeed
     - nav_spacer(1x2)
     -                   average_temperature, bedroom_temperature, lounge_temperature, spacer(3x1), front_door_sensor_battery, bedroom_multisensor_battery, lounge_multisensor_battery
     - nav_status,       average_humidity, bedroom_humidity, lounge_humidity

@@ -18,7 +18,7 @@ automation.theme_auto:
 automation.scene_daylight:
   icon: mdi:weather-sunny
 automation.scene_gaming:
-  icon: mdi:gamepad-variant
+  icon: mdi:google-controller
 automation.scene_romantic:
   icon: mdi:home-heart
 automation.scene_select:
@@ -297,6 +297,23 @@ sensor.bing_wallpaper_info:
   custom_ui_state_card: state-card-value_only
 sensor.good_vibes:
   custom_ui_state_card: state-card-value_only
+sensor.doors_status:
+  templates:
+    theme: >-
+      return state != 'Closed' ? 'card-warning'
+      : null;
+sensor.tamper_status:
+  templates:
+    theme: >-
+      return state != 'OK'
+      ? entities['input_boolean.tamper_detected'].state == 'on' ? 'card-critical'
+      : 'card-warning'
+      : null;
+sensor.motion_status:
+  templates:
+    theme: >-
+      return state != 'OK' ? 'card-warning'
+      : null;
 
 
 #
@@ -633,7 +650,7 @@ updater.updater:
 # Variables
 #
 variable.tamper_detected:
-  friendly_name: Location
+  friendly_name: Tamper Location
   icon: mdi:security-home
   templates:
     theme: >-

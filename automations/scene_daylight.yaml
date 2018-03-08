@@ -4,7 +4,7 @@
 # @see /scripts/scene_daylight.yaml
 #
 - id: scene_daylight
-  alias: scene DAYLIGHT
+  alias: Scene DAYLIGHT
   trigger:
     # Minimote button 1 is held.
     - platform: event

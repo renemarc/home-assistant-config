@@ -42,4 +42,4 @@ lightpack_effect:
 # Perimeter tamper detection
 tamper_detected:
   value: False
-  restore: true
+  restore: False

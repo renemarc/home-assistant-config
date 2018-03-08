@@ -29,6 +29,7 @@ sequence:
       entity_id:
         - light.shower
         - light.spotlight
+        - light.lounge_lamp
     data_template:
       kelvin: 2500
       brightness_pct: 40

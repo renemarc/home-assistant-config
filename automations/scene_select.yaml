@@ -3,6 +3,8 @@
 #
 # @subscribe input_select.scene
 #
+# @see /scripts/
+#
 - id: scene_select
   alias: Scene SELECT
   trigger:

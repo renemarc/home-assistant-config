@@ -11,6 +11,7 @@ default_view:
     - group.public_transit
     - group.climate
     - group.actions
+    - group.security
 
 
 #
@@ -39,6 +40,13 @@ notifications:
   entities:
     - persistent_notification.humidity
 
+now:
+  name: " "
+  entities:
+    - sensor.date_friendly
+    - sensor.time_friendly
+    - sensor.sun_state
+
 public_transit:
   name: Public Transit
   entities:
@@ -55,9 +63,10 @@ wallpaper:
     - camera.bing_wallpaper
     - sensor.bing_wallpaper_info
 
-now:
-  name: " "
+security:
+  name: Security Status
+  control: hidden
   entities:
-    - sensor.date_friendly
-    - sensor.time_friendly
-    - sensor.sun_state
+    - sensor.doors_status
+    - sensor.motion_status
+    - sensor.tamper_status

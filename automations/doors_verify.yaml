@@ -1,0 +1,37 @@
+#
+# Verify the state of all external doors
+#
+# Marks the perimeter as breached when any door is open, and safe when all are
+# closed.
+#
+# @subscribe binary_sensor.front_door_sensor
+#
+# @publish input_boolean.doors_open
+#
+- id: doors_verify
+  alias: Doors VERIFY
+  trigger:
+    # The front door sensor has changed.
+    - platform: state
+      entity_id: binary_sensor.front_door_sensor
+
+  action:
+    # - service: variable.set_variable
+    #   data:
+    #     variable: doors_open
+    #     value_template: >
+    #       {% set value = '' %}
+    #       {% if is_state('binary_sensor.front_door_sensor', '0') %}
+    #         {% set value = value + 'Front Door,' %}
+    #       {% endif %}
+
+    #       {{ value[:-1] }}
+
+    # Toggle doors status.
+    - service_template: >
+        {% if is_state('binary_sensor.front_door_sensor', 'on') %}
+          input_boolean.turn_on
+        {% else %}
+          input_boolean.turn_off
+        {% endif %}
+      entity_id: input_boolean.doors_open

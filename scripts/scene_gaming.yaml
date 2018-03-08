@@ -15,6 +15,7 @@ sequence:
     data:
       entity_id:
         - light.spotlight
+        - light.lounge_lamp
     data_template:
       rgb_color: [80, 0, 110]
       brightness_pct: 50
