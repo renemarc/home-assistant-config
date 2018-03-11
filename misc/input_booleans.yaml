@@ -25,16 +25,8 @@ scene_mode:
 #
 # Manual effect overrides
 #
-aurora_effect_override:
-  name: Aurora has overriding effect set
-  initial: off
-
-bed_effect_override:
-  name: Bed underglow lights have overriding effect set
-  initial: off
-
-ceiling_effect_override:
-  name: Ceiling wash lights have overriding effect set
+kitchen_lights_override:
+  name: Kitchen Lights have overriding effect set
   initial: off
 
 
@@ -55,12 +47,4 @@ tamper_detected:
 
 windows_open:
   name: Windows are open
-  initial: off
-
-
-#
-# Miscellaneous
-#
-update_available:
-  name: Update available
   initial: off

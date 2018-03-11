@@ -8,11 +8,12 @@
 - id: scene_select
   alias: Scene SELECT
   trigger:
-    # A scene has been selected.
+    # When a scene has been selected.
     - platform: state
       entity_id: input_select.scene
 
   action:
+    # Activate the global scene script.
     - service: script.turn_on
       data_template:
         entity_id: >-

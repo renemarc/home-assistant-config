@@ -3,26 +3,23 @@
 #
 # @subscribe input_boolean.nap_mode
 #
-# @publish input_boolean.scene_mode
-# @publish variable.aurora_brightness
-# @publish variable.aurora_effect
-# @publish variable.ceiling_effect
+# @publish input_select.scene
 #
 - id: media_player_resume
   alias: Media player RESUME
   trigger:
-    # Kodi resumes playback.
+    # WHen Kodi resumes playback.
     - platform: state
       entity_id: media_player.kodi
       to: 'playing'
 
   condition:
-    # Sun has set.
+    # If the sun is set.
     - condition: state
       entity_id: sun.sun
       state: 'below_horizon'
 
-    # Not during the nap mode.
+    # If it's not during the nap mode.
     - condition: state
       entity_id: input_boolean.nap_mode
       state: 'off'

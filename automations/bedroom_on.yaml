@@ -1,5 +1,7 @@
 #
-# Turn on bedroom.
+# Turn on bedroom
+#
+# @subscribe input_boolean.nap_mode
 #
 - id: bedroom_on
   alias: Bedroom ON

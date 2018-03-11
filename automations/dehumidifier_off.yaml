@@ -8,33 +8,33 @@
 - id: dehumidifier_off
   alias: Dehumidifier OFF
   trigger:
-    # Humidity is getting too low.
+    # When humidity is getting too low.
     - platform: numeric_state
       entity_id: sensor.average_humidity
       below: 35
 
-    # Dehumidifier has been running for a while.
+    # When dehumidifier has been running for a while.
     - platform: state
       entity_id: switch.dehumidifier
       to: 'on'
       for:
         hours: 2
 
-    # Outside doors have been open for a while.
+    # When outside doors have been open for a while.
     - platform: state
       entity_id: input_boolean.doors_open
       to: 'on'
       for:
         minutes: 10
 
-    # Windows have been open for a while.
+    # When windows have been open for a while.
     - platform: state
       entity_id: input_boolean.windows_open
       to: 'on'
       for:
         minutes: 2
 
-    # It's quiet time.
+    # When it's quiet time.
     - platform: state
       entity_id: input_boolean.quiet_mode
       to: 'on'

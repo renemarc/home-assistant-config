@@ -6,7 +6,7 @@
 - id: tamper_detection_notify
   alias: Tamper detection NOTIFY
   trigger:
-    # The tamper flag has changed.
+    # When the tamper flag has changed.
     - platform: state
       entity_id: input_boolean.tamper_detected
 
@@ -29,6 +29,6 @@
       data:
         notification_id: security
         title: "Home security issue"
-        message: >
-          A perimeter device has been tampered with:
+        message: |
+          A perimeter device has been tampered with at location:
           <strong>{{ states('variable.tamper_detected') }}</strong>.

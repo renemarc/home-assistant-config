@@ -12,14 +12,14 @@
       to: 'on'
 
   action:
-    # Turn on some smart lights.
+    # Turn on some lights.
     - service: homeassistant.turn_on
       data:
         entity_id:
           - light.microwave
           - light.sink
 
-    # Turn off some smart lights.
+    # Turn off some lights.
     - service: homeassistant.turn_off
       data:
         entity_id:

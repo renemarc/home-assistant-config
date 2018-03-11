@@ -13,14 +13,10 @@
       to: 'on'
 
   condition:
-    # If during the night mode.
+    # If it's during the night mode.
     - condition: state
       entity_id: input_boolean.night_mode
       state: 'on'
-
-    # # And the sun is still down.
-    # - condition: sun
-    #   before: sunrise
 
   action:
     # Turn night lights on.

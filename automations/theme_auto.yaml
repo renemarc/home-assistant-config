@@ -11,12 +11,12 @@
     - platform: homeassistant
       event: start
 
-    # If night mode is changed.
+    # When night mode is changed.
     - platform: state
       entity_id: input_boolean.night_mode
 
   action:
-    # Set theme to "normal" or "dark".
+    # Toggle theme between "normal" and "dark".
     - service: frontend.set_theme
       data_template:
         name: >-

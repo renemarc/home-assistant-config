@@ -29,7 +29,7 @@
       state: 'off'
 
   action:
-    # Turn on smart lights.
+    # Turn on all lights.
     - service: homeassistant.turn_on
       data:
         entity_id:

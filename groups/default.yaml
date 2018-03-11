@@ -38,6 +38,7 @@ climate:
 notifications:
   name: Notifications
   entities:
+    - persistent_notification.security
     - persistent_notification.humidity
 
 now:

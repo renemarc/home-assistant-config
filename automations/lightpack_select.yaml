@@ -10,7 +10,7 @@
 - id: lightpack_select
   alias: Lightpack SELECT
   trigger:
-    # An effect has been selected.
+    # When an effect has been selected.
     - platform: state
       entity_id: input_select.lightpack_effect
 
@@ -19,12 +19,6 @@
       entity_id:
         - light.lightpack
       to: 'on'
-
-  condition:
-    # # If an actual effect is selected, not the default.
-    # - condition: template
-    #   value_template: >-
-    #     {{ not is_state('input_select.lightpack_effect', 'Default') }}
 
   action:
     # Update the Lightpack effect variables.

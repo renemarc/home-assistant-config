@@ -16,6 +16,8 @@
   action:
     # Set the Aurora's brightness according to the new level.
     - service: light.turn_on
+      data:
+        entity_id:
+          - light.aurora
       data_template:
-        entity_id: light.aurora
         brightness: "{{ states('variable.aurora_brightness') }}"

@@ -1,33 +1,27 @@
 #
-# Media player paused/stopped.
+# Media player paused/stopped
 #
-# Todo: revise the need for a movie scene.
-#
-# @publish input_boolean.scene_mode
+# @publish input_select.scene
 #
 - id: media_player_stop
   alias: Media player STOP
   trigger:
-    # Kodi playback has been paused.
+    # When Kodi playback has been paused.
     - platform: state
       entity_id: media_player.kodi
       to: 'paused'
 
-    # Kodi playback has been stopped.
+    # When Kodi playback has been stopped.
     - platform: state
       entity_id: media_player.kodi
       to: 'idle'
 
-    # Kodi has closed down.
+    # When Kodi has closed down.
     - platform: state
       entity_id: media_player.kodi
       to: 'off'
 
   action:
-    # # Disable the scene mode.
-    # - service: input_boolean.turn_off
-    #   entity_id: input_boolean.scene_mode
-
     # Return the global scene to default.
     - service: input_select.select_option
       data:

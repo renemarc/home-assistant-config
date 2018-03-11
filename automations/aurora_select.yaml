@@ -1,5 +1,5 @@
 #
-# Manually select a Nanoleaf Aurora built-in effect.
+# Manually select a Nanoleaf Aurora built-in effect
 #
 # @subscribe input_select.aurora_effect
 #
@@ -10,7 +10,7 @@
 - id: aurora_select
   alias: Aurora SELECT
   trigger:
-    # An effect has been selected.
+    # When an effect has been selected.
     - platform: state
       entity_id: input_select.aurora_effect
 
@@ -27,10 +27,6 @@
         {{ not is_state('input_select.aurora_effect', 'Auto') }}
 
   action:
-    # Prevent the Aurora scheduler from replacing the selected effect.
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.aurora_effect_override
-
     # Update the Aurora effect variable.
     - service: variable.set_variable
       data:

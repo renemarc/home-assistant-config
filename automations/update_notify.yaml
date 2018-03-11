@@ -3,18 +3,14 @@
 #
 # An updated Hass.io version usually follows shortly.
 #
-- id: check_update_availability
-  alias: Check update availability
+- id: update_notify
+  alias: Update NOTIFY
   trigger:
-    # If the updater service finds something new.
+    # When the updater service finds something new.
     platform: state
     entity_id: updater.updater
 
   action:
-    # Mark update as available.
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.update_available
-
     # Send notification to owner.
     - service: notify.group
       data:

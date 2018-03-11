@@ -5,10 +5,10 @@
 #
 # @subscribe input_boolean.doors_open
 #
-- id: check_door_left_open
-  alias: Check door left open
+- id: doors_notify
+  alias: Doors NOTIFY
   trigger:
-    # A door has been left open for a while.
+    # When a door has been left open for a while.
     - platform: state
       entity_id: input_boolean.doors_open
       to: 'on'

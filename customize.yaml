@@ -642,6 +642,7 @@ switch.window_light:
 # Updater
 #
 updater.updater:
+  custom_ui_state_card: state-card-custom-ui
   extra_data_template: >-
     Current version: ${entities['sensor.current_version'].state}
 
@@ -650,7 +651,7 @@ updater.updater:
 # Variables
 #
 variable.tamper_detected:
-  friendly_name: Tamper Location
+  friendly_name: Tamper location
   icon: mdi:security-home
   templates:
     theme: >-

@@ -36,20 +36,18 @@ automations:
   entities:
     - automation.cct_lifx
     - automation.cct_limitlessled
-    - automation.check_door_left_open
-    - automation.check_humidity_high
-    - automation.check_humidity_low
-    - automation.check_mold_conditions
-    - automation.check_update_availability
-    - automation.front_door_closed
-    - automation.front_door_opened
+    - automation.doors_notify
+    - automation.doors_verify
+    - automation.front_door_notify
     - automation.go_to_sleep
+    - automation.humidity_notify
     - automation.scene_daylight
     - automation.scene_gaming
     - automation.scene_romantic
     - automation.scene_select
     - automation.tamper_detection_notify
     - automation.theme_auto
+    - automation.update_notify
     - automation.wake_up
 
 automations_areas:
@@ -59,7 +57,6 @@ automations_areas:
     - automation.bedroom_low_power
     - automation.bedroom_off
     - automation.bedroom_on
-    - automation.ceiling_default
     - automation.ceiling_effect
     - automation.ceiling_off
     - automation.ceiling_on
@@ -80,11 +77,9 @@ automations_devices:
   control: hidden
   entities:
     - automation.aurora_brightness
-    - automation.aurora_default
     - automation.aurora_effect
     - automation.aurora_schedule
     - automation.aurora_select
-    - automation.bed_default
     - automation.bed_effect
     - automation.bed_schedule
     - automation.bed_select
@@ -97,11 +92,9 @@ automations_devices:
     - automation.lightpack_effect
     - automation.lightpack_select
     - automation.media_player_resume
-    - automation.media_player_start
     - automation.media_player_stop
     - automation.nightlight_off
     - automation.nightlight_on
-    - automation.scene_default
     - automation.scene_effect
 
 automations_modes:
@@ -112,8 +105,7 @@ automations_modes:
     - automation.low_power_mode_stop
     - automation.quiet_mode_start
     - automation.quiet_mode_stop
-    - automation.motion_detection_start
-    - automation.motion_detection_stop
+    - automation.motion_detection_auto
     - automation.nap_mode_start
     - automation.nap_mode_stop
     - automation.night_mode_start
@@ -126,3 +118,4 @@ configuration_switches:
   control: hidden
   entities:
     - switch.aeotec_zstick_disco_light
+    - script.tamper_reset

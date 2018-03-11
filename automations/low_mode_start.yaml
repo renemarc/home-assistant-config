@@ -14,7 +14,7 @@
       to: 'on'
 
   condition:
-    # If night mode is not currently enabled.
+    # If it's not night mode.
     - condition: state
       entity_id: input_boolean.night_mode
       state: 'off'

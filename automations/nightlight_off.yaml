@@ -3,6 +3,7 @@
 #
 # Todo: use an OFF timer instead of relying on motion detectors.
 #
+# @subscribe input_boolean.motion_detected
 # @subscribe input_boolean.night_mode
 #
 - id: nightlight_off
@@ -14,7 +15,7 @@
       to: 'off'
 
   condition:
-    # If during the night mode.
+    # If it's during the night mode.
     - condition: state
       entity_id: input_boolean.night_mode
       state: 'on'

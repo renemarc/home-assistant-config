@@ -1,5 +1,5 @@
 #
-# Set bedroom to low-power mode.
+# Set bedroom to low-power mode
 #
 # @subscribe input_boolean.low_mode
 #
@@ -12,22 +12,22 @@
       to: 'on'
 
   action:
-    # Turn on some devices.
-    - service: homeassistant.turn_on
-      data:
-        entity_id:
-        - switch.bedside_light
-        - switch.nightstand_light
-
-    # Turn off some devices.
-    - service: homeassistant.turn_off
-      entity_id:
-        - switch.bedroom_fan
-
-    # Turn off some devices.
+    # Turn off smart lights.
     - service: light.turn_off
       data:
         entity_id:
           - light.headboard
           - light.underbed
         transition: 5
+
+    # Turn off some binary devices.
+    - service: homeassistant.turn_off
+      entity_id:
+        - switch.bedroom_fan
+
+    # Turn on some binary devices.
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+        - switch.bedside_light
+        - switch.nightstand_light

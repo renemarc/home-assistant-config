@@ -6,7 +6,7 @@
 - id: kitchen_lights_off
   alias: Kitchen lights OFF
   trigger:
-    # Kitchen Flic button is pressed once.
+    # When kitchen Flic button is pressed once.
     - platform: event
       event_type: flic_click
       event_data:
@@ -14,7 +14,7 @@
         click_type: single
 
   condition:
-    # If all kitchen links are on.
+    # If any kitchen lights are on.
     - condition: state
       entity_id: group.kitchen_lights
       state: 'on'

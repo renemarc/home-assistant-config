@@ -12,7 +12,7 @@
       to: 'on'
 
   action:
-    # Turn off smart lights.
+    # Turn off all lights.
     - service: light.turn_off
       data:
         entity_id:

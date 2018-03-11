@@ -6,7 +6,7 @@
 - id: kitchen_lights_on
   alias: Kitchen lights ON
   trigger:
-    # Kitchen Flic button is pressed once.
+    # When kitchen Flic button is pressed once.
     - platform: event
       event_type: flic_click
       event_data:

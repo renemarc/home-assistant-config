@@ -1,0 +1,12 @@
+#
+# Reset tamper variable
+#
+# @see /misc/variables.yaml
+#
+alias: Tamper location reset
+sequence:
+  # Reset the tamper variable.
+  - service: variable.set_variable
+    data:
+      variable: tamper_detected
+      value_template: False

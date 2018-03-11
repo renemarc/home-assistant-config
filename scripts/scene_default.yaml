@@ -3,7 +3,7 @@
 #
 # This isn't really a scene, more of a baseline state.
 #
-# @see /automations/scene_default.yaml
+# @see /automations/scene_select.yaml
 #
 alias: Default scene
 sequence:

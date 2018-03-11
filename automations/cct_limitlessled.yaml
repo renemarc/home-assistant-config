@@ -10,6 +10,10 @@
 #   Mireds: 154 - 500
 #   Kelvins: 6500K - 2000K
 #
+# @subscribe input_boolean.kitchen_lights_override
+# @subscribe input_boolean.night_mode
+# @subscribe input_boolean.scene_mode
+#
 # @link https://community.home-assistant.io/t/lifx-circadian-rhythm-time-of-day-automation/23091
 # @link https://sigmaluminous.com/the-circadian-rhythm-and-color-temperature/
 #
@@ -34,6 +38,13 @@
     - platform: state
       entity_id: input_boolean.scene_mode
       to: 'off'
+
+    # When kitchen lights override has been set a while ago already.
+    - platform: state
+      entity_id: input_boolean.kitchen_lights_override
+      to: 'on'
+      for:
+        minutes: 20
 
   condition:
     # If at least one light is on.

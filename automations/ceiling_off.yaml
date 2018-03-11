@@ -1,5 +1,8 @@
 #
-# Turn off ceiling wash lights.
+# Turn off ceiling wash lights
+#
+# @subscribe input_boolean.nap_mode
+# @subscribe input_boolean.night_mode
 #
 - id: ceiling_off
   alias: Ceiling OFF

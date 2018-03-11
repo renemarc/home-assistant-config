@@ -11,22 +11,12 @@
 - id: doors_verify
   alias: Doors VERIFY
   trigger:
-    # The front door sensor has changed.
+    # When an external door sensor has changed.
     - platform: state
-      entity_id: binary_sensor.front_door_sensor
+      entity_id:
+        - binary_sensor.front_door_sensor
 
   action:
-    # - service: variable.set_variable
-    #   data:
-    #     variable: doors_open
-    #     value_template: >
-    #       {% set value = '' %}
-    #       {% if is_state('binary_sensor.front_door_sensor', '0') %}
-    #         {% set value = value + 'Front Door,' %}
-    #       {% endif %}
-
-    #       {{ value[:-1] }}
-
     # Toggle doors status.
     - service_template: >
         {% if is_state('binary_sensor.front_door_sensor', 'on') %}

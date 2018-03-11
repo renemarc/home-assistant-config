@@ -30,9 +30,10 @@
 
     # Send the effect's real name to the Lightpack API.
     - service: light.set_profile
-      data_template:
+      data:
         entity_id:
           - light.lightpack
+      data_template:
         profile: >-
           {% set effects = {
             'Default':  'Ambilight',
@@ -47,4 +48,3 @@
           {% if effects[selected] %}
             {{ effects[selected] }}
           {% endif %}
-

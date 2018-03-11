@@ -18,7 +18,7 @@
       to: 'on'
 
   action:
-    # Turn off devices.
+    # Turn off all devices.
     - service: homeassistant.turn_off
       data:
         entity_id:
