@@ -39,7 +39,7 @@
   attribute: "src"
 
 - platform: scrape
-  name: APOD Title
+  name: APOD Info
   resource: https://apod.nasa.gov/apod/astropix.html
   scan_interval: 3600
   select: "center > b"

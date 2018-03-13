@@ -68,20 +68,16 @@ slideshow:
     widget_type: entitycamera
     refresh: 5
     img_list:
-        - http://hassio.local:8123/api/camera_proxy/camera.bing_wallpaper?token=bc9ccd0575dfb05d63df105cc8ed76d6578d63e60083e48fe265a07513a9861d
         - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_snow?token=72401f9a299bbf9f8521bd46bb8e2366d29d59af19006522910aaed73502cb47
-        - http://hassio.local:8123/api/camera_proxy/camera.astronomy_picture_of_the_day?token=8a93f72de0a6538bd4c8348a338bd13a65be0bab41545f1b2f97676fb584c150
+        - http://hassio.local:8123/api/camera_proxy/camera.bing_wallpaper?token=bc9ccd0575dfb05d63df105cc8ed76d6578d63e60083e48fe265a07513a9861d
         - http://hassio.local:8123/api/camera_proxy/camera.noaa_geocolor?token=c5c3e871bce6c743f4bb50b41cfed061fb9ac474735d22710d6d44d23725a961
-
-slideshow_apod:
-    widget_type: sensor
-    entity: sensor.apod_title
-    widget_style: "background-color:inherit;"
-
-slideshow_bing:
-    widget_type: sensor
-    entity: sensor.bing_wallpaper_info
-    widget_style: "background-color:inherit;"
+        - http://hassio.local:8123/api/camera_proxy/camera.astronomy_picture_of_the_day?token=8a93f72de0a6538bd4c8348a338bd13a65be0bab41545f1b2f97676fb584c150
+    title_entity_list:
+        - ""
+        - sensor.bing_wallpaper_info
+        - ""
+        - sensor.apod_info
+    title_style: "line-height:2em;opacity:0.8;"
 
 
 #
@@ -245,6 +241,6 @@ layout:
     - nav_main,         label(6x1), reload, temperature, clock
     - nav_switchboard,  slideshow(6x4), wind, temperature_now, weather_icon_now
     - nav_weather,      outdoor_safety, daily_forecast(2x1)
-    - nav_spacer(1x2),  slideshow_bing, to_metro, to_market
-    -                   slideshow_apod, to_metro_2, to_market_2
+    - nav_spacer(1x2),  spacer, to_metro, to_market
+    -                   spacer, to_metro_2, to_market_2
     - nav_status,       good_morning, night_mode, nap_mode, scene, quiet_mode, low_power_mode, spacer, to_metro_3, to_market_3
