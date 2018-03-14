@@ -12,3 +12,38 @@
   port: !secret flic_port
   discovery: true
   timeout: 3
+
+
+#
+# Fully Kiosk Browser motion sensor
+#
+# The Fully app can only send "onMotion" events as it is stateless. Instead of
+# coming up with a complicated yet fragile Javascript state-handler that would
+# calculate the last time any motion was detected and then send an "off" signal
+# and would survive across URL changes (but would fail if the Android device is
+# offline or if the app is forced-closed), an extra server-side sensor is much
+# sturdier, if a bit less accurate. It should turn off within 3-4 minutes after
+# the last change.
+#
+# The "binary_sensor.kiosk_motion" is dynamically created by the first
+# "onMotion" event call for a custom Javascript declared in all dashboards using
+# the "Modern" theme.. Two API calls are done sequentially, one to turn off the
+# binary sensor, then other to turn it right  back on. This way the sensor state
+# is guaranteed to change, and the  "last_changed" and "last_updated" timestamps
+# along with it.
+#
+# @see /appdaemon/custom_css/modern/variables.yaml
+#
+- platform: template
+  sensors:
+    kiosk_motion_auto:
+      friendly_name: Kiosk Motion
+      device_class: motion
+      entity_id:
+        - sensor.time
+        - binary_sensor.kiosk_motion
+      delay_off:
+        seconds: 5
+      value_template: >-
+        {{ is_state('binary_sensor.kiosk_motion', 'on')
+           and (180 >= as_timestamp(now()) - as_timestamp(states.binary_sensor.kiosk_motion.last_changed)) }}

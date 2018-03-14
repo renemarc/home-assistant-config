@@ -34,7 +34,11 @@ binary_sensor.flic_80e4da72e890:
   friendly_name: Flic white
 binary_sensor.flic_80e4da737711:
   friendly_name: Flic blue
-
+binary_sensor.lounge_multisensor_sensor:
+  device_class: motion
+  group:
+    group.lounge:
+      friendly_name: Motion
 
 #
 # Cameras
@@ -59,6 +63,13 @@ device_tracker.cellphone_him:
   friendly_name: !secret nickname_him
   gravatar: !secret gravatar_him
   icon: mdi:cellphone-iphone
+
+
+#
+# Displays
+#
+display.kiosk:
+  icon: mdi:tablet
 
 
 #

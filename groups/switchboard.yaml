@@ -44,6 +44,8 @@ kitchen:
     - light.sink
     - light.microwave
     - light.island
+    - display.kiosk
+    - binary_sensor.kiosk_motion_auto
     # - light.mqtt_countertop
     # - light.mqtt_sink
     # - light.mqtt_microwave
@@ -64,6 +66,7 @@ lounge:
     - sensor.lounge_temperature
     - sensor.lounge_humidity
     - sensor.lounge_luminance
+    - binary_sensor.lounge_multisensor_sensor
 
 washroom:
   name: Washroom

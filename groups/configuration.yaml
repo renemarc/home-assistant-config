@@ -89,6 +89,8 @@ automations_devices:
     - automation.kitchen_lights_off
     - automation.kitchen_lights_on
     - automation.kitchen_lights_toggle
+    - automation.kiosk_auto
+    - automation.kiosk_low_power
     - automation.lightpack_effect
     - automation.lightpack_select
     - automation.media_player_resume

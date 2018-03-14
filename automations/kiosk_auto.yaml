@@ -1,0 +1,35 @@
+#
+# Toggle kiosk display
+#
+# @subscribe input_boolean.night_mode
+#
+- id: kiosk_auto
+  alias: Kiosk AUTO
+  trigger:
+    # When night mode is changed.
+    - platform: state
+      entity_id: input_boolean.night_mode
+
+  action:
+    # Dim/brighten display.
+    - service: shell_command.kiosk_brightness
+      data:
+        host: !secret fully_kiosk_host
+        port: !secret fully_kiosk_port
+        password: !secret fully_kiosk_password
+      data_template:
+        value: >-
+          {% if is_state('input_boolean.night_mode', 'off') %}
+            255
+          {% else %}
+            0
+          {% endif %}
+
+    # Toggle display.
+    - service_template: >-
+        {% if is_state('input_boolean.night_mode', 'off') %}
+          homeassistant.turn_on
+        {% else %}
+          homeassistant.turn_off
+        {% endif %}
+      entity_id: display.kiosk

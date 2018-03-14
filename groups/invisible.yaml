@@ -35,4 +35,5 @@ lifx_lights:
 motion_sensors:
   name: Motion sensors
   entities:
+    - binary_sensor.kiosk_motion_auto
     - binary_sensor.lounge_multisensor_sensor

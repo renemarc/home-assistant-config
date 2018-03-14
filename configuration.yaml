@@ -66,6 +66,16 @@ discovery:
 
 
 #
+# Displays
+#
+# @see /custom_components/display/
+#
+# @link https://github.com/daemondazz/homeassistant-displays
+#
+display: !include misc/displays.yaml
+
+
+#
 # Enable the official UI
 #
 # @link https://home-assistant.io/components/frontend/
@@ -127,7 +137,8 @@ homeassistant:
 http:
   # api_password: !secret http_password
   # base_url: !secret http_base_url
-
+  cors_allowed_origins:
+    - http://hassio.local:5050
 
 #
 # IFTTT integration

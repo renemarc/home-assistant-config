@@ -1,4 +1,22 @@
 #
+# Fully Kiosk Browser screen brightness
+#
+# Ressource URL:
+#   http://[host]:[port]/?cmd=deviceInfo&type=json&password=[password]
+#
+# @link https://community.home-assistant.io/t/fully-kiosk-browser/41675
+# @link https://www.ozerov.de/fully-kiosk-browser/#rest
+#
+- platform: rest
+  name: Kiosk Brightness
+  resource: !secret fully_kiosk_info
+  json_attributes:
+    - screenBrightness
+  value_template: >-
+    {{ value_json.screenBrightness }}
+
+
+#
 # Horizontal lines, for cosmetic separation of sensors in the UI.
 #
 # Actual styling is done in `customize.yaml` and `customize_glob.yaml`.

@@ -59,8 +59,11 @@
       value_template: >-
         {% set dummy = is_state('input_boolean.motion_detected', 'on') %}
         {% set value = '' %}
+        {% if is_state('binary_sensor.kiosk_motion_auto', 'on') %}
+          {% set value = value + ' Kiosk,' %}
+        {% endif %}
         {% if is_state('binary_sensor.lounge_multisensor_sensor', 'on') %}
-          {% set value = value + 'Lounge,' %}
+          {% set value = value + ' Lounge,' %}
         {% endif %}
         {% set value = value[:-1] %}
 

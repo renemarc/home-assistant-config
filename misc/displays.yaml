@@ -1,0 +1,16 @@
+#
+# Fully Kiosk Browser app
+#
+# Third-party component to get some basic information on an instance of the
+# Fully app running on a connected Android device and to allow the toggling of
+# its screen.
+#
+# @see /custom_components/display/fully_kiosk.py
+#
+# @link https://www.ozerov.de/fully-kiosk-browser/#rest
+#
+- platform: fully_kiosk
+  name: Kiosk
+  host: !secret fully_kiosk_host
+  port: !secret fully_kiosk_port
+  password: !secret fully_kiosk_password

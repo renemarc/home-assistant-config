@@ -188,13 +188,20 @@ lounge_humidity:
 #
 # Battery
 #
+kiosk_battery:
+    widget_type: sensor
+    entity: sensor.kiosk_battery
+    title: Battery Status
+    title2: Kiosk
+    widget_style: "background-color:inherit;"
+    title_style: "background-color:#555;padding:5px 156% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
+    title2_style: "margin-top:3px;"
+
 front_door_sensor_battery:
     widget_type: sensor
     entity: sensor.front_door_sensor_battery
-    title: Battery Status
     title2: Front Door
     widget_style: "background-color:inherit;"
-    title_style: "background-color:#555;padding:5px 104% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
     title2_style: "margin-top:3px;"
 
 bedroom_multisensor_battery:
@@ -242,5 +249,5 @@ layout:
     - nav_switchboard,  uptime, uptime_host, database_size, log_size, spacer(2x1), status_doors, status_motion, status_tamper
     - nav_weather,      cpu_temp, cpu_use, memory_use, disk_use, spacer(2x1), sensor.speedtest_ping, upspeed, downspeed
     - nav_spacer(1x2)
-    -                   average_temperature, bedroom_temperature, lounge_temperature, spacer(3x1), front_door_sensor_battery, bedroom_multisensor_battery, lounge_multisensor_battery
+    -                   average_temperature, bedroom_temperature, lounge_temperature, spacer(2x1), kiosk_battery, front_door_sensor_battery, bedroom_multisensor_battery, lounge_multisensor_battery
     - nav_status,       average_humidity, bedroom_humidity, lounge_humidity
