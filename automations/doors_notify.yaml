@@ -16,8 +16,25 @@
         minutes: 10
 
   action:
-    # Warn someone to take action.
-    - service: notify.group
+    # Warn someone by text to take action.
+    - service: notify.text
       data:
         title: "Home security issue"
         message: "A door has been left open for too long."
+
+    # # Play a warning sound.
+    # - condition: state
+    #   entity_id: input_binary.quiet_mode
+    #   state: 'off'
+    # - service: notify.sound
+    #   data:
+    #     message: "alarm"
+    #     data:
+    #       method: "alarm"
+
+    # # Play a warning message.
+    # - delay:
+    #     seconds: 2
+    # - service: notify.speech
+    #   data:
+    #     message: "Attention: A door has been left open for too long."

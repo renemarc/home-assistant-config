@@ -12,7 +12,7 @@
 
   action:
     # Warn someone to take action.
-    - service: notify.group
+    - service: notify.text
       data:
         title: "Home security issue"
         message: |

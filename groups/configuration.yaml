@@ -36,6 +36,7 @@ automations:
   entities:
     - automation.cct_lifx
     - automation.cct_limitlessled
+    - automation.daily_greeting
     - automation.doors_notify
     - automation.doors_verify
     - automation.front_door_notify

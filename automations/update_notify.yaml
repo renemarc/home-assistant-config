@@ -11,8 +11,8 @@
     entity_id: updater.updater
 
   action:
-    # Send notification to owner.
-    - service: notify.group
+    # Send text notification to owner.
+    - service: notify.text
       data:
         title: "Home Assistant update"
         message: |

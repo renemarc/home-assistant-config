@@ -5,6 +5,6 @@
 # @link https://home-assistant.io/components/notify.pushover/
 #
 - platform: pushover
-  name: pushover
+  name: Pushover
   api_key: !secret pushover_api_key
   user_key: !secret pushover_user_key
