@@ -30,6 +30,26 @@ automation.wake_up:
 #
 # Binary sensors
 #
+binary_sensor.her:
+  friendly_name: !secret nickname_her
+  icon: mdi:gender-female
+  extra_data_template:
+    - >-
+      ${entities['device_tracker.cellphone_her'].attributes['friendly_name']} is
+      ${entities['device_tracker.cellphone_her'].state}.
+    - >-
+      ${entities['device_tracker.laptop_her'].attributes['friendly_name']} is
+      ${entities['device_tracker.laptop_her'].state}.
+binary_sensor.him:
+  friendly_name: !secret nickname_him
+  icon: mdi:gender-male
+  extra_data_template:
+    - >-
+      ${entities['device_tracker.cellphone_him'].attributes['friendly_name']} is
+      ${entities['device_tracker.cellphone_him'].state}.
+    - >-
+      ${entities['device_tracker.laptop_him'].attributes['friendly_name']} is
+      ${entities['device_tracker.laptop_him'].state}.
 binary_sensor.flic_80e4da72e890:
   friendly_name: Flic white
 binary_sensor.flic_80e4da737711:
@@ -39,6 +59,7 @@ binary_sensor.lounge_multisensor_sensor:
   group:
     group.lounge:
       friendly_name: Motion
+
 
 #
 # Cameras
@@ -59,10 +80,23 @@ camera.noaa_water_vapour:
 device_tracker.cellphone_her:
   friendly_name: !secret nickname_her
   icon: mdi:cellphone-iphone
+  extra_data_template:
+    - >-
+      ${entities['device_tracker.laptop_her'].attributes['friendly_name']} is
+      ${entities['device_tracker.laptop_her'].state}.
 device_tracker.cellphone_him:
   friendly_name: !secret nickname_him
-  gravatar: !secret gravatar_him
   icon: mdi:cellphone-iphone
+  extra_data_template:
+    - >-
+      ${entities['device_tracker.laptop_him'].attributes['friendly_name']} is
+      ${entities['device_tracker.laptop_him'].state}.
+device_tracker.laptop_her:
+  friendly_name: Her laptop
+  icon: mdi:laptop
+device_tracker.laptop_him:
+  friendly_name: His laptop
+  icon: mdi:laptop
 
 
 #

@@ -12,6 +12,7 @@ default_view:
     - group.climate
     - group.actions
     - group.security
+    - group.presence
 
 
 #
@@ -58,11 +59,16 @@ public_transit:
     - sensor.home_to_market_2_hour
     - sensor.home_to_market_3_hour
 
-wallpaper:
-  name: " "
+presence:
+  name: Presence
+  control: hidden
   entities:
-    - camera.bing_wallpaper
-    - sensor.bing_wallpaper_info
+    # - binary_sensor.her
+    - device_tracker.cellphone_her
+    # - device_tracker.laptop_her
+    # - binary_sensor.him
+    - device_tracker.cellphone_him
+    # - device_tracker.laptop_him
 
 security:
   name: Security Status
@@ -71,3 +77,9 @@ security:
     - sensor.doors_status
     - sensor.motion_status
     - sensor.tamper_status
+
+wallpaper:
+  name: " "
+  entities:
+    - camera.bing_wallpaper
+    - sensor.bing_wallpaper_info

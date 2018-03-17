@@ -22,14 +22,12 @@ light.spotlight:
 light.underbed:
   platform: lifx
   unique_id: d0:73:d5:15:0c:ae
-
 binary_sensor.front_door_sensor:
   platform: zwave
   unique_id: 4-72057594110017536
 binary_sensor.lounge_multisensor_sensor:
   platform: zwave
   unique_id: 5-72057594126794752
-
 sensor.front_door_alarm_type:
   platform: zwave
   unique_id: 4-72057594111082497
@@ -69,3 +67,9 @@ sensor.lounge_multisensor_sourcenodeid:
 sensor.lounge_multisensor_burglar:
   platform: zwave
   unique_id: 5-72057594127859873
+sensor.renemarc_iphone_battery_state:
+  platform: ios
+  unique_id: state_cellphone_him
+sensor.renemarc_iphone_battery_level:
+  platform: ios
+  unique_id: level_cellphone_him

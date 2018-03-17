@@ -52,7 +52,7 @@ config:
 #
 # @link https://home-assistant.io/components/device_tracker/
 #
-# device_tracker: !include misc/device_trackers.yaml
+device_tracker: !include misc/device_trackers.yaml
 
 
 #
@@ -158,11 +158,20 @@ input_boolean: !include misc/input_booleans.yaml
 
 
 #
-# Lists if selectable values
+# Lists of selectable values
 #
 # @link https://home-assistant.io/components/input_select/
 #
 input_select: !include misc/input_selects.yaml
+
+
+#
+# iOS companion component for the  Home Assistant iOS app
+#
+# @link https://itunes.apple.com/us/app/home-assistant-open-source-home-automation/id1099568401
+# @link https://home-assistant.io/docs/ecosystem/ios/
+#
+ios:
 
 
 #
@@ -188,7 +197,8 @@ light: !include_dir_merge_list lights/
 #
 logger:
   default: warning
-  # logs:
+  logs:
+    homeassistant.components.device_tracker: debug
     # homeassistant.components.light.mqtt_json: debug
     # homeassistant.components.light.limitlessled: debug
     # homeassistant.components.mqtt: debug
@@ -367,7 +377,7 @@ variable: !include misc/variables.yaml
 #
 # @link https://home-assistant.io/components/zone/
 #
-# zone: !include_dir_list zones/
+zone: !include_dir_list zones/
 
 
 #
