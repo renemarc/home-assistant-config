@@ -1,4 +1,4 @@
-# AppDaemon 2.0 dashboards
+# AppDaemon 3.0 dashboards
 
 These are dashboards to be used in a wall-mounted tablet to control Home Assistant the same way you would on a computer, only in a more appropriate interface for casual and often-on display.
 

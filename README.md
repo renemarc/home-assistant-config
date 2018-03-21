@@ -292,7 +292,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 
 #### Hass.io add-ons
-- **[AppDaemon2](https://github.com/home-assistant/appdaemon)** for HADashboard tablet UI.
+- **[AppDaemon](https://github.com/home-assistant/appdaemon)** for HADashboard tablet UI.
 - **[Bluetooth BCM43xx](https://home-assistant.io/addons/bluetooth_bcm43xx)** to use Raspberry Pi's bluetooth.
 - **[Flicd](https://github.com/pschmitt/hassio-addons)** to connect with Flic bluetooth buttons.
 - **[Homebridge](https://github.com/hassio-addons/addon-homebridge)** to control non-HomeKit compatible devices using iPhones.

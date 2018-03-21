@@ -1,4 +1,4 @@
-# AppDaemon 2.0 configuration
+# AppDaemon 3.0 configuration
 
 ## Folders
 

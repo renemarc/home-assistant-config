@@ -1,6 +1,6 @@
 # Custom AppDaemon widgets
 
-[AppDaemon](https://home-assistant.io/docs/ecosystem/appdaemon/) offers [many default widgets](https://github.com/home-assistant/appdaemon/tree/dev/appdaemon/widgets/), but can also support third-party and custom ones.
+[AppDaemon](https://home-assistant.io/docs/ecosystem/appdaemon/) offers [many default widgets](https://github.com/home-assistant/appdaemon/tree/master/appdaemon/widgets/), but can also support third-party and custom ones.
 
 
 ## Community widgets
@@ -21,14 +21,14 @@ Selector widget also from [ReneTode's repo](https://github.com/ReneTode/My-AppDa
 
 ### [`👽 entitysensor.yaml`](entitysensor.yaml) and [`baseentitydisplay`](baseentitydisplay)
 
-Multipurpose widget based on the default [basedisplay](https://github.com/home-assistant/appdaemon/tree/dev/appdaemon/widgets/basedisplay) but with the following modifications:
+Multipurpose widget based on the default [basedisplay](https://github.com/home-assistant/appdaemon/tree/master/appdaemon/widgets/basedisplay) but with the following modifications:
 - Support for entities used as **title** and **title2**.
 - Include **unit_of_measurement** to the **sub_entity**, if any.
 
 
 ### [`📸 entitycamera.yaml`](entitycamera.yaml) and [`baseentityiframe`](baseentityiframe)
 
-IFrame widget to showcase images and slideshows, based on the default [baseiframe](https://github.com/home-assistant/appdaemon/tree/dev/appdaemon/widgets/baseiframe) but includes:
+IFrame widget to showcase images and slideshows, based on the default [baseiframe](https://github.com/home-assistant/appdaemon/tree/master/appdaemon/widgets/baseiframe) but includes:
 - Cache-buster added to already parameterized URLs.
 - Optional **cache** integer parameter to add longevity to the cache-buster JS parameter.
 
