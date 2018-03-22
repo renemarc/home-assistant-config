@@ -106,13 +106,13 @@ automations_modes:
   entities:
     - automation.low_power_mode_start
     - automation.low_power_mode_stop
-    - automation.quiet_mode_start
-    - automation.quiet_mode_stop
     - automation.motion_detection_auto
     - automation.nap_mode_start
     - automation.nap_mode_stop
     - automation.night_mode_start
     - automation.night_mode_stop
+    - automation.quiet_mode_start
+    - automation.quiet_mode_stop
     - automation.tamper_detection_start
     - automation.tamper_detection_stop
 

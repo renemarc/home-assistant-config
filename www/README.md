@@ -16,13 +16,28 @@ Where custom state card templates are stored.
             <img src="screenshots/card-horizontal-line.png" alt="Horizontal line state card" title="Custom UI + Horizontal line state card" width="325">
         </div>
         <figcaption>
-            <strong><a href="custom_ui"><code>./custom_ui/</code></a> state cards.</strong>
+            <p><strong><a href="custom_ui"><code>./custom_ui/</code></a> state cards.</strong></p>
         </figcaption>
     </figure>
 </div>
 
 
-### [`🖼 ./screenshots/`](screenshots)
+### [`🖼 ./images/`](images)
+
+<div align="center">
+    <figure>
+        <div>
+            <img src="images/technology-diagram.png" alt="Technology diagram" title="Technology diagram" width="650">
+        </div>
+        <figcaption>
+            <p><strong>Various supporting <a href="images"><code>./images/</code></a>.</strong></p>
+        </figcaption>
+    </figure>
+</div>
+
+
+
+### [`📸 ./screenshots/`](screenshots)
 
 <div align="center">
     <figure>
@@ -31,7 +46,7 @@ Where custom state card templates are stored.
             <img src="screenshots/group-security-dark.png" alt="Security Status group (dark theme)" title="Security Status (dark theme)" width="325">
         </div>
         <figcaption>
-            <strong>Sample <a href="screenshots"><code>./screenshots/</code></a>.</strong>
+            <p><strong>Sample <a href="screenshots"><code>./screenshots/</code></a>.</strong></p>
         </figcaption>
     </figure>
 </div>

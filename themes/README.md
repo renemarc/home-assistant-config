@@ -17,7 +17,7 @@ Contains minor improvements over Home Assistant's [default theme](https://github
             <img src="../www/screenshots/group-atmosphere.png" alt="Atmospheric Safety group" title="Normal theme" width="325">
         </div>
         <figcaption>
-            <strong>Normal theme.</strong>
+            <p><strong>Normal theme.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -33,7 +33,7 @@ Automtically set by [`/automations/theme_auto.yaml`](../automations/theme_auto.y
             <img src="../www/screenshots/group-atmosphere-dark.png" alt="Atmospheric Safety group (dark theme)" title="Dark theme" width="325">
         </div>
         <figcaption>
-            <strong>Dark theme.</strong>
+            <p><strong>Dark theme.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -54,7 +54,7 @@ Used in [`/customize.yaml`](../customize.yaml) to replace a sensor's title with 
             <img src="../www/screenshots/card-secondary.png" alt="Secondary Title card" title="Secondary Title" width="325">
         </div>
         <figcaption>
-            <strong>Secondary Title card, used to replace the sensor name with the temperature's value.</strong>
+            <p><strong>Secondary Title card, used to replace the sensor name with the temperature's value.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -71,7 +71,7 @@ Used in [`/customize_glob.yaml`](../customize_glob.yaml) to highlight a sensor i
             <img src="../www/screenshots/card-warning-dark.png" alt="Warning card (dark theme)" title="Dark theme" width="325">
         </div>
         <figcaption>
-            <strong>Warning card.</strong>
+            <p><strong>Warning card.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -88,7 +88,7 @@ Used to highlight a sensor in red whenever its state is within a critical range 
             <img src="../www/screenshots/card-critical-dark.png" alt="Critical card (dark theme)" title="Dark theme" width="325">
         </div>
         <figcaption>
-            <strong>Critical card.</strong>
+            <p><strong>Critical card.</strong></p>
         </figcaption>
     </figure>
 </div>

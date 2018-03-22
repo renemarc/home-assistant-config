@@ -8,6 +8,18 @@ I use camera sensors to fetch and display web images in [`/appdaemon/dashboards/
 
 [Environment Canada](https://weather.gc.ca/radar/)'s rain and snow radar maps for the last 30 minutes or so, gathered to create simple animations in [`/appdaemon/dashboards/Weather.dash`](../appdaemon/dashboards/Weather.dash).
 
+<div align="center">
+    <figure>
+        <div>
+            <img src="../www/screenshots/card-radar-rain.png" alt="Environment Canada rain radar map" title="Environment Canada Rain" width="325">
+            <img src="../www/screenshots/card-radar-snow.png" alt="Environment Canada snow radar map" title="Environment Canada Snow" width="325">
+        </div>
+        <figcaption>
+            <p><strong>Environment Canada weather radar maps.</strong></p>
+        </figcaption>
+    </figure>
+</div>
+
 
 ### [`🛰 ./noaa.yaml`](noaa.yaml)
 
@@ -20,7 +32,7 @@ NOAA's (U.S. National Oceanic and Atmospheric Administration) colourized and wat
             <img src="../www/screenshots/card-satellite-vapour.jpg" alt="NOAA Water Vapour satellite image of North-America's East Coast" title="NOAA Water Vapour satellite image" width="325">
         </div>
         <figcaption>
-            <strong>NOAA GOES-East satellite images for North-America's East Coast.</strong>
+            <p><strong>NOAA GOES-East satellite images for North-America's East Coast.</strong></p>
         </figcaption>
     </figure>
 </div>

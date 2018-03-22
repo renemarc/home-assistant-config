@@ -12,7 +12,6 @@ Views are split into 5 pages, organized in a similar fashion as [`/appdaemon/das
 
 With regular actions, climate control, bus schedules and a pretty picture of the day.
 
-
 <div align="center">
     <figure>
         <div>
@@ -27,7 +26,7 @@ With regular actions, climate control, bus schedules and a pretty picture of the
             <img src="../www/screenshots/group-transit.png" alt="Public Transit group" title="Public Transit" width="325">
         </div>
         <figcaption>
-            <strong>Default view groups.</strong>
+            <p><strong>Default view groups.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -44,16 +43,17 @@ Organized by room and control zone.
         </div>
         <div>
             <img src="../www/screenshots/group-kitchen.png" alt="Kitchen group" title="Kitchen" width="325">
-            <img src="../www/screenshots/group-ceiling.png" alt="Ceiling Washlights group" title="Ceiling Washlights" width="325">
+            <img src="../www/screenshots/group-ceiling.png" alt="Ceiling Wash Lights group" title="Ceiling Wash Lights" width="325">
             <img src="../www/screenshots/group-lounge.png" alt="Lounge group" title="Lounge" width="325">
             <img src="../www/screenshots/group-bedroom.png" alt="Bedroom group" title="Bedroom" width="325">
             <img src="../www/screenshots/group-washroom.png" alt="Washroom group" title="Washroom" width="325">
         </div>
         <figcaption>
-            <strong>Switchboard view groups.</strong>
+            <p><strong>Switchboard view groups.</strong></p>
         </figcaption>
     </figure>
 </div>
+
 
 ### [`🌦 ./weather.yaml`](weather.yaml)
 
@@ -67,15 +67,18 @@ With current conditions, forecasts, air quality, radar and satellite maps.
         <div>
             <img src="../www/screenshots/group-weather.png" alt="Today's Weather group" title="Today's Weather" width="325">
             <img src="../www/screenshots/group-forecast.png" alt="Weekly Forecast group" title="Weekly Forecast" width="325">
+            <img src="../www/screenshots/card-radar-rain.png" alt="Environment Canada rain radar map" title="Environment Canada Rain" width="325">
+            <img src="../www/screenshots/card-radar-snow.png" alt="Environment Canada snow radar map" title="Environment Canada Snow" width="325">
             <img src="../www/screenshots/card-satellite-geocolour.jpg" alt="NOAA GeoColour satellite image" title="NOAA GeoColour" width="325">
             <img src="../www/screenshots/card-satellite-vapour.jpg" alt="NOAA Water Vapour satellite image" title="NOAA Water Vapour" width="325">
             <img src="../www/screenshots/group-atmosphere.png" alt="Atmospheric Safety group" title="Atmospheric Safety" width="325">
         </div>
         <figcaption>
-            <strong>Weather view groups.</strong>
+            <p><strong>Weather view groups.</strong></p>
         </figcaption>
     </figure>
 </div>
+
 
 ### [`👀 ./status.yaml`](status.yaml)
 
@@ -94,7 +97,7 @@ Geeky details about Home Assistant, network, battery status and per-location tem
             <img src="../www/screenshots/group-network.png" alt="Network group" title="Network" width="325">
         </div>
         <figcaption>
-            <strong>Status view cards.</strong>
+            <p><strong>Status view cards.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -109,8 +112,12 @@ States and automation overrides.
         <div>
             <img src="../www/screenshots/menu-configuration.png" alt="Configuration menu option" title="Configuration" width="650">
         </div>
+        <div>
+            <img src="../www/screenshots/group-modes.png" alt="Modes group" title="Modes" width="325">
+            <img src="../www/screenshots/group-configuration.png" alt="Configuration group" title="Configuration" width="325">
+        </div>
         <figcaption>
-            <strong>Configuration view cards.</strong>
+            <p><strong>Some configuration view cards.</strong></p>
         </figcaption>
     </figure>
 </div>

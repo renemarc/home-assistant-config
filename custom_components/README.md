@@ -13,7 +13,7 @@ Interact with Android devices running the [Fully Kiosk Browser](https://www.ozer
             <img src="../www/screenshots/card-kiosk.png" alt="Kiosk card" title="Kiosk control" width="325">
         </div>
         <figcaption>
-            <strong>Kiosk control.</strong>
+            <p><strong>Kiosk control.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -29,7 +29,7 @@ Opens communication with the [Nanoleaf Aurora](https://nanoleaf.me) using this [
             <img src="../www/screenshots/card-aurora.png" alt="Nanoleaf Aurora card" title="Nanoleaf Aurora control" width="325">
         </div>
         <figcaption>
-            <strong>Nanoleaf Aurora control.</strong>
+            <p><strong>Nanoleaf Aurora control.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -45,7 +45,7 @@ Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) moni
             <img src="../www/screenshots/card-lightpack.png" alt="Lightpack card" title="Lightpack control" width="325">
         </div>
         <figcaption>
-            <strong>Lightpack control.</strong>
+            <p><strong>Lightpack control.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -61,7 +61,7 @@ A local copy of my depressing [Doomsday Clock](https://github.com/renemarc/home-
             <img src="../www/screenshots/card-doomsday.png" alt="Doomsday Clock card" title="Doomsday Clock" width="325">
         </div>
         <figcaption>
-            <strong>Doomsday Clock.</strong>
+            <p><strong>Doomsday Clock.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -80,16 +80,15 @@ These are default Home Assistant components that were copied from the core to al
 ### [`🚌 ./sensor/gtfs.py`](sensor/gtfs.py)
 
 [GTFS](https://github.com/home-assistant/home-assistant/blob/master/homeassistant/components/sensor/gtfs.py) public transit schedules component:
-- Modified SQL query to also fetch departures after midnight.
 - Added support for next bus departures.
 
 <div align="center">
     <figure>
         <div>
-            <img src="../www/screenshots/group-transit.png" alt="Public Transit group" title="Public Transit" width="325"></a>
+            <img src="../www/screenshots/group-transit.png" alt="Public Transit group" title="Public Transit" width="325">
         </div>
         <figcaption>
-            <strong>Public Transit group with schedules for the next three departures in two directions. Got to catch that bus! 🚌🏃</strong>
+            <p><strong>Public Transit group with schedules for the next three departures in two directions. Got to catch that bus! 🚌🏃</strong></p>
         </figcaption>
     </figure>
 </div>

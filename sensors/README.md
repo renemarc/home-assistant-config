@@ -16,16 +16,16 @@ Indoor climate conditions.
             <img src="../www/screenshots/group-climate-dark.png" alt="Climate Control group (dark theme)" title="Dark theme" width="325">
         </div>
         <figcaption>
-            <strong>Climate Control group.</strong>
+            <p><strong>Climate Control group.</strong></p>
         </figcaption>
     </figure>
     <figure>
         <div>
-            <img src="../www/screenshots/group-humidity.png" alt="Humidity group" width="325" title="Normal theme"></a>
+            <img src="../www/screenshots/group-humidity.png" alt="Humidity group" width="325" title="Normal theme">
             <img src="../www/screenshots/group-humidity-dark.png" alt="Humidity group (dark theme)" title="Dark theme" width="325">
         </div>
         <figcaption>
-            <strong>Humidity group.</strong>
+            <p><strong>Humidity group.</strong></p>
         </figcaption>
     </figure>
     <figure>
@@ -34,7 +34,7 @@ Indoor climate conditions.
             <img src="../www/screenshots/group-temperature-dark.png" alt="Temperature group (dark theme)" title="Dark theme" width="325">
         </div>
         <figcaption>
-            <strong>Temperature group.</strong>
+            <p><strong>Temperature group.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -56,7 +56,7 @@ Battery levels.
             <img src="../www/screenshots/group-battery-dark.png" alt="Battery Levels group (dark theme)" title="Dark theme" width="325">
         </div>
         <figcaption>
-            <strong>Battery Levels group.</strong>
+            <p><strong>Battery Levels group.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -75,7 +75,7 @@ Battery levels.
             <img src="../www/screenshots/group-atmosphere-dark.png" alt="Atmospheric Safety group (dark theme)" title="Dark theme" width="325">
         </div>
         <figcaption>
-            <strong>Atmospheric Safety group.</strong>
+            <p><strong>Atmospheric Safety group.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -91,7 +91,7 @@ Battery levels.
             <img src="../www/screenshots/group-transit-dark.png" alt="Public Transit group (dark theme)" title="Dark theme" width="325">
         </div>
         <figcaption>
-            <strong>Public Transit group with schedules for the next three departures in two directions. Yellow (warning) and red (critical) highlights are using <a href="../themes"><code>/theme</code></a> cards defined in <a href="../customize.yaml"><code>/customize.yaml</code></a> based on how much time is left before the bus leaves. 🚌🏃</strong>
+            <p><strong>Public Transit group with schedules for the next three departures in two directions. Yellow (warning) and red (critical) highlights are using <a href="../themes"><code>/theme/</code></a> cards defined in <a href="../customize.yaml"><code>/customize.yaml</code></a> based on how much time is left before the bus leaves. 🚌🏃</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -108,7 +108,7 @@ Data sources for some [`/cameras`](../cameras).
             <img src="../www/screenshots/card-satellite-vapour.jpg" alt="NOAA Water Vapour satellite image" title="Normal theme" width="325">
         </div>
         <figcaption>
-            <strong>NOAA satellite images for North-America's East Coast.</strong>
+            <p><strong>NOAA satellite images for North-America's East Coast.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -125,7 +125,7 @@ Internet connection speed and latency testing.
             <img src="../www/screenshots/group-network-dark.png" alt="Network group (dark theme)" title="Dark theme" width="325">
         </div>
         <figcaption>
-            <strong>Network group.</strong>
+            <p><strong>Network group.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -142,7 +142,7 @@ Geeky details on HASS and its hardware status.
             <img src="../www/screenshots/group-system-dark.png" alt="System group (dark theme)" title="Dark theme" width="325">
         </div>
         <figcaption>
-            <strong>System group.</strong>
+            <p><strong>System group.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -163,7 +163,7 @@ Everything weather related.
             <img src="../www/screenshots/group-forecast-dark.png" alt="Weekly Forecast group (dark theme)" title="Dark theme" width="325">
         </div>
         <figcaption>
-            <strong>Today's weather and weekly forecast groups.</strong>
+            <p><strong>Today's weather and weekly forecast groups.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -182,7 +182,7 @@ Everything time related.
             <img src="../www/screenshots/group-calendar-dark.png" alt="Calendar group (dark theme)" title="Dark theme" width="325">
         </div>
         <figcaption>
-            <strong>Calendar group.</strong>
+            <p><strong>Calendar group.</strong></p>
         </figcaption>
     </figure>
 </div>

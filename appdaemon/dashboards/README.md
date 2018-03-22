@@ -19,24 +19,68 @@ Dashboards are split into 4 pages, organized in a similar fashion as [`/groups/`
 The top menu and left-hand navigation are fixed. The navigation colours change depending on which dashboard you're on and the top menu title changes accordingly. That makes navigation intuitive for anyone.
 
 
-### Main dashboard
+### [`🏠 ./Main.dash`](Main.dash)
 
-With a feel-good welcome message, common actions, quick weather status, bus schedules, and rotating set of weather radar, satellite maps and pretty pictures of the day.
+With a feel-good welcome message, common actions, quick weather status, bus schedules, and rotating set of weather radar, satellite map and pretty pictures of the day.
+
+<div align="center">
+    <figure>
+        <div>
+            <img src="../../www/screenshots/dashboard-main.gif" alt="Main dashboard" title="Main dashboard">
+        </div>
+        <figcaption>
+            <strong>Main dashboard.</strong>
+        </figcaption>
+    </figure>
+</div>
 
 
-### Switchboard
+### [`🔘 ./Switchboard.dash`](Switchboard.dash)
 
 Organized my room and control zone, including climate control. Looks kind of like Tetris! :-)
 
+<div align="center">
+    <figure>
+        <div>
+            <img src="../../www/screenshots/dashboard-switchboard.gif" alt="Switchboard" title="Switchboard">
+        </div>
+        <figcaption>
+            <strong>Switchboard, with placeholders for planned devices.</strong>
+        </figcaption>
+    </figure>
+</div>
 
-### Weather
 
-With current conditions, forecasts, air quality, and rotating satellite maps and animated radar maps.
+### [`🌦 ./Weather.dash`](Weather.dash)
+
+With current conditions, forecasts, air quality, and rotating satellite images and animated radar maps.
+
+<div align="center">
+    <figure>
+        <div>
+            <img src="../../www/screenshots/dashboard-weather.gif" alt="Weather dashboard" title="Weather dashboard">
+        </div>
+        <figcaption>
+            <strong>Weather dashboard.</strong>
+        </figcaption>
+    </figure>
+</div>
 
 
-### Status
+### [`👀 ./Status.dash`](Status.dash)
 
 Geeky details about Home Assistant, network, battery status and per-location temperature and humidity.
+
+<div align="center">
+    <figure>
+        <div>
+            <img src="../../www/screenshots/dashboard-status.png" alt="Status dashboard" title="Status dashboard">
+        </div>
+        <figcaption>
+            <strong>Status dashboard.</strong>
+        </figcaption>
+    </figure>
+</div>
 
 
 ## Theme

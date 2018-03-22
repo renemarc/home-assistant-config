@@ -15,7 +15,7 @@ These state cards are used to adapt the looks of Home Assistant sensors for easi
             <img src="../screenshots/group-climate.png" alt="Climate Control group" title="Custom UI elements + custom card theme" width="325">
         </div>
         <figcaption>
-            <strong>Custom UI elements.</strong>
+           <p><strong>Custom UI elements.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -31,7 +31,7 @@ These state cards are used to adapt the looks of Home Assistant sensors for easi
             <img src="../screenshots/card-horizontal-line.png" alt="Horizontal line state card" title="Custom UI + Horizontal line state card" width="325">
         </div>
         <figcaption>
-            <strong>Horizontal line state card.</strong>
+            <p><strong>Horizontal line state card.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -47,7 +47,7 @@ These state cards are used to adapt the looks of Home Assistant sensors for easi
             <img src="../screenshots/group-forecast.png" alt="Value-only state card" title="Value-only state card" width="325">
         </div>
         <figcaption>
-            <strong>Value-only state card.</strong>
+            <p><strong>Value-only state card.</strong></p>
         </figcaption>
     </figure>
 </div>

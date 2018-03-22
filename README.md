@@ -13,13 +13,28 @@ Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io]
 <div align="center">
     <figure>
         <div>
-            <img src="www/screenshots/group-climate.png" alt="Climate Control group" title="Climate Control" width="162"></a>
-            <img src="www/screenshots/group-transit.png" alt="Public Transit group" title="Public Transit schedules" width="162"></a>
-            <img src="www/screenshots/group-security.png" alt="Security group" title="Security" width="162"></a>
-            <img src="www/screenshots/group-battery-dark.png" alt="Battery Levels group (Dark theme)" title="Battery Levels (Dark theme)" width="162"></a>
+            <img src="www/screenshots/dashboard-all.gif" alt="Dashboard animation" title="Dashboards">
         </div>
         <figcaption>
-            <strong>Sensor <a href="groups"><code>/groups/</code></a>.</strong>
+            <p><strong>Wall-mounted interface using <a href="/appdaemon/dashboards"><code>/appdaemon/dashboards/</code></a>.</strong></strong></p>
+        </figcaption>
+    </figure>
+</div>
+
+<div align="center">
+    <figure>
+        <div>
+            <img src="www/screenshots/group-security-dark.png" alt="Security group (Dark theme)" title="Security (Dark theme)" width="200">
+            <img src="www/screenshots/group-weather.png" alt="Weather group" title="Weather" width="200">
+            <img src="www/screenshots/group-climate.png" alt="Climate Control group" title="Climate Control" width="200">
+            <img src="www/screenshots/group-battery-dark.png" alt="Battery Levels group (Dark theme)" title="Battery Levels (Dark theme)" width="200">
+            <img src="www/screenshots/group-atmosphere.png" alt="Atmospheric Safety group" title="Atmospheric Safety" width="200">
+            <img src="www/screenshots/group-actions.png" alt="Actions group" title="Actions" width="200">
+            <img src="www/screenshots/group-ceiling.png" alt="Ceiling group" title="Ceiling" width="200">
+            <img src="www/screenshots/group-transit.png" alt="Public Transit group" title="Public Transit schedules" width="200">
+        </div>
+        <figcaption>
+            <p><strong>Sensor <a href="groups"><code>/groups/</code></a>.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -33,7 +48,7 @@ Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io]
 1. **[Key features](#Goals)**  
     [Climate control](#climate-control) | [Weather report](#weather-report) | [Lighting control](#lighting-control) | [Presence and basic security](#presence-and-basic-security) | [Modes and scenes](#modes-and-scenes) | [General information](#general-information) | [Additional human interfaces](#additional-human-interfaces)
 1. **[Setup](#setup)**  
-    [Supporting hardware choices](#supporting-hardware-choices) | 
+    [Diagram](#diagram) | [Supporting hardware choices](#supporting-hardware-choices) | 
     [Configuration](#configuration) | [System and interfaces](#system-and-interfaces) | [Physical devices](#physical-devices) | [Software](#software)
 1. **[Thanks](#thanks)**
 
@@ -62,7 +77,7 @@ This is a fully documented working configuration for Home Assistant, with screen
             <a href="https://imgur.com/gallery/dlPPi" title="Wiretap meme"><img src="https://i.imgur.com/iVruWs1.jpg" alt="Wiretap meme" width="400"></a>
         </div>
         <figcaption>
-            <strong>No thanks!</strong>
+            <p><strong>No thanks!</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -86,7 +101,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
             <a href="https://www.youtube.com/watch?v=wujVMIYzYXg" title="Princess Bride clip"><img src="https://memegenerator.net/img/instances/53833187/agile-you-keep-using-that-word-i-do-not-think-it-means-what-you-think-it-means.jpg" alt="Agile. You keep using that word. I do not think it means what you think it means."></a>
         </div>
         <figcaption>
-            <strong><a href="https://www.youtube.com/watch?v=wujVMIYzYXg" title="Princess Bride clip">Well, without the sprints. And the scrums. And the groomings. And the retros. And the...</a></strong>
+            <p><strong><a href="https://www.youtube.com/watch?v=wujVMIYzYXg" title="Princess Bride clip">Well, without the sprints. And the scrums. And the groomings. And the retros. And the...</a></strong></p>
         </figcaption>
     </figure>
 </div>
@@ -109,7 +124,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
             <img src="www/screenshots/notification-humidity.png" alt="Humidity notification" title="Humidity notification" width="325">
         </div>
         <figcaption>
-            <strong>Climate control.</strong>
+            <p><strong>Climate control.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -128,7 +143,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
             <img src="www/screenshots/group-forecast.png" alt="Weekly Forecast group" title="Weekly Forecast" width="325">
         </div>
         <figcaption>
-            <strong>Today's weather and weekly forecast.</strong>
+            <p><strong>Today's weather and weekly forecast.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -153,7 +168,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
             <img src="www/screenshots/group-bedroom.png" alt="Bedroom group" title="Bedroom lights" width="325">
         </div>
         <figcaption>
-            <strong>Lighting controls.</strong>
+            <p><strong>Lighting controls.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -172,7 +187,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
             <img src="www/screenshots/group-security.png" alt="Security Status group" title="Security Status" width="325">
         </div>
         <figcaption>
-            <strong>Presence and basic security.</strong>
+            <p><strong>Presence and basic security.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -196,7 +211,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
             <img src="www/screenshots/group-actions.png" alt="Actions group" title="Actions" width="325">
         </div>
         <figcaption>
-            <strong>Modes and scenes.</strong>
+            <p><strong>Modes and scenes.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -215,7 +230,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
             <img src="www/screenshots/group-transit.png" alt="Public Transit group" title="Public Transit" width="325">
         </div>
         <figcaption>
-            <strong>General information.</strong>
+            <p><strong>General information.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -230,6 +245,19 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 
 ## Setup
+
+### Diagram
+<div align="center">
+    <figure>
+        <div>
+            <img src="www/images/technology-diagram.png" alt="Technology diagram">
+        </div>
+        <figcaption>
+            <p><strong>Technology Diagram (<a href="www/images/technology-diagram.png">PNG</a>, <a href="www/images/technology-diagram.svg">SVG</a>). Made with <a href="https://www.draw.io">Draw.io</a> (<a href="www/images/technology-diagram.xml">XML</a> source file).</strong></p>
+        </figcaption>
+    </figure>
+</div>
+
 
 ### Supporting hardware choices
 - **Ubiquiti router and access point** because forking over some dough for reliable, rock-solid prosumer networking gear makes everything run smoothly. And because hearing one less complaint (dropped wifi signal) from the girlfriend is priceless. \*sigh\*
@@ -329,7 +357,7 @@ Image references.
 [img-github-release]:https://img.shields.io/github/release/renemarc/home-assistant-config/all.svg
 [img-repo-size]:https://img.shields.io/github/repo-size/renemarc/home-assistant-config.svg
 [img-code-size]:https://img.shields.io/github/languages/code-size/renemarc/home-assistant-config.svg
-[img-ha-version]:https://img.shields.io/badge/tested_on_Home_Assistant-0.64.3-53c1f1.svg
+[img-ha-version]:https://img.shields.io/badge/tested_on_Home_Assistant-0.65.6-53c1f1.svg
 [img-hassio]:https://img.shields.io/badge/config_for-Hass.io-53c1f1.svg
 [img-license]:https://img.shields.io/github/license/renemarc/home-assistant-config.svg
 
@@ -342,5 +370,5 @@ Link references.
 [link-board]:https://github.com/renemarc/home-assistant-config/projects/1
 [link-travis-ci]:https://travis-ci.org/renemarc/home-assistant-config
 [link-hassio]:https://home-assistant.io/hassio/
-[link-ha-version]:https://home-assistant.io/blog/2018/02/26/release-64/
+[link-ha-version]:https://home-assistant.io/blog/2018/02/26/release-65/
 [link-license]:LICENSE.txt

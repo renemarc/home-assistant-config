@@ -1,15 +1,11 @@
 #
 # Automations
 #
-automation.check_door_left_open:
-  icon: mdi:door-open
-automation.check_mold_conditions:
-  icon: mdi:biohazard
-automation.check_update_availability:
-  icon: mdi:cloud-upload
-automation.front_door_closed:
-  icon: mdi:door-closed
-automation.front_door_opened:
+automation.daily_greeting:
+  icon: mdi:human-greeting
+automation.humidity_notify:
+  icon: mdi:water-percent
+automation.front_door_notify:
   icon: mdi:door-open
 automation.go_to_sleep:
   icon: mdi:weather-night
@@ -23,6 +19,8 @@ automation.scene_romantic:
   icon: mdi:home-heart
 automation.scene_select:
   icon: mdi:looks
+automation.update_notify:
+  icon: mdi:cloud-upload
 automation.wake_up:
   icon: mdi:power
 

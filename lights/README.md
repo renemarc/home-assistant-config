@@ -25,7 +25,7 @@ They do have couple of minor annoyances however:
             <img src="../www/screenshots/card-lifx.png" alt="LIFX+ card" title="LIFX light control" width="325">
         </div>
         <figcaption>
-            <strong>LIFX light control.</strong>
+            <p><strong>LIFX light control.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -43,7 +43,7 @@ I have their white colour gradually shift from daylight to warm white with varyi
             <img src="../www/screenshots/group-ceiling.png" alt="LIFX Z ceiling group" title="LIFX Z strip control" width="325">
         </div>
         <figcaption>
-            <strong>LIFX Z strip control.</strong>
+            <p><strong>LIFX Z strip control.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -75,7 +75,7 @@ For my HTPC I use a 100-LEDs DIY build of the [Adalight](https://learn.adafruit.
             <img src="../www/screenshots/card-lightpack.png" alt="Lightpack card" title="Lightpack control" width="325">
         </div>
         <figcaption>
-            <strong>Lightpack control.</strong>
+            <p><strong>Lightpack control.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -99,7 +99,7 @@ Aside from regular automations, the lights are controlled physically via a [Flic
             <img src="../www/screenshots/card-limitlessled.png" alt="LimitlessLED card" title="LimitlessLED control" width="325">
         </div>
         <figcaption>
-            <strong>LimitlessLED control.</strong>
+            <p><strong>LimitlessLED control.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -128,7 +128,7 @@ Like with the LIFX Z light strips, I have scheduled different effects and bright
             <img src="../www/screenshots/card-aurora.png" alt="Nanoleaf Aurora card" title="Nanoleaf Aurora control" width="325">
         </div>
         <figcaption>
-            <strong>Nanoleaf Aurora control.</strong>
+            <p><strong>Nanoleaf Aurora control.</strong></p>
         </figcaption>
     </figure>
 </div>

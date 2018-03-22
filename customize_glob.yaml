@@ -23,22 +23,22 @@ automation.cct_*:
   icon: mdi:white-balance-auto
 automation.ceiling_*:
   icon: mdi:led-strip
-automation.check_humidity_*:
-  icon: mdi:water-percent
 automation.dehumidifier_*:
   icon: mdi:water-off
-automation.kitchen_lights_*:
+automation.doors_*:
+  icon: mdi:door-open
+automation.kitchen_*:
   icon: mdi:food-fork-drink
+automation.kiosk_*:
+  icon: mdi:tablet
 automation.lightpack_*:
   icon: mdi:television
 automation.lounge_*:
   icon: mdi:sofa
 automation.low_power_mode_*:
   icon: mdi:weather-sunset-down
-automation.video_player_*:
-  icon: mdi:plex
 automation.motion_*:
-  icon: mdi:walk
+  icon: mdi:run
 automation.nap_mode_*:
   icon: mdi:sleep
 automation.nightlight_*:
@@ -49,6 +49,8 @@ automation.quiet_mode_*:
   icon: mdi:volume-mute
 automation.tamper_*:
   icon: mdi:security-home
+automation.video_player_*:
+  icon: mdi:plex
 automation.washroom_*:
   icon: mdi:water-pump
 
