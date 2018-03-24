@@ -94,11 +94,11 @@ automations_devices:
     - automation.kiosk_low_power
     - automation.lightpack_effect
     - automation.lightpack_select
-    - automation.media_player_resume
-    - automation.media_player_stop
     - automation.nightlight_off
     - automation.nightlight_on
     - automation.scene_effect
+    - automation.video_player_resume
+    - automation.video_player_stop
 
 automations_modes:
   name: Modes Automations

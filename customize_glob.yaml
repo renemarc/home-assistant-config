@@ -35,8 +35,8 @@ automation.lounge_*:
   icon: mdi:sofa
 automation.low_power_mode_*:
   icon: mdi:weather-sunset-down
-automation.media_player_*:
-  icon: mdi:kodi
+automation.video_player_*:
+  icon: mdi:plex
 automation.motion_*:
   icon: mdi:walk
 automation.nap_mode_*:

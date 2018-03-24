@@ -73,3 +73,24 @@ sensor.renemarc_iphone_battery_state:
 sensor.renemarc_iphone_battery_level:
   platform: ios
   unique_id: level_cellphone_him
+media_player.plex_htpc_chrome:
+  platform: plex
+  unique_id: evqqz9dhn5ijqezbt9bx5euk
+media_player.plex_htpc_chrome_lan:
+  platform: plex
+  unique_id: 2geodce3554zd0j7kixyfnzi
+media_player.plex_htpc_firefox:
+  platform: plex
+  unique_id: 87rcsmjonu5jvqo3853ihba0
+media_player.plex_htpc_firefox_lan:
+  platform: plex
+  unique_id: k14b49ckgpehqp0avovuh9r2
+media_player.plex_htpc_microsoft_edge:
+  platform: plex
+  unique_id: db63di3hgp091n4d3jflkpv2
+media_player.plex_htpc_microsoft_edge_lan:
+  platform: plex
+  unique_id: jc7yjwset23kx7plhdfckise
+media_player.plex_mac_firefox_lan:
+  platform: plex
+  unique_id: uwfbjj7g2w8zhbgl15rli4e4
