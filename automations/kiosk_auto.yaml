@@ -25,6 +25,14 @@
             0
           {% endif %}
 
+    # Keep the screen on for a few more seconds when we're turning it off.
+    - delay: >-
+        {% if is_state('input_boolean.night_mode', 'off') %}
+          00:00:00
+        {% else %}
+          00:00:05
+        {% endif %}
+
     # Toggle display.
     - service_template: >-
         {% if is_state('input_boolean.night_mode', 'off') %}

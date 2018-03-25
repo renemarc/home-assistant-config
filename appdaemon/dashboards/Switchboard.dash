@@ -278,13 +278,13 @@ light_aurora_effect:
 
 light_tv_backlight:
     widget_type: switch
-    title: TV Backlight
+    title: Lightpack
     entity: light.lightpack
     widget_style: "background-color:DARKRED;"
 
 light_tv_backlight_effect:
     widget_type: input_select
-    title2: TV Backlight Effect
+    title2: Lightpack Effect
     entity: input_select.lightpack_effect
     sub_entity: sensor.lightpack_effect_loaded
     widget_style: "background-color:DARKRED;"

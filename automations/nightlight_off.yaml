@@ -33,3 +33,9 @@
       data:
         entity_id:
           - group.kitchen_lights
+
+    # Turn off kiosk.
+    - service: homeassistant.turn_off
+      data:
+        entity_id:
+          - display.kiosk

@@ -177,7 +177,7 @@ light.bedroom:
 light.countertop:
   extra_data_template: >-
     return (attributes.brightness) ?
-    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
+    Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:border-top
@@ -191,7 +191,7 @@ light.countertop:
 light.island:
   extra_data_template: >-
     return (attributes.brightness) ?
-    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
+    Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:table-column
@@ -236,7 +236,7 @@ light.lounge:
 light.microwave:
   extra_data_template: >-
     return (attributes.brightness) ?
-    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
+    Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:gradient
@@ -262,7 +262,7 @@ light.middle:
 light.shower:
   extra_data_template: >-
     return (attributes.brightness) ?
-    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
+    Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:spotlight
@@ -276,7 +276,7 @@ light.shower:
 light.sink:
   extra_data_template: >-
     return (attributes.brightness) ?
-    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
+    Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:water-pump
@@ -290,7 +290,7 @@ light.sink:
 light.spotlight:
   extra_data_template: >-
     return (attributes.brightness) ?
-    Math.round(1000000 / attributes.color_temp / 10) * 10 + ' K @ ' +
+    Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:spotlight-beam

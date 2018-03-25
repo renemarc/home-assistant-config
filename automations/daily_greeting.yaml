@@ -32,7 +32,7 @@
     - service: notify.speech
       data_template:
         message: >-
-          {% set temperature = states('sensor.outside_temperature') %}
+          {% set temperature = states('sensor.outside_temperature') | int %}
           {% set apparent = states('sensor.dark_sky_apparent_temperature') | round(0) %}
           {% set minutely = states('sensor.dark_sky_minutely_summary') %}
           {% set hourly = states('sensor.dark_sky_hourly_summary') %}

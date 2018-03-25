@@ -52,11 +52,12 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
     origin_station = sched.stops_by_id(start_station_id)[0]
     destination_station = sched.stops_by_id(end_station_id)[0]
 
-    # now = datetime.datetime.now() + datetime.timedelta(seconds=offset)
     now = datetime.datetime.now() + offset
     day_name = now.strftime('%A').lower()
     now_str = now.strftime('%H:%M:%S')
     today = now.strftime('%Y-%m-%d')
+    tomorrow = datetime.date.today() + datetime.timedelta(days=1)
+    tomorrow_str = tomorrow.strftime('%Y-%m-%d')
 
     skip = int(position) - 1
 
@@ -97,7 +98,7 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
                AND end_station.stop_id = :end_station_id
     AND origin_stop_time.stop_sequence < destination_stop_time.stop_sequence
     AND calendar.start_date <= :today
-    AND calendar.end_date >= :today
+    AND calendar.end_date >= :tomorrow
     ORDER BY origin_stop_time.departure_time
     LIMIT 1 OFFSET :skip;
     """.format(day_name=day_name))
@@ -105,6 +106,7 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
                                   origin_station_id=origin_station.id,
                                   end_station_id=destination_station.id,
                                   today=today,
+                                  tomorrow=tomorrow_str,
                                   skip=skip)
     item = {}
     for row in result:

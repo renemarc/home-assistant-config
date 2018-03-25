@@ -76,9 +76,11 @@ The missing link that allows storage of non-boolean values using the [Variable](
 
 These are default Home Assistant components that were copied from the core to alter their behaviour. These changes really should be turned into appropriate [PRs](https://github.com/home-assistant/home-assistant/pulls).
 
+
 ### [`🚌 ./sensor/gtfs.py`](sensor/gtfs.py)
 
 [GTFS](https://github.com/home-assistant/home-assistant/blob/master/homeassistant/components/sensor/gtfs.py) public transit schedules component:
+- Modified SQL query to also fetch departures after midnight.
 - Added support for next bus departures.
 
 <div align="center">
