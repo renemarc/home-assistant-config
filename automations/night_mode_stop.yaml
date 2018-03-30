@@ -15,7 +15,7 @@
         entity_id: zwave.minimote
         scene_id: 4 # 4 = button #2 held.
 
-    # When bedsite Flic button is held.
+    # When bedside Flic button is held.
     - platform: event
       event_type: flic_click
       event_data:

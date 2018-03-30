@@ -125,7 +125,8 @@ homeassistant:
   time_zone: America/Toronto
   customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
-
+  whitelist_external_dirs:
+    - /config
 
 #
 # Enable the web server
@@ -196,8 +197,9 @@ light: !include_dir_merge_list lights/
 logger:
   default: warning
   logs:
-    custom_components.display.fully_kiosk: critical
-    homeassistant.light.rest: critical
+    custom_components.display: critical
+    homeassistant.components.notify.lannouncer: debug
+    # homeassistant.light.rest: critical
     # homeassistant.sensor.ebox: debug
     # custom_components.sensor.ebox: debug
 

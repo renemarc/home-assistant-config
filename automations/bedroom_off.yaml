@@ -12,12 +12,11 @@
       to: 'on'
 
   action:
-    # Turn off smart lights.
-    - service: light.turn_off
+    # Turn off bed underglow lights.
+    - service: homeassistant.turn_off
       data:
         entity_id:
-          - light.headboard
-          - light.underbed
+          - group.bed_lights
         transition: 10
 
     # Turn off binary devices.

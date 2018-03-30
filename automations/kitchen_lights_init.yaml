@@ -1,0 +1,26 @@
+#
+# Set kitchen lights to a known state.
+#
+# LimitlessLED lights do not provide state information, so we force it depending
+# on the current conditions.
+#
+- id: kitchen_lights_init
+  alias: Kitchen lights INIT
+  trigger:
+    # When Home Assistant starts.
+    - platform: homeassistant
+      event: start
+
+  action:
+    # Toggle lights.
+    - service_template: >
+        {% if is_state('input_boolean.night_mode', 'off')
+          and is_state('input_boolean.nap_mode', 'off')
+        %}
+          homeassistant.turn_on
+        {% else %}
+          homeassistant.turn_off
+        {% endif %}
+      data:
+        entity_id:
+          - group.kitchen_lights

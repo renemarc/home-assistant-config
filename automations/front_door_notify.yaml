@@ -16,7 +16,7 @@
       entity_id: binary_sensor.front_door_sensor
 
   action:
-    # Flash some smart light, in case one didn't hear the door opening/closing.
+    # Flash some smart lights, in case one didn't hear a door opening/closing.
     - service: light.lifx_effect_pulse
       data:
         entity_id: group.lifx_lights
@@ -36,3 +36,16 @@
           {% else %}
             purple
           {% endif %}
+
+    # Play a welcoming sound.
+    - condition: state
+      entity_id: binary_sensor.front_door_sensor
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.quiet_mode
+      state: 'off'
+    - service: notify.sound
+      data:
+        message: "chime"
+        data:
+          method: "alarm"

@@ -272,6 +272,7 @@
 # @see /appdaemon/dashboards/Status.dash
 # @see /groups/status.yaml
 #
+# @link https://community.home-assistant.io/t/displaying-cpu-temperature-within-home-assistant/8641
 # @link https://home-assistant.io/components/sensor.command_line/
 #
 - platform: command_line
@@ -284,32 +285,30 @@
 
 
 #
-# Database size
+# File sizes
 #
 # @see /appdaemon/dashboards/Status.dash
 # @see /groups/status.yaml
 #
-# @link https://community.home-assistant.io/t/recorder-purge-function/17154/12
-# @link https://home-assistant.io/components/sensor.command_line/
+# @link https://www.home-assistant.io/components/sensor.filesize/
 #
-- platform: command_line
-  name: Database Size
-  scan_interval: 600
-  unit_of_measurement: 'MiB'
-  command: "du -m /config/home-assistant_v2.db | cut -f1"
+- platform: filesize
+  file_paths:
+    - /config/home-assistant_v2.db
+    - /config/home-assistant.log
 
+- platform: template
+  sensors:
+    database_size:
+      friendly_name: Database Size
+      icon_template: mdi:database
+      unit_of_measurement: 'MiB'
+      value_template: >-
+         {{ states('sensor.homeassistant_v2db') | round }}
 
-#
-# Log file size
-#
-# @see /appdaemon/dashboards/Status.dash
-# @see /groups/status.yaml
-#
-# @link https://community.home-assistant.io/t/recorder-purge-function/17154/12
-# @link https://home-assistant.io/components/sensor.command_line/
-#
-- platform: command_line
-  name: Log Size
-  scan_interval: 600
-  unit_of_measurement: 'KiB'
-  command: "du -k /config/home-assistant.log | cut -f1"
+    log_size:
+      friendly_name: Log Size
+      icon_template: mdi:history
+      unit_of_measurement: 'KiB'
+      value_template: >-
+         {{ (states.sensor.homeassistantlog.attributes.bytes / 1024) | round }}

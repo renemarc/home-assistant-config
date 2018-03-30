@@ -34,42 +34,52 @@
         message: >-
           {% set temperature = states('sensor.outside_temperature') | int %}
           {% set apparent = states('sensor.dark_sky_apparent_temperature') | round(0) %}
-          {% set minutely = states('sensor.dark_sky_minutely_summary') %}
-          {% set hourly = states('sensor.dark_sky_hourly_summary') %}
+          {% set minutely = states('sensor.dark_sky_minutely_summary') | lower %}
+          {% set hourly = states('sensor.dark_sky_hourly_summary')  | lower %}
           {% set windspeed = (states('sensor.dark_sky_wind_speed')|float * 3600 / 1000) | round(1) %}
+          {% set hour = states('sensor.time').split(':')[0] | int %}
 
-          Good morning beautiful people!
-          We are {{ now().strftime('%A') }} {{ states('sensor.date_friendly') }}
-          and the time is {{ states('sensor.time_friendly') }}.
-
-          {% if apparent == temperature %}
-            Outside temperature is {{ temperature }}˚.
-          {% else %}
-            Outside temperature is {{ temperature }}˚ but feels like {{ apparent }}.
+          {%- if hour >= 4 and hour < 12 -%}
+            Good morning beautiful people!
+          {%- elif hour >= 12 and hour < 18 -%}
+            Good afternoon productive people!
+          {%- elif hour >= 18 and hour < 22 -%}
+            Good evening friendly people!
+          {%- else -%}
+            Good night sleepy people!
           {% endif %}
 
-          {% if minutely != 'unknown' %}
-            It will be {{ minutely }}
-            {% if hourly != 'unknown' %}
+          We are {{ states('sensor.date_long') }} and it is {{ states('sensor.time_long') }}.
+
+          Outside temperature is {{ temperature }}˚ {%
+           if apparent != temperature -%}
+           but feels like {{ apparent }}
+          {%- endif -%}
+          .
+
+          {% if minutely != 'unknown' -%}
+            It will be {{ minutely.rstrip('.') }} {%
+            if hourly != 'unknown' -%}
               and will be {{ hourly }}
             {% endif %}
-          {% else %}
-            It is currently {{ states('sensor.dark_sky_summary') }}
-            {% if hourly != 'unknown' %}
-              and will be {{ hourly }}
-            {% else %}
+          {% else -%}
+            It is currently {{ states('sensor.dark_sky_summary') -}}
+            {%- if hourly != 'unknown' %} and will be {{ hourly }}
+            {%- else -%}
               .
-            {% endif %}
+            {%- endif %}
           {% endif %}
 
-          {% if 40 <= windspeed %}
-            It is windy.
-          {% endif %}
-          A {{ states('sensor.wind_scale_friendly') }} is blowing
-          from the {{ states('sensor.wind_bearing_cardinal_friendly') }}
+          {%- if 40 <= windspeed -%}
+            It is windy. {%
+          endif -%}
+          A {{ states('sensor.wind_scale_friendly') | lower }} is blowing from the {{ states('sensor.wind_bearing_cardinal_friendly') }}.
 
-          Air quality is {{ states('sensor.aqi_friendly') }} and
-          UV index is {{ states('sensor.uv_friendly') }}.
+          Air quality is {{ states('sensor.aqi_friendly') | lower }} {%
+          if is_state('sun.sun', 'above_horizon') -%}
+            , UV index is {{ states('sensor.uv_friendly') | lower }}
+          {%- endif %} and the sun {{ states('sensor.sun_state_friendly') }}.
 
           Have a nice day!
+
           {{ states('sensor.good_vibes') }}

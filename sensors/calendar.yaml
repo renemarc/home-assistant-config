@@ -25,7 +25,19 @@
         {# Using a sensor instead of now() to avoid constant updating. #}
         {% set date = states('sensor.date') %}
         {% set datetime = strptime(date, '%Y-%m-%d') %}
+        {% set month = datetime.strftime('%B') %}
+        {% set day = datetime.strftime('%d') | int %}
 
+        {{ month }} {{ day }}
+
+    date_long:
+      friendly_name: Date
+      icon_template: mdi:calendar-today
+      value_template: >-
+        {# Using a sensor instead of now() to avoid constant updating. #}
+        {% set date = states('sensor.date') %}
+        {% set datetime = strptime(date, '%Y-%m-%d') %}
+        {% set weekday = datetime.strftime('%A') %}
         {% set month = datetime.strftime('%B') %}
         {% set day = datetime.strftime('%d') | int %}
         {%
@@ -35,7 +47,7 @@
           else "th"
         %}
 
-        {{ month }} {{ day }}
+        {{ weekday }} {{ month }} {{ day }}{{ suffix }}
 
     time_friendly:
       friendly_name: Time
@@ -45,6 +57,62 @@
         {% set minutes = states('sensor.time').split(':')[1] %}
 
         {{ hour }}:{{ minutes }}
+
+    time_long:
+      friendly_name: Time
+      icon_template: mdi:clock
+      value_template: >-
+        {% set hour = states('sensor.time').split(':')[0] | int %}
+        {% set minute = states('sensor.time').split(':')[1] | int %}
+
+        {% set minute_str = '' %}
+        {% if minute == 15 or minute == 45 %}
+          {% set minute_str = 'a quarter' %}
+        {% elif minute == 30 %}
+          {% set minute_str = 'half' %}
+        {% else %}
+          {% if minute > 30 %}
+            {% set minute_str = (60 - minute) | string %}
+          {% elif minute != 0 %}
+            {% set minute_str = minute | string %}
+          {% endif %}
+
+          {% if minute_str %}
+            {% if minute > 1 %}
+              {% set minute_str = minute_str + ' minutes' %}
+            {% else %}
+              {% set minute_str = minute_str + ' minute' %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
+        {% if minute > 30 %}
+          {% set minute_str = minute_str + ' to' %}
+          {% set hour = hour + 1 %}
+          {% if hour >= 24 %}
+            {% set hour = hour - 24 %}
+          {% endif %}
+        {% elif minute > 0 %}
+          {% set minute_str = minute_str + ' past' %}
+        {% endif %}
+
+        {% if hour == 0 %}
+          {% set hour_str = 'midnight' %}
+        {% elif hour == 12 %}
+          {% set hour_str = 'noon' %}
+        {% elif hour > 12 %}
+          {% set hour_str = hour - 12 %}
+        {% else %}
+          {% set hour_str = hour %}
+        {% endif %}
+
+        {% if minute_str %}
+          {{ minute_str }} {{ hour_str }}
+        {% elif hour != 0 and hour != 12 %}
+          {{ hour_str }} O'Clock
+        {% else %}
+          {{ hour_str }}
+        {% endif %}
 
     after_tomorrow:
       friendly_name: After Tomorrow
@@ -110,4 +178,97 @@
           sets at {% set timestamp = as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom("%H:%M") %} {{ timestamp.lstrip("0") }}
         {% else %}
           rises at {% set timestamp = as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom("%H:%M") %} {{ timestamp.lstrip("0") }}
+        {% endif %}
+
+    sun_state_friendly:
+      friendly_name: Sun
+      icon_template: >-
+        {% if is_state('sun.sun', 'above_horizon') %}
+          mdi:weather-sunny
+        {% else %}
+          mdi:weather-night
+        {% endif %}
+      value_template: >-
+        {% set current = as_timestamp(strptime(states('sensor.time__date'), '%H:%M, %Y-%m-%d')) %}
+        {% set dusk = as_timestamp(states.sun.sun.attributes.next_dusk) %}
+
+        {% if current <= dusk %}
+          {# output example "will set at around 8." #}
+          {# output example "will set at around a quarter past 8." #}
+          {# output example "will set at around 8 and a half." #}
+          {# output example "will set at around a quarter to 9." #}
+          {# output example "will set in a few minutes." #}
+          {# output example "is setting." #}
+
+          {% set setting = as_timestamp(states.sun.sun.attributes.next_setting) %}
+
+          {% if current >= setting %}
+            is setting
+          {% elif (setting - current) <= 60*30 %}
+            will set in a few minutes
+          {% else %}
+            {% set hour = setting|timestamp_custom('%H') | int %}
+            {% set minute = setting|timestamp_custom('%M') | int %}
+
+            {% set minute_friendly = '' %}
+            {% set half = false %}
+
+            {% if minute >= 10 and minute <= 20 %}
+              {% set minute_friendly = 'a quarter past ' %}
+            {% elif minute > 20 and minute < 40 %}
+              {% set half = true %}
+            {% elif minute >= 40 and minute <= 50 %}
+              {% set minute_friendly = 'a quarter to ' %}
+              {% set hour = hour + 1 %}
+            {% elif minute > 50 %}
+              {% set hour = hour + 1 %}
+            {% endif %}
+
+            {% if hour >= 24 %}
+              {% set hour = hour - 24 %}
+            {% endif %}
+            {% if hour == 0 %}
+              {% set hour_friendly = 'midnight' %}
+            {% elif hour == 12 %}
+              {% set hour_friendly = 'noon' %}
+            {% elif hour > 12 %}
+              {% set hour_friendly = hour - 12 %}
+            {% else %}
+              {% set hour_friendly = hour %}
+            {% endif %}
+
+            {% if half %}
+              will set at around {{ hour_friendly }} and a half
+            {% else %}
+              will set at around {{ minute_friendly }}{{ hour_friendly }}
+            {% endif %}
+
+          {% endif %}
+        {% else %}
+          {# output example "will rise in about 7 hours." #}
+          {# output example "will rise in about 7 and a half hours." #}
+          {# output example "will rise in a few minutes." #}
+          {# output example "is rising." #}
+
+          {% set dawn = as_timestamp(states.sun.sun.attributes.next_dawn) %}
+          {% set rising = as_timestamp(states.sun.sun.attributes.next_rising) %}
+
+          {% set diff = ((rising - current) / 60 / 60) %}
+          {% set hour = diff | int %}
+          {% set minute = (diff - hour) | round(2) %}
+
+          {% if hour %}
+            {% if minute > 0.66 %}
+              {% set hour = hour + 1 %}
+            {% elif minute > 0.33 %}
+              {% set minute_friendly = ' and a half' %}
+            {% endif %}
+
+            will rise in about {{hour}}{{ minute_friendly }} hour{% if hour > 0 %}s{% endif %}
+          {% elif (rising - dawn) < 0%}
+            is rising
+          {% else %}
+            will rise in a few minutes
+          {% endif %}
+
         {% endif %}

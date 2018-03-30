@@ -22,5 +22,5 @@
     - service: homeassistant.turn_off
       data:
         entity_id:
-          - group.ceiling
+          - group.ceiling_lights
         transition: 10

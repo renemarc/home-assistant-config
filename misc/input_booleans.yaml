@@ -10,23 +10,23 @@
 #
 low_mode:
   name: Low power mode
-  initial: off
+  icon: mdi:weather-sunset-down
 
 nap_mode:
   name: Nap mode
-  initial: off
+  icon: mdi:sleep
 
 night_mode:
   name: Night mode
-  initial: off
+  icon: mdi:weather-night
 
 quiet_mode:
   name: Quiet mode
-  initial: off
+  icon: mdi:volume-mute
 
 scene_mode:
   name: Scene mode
-  initial: off
+  icon: mdi:looks
 
 
 #
@@ -34,7 +34,7 @@ scene_mode:
 #
 kitchen_lights_override:
   name: Kitchen Lights have overriding effect set
-  initial: off
+  icon: mdi:food-fork-drink
 
 
 #
@@ -42,16 +42,16 @@ kitchen_lights_override:
 #
 doors_open:
   name: Doors are open
-  initial: off
+  icon: mdi:door-open
 
 motion_detected:
   name: Motion detected
-  initial: off
+  icon: mdi:run
 
 tamper_detected:
   name: Tamper detected
-  initial: off
+  icon: mdi:security-home
 
 windows_open:
   name: Windows are open
-  initial: off
+  icon: mdi:window-open

@@ -13,7 +13,7 @@
 
   action:
     # Turn off all lights.
-    - service: light.turn_off
+    - service: homeassistant.turn_off
       data:
         entity_id:
           - group.kitchen_lights

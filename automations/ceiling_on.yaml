@@ -33,5 +33,5 @@
     - service: homeassistant.turn_on
       data:
         entity_id:
-          - group.ceiling
+          - group.ceiling_lights
         transition: 5

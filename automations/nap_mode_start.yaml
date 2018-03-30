@@ -1,8 +1,8 @@
 #
 # When someone takes a nap
 #
-# Should lower lights and minimize noises without preventing someone else
-# from being active.
+# Lowers lights and minimize noises without preventing someone else from being
+# active.
 #
 # @publish input_boolean.nap_mode
 #

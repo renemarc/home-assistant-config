@@ -55,7 +55,7 @@
 
     # If ceiling wash lights are on.
     - condition: state
-      entity_id: group.ceiling
+      entity_id: group.ceiling_lights
       state: 'on'
 
     # If the selected effect is the default.

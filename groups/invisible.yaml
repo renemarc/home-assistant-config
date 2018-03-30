@@ -37,3 +37,8 @@ motion_sensors:
   entities:
     - binary_sensor.kiosk_motion_auto
     - binary_sensor.lounge_multisensor_sensor
+
+washroom_lights:
+  name: Washroom Lights
+  entities:
+    - light.shower

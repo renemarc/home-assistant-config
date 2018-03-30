@@ -102,25 +102,13 @@ group.weather_view:
 #
 # Input booleans
 #
-input_boolean.low_mode:
-  icon: mdi:weather-sunset-down
 input_boolean.motion_detected:
-  icon: mdi:run
   confirm_controls_show_lock: true
   templates:
     theme: >-
       return state == 'on' ? 'card-warning'
       : null;
-input_boolean.nap_mode:
-  icon: mdi:sleep
-input_boolean.night_mode:
-  icon: mdi:weather-night
-input_boolean.quiet_mode:
-  icon: mdi:volume-mute
-input_boolean.scene_mode:
-  icon: mdi:looks
 input_boolean.tamper_detected:
-  icon: mdi:security-home
   confirm_controls_show_lock: true
   templates:
     theme: >-
@@ -522,8 +510,6 @@ sensor.processor_use:
     return
     entities['sensor.average_load'].state + ' ' +
     '(' + entities['sensor.cpu_cores'].state + ' cores)';
-sensor.database_size:
-  icon: mdi:database
 sensor.disk_use_percent:
   extra_data_template: >-
     return
@@ -541,8 +527,6 @@ sensor.ebox_usage:
   friendly_name: Monthly usage
 sensor.ipv4_address_eth0:
   friendly_name: Local IP Address
-sensor.log_size:
-  icon: mdi:history
 sensor.memory_use_percent:
   extra_data_template: >-
     return
