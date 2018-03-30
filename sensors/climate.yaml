@@ -17,6 +17,22 @@
   unit_of_measurement: '°C'
   value_template: '{{ value_json.temperature_C | round }}'
 
+- platform: filter
+  name: Bedroom Humidity Filtered
+  entity_id: sensor.bedroom_humidity
+  filters:
+    - filter: lowpass
+      time_constant: 10
+      precision: 1
+
+- platform: filter
+  name: Bedroom Temperature Filtered
+  entity_id: sensor.bedroom_temperature
+  filters:
+    - filter: lowpass
+      time_constant: 10
+      precision: 1
+
 
 #
 # Lounge climate
@@ -41,6 +57,22 @@
       icon_template: mdi:blur
       value_template: "{{ states('sensor.lounge_multisensor_luminance') | round }}"
 
+- platform: filter
+  name: Lounge Humidity Filtered
+  entity_id: sensor.lounge_humidity
+  filters:
+    - filter: lowpass
+      time_constant: 10
+      precision: 1
+
+- platform: filter
+  name: Lounge Temperature Filtered
+  entity_id: sensor.lounge_temperature
+  filters:
+    - filter: lowpass
+      time_constant: 10
+      precision: 1
+
 
 #
 # Average temperature
@@ -53,8 +85,8 @@
   type: mean
   round_digits: 0
   entity_ids:
-    - sensor.lounge_temperature
-    - sensor.bedroom_temperature
+    - sensor.bedroom_temperature_filtered
+    - sensor.lounge_temperature_filtered
 
 - platform: template
   sensors:
@@ -79,8 +111,8 @@
   type: mean
   round_digits: 1
   entity_ids:
-    - sensor.lounge_humidity
-    - sensor.bedroom_humidity
+    - sensor.bedroom_humidity_filtered
+    - sensor.lounge_humidity_filtered
 
 - platform: template
   sensors:
