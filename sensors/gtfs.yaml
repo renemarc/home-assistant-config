@@ -21,7 +21,7 @@
   origin: !secret gtfs_origin_1
   destination: !secret gtfs_destination_1
   data: !secret gtfs_data
-  scan_interval: 65
+  scan_interval: 60
   position: 2
 
 - platform: gtfs
@@ -29,7 +29,7 @@
   origin: !secret gtfs_origin_1
   destination: !secret gtfs_destination_1
   data: !secret gtfs_data
-  scan_interval: 70
+  scan_interval: 60
   position: 3
 
 - platform: gtfs
@@ -44,7 +44,7 @@
   origin: !secret gtfs_origin_2
   destination: !secret gtfs_destination_2
   data: !secret gtfs_data
-  scan_interval: 65
+  scan_interval: 60
   position: 2
 
 - platform: gtfs
@@ -52,7 +52,7 @@
   origin: !secret gtfs_origin_2
   destination: !secret gtfs_destination_2
   data: !secret gtfs_data
-  scan_interval: 70
+  scan_interval: 60
   position: 3
 
 - platform: template

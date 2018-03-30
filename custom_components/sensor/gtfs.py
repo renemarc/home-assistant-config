@@ -55,8 +55,10 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
     now = datetime.datetime.now() + offset
     day_name = now.strftime('%A').lower()
     now_str = now.strftime('%H:%M:%S')
+    now_time = now.time()
     today = now.strftime('%Y-%m-%d')
-
+    tomorrow_obj = datetime.date.today() + datetime.timedelta(days=1)
+    tomorrow = tomorrow_obj.strftime('%Y-%m-%d')
     skip = int(position) - 1
 
     from sqlalchemy.sql import text
@@ -91,29 +93,36 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
     INNER JOIN stops end_station
                ON destination_stop_time.stop_id = end_station.stop_id
     WHERE calendar.{day_name} = 1
-               AND time(origin_stop_time.departure_time) > time(:now_str)
     AND start_station.stop_id = :origin_station_id
-               AND end_station.stop_id = :end_station_id
+    AND end_station.stop_id = :end_station_id
     AND origin_stop_time.stop_sequence < destination_stop_time.stop_sequence
     AND calendar.start_date <= :today
     AND calendar.end_date >= :today
     ORDER BY origin_stop_time.departure_time
-    LIMIT 1 OFFSET :skip;
     """.format(day_name=day_name))
-    result = sched.engine.execute(sql_query, now_str=now_str,
+    result = sched.engine.execute(sql_query,
                                   origin_station_id=origin_station.id,
                                   end_station_id=destination_station.id,
-                                  today=today,
-                                  skip=skip)
+                                  today=today)
+
+    rows = result.fetchall()
     item = {}
-    for row in result:
-        item = row
+    for i,row in enumerate(rows):
+        if (datetime.datetime.strptime(row[2], '%H:%M:%S').time() > now_time):
+            schedule_idx = i + skip
+            if schedule_idx < len(rows):
+                item = rows[schedule_idx]
+                if (datetime.datetime.strptime(item[2], '%H:%M:%S').time()
+                    <= now_time):
+                    today = tomorrow
+            break
 
     if item == {}:
         return None
 
     departure_time_string = '{} {}'.format(today, item[2])
-    arrival_time_string = '{} {}'.format(today, item[3])
+    arrival_time_string = '{} {}'.format(today if item[3] > item[2]
+                                         else tomorrow, item[3])
     departure_time = datetime.datetime.strptime(departure_time_string,
                                                 TIME_FORMAT)
     arrival_time = datetime.datetime.strptime(arrival_time_string,
@@ -126,8 +135,10 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
 
     origin_stoptime_arrival_time = '{} {}'.format(today, item[4])
     origin_stoptime_departure_time = '{} {}'.format(today, item[5])
-    dest_stoptime_arrival_time = '{} {}'.format(today, item[11])
-    dest_stoptime_depart_time = '{} {}'.format(today, item[12])
+    dest_stoptime_arrival_time = '{} {}'.format(today if item[11] > item[5]
+                                                else tomorrow, item[11])
+    dest_stoptime_depart_time = '{} {}'.format(today if item[12] > item[5]
+                                               else tomorrow, item[12])
 
     origin_stop_time_dict = {
         'Arrival Time': origin_stoptime_arrival_time,

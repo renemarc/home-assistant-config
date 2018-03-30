@@ -197,6 +197,7 @@ logger:
   default: warning
   logs:
     custom_components.display.fully_kiosk: critical
+    homeassistant.light.rest: critical
     # homeassistant.sensor.ebox: debug
     # custom_components.sensor.ebox: debug
 

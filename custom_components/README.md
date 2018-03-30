@@ -81,6 +81,9 @@ These are default Home Assistant components that were copied from the core to al
 
 [GTFS](https://github.com/home-assistant/home-assistant/blob/master/homeassistant/components/sensor/gtfs.py) public transit schedules component:
 - Added support for next bus departures.
+- Simplified query, making it cacheable in order to increase IO performance.
+- Allow querying departures after midnight.
+- Correctly set arrival date to tommorow when bus leaves before midnight but arrives after.
 
 <div align="center">
     <figure>
