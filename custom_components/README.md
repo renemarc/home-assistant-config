@@ -77,6 +77,12 @@ The missing link that allows storage of non-boolean values using the [Variable](
 These are default Home Assistant components that were copied from the core to alter their behaviour. These changes really should be turned into appropriate [PRs](https://github.com/home-assistant/home-assistant/pulls).
 
 
+### [`📡 ./sensor/ebox.py`](sensor/ebox.py)
+
+[Ebox](https://github.com/home-assistant/home-assistant/blob/master/homeassistant/components/sensor/ebox.py) ISP data consumtion component:
+- Upgraded [pyebox](https://github.com/titilambert/pyebox/) dependency to [support unlimited data packages](https://github.com/titilambert/pyebox/issues/1).
+
+
 ### [`🚌 ./sensor/gtfs.py`](sensor/gtfs.py)
 
 [GTFS](https://github.com/home-assistant/home-assistant/blob/master/homeassistant/components/sensor/gtfs.py) public transit schedules component:
