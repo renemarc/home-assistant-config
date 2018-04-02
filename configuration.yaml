@@ -128,6 +128,15 @@ homeassistant:
   whitelist_external_dirs:
     - /config
 
+
+#
+# HomeKit
+#
+# @link https://www.home-assistant.io/components/homekit/
+#
+# homekit:
+
+
 #
 # Enable the web server
 #
@@ -199,6 +208,7 @@ logger:
   logs:
     custom_components.display: critical
     homeassistant.components.notify.lannouncer: debug
+    # homeassistant.components.homekit: debug
     # homeassistant.light.rest: critical
     # homeassistant.sensor.ebox: debug
     # custom_components.sensor.ebox: debug
