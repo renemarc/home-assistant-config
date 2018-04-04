@@ -1,6 +1,7 @@
 # Screenshots
 
-Screenshots of UI elements features in this repository.
+Screenshots of UI elements features in this repository. A [screenshot making guide](#screenshot-making-guide) is available below.
+
 
 ## Cards
 
@@ -93,7 +94,6 @@ Screenshots of UI elements features in this repository.
         </figcaption>
     </figure>
 </div>
-
 
 <div align="center">
     <figure>
@@ -391,3 +391,48 @@ Screenshots of UI elements features in this repository.
         </figcaption>
     </figure>
 </div>
+
+
+## Screenshot making guide
+
+These are the steps I used to make these screenshots and animated GIFs. The resulting web-optimized retina images are then embeded at half-width in the README.md files to make them look regular size, while keeping their sharpness on high-resolution screens withouth requiring too much bandwidth. These steps can also be performed on a regular-resolution screen, ideally while zoomed at %200.
+
+
+### UI groups
+
+1. Take rough screenshot on retina/high-resolution screen.
+2. Clean up screenshot in an image editor:
+    - Resize canvas to 650 pixels wide.
+    - Remove identifying information.
+    - Save in non-compressed format for reference (PNG, PSD, BMP...)
+3. Export as web-optimized PNG.
+4. Use https://tinypng.com/ to compress web-optimized PNG further.
+
+
+### HADashboard static image
+
+1. Take rough screenshot on retina/high-resolution screen. I used Firefox @ 80% zoom on a MacBook Pro 13".
+2. Clean up screenshot in an image editor:
+    - Resize canvas to large-enough format, say 2000×1212.
+    - Uniformize elements with other screenshots.
+    - Remove identifying information.
+    - Replace copyrighted images with public domain placeholders.
+    - Save in non-compressed format for reference (PNG, PSD, BMP...)
+3. Export as web-optimized PNG.
+4. Use https://tinypng.com/ to compress web-optimized PNG further.
+
+
+### HADashboard animated GIF
+
+1. Take rough screenshot on retina/high-resolution screen. I used Firefox @ 80% zoom on a MacBook Pro 13".
+2. Clean up screenshot in an image editor:
+    - Resize canvas to large-enough format, say 2000×1212.
+    - Uniformize elements with other screenshots.
+    - Remove identifying information.
+    - Replace copyrighted images with public domain placeholders.
+3. Save as regular PNG.
+4. Create animation with other PNGs using [PicGIF](http://www.pearlmountainsoft.com/picgif/) or other animated GIF-making software or web app.
+    - Export as non-optimzed GIF at x1080 resolution (1782x1080).
+5. If needed, use [ImageMagick](https://www.imagemagick.org/) to make it loop indefinitely:
+   `mogrify -loop 0 dashboard-example-1080.gif`
+6. Use https://ezgif.com/optimize to compress animated GIF at 35%.

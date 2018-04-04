@@ -1,19 +1,21 @@
 #
 # Fully Kiosk Browser screen brightness
 #
+# Disabled until deemed useful or not.
+#
 # Ressource URL:
 #   http://[host]:[port]/?cmd=deviceInfo&type=json&password=[password]
 #
 # @link https://community.home-assistant.io/t/fully-kiosk-browser/41675
 # @link https://www.ozerov.de/fully-kiosk-browser/#rest
 #
-- platform: rest
-  name: Kiosk Brightness
-  resource: !secret fully_kiosk_info
-  json_attributes:
-    - screenBrightness
-  value_template: >-
-    {{ value_json.screenBrightness }}
+# - platform: rest
+#   name: Kiosk Brightness
+#   resource: !secret fully_kiosk_info
+#   json_attributes:
+#     - screenBrightness
+#   value_template: >-
+#     {{ value_json.screenBrightness }}
 
 
 #

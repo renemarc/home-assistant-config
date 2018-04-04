@@ -91,10 +91,10 @@ Geeky details about Home Assistant, network, battery status and per-location tem
         </div>
         <div>
             <img src="../www/screenshots/group-system.png" alt="System group" title="System" width="325">
-            <img src="../www/screenshots/group-battery.png" alt="Battery group" title="Battery levels" width="325">
+            <img src="../www/screenshots/group-network.png" alt="Network group" title="Network" width="325">
             <img src="../www/screenshots/group-temperature.png" alt="Temperature group" title="Temperature" width="325">
             <img src="../www/screenshots/group-humidity.png" alt="Humidity group" title="Humidity" width="325">
-            <img src="../www/screenshots/group-network.png" alt="Network group" title="Network" width="325">
+            <img src="../www/screenshots/group-battery.png" alt="Battery group" title="Battery levels" width="325">
         </div>
         <figcaption>
             <p><strong>Status view cards.</strong></p>

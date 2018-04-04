@@ -85,7 +85,7 @@ This is a fully documented working configuration for Home Assistant, with screen
 
 ### Agile development
 
-This configuration is built with an Agile-like methodology, lead by following main user stories:
+This configuration is built with an [Agile](http://agilemanifesto.org/)-like methodology, lead by following main user stories:
 
 - **As a resident** I want a reliable home automation platform to handle lights and climate that can easily be controlled and overridden in many intuitive ways.
 - **As an apartment dweller** I want to have a discrete, non-permanent installation that takes as little space as possible.
@@ -101,7 +101,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
             <a href="https://www.youtube.com/watch?v=wujVMIYzYXg" title="Princess Bride clip"><img src="https://memegenerator.net/img/instances/53833187/agile-you-keep-using-that-word-i-do-not-think-it-means-what-you-think-it-means.jpg" alt="Agile. You keep using that word. I do not think it means what you think it means."></a>
         </div>
         <figcaption>
-            <p><strong><a href="https://www.youtube.com/watch?v=wujVMIYzYXg" title="Princess Bride clip">Well, without the sprints. And the scrums. And the groomings. And the retros. And the...</a></strong></p>
+            <p><strong><a href="https://www.youtube.com/watch?v=wujVMIYzYXg" title="Princess Bride clip">Well, without the sprints. And a team. And the retrospectives. And the...</a></strong></p>
         </figcaption>
     </figure>
 </div>
