@@ -5,7 +5,7 @@
 
 ### [`🎦 ./display/`](display)
 
-Interact with Android devices running the [Fully Kiosk Browser](https://www.ozerov.de/fully-kiosk-browser) by using this third-party [Display](https://github.com/daemondazz/homeassistant-displays) platform.
+Interact with Android devices running the [Fully Kiosk Browser](https://www.ozerov.de/fully-kiosk-browser) by using this third-party [Display platform](https://github.com/daemondazz/homeassistant-displays).
 
 <div align="center">
     <figure>
@@ -37,7 +37,7 @@ Opens communication with the [Nanoleaf Aurora](https://nanoleaf.me) using this [
 
 ### [`📺 ./light/lightpack.py`](light/lightpack.py)
 
-Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) monitor bias lighting using [Lightpack](https://github.com/kklemm91/Lightpack-HASS).
+Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) monitor bias lighting using this [Lightpack component](https://github.com/kklemm91/Lightpack-HASS).
 
 <div align="center">
     <figure>
@@ -53,7 +53,7 @@ Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) moni
 
 ### [`💀 ./sensor/doomsday_clock.py`](sensor/doomsday_clock.py)
 
-A local copy of my depressing [Doomsday Clock](https://github.com/renemarc/home-assistant-custom-components) component that tracks the _Bulletin of the Atomic Scientists_' [Minutes to Midnight](https://thebulletin.org/timeline) humanity status indicator.
+A local copy of my depressing [Doomsday Clock component](https://github.com/renemarc/home-assistant-custom-components) that tracks the _Bulletin of the Atomic Scientists_' [Minutes to Midnight](https://thebulletin.org/timeline) humanity status indicator.
 
 <div align="center">
     <figure>
@@ -69,7 +69,7 @@ A local copy of my depressing [Doomsday Clock](https://github.com/renemarc/home-
 
 ### [`❓ ./variable.py`](variables.py)
 
-The missing link that allows storage of non-boolean values using the [Variable](https://github.com/rogro82/hass-variables) component.
+The missing link that allows storage of non-boolean values using the [Variable component](https://github.com/rogro82/hass-variables).
 
 
 ## Overriden components

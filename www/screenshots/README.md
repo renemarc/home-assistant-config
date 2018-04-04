@@ -406,7 +406,7 @@ These are the steps I used to make these screenshots and animated GIFs. The resu
     - Remove identifying information.
     - Save in non-compressed format for reference (PNG, PSD, BMP...)
 3. Export as web-optimized PNG.
-4. Use https://tinypng.com/ to compress web-optimized PNG further.
+4. Use [TinyPNG](https://tinypng.com) to compress web-optimized PNG further.
 
 
 ### HADashboard static image
@@ -419,7 +419,7 @@ These are the steps I used to make these screenshots and animated GIFs. The resu
     - Replace copyrighted images with public domain placeholders.
     - Save in non-compressed format for reference (PNG, PSD, BMP...)
 3. Export as web-optimized PNG.
-4. Use https://tinypng.com/ to compress web-optimized PNG further.
+4. Use [TinyPNG](https://tinypng.com) to compress web-optimized PNG further.
 
 
 ### HADashboard animated GIF
@@ -432,7 +432,7 @@ These are the steps I used to make these screenshots and animated GIFs. The resu
     - Replace copyrighted images with public domain placeholders.
 3. Save as regular PNG.
 4. Create animation with other PNGs using [PicGIF](http://www.pearlmountainsoft.com/picgif/) or other animated GIF-making software or web app.
-    - Export as non-optimzed GIF at x1080 resolution (1782x1080).
+    - Export as non-optimzed GIF at x1080 resolution, say 1782x1080.
 5. If needed, use [ImageMagick](https://www.imagemagick.org/) to make it loop indefinitely:
    `mogrify -loop 0 dashboard-example-1080.gif`
-6. Use https://ezgif.com/optimize to compress animated GIF at 35%.
+6. Use [ezgif.com](https://ezgif.com/optimize) to compress animated GIF at 35%.

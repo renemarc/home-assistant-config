@@ -26,7 +26,7 @@
       value_template: >-
         {% set usage = states('sensor.ebox_usage') %}
 
-        {% if usage != "unknown" %}
+        {% if usage != 'unknown' %}
           {{ usage | round }}
         {% else %}
           unknown
@@ -40,9 +40,9 @@
         {% set limit = states('sensor.ebox_data_limit') %}
         {% set download = states('sensor.ebox_download') %}
 
-        {% if limit|int == 0 %}
+        {% if limit != 'unknown' and limit|int == 0 %}
           ∞
-        {% elif limit != "unknown" and download != "unknown" %}
+        {% elif limit != 'unknown' and download != 'unknown' %}
           {{ (limit|float - download|float) | int }}
         {% else %}
           unknown
@@ -57,9 +57,9 @@
         {% set download = states('sensor.ebox_download_remaining') %}
         {% set days = states('sensor.days_remaining_in_month') %}
 
-        {% if limit|int == 0 %}
+        {% if limit != 'unknown' and limit|int == 0 %}
           ∞
-        {% elif download == "unknown" or days == "unknown" %}
+        {% elif download == 'unknown' or days == 'unknown' %}
           unknown
         {% elif download|float > 0 and days|int > 0 %}
           {{ (download|float / days|int) | int }}

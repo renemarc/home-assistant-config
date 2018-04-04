@@ -44,7 +44,7 @@
       friendly_name: Home Assistant Version
       icon_template: mdi:update
       value_template: >-
-        {% if states('sensor.current_version') != "unknown" %}
+        {% if states('sensor.current_version') != 'unknown' %}
           Home Assistant {{ states('sensor.current_version') }}
         {% else %}
           Home Assistant
@@ -54,7 +54,7 @@
       friendly_name: Update Available
       icon_template: mdi:update
       value_template: >-
-        {% if states('updater.updater') != "unknown" %}
+        {% if states('updater.updater') != 'unknown' %}
           Update available: {{ states('updater.updater') }}
         {% endif %}
 

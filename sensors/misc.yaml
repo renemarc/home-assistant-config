@@ -1,7 +1,12 @@
 #
 # Horizontal lines, for cosmetic separation of sensors in the UI.
 #
-# Actual styling is done in `customize.yaml` and `customize_glob.yaml`.
+# Actual styling is done in "customize" files.
+#
+# @see /customize.yaml
+# @see /customize_glob.yaml
+# @see /www/custom_ui/state-card-hline.html
+# @see /www/custom_ui/state-card-hline_es5.html
 #
 # @link https://github.com/covrig/homeassistant-hline
 #
@@ -26,7 +31,7 @@
       icon_template: mdi:emoticon-happy
       value_template: >-
         {% set counter = 0 %}
-        {% set modes = "" %}
+        {% set modes = '' %}
         {% if is_state('input_boolean.nap_mode', 'on') %}
           {% set modes = modes + '+ Nap ' %}
           {% set counter = counter + 1 %}
@@ -43,12 +48,12 @@
           {% set modes = modes + '+ Scene ' %}
           {% set counter = counter + 1 %}
         {% endif %}
-        {% if modes == "" %}
+        {% if modes == '' %}
           {% set modes = 'Regular ' %}
           {% set counter = counter + 1 %}
         {% endif %}
 
-        {{modes.lstrip("+")}}mode
+        {{ modes.lstrip('+') }}mode
         {%- if counter > 1 -%}
           s
         {% endif %}
@@ -59,14 +64,18 @@
 #
 # @link http://www.lifestalker.com/2017/04/four-word-quotes.html
 #
+- platform: random
+  name: Good Vibes index
+  scan_interval: 60
+  maximum: 42
+
 - platform: template
   sensors:
     good_vibes:
       friendly_name: Good Vibes
       icon_template: mdi:emoticon-happy
       value_template: >-
-        {# Fetch a scheduled sensor to avoid updating this template non-stop. #}
-        {% set time = states('sensor.time') %}
+        {% set index = states('sensor.good_vibes_index') | int %}
         {% set vibes = [
           "Be great.",
           "Be happy!",
@@ -113,4 +122,4 @@
           "Your time is now.",
         ] %}
 
-        {{ vibes|random }}
+        {{ vibes[index] }}
