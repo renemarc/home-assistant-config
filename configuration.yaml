@@ -122,11 +122,11 @@ homeassistant:
   longitude: !secret zone_home_longitude
   elevation: !secret zone_home_elevation
   unit_system: metric
-  time_zone: America/Toronto
+  time_zone: !secret homeassistant_time_zone
   customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
   whitelist_external_dirs:
-    - /config
+    - !secret homeassistant_whitelist_config
 
 
 #
