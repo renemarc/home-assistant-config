@@ -154,6 +154,7 @@ light.bedroom:
     entities['sensor.ceiling_effect_loaded'].state
     : null;
   icon: mdi:led-strip
+  homebridge_hidden: false
   slider_theme:
     max: 255
     min: 0
@@ -166,6 +167,7 @@ light.countertop:
     Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
+  homebridge_hidden: false
   icon: mdi:border-top
   assumed_state: false
   slider_theme:
@@ -180,6 +182,7 @@ light.island:
     Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
+  homebridge_hidden: false
   icon: mdi:table-column
   assumed_state: false
   slider_theme:
@@ -194,6 +197,7 @@ light.headboard:
     entities['sensor.bed_effect_loaded'].state
     : null;
   icon: mdi:gate
+  homebridge_hidden: false
   slider_theme:
     max: 255
     min: 0
@@ -212,6 +216,7 @@ light.lounge:
     return (state === 'on' && entities['sensor.ceiling_effect_loaded'].state) ?
     entities['sensor.ceiling_effect_loaded'].state
     : null;
+  homebridge_hidden: false
   icon: mdi:led-strip
   slider_theme:
     max: 255
@@ -225,6 +230,7 @@ light.microwave:
     Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
+  homebridge_hidden: false
   icon: mdi:gradient
   assumed_state: false
   slider_theme:
@@ -238,6 +244,7 @@ light.middle:
     return (state === 'on' && entities['sensor.ceiling_effect_loaded'].state) ?
     entities['sensor.ceiling_effect_loaded'].state
     : null;
+  homebridge_hidden: false
   icon: mdi:led-strip
   slider_theme:
     max: 255
@@ -265,6 +272,7 @@ light.sink:
     Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
+  homebridge_hidden: false
   icon: mdi:water-pump
   assumed_state: false
   slider_theme:
@@ -293,6 +301,7 @@ light.underbed:
     entities['sensor.bed_effect_loaded'].state
     : null;
   icon: mdi:hotel
+  homebridge_hidden: false
   slider_theme:
     max: 255
     min: 0
@@ -662,6 +671,7 @@ switch.souvenirs_light:
   friendly_name: Souvenirs Light
   icon: mdi:trophy
 switch.window_light:
+  homebridge_hidden: false
   icon: mdi:creation
 
 
