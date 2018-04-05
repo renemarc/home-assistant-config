@@ -357,7 +357,7 @@ Image references.
 [img-github-release]:https://img.shields.io/github/release/renemarc/home-assistant-config/all.svg
 [img-repo-size]:https://img.shields.io/github/repo-size/renemarc/home-assistant-config.svg
 [img-code-size]:https://img.shields.io/github/languages/code-size/renemarc/home-assistant-config.svg
-[img-ha-version]:https://img.shields.io/badge/tested_on_Home_Assistant-0.65.6-53c1f1.svg
+[img-ha-version]:https://img.shields.io/badge/tested_on_Home_Assistant-0.66.1-53c1f1.svg
 [img-hassio]:https://img.shields.io/badge/config_for-Hass.io-53c1f1.svg
 [img-license]:https://img.shields.io/github/license/renemarc/home-assistant-config.svg
 
@@ -370,5 +370,5 @@ Link references.
 [link-board]:https://github.com/renemarc/home-assistant-config/projects/1
 [link-travis-ci]:https://travis-ci.org/renemarc/home-assistant-config
 [link-hassio]:https://home-assistant.io/hassio/
-[link-ha-version]:https://home-assistant.io/blog/2018/02/26/release-65/
+[link-ha-version]:https://www.home-assistant.io/blog/2018/03/30/release-66/
 [link-license]:LICENSE.txt
