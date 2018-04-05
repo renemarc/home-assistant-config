@@ -1,0 +1,30 @@
+#
+# Warn when perimeter device is tempered with
+#
+# @publish input_boolean.tamper_detected
+#
+- id: tamper_detection_start
+  alias: Tamper detection START
+  trigger:
+    # When front door tamper is detected.
+    - platform: state
+      entity_id: sensor.front_door_burglar
+      from: '0'
+
+  action:
+    # Record which devices are tampered with.
+    - service: variable.set_variable
+      data:
+        variable: tamper_detected
+        value_template: >
+          {% set value = '' %}
+          {% if not is_state('sensor.front_door_burglar', '0') %}
+            {% set value = value + 'Front Door,' %}
+          {% endif %}
+
+          {{ value[:-1] }}
+
+    # Enable tamper alert.
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.tamper_detected

@@ -5,10 +5,12 @@
 #
 language: python
 python:
-  - "3.5"
+  - "3.6"
 before_install:
   - cp secrets-dummy.yaml secrets.yaml
+  - touch home-assistant_v2.db
+  - touch home-assistant.log
 install:
   - pip3 install homeassistant
 script:
-  - hass -c . --script check_config
+  - hass --script check_config -c . -f

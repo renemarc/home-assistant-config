@@ -1,0 +1,118 @@
+#
+# Media player paused/stopped video content
+#
+# This automation only responds to the pausing/stopping of HTPC video playback.
+# If music is playing on any HTPC media player then this automation will not
+# perform its action.
+#
+# @publish input_select.scene
+#
+- id: video_player_stop
+  alias: Video player STOP
+  trigger:
+    # When media playback has been paused.
+    - platform: state
+      entity_id:
+        - media_player.kodi
+        - media_player.plex_htpc_chrome
+        - media_player.plex_htpc_chrome_lan
+        - media_player.plex_htpc_firefox
+        - media_player.plex_htpc_firefox_lan
+        - media_player.plex_htpc_microsoft_edge
+        - media_player.plex_htpc_microsoft_edge_lan
+      to: 'paused'
+
+    # When media playback has been stopped.
+    - platform: state
+      entity_id:
+        - media_player.kodi
+        - media_player.plex_htpc_chrome
+        - media_player.plex_htpc_chrome_lan
+        - media_player.plex_htpc_firefox
+        - media_player.plex_htpc_firefox_lan
+        - media_player.plex_htpc_microsoft_edge
+        - media_player.plex_htpc_microsoft_edge_lan
+      to: 'idle'
+
+    # When media player has been closed down.
+    - platform: state
+      entity_id:
+        - media_player.kodi
+        - media_player.plex_htpc_chrome
+        - media_player.plex_htpc_chrome_lan
+        - media_player.plex_htpc_firefox
+        - media_player.plex_htpc_firefox_lan
+        - media_player.plex_htpc_microsoft_edge
+        - media_player.plex_htpc_microsoft_edge_lan
+      to: 'off'
+
+  condition:
+    # If no media player is showing video content.
+    - condition: template
+      value_template: >-
+        {{
+            (
+              not is_state('media_player.kodi', 'playing') or
+              (
+                not is_state_attr('media_player.kodi', 'media_content_type', 'movie') and
+                not is_state_attr('media_player.kodi', 'media_content_type', 'tvshow') and
+                not is_state_attr('media_player.kodi', 'media_content_type', 'video')
+              )
+            ) and
+            (
+              not is_state('media_player.plex_htpc_chrome', 'playing') or
+              (
+                not is_state_attr('media_player.plex_htpc_chrome', 'media_content_type', 'movie') and
+                not is_state_attr('media_player.plex_htpc_chrome', 'media_content_type', 'tvshow') and
+                not is_state_attr('media_player.plex_htpc_chrome', 'media_content_type', 'video')
+              )
+            ) and
+            (
+              not is_state('media_player.plex_htpc_chrome_lan', 'playing') or
+              (
+                not is_state_attr('media_player.plex_htpc_chrome_lan', 'media_content_type', 'movie') and
+                not is_state_attr('media_player.plex_htpc_chrome_lan', 'media_content_type', 'tvshow') and
+                not is_state_attr('media_player.plex_htpc_chrome_lan', 'media_content_type', 'video')
+              )
+
+            ) and
+            (
+              not is_state('media_player.plex_htpc_firefox', 'playing') or
+              (
+                not is_state_attr('media_player.plex_htpc_firefox', 'media_content_type', 'movie') and
+                not is_state_attr('media_player.plex_htpc_firefox', 'media_content_type', 'tvshow') and
+                not is_state_attr('media_player.plex_htpc_firefox', 'media_content_type', 'video')
+              )
+            ) and
+            (
+              not is_state('media_player.plex_htpc_firefox_lan', 'playing') or
+              (
+                not is_state_attr('media_player.plex_htpc_firefox_lan', 'media_content_type', 'movie') and
+                not is_state_attr('media_player.plex_htpc_firefox_lan', 'media_content_type', 'tvshow') and
+                not is_state_attr('media_player.plex_htpc_firefox_lan', 'media_content_type', 'video')
+              )
+            ) and
+            (
+              not is_state('media_player.plex_htpc_microsoft_edge', 'playing') or
+              (
+                not is_state_attr('media_player.plex_htpc_microsoft_edge', 'media_content_type', 'movie') and
+                not is_state_attr('media_player.plex_htpc_microsoft_edge', 'media_content_type', 'tvshow') and
+                not is_state_attr('media_player.plex_htpc_microsoft_edge', 'media_content_type', 'video')
+              )
+            ) and
+            (
+              not is_state('media_player.plex_htpc_microsoft_edge_lan', 'playing') or
+              (
+                not is_state_attr('media_player.plex_htpc_microsoft_edge_lan', 'media_content_type', 'movie') and
+                not is_state_attr('media_player.plex_htpc_microsoft_edge_lan', 'media_content_type', 'tvshow') and
+                not is_state_attr('media_player.plex_htpc_microsoft_edge_lan', 'media_content_type', 'video')
+              )
+            )
+        }}
+
+  action:
+    # Return the global scene to default.
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.scene
+        option: Default

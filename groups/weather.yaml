@@ -28,6 +28,7 @@ atmospheric_safety:
     - sensor.aqi_ozone_friendly
     - sensor.aqi_carbon_monoxide_friendly
     - sensor.aqi_nitrogen_dioxide_friendly
+    - sensor.aqi_sulphur_dioxide_friendly
 
 radar_rain:
   name: Rain Radar Map

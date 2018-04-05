@@ -1,42 +1,42 @@
 #
 # When noise makers should be allowed to run
 #
-# @subscribe input_boolean.night_mode
 # @subscribe input_boolean.nap_mode
+# @subscribe input_boolean.night_mode
 #
 # @publish input_boolean.quiet_mode
 #
 - id: quiet_mode_stop
   alias: Quiet mode STOP
   trigger:
-    # It's daytime.
+    # When it's daytime.
     - platform: time
       at: '07:30:00'
 
-    # Sleep time is over.
+    # When night mode is over.
     - platform: state
       entity_id: input_boolean.night_mode
       from: 'on'
       to: 'off'
 
-    # Nap time is over.
+    # When nap mode is over.
     - platform: state
       entity_id: input_boolean.nap_mode
       from: 'on'
       to: 'off'
 
   condition:
-    # It has been quiet time.
+    # If it has been quiet mode.
     - condition: state
       entity_id: input_boolean.quiet_mode
       state: 'on'
 
-    # It's not during sleep time.
+    # If it's not during night mode.
     - condition: state
       entity_id: input_boolean.night_mode
       state: 'off'
 
-    # It's not during nap time.
+    # If it's not during nap mode.
     - condition: state
       entity_id: input_boolean.nap_mode
       state: 'off'

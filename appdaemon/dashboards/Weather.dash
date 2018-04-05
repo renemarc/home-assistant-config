@@ -255,6 +255,13 @@ aqi_nitrogen_dioxide:
     sub_entity: sensor.aqi_nitrogen_dioxide_friendly
     state_text_style: "background-color:#555;"
 
+aqi_sulphur_dioxide:
+    widget_type: sensor
+    title: Sulphur Dioxide
+    entity: sensor.aqi_sulphur_dioxide
+    sub_entity: sensor.aqi_sulphur_dioxide_friendly
+    state_text_style: "background-color:#555;"
+
 uv:
     widget_type: sensor
     title: UV
@@ -272,5 +279,5 @@ layout:
     - nav_switchboard,  camera_noaa(3x3), camera_environment_canada(3x3), wind, daily_forecast(2x1)
     - nav_weather,      wind_icon, weekly_forecast(2x1)
     - nav_spacer(1x2),  spacer, temperature_today, weather_icon_today
-    - spacer,           spacer(6x1), temperature_tomorrow, weather_icon_tomorrow
-    - nav_status,       uv, aqi, aqi_particles, aqi_ozone, aqi_carbon_monoxide, aqi_nitrogen_dioxide, spacer, temperature_after_tomorrow, weather_icon_after_tomorrow
+    -                   aqi, uv, sensor.doomsday_clock, spacer(4x1), temperature_tomorrow, weather_icon_tomorrow
+    - nav_status,       aqi_particles, aqi_ozone, aqi_carbon_monoxide, aqi_nitrogen_dioxide, aqi_sulphur_dioxide, spacer(2x1), temperature_after_tomorrow, weather_icon_after_tomorrow

@@ -1,0 +1,30 @@
+auto_start: true
+port: !secret homekit_port
+filter:
+  include_entities:
+    - input_boolean.low_mode
+    - input_boolean.nap_mode
+    - input_boolean.night_mode
+    - input_boolean.quiet_mode
+    - light.bedroom
+    - light.countertop
+    - light.headboard
+    - light.island
+    - light.lightpack
+    - light.lounge
+    - light.microwave
+    - light.middle
+    - light.sink
+    - light.underbed
+    - sensor.average_humidity
+    - sensor.average_temperature
+    - sensor.bedroom_humidity
+    - sensor.bedroom_temperature
+    - sensor.lounge_humidity
+    - sensor.lounge_temperature
+    - switch.bedroom_fan
+    - switch.bedside_light
+    - switch.dehumidifier
+    - switch.nightstand_light
+    - switch.souvenirs_light
+    - switch.window_light

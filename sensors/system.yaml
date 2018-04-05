@@ -44,7 +44,7 @@
       friendly_name: Home Assistant Version
       icon_template: mdi:update
       value_template: >-
-        {% if states('sensor.current_version') != "unknown" %}
+        {% if states('sensor.current_version') != 'unknown' %}
           Home Assistant {{ states('sensor.current_version') }}
         {% else %}
           Home Assistant
@@ -54,7 +54,7 @@
       friendly_name: Update Available
       icon_template: mdi:update
       value_template: >-
-        {% if states('updater.updater') != "unknown" %}
+        {% if states('updater.updater') != 'unknown' %}
           Update available: {{ states('updater.updater') }}
         {% endif %}
 
@@ -67,22 +67,22 @@
 #
 - platform: template
   sensors:
-    disk_used_percent:
-      friendly_name: Disk Used /home
+    disk_use_percent:
+      friendly_name: Disk Use /home
       icon_template: mdi:harddisk
       unit_of_measurement: '%'
       value_template: >-
-        {% set disk_used = states('sensor.disk_used_home') | float %}
+        {% set disk_use = states('sensor.disk_use_home') | float %}
         {% set disk_free = states('sensor.disk_free_home') | float %}
 
-        {{ (100 * disk_used / (disk_used + disk_free)) | round }}
+        {{ (100 * disk_use / (disk_use + disk_free)) | round }}
 
     disk_free_percent:
       friendly_name: Disk Free /home
       icon_template: mdi:harddisk
       unit_of_measurement: '%'
       value_template: >-
-        {{ 100 - states('sensor.disk_used_percent') | float | round }}
+        {{ 100 - states('sensor.disk_use_percent') | float | round }}
 
 
 #
@@ -93,22 +93,22 @@
 #
 - platform: template
   sensors:
-    ram_used_percent:
-      friendly_name: RAM Used
+    memory_use_percent:
+      friendly_name: Memory Use
       icon_template: mdi:memory
       unit_of_measurement: '%'
       value_template: >-
-        {% set ram_used = states('sensor.ram_used') | float %}
-        {% set ram_free = states('sensor.ram_available') | float %}
+        {% set memory_use = states('sensor.memory_use') | float %}
+        {% set memory_free = states('sensor.memory_free') | float %}
 
-        {{ (100 * ram_used / (ram_used + ram_free)) | round }}
+        {{ (100 * memory_use / (memory_use + memory_free)) | round }}
 
-    ram_free_percent:
-      friendly_name: RAM Free
+    memory_free_percent:
+      friendly_name: Memory Free
       icon_template: mdi:memory
       unit_of_measurement: '%'
       value_template: >-
-        {{ 100 - states('sensor.ram_used_percent') | float | round }}
+        {{ 100 - states('sensor.memory_use_percent') | float | round }}
 
 
 #
@@ -241,9 +241,9 @@
       icon_template: mdi:chip
       unit_of_measurement: '%'
       value_template: >-
-         {% set load1 = '{0:0.2f}'.format(states('sensor.average_load_1m') | float) %}
-         {% set load5 = '{0:0.2f}'.format(states('sensor.average_load_5m') | float) %}
-         {% set load15 = '{0:0.2f}'.format(states('sensor.average_load_15m') | float) %}
+         {% set load1 = '{0:0.2f}'.format(states('sensor.load_1m') | float) %}
+         {% set load5 = '{0:0.2f}'.format(states('sensor.load_5m') | float) %}
+         {% set load15 = '{0:0.2f}'.format(states('sensor.load_15m') | float) %}
 
          {{ load1 }} {{ load5 }} {{ load15 }}
 
@@ -272,6 +272,7 @@
 # @see /appdaemon/dashboards/Status.dash
 # @see /groups/status.yaml
 #
+# @link https://community.home-assistant.io/t/displaying-cpu-temperature-within-home-assistant/8641
 # @link https://home-assistant.io/components/sensor.command_line/
 #
 - platform: command_line
@@ -284,32 +285,30 @@
 
 
 #
-# Database size
+# File sizes
 #
 # @see /appdaemon/dashboards/Status.dash
 # @see /groups/status.yaml
 #
-# @link https://community.home-assistant.io/t/recorder-purge-function/17154/12
-# @link https://home-assistant.io/components/sensor.command_line/
+# @link https://www.home-assistant.io/components/sensor.filesize/
 #
-- platform: command_line
-  name: Database Size
-  scan_interval: 600
-  unit_of_measurement: 'MiB'
-  command: "du -m /config/home-assistant_v2.db | cut -f1"
+- platform: filesize
+  file_paths:
+    - !secret filesize_database
+    - !secret filesize_log
 
+- platform: template
+  sensors:
+    database_size:
+      friendly_name: Database Size
+      icon_template: mdi:database
+      unit_of_measurement: 'MiB'
+      value_template: >-
+         {{ states('sensor.homeassistant_v2db') | round }}
 
-#
-# Log file size
-#
-# @see /appdaemon/dashboards/Status.dash
-# @see /groups/status.yaml
-#
-# @link https://community.home-assistant.io/t/recorder-purge-function/17154/12
-# @link https://home-assistant.io/components/sensor.command_line/
-#
-- platform: command_line
-  name: Logfile Size
-  scan_interval: 600
-  unit_of_measurement: 'KiB'
-  command: "du -k /config/home-assistant.log | cut -f1"
+    log_size:
+      friendly_name: Log Size
+      icon_template: mdi:history
+      unit_of_measurement: 'KiB'
+      value_template: >-
+         {{ (states.sensor.homeassistantlog.attributes.bytes / 1024) | round }}

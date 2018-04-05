@@ -1,0 +1,29 @@
+#
+# Displays
+#
+# @see /custom_components/display/
+#
+# @link https://github.com/daemondazz/homeassistant-displays
+#
+
+
+#
+# Fully Kiosk Browser app
+#
+# Third-party component to get some basic information on an instance of the
+# Fully app running on a connected Android device and to allow the toggling of
+# its screen.
+#
+# Motion sensor is not integrated here, but instead is an API endpoint called
+# by a custom JavaScript handler in the Moden HADashboard theme.
+#
+# @see /custom_components/display/fully_kiosk.py
+# @see /appdaemon/custom_css/modern/variables.yaml
+#
+# @link https://www.ozerov.de/fully-kiosk-browser/#rest
+#
+- platform: fully_kiosk
+  name: Kiosk
+  host: !secret fully_kiosk_host
+  port: !secret fully_kiosk_port
+  password: !secret fully_kiosk_password

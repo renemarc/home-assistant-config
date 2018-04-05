@@ -1,0 +1,104 @@
+#
+# Media player plays video content
+#
+# This automation will kick in only if video playback is starting/resuming on an
+# HTPC media player. Playing audio or anything else will not trigger the action.
+#
+# @subscribe input_boolean.nap_mode
+#
+# @publish input_select.scene
+#
+- id: video_player_resume
+  alias: Video player RESUME
+  trigger:
+    # When video media player resumes playback.
+    - platform: state
+      entity_id:
+        - media_player.kodi
+        - media_player.plex_htpc_chrome_lan
+        - media_player.plex_htpc_chrome_lan
+        - media_player.plex_htpc_firefox_lan
+        - media_player.plex_htpc_firefox_lan
+        - media_player.plex_htpc_microsoft_edge
+        - media_player.plex_htpc_microsoft_edge_lan
+      to: 'playing'
+
+  condition:
+    # If the sun is set.
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+
+    # If it's not during the nap mode.
+    - condition: state
+      entity_id: input_boolean.nap_mode
+      state: 'off'
+
+    # If we're playing videos.
+    - condition: template
+      value_template: >-
+        {{
+            (
+              is_state('media_player.kodi', 'playing') and
+              (
+                is_state_attr('media_player.kodi', 'media_content_type', 'movie') or
+                is_state_attr('media_player.kodi', 'media_content_type', 'tvshow') or
+                is_state_attr('media_player.kodi', 'media_content_type', 'video')
+              )
+            ) or
+            (
+              is_state('media_player.plex_htpc_chrome', 'playing') and
+              (
+                is_state_attr('media_player.plex_htpc_chrome', 'media_content_type', 'movie') or
+                is_state_attr('media_player.plex_htpc_chrome', 'media_content_type', 'tvshow') or
+                is_state_attr('media_player.plex_htpc_chrome', 'media_content_type', 'video')
+              )
+            ) or
+            (
+              is_state('media_player.plex_htpc_chrome_lan', 'playing') and
+              (
+                is_state_attr('media_player.plex_htpc_chrome_lan', 'media_content_type', 'movie') or
+                is_state_attr('media_player.plex_htpc_chrome_lan', 'media_content_type', 'tvshow') or
+                is_state_attr('media_player.plex_htpc_chrome_lan', 'media_content_type', 'video')
+              )
+            ) or
+            (
+              is_state('media_player.plex_htpc_firefox', 'playing') and
+              (
+                is_state_attr('media_player.plex_htpc_firefox', 'media_content_type', 'movie') or
+                is_state_attr('media_player.plex_htpc_firefox', 'media_content_type', 'tvshow') or
+                is_state_attr('media_player.plex_htpc_firefox', 'media_content_type', 'video')
+              )
+            ) or
+            (
+              is_state('media_player.plex_htpc_firefox_lan', 'playing') and
+              (
+                is_state_attr('media_player.plex_htpc_firefox_lan', 'media_content_type', 'movie') or
+                is_state_attr('media_player.plex_htpc_firefox_lan', 'media_content_type', 'tvshow') or
+                is_state_attr('media_player.plex_htpc_firefox_lan', 'media_content_type', 'video')
+              )
+            ) or
+            (
+              is_state('media_player.plex_htpc_microsoft_edge', 'playing') and
+              (
+                is_state_attr('media_player.plex_htpc_microsoft_edge', 'media_content_type', 'movie') or
+                is_state_attr('media_player.plex_htpc_microsoft_edge', 'media_content_type', 'tvshow') or
+                is_state_attr('media_player.plex_htpc_microsoft_edge', 'media_content_type', 'video')
+              )
+            ) or
+            (
+              is_state('media_player.plex_htpc_microsoft_edge_lan', 'playing') and
+              (
+                is_state_attr('media_player.plex_htpc_microsoft_edge_lan', 'media_content_type', 'movie') or
+                is_state_attr('media_player.plex_htpc_microsoft_edge_lan', 'media_content_type', 'tvshow') or
+                is_state_attr('media_player.plex_htpc_microsoft_edge_lan', 'media_content_type', 'video')
+              )
+            )
+        }}
+
+  action:
+    # Set the global scene to movies.
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.scene
+        option: Movie

@@ -1,8 +1,8 @@
 #
 # When someone takes a nap
 #
-# Should lower lights and minimize noises without preventing someone else
-# from being active.
+# Lowers lights and minimize noises without preventing someone else from being
+# active.
 #
 # @publish input_boolean.nap_mode
 #
@@ -11,7 +11,14 @@
 - id: nap_mode_start
   alias: Nap mode START
   trigger:
-    # Bedsite Flic button is pressed once.
+    # When Minimote button 2 pressed once.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 3 # 3 = button #2 pressed once.
+
+    # When bedside Flic button is pressed once.
     - platform: event
       event_type: flic_click
       event_data:

@@ -17,6 +17,23 @@
   unit_of_measurement: '°C'
   value_template: '{{ value_json.temperature_C | round }}'
 
+- platform: filter
+  name: Bedroom Humidity Filtered
+  entity_id: sensor.bedroom_humidity
+  filters:
+    - filter: lowpass
+      time_constant: 10
+      precision: 1
+
+- platform: filter
+  name: Bedroom Temperature Filtered
+  entity_id: sensor.bedroom_temperature
+  filters:
+    - filter: lowpass
+      time_constant: 10
+      precision: 1
+
+
 #
 # Lounge climate
 #
@@ -26,19 +43,35 @@
       friendly_name: Lounge Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.aeotec_zw100_multisensor_6_relative_humidity') | round }}"
+      value_template: "{{ states('sensor.lounge_multisensor_relative_humidity') | round }}"
 
     lounge_temperature:
       friendly_name: Lounge Temperature
       unit_of_measurement: '°C'
       icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.aeotec_zw100_multisensor_6_temperature') | round }}"
+      value_template: "{{ states('sensor.lounge_multisensor_temperature') | round }}"
 
     lounge_luminance:
       friendly_name: Lounge Luminance
       unit_of_measurement: 'lux'
       icon_template: mdi:blur
-      value_template: "{{ states('sensor.aeotec_zw100_multisensor_6_luminance') | round }}"
+      value_template: "{{ states('sensor.lounge_multisensor_luminance') | round }}"
+
+- platform: filter
+  name: Lounge Humidity Filtered
+  entity_id: sensor.lounge_humidity
+  filters:
+    - filter: lowpass
+      time_constant: 10
+      precision: 1
+
+- platform: filter
+  name: Lounge Temperature Filtered
+  entity_id: sensor.lounge_temperature
+  filters:
+    - filter: lowpass
+      time_constant: 10
+      precision: 1
 
 
 #
@@ -52,8 +85,8 @@
   type: mean
   round_digits: 0
   entity_ids:
-    - sensor.lounge_temperature
-    - sensor.bedroom_temperature
+    - sensor.bedroom_temperature_filtered
+    - sensor.lounge_temperature_filtered
 
 - platform: template
   sensors:
@@ -68,15 +101,18 @@
 # Average humidity
 #
 # Helps compensate for lack of accuracy of each active sensor.
-# They all claim to be precise, but precision doesn't mean accuracy!
+# They all claim to be precise, but precision doesn't mean accuracy nor
+# calibration!
+#
+# @todo calibrate all sensors.
 #
 - platform: min_max
   name: Average Humidity Exact
   type: mean
   round_digits: 1
   entity_ids:
-    - sensor.lounge_humidity
-    - sensor.bedroom_humidity
+    - sensor.bedroom_humidity_filtered
+    - sensor.lounge_humidity_filtered
 
 - platform: template
   sensors:

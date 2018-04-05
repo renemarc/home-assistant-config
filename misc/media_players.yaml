@@ -1,4 +1,11 @@
 #
+# Media players
+#
+# @link https://home-assistant.io/components/media_player/
+#
+
+
+#
 # Kodi
 #
 # @link https://kodi.tv/
@@ -17,15 +24,14 @@
 #
 # Plex
 #
-# Todo: Investigate the buggy connection to this media player.
-#
 # @link https://www.plex.tv/
 # @link https://home-assistant.io/components/media_player.plex/
 #
-# - platform: plex
-#   name: Plex
-#   include_non_clients: true
-#   scan_interval: 5
-#   show_all_controls: false
-#   use_custom_entity_ids: false
-#   use_episode_art: true
+- platform: plex
+  name: Plex
+  entity_namespace: plex
+  include_non_clients: true
+  scan_interval: 5
+  show_all_controls: false
+  use_custom_entity_ids: false
+  use_episode_art: true

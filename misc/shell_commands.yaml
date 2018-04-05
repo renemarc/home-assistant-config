@@ -1,4 +1,19 @@
 #
+# Shell commands
+#
+# @link https://home-assistant.io/components/shell_command/
+#
+
+
+#
+# Fully Kiosk Browser brightness
+#
+# @link https://www.ozerov.de/fully-kiosk-browser/#rest
+#
+kiosk_brightness: 'curl -k "http://{{host}}:{{port}}/?cmd=setStringSetting&key=screenBrightness&value={{value}}&type=json&password={{password}}"'
+
+
+#
 # LIFX API command to apply a cloud scene
 #
 # @link https://api.developer.lifx.com/docs/list-scenes

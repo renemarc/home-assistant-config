@@ -2,6 +2,18 @@
 
 GTFS data serves to calculate public transit routes and times. The [GTFS](https://home-assistant.io/components/sensor.gtfs/) sensor indicates how to convert new feeds into a database for local queries.
 
+<div align="center">
+    <figure>
+        <div>
+            <img src="../www/screenshots/group-transit.png" alt="Public Transit group" title="Normal theme" width="325">
+            <img src="../www/screenshots/group-transit-dark.png" alt="Public Transit group (dark theme)" title="Dark theme" width="325">
+        </div>
+        <figcaption>
+          <p><strong>Public Transit group with schedules for the next three departures in two directions. Yellow (warning) and red (critical) highlights are using <a href="../themes"><code>/theme</code></a> cards defined in <a href="../customize.yaml"><code>/customize.yaml</code></a> based on how much time is left before the bus leaves. 🚌🏃</strong></p>
+        </figcaption>
+    </figure>
+</div>
+
 
 ## A slow sensor
 
@@ -21,30 +33,42 @@ The way to regain speed is to add missing indexes and delete all schedule data f
 Ideally do perform the following steps on a better machine, like a Docker build of Home Assistant on your desktop computer. Mind you, you could still use a Raspberry Pi but it will just take longer to do all those steps and it will bore you to death.
 
 1. Build the database. Let Home Assistant complain all it wants and wait for the database to stop growing, your sign that it is ready.
-1. Connect to the resulting SQLite database via the command-line and create a backup, just in case:
+2. Connect to the resulting SQLite database via the command-line and create a backup, just in case:
  ```sql
-    .backup backup_full.sqlite
- ``` 
-1. Then run the following commands to delete all stops data except the few that you have configured for the sensor (say, 3333, 4444 and 5555):
- ```sql
-    DELETE FROM stop_times WHERE stop_id NOT IN (3333, 4444, 5555);
-    DELETE FROM stops WHERE stop_id NOT IN (3333, 4444, 5555);
+ .backup backup_full.sqlite
  ```
-1. While still connected, add the missing undexes:
+3. Then run the following commands to delete all stops data except the few that you have configured for the sensor (say, 3333, 4444 and 5555):
  ```sql
-    CREATE INDEX idx_trips_service_id ON trips(service_id);
-    CREATE INDEX idx_stop_times_stop_id ON stop_times(stop_id);
-    CREATE INDEX idx_stop_times_trip_id ON stop_times(trip_id);
-    CREATE INDEX idx_stop_times_stop_sequence ON stop_times(stop_sequence);
-    CREATE INDEX idx_stop_times_departure_time ON stop_times(departure_time);
+ DELETE FROM stop_times
+ WHERE stop_id NOT IN (3333, 4444, 5555);
+
+ DELETE FROM stops
+ WHERE stop_id NOT IN (3333, 4444, 5555);
  ```
-1. In my case my transit agency did not add its own agency ID to the routes, leading to faulty queries. To fix this:
+4. While still connected, add the missing undexes:
+ ```sql
+ CREATE INDEX idx_trips_service_id ON trips(service_id);
+
+ CREATE INDEX idx_stop_times_stop_id ON stop_times(stop_id);
+
+ CREATE INDEX idx_stop_times_trip_id ON stop_times(trip_id);
+
+ CREATE INDEX idx_stop_times_stop_sequence ON stop_times(stop_sequence);
+
+ CREATE INDEX idx_stop_times_departure_time ON stop_times(departure_time);
+ ```
+5. In my case my transit agency did not add its own agency ID to the routes, leading to faulty queries. To fix this:
   ```sql
-    UPDATE routes SET agency_id = (SELECT agency_id FROM agency WHERE feed_id = 1);
+ UPDATE routes
+ SET agency_id = (
+     SELECT agency_id
+     FROM agency
+     WHERE feed_id = 1
+ );
   ```
-1. Finally, trim the database file to remove all the empty space within.
+6. Finally, trim the database file to remove all the empty space within.
   ```sql
-    VACUUM;
+ VACUUM;
   ```
 
 Voilà! The resulting file can be copied over to the Raspberry Pi and Home Assistant restarted. Speed at last!

@@ -1,5 +1,8 @@
 #
-# Turn on ceiling wash lights.
+# Turn on ceiling wash lights
+#
+# @subscribe input_boolean.nap_mode
+# @subscribe input_boolean.night_mode
 #
 - id: ceiling_on
   alias: Ceiling ON
@@ -30,5 +33,5 @@
     - service: homeassistant.turn_on
       data:
         entity_id:
-          - group.ceiling
+          - group.ceiling_lights
         transition: 5

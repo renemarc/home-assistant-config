@@ -1,0 +1,51 @@
+#
+# Warn whenever the front door is opening or closing
+#
+# Useful to indicate to an otherwise oblivious showering partner that someone
+# likely just came in or left the premises.
+#
+# @subscribe binary_sensor.front_door_sensor
+#
+# @see /lights/lifx.yaml
+#
+- id: front_door_notify
+  alias: Front door NOTIFY
+  trigger:
+    # When the front door sensor senses openness or closure.
+    - platform: state
+      entity_id: binary_sensor.front_door_sensor
+
+  action:
+    # Flash some smart lights, in case one didn't hear a door opening/closing.
+    - service: light.lifx_effect_pulse
+      data:
+        entity_id: group.lifx_lights
+        brightness: 120
+        period: 1
+        cycles: 1
+      data_template:
+        mode: >-
+          {% if is_state('binary_sensor.front_door_sensor', 'on') %}
+            breathe
+          {% else %}
+            blink
+          {% endif %}
+        color_name: >-
+          {% if is_state('binary_sensor.front_door_sensor', 'on') %}
+            cyan
+          {% else %}
+            purple
+          {% endif %}
+
+    # Play a welcoming sound.
+    - condition: state
+      entity_id: binary_sensor.front_door_sensor
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.quiet_mode
+      state: 'off'
+    - service: notify.sound
+      data:
+        message: "chime"
+        data:
+          method: "alarm"

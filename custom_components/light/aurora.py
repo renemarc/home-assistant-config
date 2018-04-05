@@ -14,9 +14,9 @@ import logging
 import voluptuous as vol
 
 from homeassistant.components.light import (
-    ATTR_BRIGHTNESS, ATTR_COLOR_TEMP, ATTR_EFFECT, ATTR_RGB_COLOR,
+    ATTR_BRIGHTNESS, ATTR_COLOR_TEMP, ATTR_EFFECT, ATTR_HS_COLOR,
     SUPPORT_EFFECT, SUPPORT_BRIGHTNESS, SUPPORT_COLOR_TEMP,
-    SUPPORT_RGB_COLOR, PLATFORM_SCHEMA, Light)
+    SUPPORT_COLOR, PLATFORM_SCHEMA, Light)
 from homeassistant.const import CONF_HOST, CONF_TOKEN, CONF_NAME
 import homeassistant.helpers.config_validation as cv
 from homeassistant.util import color as color_util
@@ -26,7 +26,7 @@ from homeassistant.util.color import \
 REQUIREMENTS = ['nanoleaf==0.4.1']
 
 SUPPORT_AURORA = (SUPPORT_BRIGHTNESS | SUPPORT_COLOR_TEMP | SUPPORT_EFFECT |
-                  SUPPORT_RGB_COLOR)
+                  SUPPORT_COLOR)
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -39,17 +39,17 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 
 def setup_platform(hass, config, add_devices, discovery_info=None):
     """Setup Nanoleaf Aurora device."""
-    from nanoleaf import Aurora
+    import nanoleaf
     host = config.get(CONF_HOST)
     name = config.get(CONF_NAME)
     token = config.get(CONF_TOKEN)
-    aurora_light = Aurora(host, token)
+    aurora_light = nanoleaf.Aurora(host, token)
     aurora_light.hass_name = name
 
     if aurora_light.on is None:
         _LOGGER.error("Could not connect to \
         Nanoleaf Aurora: %s on %s", name, host)
-    add_devices([AuroraLight(aurora_light)])
+    add_devices([AuroraLight(aurora_light)], True)
 
 
 class AuroraLight(Light):
@@ -57,14 +57,14 @@ class AuroraLight(Light):
 
     def __init__(self, light):
         """Initialize an Aurora."""
-        self._brightness = light.brightness
-        self._color_temp = light.color_temperature
-        self._effect = light.effect
-        self._effects_list = light.effects_list
+        self._brightness = None
+        self._color_temp = None
+        self._effect = None
+        self._effects_list = None
         self._light = light
         self._name = light.hass_name
-        self._rgb_color = light.rgb
-        self._state = light.on
+        self._hs_color = None
+        self._state = None
 
     @property
     def brightness(self):
@@ -107,9 +107,9 @@ class AuroraLight(Light):
         return self._state
 
     @property
-    def rgb_color(self):
-        """Return the color in RGB."""
-        return self._rgb_color
+    def hs_color(self):
+        """Return the color in HS."""
+        return self._hs_color
 
     @property
     def supported_features(self):
@@ -120,17 +120,14 @@ class AuroraLight(Light):
         """Instruct the light to turn on."""
         self._light.on = True
         brightness = kwargs.get(ATTR_BRIGHTNESS)
-        rgb_color = kwargs.get(ATTR_RGB_COLOR)
+        hs_color = kwargs.get(ATTR_HS_COLOR)
         color_temp_mired = kwargs.get(ATTR_COLOR_TEMP)
         effect = kwargs.get(ATTR_EFFECT)
 
-        if rgb_color:
-            self._light.rgb = rgb_color
-            # Aurora API automatically sets scene to 100 brightness
-            # This is to make sure that old brightness values are kept
-            # If brightness is also set in the same call, the value will
-            # be overwritten in a later block
-            self._light.brightness = self._brightness
+        if hs_color:
+            hue, saturation = hs_color
+            self._light.hue = int(hue)
+            self._light.saturation = int(saturation)
 
         if color_temp_mired:
             self._light.color_temperature = mired_to_kelvin(color_temp_mired)
@@ -152,5 +149,5 @@ class AuroraLight(Light):
         self._color_temp = self._light.color_temperature
         self._effect = self._light.effect
         self._effects_list = self._light.effects_list
-        self._rgb_color = self._light.rgb
+        self._hs_color = self._light.hue, self._light.saturation
         self._state = self._light.on

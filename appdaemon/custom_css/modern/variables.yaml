@@ -43,7 +43,37 @@ head_includes:
 #
 
 body_includes:
- - <! body tags go here ->
+ - |
+    <script>
+    /**
+     * Send motion detection event to Home Assistant API
+     *
+     * It turns off the sensor before turning it on again, to make sure that
+     * any change is registered. A bit dirty, but it works!
+     */
+    if (typeof fully != 'undefined') {
+      function reportKioskMotion() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.open('POST', 'http://hassio.local:8123/api/states/binary_sensor.kiosk_motion', false);
+        xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhttp.send(JSON.stringify({
+          'state': 'off',
+          'attributes': {
+            'friendly_name': 'Kiosk Motion'
+          }
+        }));
+        xhttp.open('POST', 'http://hassio.local:8123/api/states/binary_sensor.kiosk_motion', false);
+        xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xhttp.send(JSON.stringify({
+          'state': 'on',
+          'attributes': {
+            'friendly_name': 'Kiosk Motion'
+          }
+        }));
+      }
+      fully.bind('onMotion', 'reportKioskMotion();');
+    }
+    </script>
 
 #
 # Styles

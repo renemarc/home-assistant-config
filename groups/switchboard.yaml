@@ -16,13 +16,6 @@ switchboard_view:
 #
 # Groups
 #
-bed:
-  name: Bed
-  entities:
-    - input_select.bed_effect
-    - light.underbed
-    - light.headboard
-
 bedroom:
   name: Bedroom
   entities:
@@ -51,6 +44,12 @@ kitchen:
     - light.sink
     - light.microwave
     - light.island
+    - display.kiosk
+    - binary_sensor.kiosk_motion_auto
+    # - light.mqtt_countertop
+    # - light.mqtt_sink
+    # - light.mqtt_microwave
+    # - light.mqtt_island
 
 lounge:
   name: Lounge
@@ -58,13 +57,16 @@ lounge:
     - input_select.aurora_effect
     - light.aurora
     - sensor.hline_dashed
-    - light.spotlight
+    - input_select.lightpack_effect
     - light.lightpack
+    - sensor.hline_dashed_2
+    - light.spotlight
     - switch.souvenirs_light
     - switch.window_light
     - sensor.lounge_temperature
     - sensor.lounge_humidity
     - sensor.lounge_luminance
+    - binary_sensor.lounge_multisensor_sensor
 
 washroom:
   name: Washroom

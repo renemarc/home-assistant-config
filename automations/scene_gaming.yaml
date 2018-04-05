@@ -1,0 +1,29 @@
+#
+# Toggle the gaming scene
+#
+# @publish input_select.scene
+#
+# @see /scripts/scene_gaming.yaml
+#
+- id: scene_gaming
+  alias: Scene GAMING
+  trigger:
+    # When Minimote button 4 is clicked.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 7 # 7 = button #4 clicked.
+
+  action:
+    # Toggle the gaming scene.
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.scene
+      data_template:
+        option: >-
+          {% if is_state('input_select.scene', 'Gaming') %}
+            Default
+          {% else %}
+            Gaming
+          {% endif %}

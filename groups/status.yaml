@@ -19,6 +19,7 @@ status_view:
 battery:
   name: Battery Levels
   entities:
+    - sensor.kiosk_battery
     - sensor.front_door_sensor_battery
     - sensor.bedroom_multisensor_battery
     - sensor.lounge_multisensor_battery
@@ -27,6 +28,7 @@ humidity:
   name: Humidity
   entities:
     - sensor.average_humidity
+    - sensor.hline_dashed
     - sensor.bedroom_humidity
     - sensor.lounge_humidity
 
@@ -52,15 +54,16 @@ system:
     - sensor.uptime_friendly
     - sensor.uptime_host
     - sensor.cpu_temp
-    - sensor.cpu_used
-    - sensor.ram_used_percent
-    - sensor.disk_used_percent
+    - sensor.processor_use
+    - sensor.memory_use_percent
+    - sensor.disk_use_percent
     - sensor.database_size
-    - sensor.logfile_size
+    - sensor.log_size
 
 temperature:
   name: Temperature
   entities:
     - sensor.average_temperature
+    - sensor.hline_dashed
     - sensor.bedroom_temperature
     - sensor.lounge_temperature

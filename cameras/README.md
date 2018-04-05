@@ -1,18 +1,45 @@
 # Cameras
 
-I use camera sensors to fetch and display web images in [`/appdeamon/dashboards`](../appdeamon/dashboards).
+I use camera sensors to fetch and display web images in [`/appdaemon/dashboards/`](../appdaemon/dashboards).
+
+## Weather cameras
+
+### [`📡 ./environment_canada.yaml`](environment_canada.yaml)
+
+[Environment Canada](https://weather.gc.ca/radar/)'s rain and snow radar maps for the last 30 minutes or so, gathered to create simple animations in [`/appdaemon/dashboards/Weather.dash`](../appdaemon/dashboards/Weather.dash).
+
+<div align="center">
+    <figure>
+        <div>
+            <img src="../www/screenshots/card-radar-rain.png" alt="Environment Canada rain radar map" title="Environment Canada Rain" width="325">
+            <img src="../www/screenshots/card-radar-snow.png" alt="Environment Canada snow radar map" title="Environment Canada Snow" width="325">
+        </div>
+        <figcaption>
+            <p><strong>Environment Canada weather radar maps.</strong></p>
+        </figcaption>
+    </figure>
+</div>
 
 
-## Environment Canada radar maps
+### [`🛰 ./noaa.yaml`](noaa.yaml)
 
-Rain and snow radar maps for the last 30 minutes or so, gathered to create simple animations in [`/appdeamon/dashboards/Weather.dash`](../appdeamon/dashboards/Weather.dash).
+NOAA's (U.S. National Oceanic and Atmospheric Administration) colourized and water vapour [GOES-East satellite images](https://www.star.nesdis.noaa.gov/GOES/GOES16_sectors.php?sector=ne) for the current air masses. Unlike the radar maps above these are not animated in the dashboards because precision is less relevant at those scales.
+
+<div align="center">
+    <figure>
+        <div>
+            <img src="../www/screenshots/card-satellite-geocolour.jpg" alt="NOAA GeoColour satellite image of North-America's East Coast" title="NOAA GeoColour satellite image" width="325">
+            <img src="../www/screenshots/card-satellite-vapour.jpg" alt="NOAA Water Vapour satellite image of North-America's East Coast" title="NOAA Water Vapour satellite image" width="325">
+        </div>
+        <figcaption>
+            <p><strong>NOAA GOES-East satellite images for North-America's East Coast.</strong></p>
+        </figcaption>
+    </figure>
+</div>
 
 
-## NOAA (U.S. National Oceanic and Atmospheric Administration) satellite imaging
+## Other
 
-Colourized and water vapour satellite images for the current air masses. Unlike the radar maps above these are not animated because precision is less relevant at those scales.
+### [`🖼 ./wallpapers.yaml`](wallpapers.yaml)
 
-
-## Wallpapers
-
-Pretty daily pictures from Bing and NASA, showcased in [`/appdeamon/dashboards/Main.dash`](../appdeamon/dashboards/Main.dash) 
+Pretty daily pictures from [Bing](http://bing.com) and [NASA](https://apod.nasa.gov/apod/astropix.html), showcased in [`/appdaemon/dashboards/Main.dash`](../appdaemon/dashboards/Main.dash) 

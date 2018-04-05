@@ -1,33 +1,56 @@
 # Custom UI state cards
 
-These third-party state cards are used to adapt the looks of Home Assistant sensors for easier information consumption.
+These state cards are used to adapt the looks of Home Assistant sensors for easier information consumption.
 
+## Third-party state cards
 
-## Custom UI elements
+### [`🌈 ./state-card-custom-ui(-es5?).html(.gz?)`](state-card-custom-ui.html)
 
 **[Custom UI elements](https://github.com/andrey-git/home-assistant-custom-ui)** help improve the display of sensors and jazz up the interface a bit.
 
-<p align="center">
-    <img src="../../screenshots/ui-current-conditions@2x.png" alt="Custom UI + Value-only state card" width="325">
-</p>
+<div align="center">
+    <figure>
+        <div>
+            <img src="../screenshots/group-weather.png" alt="Weather group" title="Custom UI elements + Value-only state card" width="325">
+            <img src="../screenshots/group-climate.png" alt="Climate Control group" title="Custom UI elements + custom card theme" width="325">
+        </div>
+        <figcaption>
+           <p><strong>Custom UI elements.</strong></p>
+        </figcaption>
+    </figure>
+</div>
 
 
-## Horizontal line state card
+### [`➖ ./state-card-hline(_es5?).html`](state-card-hline.html)
 
 **[Horizontal line state card](https://github.com/covrig/homeassistant-hline)** to visually separate long lists of sensors.
 
-<p align="center">
-    <img src="../../screenshots/ui-horizontal-line@2x.png" alt="Custom UI + Horizontal line state card" width="325">
-</p>
+<div align="center">
+    <figure>
+        <div>
+            <img src="../screenshots/card-horizontal-line.png" alt="Horizontal line state card" title="Custom UI + Horizontal line state card" width="325">
+        </div>
+        <figcaption>
+            <p><strong>Horizontal line state card.</strong></p>
+        </figcaption>
+    </figure>
+</div>
 
 
-## Value-only state card
+### [`📝 ./state-card-value_only.html`](state-card-value_only.html)
 
 **[Value-only state card](https://community.home-assistant.io/t/display-only-text-in-card/20536/26)** for wordy sensor states.
 
-<p align="center">
-    <img src="../../screenshots/ui-weekly-forecast@2x.png" alt="Value-only state card" width="325">
-</p>
+<div align="center">
+    <figure>
+        <div>
+            <img src="../screenshots/group-forecast.png" alt="Value-only state card" title="Value-only state card" width="325">
+        </div>
+        <figcaption>
+            <p><strong>Value-only state card.</strong></p>
+        </figcaption>
+    </figure>
+</div>
 
 
 ## Customization

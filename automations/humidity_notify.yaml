@@ -1,0 +1,122 @@
+#
+# Check if humidity is too high
+#
+# Comfort level should be between 35% and 55%.
+# Mold grows above 55% relative humidity, and thrives above 70%.
+# Only verify if doors and windows are closed.
+#
+# @subscribe input_boolean.doors_open
+# @subscribe input_boolean.windows_open
+#
+# @see /automations/check_mold.yaml
+#
+- id: humidity_notify
+  alias: Humidity NOTIFY
+  trigger:
+    # When humidity is getting too high.
+    - platform: numeric_state
+      entity_id: sensor.average_humidity
+      above: 55
+
+    # When humidity is getting too low.
+    - platform: numeric_state
+      entity_id: sensor.average_humidity
+      below: 35
+
+  condition:
+    # If doors have been closed for a while.
+    - condition: state
+      entity_id: input_boolean.doors_open
+      state: 'off'
+      for:
+        minutes: 60
+
+    # If windows have been closed for a while.
+    - condition: state
+      entity_id: input_boolean.windows_open
+      state: 'off'
+      for:
+        minutes: 60
+
+  action:
+    # Pin a warning message in the frontend.
+    - service: persistent_notification.create
+      data:
+        notification_id: humidity
+      data_template:
+        title: >-
+          {% set humidity = states('sensor.average_humidity') | int %}
+          {% if (humidity > 65) %}
+            Home humidity is WAY too high
+          {% elif (humidity >= 55) %}
+            Home humidity is too high
+          {% else %}
+            Home humidity is too low
+          {% endif %}
+        message: >-
+          {% set humidity = states('sensor.average_humidity') | int %}
+          {% if (humidity > 65) %}
+            {{ states('sensor.average_humidity') }}% = Risk of mold!<br>
+            <strong>Check the dehumidifier NOW!<strong>
+          {% elif (humidity >= 55) %}
+            {{ states('sensor.average_humidity') }}% is excessive.<br>
+            <strong>Check the dehumidifier.<strong>
+          {% else %}
+            {{ states('sensor.average_humidity') }}% is too dry.<br>
+            <strong>Check the humidifier.</strong>
+          {% endif %}
+
+    # Warn someone by text to take action.
+    - service: notify.text
+      data_template:
+        title: >-
+          {% set humidity = states('sensor.average_humidity') | int %}
+          {% if (humidity > 65) %}
+            Home humidity is WAY too high
+          {% elif (humidity >= 55) %}
+            Home humidity is too high
+          {% else %}
+            Home humidity is too low
+          {% endif %}
+        message: |
+          {% set humidity = states('sensor.average_humidity') | int %}
+          {% if (humidity > 65) %}
+          {{ states('sensor.average_humidity') }}% = Risk of mold!
+          Check the dehumidifier NOW!
+          {% elif (humidity >= 55) %}
+          {{ states('sensor.average_humidity') }}% is excessive.
+          Check the dehumidifier.
+          {% else %}
+          {{ states('sensor.average_humidity') }}% is too dry.
+          Check the humidifier.
+          {% endif %}
+
+    # Play a warning sound and message.
+    - condition: state
+      entity_id: input_boolean.quiet_mode
+      state: 'off'
+    - service: notify.sound
+      data:
+        message: "alarm"
+        data:
+          method: "alarm"
+    - delay:
+        seconds: 2
+    - service: notify.speech
+      data_template:
+        message: >-
+          {% set humidity = states('sensor.average_humidity') | int %}
+          {% if (humidity > 65) %}
+            Humidity is way too high.
+            Currently at {{ states('sensor.average_humidity') }}%.
+            There is a risk of mold!
+            Check the dehumidifier NOW!
+          {% elif (humidity >= 55) %}
+            Humidity is too high.
+            Currently at {{ states('sensor.average_humidity') }}% which is excessive.
+            Check the dehumidifier.
+          {% else %}
+            Humidity is too low.
+            Currently at {{ states('sensor.average_humidity') }}% which is too dry.
+            Check the humidifier.
+          {% endif %}

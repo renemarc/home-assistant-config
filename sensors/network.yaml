@@ -1,20 +1,71 @@
 #
-# Fast.com network speed testing
+# EBOX.ca ISP bandwidth usage
 #
-# Actual performance is limited by the hosts NIC throughout.
+# @see /custom_components/sensor/ebox.py
 #
-# Todo: Check if this disabled sensor is superfluous.
+# @link https://client.ebox.ca/
+# @link https://home-assistant.io/components/sensor.ebox/
 #
-# @link https://home-assistant.io/components/sensor.fastdotcom/
-#
-# - platform: fastdotcom
-#   hour:
-#     - 3
-#     - 9
-#     - 15
-#     - 21
-#   minute:
-#     - 15
+- platform: ebox
+  username: !secret ebox_username
+  password: !secret ebox_password
+  scan_interval: 900
+  monitored_variables:
+   - before_offpeak_download
+   - before_offpeak_upload
+   - download
+   - limit
+   - usage
+
+- platform: template
+  sensors:
+    ebox_usage_friendly:
+      friendly_name: Monthly Usage
+      icon_template: mdi:percent
+      unit_of_measurement: '%'
+      value_template: >-
+        {% set usage = states('sensor.ebox_usage') %}
+
+        {% if usage != 'unknown' %}
+          {{ usage | round }}
+        {% else %}
+          unknown
+        {% endif %}
+
+    ebox_download_remaining:
+      friendly_name: Remaining Downloads
+      icon_template: mdi:briefcase-download
+      unit_of_measurement: 'Gb'
+      value_template: >-
+        {% set limit = states('sensor.ebox_data_limit') %}
+        {% set download = states('sensor.ebox_download') %}
+
+        {% if limit != 'unknown' and limit|int == 0 %}
+          ∞
+        {% elif limit != 'unknown' and download != 'unknown' %}
+          {{ (limit|float - download|float) | int }}
+        {% else %}
+          unknown
+        {% endif %}
+
+    ebox_download_daily_capacity:
+      friendly_name: Daily Capacity
+      icon_template: mdi:speedometer
+      unit_of_measurement: 'Gb'
+      value_template: >-
+        {% set limit = states('sensor.ebox_data_limit') %}
+        {% set download = states('sensor.ebox_download_remaining') %}
+        {% set days = states('sensor.days_remaining_in_month') %}
+
+        {% if limit != 'unknown' and limit|int == 0 %}
+          ∞
+        {% elif download == 'unknown' or days == 'unknown' %}
+          unknown
+        {% elif download|float > 0 and days|int > 0 %}
+          {{ (download|float / days|int) | int }}
+        {% else %}
+          0
+        {% endif %}
 
 
 #

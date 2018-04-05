@@ -1,14 +1,24 @@
 #
-# Owntracks
+# Device trackers
 #
-# @link https://home-assistant.io/components/device_tracker.owntracks/
+# @link https://home-assistant.io/components/device_tracker/
 #
-- platform: owntracks
+
+
+#
+# Bluetooth
+#
+# https://home-assistant.io/components/device_tracker.bluetooth_tracker/
+#
+- platform: bluetooth_tracker
 
 
 #
 # Ubiquiti Unifi wireless access point
 #
+# Connects to the UniFi controller with a read-only user.
+#
+# @link https://www.ubnt.com/unifi/unifi-cloud-key/
 # @link https://home-assistant.io/components/device_tracker.unifi/
 #
 - platform: unifi
@@ -17,6 +27,6 @@
   username: !secret unifi_username
   password: !secret unifi_password
   verify_ssl: false
-  track_new_devices: false
+  track_new_devices: true
   interval_seconds: 10
   consider_home: 180

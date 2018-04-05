@@ -1,5 +1,5 @@
 #
-# Change bed underglow lights based on Lifx Cloud scenes.
+# Change bed underglow lights based on Lifx Cloud scenes
 #
 # The LIFX strips have effects programmed with the LIFX mobile and stored on
 # their servers. Each effect mentions which device will receive which color

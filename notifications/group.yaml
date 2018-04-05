@@ -1,12 +1,22 @@
 #
 # Group notification
 #
-# All notifications are sent to groups to avoid hard-coding notification
+# All notifications are sent to groups to mimimize hard-coding notification
 # services throughout the code base.
 #
 # @link https://home-assistant.io/components/notify.group/
 #
 - platform: group
-  name: group
+  name: Sound
+  services:
+    - service: lannouncer
+
+- platform: group
+  name: Speech
+  services:
+    - service: lannouncer
+
+- platform: group
+  name: Text
   services:
     - service: pushover

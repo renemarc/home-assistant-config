@@ -1,0 +1,29 @@
+#
+# Toggle the daylight scene
+#
+# @publish input_select.scene
+#
+# @see /scripts/scene_daylight.yaml
+#
+- id: scene_daylight
+  alias: Scene DAYLIGHT
+  trigger:
+    # When Minimote button 1 is held.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 2 # 2 = button #1 held.
+
+  action:
+    # Toggle the daylight scene.
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.scene
+      data_template:
+        option: >-
+          {% if is_state('input_select.scene', 'Daylight') %}
+            Default
+          {% else %}
+            Daylight
+          {% endif %}

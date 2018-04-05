@@ -1,5 +1,7 @@
 #
-# Manually select a LIFX cloud effect for the bed underglow lights.
+# Manually select a LIFX cloud effect for the bed underglow lights
+#
+# @subscribe input_select.bed_effect
 #
 # @publish variable.bed_effect
 #
@@ -8,20 +10,24 @@
 - id: bed_select
   alias: Bed SELECT
   trigger:
-    # An effect has been selected.
+    # When an effect has been selected.
     - platform: state
       entity_id: input_select.bed_effect
+
+    # When an item which was off comes back online.
+    - platform: state
+      entity_id:
+        - light.headboard
+        - light.underbed
+      to: 'on'
 
   condition:
     # If an actual effect is selected, not the default.
     - condition: template
-      value_template: "{% if not is_state('input_select.bed_effect', 'Auto') %}true{% endif %}"
+      value_template: >-
+        {{ not is_state('input_select.bed_effect', 'Auto') }}
 
   action:
-    # Prevent the bed scheduler from replacing the selected effect.
-    - service: input_boolean.turn_on
-      entity_id: input_boolean.bed_effect_override
-
     # Update the bed effect variable.
     - service: variable.set_variable
       data:

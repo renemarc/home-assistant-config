@@ -85,7 +85,7 @@ def async_setup(hass, config):
         """Handle calls to the set_variable service."""
 
         entity_id = ENTITY_ID_FORMAT.format(call.data.get(ATTR_VARIABLE))
-        entity = component.entities[entity_id]
+        entity = component.get_entity(entity_id)
 
         if entity:
             target_variables = [ entity ]

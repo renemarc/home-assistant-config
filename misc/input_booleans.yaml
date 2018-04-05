@@ -1,58 +1,57 @@
 #
+# Input booleans
+#
+# @link https://home-assistant.io/components/input_boolean/
+#
+
+
+#
 # Modes
 #
 low_mode:
   name: Low power mode
-  initial: off
+  icon: mdi:weather-sunset-down
 
 nap_mode:
   name: Nap mode
-  initial: off
+  icon: mdi:sleep
 
 night_mode:
   name: Night mode
-  initial: off
+  icon: mdi:weather-night
 
 quiet_mode:
   name: Quiet mode
-  initial: off
+  icon: mdi:volume-mute
 
 scene_mode:
   name: Scene mode
-  initial: off
+  icon: mdi:looks
 
 
 #
 # Manual effect overrides
 #
-aurora_effect_override:
-  name: Aurora has overriding effect set
-  initial: off
-
-bed_effect_override:
-  name: Bed underglow lights have overriding effect set
-  initial: off
-
-ceiling_effect_override:
-  name: Ceiling wash lights have overriding effect set
-  initial: off
+kitchen_lights_override:
+  name: Kitchen Lights have overriding effect set
+  icon: mdi:food-fork-drink
 
 
 #
-# Permimiter seal
+# Security
 #
 doors_open:
   name: Doors are open
-  initial: off
+  icon: mdi:door-open
+
+motion_detected:
+  name: Motion detected
+  icon: mdi:run
+
+tamper_detected:
+  name: Tamper detected
+  icon: mdi:security-home
 
 windows_open:
   name: Windows are open
-  initial: off
-
-
-#
-# Miscellaneous
-#
-update_available:
-  name: Update available
-  initial: off
+  icon: mdi:window-open

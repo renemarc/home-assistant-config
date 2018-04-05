@@ -11,6 +11,8 @@ default_view:
     - group.public_transit
     - group.climate
     - group.actions
+    - group.security
+    - group.presence
 
 
 #
@@ -21,6 +23,7 @@ actions:
   control: hidden
   entities:
     - script.wake_up
+    - input_select.scene
     - input_boolean.night_mode
     - input_boolean.nap_mode
     - input_boolean.quiet_mode
@@ -36,7 +39,15 @@ climate:
 notifications:
   name: Notifications
   entities:
+    - persistent_notification.security
     - persistent_notification.humidity
+
+now:
+  name: " "
+  entities:
+    - sensor.date_friendly
+    - sensor.time_friendly
+    - sensor.sun_state
 
 public_transit:
   name: Public Transit
@@ -48,15 +59,23 @@ public_transit:
     - sensor.home_to_market_2_hour
     - sensor.home_to_market_3_hour
 
+presence:
+  name: Presence
+  control: hidden
+  entities:
+    - device_tracker.cellphone_her
+    - device_tracker.cellphone_him
+
+security:
+  name: Security Status
+  control: hidden
+  entities:
+    - sensor.doors_status
+    - sensor.motion_status
+    - sensor.tamper_status
+
 wallpaper:
   name: " "
   entities:
     - camera.bing_wallpaper
     - sensor.bing_wallpaper_info
-
-now:
-  name: " "
-  entities:
-    - sensor.date_friendly
-    - sensor.time_friendly
-    - sensor.sun_state

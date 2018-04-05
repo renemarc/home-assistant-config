@@ -152,7 +152,6 @@ PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/usr/sbin:/bin:/sbin"
 
 CONFIG_PATH=/data/options.json
 MQTT_HOST="$(jq --raw-output '.mqtt_host' $CONFIG_PATH)"
-#MQTT_PORT="15012"
 MQTT_PORT="1883"
 MQTT_USER="$(jq --raw-output '.mqtt_user' $CONFIG_PATH)"
 MQTT_PASS="$(jq --raw-output '.mqtt_password' $CONFIG_PATH)"
@@ -170,9 +169,6 @@ echo "RTL_433 Protocol =" $PROTOCOL
 
 #set -x  ## uncomment for MQTT logging...
 
-/usr/bin/mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASS -i RTL_433 -r -t $MQTT_TOPIC -m '{"message":"test5"}'
-
-#/usr/local/bin/rtl_433 -f 915000000 -F json -R $PROTOCOL | while read line
 /usr/local/bin/rtl_433 -f 433000000 -F json -R $PROTOCOL | while read line
 do
   # Create file with touch /tmp/rtl_433.log if logging is needed

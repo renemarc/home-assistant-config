@@ -24,3 +24,9 @@ sequence:
   - service: input_boolean.turn_off
     data:
       entity_id: input_boolean.scene_mode
+
+  # Reset scene.
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.scene
+      option: Default

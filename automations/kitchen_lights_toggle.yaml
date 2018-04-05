@@ -1,0 +1,41 @@
+#
+# Toggle kitchen lights
+#
+# Toggles between 2 and 4 lights when Flick button is double clicked.
+#
+- id: kitchen_lights_toggle
+  alias: Kitchen lights TOGGLE
+  trigger:
+    # When Minimote button 3 is clicked.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 5 # 5 = button #3 clicked.
+
+    # When kitchen Flic button is double-clicked.
+    - platform: event
+      event_type: flic_click
+      event_data:
+        button_name: flic_80e4da72e890
+        click_type: double
+
+  action:
+    # Toggle extra lights.
+    - service_template: >
+        {% if is_state('light.countertop', 'on') or is_state('light.sink', 'off') %}
+          homeassistant.turn_off
+        {% else %}
+          homeassistant.turn_on
+        {% endif %}
+      data:
+        entity_id:
+          - light.countertop
+          - light.island
+
+    # Turn on essential lights.
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+          - light.sink
+          - light.microwave

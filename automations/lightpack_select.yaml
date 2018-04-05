@@ -1,0 +1,29 @@
+#
+# Manually select a Lightpack effect for the TV bias light
+#
+# @subscribe input_select.lightpack_effect
+#
+# @publish variable.lightpack_effect
+#
+# @see /automations/lightpack_effect.yaml
+#
+- id: lightpack_select
+  alias: Lightpack SELECT
+  trigger:
+    # When an effect has been selected.
+    - platform: state
+      entity_id: input_select.lightpack_effect
+
+    # When an item which was off comes back online.
+    - platform: state
+      entity_id:
+        - light.lightpack
+      to: 'on'
+
+  action:
+    # Update the Lightpack effect variables.
+    - service: variable.set_variable
+      data:
+        variable: lightpack_effect
+        value_template: >-
+          {{ states('input_select.lightpack_effect') }}

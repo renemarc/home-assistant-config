@@ -339,6 +339,8 @@
     wind_speed:
       friendly_name: Wind Speed
       unit_of_measurement: 'km/h'
+      friendly_name_template: >-
+        {{ states('sensor.wind_scale_friendly') }}
       value_template: >-
         {{ (states('sensor.dark_sky_wind_speed')|float * 3600 / 1000) | round(0) }}
       icon_template: >-
@@ -410,7 +412,7 @@
       value_template: >-
         {% set degrees = states('sensor.dark_sky_wind_bearing') | int %}
         {% set val = (degrees / 45) | int %}
-        {% set directions = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"] %}
+        {% set directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'] %}
 
         {{ directions[(val % 8)] }}
 
@@ -420,14 +422,14 @@
         {% set degrees = states('sensor.dark_sky_wind_bearing') | int %}
         {% set val = (degrees / 45) | int %}
         {% set directions = [
-          "North",
-          "Northeast",
-          "East",
-          "Southeast",
-          "South",
-          "Southwest",
-          "West",
-          "Northwest"
+          'North',
+          'Northeast',
+          'East',
+          'Southeast',
+          'South',
+          'Southwest',
+          'West',
+          'Northwest'
         ] %}
 
         {{ directions[(val % 8)] }}
@@ -437,7 +439,7 @@
       value_template: >-
         {% set degrees = states('sensor.dark_sky_wind_bearing') | int %}
         {% set val = (degrees / 22.5 + 0.5) | int %}
-        {% set directions = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"] %}
+        {% set directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'] %}
 
         {{ directions[(val % 16)] }}
 
@@ -447,22 +449,22 @@
         {% set degrees = states('sensor.dark_sky_wind_bearing') | int %}
         {% set val = (degrees / 22.5 + 0.5) | int %}
         {% set directions = [
-          "North",
-          "North-Northeast",
-          "Northeast",
-          "East-Northeast",
-          "East",
-          "East-Southeast",
-          "Southeast",
-          "South-Southeast",
-          "South",
-          "South-Southwest",
-          "Southwest",
-          "West-Southwest",
-          "West",
-          "West-Northwest",
-          "Northwest",
-          "North-Northwest"
+          'North',
+          'North-Northeast',
+          'Northeast',
+          'East-Northeast',
+          'East',
+          'East-Southeast',
+          'Southeast',
+          'South-Southeast',
+          'South',
+          'South-Southwest',
+          'Southwest',
+          'West-Southwest',
+          'West',
+          'West-Northwest',
+          'Northwest',
+          'North-Northwest'
         ] %}
 
         {{ directions[(val % 16)] }}

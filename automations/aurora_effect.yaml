@@ -21,7 +21,8 @@
   action:
     # Set the Aurora's internal effect according to the received name.
     - service: light.turn_on
-      data_template:
+      data:
         entity_id:
           - light.aurora
+      data_template:
         effect: "{{ states('variable.aurora_effect') }}"

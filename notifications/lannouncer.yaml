@@ -1,0 +1,10 @@
+#
+# LANnouncer notification service for local Android devices
+#
+# @link http://www.keybounce.com/lannouncer/
+# @link https://home-assistant.io/components/notify.lannouncer/
+#
+- platform: lannouncer
+  name: LANnouncer
+  host: !secret lannouncer_host
+  port: !secret lannouncer_port

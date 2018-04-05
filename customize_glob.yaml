@@ -19,20 +19,26 @@ automation.bed_*:
   icon: mdi:hotel
 automation.bedroom_*:
   icon: mdi:hotel
+automation.cct_*:
+  icon: mdi:white-balance-auto
 automation.ceiling_*:
   icon: mdi:led-strip
-automation.check_humidity_*:
-  icon: mdi:water-percent
 automation.dehumidifier_*:
   icon: mdi:water-off
-automation.front_door_*:
-  icon: mdi:door
+automation.doors_*:
+  icon: mdi:door-open
+automation.kitchen_*:
+  icon: mdi:food-fork-drink
+automation.kiosk_*:
+  icon: mdi:tablet
+automation.lightpack_*:
+  icon: mdi:television
 automation.lounge_*:
   icon: mdi:sofa
 automation.low_power_mode_*:
   icon: mdi:weather-sunset-down
-automation.media_player_*:
-  icon: mdi:kodi
+automation.motion_*:
+  icon: mdi:run
 automation.nap_mode_*:
   icon: mdi:sleep
 automation.nightlight_*:
@@ -41,6 +47,10 @@ automation.night_mode_*:
   icon: mdi:weather-night
 automation.quiet_mode_*:
   icon: mdi:volume-mute
+automation.tamper_*:
+  icon: mdi:security-home
+automation.video_player_*:
+  icon: mdi:plex
 automation.washroom_*:
   icon: mdi:water-pump
 
@@ -92,3 +102,9 @@ sensor.[!dark_sky]*_temperature:
       friendly_name: Temperature
 sensor.hline_*:
   custom_ui_state_card: state-card-hline
+sensor.hline_dashed*:
+  config:
+    width: 90
+    height: 0
+    backgroundcolor: inherit
+    bordertop: '1px dashed silver'

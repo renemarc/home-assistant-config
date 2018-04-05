@@ -1,24 +1,24 @@
 #
 # When noise makers should not be running
 #
-# @subscribe input_boolean.night_mode
 # @subscribe input_boolean.nap_mode
+# @subscribe input_boolean.night_mode
 #
 # @publish input_boolean.quiet_mode
 #
 - id: quiet_mode_start
   alias: Quiet mode START
   trigger:
-    # It's too late.
+    # When it's too late.
     - platform: time
       at: '21:30:00'
 
-    # It's during sleep time.
+    # When night mode is enables.
     - platform: state
       entity_id: input_boolean.night_mode
       to: 'on'
 
-    # It's during nap time.
+    # When nap mode is enables.
     - platform: state
       entity_id: input_boolean.nap_mode
       to: 'on'

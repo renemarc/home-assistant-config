@@ -12,7 +12,7 @@ base-sat: '40%' #Controls the saturation of the theme (0%-100%) | 0%=Grey 100%=F
 # MyVar
 huesat: 'var(--base-hue), var(--base-sat),'
 # Primary Color
-primary-color: 'hsl(var(--huesat) 20%)'
+primary-color: 'hsl(var(--huesat) 25%)'
 # Backgrounds
 primary-background-color: 'var(--primary-color)'
 secondary-background-color: 'hsl(var(--huesat) 16%)'

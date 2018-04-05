@@ -29,9 +29,9 @@
       state: 'off'
 
   action:
-    # Turn on devices.
+    # Turn on all devices.
     - service: homeassistant.turn_on
       data:
         entity_id:
-          - group.washroom
+          - group.washroom_lights
         transition: 5

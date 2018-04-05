@@ -1,0 +1,67 @@
+#
+# Setup movie scene
+#
+# @see /automations/scene_select.yaml
+#
+alias: Movie scene
+sequence:
+  # Enable scene mode.
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.scene_mode
+
+  # Enable quiet mode.
+  - service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.quiet_mode
+
+  # Turn on accent lights.
+  - service: homeassistant.turn_on
+    data:
+      entity_id:
+        - switch.souvenirs_light
+        - switch.window_light
+
+  # Dim the spot lights.
+  # Todo: Investigate moving to https://home-assistant.io/components/light/
+  - service: light.lifx_set_state
+    data:
+      entity_id:
+        - light.shower
+        - light.spotlight
+        - light.lounge_lamp
+    data_template:
+      kelvin: 2500
+      brightness_pct: 40
+      transition: 2
+
+  # Turn off some glaring kitchen lights.
+  - service: homeassistant.turn_off
+    data:
+      entity_id:
+        - light.countertop
+        - light.island
+
+  # Set TV backlight effect.
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.lightpack_effect
+      option: Movie
+
+  # If ceiling wash lights are on, set them to their dedicated Movie scene.
+  - condition: state
+    entity_id: group.ceiling
+    state: 'on'
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.ceiling_effect
+      option: Movie
+
+  # If the Aurora is active, set it to its dedicated Movie scene.
+  - condition: state
+    entity_id: light.aurora
+    state: 'on'
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.aurora_effect
+      option: Flames

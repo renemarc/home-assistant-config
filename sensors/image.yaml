@@ -12,7 +12,10 @@
   resource: http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US
   icon_template: mdi:link-variant
   scan_interval: 3600
-  value_template: "{{ value_json.images[0].urlbase }}"
+  value_template: >-
+    {% if value_json and value_json.images[0] and value_json.images[0].urlbase %}
+      {{ value_json.images[0].urlbase }}
+    {% endif %}
 
 - platform: rest
   name: Bing Wallpaper Info
@@ -20,7 +23,11 @@
   icon_template: mdi:information-outline
   entity_id:
     - sensor.bing_wallpaper
-  value_template: "{{ value_json.images[0].copyright.split(' (')[0] }}"
+  value_template: >-
+    {% if value_json and value_json.images[0] and value_json.images[0].copyright %}
+      {{ value_json.images[0].copyright.split(' (')[0] }}
+    {% endif %}
+
 
 #
 # NASA's Astronomy Picture of the Day
@@ -39,7 +46,7 @@
   attribute: "src"
 
 - platform: scrape
-  name: APOD Title
+  name: APOD Info
   resource: https://apod.nasa.gov/apod/astropix.html
   scan_interval: 3600
   select: "center > b"

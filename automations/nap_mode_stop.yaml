@@ -8,12 +8,14 @@
 - id: nap_mode_stop
   alias: Nap mode STOP
   trigger:
-    # When night mode is enabled.
-    - platform: state
-      entity_id: input_boolean.night_mode
-      to: 'on'
+    # When Minimote button 2 pressed once.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 3 # 3 = button #2 pressed once.
 
-    # Bedsite Flic button is pressed once.
+    # When bedside Flic button is pressed once.
     - platform: event
       event_type: flic_click
       event_data:

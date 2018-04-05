@@ -1,4 +1,13 @@
 #
+# Variables
+#
+# @see /custom_components/varyable.py
+#
+# @link https://github.com/rogro82/hass-variables
+#
+
+
+#
 # Nanoleaf Aurora effect and brightness
 #
 aurora_brightness:
@@ -28,3 +37,18 @@ ceiling_effect:
   restore: true
   attributes:
     uuid: ''
+
+
+#
+# Lightpack effect
+#
+lightpack_effect:
+  value: False
+  restore: true
+
+
+#
+# Perimeter tamper detection
+tamper_detected:
+  value: False
+  restore: False

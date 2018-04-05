@@ -81,35 +81,35 @@ database_size:
     title: Database
     entity: sensor.database_size
 
-logfile_size:
+log_size:
     widget_type: sensor
     title: Log File
-    entity: sensor.logfile_size
+    entity: sensor.log_size
 
 cpu_temp:
     widget_type: sensor
     entity: sensor.cpu_temp
     title: CPU Temp
 
-cpu_used:
+cpu_use:
     widget_type: sensor
-    entity: sensor.cpu_used
+    entity: sensor.processor_use
     sub_entity: sensor.average_load
-    title: CPU Used
+    title: CPU Load
     state_text_style: "background-color:#555;"
 
-ram_used:
+memory_use:
     widget_type: entitysensor
-    entity: sensor.ram_used_percent
-    sub_entity: sensor.ram_used
-    title: RAM Used
+    entity: sensor.memory_use_percent
+    sub_entity: sensor.memory_use
+    title: Memory Use
     state_text_style: "background-color:#555;"
 
-disk_used:
+disk_use:
     widget_type: entitysensor
-    entity: sensor.disk_used_percent
-    sub_entity: sensor.disk_used_home
-    title: Disk Used
+    entity: sensor.disk_use_percent
+    sub_entity: sensor.disk_use_home
+    title: Disk Use
     state_text_style: "background-color:#555;"
 
 
@@ -188,13 +188,20 @@ lounge_humidity:
 #
 # Battery
 #
+kiosk_battery:
+    widget_type: sensor
+    entity: sensor.kiosk_battery
+    title: Battery Status
+    title2: Kiosk
+    widget_style: "background-color:inherit;"
+    title_style: "background-color:#555;padding:5px 156% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
+    title2_style: "margin-top:3px;"
+
 front_door_sensor_battery:
     widget_type: sensor
     entity: sensor.front_door_sensor_battery
-    title: Battery Status
     title2: Front Door
     widget_style: "background-color:inherit;"
-    title_style: "background-color:#555;padding:5px 104% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
     title2_style: "margin-top:3px;"
 
 bedroom_multisensor_battery:
@@ -213,14 +220,34 @@ lounge_multisensor_battery:
 
 
 #
+# Security
+#
+status_doors:
+    widget_type: binary_sensor
+    entity: input_boolean.doors_open
+    title: Doors
+    icon_on: mdi-lock-open-outline
+    icon_off: mdi-lock
+
+status_motion:
+    widget_type: binary_sensor
+    entity: input_boolean.motion_detected
+    title: Motion
+
+status_tamper:
+    widget_type: binary_sensor
+    entity: input_boolean.tamper_detected
+    title: Tampering
+
+
+#
 # Layout
 #
 layout:
     - include: header
-    - include: header
     - nav_main,         label(6x1), reload, temperature, clock
-    - nav_switchboard,  uptime, uptime_host, database_size, logfile_size
-    - nav_weather,      cpu_temp, cpu_used, ram_used, disk_used, spacer(2x1), sensor.speedtest_ping, upspeed, downspeed
+    - nav_switchboard,  uptime, uptime_host, database_size, log_size, spacer(2x1), status_doors, status_motion, status_tamper
+    - nav_weather,      cpu_temp, cpu_use, memory_use, disk_use, spacer(2x1), sensor.speedtest_ping, upspeed, downspeed
     - nav_spacer(1x2)
-    -                   average_temperature, bedroom_temperature, lounge_temperature, spacer(3x1), front_door_sensor_battery, bedroom_multisensor_battery, lounge_multisensor_battery
+    -                   average_temperature, bedroom_temperature, lounge_temperature, spacer(2x1), kiosk_battery, front_door_sensor_battery, bedroom_multisensor_battery, lounge_multisensor_battery
     - nav_status,       average_humidity, bedroom_humidity, lounge_humidity

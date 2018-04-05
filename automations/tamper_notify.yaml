@@ -1,0 +1,34 @@
+#
+# Warns someone if the tamper flag has changed
+#
+# @subscribe input_boolean.tamper_detected
+#
+- id: tamper_detection_notify
+  alias: Tamper detection NOTIFY
+  trigger:
+    # When the tamper flag has changed.
+    - platform: state
+      entity_id: input_boolean.tamper_detected
+
+  action:
+    # Warn someone to take action.
+    - service: notify.text
+      data:
+        title: "Home security issue"
+        message: |
+          A perimeter device has been tampered with.
+          Current state: {% if is_state('input_boolean.tamper_detected', 'on') -%}
+          Tampered{% else %}Reset{% endif %}
+          Device: {{ states('variable.tamper_detected') }}
+
+    # Pin a warning message in the frontend.
+    - condition: state
+      entity_id: input_boolean.tamper_detected
+      state: 'on'
+    - service: persistent_notification.create
+      data:
+        notification_id: security
+        title: "Home security issue"
+        message: |
+          A perimeter device has been tampered with at location:
+          <strong>{{ states('variable.tamper_detected') }}</strong>.

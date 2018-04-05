@@ -1,4 +1,30 @@
 #
+# Fully Browser kiosk battery monitoring
+#
+# Licensed application running in kiosk mode on an Acer B3-A40 Android tablet.
+#
+# @link https://github.com/daemondazz/homeassistant-displays
+- platform: template
+  sensors:
+    kiosk_battery:
+      friendly_name: Kiosk battery
+      unit_of_measurement: '%'
+      value_template: >-
+        {{ states.display.kiosk.attributes.battery_level }}
+      icon_template: >-
+        {% set battery_level = states.display.kiosk.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-outline
+        {% endif %}
+
+
+#
 # AcuRite battery monitoring
 #
 # This device only has two power state: `OK` (1) and `low` (0). If no signal is
@@ -44,7 +70,7 @@
 
 
 #
-# Aeotec battery monitoring
+# ZWave battery monitoring
 #
 # @link https://aeotec.com/z-wave-door-window-sensor
 # @link https://aeotec.com/z-wave-sensor
@@ -55,15 +81,15 @@
       friendly_name: Front Door Sensor Battery
       unit_of_measurement: '%'
       value_template: >-
-        {% set battery_level = states.zwave.aeotec_zw120_door_window_sensor_gen5.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.zwave.front_door.attributes.battery_level | default(0) | int %}
 
         {% if battery_level %}
           {{ battery_level | round }}
         {% else %}
-          {{ states('zwave.aeotec_zw120_door_window_sensor_gen5') }}
+          {{ states('zwave.front_door') }}
         {%- endif %}
       icon_template: >-
-        {% set battery_level = states.zwave.aeotec_zw120_door_window_sensor_gen5.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.zwave.front_door.attributes.battery_level | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
 
         {% if battery_round >= 100 %}
@@ -78,15 +104,15 @@
       friendly_name: Lounge Multisensor Battery
       unit_of_measurement: '%'
       value_template: >-
-        {% set battery_level = states.zwave.aeotec_zw100_multisensor_6.attributes.battery_level | default(0) %}
+        {% set battery_level = states.zwave.lounge_multisensor.attributes.battery_level | default(0) %}
 
         {% if battery_level %}
           {{ battery_level | round }}
         {% else %}
-          {{ states('zwave.aeotec_zw100_multisensor_6') }}
+          {{ states('zwave.lounge_multisensor') }}
         {%- endif %}
       icon_template: >-
-        {% set battery_level = states.zwave.aeotec_zw100_multisensor_6.attributes.battery_level | default(0) | int %}
+        {% set battery_level = states.zwave.lounge_multisensor.attributes.battery_level | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
 
         {% if battery_round >= 100 %}

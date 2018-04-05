@@ -10,10 +10,10 @@ See https://github.com/mattbierner/MinutesToMidnight
 For more details about this platform, please refer to the documentation at
 https://home-assistant.io/components/sensor.doomsday_clock/
 """
+import datetime
 import logging
 import re
 import voluptuous as vol
-from datetime import timedelta
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.components.sensor.rest import RestData
@@ -32,11 +32,11 @@ DEFAULT_NAME = 'Doomsday Clock'
 DEFAULT_ICON = 'mdi:nuke'
 DEFAULT_UNIT_OF_MEASUREMENT = 'min'
 
-CONF_ATTRIBUTION = "Bulletin of the Atomic Scientists"
+CONF_ATTRIBUTION = "Threat assessment by The Bulletin of the Atomic Scientists"
 CONF_RESOURCE = 'https://thebulletin.org/timeline'
 CONF_SELECTOR = '#content .view-content .node-title'
 
-MIN_TIME_BETWEEN_UPDATES = timedelta(hours=1)
+MIN_TIME_BETWEEN_UPDATES = datetime.timedelta(hours=1)
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_NAME, default=DEFAULT_NAME): cv.string,
@@ -113,7 +113,8 @@ class DoomsdayClockSensor(Entity):
         """Return the state attributes."""
         return {
             ATTR_ATTRIBUTION: CONF_ATTRIBUTION,
-            "minutes_to_midnight": self._sentence,
+            "countdown": self._sentence,
+            "time": self.numberToTime(),
         }
 
     @property
@@ -161,6 +162,15 @@ class DoomsdayClockSensor(Entity):
             _LOGGER.error(
                 'Could not find pattern "%s" in sentence "%s"', pattern,
                 sentence)
+
+    def numberToTime(self):
+        midnight = datetime.datetime.combine(datetime.date.today() + datetime.timedelta(days=1), datetime.time(0, 0, 0, 0))
+        minutes = self._state // 1
+        seconds = (self._state - minutes) * 60
+        delta = datetime.timedelta(minutes=minutes, seconds=seconds)
+
+        return (midnight - delta).strftime('%H:%M:%S')
+
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):

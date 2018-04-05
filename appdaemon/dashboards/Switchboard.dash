@@ -114,7 +114,6 @@ washlight_lounge:
 #
 # Climate
 #
-
 label_climate:
     widget_type: multisensor
     title2: Climate
@@ -143,7 +142,6 @@ switch_air_filter:
 #
 # Kitchen
 #
-
 label_kitchen:
     widget_type: label
     title2: Kitchen
@@ -178,7 +176,6 @@ light_sink:
 #
 # Washroom
 #
-
 label_washroom:
     widget_type: label
     title2: Toilet
@@ -200,10 +197,10 @@ spacer_tetris:
     widget_type: label
     widget_style: "background-color:ROYALBLUE;"
 
+
 #
 # Bedroom
 #
-
 label_bedroom:
     widget_type: multisensor
     title2: Bedroom
@@ -255,7 +252,6 @@ fan_bedroom:
 #
 # Lounge
 #
-
 label_lounge:
     widget_type: multisensor
     title2: Lounge
@@ -282,9 +278,18 @@ light_aurora_effect:
 
 light_tv_backlight:
     widget_type: switch
-    title: TV Backlight
+    title: Lightpack
     entity: light.lightpack
     widget_style: "background-color:DARKRED;"
+
+light_tv_backlight_effect:
+    widget_type: input_select
+    title2: Lightpack Effect
+    entity: input_select.lightpack_effect
+    sub_entity: sensor.lightpack_effect_loaded
+    widget_style: "background-color:DARKRED;"
+    state_text_style: "background-color:FIREBRICK;"
+    select_style: "background-color:FIREBRICK;color:$white;"
 
 light_spotlight:
     widget_type: light
@@ -310,39 +315,14 @@ light_window:
     widget_style: "background-color:DARKRED;"
 
 
-
-
-
-# switch_washroom:
-#     widget_type: switch
-#     entity: group.washroom
-#     widget_style: "background-color:inherit;"
-
-# humidity_bedroom:
-#     widget_type: sensor
-#     entity: sensor.bedroom_humidity
-#     widget_style: "background-color:inherit;"
-#     value_style: "position:absolute;top:-20px;left:0;font-size:200%;"
-#     unit_style: "position:absolute;top:-23px;"
-
-# temperature_bedroom:
-#     widget_type: sensor
-#     entity: sensor.bedroom_temperature
-#     widget_style: "background-color:inherit;"
-#     value_style: "position:absolute;top:-20px;left:0;font-size:200%;color:orange;"
-#     unit_style: "position:absolute;top:-23px;color:orange;"
-
-
-
 #
 # Layout
 #
-
 layout:
     - include: header
     - nav_main,         label(6x1), reload, temperature, clock
     - nav_switchboard,  spacer, label_exterior, light_front_porch, spacer(2x1), label_ceiling, washlight_bedroom, washlight_middle, washlight_lounge
     - nav_weather,      label_kitchen, light_microwave, spacer, label_washroom, light_shower, spacer, label_climate, switch_air_filter
     - nav_spacer(1x2),  light_island, light_sink, light_countertop, spacer, light_lavatory, spacer, switch_dehumidifier, switch_humidifier
-    -                   label_bedroom, light_bed_effect, underglow_headboard, underglow_underbed, spacer_tetris, label_lounge, light_aurora_effect, light_aurora, light_tv_backlight
-    - nav_status,       light_nightstand, light_bedside, fan_bedroom, spacer(2x1), light_spotlight, light_souvenirs, light_window, light_lamp
+    -                   label_bedroom, light_bed_effect, underglow_headboard, underglow_underbed, label_lounge, light_aurora_effect, light_aurora, light_tv_backlight_effect, light_tv_backlight
+    - nav_status,       light_nightstand, light_bedside, fan_bedroom, spacer, light_spotlight, light_souvenirs, light_window, light_lamp

@@ -1,0 +1,50 @@
+#
+# Change lightpack based on its programmed profiles
+#
+# The Lightpack is controlled by the Prismatik softwage, which allows for
+# different profiles to be created and loaded at will. They have unique names,
+# but let's use a translation map here to reduce name binding between Home
+# Assistant and daily HTPC usage.
+#
+# @subscribe variable.lightpack_effect
+#
+# @see /automations/lightpack_select.yaml
+# @see /custom_components/light/lightpack.yaml
+#
+# @link https://github.com/psieg/Lightpack
+#
+- id: lightpack_effect
+  alias: Lightpack EFFECT
+  trigger:
+    # When an effect is changed.
+    - platform: state
+      entity_id: variable.lightpack_effect
+
+  action:
+    # Turn on the Lightpack so that the switch represents the actual state,
+    # since sending the effect in the next step will turn on the light anyway.
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+          - light.lightpack
+
+    # Send the effect's real name to the Lightpack API.
+    - service: light.set_profile
+      data:
+        entity_id:
+          - light.lightpack
+      data_template:
+        profile: >-
+          {% set effects = {
+            'Default':  'Ambilight',
+            'Daylight': 'Daylight',
+            'Gaming':   'Gaming',
+            'Movie':    'Ambilight',
+            'Romantic': 'Romantic',
+            'Party':    'SoundVisualizer',
+          } %}
+          {% set selected = states('variable.lightpack_effect') %}
+
+          {% if effects[selected] %}
+            {{ effects[selected] }}
+          {% endif %}

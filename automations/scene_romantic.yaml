@@ -1,0 +1,36 @@
+#
+# Toggle the romantic scene
+#
+# @publish input_select.scene
+#
+# @see /scripts/scene_romantic.yaml
+#
+- id: scene_romantic
+  alias: Scene ROMANTIC
+  trigger:
+    # When Minimote button 4 is held.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 8 # 8 = button #4 held.
+
+    # When bedside Flic button is double-blocked.
+    - platform: event
+      event_type: flic_click
+      event_data:
+        button_name: flic_80e4da737711
+        click_type: double
+
+  action:
+    # Toggle the romantic scene.
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.scene
+      data_template:
+        option: >-
+          {% if is_state('input_select.scene', 'Romantic') %}
+            Default
+          {% else %}
+            Romantic
+          {% endif %}

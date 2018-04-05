@@ -1,11 +1,14 @@
 #
-# Schedule ceiling wash lights based on Lifx Cloud scenes.
+# Schedule ceiling wash lights based on Lifx Cloud scenes
 #
 # Unless an effect is manually selected, this scheduler will do its thing.
 #
-# @publish variable.ceiling_effect
-# @subscribe input_boolean.ceiling_effect_override
+# @subscribe input_boolean.nap_mode
+# @subscribe input_boolean.night_mode
 # @subscribe input_boolean.scene_mode
+# @subscribe input_select.ceiling_effect
+#
+# @publish variable.ceiling_effect
 #
 # @see /automations/ceiling_effect.yaml
 #
@@ -36,10 +39,10 @@
       entity_id: input_boolean.scene_mode
       to: 'off'
 
-    # When ceiling wash light effect override is being released.
+    # When the selected effect is switched to default.
     - platform: state
-      entity_id: input_boolean.ceiling_effect_override
-      to: 'off'
+      entity_id: input_select.ceiling_effect
+      to: 'Auto'
 
   condition:
     # If automation was not trigered lately (debounce).
@@ -52,25 +55,25 @@
 
     # If ceiling wash lights are on.
     - condition: state
-      entity_id: group.ceiling
+      entity_id: group.ceiling_lights
       state: 'on'
 
-    # If no effect overrides are in place.
+    # If the selected effect is the default.
     - condition: state
-      entity_id: input_boolean.ceiling_effect_override
-      state: 'off'
+      entity_id: input_select.ceiling_effect
+      state: 'Auto'
 
     # If no scenes are enabled.
     - condition: state
       entity_id: input_boolean.scene_mode
       state: 'off'
 
-    # Not during the night mode.
+    # It it's not during the night mode.
     - condition: state
       entity_id: input_boolean.night_mode
       state: 'off'
 
-    # Not during the nap mode.
+    # It it's not during the nap mode.
     - condition: state
       entity_id: input_boolean.nap_mode
       state: 'off'

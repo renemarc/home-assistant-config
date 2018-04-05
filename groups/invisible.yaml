@@ -1,0 +1,44 @@
+#
+# Invisible groups
+#
+# These are used in automations and scripts in order to reduce redundancy and
+# ease maintenance.
+#
+bed_lights:
+  name: Bed Lights
+  entities:
+    - light.underbed
+    - light.headboard
+
+ceiling_lights:
+  name: Ceiling Lights
+  entities:
+    - light.bedroom
+    - light.middle
+    - light.lounge
+
+kitchen_lights:
+  name: Kitchen Lights
+  entities:
+    - light.countertop
+    - light.sink
+    - light.microwave
+    - light.island
+
+lifx_lights:
+  name: LIFX Lights
+  entities:
+    - light.lounge_lamp
+    - light.spotlight
+    - light.shower
+
+motion_sensors:
+  name: Motion sensors
+  entities:
+    - binary_sensor.kiosk_motion_auto
+    - binary_sensor.lounge_multisensor_sensor
+
+washroom_lights:
+  name: Washroom Lights
+  entities:
+    - light.shower

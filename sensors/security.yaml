@@ -1,0 +1,107 @@
+#
+# Door status
+#
+# Returns a comma-separated list of doors currently open.
+#
+# @see /automations/doors_verify.yaml
+#
+- platform: template
+  sensors:
+    doors_status:
+      friendly_name_template: >-
+        {% if is_state('input_boolean.doors_open', 'on') %}
+          Doors open
+        {% else %}
+          External doors
+        {% endif %}
+      icon_template: >-
+        {% if is_state('input_boolean.doors_open', 'on') %}
+          mdi:door-open
+        {% else %}
+          mdi:door-closed
+        {% endif %}
+      value_template: >-
+        {% set dummy = is_state('input_boolean.doors_open', 'on') %}
+        {% set value = '' %}
+        {% if is_state('binary_sensor.front_door_sensor', 'on') %}
+          {% set value = value + 'Front Door,' %}
+        {% endif %}
+        {% set value = value[:-1] %}
+
+        {% if value != '' %}
+          {{ value }}
+        {% else %}
+          Closed
+        {% endif %}
+
+
+#
+# Motion detection status
+#
+# Returns a comma-separated list of locations where motion is detected.
+#
+# @see /automations/motion_start.yaml
+#
+- platform: template
+  sensors:
+    motion_status:
+      friendly_name_template: >-
+        {% if is_state('input_boolean.motion_detected', 'on') %}
+          Motion detected
+        {% else %}
+          Motion monitoring
+        {% endif %}
+      icon_template: >-
+        {% if is_state('input_boolean.motion_detected', 'on') %}
+          mdi:walk
+        {% else %}
+          mdi:radar
+        {% endif %}
+      value_template: >-
+        {% set dummy = is_state('input_boolean.motion_detected', 'on') %}
+        {% set value = '' %}
+        {% if is_state('binary_sensor.kiosk_motion_auto', 'on') %}
+          {% set value = value + ' Kiosk,' %}
+        {% endif %}
+        {% if is_state('binary_sensor.lounge_multisensor_sensor', 'on') %}
+          {% set value = value + ' Lounge,' %}
+        {% endif %}
+        {% set value = value[:-1] %}
+
+        {% if value != '' %}
+          {{ value }}
+        {% else %}
+          OK
+        {% endif %}
+
+
+#
+# Tampering status
+#
+# Returns a comma-separated list of perimeter devices being tampered with.
+#
+# @see /automations/tamper_start.yaml
+# @see /misc/variables.yaml
+#
+- platform: template
+  sensors:
+    tamper_status:
+      friendly_name_template: >-
+        {% if is_state('input_boolean.tamper_detected', 'on') %}
+          Tampering detected
+        {% else %}
+          Tamper monitoring
+        {% endif %}
+      icon_template: >-
+        {% if is_state('input_boolean.tamper_detected', 'on') %}
+          mdi:home-alert
+        {% else %}
+          mdi:security-home
+        {% endif %}
+      value_template: >-
+        {% set dummy = is_state('input_boolean.tamper_detected', 'on') %}
+        {% if not is_state('variable.tamper_detected', 'False') %}
+          {{ states('variable.tamper_detected') }}
+        {% else %}
+          OK
+        {% endif %}

@@ -19,7 +19,9 @@ from homeassistant.const import (
     CONF_NAME, CONF_MONITORED_VARIABLES)
 from homeassistant.helpers.entity import Entity
 
-REQUIREMENTS = ['pyebox==1.0.1']
+REQUIREMENTS = ["https://github.com/titilambert/pyebox/archive/"
+                "741d7be7ddb0e2c641877fb43b860a2fbfd11d5e.zip#"
+                "pyebox==0.1.1"]
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -70,7 +72,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
         ebox_data = EBoxData(username, password)
         ebox_data.update()
     except requests.exceptions.HTTPError as error:
-        _LOGGER.error("Failt login: %s", error)
+        _LOGGER.error("Failed login: %s", error)
         return False
 
     name = config.get(CONF_NAME)

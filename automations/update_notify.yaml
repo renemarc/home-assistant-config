@@ -1,0 +1,20 @@
+#
+# Notify when a new version of Home Assistant is available
+#
+# An updated Hass.io version usually follows shortly.
+#
+- id: update_notify
+  alias: Update NOTIFY
+  trigger:
+    # When the updater service finds something new.
+    platform: state
+    entity_id: updater.updater
+
+  action:
+    # Send text notification to owner.
+    - service: notify.text
+      data:
+        title: "Home Assistant update"
+        message: |
+          Version {{ states('updater.updater') }} is available.
+          Installed version: {{ states('sensor.current_version') }}

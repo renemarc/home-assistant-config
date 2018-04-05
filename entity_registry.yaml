@@ -1,0 +1,96 @@
+light.bedroom:
+  platform: lifx
+  unique_id: d0:73:d5:15:17:21
+light.headboard:
+  platform: lifx
+  unique_id: d0:73:d5:14:f8:8c
+light.lounge:
+  platform: lifx
+  unique_id: d0:73:d5:14:f7:4d
+light.lounge_lamp:
+  platform: lifx
+  unique_id: d0:73:d5:31:37:8c
+light.middle:
+  platform: lifx
+  unique_id: d0:73:d5:14:fc:08
+light.shower:
+  platform: lifx
+  unique_id: d0:73:d5:25:7e:a8
+light.spotlight:
+  platform: lifx
+  unique_id: d0:73:d5:25:43:1c
+light.underbed:
+  platform: lifx
+  unique_id: d0:73:d5:15:0c:ae
+binary_sensor.front_door_sensor:
+  platform: zwave
+  unique_id: 4-72057594110017536
+binary_sensor.lounge_multisensor_sensor:
+  platform: zwave
+  unique_id: 5-72057594126794752
+sensor.front_door_alarm_type:
+  platform: zwave
+  unique_id: 4-72057594111082497
+sensor.front_door_alarm_level:
+  platform: zwave
+  unique_id: 4-72057594111082513
+sensor.front_door_sourcenodeid:
+  platform: zwave
+  unique_id: 4-72057594111082529
+sensor.front_door_access_control:
+  platform: zwave
+  unique_id: 4-72057594111082641
+sensor.front_door_burglar:
+  platform: zwave
+  unique_id: 4-72057594111082657
+sensor.lounge_multisensor_temperature:
+  platform: zwave
+  unique_id: 5-72057594126811154
+sensor.lounge_multisensor_luminance:
+  platform: zwave
+  unique_id: 5-72057594126811186
+sensor.lounge_multisensor_relative_humidity:
+  platform: zwave
+  unique_id: 5-72057594126811218
+sensor.lounge_multisensor_ultraviolet:
+  platform: zwave
+  unique_id: 5-72057594126811570
+sensor.lounge_multisensor_alarm_type:
+  platform: zwave
+  unique_id: 5-72057594127859713
+sensor.lounge_multisensor_alarm_level:
+  platform: zwave
+  unique_id: 5-72057594127859729
+sensor.lounge_multisensor_sourcenodeid:
+  platform: zwave
+  unique_id: 5-72057594127859745
+sensor.lounge_multisensor_burglar:
+  platform: zwave
+  unique_id: 5-72057594127859873
+sensor.renemarc_iphone_battery_state:
+  platform: ios
+  unique_id: state_cellphone_him
+sensor.renemarc_iphone_battery_level:
+  platform: ios
+  unique_id: level_cellphone_him
+media_player.plex_htpc_chrome:
+  platform: plex
+  unique_id: evqqz9dhn5ijqezbt9bx5euk
+media_player.plex_htpc_chrome_lan:
+  platform: plex
+  unique_id: 2geodce3554zd0j7kixyfnzi
+media_player.plex_htpc_firefox:
+  platform: plex
+  unique_id: 87rcsmjonu5jvqo3853ihba0
+media_player.plex_htpc_firefox_lan:
+  platform: plex
+  unique_id: k14b49ckgpehqp0avovuh9r2
+media_player.plex_htpc_microsoft_edge:
+  platform: plex
+  unique_id: db63di3hgp091n4d3jflkpv2
+media_player.plex_htpc_microsoft_edge_lan:
+  platform: plex
+  unique_id: jc7yjwset23kx7plhdfckise
+media_player.plex_mac_firefox_lan:
+  platform: plex
+  unique_id: uwfbjj7g2w8zhbgl15rli4e4

@@ -1,5 +1,7 @@
 #
-# Turn off bedroom.
+# Turn off bedroom
+#
+# @subscribe input_boolean.nap_mode
 #
 - id: bedroom_off
   alias: Bedroom OFF
@@ -10,15 +12,14 @@
       to: 'on'
 
   action:
-    # Turn off smart lights.
-    - service: light.turn_off
+    # Turn off bed underglow lights.
+    - service: homeassistant.turn_off
       data:
         entity_id:
-          - light.headboard
-          - light.underbed
+          - group.bed_lights
         transition: 10
 
-    # Turn off binary devices
+    # Turn off binary devices.
     - service: homeassistant.turn_off
       entity_id:
         - switch.nightstand_light
