@@ -313,7 +313,7 @@ light.underbed:
 #
 # Sensors: Miscellaneous
 #
-sensor.bing_wallpaper_info:
+sensor.bing_wallpaper:
   custom_ui_state_card: state-card-value_only
 sensor.good_vibes:
   custom_ui_state_card: state-card-value_only

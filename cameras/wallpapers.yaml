@@ -5,11 +5,25 @@
 # @see /groups/default.yaml
 # @see /sensors/images.yaml
 #
+# @link https://bing.com
+# @link https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US
+#
 - platform: generic
   name: Bing Wallpaper
-  still_image_url: >-
-    http://www.bing.com{{ states('sensor.bing_wallpaper') }}_800x600.jpg
+  scan_interval: 600
+  limit_refetch_to_url_change: true
   content_type: image/jpg
+  still_image_url: >-
+    {% if states('sensor.bing_wallpaper') != 'unknown' and states.sensor.bing_wallpaper.attributes.images[0] %}
+      {% set path = states.sensor.bing_wallpaper.attributes.images[0].urlbase %}
+
+      https://www.bing.com{{ path }}_800x600.jpg
+    {% else %}
+      {% set port = states('sensor.server_port') | int %}
+
+      http://127.0.0.1:{{ port }}/local/images/wallpaper-1.jpg
+    {% endif %}
+
 
 #
 # NASA's Astronomy picture of the day
@@ -17,8 +31,19 @@
 # @see /appdaemon/dashboards/Main.dash
 # @see /sensors/images.yaml
 #
+# @link https://api.nasa.gov/api.html#apod
+# @link https://apod.nasa.gov
+#
 - platform: generic
   name: Astronomy Picture of the Day
-  still_image_url: >-
-    https://apod.nasa.gov/apod/{{ states('sensor.apod') }}
+  scan_interval: 600
+  limit_refetch_to_url_change: true
   content_type: image/jpg
+  still_image_url: >-
+    {% if states('sensor.apod') != 'unknown' and states.sensor.apod.attributes.url %}
+      {{ states.sensor.apod.attributes.url }}
+    {% else %}
+      {% set port = states('sensor.server_port') | int %}
+
+      http://127.0.0.1:{{ port }}/local/images/wallpaper-2.jpg
+    {% endif %}

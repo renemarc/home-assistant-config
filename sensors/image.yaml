@@ -1,55 +1,78 @@
 #
 # Bing Wallpaper
 #
-# Used for wallpaper cameras.
+# Used for wallpaper cameras. The image changes once per day, but we set scan
+# interval to 6 hours in case the Internet connection was lost during a previous
+# scheduled fetch.
+#
+# Resource format:
+#   `https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US`
+#   format = Javascript or XML.
+#   idx = Start index
+#   n = Number of images to retrieve
+#   mkt = Market
 #
 # @see /cameras/wallpapers.yaml
 #
 # @link https://bing.com
+# @link https://www.home-assistant.io/components/sensor.rest/
 #
 - platform: rest
   name: Bing Wallpaper
-  resource: http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US
-  icon_template: mdi:link-variant
-  scan_interval: 3600
+  resource: https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US
+  icon_template: mdi:bing
+  scan_interval: 21600
+  json_attributes:
+      - images
   value_template: >-
-    {% if value_json and value_json.images[0] and value_json.images[0].urlbase %}
-      {{ value_json.images[0].urlbase }}
-    {% endif %}
+    {% if value_json and value_json.images[0] %}
+      {% set parts = value_json.images[0].copyright.split('(') %}
 
-- platform: rest
-  name: Bing Wallpaper Info
-  resource: http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US
-  icon_template: mdi:information-outline
-  entity_id:
-    - sensor.bing_wallpaper
-  value_template: >-
-    {% if value_json and value_json.images[0] and value_json.images[0].copyright %}
-      {{ value_json.images[0].copyright.split(' (')[0] }}
+      {% for part in parts %}
+        {%- if not loop.last -%}
+          {%- if not loop.first %}({% endif %}
+          {{- part -}}
+        {%- endif -%}
+      {% endfor %}
     {% endif %}
 
 
 #
 # NASA's Astronomy Picture of the Day
 #
-# Used for wallpaper cameras.
+# Used for wallpaper cameras. The image changes once per day, but we set scan
+# interval to 6 hours in case the Internet connection was lost during a previous
+# scheduled fetch.
+#
+# Resource format:
+#   `https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY`
+#   api_key = Either a free to register API key, or the public DEMO_KEY
+#
+# API key DEMO_KEY has a rate limit of 30 requests per hour and 50 max per day.
+# Registered API keys have a rate limit of 1000 requests per hour.
 #
 # @see /cameras/wallpapers.yaml
 #
+# @link https://api.nasa.gov/api.html#apod
 # @link https://apod.nasa.gov
 #
-- platform: scrape
+- platform: rest
   name: APOD
-  resource: https://apod.nasa.gov/apod/astropix.html
-  scan_interval: 3600
-  select: "center a img"
-  attribute: "src"
-
-- platform: scrape
-  name: APOD Info
-  resource: https://apod.nasa.gov/apod/astropix.html
-  scan_interval: 3600
-  select: "center > b"
+  resource: !secret apod_api_url
+  icon_template: mdi:star
+  scan_interval: 21600
+  json_attributes:
+      - copyright
+      - date
+      - explaination
+      - hdurl
+      - media_type
+      - title
+      - url
+  value_template: >-
+    {% if value_json and value_json.title %}
+      {{ value_json.title }}
+    {% endif %}
 
 
 #

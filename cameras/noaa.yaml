@@ -13,11 +13,12 @@
 - platform: generic
   name: NOAA GeoColor
   scan_interval: 10800
-  still_image_url: https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/GEOCOLOR/600x600.jpg
   content_type: image/jpeg
+  still_image_url: https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/GEOCOLOR/600x600.jpg
+
 
 - platform: generic
   name: NOAA Water Vapour
   scan_interval: 10800
-  still_image_url: https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/10/600x600.jpg
   content_type: image/jpeg
+  still_image_url: https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/10/600x600.jpg

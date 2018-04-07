@@ -74,9 +74,9 @@ slideshow:
         - http://hassio.local:8123/api/camera_proxy/camera.astronomy_picture_of_the_day?token=8a93f72de0a6538bd4c8348a338bd13a65be0bab41545f1b2f97676fb584c150
     title_entity_list:
         - ""
-        - sensor.bing_wallpaper_info
+        - sensor.bing_wallpaper
         - ""
-        - sensor.apod_info
+        - sensor.apod
     title_style: "line-height:2em;opacity:0.8;"
 
 

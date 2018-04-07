@@ -312,3 +312,18 @@
       unit_of_measurement: 'KiB'
       value_template: >-
          {{ (states.sensor.homeassistantlog.attributes.bytes / 1024) | round }}
+
+
+#
+# Server port
+#
+# Used as a flexible placeholder for cameras.
+#
+# @see /cameras/environment_canada.yaml
+# @see /cameras/wallpapers.yaml
+#
+- platform: template
+  sensors:
+    server_port:
+      friendly_name: Server Port
+      value_template: !secret http_server_port
