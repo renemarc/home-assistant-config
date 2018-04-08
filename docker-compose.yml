@@ -1,0 +1,47 @@
+#
+# Docker-compose file for MacOS.
+#
+# @see /docker
+#
+# @link https://www.home-assistant.io/docs/installation/docker/
+#
+
+version: '3'
+
+services:
+  hass:
+    container_name: homeassistant
+    image: homeassistant/home-assistant:0.66.1
+    restart: unless-stopped
+    env_file:
+      - docker/env
+    ports:
+      - 8123:8123
+    volumes:
+      - .:/config
+
+  mqtt:
+    container_name: mosquitto
+    image: toke/mosquitto:latest
+    restart: unless-stopped
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - ./docker/mosquitto.conf:/mqtt/config/mosquitto.conf:ro
+
+  appdaemon:
+    container_name: appdaemon
+    image: acockburn/appdaemon:latest
+    restart: unless-stopped
+    env_file:
+      - docker/env
+    ports:
+      - 5050:5050
+    volumes:
+      - ./appdaemon/apps:/conf/apps:ro
+      - ./appdaemon/custom_css:/conf/custom_css:ro
+      - ./appdaemon/custom_widgets:/conf/custom_widgets:ro
+      - ./appdaemon/dashboards:/conf/dashboards:ro
+      - ./appdaemon/appdaemon.yaml:/conf/appdaemon.yaml:ro
+      - ./appdaemon/secrets.yaml:/conf/secrets.yaml:ro

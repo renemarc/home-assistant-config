@@ -54,9 +54,8 @@
       friendly_name: Bedroom Multisensor Battery
       unit_of_measurement: '%'
       value_template: >-
-        {% set battery_level = states('sensor.bedroom_acurite_battery') | default(0) | int %}
+        {{ states('sensor.bedroom_acurite_battery') }}
 
-        {{ battery_level }}
       icon_template: >-
         {% set battery_level = states('sensor.bedroom_acurite_battery') | default(0) | int %}
 

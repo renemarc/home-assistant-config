@@ -20,3 +20,14 @@ For third-party, custom and modified dashboard widgets.
 ### [`🖼 ./dashboards/`](dashboards)
 
 For the dashboards used in HADashboard.
+
+
+## Files
+
+### [`⚙️ ./appdaemon.yaml`](appdaemon.yaml)
+
+AppDaemon configuration file.
+
+### [`🔑 ./secrets-dummy.yaml`](secrets-dummy.yaml)
+
+Placeholder file for sensitive information, to be copied to `secrets.yaml` and modified according to the target environment.
