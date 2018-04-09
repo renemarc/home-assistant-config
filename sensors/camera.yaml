@@ -23,7 +23,7 @@
   icon_template: mdi:bing
   scan_interval: 21600
   json_attributes:
-      - images
+    - images
   value_template: >-
     {% if value_json and value_json.images[0] %}
       {% set parts = value_json.images[0].copyright.split('(') %}
@@ -62,13 +62,13 @@
   icon_template: mdi:star
   scan_interval: 21600
   json_attributes:
-      - copyright
-      - date
-      - explaination
-      - hdurl
-      - media_type
-      - title
-      - url
+    - copyright
+    - date
+    - explaination
+    - hdurl
+    - media_type
+    - title
+    - url
   value_template: >-
     {% if value_json and value_json.title %}
       {% if value_json.media_type == 'video' %}

@@ -212,7 +212,6 @@ logger:
   default: warning
   logs:
     custom_components.display: critical
-    homeassistant.components.notify.lannouncer: debug
 
 
 #

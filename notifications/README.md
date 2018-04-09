@@ -11,9 +11,14 @@ Notifications services are organized into higher-level [notification groups](htt
 
 ### [`📢 ./lannouncer.yaml`](lannouncer.yaml)
 
-For audio alerts and text-to-speech messages sent to the [LANnouncer](http://www.keybounce.com/lannouncer/) Android app running on the kiosk.
+For audio alerts and text-to-speech messages sent to the [LANnouncer](http://www.keybounce.com/lannouncer/) Android app running on the kiosk. To make sure that LANnouncer is available after a reboot, the app gets launched using [AutoStart - No root](https://play.google.com/store/apps/details?id=com.autostart).
 
 
 ### [`💬 ./pushover.yaml`](pushover.yaml)
 
 Notification service for cellphones and tablets. I was already using [Pushover](https://pushover.net) for other purposes, so might as well continue.
+
+
+### [`🔗 ./rest.yaml`](rest.yaml)
+
+For text-to-speech messages sent to the [Fully Kiosk Browser](http://www.keybounce.com/lannouncer/). Currently placed in stand-by in case LANnouncer becomes unresponsive again.

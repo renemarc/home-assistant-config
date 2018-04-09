@@ -11,6 +11,8 @@
     - platform: state
       entity_id: input_boolean.night_mode
       to: 'off'
+      for:
+        seconds: 5
 
   condition:
     # If nap mode is disabled.
@@ -75,8 +77,8 @@
           endif -%}
           A {{ states('sensor.wind_scale_friendly') | lower }} is blowing from the {{ states('sensor.wind_bearing_cardinal_friendly') }}.
 
-          Air quality is {{ states('sensor.aqi_friendly') | lower }} {%
-          if is_state('sun.sun', 'above_horizon') -%}
+          Air quality is {{ states('sensor.aqi_friendly') | lower }}
+          {%- if is_state('sun.sun', 'above_horizon') -%}
             , UV index is {{ states('sensor.uv_friendly') | lower }}
           {%- endif %} and the sun {{ states('sensor.sun_state_friendly') }}.
 
