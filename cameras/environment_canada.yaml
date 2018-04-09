@@ -16,7 +16,6 @@
 #
 - platform: generic
   name: Environment Canada Rain
-  scan_interval: 600
   limit_refetch_to_url_change: true
   content_type: image/gif
   still_image_url: >-
@@ -33,7 +32,6 @@
 
 - platform: generic
   name: Environment Canada Rain 2
-  scan_interval: 600
   limit_refetch_to_url_change: true
   content_type: image/gif
   still_image_url: >-
@@ -52,7 +50,6 @@
   name: Environment Canada Rain 3
   limit_refetch_to_url_change: true
   content_type: image/gif
-  scan_interval: 600
   still_image_url: >-
     {% set delta = 30 %}
     {% set time = states('sensor.time') %}
@@ -68,7 +65,6 @@
 # Radar of surrounding snow conditions (10, 20 and 30 minutes ago)
 - platform: generic
   name: Environment Canada Snow
-  scan_interval: 600
   limit_refetch_to_url_change: true
   content_type: image/gif
   still_image_url: >-
@@ -85,7 +81,6 @@
 
 - platform: generic
   name: Environment Canada Snow 2
-  scan_interval: 600
   limit_refetch_to_url_change: true
   content_type: image/gif
   still_image_url: >-
@@ -102,7 +97,6 @@
 
 - platform: generic
   name: Environment Canada Snow 3
-  scan_interval: 600
   limit_refetch_to_url_change: true
   content_type: image/gif
   still_image_url: >-

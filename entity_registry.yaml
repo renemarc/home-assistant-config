@@ -91,6 +91,15 @@ media_player.plex_htpc_microsoft_edge:
 media_player.plex_htpc_microsoft_edge_lan:
   platform: plex
   unique_id: jc7yjwset23kx7plhdfckise
-media_player.plex_mac_firefox_lan:
+media_player.plex_macbook_chrome:
+  platform: plex
+  unique_id: 221kibr17ifpy5rx2d50nhic
+media_player.plex_macbook_firefox:
+  platform: plex
+  unique_id: r586ckp1jomtndvzzc412asy
+media_player.plex_macbook_firefox_lan:
   platform: plex
   unique_id: uwfbjj7g2w8zhbgl15rli4e4
+media_player.plex_macbook_safari:
+  platform: plex
+  unique_id: w4tj5tb6p0of4l8itvl039jn

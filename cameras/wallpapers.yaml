@@ -10,7 +10,6 @@
 #
 - platform: generic
   name: Bing Wallpaper
-  scan_interval: 600
   limit_refetch_to_url_change: true
   content_type: image/jpg
   still_image_url: >-
@@ -39,7 +38,6 @@
 #
 - platform: generic
   name: Astronomy Picture of the Day
-  scan_interval: 600
   limit_refetch_to_url_change: true
   content_type: image/jpg
   still_image_url: >-

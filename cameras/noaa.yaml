@@ -2,8 +2,10 @@
 # U.S. National Oceanic and Atmospheric Administration satellite imaging
 #
 # GOES-East Northeast region.
+#
 # Scan interval is set to every 3 hours, because air masses move slowly as
-# seen from space.
+# seen from space. However `scan_interval` is currently broken with cameras, so
+# we are using a provider-friendly timestamp anchor that changes every 3 hours.
 #
 # @see /appdaemon/dashboards/Weather.dash
 # @see /groups/weather.yaml
@@ -13,12 +15,28 @@
 - platform: generic
   name: NOAA GeoColor
   scan_interval: 10800
+  limit_refetch_to_url_change: true
   content_type: image/jpeg
-  still_image_url: https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/GEOCOLOR/600x600.jpg
+  still_image_url: >-
+    {% set delta = 180 %}
+    {% set time = states('sensor.time') %}
+    {% set offset = delta * 60 %}
+    {% set current = as_timestamp(utcnow()) %}
+    {% set timestamp = (current - (current % offset)) | int %}
+
+    https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/GEOCOLOR/600x600.jpg#{{ timestamp }}
 
 
 - platform: generic
   name: NOAA Water Vapour
   scan_interval: 10800
+  limit_refetch_to_url_change: true
   content_type: image/jpeg
-  still_image_url: https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/10/600x600.jpg
+  still_image_url: >-
+    {% set delta = 180 %}
+    {% set time = states('sensor.time') %}
+    {% set offset = delta * 60 %}
+    {% set current = as_timestamp(utcnow()) %}
+    {% set timestamp = (current - (current % offset)) | int %}
+
+    https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/10/600x600.jpg#{{ timestamp }}
