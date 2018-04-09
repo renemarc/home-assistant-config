@@ -71,7 +71,9 @@
       - url
   value_template: >-
     {% if value_json and value_json.title %}
-      {{ value_json.title }}
+      {% if value_json.media_type == 'video' %}
+        Video:
+      {%- endif %} {{ value_json.title }}
     {% endif %}
 
 
