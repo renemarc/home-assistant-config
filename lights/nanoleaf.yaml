@@ -9,7 +9,7 @@
 # @link https://github.com/software-2/ha-aurora
 # @link https://github.com/Oro/home-assistant/tree/light-aurora
 #
-- platform: aurora
+- platform: nanoleaf_aurora
   name: Aurora
   host: !secret aurora_host
   token: !secret aurora_api_key

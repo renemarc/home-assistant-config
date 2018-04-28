@@ -32,6 +32,8 @@ binary_sensor.flic_80e4da72e890:
   friendly_name: Flic white
 binary_sensor.flic_80e4da737711:
   friendly_name: Flic blue
+binary_sensor.front_door_sensor:
+  device_class: door
 binary_sensor.lounge_multisensor_sensor:
   device_class: motion
   group:
@@ -442,6 +444,8 @@ sensor.aqi_ozone_friendly:
       return v > 100 ? 'card-critical'
       : v > 50 ? 'card-warning'
       : null;
+sensor.aqi_particles:
+  device_class: pm25
 sensor.aqi_particles_friendly:
   extra_data_template: >-
     return entities['sensor.aqi_particles'].state != 'unknown' ?

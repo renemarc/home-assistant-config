@@ -118,7 +118,7 @@ As an alternative to using the MiLight bridge with its limit of four groups, [Ch
 
 What an awesome decorative lighting kit! Makes any place feel like a sophisticated café or designer cocktail bar. 😍
 
-The [Aurora](https://nanoleaf.me) is managed directly through WiFi, so no need for a hub, and is HomeKit compatible. It is integrated into Home Assistant through a third party component in [`/custom_components/light/aurora.yaml`](../custom_components/light/aurora.yaml) (actually, I am using this forked version compatible with Hass.io)
+The [Aurora](https://nanoleaf.me) is managed directly through WiFi, so no need for a hub, and is HomeKit compatible.
 
 Like with the LIFX Z light strips, I have scheduled different effects and brightness levels in Home Assistant so that my Aurora changes looks throughout the day. The interface is the same as above, also with a manual override should I prefer a specific effect. The effects do not reside in the cloud however, but directly on the device itself which is nice.
 
