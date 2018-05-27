@@ -7,11 +7,11 @@
 #
 - platform: mqtt
   name: Bedroom AcuRite
-  state_topic: "home/bedroom/bedroom"
+  state_topic: "home/Acurite_tower_sensor/11846"
 
 - platform: mqtt
   name: Bedroom Humidity Exact
-  state_topic: "home/bedroom/bedroom"
+  state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '%'
   value_template: >-
     {% set calibration = -1.5 %}
@@ -21,7 +21,7 @@
 
 - platform: mqtt
   name: Bedroom Temperature Exact
-  state_topic: "home/bedroom/bedroom"
+  state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '°C'
   value_template: >-
     {% set calibration = 0.2 %}
