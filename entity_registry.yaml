@@ -142,3 +142,19 @@ media_player.plex_macbook_safari:
   name:
   platform: plex
   unique_id: w4tj5tb6p0of4l8itvl039jn
+zwave.front_door:
+  name:
+  platform: zwave
+  unique_id: node-4
+zwave.lounge_multisensor:
+  name:
+  platform: zwave
+  unique_id: node-5
+zwave.minimote:
+  name:
+  platform: zwave
+  unique_id: node-6
+zwave.zstick:
+  name:
+  platform: zwave
+  unique_id: node-1

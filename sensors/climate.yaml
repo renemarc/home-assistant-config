@@ -97,7 +97,7 @@
 
     lounge_luminance:
       friendly_name: Lounge Luminance
-      unit_of_measurement: 'lux'
+      unit_of_measurement: 'lx'
       icon_template: mdi:blur
       value_template: "{{ states('sensor.lounge_multisensor_luminance') | round }}"
 
