@@ -59,6 +59,7 @@ automations_areas:
     - automation.bedroom_off
     - automation.bedroom_on
     - automation.ceiling_effect
+    - automation.ceiling_low_power
     - automation.ceiling_off
     - automation.ceiling_on
     - automation.ceiling_schedule

@@ -1,7 +1,13 @@
 #
-# Set washroom in low-power mode
+# Set washroom to low-power mode
+#
+# Only set low-power state if not currently in nap to night modes.
+# The end result is currently very close to `washroom_off` but this automation
+# is kept separate to allow for an eventual evolution.
 #
 # @subscribe input_boolean.low_mode
+# @subscribe input_boolean.nap_mode
+# @subscribe input_boolean.night_mode
 #
 # Todo: force dim lights.
 #
@@ -12,6 +18,32 @@
     - platform: state
       entity_id: input_boolean.low_mode
       to: 'on'
+
+    # When nap mode is disabled.
+    - platform: state
+      entity_id: input_boolean.nap_mode
+      to: 'off'
+
+    # When night mode is disabled.
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'off'
+
+  condition:
+    # If low-power mode is enabled.
+    - condition: state
+      entity_id: input_boolean.low_mode
+      state: 'on'
+
+    # If nap mode is disabled.
+    - condition: state
+      entity_id: input_boolean.nap_mode
+      state: 'off'
+
+    # If night mode is disabled
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'off'
 
   action:
     # Turn on some devices.

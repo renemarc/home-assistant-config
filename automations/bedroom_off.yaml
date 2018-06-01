@@ -1,6 +1,8 @@
 #
 # Turn off bedroom
 #
+# Bedroom lights should be off when napping.
+#
 # @subscribe input_boolean.nap_mode
 #
 - id: bedroom_off
@@ -24,4 +26,3 @@
       entity_id:
         - switch.nightstand_light
         - switch.bedside_light
-        - switch.bedroom_fan

@@ -1,7 +1,11 @@
 #
 # Set lounge to low-power mode
 #
+# Only set low-power state if not currently in nap to night modes.
+#
 # @subscribe input_boolean.low_mode
+# @subscribe input_boolean.nap_mode
+# @subscribe input_boolean.night_mode
 #
 - id: lounge_low_power
   alias: Lounge LOW POWER
@@ -10,6 +14,22 @@
     - platform: state
       entity_id: input_boolean.low_mode
       to: 'on'
+
+    # When night mode is disabled.
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'off'
+
+  condition:
+    # If low-power mode is enabled.
+    - condition: state
+      entity_id: input_boolean.low_mode
+      state: 'on'
+
+    # If night mode is disabled.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'off'
 
   action:
     # Turn on some binary devices.

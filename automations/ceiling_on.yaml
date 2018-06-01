@@ -1,12 +1,23 @@
 #
 # Turn on ceiling wash lights
 #
+# If low-power mode is enabled, the `ceiling_low` automation will be used
+# instead.
+#
+# @subscribe input_boolean.low_mode
 # @subscribe input_boolean.nap_mode
 # @subscribe input_boolean.night_mode
+#
+# @see /automations/ceiling_low.yaml
 #
 - id: ceiling_on
   alias: Ceiling ON
   trigger:
+    # When low-power mode is disabled.
+    - platform: state
+      entity_id: input_boolean.low_mode
+      to: 'off'
+
     # When nap mode is disabled.
     - platform: state
       entity_id: input_boolean.nap_mode
@@ -18,6 +29,11 @@
       to: 'off'
 
   condition:
+    # If low-power mode is disabled.
+    - condition: state
+      entity_id: input_boolean.low_mode
+      state: 'off'
+
     # If nap mode is disabled.
     - condition: state
       entity_id: input_boolean.nap_mode

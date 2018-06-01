@@ -1,6 +1,8 @@
 #
 # Turn off kitchen
 #
+# Kitchen lights should be off when sleeping.
+#
 # @subscribe input_boolean.night_mode
 #
 - id: kitchen_off

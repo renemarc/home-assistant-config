@@ -1,6 +1,8 @@
 #
 # Turn off lounge
 #
+# Lounge lights should be off when sleeping.
+#
 # @subscribe input_boolean.night_mode
 #
 - id: lounge_off

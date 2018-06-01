@@ -1,6 +1,8 @@
 #
 # Turn off washroom
 #
+# Wahsroom lights should be off when napping or sleeping.
+#
 # @subscribe input_boolean.nap_mode
 # @subscribe input_boolean.night_mode
 #
