@@ -8,6 +8,7 @@
 #
 - id: low_power_mode_stop
   alias: Low power mode STOP
+  initial_state: 'off'
   trigger:
     # When nap mode is disabled.
     - platform: state
