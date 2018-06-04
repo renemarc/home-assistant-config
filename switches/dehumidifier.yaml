@@ -8,8 +8,8 @@
 # throughout the dwelling. Automations take care of turning it on or off based
 # on custom minimum and maximum humidity levels.
 #
-# @see /automations/dehumidifier_on.yaml
-# @see /automations/dehumidifier_off.yaml
+# @see /automations/devices/dehumidifier_on.yaml
+# @see /automations/devices/dehumidifier_off.yaml
 #
 # @link http://www.dehumidifierbuyersguide.com/frigidaire-ffad7033r1-review/
 # @link https://home-assistant.io/components/switch.tplink/

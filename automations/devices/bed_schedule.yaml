@@ -1,0 +1,117 @@
+#
+# Schedule bed underglow lights based on LIFX Cloud scenes
+#
+# Unless an effect is manually selected, this scheduler will do its thing.
+#
+# @subscribe input_boolean.nap_mode
+# @subscribe input_boolean.night_mode
+# @subscribe input_boolean.scene_mode
+# @subscribe input_select.bed_effect
+#
+# @publish variable.bed_effect
+#
+# @see /automations/devices/bed_effect.yaml
+#
+# @link https://api.developer.lifx.com/docs/activate-scene
+#
+- id: bed_schedule
+  alias: Bed SCHEDULE
+  trigger:
+    # Every hour on the hour.
+    - platform: time
+      minutes: 00
+      seconds: 00
+
+    # When Home Assistant starts.
+    - platform: homeassistant
+      event: start
+
+    # When an item which was off comes back online.
+    - platform: state
+      entity_id:
+        - light.headboard
+        - light.underbed
+      to: 'on'
+
+    # When scenes are disabled.
+    - platform: state
+      entity_id: input_boolean.scene_mode
+      to: 'off'
+
+    # When the selected effect is switched to default.
+    - platform: state
+      entity_id: input_select.bed_effect
+      to: 'Auto'
+
+  condition:
+    # If automation was not trigered lately.
+    - condition: template
+      value_template: >-
+        {% set current = as_timestamp(utcnow()) %}
+        {% set last_triggered = as_timestamp(states.automation.bed_schedule.attributes.last_triggered) | float %}
+
+        {{ current - last_triggered > 1}}
+
+    # If bed lights are on.
+    - condition: state
+      entity_id: group.bed_lights
+      state: 'on'
+
+    # If the selected effect is the default.
+    - condition: state
+      entity_id: input_select.bed_effect
+      state: 'Auto'
+
+    # If no scenes are enabled.
+    - condition: state
+      entity_id: input_boolean.scene_mode
+      state: 'off'
+
+    # If it's not during the night mode.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'off'
+
+    # If it's not during the nap mode.
+    - condition: state
+      entity_id: input_boolean.nap_mode
+      state: 'off'
+
+  action:
+    # Update the effect variable.
+    - service: variable.set_variable
+      data:
+        variable: bed_effect
+        value_template: >-
+          {% set hour = states('sensor.time').split(':')[0] %}
+          {% set schedule = {
+            '00': 'Neon',
+            '01': 'Warming',
+            '02': 'Relaxing',
+            '03': 'Neon',
+            '04': 'Warming',
+            '05': 'Relaxing',
+
+            '06': 'Neon',
+            '07': 'Warming',
+            '08': 'Relaxing',
+            '09': 'Neon',
+            '10': 'Warming',
+            '11': 'Relaxing',
+
+            '12': 'Neon',
+            '13': 'Warming',
+            '14': 'Relaxing',
+            '15': 'Neon',
+            '16': 'Warming',
+            '17': 'Relaxing',
+
+            '18': 'Neon',
+            '19': 'Warming',
+            '20': 'Relaxing',
+            '21': 'Neon',
+            '22': 'Warming',
+            '23': 'Relaxing',
+          } %}
+
+          {{ schedule[hour] }}

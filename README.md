@@ -7,7 +7,6 @@
 [![License][img-license]][link-license]
 
 
-
 Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io](https://home-assistant.io/hassio/) on a Raspberry Pi for a one bedroom apartment, offering convenience automations over lights and climate while providing multiple intuitive user controls.
 
 <div align="center">
@@ -157,7 +156,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **LIFX Z bed underglow lights and ceiling wash lights control**:
     + Manual theme selection.
     + Automatically rotate through cloud-based themes based on time of day (unless manually selected above).
-- **Automatically correlated color temperature (CCT)**, for [f.lux](https://justgetflux.com/)-like white temperature shift to gradually remove blue light based on a custom color and brightness curve, not simply based on the sun ...otherwise Canadian winters would be quite yellow!
+- **Automatically correlated colour temperature (CCT)**, for [f.lux](https://justgetflux.com/)-like white temperature shift to gradually remove blue light based on a custom colour and brightness curve, not simply based on the sun ...otherwise Canadian winters would be quite yellow!
 - **Motion-based nightlights**, where strategic lights fade in, dimmed very low, when movement is detected at night, say when someone wakes up to go the bathroom ...again.
 - See [`/lights/`](lights) and [`/automations/`](automations).
 
@@ -178,7 +177,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **Cellphone device sensing**, to check who is currently home or away.
 - **Tamper monitoring**, in case a perimeter device has been played with.
 - **Opened door alert**, to know if someone left an exteral door open.
-- **Opened door indicators** where a chime is played and a few lights change color briefly and subtly when the front door opens/closes, say to indicate an oblivious  showering partner that their better half has left or just came in.
+- **Opened door indicators** where a chime is played and a few lights change colour briefly and subtly when the front door opens/closes, say to indicate an oblivious  showering partner that their better half has left or just came in.
 
 <div align="center">
     <figure>
@@ -203,7 +202,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **Good morning action** that releases all blocking modes, allowing all lights to turn on gradually, and noise-making devices are allowed to run if needed.
 - **Smart global scenes** based on [`/scripts/`](scripts)` instead of scenes, to allow for sequences and conditions:
     + **Movie scene** turns on ambiance lighting and dims smart lights when playing a movie, then returns to standard automations when pausing/stopping.
-    + **Daylight, Gaming and Romantic global scenes** fades in and out different lights, sets effects and changes light colors to set a perfect mood.
+    + **Daylight, Gaming and Romantic global scenes** fades in and out different lights, sets effects and changes light colours to set a perfect mood.
 
 <div align="center">
     <figure>
@@ -237,7 +236,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 
 ### Additional human interfaces
-- **Flic buttons** on nightstand and in the kitchen for triggering modes and controlling localized lights, depending on current states and click types.
+- **[Flic buttons](https://flic.io)** on nightstand and in the kitchen for triggering modes and controlling localized lights, depending on current states and click types.
 - **Aeotec Minimote** to quickly control global scenes and modes.
 - **[Homebridge](https://github.com/nfarina/homebridge)** for using some key sensors and devices with iPhones.
 - **[Home Assistant Companion](https://itunes.apple.com/us/app/home-assistant-companion/id1099568401?mt=8) iPhone app** for full UI access in the palm of my hand. _Muahahaha!_
@@ -253,7 +252,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
             <img src="www/images/technology-diagram.png" alt="Technology diagram">
         </div>
         <figcaption>
-            <p><strong>Technology Diagram (<a href="www/images/technology-diagram.png">PNG</a>, <a href="www/images/technology-diagram.svg">SVG</a>). Made with <a href="https://www.draw.io">Draw.io</a> (<a href="www/images/technology-diagram.xml">XML</a> source file).</strong></p>
+            <p><strong>Technology diagram (<a href="www/images/technology-diagram.png"><code>PNG</code></a>, <a href="www/images/technology-diagram.svg"><code>SVG</code></a>). Made with <a href="https://www.draw.io">Draw.io</a> (<a href="www/images/technology-diagram.xml"><code>XML</code></a> source file).</strong></p>
         </figcaption>
     </figure>
 </div>

@@ -6,7 +6,7 @@
 # @link https://github.com/home-assistant/home-assistant-polymer/blob/master/src/resources/ha-style.html
 #
 
-# Text colors
+# Text colours
 secondary-text-color: rgb(153, 153, 153)
 # Labels
 label-badge-red: rgb(68, 115, 158)

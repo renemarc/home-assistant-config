@@ -1,0 +1,36 @@
+#
+# Disable night (dark) mode
+#
+# @publish input_boolean.night_mode
+#
+# @see /automations/modes/nap_mode_stop.yaml
+#
+- id: night_mode_stop
+  alias: Night mode STOP
+  trigger:
+    # When Minimote button 2 is held.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 4 # 4 = button #2 held.
+
+    # When bedside Flic button is held.
+    - platform: event
+      event_type: flic_click
+      event_data:
+        button_name: flic_80e4da737711
+        click_type: hold
+
+  condition:
+    # If night mode is enabled.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'on'
+
+  action:
+    # Disable night mode.
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.night_mode
+

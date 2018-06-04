@@ -8,8 +8,8 @@
 #
 # Nanoleaf Aurora effects
 #
-# @see /automations/aurora_effect.yaml
-# @see /automations/aurora_select.yaml
+# @see /automations/devices/aurora_effect.yaml
+# @see /automations/devices/aurora_select.yaml
 #
 aurora_effect:
   name: Aurora Effect
@@ -59,8 +59,8 @@ aurora_effect:
 #
 # Bed underglow lights effects
 #
-# @see /automations/bed_effect.yaml
-# @see /automations/bed_select.yaml
+# @see /automations/devices/bed_effect.yaml
+# @see /automations/devices/bed_select.yaml
 #
 bed_effect:
   name: Bed Underglow Lights Effect
@@ -77,8 +77,8 @@ bed_effect:
 #
 # Ceiling wash lights effect
 #
-# @see /automations/ceiling_effect.yaml
-# @see /automations/ceiling_select.yaml
+# @see /automations/areas/ceiling_effect.yaml
+# @see /automations/areas/ceiling_select.yaml
 #
 ceiling_effect:
   name: Ceiling Wash Lights Effect
@@ -106,8 +106,8 @@ ceiling_effect:
 #
 # Lightpack effect
 #
-# @see /automations/lightpack_effect.yaml
-# @see /automations/lightpack_select.yaml
+# @see /automations/devices/lightpack_effect.yaml
+# @see /automations/devices/lightpack_select.yaml
 #
 lightpack_effect:
   name: Lightpack Effect

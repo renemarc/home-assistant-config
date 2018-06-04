@@ -38,7 +38,7 @@ Set lounge smart lights to video gaming themed colours and effects, as the HTPC 
             <a href="https://www.youtube.com/watch?v=x-Wg4mr75yYs" title="Randy March playing video games"><img src="https://media.giphy.com/media/3o6Zt3XykpTtUq39zq/giphy.gif" alt="Randy March playing video games"></a>
         </div>
         <figcaption>
-            <p><strong><a href="https://www.youtube.com/watch?v=x-Wg4mr75yY" title="Just 5 more minutes...!">Randy March playing video games.</a></strong></p>
+            <p><strong><a href="https://www.youtube.com/watch?v=x-Wg4mr75yY" title="Just 5 more minutes...">Randy March playing video games.</a></strong></p>
         </figcaption>
     </figure>
 </div>

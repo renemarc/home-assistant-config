@@ -1,0 +1,50 @@
+#
+# Change ceiling wash lights based on LIFX Cloud scenes
+#
+# The LIFX strips have some effects programmed with the LIFX mobile app and
+# stored on their servers. Each effect mentions which device will receive which
+# colour pattern. Also, each effect has a UUID that can be used to load the
+# effect from the servers and program the LIFX devices accordingly.
+#
+# @subscribe variable.ceiling_effect
+#
+# @see /automations/areas/ceiling_schedule.yaml
+# @see /automations/areas/ceiling_select.yaml
+# @see /scenes/lifx_cloud.yaml
+#
+- id: ceiling_effect
+  alias: Ceiling EFFECT
+  trigger:
+    # When an effect is changed.
+    - platform: state
+      entity_id: variable.ceiling_effect
+
+  action:
+    # Send the effect's UUID to the LIFX Cloud scenes service.
+    - service: shell_command.activate_lifx_cloud_scene
+      data_template:
+        uuid: >-
+          {% set effects = {
+            'Blissful':         'e1cd000b-2780-40e9-8ae5-2ca55b67b01d',
+            'Celebrations':     '9428fffc-8466-489e-b93a-c7f062c45a81',
+            'Cheerful':         '2223a575-b13d-468f-875c-1d8275b2f718',
+            'Daylight':         '40d6b6a6-0eb7-48bc-81c1-b469e91a9b6d',
+            'Focusing':         '83bfebf8-ab73-483f-9987-5c6a8a340609',
+            'Intense':          'd8a58aca-0e9a-4379-8668-363e237316b2',
+            'Mellow':           '4cc1d4fe-cf9e-4391-899b-0bb5f13f4c73',
+            'Movie':            'ba3ac9bf-ae54-4e11-a8a8-d7ec6862293d',
+            'Northern Lights':  '7e85572c-facc-46d9-a3fa-832ed82a9496',
+            'Powerful':         'afed3ed6-c918-44d5-9207-7e895c6d3d0f',
+            'Relaxing':         'c4d42b21-8d79-4637-a04a-0ace24824c30',
+            'Serene':           '66d389bc-fd2a-460d-9d70-3063db2ea509',
+            'Soothing':         'a09a3137-98f1-41a8-b9ae-64a1cec54c1a',
+            'Tranquil':         '34cacbbe-d4ad-4abf-b108-6973431d63d3',
+            'Warming':          '8b85e701-0189-4c4b-a703-cfa3d0f0ab64',
+          } %}
+          {% set selected = states('variable.ceiling_effect') %}
+
+          {% if effects[selected] %}
+            {{ effects[selected] }}
+          {% endif %}
+        duration: 10
+        key: !secret lifx_cloud_token

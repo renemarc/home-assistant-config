@@ -1,0 +1,38 @@
+#
+# Enable night (dark) mode
+#
+# Subscribers should shut off all non-essential indoor lights and noise sources,
+# except for bedroom devices which should respond to `nap_mode_start` instead.
+#
+# @publish input_boolean.night_mode
+#
+# @see /automations/modes/nap_mode_start.yaml
+#
+- id: night_mode_start
+  alias: Night mode START
+  trigger:
+    # When Minimote button 2 is held.
+    - platform: event
+      event_type: zwave.scene_activated
+      event_data:
+        entity_id: zwave.minimote
+        scene_id: 4 # 4 = button #2 held.
+
+    # When bedside Flic button is held.
+    - platform: event
+      event_type: flic_click
+      event_data:
+        button_name: flic_80e4da737711
+        click_type: hold
+
+  condition:
+    # If night mode is not currently enabled.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'off'
+
+  action:
+    # Enable night mode.
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.night_mode

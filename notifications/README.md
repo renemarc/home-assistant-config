@@ -1,6 +1,6 @@
 # Notifications
 
-Useful during development of automations, I later keep using them for simple warnings like when the dehumidifier is likely full in [`/automations/check_humidity_high.yaml`](../automations/check_humidity_high.yaml)  or if a door has been left open for too long in [`/automations/check_doors.yaml`](../automations/check_doors.yaml).
+Useful during development of automations, I later keep using them for simple warnings like when the dehumidifier is likely full in [`/automations/humidity_notify.yaml`](../automations/humidity_notify.yaml)  or if a door has been left open for too long in [`/automations/doors_notify.yaml`](../automations/doors_notify.yaml).
 
 ## Organization
 

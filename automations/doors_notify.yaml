@@ -1,5 +1,5 @@
 #
-# Warns someone if a door was left open for too long
+# Warn someone if a door was left open for too long
 #
 # Todo: Add condition that no one has been detected at home.
 #
