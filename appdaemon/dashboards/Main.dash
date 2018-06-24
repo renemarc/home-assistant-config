@@ -67,6 +67,7 @@ label:
 slideshow:
     widget_type: entitycamera
     refresh: 5
+    cache: 600
     img_list:
         - !secret camera_environment_canada_snow_1
         - !secret camera_bing
@@ -98,17 +99,17 @@ quiet_mode:
 low_power_mode:
     widget_type: input_boolean
     entity: input_boolean.low_mode
-    title2: Dim lights
+    title2: Low power
 
 nap_mode:
     widget_type: input_boolean
     entity: input_boolean.nap_mode
-    title2: Take a nap
+    title2: Go to sleep
 
 night_mode:
     widget_type: input_boolean
     entity: input_boolean.night_mode
-    title2: Go to sleep
+    title2: Good night!
 
 scene:
     widget_type: input_select

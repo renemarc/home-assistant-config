@@ -48,7 +48,7 @@ Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io]
     [Climate control](#climate-control) | [Weather report](#weather-report) | [Lighting control](#lighting-control) | [Presence and basic security](#presence-and-basic-security) | [Modes and scenes](#modes-and-scenes) | [General information](#general-information) | [Additional human interfaces](#additional-human-interfaces)
 1. **[Setup](#setup)**  
     [Diagram](#diagram) | [Supporting hardware choices](#supporting-hardware-choices) | 
-    [Configuration](#configuration) | [System and interfaces](#system-and-interfaces) | [Physical devices](#physical-devices) | [Software](#software)
+    [Configuration](#configuration) | [System and interfaces](#system-and-interfaces) | [Physical devices](#physical-devices) | [Software](#software) | [Usage](#usage)
 1. **[Thanks](#thanks)**
 
 
@@ -337,6 +337,21 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[Text-only state card](https://community.home-assistant.io/t/display-only-text-in-card/20536/26)** for wordy sensor states.
 - **[Variable](https://github.com/rogro82/hass-variables)** component for non-boolean values.
 
+
+### Usage
+
+In an empty directory, type:
+
+```shell
+git clone --recurse-submodules git@github.com:renemarc/home-assistant-config.git .
+cp secrets-dummy.yaml secrets.yaml
+cp appdaemon/secrets-dummy.yaml appdaemon/secrets.yaml
+echo "secrets.yaml filter=secret merge=keepMine" > .gitattributes
+```
+
+Actual secrets and auto-generated sensitive files are obviously kept off this repo! 😉
+
+
 ## Thanks
 
 Kudos to:
@@ -355,7 +370,7 @@ Image references.
 [img-github-release]:https://img.shields.io/github/release/renemarc/home-assistant-config/all.svg
 [img-repo-size]:https://img.shields.io/github/repo-size/renemarc/home-assistant-config.svg
 [img-code-size]:https://img.shields.io/github/languages/code-size/renemarc/home-assistant-config.svg
-[img-ha-version]:https://img.shields.io/badge/tested_on_Home_Assistant-0.69-53c1f1.svg
+[img-ha-version]:https://img.shields.io/badge/tested_on_Home_Assistant-0.72-53c1f1.svg
 [img-hassio]:https://img.shields.io/badge/config_for-Hass.io-53c1f1.svg
 [img-license]:https://img.shields.io/github/license/renemarc/home-assistant-config.svg
 
@@ -368,5 +383,5 @@ Link references.
 [link-board]:https://github.com/renemarc/home-assistant-config/projects/1
 [link-travis-ci]:https://travis-ci.org/renemarc/home-assistant-config
 [link-hassio]:https://home-assistant.io/hassio/
-[link-ha-version]:https://www.home-assistant.io/blog/2018/05/11/release-69/
+[link-ha-version]:https://github.com/home-assistant/home-assistant/tree/0.72.0
 [link-license]:LICENSE.txt

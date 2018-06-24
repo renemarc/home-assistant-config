@@ -37,7 +37,7 @@
 #
 - platform: mqtt
   name: Bedroom AcuRite Battery
-  state_topic: "home/bedroom/bedroom"
+  state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '%'
   value_template: >-
     {% set battery_level = value_json.battery | default(0) | int %}

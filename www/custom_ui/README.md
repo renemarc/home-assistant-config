@@ -4,6 +4,11 @@ These state cards are used to adapt the looks of Home Assistant sensors for easi
 
 ## Third-party state cards
 
+### [`🌈 ./scripts(-es5?).js(.map|LICENSE)`](scripts.js.map)
+
+Debuging and development files for **Custom UI elements** below.
+
+
 ### [`🌈 ./state-card-custom-ui(-es5?).html(.gz?)`](state-card-custom-ui.html)
 
 [Custom UI elements](https://github.com/andrey-git/home-assistant-custom-ui) help improve the display of sensors and jazz up the interface a bit.

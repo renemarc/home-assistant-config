@@ -33,9 +33,3 @@
         entity_id:
           - group.kitchen_lights
         effect: night
-
-    # Turn on kiosk.
-    - service: homeassistant.turn_on
-      data:
-        entity_id:
-          - display.kiosk

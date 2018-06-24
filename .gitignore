@@ -18,7 +18,6 @@
 __pycache__/
 deps/
 gtfs/*
-homebridge/
 tts/
 ip_bans.yaml
 known_devices.yaml

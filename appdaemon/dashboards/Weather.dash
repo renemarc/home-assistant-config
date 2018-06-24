@@ -70,6 +70,7 @@ label:
 camera_environment_canada:
     widget_type: entitycamera
     refresh: 1
+    cache: 600
     img_list:
         - !secret camera_environment_canada_rain_3
         - !secret camera_environment_canada_rain_2
@@ -82,6 +83,7 @@ camera_environment_canada:
 camera_noaa:
     widget_type: entitycamera
     refresh: 3
+    cache: 600
     img_list:
         - !secret camera_noaa_geocolor
         - !secret camera_noaa_water_vapour
@@ -125,7 +127,7 @@ weekly_forecast:
 temperature_today:
     widget_type: entitysensor
     title: Today
-    entity: sensor.dark_sky_daily_high_temperature
+    entity: sensor.dark_sky_daytime_high_temperature
     sub_entity: sensor.weather_low_friendly
     title2_entity: sensor.feels_like
     widget_style: "background-color:inherit;"
@@ -136,7 +138,7 @@ temperature_today:
 temperature_tomorrow:
     widget_type: entitysensor
     title: Tomorrow
-    entity: sensor.dark_sky_daily_high_temperature_1
+    entity: sensor.dark_sky_daytime_high_temperature_1
     sub_entity: sensor.weather_low_1_friendly
     title2_entity: sensor.feels_like_1
     widget_style: "background-color:inherit;"
@@ -147,7 +149,7 @@ temperature_tomorrow:
 temperature_after_tomorrow:
     widget_type: entitysensor
     title: After Tomorrow
-    entity: sensor.dark_sky_daily_high_temperature_2
+    entity: sensor.dark_sky_daytime_high_temperature_2
     sub_entity: sensor.weather_low_2_friendly
     title_entity: sensor.after_tomorrow
     title2_entity: sensor.feels_like_2
