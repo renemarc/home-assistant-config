@@ -74,6 +74,7 @@ These are default Home Assistant components that were copied from the core to al
 - Simplified query, making it cacheable in order to increase IO performance.
 - Allow querying departures after midnight.
 - Correctly set arrival date to tommorow when bus leaves before midnight but arrives after.
+- Return **Null** instead of **Zero** when a departure is not found/available.
 
 <div align="center">
     <figure>

@@ -167,7 +167,7 @@ media_player.plex_macbook_firefox:
   config_entry_id:
   name:
   platform: plex
-  unique_id: r586ckp1jomtndvzzc412asy
+  unique_id: w1sklhufrhlrdtsz2wz8m1cx
 media_player.plex_macbook_firefox_lan:
   config_entry_id:
   name:
