@@ -8,13 +8,15 @@
 #
 # Bluetooth
 #
+# Disabled until deemed useful or not.
+#
 # https://home-assistant.io/components/device_tracker.bluetooth_tracker/
 #
-- platform: bluetooth_tracker
+#- platform: bluetooth_tracker
 
 
 #
-# Ubiquiti Unifi wireless access point
+# Ubiquiti UniFi wireless access point
 #
 # Connects to the UniFi controller with a read-only user.
 #
