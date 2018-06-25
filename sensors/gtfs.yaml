@@ -109,28 +109,41 @@
       friendly_name: Bus to Market
       icon_template: mdi:bus
       value_template: >-
-        {% set departure = states.sensor.home_to_market.attributes['Origin Stop Departure Time'].split(' ') %}
-        {% set hms = departure[1].split(':') %}
+        {% if 'Origin Stop Departure Time' in states.sensor.home_to_market.attributes %}
+          {% set departure = states.sensor.home_to_market.attributes['Origin Stop Departure Time'].split(' ') %}
+          {% set hms = departure[1].split(':') %}
 
-        {{hms[0]}}:{{hms[1]}}
+          {{hms[0]}}:{{hms[1]}}
+        {% else %}
+          unknown
+        {% endif %}
 
     home_to_market_2_hour:
       friendly_name: Bus to Market (Next)
       icon_template: mdi:bus
       value_template: >-
-        {% set departure = states.sensor.home_to_market_2.attributes['Origin Stop Departure Time'].split(' ') %}
-        {% set hms = departure[1].split(':') %}
+        {% if 'Origin Stop Departure Time' in states.sensor.home_to_market_2.attributes %}
+          {% set departure = states.sensor.home_to_market_2.attributes['Origin Stop Departure Time'].split(' ') %}
+          {% set hms = departure[1].split(':') %}
 
-        {{hms[0]}}:{{hms[1]}}
+          {{hms[0]}}:{{hms[1]}}
+        {% else %}
+          unknown
+        {% endif %}
 
     home_to_market_3_hour:
       friendly_name: Bus to Market (After)
       icon_template: mdi:bus
       value_template: >-
-        {% set departure = states.sensor.home_to_market_3.attributes['Origin Stop Departure Time'].split(' ') %}
-        {% set hms = departure[1].split(':') %}
+        {% if 'Origin Stop Departure Time' in states.sensor.home_to_market_3.attributes %}
+          {% set departure = states.sensor.home_to_market_3.attributes['Origin Stop Departure Time'].split(' ') %}
+          {% set hms = departure[1].split(':') %}
 
-        {{hms[0]}}:{{hms[1]}}
+          {{hms[0]}}:{{hms[1]}}
+        {% else %}
+          unknown
+        {% endif %}
+
 
     home_to_metro_countdown:
       friendly_name: Bus to Metro
@@ -184,25 +197,37 @@
       friendly_name: Bus to Metro
       icon_template: mdi:bus
       value_template: >-
-        {% set departure = states.sensor.home_to_metro.attributes['Origin Stop Departure Time'].split(' ') %}
-        {% set hms = departure[1].split(':') %}
+        {% if 'Origin Stop Departure Time' in states.sensor.home_to_metro.attributes %}
+          {% set departure = states.sensor.home_to_metro.attributes['Origin Stop Departure Time'].split(' ') %}
+          {% set hms = departure[1].split(':') %}
 
-        {{hms[0]}}:{{hms[1]}}
+          {{hms[0]}}:{{hms[1]}}
+        {% else %}
+          unknown
+        {% endif %}
 
     home_to_metro_2_hour:
       friendly_name: Bus to Metro (Next)
       icon_template: mdi:bus
       value_template: >-
-        {% set departure = states.sensor.home_to_metro_2.attributes['Origin Stop Departure Time'].split(' ') %}
-        {% set hms = departure[1].split(':') %}
+        {% if 'Origin Stop Departure Time' in states.sensor.home_to_metro_2.attributes %}
+          {% set departure = states.sensor.home_to_metro_2.attributes['Origin Stop Departure Time'].split(' ') %}
+          {% set hms = departure[1].split(':') %}
 
-        {{hms[0]}}:{{hms[1]}}
+          {{hms[0]}}:{{hms[1]}}
+        {% else %}
+          unknown
+        {% endif %}
 
     home_to_metro_3_hour:
       friendly_name: Bus to Metro (After)
       icon_template: mdi:bus
       value_template: >-
-        {% set departure = states.sensor.home_to_metro_3.attributes['Origin Stop Departure Time'].split(' ') %}
-        {% set hms = departure[1].split(':') %}
+        {% if 'Origin Stop Departure Time' in states.sensor.home_to_metro_3.attributes %}
+          {% set departure = states.sensor.home_to_metro_3.attributes['Origin Stop Departure Time'].split(' ') %}
+          {% set hms = departure[1].split(':') %}
 
-        {{hms[0]}}:{{hms[1]}}
+          {{hms[0]}}:{{hms[1]}}
+        {% else %}
+          unknown
+        {% endif %}
