@@ -11,7 +11,7 @@ version: '3'
 services:
   hass:
     container_name: homeassistant
-    image: homeassistant/home-assistant:0.72.0
+    image: homeassistant/home-assistant:0.72.1
     restart: unless-stopped
     env_file:
       - docker/env

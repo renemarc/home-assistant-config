@@ -7,9 +7,10 @@
 [![License][img-license]][link-license]
 
 
-Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io](https://home-assistant.io/hassio/) on a Raspberry Pi for a one bedroom apartment, offering convenience automations over lights and climate while providing multiple intuitive user controls.
+Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io](https://home-assistant.io/hassio/) on a [Raspberry Pi](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) for a one bedroom apartment, offering convenience automations over lights and climate while providing multiple intuitive user controls.
 
 <div align="center">
+    <p><strong>Be sure to ⭐️ my repo if you find it useful! 😃</strong></p>
     <figure>
         <div>
             <img src="www/screenshots/dashboard-all.gif" alt="Dashboard animation" title="Dashboards">
@@ -54,7 +55,7 @@ Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io]
 
 ## TL;DR
 
-This is a fully documented working configuration for Home Assistant, with screenshots, hints and comments. [Browse the code](#) to have a look!
+This is a fully documented working configuration for Home Assistant, with screenshots, hints and comments. [Browse the code](#) to have a look! 👀
 
 
 ## Overview
@@ -63,11 +64,11 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **Inconspicuous**: I like tech alright, but like any good butlers it should stay out of sight yet stay summonable. Think Fiji villa, not server room.
 - **Modular**: Both code and devices should be easily replaceable.
 - **Internet independent**: As much local processing as possible for the essential features.
-- **Accessible through multiple ways:** Computers, tablet (kiosk), voice, smart phones, wireless buttons.
-- **Intuitive user interfaces:** One look at a group of sensors/switches should be sufficient for anyone to understand the current states and how to operate an interface.
+- **Accessible through multiple ways:** Computers, tablet (kiosk), voice, smart phones, wireless buttons, remotes.
+- **Intuitive user interfaces:** One look at a group of sensors/switches should be sufficient for anyone to understand the current states and how to operate an interface. 💡
 - **Redundant controls:** Multiple interfaces should be able to control devices without interference. State changes from manual interventions or dedicated manufacturer apps should be tracked whenever possible.
 - **No information overload:** Provide just enough insights to get an idea of what's going on. And no need for data that's best consumed on more interactive devices (like stock prices, Steam community status...)
-- **Not everything should be networked:** Bathroom fan, pantry and laundry room lights have their independent motion sensors and that's a good thing. Same independence goes for the smoke detector: I sure don't want to require extensive skin grafts because I forgot an extra space in a YAML file. _Yikes!_
+- **Not everything should be networked:** Bathroom fan, pantry and laundry room lights have their independent motion sensors and that's a good thing. Same independence goes for the smoke detector: I sure don't want to require extensive skin grafts because I forgot an extra space in a YAML file. 😱
 - **No Alexa/Cortana/Google Voice:** I don't want to have advertising agencies, online stores, or other AI-feeding Big Brother tech-monsters listening in to everything we say _and do_ just for the dubious convenience of switching lights on by voice command. There are offline solutions that are privacy-counscious.
 
 <div align="center">
@@ -236,11 +237,11 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 
 ### Additional human interfaces
-- **[Flic buttons](https://flic.io)** on nightstand and in the kitchen for triggering modes and controlling localized lights, depending on current states and click types.
 - **Aeotec Minimote** to quickly control global scenes and modes.
-- **[Homebridge](https://github.com/nfarina/homebridge)** for using some key sensors and devices with iPhones.
-- **[Home Assistant Companion](https://itunes.apple.com/us/app/home-assistant-companion/id1099568401?mt=8) iPhone app** for full UI access in the palm of my hand. _Muahahaha!_
+- **[Flic buttons](https://flic.io)** on nightstand and in the kitchen for triggering modes and controlling localized lights, depending on current states and click types.
 - **[HADashboard](https://home-assistant.io/docs/ecosystem/hadashboard/)** for wall-mounted tablet, featuring indoor sensors reports, transit schedules, weather forecast and radar/sattelite maps, wrapped in an obvious navigation scheme for much UX goodness. Have a look at [`/appdaemon/dashboards/`](appdaemon/dashboards), you'll like! 😍
+- **[Home Assistant Companion](https://itunes.apple.com/us/app/home-assistant-companion/id1099568401?mt=8) iPhone app** for full UI access in the palm of my hand. _Muahahaha!_
+- **[HomeKit](https://www.home-assistant.io/components/homekit)** for using some key sensors and devices with iPhones.
 
 
 ## Setup
@@ -259,10 +260,10 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 
 ### Supporting hardware choices
-- **Ubiquiti router and access point** because forking over some dough for reliable, rock-solid prosumer networking gear makes everything run smoothly. And because hearing one less complaint (dropped wifi signal) from the girlfriend is priceless. \*sigh\*
+- **Ubiquiti router and access point** because forking over some dough for reliable, rock-solid prosumer networking gear makes everything run smoothly. And because hearing one less complaint (dropped WiFi signal) from the girlfriend is priceless. 🤕
 - **Uninterruptible power supply** to ride over transient power failures.
 - **Z-Wave** for reliability and guaranteed interoperability between vendors (unlike Zigbee...)
-- **Wifi** for its cheapness, omnipresence and non requirement of vendor-specific hubs.
+- **WiFi** for its cheapness, omnipresence and non requirement of vendor-specific hubs.
 
 
 ### Configuration
@@ -277,7 +278,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[Raspberry Pi 3 Model B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)** running Hass.io.
 - **[Aeotec Z-Stick Gen5](https://aeotec.com/z-wave-usb-stick)** Z-Wave USB dongle.
 - **[NooElec NESDR SMArt](http://www.nooelec.com/store/nesdr-smart.html)** RTL-SDR (software-defined radio) USB dongle for reading AcuRite sensors.
-- **[Milight iBox2 Wifi Bridge](https://www.futlight.com/productdetails.aspx?id=239&typeid=125)** for kitchen RF LED strip controllers, using [LimitlessLED](https://home-assistant.io/components/light.limitlessled/) integration.
+- **[Milight iBox2 WiFi Bridge](https://www.futlight.com/productdetails.aspx?id=239&typeid=125)** for kitchen RF LED strip controllers, using [LimitlessLED](https://home-assistant.io/components/light.limitlessled/) integration.
 
 
 ### Physical devices
@@ -289,8 +290,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[Milight CCT LED RF Controller](https://www.futlight.com/productdetails.aspx?id=293&typeid=146)** for white-adjustable undercabinet kitchen lights (x4), connected to appropriate UL-listed power supplies.
 - **[24V 3014 Warm White Cool White LED Strip](http://ledmontreal.com/en/led-strips-without-accessories/24v-led-strips-without-accessories/cct-adjustable-led-strip.html)** encased in custom cut and assembled [light-diffusing aluminum profiles](http://ledmontreal.com/en/led-bars-and-profiles-led-montreal/continuous-lighting-aluminum-profile.html), connected to above RF controllers.
 - **[Adalight](https://learn.adafruit.com/adalight-diy-ambient-tv-lighting)** DIY 100-dots TV backlighting controlled by [Lightpack+Prismatik](https://github.com/psieg/Lightpack) on HTPC.
-- **Fairy lights** via TP-Link wifi outlets (x3).
-- **DIY LED nightstand** via TP-Link wifi outlet.
+- **Fairy lights** via TP-Link WiFi outlets (x3).
+- **DIY LED nightstand** via TP-Link WiFi outlet.
 
 
 #### Sensors
@@ -307,8 +308,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 #### Switches and other devices
 - **[TP-Link Smart Wi-Fi Plug Mini outlets](http://www.tp-link.com/us/products/details/cat-5516_HS105.html)** to control dumb devices (x6).
-- **[Frigidaire dehumidifier](http://www.dehumidifierbuyersguide.com/frigidaire-ffad7033r1-review)** via TP-Link wifi outlet.
-- **Oscillating fan** via TP-Link wifi outlet.
+- **[Frigidaire dehumidifier](http://www.dehumidifierbuyersguide.com/frigidaire-ffad7033r1-review)** via TP-Link WiFi outlet.
+- **Oscillating fan** via TP-Link WiFi outlet.
 
 
 ### Software
@@ -322,7 +323,6 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[AppDaemon](https://github.com/home-assistant/appdaemon)** for HADashboard tablet UI.
 - **[Bluetooth BCM43xx](https://home-assistant.io/addons/bluetooth_bcm43xx)** to use Raspberry Pi's bluetooth.
 - **[Flicd](https://github.com/pschmitt/hassio-addons)** to connect with Flic bluetooth buttons.
-- **[Homebridge](https://github.com/hassio-addons/addon-homebridge)** to control non-HomeKit compatible devices using iPhones.
 - **[Mosquitto MQTT broker](https://home-assistant.io/addons/mosquitto)** for standard IoT messaging.
 - **[RTL_433 to MQTT Bridge](https://github.com/james-fry/hassio-addons)** to receive and decode AcuRite radio signals.
 - **[Samba share](https://home-assistant.io/addons/samba)** for configuration file sharing.
@@ -344,8 +344,11 @@ In an empty directory, type:
 
 ```shell
 git clone --recurse-submodules git@github.com:renemarc/home-assistant-config.git .
+
 cp secrets-dummy.yaml secrets.yaml
+
 cp appdaemon/secrets-dummy.yaml appdaemon/secrets.yaml
+
 echo "secrets.yaml filter=secret merge=keepMine" > .gitattributes
 ```
 
@@ -370,7 +373,7 @@ Image references.
 [img-github-release]:https://img.shields.io/github/release/renemarc/home-assistant-config/all.svg
 [img-repo-size]:https://img.shields.io/github/repo-size/renemarc/home-assistant-config.svg
 [img-code-size]:https://img.shields.io/github/languages/code-size/renemarc/home-assistant-config.svg
-[img-ha-version]:https://img.shields.io/badge/tested_on_Home_Assistant-0.72-53c1f1.svg
+[img-ha-version]:https://img.shields.io/badge/tested_on_Home_Assistant-0.72.1-53c1f1.svg
 [img-hassio]:https://img.shields.io/badge/config_for-Hass.io-53c1f1.svg
 [img-license]:https://img.shields.io/github/license/renemarc/home-assistant-config.svg
 
@@ -383,5 +386,5 @@ Link references.
 [link-board]:https://github.com/renemarc/home-assistant-config/projects/1
 [link-travis-ci]:https://travis-ci.org/renemarc/home-assistant-config
 [link-hassio]:https://home-assistant.io/hassio/
-[link-ha-version]:https://github.com/home-assistant/home-assistant/tree/0.72.0
+[link-ha-version]:https://github.com/home-assistant/home-assistant/tree/0.72.1
 [link-license]:LICENSE.txt

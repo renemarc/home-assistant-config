@@ -28,4 +28,5 @@ secrets.yaml
 !.github
 !.gitignore
 !.gitkeep
+!/.HA_VERSION
 !/.travis.yml
