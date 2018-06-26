@@ -1,25 +1,51 @@
 #
 # Bedroom climate
 #
+# Calibration offsets:
+#   Humidity: -1.5%
+#   Temperature: +0.2°C
+#
 - platform: mqtt
   name: Bedroom AcuRite
-  state_topic: "home/bedroom/bedroom"
+  state_topic: "home/Acurite_tower_sensor/11846"
 
 - platform: mqtt
-  name: Bedroom Humidity
-  state_topic: "home/bedroom/bedroom"
+  name: Bedroom Humidity Exact
+  state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '%'
-  value_template: '{{ value_json.humidity | round }}'
+  value_template: >-
+    {% set calibration = -1.5 %}
+    {% set humidity = value_json.humidity %}
+
+    {{ humidity + calibration }}
 
 - platform: mqtt
-  name: Bedroom Temperature
-  state_topic: "home/bedroom/bedroom"
+  name: Bedroom Temperature Exact
+  state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '°C'
-  value_template: '{{ value_json.temperature_C | round }}'
+  value_template: >-
+    {% set calibration = 0.2 %}
+    {% set temperature = value_json.temperature_C %}
+
+    {{ (temperature + calibration) | round(1) }}
+
+- platform: template
+  sensors:
+    bedroom_humidity:
+      friendly_name: Bedroom Humidity
+      unit_of_measurement: '%'
+      icon_template: mdi:water-percent
+      value_template: "{{ states('sensor.bedroom_humidity_exact') | round }}"
+
+    bedroom_temperature:
+      friendly_name: Bedroom Humidity
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: "{{ states('sensor.bedroom_temperature_exact') | round }}"
 
 - platform: filter
   name: Bedroom Humidity Filtered
-  entity_id: sensor.bedroom_humidity
+  entity_id: sensor.bedroom_humidity_exact
   filters:
     - filter: lowpass
       time_constant: 10
@@ -27,7 +53,7 @@
 
 - platform: filter
   name: Bedroom Temperature Filtered
-  entity_id: sensor.bedroom_temperature
+  entity_id: sensor.bedroom_temperature_exact
   filters:
     - filter: lowpass
       time_constant: 10
@@ -37,13 +63,31 @@
 #
 # Lounge climate
 #
+# Calibration offsets (set through Zwave configuration panel):
+#   Humidity: +5.0% (5)
+#   Temperature: -1.1°C (256-11 = 245 = 0xF5 -> +0x01 = 0xF501 = 62721 -> -65536 = -2815)
+#
+# @link https://www.tabsoverspaces.com/233657-calibrating-aeotec-multisensor-6s-temperature-using-openzwave-in-domoticz/
+#
 - platform: template
   sensors:
+    lounge_humidity_exact:
+      friendly_name: Lounge Humidity Exact
+      unit_of_measurement: '%'
+      icon_template: mdi:water-percent
+      value_template: "{{ states('sensor.lounge_multisensor_relative_humidity') }}"
+
     lounge_humidity:
       friendly_name: Lounge Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
       value_template: "{{ states('sensor.lounge_multisensor_relative_humidity') | round }}"
+
+    lounge_temperature_exact:
+      friendly_name: Lounge Temperature Exact
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: "{{ states('sensor.lounge_multisensor_temperature') }}"
 
     lounge_temperature:
       friendly_name: Lounge Temperature
@@ -53,13 +97,13 @@
 
     lounge_luminance:
       friendly_name: Lounge Luminance
-      unit_of_measurement: 'lux'
+      unit_of_measurement: 'lx'
       icon_template: mdi:blur
       value_template: "{{ states('sensor.lounge_multisensor_luminance') | round }}"
 
 - platform: filter
   name: Lounge Humidity Filtered
-  entity_id: sensor.lounge_humidity
+  entity_id: sensor.lounge_humidity_exact
   filters:
     - filter: lowpass
       time_constant: 10
@@ -67,7 +111,7 @@
 
 - platform: filter
   name: Lounge Temperature Filtered
-  entity_id: sensor.lounge_temperature
+  entity_id: sensor.lounge_temperature_exact
   filters:
     - filter: lowpass
       time_constant: 10
@@ -77,16 +121,18 @@
 #
 # Average temperature
 #
-# Help compensate for lack of accuracy of each active sensor.
-# They all claim to be precise, but precision doesn't mean accuracy!
+# The appartment being mostly open plan, one can calculate an average
+# temperature value between calibrated sensors set in different rooms.
+#
+# Uses the current reading because temperature changes are readily felt.
 #
 - platform: min_max
   name: Average Temperature Exact
   type: mean
   round_digits: 0
   entity_ids:
-    - sensor.bedroom_temperature_filtered
-    - sensor.lounge_temperature_filtered
+    - sensor.bedroom_temperature_exact
+    - sensor.lounge_temperature_exact
 
 - platform: template
   sensors:
@@ -100,11 +146,12 @@
 #
 # Average humidity
 #
-# Helps compensate for lack of accuracy of each active sensor.
-# They all claim to be precise, but precision doesn't mean accuracy nor
-# calibration!
+# The appartment being mostly open plan, one can calculate an average humidity
+# value between calibrated sensors set in different rooms.
 #
-# @todo calibrate all sensors.
+# Uses the filtered reading because humidity hikes and drops can happen rapidly
+# but their real effect is smoothed over time due to humidity absorption and
+# release of furniture, fabrics and building materials.
 #
 - platform: min_max
   name: Average Humidity Exact

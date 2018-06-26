@@ -1,0 +1,23 @@
+#
+# RESTful notification services
+#
+# @link https://www.home-assistant.io/components/notify.rest/
+#
+
+
+#
+# Fully Kiosk Browser
+#
+# Ressource URL:
+#   `http://[host]:[port]`
+#
+# @link https://www.ozerov.de/fully-kiosk-browser/#rest
+#
+- platform: rest
+  name: Fully Kiosk
+  resource: !secret fully_kiosk_url
+  message_param_name: text
+  data:
+    cmd: textToSpeech
+    type: type
+    password: !secret fully_kiosk_password

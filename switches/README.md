@@ -3,7 +3,7 @@
 
 ## TP-Link HS105 smart Wi-Fi plug mini outlets
 
-**[TP-Link smart plug mini outlets](http://www.tp-link.com/us/products/details/cat-5516_HS105.html)** are used to control dumb devices.
+A few [TP-Link smart plug mini outlets](http://www.tp-link.com/us/products/details/cat-5516_HS105.html) are used to control dumb devices.
 
  They were first setup with the manufaturer's [Kasa app](https://www.tp-link.com/us/home-networking/smart-home/kasa.html). Then they were assigned static IP addresses in my router to avoid occasional drops due to DHCP renewal limbo.
  
@@ -12,9 +12,9 @@
 
 ## Aeotec Z-Stick blinking light
 
-**[Aeotec Z-Stick disco light](https://community.home-assistant.io/t/aeotec-gen5-z-stick-strobing-led-question-in-hass-io/28635/9)** command line switch to enable or disable the USB dongle's LED light.
+[Aeotec Z-Stick disco light](https://community.home-assistant.io/t/aeotec-gen5-z-stick-strobing-led-question-in-hass-io/28635/9) command line switch to enable or disable the USB dongle's LED light.
 
- The [Z-Stick Zwave Gen5](https://aeotec.com/z-wave-usb-stick) USB dongle has a colorful but annoying blinking status LED. Great for diagnosis, but otherwise very bright and obnoxious when placed in a visible location!
+ The [Z-Stick Zwave Gen5](https://aeotec.com/z-wave-usb-stick) USB dongle has a colourful but annoying blinking status LED. Great for diagnosis, but otherwise very bright and obnoxious when placed in a visible location!
 
 
 ## Customization

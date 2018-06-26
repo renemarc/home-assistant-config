@@ -32,7 +32,7 @@ Essentially used for [Flic buttons](https://flic.io) and [Fully Kiosk Browser](h
 
 ### [`📍 ./device_trackers.yaml`](device_trackers.yaml)
 
-For tracking device presence with Bluetooth and [UniFi](https://www.ubnt.com/unifi/unifi-cloud-key/) wireless access point.
+For tracking device presence with ~~Bluetooth and~~ [UniFi](https://www.ubnt.com/unifi/unifi-cloud-key/) wireless access point.
 
 
 ### [`🎦 ./displays.yaml`](displays.yaml)

@@ -1,0 +1,28 @@
+#
+# Turn off bedroom
+#
+# Bedroom lights should be off when napping.
+#
+# @subscribe input_boolean.nap_mode
+#
+- id: bedroom_off
+  alias: Bedroom OFF
+  trigger:
+    # When nap mode is enabled.
+    - platform: state
+      entity_id: input_boolean.nap_mode
+      to: 'on'
+
+  action:
+    # Turn off bed underglow lights.
+    - service: homeassistant.turn_off
+      data:
+        entity_id:
+          - group.bed_lights
+        transition: 10
+
+    # Turn off binary devices.
+    - service: homeassistant.turn_off
+      entity_id:
+        - switch.nightstand_light
+        - switch.bedside_light

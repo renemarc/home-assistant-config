@@ -80,6 +80,24 @@ Battery levels.
     </figure>
 </div>
 
+
+### [`📸 ./camera.yaml`](camera.yaml)
+
+Data sources for some [`/cameras`](../cameras).
+
+<div align="center">
+    <figure>
+        <div>
+            <img src="../www/screenshots/card-satellite-geocolour.jpg" alt="NOAA GeoColour satellite image" title="Normal theme" width="325">
+            <img src="../www/screenshots/card-satellite-vapour.jpg" alt="NOAA Water Vapour satellite image" title="Normal theme" width="325">
+        </div>
+        <figcaption>
+            <p><strong>NOAA satellite images for North-America's East Coast.</strong></p>
+        </figcaption>
+    </figure>
+</div>
+
+
 ### [`🚌 ./gtfs.yaml`](gtfs.yaml)
 
 [General Transit Feed Specification](http://gtfs.org), essentially bus schedules. See also [`/gtfs/`](../gtfs) for performance tuning of this large dataset.
@@ -92,23 +110,6 @@ Battery levels.
         </div>
         <figcaption>
             <p><strong>Public Transit group with schedules for the next three departures in two directions. Yellow (warning) and red (critical) highlights are using <a href="../themes"><code>/theme/</code></a> cards defined in <a href="../customize.yaml"><code>/customize.yaml</code></a> based on how much time is left before the bus leaves. 🚌🏃</strong></p>
-        </figcaption>
-    </figure>
-</div>
-
-
-### [`🖼 ./image.yaml`](image.yaml)
-
-Data sources for some [`/cameras`](../cameras).
-
-<div align="center">
-    <figure>
-        <div>
-            <img src="../www/screenshots/card-satellite-geocolour.jpg" alt="NOAA GeoColour satellite image" title="Normal theme" width="325">
-            <img src="../www/screenshots/card-satellite-vapour.jpg" alt="NOAA Water Vapour satellite image" title="Normal theme" width="325">
-        </div>
-        <figcaption>
-            <p><strong>NOAA satellite images for North-America's East Coast.</strong></p>
         </figcaption>
     </figure>
 </div>

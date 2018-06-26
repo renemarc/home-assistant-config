@@ -1,5 +1,5 @@
 #
-# Frigidaire FFAD7033R1 70-pint dehumidifier on a TP-Link Smart Wifi Plug Mini
+# Frigidaire FFAD7033R1 70-pint dehumidifier on a TP-Link Smart WiFi Plug Mini
 #
 # This dehumidifier is fast, less noisy than most and will auto-restart to its
 # last condition in case of a power outage. This is great since we'll be
@@ -8,8 +8,8 @@
 # throughout the dwelling. Automations take care of turning it on or off based
 # on custom minimum and maximum humidity levels.
 #
-# @see /automations/dehumidifier_on.yaml
-# @see /automations/dehumidifier_off.yaml
+# @see /automations/devices/dehumidifier_on.yaml
+# @see /automations/devices/dehumidifier_off.yaml
 #
 # @link http://www.dehumidifierbuyersguide.com/frigidaire-ffad7033r1-review/
 # @link https://home-assistant.io/components/switch.tplink/

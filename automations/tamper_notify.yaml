@@ -1,5 +1,5 @@
 #
-# Warns someone if the tamper flag has changed
+# Warn someone if the tamper flag has changed
 #
 # @subscribe input_boolean.tamper_detected
 #

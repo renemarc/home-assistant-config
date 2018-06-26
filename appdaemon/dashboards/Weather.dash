@@ -70,21 +70,23 @@ label:
 camera_environment_canada:
     widget_type: entitycamera
     refresh: 1
+    cache: 600
     img_list:
-        - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_rain_3?token=21543de1f2ce8ca84d2114b452f839ddd98a9ca5147b37f01c4f14adb62ed6f0
-        - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_rain_2?token=3df6d563b3d938aadb132e4b9e4c00c3311c55eae4361a70b1e13cfa32114340
-        - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_rain?token=d660cfd7fc10367a52571370758a826b697b4c43c0a91a40ab04327e7a791487
-        - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_snow_3?token=42607ab03e61e5b8d72e90d6ceda618fac2e66ff7e92d3fb8af9e1ef45cfcdc7
-        - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_snow_2?token=b63878776c5c84d4fb46f9fc0ad82a47991894d40bfc9c383cb78871c4b441e4
-        - http://hassio.local:8123/api/camera_proxy/camera.environment_canada_snow?token=de27298acdc2fabc70a4f18e2f73cc13f4d63a091d6b7969514e34e8acf488df
+        - !secret camera_environment_canada_rain_3
+        - !secret camera_environment_canada_rain_2
+        - !secret camera_environment_canada_rain_1
+        - !secret camera_environment_canada_snow_3
+        - !secret camera_environment_canada_snow_2
+        - !secret camera_environment_canada_snow_1
     title_style: "background-color: rgba(0, 0, 0, 1);"
 
 camera_noaa:
     widget_type: entitycamera
     refresh: 3
+    cache: 600
     img_list:
-        - http://hassio.local:8123/api/camera_proxy/camera.noaa_geocolor?token=5d9b9b5a6681e174ce772563564c6f9eacfa8d060c6eb53c82e1f9a9dfbab623
-        - http://hassio.local:8123/api/camera_proxy/camera.noaa_water_vapour?token=af621c3ed64cb4c7e1383fc275ff5d71e4a01174596d70d80b23fe913029d803
+        - !secret camera_noaa_geocolor
+        - !secret camera_noaa_water_vapour
     title_style: "background-color: rgba(0, 0, 0, 1);"
 
 wind:
@@ -125,7 +127,7 @@ weekly_forecast:
 temperature_today:
     widget_type: entitysensor
     title: Today
-    entity: sensor.dark_sky_daily_high_temperature
+    entity: sensor.dark_sky_daytime_high_temperature
     sub_entity: sensor.weather_low_friendly
     title2_entity: sensor.feels_like
     widget_style: "background-color:inherit;"
@@ -136,7 +138,7 @@ temperature_today:
 temperature_tomorrow:
     widget_type: entitysensor
     title: Tomorrow
-    entity: sensor.dark_sky_daily_high_temperature_1
+    entity: sensor.dark_sky_daytime_high_temperature_1
     sub_entity: sensor.weather_low_1_friendly
     title2_entity: sensor.feels_like_1
     widget_style: "background-color:inherit;"
@@ -147,7 +149,7 @@ temperature_tomorrow:
 temperature_after_tomorrow:
     widget_type: entitysensor
     title: After Tomorrow
-    entity: sensor.dark_sky_daily_high_temperature_2
+    entity: sensor.dark_sky_daytime_high_temperature_2
     sub_entity: sensor.weather_low_2_friendly
     title_entity: sensor.after_tomorrow
     title2_entity: sensor.feels_like_2

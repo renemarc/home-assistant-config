@@ -40,7 +40,7 @@
 #
 # Returns a comma-separated list of locations where motion is detected.
 #
-# @see /automations/motion_start.yaml
+# @see /automations/modes/motion_auto.yaml
 #
 - platform: template
   sensors:
@@ -80,7 +80,7 @@
 #
 # Returns a comma-separated list of perimeter devices being tampered with.
 #
-# @see /automations/tamper_start.yaml
+# @see /automations/modes/tamper_start.yaml
 # @see /misc/variables.yaml
 #
 - platform: template

@@ -1,12 +1,12 @@
 #
-# Adjust LimitlessLED/MiLight color temperature (CCT) based on cyrcadian rythm
+# Adjust LimitlessLED/MiLight colour temperature (CCT) based on cyrcadian rythm
 #
 # White temperature is based on a custom curve, not f.lux nor using the sun,
 # otherwise it would be kind of gloomy to see warm yellows a lot in winter time.
 #
 # Todo: User-configurable targets and hours?
 #
-# Milight FUT035 controllers color range:
+# Milight FUT035 controllers colour range:
 #   Mireds: 154 - 500
 #   Kelvins: 6500K - 2000K
 #

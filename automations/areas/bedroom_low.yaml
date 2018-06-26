@@ -1,0 +1,46 @@
+#
+# Set bedroom to low-power state
+#
+# Only set low-power state if not currently in nap mode.
+#
+# @subscribe input_boolean.low_mode
+# @subscribe input_boolean.nap_mode
+#
+- id: bedroom_low_power
+  alias: Bedroom LOW POWER
+  trigger:
+    # When low-power mode is enabled.
+    - platform: state
+      entity_id: input_boolean.low_mode
+      to: 'on'
+
+    # When nap mode is disabled.
+    - platform: state
+      entity_id: input_boolean.nap_mode
+      to: 'off'
+
+  condition:
+    # If low-power mode is enabled.
+    - condition: state
+      entity_id: input_boolean.low_mode
+      state: 'on'
+
+    # If nap mode is disabled.
+    - condition: state
+      entity_id: input_boolean.nap_mode
+      state: 'off'
+
+  action:
+    # Turn off bed underglow lights.
+    - service: homeassistant.turn_off
+      data:
+        entity_id:
+          - group.bed_lights
+        transition: 5
+
+    # Turn on some binary devices.
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+        - switch.bedside_light
+        - switch.nightstand_light

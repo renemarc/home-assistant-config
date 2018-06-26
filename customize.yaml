@@ -32,6 +32,8 @@ binary_sensor.flic_80e4da72e890:
   friendly_name: Flic white
 binary_sensor.flic_80e4da737711:
   friendly_name: Flic blue
+binary_sensor.front_door_sensor:
+  device_class: door
 binary_sensor.lounge_multisensor_sensor:
   device_class: motion
   group:
@@ -154,7 +156,6 @@ light.bedroom:
     entities['sensor.ceiling_effect_loaded'].state
     : null;
   icon: mdi:led-strip
-  homebridge_hidden: false
   slider_theme:
     max: 255
     min: 0
@@ -167,7 +168,6 @@ light.countertop:
     Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
-  homebridge_hidden: false
   icon: mdi:border-top
   assumed_state: false
   slider_theme:
@@ -182,7 +182,6 @@ light.island:
     Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
-  homebridge_hidden: false
   icon: mdi:table-column
   assumed_state: false
   slider_theme:
@@ -197,7 +196,6 @@ light.headboard:
     entities['sensor.bed_effect_loaded'].state
     : null;
   icon: mdi:gate
-  homebridge_hidden: false
   slider_theme:
     max: 255
     min: 0
@@ -209,14 +207,12 @@ light.lightpack:
     return (state === 'on' && entities['sensor.lightpack_effect_loaded'].state) ?
     entities['sensor.lightpack_effect_loaded'].state
     : null;
-  homebridge_hidden: false
   icon: mdi:television
 light.lounge:
   extra_data_template: >-
     return (state === 'on' && entities['sensor.ceiling_effect_loaded'].state) ?
     entities['sensor.ceiling_effect_loaded'].state
     : null;
-  homebridge_hidden: false
   icon: mdi:led-strip
   slider_theme:
     max: 255
@@ -230,7 +226,6 @@ light.microwave:
     Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
-  homebridge_hidden: false
   icon: mdi:gradient
   assumed_state: false
   slider_theme:
@@ -244,7 +239,6 @@ light.middle:
     return (state === 'on' && entities['sensor.ceiling_effect_loaded'].state) ?
     entities['sensor.ceiling_effect_loaded'].state
     : null;
-  homebridge_hidden: false
   icon: mdi:led-strip
   slider_theme:
     max: 255
@@ -272,7 +266,6 @@ light.sink:
     Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
     Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
-  homebridge_hidden: false
   icon: mdi:water-pump
   assumed_state: false
   slider_theme:
@@ -301,7 +294,6 @@ light.underbed:
     entities['sensor.bed_effect_loaded'].state
     : null;
   icon: mdi:hotel
-  homebridge_hidden: false
   slider_theme:
     max: 255
     min: 0
@@ -313,7 +305,7 @@ light.underbed:
 #
 # Sensors: Miscellaneous
 #
-sensor.bing_wallpaper_info:
+sensor.bing_wallpaper:
   custom_ui_state_card: state-card-value_only
 sensor.good_vibes:
   custom_ui_state_card: state-card-value_only
@@ -357,7 +349,6 @@ sensor.average_temperature:
     group.temperature:
       friendly_name: Average
 sensor.bedroom_humidity:
-  homebridge_hidden: false
   icon: mdi:water-percent
   group:
     group.bedroom:
@@ -366,7 +357,6 @@ sensor.bedroom_humidity:
       friendly_name: Bedroom
       icon: mdi:hotel
 sensor.bedroom_temperature:
-  homebridge_hidden: false
   icon: mdi:thermometer
   group:
     group.bedroom:
@@ -375,7 +365,6 @@ sensor.bedroom_temperature:
       friendly_name: Bedroom
       icon: mdi:hotel
 sensor.lounge_humidity:
-  homebridge_hidden: false
   icon: mdi:water-percent
   group:
     group.lounge:
@@ -384,7 +373,6 @@ sensor.lounge_humidity:
       friendly_name: Lounge
       icon: mdi:sofa
 sensor.lounge_temperature:
-  homebridge_hidden: false
   icon: mdi:thermometer
   group:
     group.lounge:
@@ -442,6 +430,8 @@ sensor.aqi_ozone_friendly:
       return v > 100 ? 'card-critical'
       : v > 50 ? 'card-warning'
       : null;
+sensor.aqi_particles:
+  device_class: pm25
 sensor.aqi_particles_friendly:
   extra_data_template: >-
     return entities['sensor.aqi_particles'].state != 'unknown' ?
@@ -526,13 +516,10 @@ sensor.disk_use_percent:
     entities['sensor.disk_free_home'].attributes['unit_of_measurement'] +
     ' available';
 sensor.ebox_download_before_offpeak:
-  homebridge_hidden: false
   friendly_name: Downloads
 sensor.ebox_upload_before_offpeak:
-  homebridge_hidden: false
   friendly_name: Uploads
 sensor.ebox_usage:
-  homebridge_hidden: false
   friendly_name: Monthly usage
 sensor.ipv4_address_eth0:
   friendly_name: Local IP Address
@@ -651,27 +638,21 @@ script.wake_up:
 # Switches
 #
 switch.bedroom_fan:
-  homebridge_hidden: false
   icon: mdi:fan
   group:
     group.bedroom:
       friendly_name: Fan
 switch.bedside_light:
-  homebridge_hidden: false
   icon: mdi:creation
 switch.dehumidifier:
-  homebridge_hidden: false
   icon: mdi:water-off
   confirm_controls_show_lock: true
 switch.nightstand_light:
-  homebridge_hidden: false
   icon: mdi:page-layout-body
 switch.souvenirs_light:
-  homebridge_hidden: false
   friendly_name: Souvenirs Light
   icon: mdi:trophy
 switch.window_light:
-  homebridge_hidden: false
   icon: mdi:creation
 
 

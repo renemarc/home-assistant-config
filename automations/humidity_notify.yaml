@@ -1,5 +1,5 @@
 #
-# Check if humidity is too high
+# Check if humidity is too high or too low
 #
 # Comfort level should be between 35% and 55%.
 # Mold grows above 55% relative humidity, and thrives above 70%.
@@ -7,8 +7,6 @@
 #
 # @subscribe input_boolean.doors_open
 # @subscribe input_boolean.windows_open
-#
-# @see /automations/check_mold.yaml
 #
 - id: humidity_notify
   alias: Humidity NOTIFY

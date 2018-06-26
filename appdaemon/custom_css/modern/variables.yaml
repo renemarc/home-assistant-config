@@ -28,7 +28,8 @@
 #
 
 head_includes:
- - <! head tags go here ->
+ - <! Refresh every 15 minutes to avoid memory issues with slideshows. ->
+ - <meta http-equiv="Refresh" content="900">
 
 #
 # Custom body includes - should be a YAML List, e.g.:

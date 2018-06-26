@@ -1,0 +1,28 @@
+#
+# Turn off washroom
+#
+# Wahsroom lights should be off when napping or sleeping.
+#
+# @subscribe input_boolean.nap_mode
+# @subscribe input_boolean.night_mode
+#
+- id: washroom_off
+  alias: Washroom OFF
+  trigger:
+    # When nap mode is enabled.
+    - platform: state
+      entity_id: input_boolean.nap_mode
+      to: 'on'
+
+    # When night mode is enabled.
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'on'
+
+  action:
+    # Turn off all devices.
+    - service: homeassistant.turn_off
+      data:
+        entity_id:
+          - group.washroom_lights
+        transition: 5

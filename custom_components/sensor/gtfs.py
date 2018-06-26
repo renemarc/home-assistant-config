@@ -255,7 +255,7 @@ class GTFSDepartureSensor(Entity):
                 self._pygtfs, self.origin, self.destination, self._offset,
                 self._position)
             if not self._departure:
-                self._state = 0
+                self._state = None
                 self._attributes = {
                     'position': self._position,
                     'Info': 'No more departures today',

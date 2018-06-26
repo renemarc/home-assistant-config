@@ -19,22 +19,6 @@ Interact with Android devices running the [Fully Kiosk Browser](https://www.ozer
 </div>
 
 
-### [`🔺 ./light/aurora.py`](light/aurora.py)
-
-Opens communication with the [Nanoleaf Aurora](https://nanoleaf.me) using this [Hass.io-compatible fork](https://github.com/Oro/home-assistant/tree/light-aurora) of this [original component](https://github.com/software-2/ha-aurora).
-
-<div align="center">
-    <figure>
-        <div>
-            <img src="../www/screenshots/card-aurora.png" alt="Nanoleaf Aurora card" title="Nanoleaf Aurora control" width="325">
-        </div>
-        <figcaption>
-            <p><strong>Nanoleaf Aurora control.</strong></p>
-        </figcaption>
-    </figure>
-</div>
-
-
 ### [`📺 ./light/lightpack.py`](light/lightpack.py)
 
 Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) monitor bias lighting using this [Lightpack component](https://github.com/kklemm91/Lightpack-HASS).
@@ -90,6 +74,7 @@ These are default Home Assistant components that were copied from the core to al
 - Simplified query, making it cacheable in order to increase IO performance.
 - Allow querying departures after midnight.
 - Correctly set arrival date to tommorow when bus leaves before midnight but arrives after.
+- Return **Null** instead of **Zero** when a departure is not found/available.
 
 <div align="center">
     <figure>

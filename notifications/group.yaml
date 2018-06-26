@@ -14,6 +14,7 @@
 - platform: group
   name: Speech
   services:
+    # - service: fully_kiosk
     - service: lannouncer
 
 - platform: group

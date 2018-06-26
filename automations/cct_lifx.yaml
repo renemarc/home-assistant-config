@@ -1,5 +1,5 @@
 #
-# Adjust LIFX bulbs color temperature (CCT) based on cyrcadian rythm
+# Adjust LIFX bulbs colour temperature (CCT) based on cyrcadian rythm
 #
 # LIFX lightbulbs allow their colours to be changed even when their states are
 # off, which we use to our advantage by always setting the light to the desired
@@ -9,7 +9,7 @@
 # White temperature is based on a custom curve, not f.lux nor using the sun,
 # otherwise it would be kind of gloomy to see warm yellows a lot in winter time.
 #
-# LIFX+ bulbs white color range:
+# LIFX+ bulbs white colour range:
 #   Mireds: 111 - 400
 #   Kelvins: 9000K - 2500K
 #

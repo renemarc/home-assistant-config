@@ -1,0 +1,31 @@
+#
+# Turn off lounge
+#
+# Lounge lights should be off when sleeping.
+#
+# @subscribe input_boolean.night_mode
+#
+- id: lounge_off
+  alias: Lounge OFF
+  trigger:
+    # When night mode is enabled.
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'on'
+
+  action:
+    # Turn off binary devices.
+    - service: homeassistant.turn_off
+      data:
+        entity_id:
+          - light.lightpack
+          - switch.souvenirs_light
+          - switch.window_light
+
+    # Turn off smart lights.
+    - service: light.turn_off
+      data:
+        entity_id:
+          - light.aurora
+          - light.spotlight
+        transition: 10

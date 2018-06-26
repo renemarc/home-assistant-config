@@ -10,25 +10,19 @@
     - 2
   monitored_conditions:
     - summary
-    - icon
-    - nearest_storm_distance
-    - uv_index
-    - ozone
     - minutely_summary
     - hourly_summary
     - daily_summary
-    - temperature_max
-    - temperature_min
-    - apparent_temperature_max
-    - apparent_temperature_min
+    - icon
+    - uv_index
+    - ozone
+    - temperature
+    - temperature_high
+    - temperature_low
+    - apparent_temperature
     - humidity
-    - dew_point
     - wind_speed
     - wind_bearing
-    - apparent_temperature
-    - temperature
-    - precip_type
-    - precip_intensity
     - precip_probability
 
 
@@ -206,36 +200,36 @@
     weather_low:
       friendly_name: Low Temperature
       value_template: >-
-        {{ states('sensor.dark_sky_daily_low_temperature') | round }}
+        {{ states('sensor.dark_sky_overnight_low_temperature') | round }}
 
     weather_low_friendly:
       friendly_name: Low Temperature
       value_template: >-
-        {% set temp = states('sensor.dark_sky_daily_low_temperature') | round %}
+        {% set temp = states('sensor.dark_sky_overnight_low_temperature') | round %}
 
         min: {{ temp }}˚
 
     weather_low_1:
       friendly_name: Low Temperature
       value_template: >-
-        {{ states('sensor.dark_sky_daily_low_temperature_1') | round }}
+        {{ states('sensor.dark_sky_overnight_low_temperature_1') | round }}
 
     weather_low_1_friendly:
       friendly_name: Low Temperature
       value_template: >-
-        {% set temp = states('sensor.dark_sky_daily_low_temperature_1') | round %}
+        {% set temp = states('sensor.dark_sky_overnight_low_temperature_1') | round %}
 
         min: {{ temp }}˚
 
     weather_low_2:
       friendly_name: Low Temperature
       value_template: >-
-        {{ states('sensor.dark_sky_daily_low_temperature_2') | round }}
+        {{ states('sensor.dark_sky_overnight_low_temperature_2') | round }}
 
     weather_low_2_friendly:
       friendly_name: Low Temperature
       value_template: >-
-        {% set temp = states('sensor.dark_sky_daily_low_temperature_2') | round %}
+        {% set temp = states('sensor.dark_sky_overnight_low_temperature_2') | round %}
 
         min: {{ temp }}˚
 

@@ -61,6 +61,8 @@ device_tracker: !include misc/device_trackers.yaml
 # @link https://home-assistant.io/components/discovery/
 #
 discovery:
+  ignore:
+    - google_cast
 
 
 #
@@ -140,13 +142,17 @@ homekit: !include misc/homekit.yaml
 #
 # Enable the web server
 #
+# `cors_allowed_origins` includes the domain:port for Appdaemon.
+#
 # @link https://home-assistant.io/components/http/
 #
 http:
   # api_password: !secret http_password
   # base_url: !secret http_base_url
+  server_port: !secret http_server_port
   cors_allowed_origins:
-    - http://hassio.local:5050
+    - !secret http_cors_origin_1
+    - !secret http_cors_origin_2
 
 
 #
@@ -207,8 +213,9 @@ light: !include_dir_merge_list lights/
 logger:
   default: warning
   logs:
-    custom_components.display: critical
-    homeassistant.components.notify.lannouncer: debug
+    aiohttp.server: critical # EBOX newer component bug.
+    custom_components.display: critical # When tablet is offline.
+    homeassistant.helpers.entity: fatal # EBOX legacy component bug.
 
 
 #

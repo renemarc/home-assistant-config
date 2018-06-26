@@ -1,0 +1,35 @@
+#
+# Turn on nightlights when appropriate
+#
+# @subscribe input_boolean.motion_detected
+# @subscribe input_boolean.night_mode
+#
+- id: nightlight_on
+  alias: Nightlight ON
+  trigger:
+    # When motion is detected.
+    - platform: state
+      entity_id: input_boolean.motion_detected
+      to: 'on'
+
+  condition:
+    # If it's during the night mode.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'on'
+
+  action:
+    # Turn night lights on.
+    - service: light.turn_on
+      data:
+        entity_id:
+          - group.lifx_lights
+        brightness_pct: 8
+        transition: 5
+
+    # Enable dedicated kitchen night lights effect.
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+          - group.kitchen_lights
+        effect: night

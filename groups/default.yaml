@@ -78,4 +78,4 @@ wallpaper:
   name: " "
   entities:
     - camera.bing_wallpaper
-    - sensor.bing_wallpaper_info
+    - sensor.bing_wallpaper

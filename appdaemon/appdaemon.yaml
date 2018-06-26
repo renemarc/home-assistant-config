@@ -1,17 +1,20 @@
-secrets: /config/secrets.yaml
 log:
   logfile: STDOUT
   errorfile: STDERR
 appdaemon:
   threads: 10
-  app_dir: /config/appdaemon/apps
+  app_dir: !secret appdaemon_app_dir
   disable_apps: 1
+  elevation: !secret appdaemon_elevation
+  latitude: !secret appdaemon_latitude
+  longitude: !secret appdaemon_longitude
+  time_zone: !secret appdaemon_time_zone
   plugins:
     HASS:
       type: hass
-      ha_url: http://hassio/homeassistant
-      ha_key: f411986db776442b864aa2a31f2d948c
+      ha_url: !secret appdaemon_hass_url
+      ha_key: !secret appdaemon_hass_key
 hadashboard:
   dash_url: !secret hadashboard_dash_url
-  dash_dir: /config/appdaemon/dashboards
+  dash_dir: !secret hadashboard_dash_dir
   dash_compile_on_start: 1

@@ -42,4 +42,4 @@ NOAA's (U.S. National Oceanic and Atmospheric Administration) colourized and wat
 
 ### [`🖼 ./wallpapers.yaml`](wallpapers.yaml)
 
-Pretty daily pictures from [Bing](http://bing.com) and [NASA](https://apod.nasa.gov/apod/astropix.html), showcased in [`/appdaemon/dashboards/Main.dash`](../appdaemon/dashboards/Main.dash) 
+Pretty daily pictures from [Bing](https://bing.com) and [NASA](https://apod.nasa.gov/apod/astropix.html), showcased in [`/appdaemon/dashboards/Main.dash`](../appdaemon/dashboards/Main.dash) 
