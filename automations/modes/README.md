@@ -1,17 +1,24 @@
-# Modes and Flags Automations
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
+
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / [automations](..) / **modes** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#modes-logic-explained" title="Modes logic explained"><img src="../../www/screenshots/group-modes.png" alt="Modes and flags automations" width="325"></a>
+    </div>
+</figure>
+
+
+<h1 align="center">Modes and flags automations</h1>
 
 This directory gathers all automations related to defining the states of modes and flags, essentially booleans used as master switches.
-
-<div align="center">
-    <figure>
-        <div>
-            <img src="../../www/screenshots/group-modes.png" alt="Modes and flags automations" title="Modes and flags" width="325">
-        </div>
-        <figcaption>
-            <p><strong>Modes and flags automations.</strong></p>
-        </figcaption>
-    </figure>
-</div>
 
 
 ## Modes logic explained
@@ -20,7 +27,7 @@ Like wild horses being released 🐎, all lights and devices will naturally run 
 
 Modes are the main published flags used to give higher-level directives to subscriber automations. An intent is broadly defined by a given flag, but the actual work, logic and know-how is handled by subscribers, say by [`/automations/areas/`](../areas/) or [`/automations/devices/`](../devices/).
 
-This being a semi-open space one-bedroom apartment, I have set up the following five modes, defined in [`/misc/input_booleans.yaml`](../misc/input_booleans.yaml):
+This being a somewhat open space one-bedroom apartment (think studio or small condo), I have set up the following five modes, defined in [`/misc/input_booleans.yaml`](../misc/input_booleans.yaml):
 
 - **Low-power mode**: Reduce energy expenditure and light output; for instance during bright daytime or warm summer evenings.
 - **Nap mode**: Someone wants to take a nap or sleep, potentially without preventing a partner from being busy.
@@ -31,6 +38,8 @@ This being a semi-open space one-bedroom apartment, I have set up the following 
 So, when preparing to go to sleep one can turn off all non-bedroom indoor lights using a [Flic](https://flic.io/) button long-press on the nightstand. Then when everyone is ready to actually sleep, a single click of the Flic button closes bedroom lights. When waking-up, the same Flic button presses will disable the related modes to allow lights and devices to run as they should.
 
 In the interest of redundancy and convenience, mode control is also available using [HomeKit](https://www.home-assistant.io/components/homekit/) controllers (iPhones), a centralized wallmounted Android tablet in kiosk-mode (see [`/appdaemon/dashboards/`](../..//appdaemon/dashboards/)), an Aeotec minimote (now discontinued) and of course the [Home Assistant UI](https://www.home-assistant.io/docs/frontend/).
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Modes
@@ -80,6 +89,8 @@ Subscribers should quiet down noisy machines and mute non-critical alarms.
 
 When noise makers should be allowed to run.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Flags
 
@@ -97,9 +108,21 @@ Detect when perimeter device is being tempered with.
 
 Reset flag when tampered devices have their own alarm reset.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Customization
 
 The bulk of the customization is done in [`/customize.yaml`](../../customize.yaml) and [`/customize_glob.yaml`](../../customize_glob.yaml).
 
 The looks of many state cards depend on Custom UI and other templates in [`/www/custom_ui/`](../../www/custom_ui).
+
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🔙 Back to `/automations/`](../)
+
+[🏠 Home][link-repo]

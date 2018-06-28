@@ -1,5 +1,28 @@
-# Custom components, community contributions and overrides
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
 
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **custom_components** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#-sensorgtfspy" title="GTFS"><img src="../www/screenshots/group-transit.png" alt="Public Transit group" width="140"></a>
+        <a href="#-sensoreboxpy" title="EBOX"><img src="../www/screenshots/group-network.png" alt="Network group" width="140"></a>
+    </div>
+    <div align="center">
+        <a href="#-display" title="Kiosk"><img src="../www/screenshots/card-kiosk.png" alt="Kiosk card" width="140"></a>
+        <a href="#-lightlightpackpy" title="Lightpack"><img src="../www/screenshots/card-lightpack.png" alt="Lightpack card" width="140"></a>
+        <a href="#-sensordoomsday_clockpy" title="Doomsday Clock"><img src="../www/screenshots/card-doomsday.png" alt="Doomsday Clock card" width="140"></a>
+    </div>
+</figure>
+
+
+<h1 align="center">Custom components, community contributions, and overrides</h1>
 
 ## Community components
 
@@ -18,6 +41,8 @@ Interact with Android devices running the [Fully Kiosk Browser](https://www.ozer
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### [`📺 ./light/lightpack.py`](light/lightpack.py)
 
@@ -34,10 +59,12 @@ Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) moni
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### [`💀 ./sensor/doomsday_clock.py`](sensor/doomsday_clock.py)
 
-A local copy of my depressing [Doomsday Clock component](https://github.com/renemarc/home-assistant-custom-components) that tracks the _Bulletin of the Atomic Scientists_' [Minutes to Midnight](https://thebulletin.org/timeline) humanity status indicator.
+A local copy of my depressing [Doomsday Clock sensor](https://github.com/renemarc/home-assistant-doomsday-clock) that tracks the _Bulletin of the Atomic Scientists_' [world threat assessment index](https://thebulletin.org/doomsday-clock/) indicating how close humanity is to a man-made global catastrophe either through nuclear war or climate change.
 
 <div align="center">
     <figure>
@@ -50,10 +77,14 @@ A local copy of my depressing [Doomsday Clock component](https://github.com/rene
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### [`❓ ./variable.py`](variables.py)
 
 The missing link that allows storage of non-boolean values using the [Variable component](https://github.com/rogro82/hass-variables).
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Overriden components
@@ -65,6 +96,19 @@ These are default Home Assistant components that were copied from the core to al
 
 [Ebox](https://github.com/home-assistant/home-assistant/blob/master/homeassistant/components/sensor/ebox.py) ISP data consumtion component:
 - Upgraded [pyebox](https://github.com/titilambert/pyebox/) dependency to [support unlimited data packages](https://github.com/titilambert/pyebox/issues/1).
+
+<div align="center">
+    <figure>
+        <div>
+            <img src="../www/screenshots/group-network.png" alt="Network group" title="Network" width="325">
+        </div>
+        <figcaption>
+            <p><strong>Network group.</strong></p>
+        </figcaption>
+    </figure>
+</div>
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### [`🚌 ./sensor/gtfs.py`](sensor/gtfs.py)
@@ -86,3 +130,11 @@ These are default Home Assistant components that were copied from the core to al
         </figcaption>
     </figure>
 </div>
+
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🏠 Home][link-repo]

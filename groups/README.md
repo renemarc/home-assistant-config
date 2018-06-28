@@ -1,4 +1,34 @@
-# UI views and groups
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
+
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **groups** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#-defaultyaml" title="Home"><img src="../www/screenshots/menu-home.png" alt="Home menu option" width="650"></a>
+    </div>
+    <div align="center">
+        <a href="#-switchboardyaml" title="Switchboard"><img src="../www/screenshots/menu-switchboard.png" alt="Switchboard menu option" width="650"></a>
+    </div>
+    <div align="center">
+        <a href="#-weatheryaml" title="Weather"><img src="../www/screenshots/menu-weather.png" alt="Weather menu option" width="650"></a>
+    </div>
+    <div align="center">
+        <a href="#-statusyaml" title="Status"><img src="../www/screenshots/menu-status.png" alt="Status menu option" width="650"></a>
+    </div>
+    <div align="center">
+        <a href="#-configurationyaml" title="Configuration"><img src="../www/screenshots/menu-configuration.png" alt="Configuration menu option" width="650"></a>
+    </div>
+</figure>
+
+
+<h1 align="center">UI views and groups</h1>
 
 To avoid a mess of sensors, the state cards are placed into different pages (views), based on a simple architecture. The goal is always to present only as much info as needed, and data presented must be easy to find and consume.
 
@@ -31,6 +61,8 @@ With regular actions, climate control, bus schedules and a pretty picture of the
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### [`🔘 ./switchboard.yaml`](switchboard.yaml)
 
@@ -53,6 +85,8 @@ Organized by room and control zone.
         </figcaption>
     </figure>
 </div>
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### [`🌦 ./weather.yaml`](weather.yaml)
@@ -79,6 +113,8 @@ With current conditions, forecasts, air quality, radar and satellite maps.
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### [`👀 ./status.yaml`](status.yaml)
 
@@ -102,6 +138,8 @@ Geeky details about Home Assistant, network, battery status and per-location tem
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### [`⚙ ./configuration.yaml`](configuration.yaml)
 
@@ -122,6 +160,8 @@ States and automation overrides.
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Other
 
@@ -129,9 +169,19 @@ States and automation overrides.
 
 For logical groups referenced in code but not displayed in views.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Customization
 
 The bulk of the customization is done in [`/customize.yaml`](../customize.yaml) and [`/customize_glob.yaml`](../customize_glob.yaml).
 
 The looks of many state cards depend on Custom UI and other templates in [`/www/custom_ui/`](../www/custom_ui).
+
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🏠 Home][link-repo]

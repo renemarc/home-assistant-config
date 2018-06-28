@@ -1,6 +1,28 @@
-# Public folder
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
 
-This is the default publicly accessible folder if Home Assistant.
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **www** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#-custom_ui" title="Custom UI"><img src="screenshots/group-weather.png" alt="Custom UI elements" width="140"></a>
+        <a href="#-custom_ui" title="Custom UI"><img src="screenshots/card-horizontal-line.png" alt="Horizontal line state card" width="140"></a>
+        <a href="#-images" title="Images"><img src="images/technology-diagram.png" alt="Technology diagram" width="140"></a>
+        <a href="#-screenshots" title="Screenshots"><img src="screenshots/group-climate.png" alt="Climate control group" width="140"></a>
+        <a href="#-screenshots" title="Screenshots"><img src="screenshots/group-security-dark.png" alt="Security Status group (dark theme)" width="140"></a>
+    </div>
+</figure>
+
+
+<h1 align="center">Public folder</h1>
+
+This is Home Assistant's publicly accessible web folder.
 
 
 ## Contents
@@ -21,6 +43,8 @@ Where custom state card templates are stored.
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### [`🖼 ./images/`](images)
 
@@ -35,6 +59,7 @@ Where custom state card templates are stored.
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### [`📸 ./screenshots/`](screenshots)
@@ -50,3 +75,11 @@ Where custom state card templates are stored.
         </figcaption>
     </figure>
 </div>
+
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🏠 Home][link-repo]

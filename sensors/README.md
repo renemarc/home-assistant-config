@@ -1,4 +1,32 @@
-# Sensors
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
+
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **sensors** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#-climateyaml" title="Climate"><img src="../www/screenshots/group-climate.png" alt="Climate Control group" width="140"></a>
+        <a href="#-poweryaml" title="Power"><img src="../www/screenshots/group-battery.png" alt="Battery Levels group" width="140"></a>
+        <a href="#-atmosphereyaml" title="Atmosphere"><img src="../www/screenshots/group-atmosphere.png" alt="Atmospheric Safety group" width="140"></a>
+        <a href="#-gtfsyaml" title="Public Transit"><img src="../www/screenshots/group-transit.png" alt="Public Transit group" width="140"></a>
+    </div>
+    <div align="center">
+        <a href="#-networkyaml" title="Network"><img src="../www/screenshots/group-network.png" alt="Network group" width="140"></a>
+        <a href="#-systemyaml" title="System"><img src="../www/screenshots/group-system.png" alt="System group" width="140"></a>
+        <a href="#-weatheryaml" title="Weather"><img src="../www/screenshots/group-weather.png" alt="Today's Weather group" width="140"></a>
+        <a href="#-calendaryaml" title="Calendar"><img src="../www/screenshots/group-calendar.png" alt="Calendar group" width="140"></a>
+        <a href="#-camerayaml" title="Cameras"><img src="../www/screenshots/card-satellite-geocolour.jpg" alt="NOAA GeoColour satellite image" width="140"></a>
+    </div>
+</figure>
+
+
+<h1 align="center">Sensors</h1>
 
 Each YAML file groups together all related sensors and contains details on usage.
 
@@ -39,10 +67,14 @@ Indoor climate conditions.
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### [`💡 ./light.yaml`](light.yaml)
 
 Reports on loaded effects for smart lights.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### [`🔋 ./power.yaml`](power.yaml)
@@ -60,6 +92,8 @@ Battery levels.
         </figcaption>
     </figure>
 </div>
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Data-source sensors
@@ -80,6 +114,8 @@ Battery levels.
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### [`📸 ./camera.yaml`](camera.yaml)
 
@@ -96,6 +132,8 @@ Data sources for some [`/cameras`](../cameras).
         </figcaption>
     </figure>
 </div>
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### [`🚌 ./gtfs.yaml`](gtfs.yaml)
@@ -114,6 +152,8 @@ Data sources for some [`/cameras`](../cameras).
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### [`📡 ./network.yaml`](network.yaml)
 
@@ -131,6 +171,8 @@ Internet connection speed and latency testing.
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### [`🤓 ./system.yaml`](system.yaml)
 
@@ -147,6 +189,8 @@ Geeky details on HASS and its hardware status.
         </figcaption>
     </figure>
 </div>
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### [`🌦 ./weather.yaml`](weather.yaml)
@@ -169,6 +213,8 @@ Everything weather related.
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Generic sensors
 
@@ -188,17 +234,31 @@ Everything time related.
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### [`⁉ ./misc.yaml`](misc.yaml)
 
 Everything else.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Usage
 
 Some sensors are used for information display only in [`/groups/`](../groups) and [`/appdaemon/dashboards/`](../appdaemon/dashboards), while others are also used for [`/automations/`](../automations).
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Customization
 
 The bulk of the customization is done in [`/customize.yaml`](../customize.yaml) and some in [`/customize_glob.yaml`](../customize_glob.yaml).
+
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🏠 Home][link-repo]

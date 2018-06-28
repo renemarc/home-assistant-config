@@ -1,4 +1,22 @@
-# GTFS: General Transit Feed Specification
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
+
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **gtfs** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#gtfs-general-transit-feed-specification" title="Public Transit"><img src="https://media.giphy.com/media/3ohc0UC7wQoFDqQuOc/giphy.gif" alt="Cool crocodile riding the train"></a>
+    </div>
+</figure>
+
+
+<h1 align="center">GTFS: General transit feed specification</h1>
 
 GTFS data serves to calculate public transit routes and times. The [GTFS](https://home-assistant.io/components/sensor.gtfs/) sensor indicates how to convert new feeds into a database for local queries.
 
@@ -24,6 +42,8 @@ While the current implementation is precise, it is also dog-slow for many reason
 - Indexes are there for primary keys, but not for some important columns used for joins and sorts, resulting in both slow joins and in the creation of a temporary sort table for each query. On an SD card. Ugh.
 
 Essentially, using this sensor leads to lags and hangs in Home Assistant while the SD card is being monopolized and trashed with useless writes.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Speed-up solutions
@@ -73,12 +93,24 @@ Ideally do perform the following steps on a better machine, like a Docker build 
 
 Voilà! The resulting file can be copied over to the Raspberry Pi and Home Assistant restarted. Speed at last!
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Next few scheduled stop times
 
 I use a modified GTFS sensor at [`/custom_components/sensor/gtfs.py`](../custom_components/sensor/gtfs.py) that allows for querying the next few scheduled times. I still need to do a PR for Home Assistant to submit this change. See [`/sensors/gtfs.yaml`](../sensors/gtfs.yaml).
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Customization
 
 Customization for the GTFS sensor is done in [`/customize.yaml`](../customize.yaml). For privacy as well as for development and testing purposes any sensitive data is hidden and referenced in the non-committed [`/secrets.yaml`](../secrets-dummy.yaml) file.
+
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🏠 Home][link-repo]

@@ -1,4 +1,31 @@
-# Lights
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
+
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **lights** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#lifx-smart-wi-fi-lights"><img src="http://img.youtube.com/vi/TD1358Y3Iv0/maxresdefault.jpg" alt="LIFX promo video" title="LIFX" width="140"></a>
+        <a href="#lightpack-dynamic-tv-bias-light"><img src="https://i.vimeocdn.com/video/201567628_1280x720.jpg" alt="ADAlight demo video" title="ADAlight/Lightpack" width="140"></a>
+        <a href="#nanoleaf-aurora-smart-light-panels"><img src="http://img.youtube.com/vi/Nin0NSjp8II/maxresdefault.jpg" alt="Nanoleaf Aurora promo video" title="Nanoleaf Aurora" width="140"></a>
+    </div>
+    <div align="center">
+        <a href="#lifx-a19-rgbw-light-bulbs"><img src="../www/screenshots/card-lifx.png" alt="LIFX+ card" title="LIFX light control" width="140"></a>
+        <a href="#lifx-z-rgbw-led-strips"><img src="../www/screenshots/group-ceiling.png" alt="LIFX Z ceiling group" title="LIFX Z strip control" width="140"></a>
+        <a href="#lightpack-dynamic-tv-bias-light"><img src="../www/screenshots/card-lightpack.png" alt="Lightpack card" title="Lightpack control" width="140"></a>
+        <a href="#limitlessled-milight-controllers-with-high-cri-cct-led-strips"><img src="../www/screenshots/card-limitlessled.png" alt="LimitlessLED card" title="LimitlessLED control" width="140"></a>
+        <a href="#nanoleaf-aurora-smart-light-panels"><img src="../www/screenshots/card-aurora.png" alt="Nanoleaf Aurora card" title="Nanoleaf Aurora control" width="140"></a>
+    </div>
+</figure>
+
+
+<h1 align="center">Lights</h1>
 
 ## LIFX smart Wi-Fi lights
 
@@ -43,6 +70,8 @@ They do have couple of minor annoyances however:
 
 I have their white colour gradually shift from daylight to warm white with varying intensity based on the time of day in [`/automations/cct_lifx.yaml`](../automations/cct_lifx.yaml). They also serve as nightlights through [`/automations/devices/nightlight_on.yaml`](../automations/devices/nightlight_on.yaml), IR illuminators and for some alerts like [`/automations/front_door_notify.yaml`](../automations/front_door_notify.yaml).
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### LIFX Z RGBW LED strips
 
@@ -72,6 +101,8 @@ Same goes for the bed underglow lights.
 This setup works well, but the strips themselves are a bit buggy even before being used with Home Assistant:
 - Sometimes the motion stops in one, more or all strips. I have to use the LIFX app to kick them back into motion. It happens daily, which is a bummer. 😒
 - Other times a LIFX cloud scene itself is deemed to have a motion programmed, so one strip will get two motion commands applied resulting in a slight stuttering effect. Once again I use the LIFX app, this time to remove the motion from the scene.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Lightpack dynamic TV bias light
@@ -104,6 +135,8 @@ For my HTPC I use a 100 LED dots DIY build of the [Adalight](https://learn.adafr
 
 To allow [the third-party component](https://github.com/kklemm91/Lightpack-HASS) [`/custom_components/`](../custom_components#-lightlightpackpy) to communicate with your Lightpack device, one has to enable the sockets API in Prismatik and optionally add a password. If your IoT LAN is segregated from your TV-connected computer you will also have to play with your firewall rules.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## LimitlessLED (MiLight) controllers with high-CRI CCT LED strips
 
@@ -134,6 +167,8 @@ In retrospec, while this setup works I do have reservations. Should I find a bet
 - When connecting energized UL-listed DC adapters in the controllers' barrel plug, I get starks flying out of the FUT035. 💥 Every time. And you do have to physically plug/unplug power them to link them to the bridge and to debug the connection. Such a lack of power regulation is not cool. 😠
 
 As an alternative to using the MiLight bridge with its limit of four groups, [Chris Mullins has done a kick-ass job](http://blog.christophermullins.com/2017/02/11/milight-wifi-gateway-emulator-on-an-esp8266/) of reverse-engineering the MiLighs protocols and explains how to easily assemble a DIY bridge using [his open-source project](https://github.com/sidoh/esp8266_milight_hub) to allow you to control as many groups as you want, using MQTT too if you wish. All you'll need is an [ESP8266 WiFi module](https://en.wikipedia.org/wiki/ESP8266), a [nRF24L01+ transceiver](https://hackaday.com/2015/02/23/nordic-nrf24l01-real-vs-fake/) and some prototyping wire, under about $20. I have built one using a [NodeMCU 1.0](https://frightanic.com/iot/comparison-of-esp8266-nodemcu-development-boards/#v1), and will switch to it when the need to add more MiLight groups arises ...unless I find a better solution to replace all of these MiLight controllers with.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Nanoleaf Aurora smart light panels
@@ -179,9 +214,19 @@ While a great Canadian product 🇨🇦, it does have very minor drawbacks:
 - They are **very bright**, like those showroom TV sets that are programmed to make the image pop even in a fully lit store, so I run my 9-panels unit at 50% max brightness which makes the stepping brightness changes more noticeable. They would definitely pop in a sunlit environment though, which is cool.
 - Buying your first set will make you want to buy more of them. A lot more. It's a bit like crack, but good for you. 😃
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Customization
 
 The bulk of the customization is done in [`/customize.yaml`](../customize.yaml) and [`/customize_glob.yaml`](../customize_glob.yaml).
 
 The looks of the light state cards depend on Custom UI and other templates in [`/www/custom_ui/`](../www/custom_ui).
+
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🏠 Home][link-repo]

@@ -1,10 +1,34 @@
-# Areas Automations
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
+
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / [automations](..) / **areas** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#ceiling" title="Ceiling"><img src="../../www/screenshots/group-ceiling.png" alt="Ceiling LIFX Z ceiling group" width="140"></a>
+        <a href="#kitchen" title="Kitchen"><img src="../../www/screenshots/group-kitchen.png" alt="Kitchen group" width="140"></a>
+        <a href="#bedroom" title="Bedroom"><img src="../../www/screenshots/group-bedroom.png" alt="Bedroom group" width="140"></a>
+        <a href="#lounge" title="Lounge"><img src="../../www/screenshots/group-lounge.png" alt="Lounge group" width="140"></a>
+        <a href="#washroom" title="Washroom"><img src="../../www/screenshots/group-washroom.png" alt="Washroom group" width="140"></a>
+    </div>
+</figure>
+
+
+<h1 align="center">Areas automations</h1>
 
 Areas represent _rooms_ (bedroom, kitchen, lounge, washroom) and _zones_ (open ceiling, exterior).
 
 Most of these automations are subscribers for modes defined in [`/misc/input_booleans.yaml`](../misc/input_booleans.yaml) and managed through [`/automations/modes/`](../modes/).
 
 Areas are smart enough to understand what to do when a higher-level order (mode) is given. They know which device within their control should be turned on, dimmed or turned off. Like with work teams, areas are the group leaders: indivual team members don't have to worry about making sense of management's desires and instead just follow their team leader's directives.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Bedroom
@@ -40,6 +64,8 @@ Bedroom lights should be off when napping.
 Turn on bedroom.
 
 If _low-power_ mode is enabled, the [`bedroom_low.yaml`](bedroom_low.yaml) automation will be used instead.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Ceiling
@@ -95,6 +121,8 @@ Unless an effect is manually selected, this scheduler will do its thing.
 
 Manually select a LIFX cloud effect for the ceiling wash lights.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Kitchen
 
@@ -129,6 +157,8 @@ Kitchen lights should be off when sleeping.
 Turn on kitchen.
 
 If _low-power mode_ is enabled, the [`kitchen_low.yaml`](kitchen_low.yaml) automation will be used instead.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Lounge
@@ -165,6 +195,8 @@ Turn on lounge.
 
 If _low-power mode_ is enabled, the [`lounge_low.yaml`](lounge_low.yaml) automation will be used instead.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Washroom
 
@@ -200,9 +232,21 @@ Turn on washroom.
 
 If _low-power_ mode is enabled, the [`washroom_low.yaml`](washroom_low.yaml) automation will be used instead.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Customization
 
 The bulk of the customization is done in [`/customize.yaml`](../../customize.yaml) and [`/customize_glob.yaml`](../../customize_glob.yaml).
 
 The looks of many state cards depend on Custom UI and other templates in [`/www/custom_ui/`](../../www/custom_ui).
+
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🔙 Back to `/automations/`](../)
+
+[🏠 Home][link-repo]

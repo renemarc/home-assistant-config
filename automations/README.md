@@ -1,19 +1,38 @@
-# Automations
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
+
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **automations** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#publishers-and-subscribers" title="Publishers and subscribers
+(Scene by comedian Tamori)"><img src="https://media.giphy.com/media/CmFMWpEa4IFtS/giphy.gif" alt="Ticket clerk hidden inside a turnstile"></a>
+    </div>
+</figure>
+
+
+<h1 align="center">Automations</h1>
 
 ## Publishers and subscribers
+
+To prevent [spaghetti code](https://www.youtube.com/watch?v=vZA6h7djGmc) in automations as this project grows, I employ a [publish–subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) (kind of a lightweight [mediator pattern](https://en.wikipedia.org/wiki/Mediator_pattern)) where some automations will trigger changes on [`/misc/input_booleans.yaml`](../misc/input_booleans.yaml) and [`/misc/variables.yaml`](../misc/variables.yaml) while others listen to those changes.
 
 <div align="center">
     <figure>
         <div>
-            <img src="https://media.giphy.com/media/CmFMWpEa4IFtS/giphy.gif" alt="Ticket clerk hidden inside a turnstile">
+            <a href="https://www.youtube.com/watch?v=vZA6h7djGmc" title="Avoiding spaghetti code"><img src="https://media.giphy.com/media/wry7vkOOmDTMs/giphy.gif" alt="Someone adding a meatball to an already overflowing spaghetti takeaway container"></a>
         </div>
         <figcaption>
-            <p><strong>Pub/sub!</strong></p>
+            <p><strong><a href="https://www.youtube.com/watch?v=vZA6h7djGmc" title="Avoiding spaghetti code">Avoiding spaghetti code.</a></strong></p>
         </figcaption>
     </figure>
 </div>
-
-To prevent [spaghetti code](https://www.youtube.com/watch?v=vZA6h7djGmc) in automations as this project grows, I employ a [publish–subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) (kind of a lightweight [mediator pattern](https://en.wikipedia.org/wiki/Mediator_pattern)) where some automations will trigger changes on [`/misc/input_booleans.yaml`](../misc/input_booleans.yaml) and [`/misc/variables.yaml`](../misc/variables.yaml) while others listen to those changes.
 
 For example, one push of a button will lead to enabling the **night mode** by setting the relevant boolean to _true_. Every room has an automation that listens to changes on that **night mode** boolean, and is responsible for turning devices on and off accordingly. This makes every room reactive to one central direction, without having to maintain a monolithic `/scripts/go_to_sleep.yaml` that lists all the devices that must be acted upon.
 
@@ -21,16 +40,7 @@ It's a bit like a boss giving orders to managers, and letting them figure out ho
 
 To help clarify and document this pattern in the files' comments, automations annotated with **@publish** are the ones that issue orders, and those annotated with **@subscribe** are listening for such orders. Some automations will be both **publishers** and **subscribers** of different orders.
 
-<div align="center">
-    <figure>
-        <div>
-            <a href="https://www.youtube.com/watch?v=vZA6h7djGmc" title="Understanding spaghetti code"><img src="https://media.giphy.com/media/IVoBdwlksSq7m/giphy.gif" alt="Someone adding a meatball to an already overflowing spaghetti takeaway container"></a>
-        </div>
-        <figcaption>
-            <p><strong><a href="https://www.youtube.com/watch?v=vZA6h7djGmc" title="Understanding spaghetti code">Understanding spaghetti code.</a></strong></p>
-        </figcaption>
-    </figure>
-</div>
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Folders
@@ -48,6 +58,8 @@ For automations related to individual smart devices.
 ### [`📂 ./modes/`](modes)
 
 For all automations related to modes.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Files
@@ -127,8 +139,19 @@ Notify when a new version of Home Assistant is available.
 Wake up all devices.
 
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+
 ## Customization
 
 The bulk of the customization is done in [`/customize.yaml`](../customize.yaml) and [`/customize_glob.yaml`](../customize_glob.yaml).
 
 The looks of many state cards depend on Custom UI and other templates in [`/www/custom_ui/`](../www/custom_ui).
+
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🏠 Home][link-repo]

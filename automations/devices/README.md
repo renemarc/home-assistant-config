@@ -1,4 +1,29 @@
-# Devices Automations
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
+
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / [automations](..) / **devices** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#wall-mounted-dashboard" title="Wall-mounted dashboard"><img src="../../www/screenshots/dashboard-main.gif" alt="Main dashboard" width="280"></a>
+    </div>
+    <div align="center">
+        <a href="#bed" title="Bed"><img src="../../www/screenshots/group-bedroom.png" alt="Bedroom group" width="140"></a>
+        <a href="limitlessled-kitchen-lights" title="LimitlessLED kitchen lights"><img src="../../www/screenshots/group-kitchen.png" alt="Kitchen group" width="140"></a>
+        <a href="#nanoleaf-aurora" title="Nanoleaf Aurora"><img src="../../www/screenshots/card-aurora.png" alt="Nanoleaf Aurora card" width="140"></a>
+        <a href="#lightpack-dynamic-tv-bias-light" title="Lightpack dynamic TV bias light"><img src="../../www/screenshots/card-lightpack.png" alt="Lightpack card" width="140"></a>
+        <a href="#dehumidifier" title="Dehumidifier"><img src="../../www/screenshots/group-climate.png" alt="Climate control group" width="140"></a>
+    </div>
+</figure>
+
+
+<h1 align="center">Devices automations</h1>
 
 These are either simple binary units plugged into a smart outlet, or smart devices whose parameters that can be controlled with finer subtlety. 
 
@@ -44,6 +69,8 @@ Unless an effect is manually selected, this scheduler will do its thing.
 
 Manually select a Nanoleaf Aurora built-in effect.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Bed
 
@@ -79,6 +106,8 @@ Unless an effect is manually selected, this scheduler will do its thing.
 
 Manually select a LIFX cloud effect for the bed underglow lights.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Dehumidifier
 
@@ -105,18 +134,20 @@ Turn on the dehumidifier when appropriate if humidify levels are too high.
 
 Only if doors and windows are closed, and only when we're allowed to mame some noise.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-## Wall-Mounted Dashboard
+
+## Wall-mounted dashboard
 
 See [`/appdaemon/dashboards`](../../appdaemon/dashboards).
 
 <div align="center">
     <figure>
         <div>
-            <img src="../../www/screenshots/dashboard-main.gif" alt="Main dashboard" title="Main dashboard">
+            <img src="../../www/screenshots/dashboard-all.gif" alt="Dashboards in rotation" title="Dashboards in rotation">
         </div>
         <figcaption>
-            <strong>Main dashboard.</strong>
+            <strong>Dashboards in rotation.</strong>
         </figcaption>
     </figure>
 </div>
@@ -130,6 +161,8 @@ Toggle kiosk display.
 ### [`🔅 ./kiosk_low.yaml`](kiosk_low.yaml)
 
 Toggle kiosk display's brightness.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## LimitlessLED kitchen lights
@@ -180,6 +213,8 @@ Turn on all kitchen lights when Flic button is single clicked.
 
 Toggle kitchen lights.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Lightpack dynamic TV bias light
 
@@ -207,6 +242,8 @@ The Lightpack is controlled by the Prismatik softwage, which allows for differen
 ### [`🔘️ ./lightpack_select.yaml`](lightpack_select.yaml)
 
 Manually select a Lightpack effect for the TV bias light.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Nightlights
@@ -242,9 +279,26 @@ Media player paused/stopped video content.
 
 This automation only responds to the pausing/stopping of HTPC video playback. If music is playing on any HTPC media player then this automation will not perform its action.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Customization
 
 The bulk of the customization is done in [`/customize.yaml`](../../customize.yaml) and [`/customize_glob.yaml`](../../customize_glob.yaml).
 
 The looks of many state cards depend on Custom UI and other templates in [`/www/custom_ui/`](../../www/custom_ui).
+
+
+<!--
+Footer starts.
+-->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🔙 Back to `/automations/`](../)
+
+[🏠 Home][link-repo]
+<!--
+Footer ends.
+-->

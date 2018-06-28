@@ -1,4 +1,28 @@
-# Custom AppDaemon widgets
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
+
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / [appdaemon](..) / **custom_widgets** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#-entitycamerayaml-and-baseentityiframe" title="Entity camera widget"><img src="../../www/screenshots/widget-entitycamera.gif" alt="Entity camera widget" width="280"></a>
+    </div>
+    <div align="center">
+        <a href="#-iconsensoryaml-and-baseiconsensor" title="Icon sensor widget"><img src="../../www/screenshots/widget-iconsensor.png" alt="Icon sensor widget" width="140"></a>
+        <a href="#-input_selectyaml-and-baseselect" title="Input select widget"><img src="../../www/screenshots/widget-input_select.png" alt="Input selectwidget" width="140"></a>
+        <a href="#-entitysensoryaml-and-baseentitydisplay" title="Entity sensor widget"><img src="../../www/screenshots/widget-entitysensor.png" alt="Entity sensor widget" width="140"></a>
+        <a href="#-multisensoryaml-and-basemultisensor" title="Multisensor widget"><img src="../../www/screenshots/widget-multisensor.png" alt="Multisensor widget" width="140"></a>
+    </div>
+</figure>
+
+
+<h1 align="center">Custom AppDaemon widgets</h1>
 
 [AppDaemon](https://home-assistant.io/docs/ecosystem/appdaemon/) offers [many default widgets](https://github.com/home-assistant/appdaemon/tree/master/appdaemon/widgets/), but can also support third-party and custom ones.
 
@@ -21,8 +45,10 @@ Icon widget from [ReneTode's repo](https://github.com/ReneTode/My-AppDaemon/tree
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-### [`🔘 input_select.yaml`](input_select.yaml) and [`baseselect`](baseselect)
+
+### [`🔘 input_select.yaml`](input_select.yaml) and [`baseselect/`](baseselect)
 
 Selector widget also from [ReneTode's repo](https://github.com/ReneTode/My-AppDaemon/tree/master/custom_widgets/baseselect), modified with:
 - Added support for **sub_entities**.
@@ -38,10 +64,12 @@ Selector widget also from [ReneTode's repo](https://github.com/ReneTode/My-AppDa
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Custom widgets
 
-### [`👽 entitysensor.yaml`](entitysensor.yaml) and [`baseentitydisplay`](baseentitydisplay)
+### [`👽 entitysensor.yaml`](entitysensor.yaml) and [`baseentitydisplay/`](baseentitydisplay)
 
 Multipurpose widget based on the default [basedisplay](https://github.com/home-assistant/appdaemon/tree/master/appdaemon/widgets/basedisplay) but with the following modifications:
 - Support for entities used as **title** and **title2**.
@@ -58,8 +86,10 @@ Multipurpose widget based on the default [basedisplay](https://github.com/home-a
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-### [`📸 entitycamera.yaml`](entitycamera.yaml) and [`baseentityiframe`](baseentityiframe)
+
+### [`📸 entitycamera.yaml`](entitycamera.yaml) and [`baseentityiframe/`](baseentityiframe)
 
 IFrame widget to showcase images and slideshows, based on the default [baseiframe](https://github.com/home-assistant/appdaemon/tree/master/appdaemon/widgets/baseiframe) but includes:
 - Cache-buster added to already parameterized URLs.
@@ -77,8 +107,10 @@ IFrame widget to showcase images and slideshows, based on the default [baseifram
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-###  [`📶 multisensor.yaml`](multisensor.yaml) and [`basemultisensor`](basemultisensor)
+
+###  [`📶 multisensor.yaml`](multisensor.yaml) and [`basemultisensor/`](basemultisensor)
 Multi-sensors widget, like the **entitysensor** above, but adds:
 - List two sensors size by side (useful to showcase both _temperature_ and _humidity_ together). 
 
@@ -93,7 +125,19 @@ Multi-sensors widget, like the **entitysensor** above, but adds:
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Customization
 
 The extra styling of these widgets is done in the theme [`/appdaemon/custom_css/modern/`](../custom_css/modern) as well as directly in [`/appdaemon/dashboards/`](../dashboards).
+
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🔙 Back to `/appdaemon/`](../)
+
+[🏠 Home][link-repo]

@@ -1,16 +1,17 @@
-# René-Marc's Home Assistant configuration
+# Home Assistant configuration for a smart-looking place! &nbsp; [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Automate%20your%20home%20into%20a%20smart-looking%20place!&url=https://github.com/renemarc/home-assistant-config&via=renemarc&hashtags=HomeAssistant,SmartHome,ConnectedHome,HomeAutomation,IoT)<br><sub><sup>by <a href="https://renemarc.com/">René-Marc Simard</a></sup></sub>
 
-[![Build Status][img-travis-ci]][link-travis-ci]
-[![GitHub Release][img-github-release]][link-repo]
+[![Price][img-price]][link-license]
 [![Hass.io][img-hassio]][link-hassio]
 [![Home Assistant version][img-ha-version]][link-ha-version]
 [![License][img-license]][link-license]
+[![GitHub Release][img-github-release]][link-repo]
+[![Build Status][img-travis-ci]][link-travis-ci]
 
 
 Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io](https://home-assistant.io/hassio/) on a [Raspberry Pi](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) for a one bedroom apartment, offering convenience automations over lights and climate while providing multiple intuitive user controls.
 
 <div align="center">
-    <p><strong>Be sure to ⭐️ my repo if you find it useful! 😃</strong></p>
+    <p><strong>Be sure to <a href="#" title="star">⭐️</a> my repo if you find it useful! 😃</strong></p>
     <figure>
         <div>
             <img src="www/screenshots/dashboard-all.gif" alt="Dashboard animation" title="Dashboards">
@@ -40,7 +41,7 @@ Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io]
 </div>
 
 
-## Contents
+## Table of contents
 
 1. **[TL;DR](#tldr)**
 1. **[Overview](#overview)**  
@@ -50,12 +51,15 @@ Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io]
 1. **[Setup](#setup)**  
     [Diagram](#diagram) | [Supporting hardware choices](#supporting-hardware-choices) | 
     [Configuration](#configuration) | [System and interfaces](#system-and-interfaces) | [Physical devices](#physical-devices) | [Software](#software) | [Usage](#usage)
+1. **[License](#license)**
 1. **[Thanks](#thanks)**
 
 
 ## TL;DR
 
 This is a fully documented working configuration for Home Assistant, with screenshots, hints and comments. [Browse the code](#) to have a look! 👀
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Overview
@@ -82,6 +86,8 @@ This is a fully documented working configuration for Home Assistant, with screen
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### Agile development
 
@@ -106,6 +112,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Key features
 
@@ -120,7 +128,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 <div align="center">
     <figure>
         <div>
-            <img src="www/screenshots/group-climate.png" alt="Climate Control group" title="Climate Control " width="325">
+            <img src="www/screenshots/group-climate.png" alt="Climate Control group" title="Climate Control" width="325">
             <img src="www/screenshots/notification-humidity.png" alt="Humidity notification" title="Humidity notification" width="325">
         </div>
         <figcaption>
@@ -128,6 +136,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
         </figcaption>
     </figure>
 </div>
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### Weather report
@@ -147,6 +157,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
         </figcaption>
     </figure>
 </div>
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### Lighting control
@@ -173,6 +185,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### Presence and basic security
 - **Cellphone device sensing**, to check who is currently home or away.
@@ -192,6 +206,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### Modes and scenes
 - **Mode based** where unless a blocking mode is set, devices will turn on. Think of a river or a horse: tame it to keep it under control, but release the restraints and they will do their thing: 🐎
@@ -201,7 +217,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
     + **Low-power mode** where each room knows which device should be on or off to achieve a more economical and calm state.
 - **Smart rooms** that know which devices should be on or off based on the modes above. No need for heavy centralized control, let local managers handle their teams!
 - **Good morning action** that releases all blocking modes, allowing all lights to turn on gradually, and noise-making devices are allowed to run if needed.
-- **Smart global scenes** based on [`/scripts/`](scripts)` instead of scenes, to allow for sequences and conditions:
+- **Smart global scenes** based on [`/scripts/`](scripts) instead of scenes, to allow for sequences and conditions:
     + **Movie scene** turns on ambiance lighting and dims smart lights when playing a movie, then returns to standard automations when pausing/stopping.
     + **Daylight, Gaming and Romantic global scenes** fades in and out different lights, sets effects and changes light colours to set a perfect mood.
 
@@ -215,6 +231,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
         </figcaption>
     </figure>
 </div>
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### General information
@@ -235,6 +253,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### Additional human interfaces
 - **Aeotec Minimote** to quickly control global scenes and modes.
@@ -243,6 +263,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[Home Assistant Companion](https://itunes.apple.com/us/app/home-assistant-companion/id1099568401?mt=8) iPhone app** for full UI access in the palm of my hand. _Muahahaha!_
 - **[HomeKit](https://www.home-assistant.io/components/homekit)** for using some key sensors and devices with iPhones.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Setup
 
@@ -250,7 +272,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 <div align="center">
     <figure>
         <div>
-            <img src="www/images/technology-diagram.png" alt="Technology diagram">
+            <img src="www/images/technology-diagram.png" alt="Home Assistant technology diagram">
         </div>
         <figcaption>
             <p><strong>Technology diagram (<a href="www/images/technology-diagram.png"><code>PNG</code></a>, <a href="www/images/technology-diagram.svg"><code>SVG</code></a>). Made with <a href="https://www.draw.io">Draw.io</a> (<a href="www/images/technology-diagram.xml"><code>XML</code></a> source file).</strong></p>
@@ -258,12 +280,16 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### Supporting hardware choices
 - **Ubiquiti router and access point** because forking over some dough for reliable, rock-solid prosumer networking gear makes everything run smoothly. And because hearing one less complaint (dropped WiFi signal) from the girlfriend is priceless. 🤕
 - **Uninterruptible power supply** to ride over transient power failures.
 - **Z-Wave** for reliability and guaranteed interoperability between vendors (unlike Zigbee...)
 - **WiFi** for its cheapness, omnipresence and non requirement of vendor-specific hubs.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### Configuration
@@ -273,12 +299,16 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **Shareable code** with all identifiers kept in a non-committed, _secrets_ file.
 - **Loads of documentation**, for my later self and to help out others.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### System and interfaces
 - **[Raspberry Pi 3 Model B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)** running Hass.io.
 - **[Aeotec Z-Stick Gen5](https://aeotec.com/z-wave-usb-stick)** Z-Wave USB dongle.
 - **[NooElec NESDR SMArt](http://www.nooelec.com/store/nesdr-smart.html)** RTL-SDR (software-defined radio) USB dongle for reading AcuRite sensors.
 - **[Milight iBox2 WiFi Bridge](https://www.futlight.com/productdetails.aspx?id=239&typeid=125)** for kitchen RF LED strip controllers, using [LimitlessLED](https://home-assistant.io/components/light.limitlessled/) integration.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### Physical devices
@@ -293,17 +323,23 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **Fairy lights** via TP-Link WiFi outlets (x3).
 - **DIY LED nightstand** via TP-Link WiFi outlet.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 #### Sensors
 - **[Aeotec Door / Window Sensor Gen5](https://aeotec.com/z-wave-door-window-sensor)** for front door.
 - **[Aeotec MultiSensor 6](https://aeotec.com/z-wave-sensor)** for temperature/humidity/presence detection.
 - **[AcuRite 06044M Wireless Sensor](https://www.acurite.com/indoor-temperature-sensor-and-humidity-gauge.html)** for cheap temperature and humidity monitoring.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-#### Human Interfaces
+
+#### Human interfaces
 - **[Acer Iconia One 10" tablet](https://www.acer.com/ac/en/CA/content/series/iconiaone10)** (1280x800 IPS screen) wallmounted as a kiosk. See [`/appdaemon/dashboards/`](appdaemon/dashboards).
 - **[Aeotec Minimote](https://www.youtube.com/watch?v=5Vc1Ift7ND8)** Z-Wave remote control.
 - **[Flic](https://flic.io)** bluetooth low energy buttons.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 #### Switches and other devices
@@ -311,12 +347,16 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[Frigidaire dehumidifier](http://www.dehumidifierbuyersguide.com/frigidaire-ffad7033r1-review)** via TP-Link WiFi outlet.
 - **Oscillating fan** via TP-Link WiFi outlet.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ### Software
 - **[Hass.io](https://home-assistant.io)** on Raspberry Pi (production setup).
 - **[Docker](https://www.docker.com)** on local machine (for development). True, Hass.io is Docker-based too... 😉
 - **[Fully Kiosk Browser](https://www.ozerov.de/fully-kiosk-browser/)** on wallmounted tablet for display and input.
 - **[LANnouncer](http://www.keybounce.com/lannouncer/)** on wallmounted tablet for simple audio and text-to-speech messaging.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 #### Hass.io add-ons
@@ -328,6 +368,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[Samba share](https://home-assistant.io/addons/samba)** for configuration file sharing.
 - **[SSH server](https://home-assistant.io/addons/ssh)** for command-line access.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 #### Community components and widgets
 - **[Custom UI elements](https://github.com/andrey-git/home-assistant-custom-ui)** to improve the display of sensors and jazz up the interface a bit.
@@ -336,6 +378,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[Lightpack](https://github.com/kklemm91/Lightpack-HASS)** component.
 - **[Text-only state card](https://community.home-assistant.io/t/display-only-text-in-card/20536/26)** for wordy sensor states.
 - **[Variable](https://github.com/rogro82/hass-variables)** component for non-boolean values.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### Usage
@@ -354,6 +398,17 @@ echo "secrets.yaml filter=secret merge=keepMine" > .gitattributes
 
 Actual secrets and auto-generated sensitive files are obviously kept off this repo! 😉
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+
+## License
+
+This projet's code and configuration is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
+
+All other documentation is licensed under the Creative Commons [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Thanks
 
@@ -365,26 +420,37 @@ Kudos to:
 
 Thank you for all your dedication, helpfulness and valuable insights. Cheers! 🍻😃
 
+
+<!--
+Footer starts.
+-->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+<!--
+Footer ends.
+-->
+
+
 <!--
 Image references.
 -->
 
-[img-travis-ci]:https://img.shields.io/travis/renemarc/home-assistant-config.svg?branch=master&logo=travis
 [img-github-release]:https://img.shields.io/github/release/renemarc/home-assistant-config/all.svg
-[img-repo-size]:https://img.shields.io/github/repo-size/renemarc/home-assistant-config.svg
-[img-code-size]:https://img.shields.io/github/languages/code-size/renemarc/home-assistant-config.svg
 [img-ha-version]:https://img.shields.io/badge/tested_on_Home_Assistant-0.72.1-53c1f1.svg
 [img-hassio]:https://img.shields.io/badge/config_for-Hass.io-53c1f1.svg
 [img-license]:https://img.shields.io/github/license/renemarc/home-assistant-config.svg
+[img-price]:https://img.shields.io/badge/price-FREE-53c1f1.svg
+[img-travis-ci]:https://img.shields.io/travis/renemarc/home-assistant-config.svg?branch=master&logo=travis
 
 <!--
 Link references.
 -->
 
-[link-repo]:https://github.com/renemarc/home-assistant-config
-[link-issues]:https://github.com/renemarc/home-assistant-config/issues
 [link-board]:https://github.com/renemarc/home-assistant-config/projects/1
-[link-travis-ci]:https://travis-ci.org/renemarc/home-assistant-config
-[link-hassio]:https://home-assistant.io/hassio/
 [link-ha-version]:https://github.com/home-assistant/home-assistant/tree/0.72.1
+[link-hassio]:https://home-assistant.io/hassio/
+[link-issues]:https://github.com/renemarc/home-assistant-config/issues
 [link-license]:LICENSE.txt
+[link-repo]:https://github.com/renemarc/home-assistant-config
+[link-travis-ci]:https://travis-ci.org/renemarc/home-assistant-config

@@ -1,4 +1,28 @@
-# Screenshots
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
+
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / [www](..) / **screenshots** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#sensors-groups" title="Sensors groups"><img src="group-climate.png" alt="Climate Control group" width="140"></a>
+        <a href="#cards" title="Cards"><img src="card-aurora.png" alt="Nanoleaf Aurora card" width="140"></a>
+        <a href="#area-groups" title="Area groups"><img src="group-kitchen.png" alt="Kitchen group" width="140"></a>
+        <a href="#various" title="Various"><img src="group-modes.png" alt="Modes group" width="140"></a>
+    </div>
+    <div align="center">
+        <a href="#menus" title="Menus"><img src="menu-home.png" alt="Home" width="280"></a>
+    </div>
+</figure>
+
+
+<h1 align="center">Screenshots</h1>
 
 Screenshots of UI elements features in this repository. A [screenshot making guide](#screenshot-making-guide) is available below.
 
@@ -107,8 +131,10 @@ Screenshots of UI elements features in this repository. A [screenshot making gui
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-## Area Groups
+
+## Area groups
 
 <div align="center">
     <figure>
@@ -170,8 +196,10 @@ Screenshots of UI elements features in this repository. A [screenshot making gui
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-## Sensors Groups
+
+## Sensors groups
 
 <div align="center">
     <figure>
@@ -303,31 +331,35 @@ Screenshots of UI elements features in this repository. A [screenshot making gui
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Menus
 
 <div align="center">
     <figure>
         <div>
-            <img src="menu-home.png" alt="Home" width="650">
+            <img src="menu-home.png" alt="Home" title="Home" width="650">
         </div>
         <div>
-            <img src="menu-switchboard.png" alt="Switchboard" width="650">
+            <img src="menu-switchboard.png" alt="Switchboard" title="Switchboard" width="650">
         </div>
         <div>
-            <img src="menu-weather.png" alt="Weather" width="650">
+            <img src="menu-weather.png" alt="Weather" title="Weather" width="650">
         </div>
         <div>
-            <img src="menu-status.png" alt="Status" width="650">
+            <img src="menu-status.png" alt="Status" title="Status" width="650">
         </div>
         <div>
-            <img src="menu-configuration.png" alt="Configuration" width="650">
+            <img src="menu-configuration.png" alt="Configuration" title="Configuration" width="650">
         </div>
         <figcaption>
             <p><strong>Menus.</strong></p>
         </figcaption>
     </figure>
 </div>
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Various
@@ -392,6 +424,8 @@ Screenshots of UI elements features in this repository. A [screenshot making gui
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 
 ## Screenshot making guide
 
@@ -436,3 +470,13 @@ These are the steps I used to make these screenshots and animated GIFs. The resu
 5. If needed, use [ImageMagick](https://www.imagemagick.org/) to make it loop indefinitely:
    `mogrify -loop 0 dashboard-example-1080.gif`
 6. Use [ezgif.com](https://ezgif.com/optimize) to compress animated GIF at 35%.
+
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🔙 Back to `/www/`](../)
+
+[🏠 Home][link-repo]

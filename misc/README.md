@@ -1,4 +1,23 @@
-# Miscellaneous
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
+
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **misc** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#miscellaneous" title="Miscellaneous
+(Scene from the movie Modern Times)"><img src="https://media.giphy.com/media/VP5UwVic0l7W0/giphy.gif" alt="Charlie Chaplin fixing a machine in Modern Times"></a>
+    </div>
+</figure>
+
+
+<h1 align="center">Miscellaneous</h1>
 
 This folder gathers all simpler configuration files.
 
@@ -21,6 +40,8 @@ List of light effects and global scenes for the frontend and for [`/appdaemon/da
 ### [`❓ ./variables.yaml`](variables.yaml)
 
 Flexible intermediary data holder, using the [third-party](https://github.com/rogro82/hass-variables) [`/custom_components/varyable.py`](../custom_components/varyable.py).
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ## Other
@@ -58,3 +79,11 @@ Reusable command-line directives when no component exists or provides these opti
 ### [`🗺 ./zones.yaml`](zones.yaml)
 
 Used for presence tracking and automations based on user distance from key locations.
+
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🏠 Home][link-repo]
