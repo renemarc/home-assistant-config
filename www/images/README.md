@@ -28,7 +28,7 @@ Various supporting images useful in documenting this repository.
             <img src="technology-diagram.png" alt="Home Assistant technology diagram">
         </div>
         <figcaption>
-            <p><strong>Technology diagram (<a href="technology-diagram.png"><code>PNG</code></a>, <a href="technology-diagram.svg"><code>SVG</code></a>). Made with <a href="https://www.draw.io">Draw.io</a> (<a href="technology-diagram.xml"><code>XML</code></a> source file).</strong></p>
+            <p><strong>Technology diagram (<a href="technology-diagram.png"><code>PNG</code></a>, <a href="technology-diagram.svg"><code>SVG</code></a>). Made with <a href="https://www.draw.io/?title=Home%20Assistant%20Technology%20Diagram.xml#Uhttps%3A%2F%2Fgithub.com%2Frenemarc%2Fhome-assistant-config%2Fraw%2Fmaster%2Fwww%2Fimages%2Ftechnology-diagram.xml">Draw.io</a> (<a href="technology-diagram.xml"><code>XML</code></a> source file).</strong></p>
         </figcaption>
     </figure>
 </div>

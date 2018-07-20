@@ -69,7 +69,7 @@ slideshow:
     refresh: 5
     cache: 600
     img_list:
-        - !secret camera_environment_canada_snow_1
+        - !secret camera_environment_canada_rain_1
         - !secret camera_bing
         - !secret camera_noaa_geocolor
         - !secret camera_apod

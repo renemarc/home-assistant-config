@@ -147,7 +147,7 @@ homekit: !include misc/homekit.yaml
 # @link https://home-assistant.io/components/http/
 #
 http:
-  # api_password: !secret http_password
+  api_password: !secret http_password
   # base_url: !secret http_base_url
   server_port: !secret http_server_port
   cors_allowed_origins:

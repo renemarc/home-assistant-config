@@ -12,11 +12,8 @@
 <figure>
     <div align="center">
         <a href="#-sensorgtfspy" title="GTFS"><img src="../www/screenshots/group-transit.png" alt="Public Transit group" width="140"></a>
-        <a href="#-sensoreboxpy" title="EBOX"><img src="../www/screenshots/group-network.png" alt="Network group" width="140"></a>
-    </div>
-    <div align="center">
-        <a href="#-display" title="Kiosk"><img src="../www/screenshots/card-kiosk.png" alt="Kiosk card" width="140"></a>
         <a href="#-lightlightpackpy" title="Lightpack"><img src="../www/screenshots/card-lightpack.png" alt="Lightpack card" width="140"></a>
+        <a href="#-display" title="Kiosk"><img src="../www/screenshots/card-kiosk.png" alt="Kiosk card" width="140"></a>
         <a href="#-sensordoomsday_clockpy" title="Doomsday Clock"><img src="../www/screenshots/card-doomsday.png" alt="Doomsday Clock card" width="140"></a>
     </div>
 </figure>
@@ -28,7 +25,7 @@
 
 ### [`🎦 ./display/`](display)
 
-Interact with Android devices running the [Fully Kiosk Browser](https://www.ozerov.de/fully-kiosk-browser) by using this third-party [Display platform](https://github.com/daemondazz/homeassistant-displays).
+Interact with Android devices running the [Fully Kiosk Browser](https://www.ozerov.de/fully-kiosk-browser) thanks to the [Display platform by **@daemondazz**](https://github.com/daemondazz/homeassistant-displays).
 
 <div align="center">
     <figure>
@@ -46,7 +43,7 @@ Interact with Android devices running the [Fully Kiosk Browser](https://www.ozer
 
 ### [`📺 ./light/lightpack.py`](light/lightpack.py)
 
-Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) monitor bias lighting using this [Lightpack component](https://github.com/kklemm91/Lightpack-HASS).
+Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) monitor bias lighting using this [Lightpack component by **@kklemm91**](https://github.com/kklemm91/Lightpack-HASS).
 
 <div align="center">
     <figure>
@@ -82,7 +79,7 @@ A local copy of my depressing [Doomsday Clock sensor](https://github.com/renemar
 
 ### [`❓ ./variable.py`](variables.py)
 
-The missing link that allows storage of non-boolean values using the [Variable component](https://github.com/rogro82/hass-variables).
+The missing link that allows storage of non-boolean values using the [Variable component by **@rogro82**](https://github.com/rogro82/hass-variables).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
@@ -90,25 +87,6 @@ The missing link that allows storage of non-boolean values using the [Variable c
 ## Overriden components
 
 These are default Home Assistant components that were copied from the core to alter their behaviour. These changes really should be turned into appropriate [PRs](https://github.com/home-assistant/home-assistant/pulls).
-
-
-### [`📡 ./sensor/ebox.py`](sensor/ebox.py)
-
-[Ebox](https://github.com/home-assistant/home-assistant/blob/master/homeassistant/components/sensor/ebox.py) ISP data consumtion component:
-- Upgraded [pyebox](https://github.com/titilambert/pyebox/) dependency to [support unlimited data packages](https://github.com/titilambert/pyebox/issues/1).
-
-<div align="center">
-    <figure>
-        <div>
-            <img src="../www/screenshots/group-network.png" alt="Network group" title="Network" width="325">
-        </div>
-        <figcaption>
-            <p><strong>Network group.</strong></p>
-        </figcaption>
-    </figure>
-</div>
-
-<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### [`🚌 ./sensor/gtfs.py`](sensor/gtfs.py)

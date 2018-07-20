@@ -71,7 +71,7 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **Accessible through multiple ways:** Computers, tablet (kiosk), voice, smart phones, wireless buttons, remotes.
 - **Intuitive user interfaces:** One look at a group of sensors/switches should be sufficient for anyone to understand the current states and how to operate an interface. 💡
 - **Redundant controls:** Multiple interfaces should be able to control devices without interference. State changes from manual interventions or dedicated manufacturer apps should be tracked whenever possible.
-- **No information overload:** Provide just enough insights to get an idea of what's going on. And no need for data that's best consumed on more interactive devices (like stock prices, Steam community status...)
+- **No information overload:** Provide just enough insights to get an idea of what's going on. And no need for data that's best consumed on more interactive devices (like stock prices, Steam community status…)
 - **Not everything should be networked:** Bathroom fan, pantry and laundry room lights have their independent motion sensors and that's a good thing. Same independence goes for the smoke detector: I sure don't want to require extensive skin grafts because I forgot an extra space in a YAML file. 😱
 - **No Alexa/Cortana/Google Voice:** I don't want to have advertising agencies, online stores, or other AI-feeding Big Brother tech-monsters listening in to everything we say _and do_ just for the dubious convenience of switching lights on by voice command. There are offline solutions that are privacy-counscious.
 
@@ -107,7 +107,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
             <a href="https://www.youtube.com/watch?v=wujVMIYzYXg" title="Princess Bride clip"><img src="https://memegenerator.net/img/instances/53833187/agile-you-keep-using-that-word-i-do-not-think-it-means-what-you-think-it-means.jpg" alt="Agile. You keep using that word. I do not think it means what you think it means."></a>
         </div>
         <figcaption>
-            <p><strong><a href="https://www.youtube.com/watch?v=wujVMIYzYXg" title="Princess Bride clip">Well, without the sprints. And a team. And the retrospectives. And the...</a></strong></p>
+            <p><strong><a href="https://www.youtube.com/watch?v=wujVMIYzYXg" title="Princess Bride clip">Well, without the sprints. And a team. And the retrospectives. And the…</a></strong></p>
         </figcaption>
     </figure>
 </div>
@@ -169,8 +169,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **LIFX Z bed underglow lights and ceiling wash lights control**:
     + Manual theme selection.
     + Automatically rotate through cloud-based themes based on time of day (unless manually selected above).
-- **Automatically correlated colour temperature (CCT)**, for [f.lux](https://justgetflux.com/)-like white temperature shift to gradually remove blue light based on a custom colour and brightness curve, not simply based on the sun ...otherwise Canadian winters would be quite yellow!
-- **Motion-based nightlights**, where strategic lights fade in, dimmed very low, when movement is detected at night, say when someone wakes up to go the bathroom ...again.
+- **Automatically correlated colour temperature (CCT)**, for [f.lux](https://justgetflux.com/)-like white temperature shift to gradually remove blue light based on a custom colour and brightness curve, not simply based on the sun …otherwise Canadian winters would be quite yellow!
+- **Motion-based nightlights**, where strategic lights fade in, dimmed very low, when movement is detected at night, say when someone wakes up to go the bathroom …again.
 - See [`/lights/`](lights) and [`/automations/`](automations).
 
 <div align="center">
@@ -275,7 +275,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
             <img src="www/images/technology-diagram.png" alt="Home Assistant technology diagram">
         </div>
         <figcaption>
-            <p><strong>Technology diagram (<a href="www/images/technology-diagram.png"><code>PNG</code></a>, <a href="www/images/technology-diagram.svg"><code>SVG</code></a>). Made with <a href="https://www.draw.io">Draw.io</a> (<a href="www/images/technology-diagram.xml"><code>XML</code></a> source file).</strong></p>
+            <p><strong>Technology diagram (<a href="www/images/technology-diagram.png"><code>PNG</code></a>, <a href="www/images/technology-diagram.svg"><code>SVG</code></a>). Made with <a href="https://www.draw.io/?title=Home%20Assistant%20Technology%20Diagram.xml#Uhttps%3A%2F%2Fgithub.com%2Frenemarc%2Fhome-assistant-config%2Fraw%2Fmaster%2Fwww%2Fimages%2Ftechnology-diagram.xml">Draw.io</a> (<a href="www/images/technology-diagram.xml"><code>XML</code></a> source file).</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -286,14 +286,14 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 ### Supporting hardware choices
 - **Ubiquiti router and access point** because forking over some dough for reliable, rock-solid prosumer networking gear makes everything run smoothly. And because hearing one less complaint (dropped WiFi signal) from the girlfriend is priceless. 🤕
 - **Uninterruptible power supply** to ride over transient power failures.
-- **Z-Wave** for reliability and guaranteed interoperability between vendors (unlike Zigbee...)
+- **Z-Wave** for reliability and guaranteed interoperability between vendors (unlike Zigbee…)
 - **WiFi** for its cheapness, omnipresence and non requirement of vendor-specific hubs.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### Configuration
-- **Dedicated, firewalled VLAN** (Virtual LAN) to segregate all IoT devices from other equipment ...because I cannot trust that my vacuum cleaner won't go on a killing spree. Ever seen [_Runaway (1984)_](https://www.youtube.com/watch?v=zCZY9Z6WvSY) with Tom Selleck? Eek! 😱
+- **Dedicated, firewalled VLAN** (Virtual LAN) to segregate all IoT devices from other equipment …because I cannot trust that my vacuum cleaner won't go on a killing spree. Ever seen [_Runaway (1984)_](https://www.youtube.com/watch?v=zCZY9Z6WvSY) with Tom Selleck? Eek! 😱
 - **Local static IPs** for all devices to minimize random drops.
 - **Local development** on a local virtual machine using Docker, then pulled with GIT on a Raspberry Pi.
 - **Shareable code** with all identifiers kept in a non-committed, _secrets_ file.
@@ -352,7 +352,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 ### Software
 - **[Hass.io](https://home-assistant.io)** on Raspberry Pi (production setup).
-- **[Docker](https://www.docker.com)** on local machine (for development). True, Hass.io is Docker-based too... 😉
+- **[Docker](https://www.docker.com)** on local machine (for development). True, Hass.io is Docker-based too… 😉
 - **[Fully Kiosk Browser](https://www.ozerov.de/fully-kiosk-browser/)** on wallmounted tablet for display and input.
 - **[LANnouncer](http://www.keybounce.com/lannouncer/)** on wallmounted tablet for simple audio and text-to-speech messaging.
 
@@ -437,7 +437,7 @@ Image references.
 -->
 
 [img-github-release]:https://img.shields.io/github/release/renemarc/home-assistant-config/all.svg
-[img-ha-version]:https://img.shields.io/badge/tested_on_Home_Assistant-0.72.1-53c1f1.svg
+[img-ha-version]:https://img.shields.io/badge/tested_on_Home_Assistant-0.73.2-53c1f1.svg
 [img-hassio]:https://img.shields.io/badge/config_for-Hass.io-53c1f1.svg
 [img-license]:https://img.shields.io/github/license/renemarc/home-assistant-config.svg
 [img-price]:https://img.shields.io/badge/price-FREE-53c1f1.svg
@@ -448,7 +448,7 @@ Link references.
 -->
 
 [link-board]:https://github.com/renemarc/home-assistant-config/projects/1
-[link-ha-version]:https://github.com/home-assistant/home-assistant/tree/0.72.1
+[link-ha-version]:https://github.com/home-assistant/home-assistant/tree/0.73.2
 [link-hassio]:https://home-assistant.io/hassio/
 [link-issues]:https://github.com/renemarc/home-assistant-config/issues
 [link-license]:LICENSE.txt
