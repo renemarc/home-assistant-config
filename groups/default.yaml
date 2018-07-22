@@ -35,6 +35,7 @@ climate:
     - sensor.average_temperature
     - sensor.average_humidity_friendly
     - switch.dehumidifier
+    - sensor.radon_friendly
 
 notifications:
   name: Notifications

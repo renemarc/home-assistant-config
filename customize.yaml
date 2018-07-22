@@ -13,6 +13,8 @@ automation.go_to_sleep:
   icon: mdi:weather-night
 automation.theme_auto:
   icon: mdi:theme-light-dark
+automation.radon_notify:
+  icon: mdi:radioactive
 automation.scene_daylight:
   icon: mdi:weather-sunny
 automation.scene_gaming:
@@ -493,6 +495,25 @@ sensor.washroom_temperature:
     group.temperature:
       friendly_name: Washroom
       icon: mdi:shower
+sensor.radon_detector_humidity:
+  icon: mdi:water-percent
+  group:
+    group.humidity:
+      friendly_name: Radon Detector
+      icon: mdi:radioactive
+sensor.radon_detector_temperature:
+  icon: mdi:thermometer
+  group:
+    group.temperature:
+      friendly_name: Radon Detector
+      icon: mdi:radioactive
+sensor.radon_friendly:
+  extra_badge:
+    entity_id: sensor.radon_daily
+  extra_data_template: >-
+    return entities['sensor.radon_long_term'].state != 'unknown' ?
+    'Average: ' + entities['sensor.radon_long_term'].state
+    : null;
 
 
 #

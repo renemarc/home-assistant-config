@@ -37,6 +37,7 @@ humidity:
     - sensor.bedroom_humidity
     - sensor.humidor_humidity
     - sensor.lounge_humidity
+    - sensor.radon_detector_humidity
     - sensor.washroom_humidity
 
 network:
@@ -76,4 +77,5 @@ temperature:
     - sensor.humidor_temperature
     - sensor.kitchen_temperature
     - sensor.lounge_temperature
+    - sensor.radon_detector_temperature
     - sensor.washroom_temperature

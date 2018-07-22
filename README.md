@@ -304,42 +304,44 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 
 ### System and interfaces
-- **[Raspberry Pi 3 Model B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)** running Hass.io.
 - **[Aeotec Z-Stick Gen5](https://aeotec.com/z-wave-usb-stick)** Z-Wave USB dongle.
-- **[NooElec NESDR SMArt](http://www.nooelec.com/store/nesdr-smart.html)** RTL-SDR (software-defined radio) USB dongle for reading AcuRite sensors.
 - **[Milight iBox2 WiFi Bridge](https://www.futlight.com/productdetails.aspx?id=239&typeid=125)** for kitchen RF LED strip controllers, using [LimitlessLED](https://home-assistant.io/components/light.limitlessled/) integration.
+- **[NooElec NESDR SMArt](http://www.nooelec.com/store/nesdr-smart.html)** RTL-SDR (software-defined radio) USB dongle for reading AcuRite sensors.
+- **[Raspberry Pi 3 Model B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)** running Hass.io.
+- **[Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)** running [Airthings Wave to MQTT](https://github.com/hpeyerl/airthingswave-mqtt) in order to interface with this Bluetooth radon detector.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 ### Physical devices
 
-#### Lights
-- **[Nanoleaf Aurora](https://nanoleaf.me)** light panels kit. Pretty!
-- **[LIFX+](https://www.lifx.com/products/lifx-plus)** A19 RGB light bulb (x2).
-- **[LIFX Z](https://www.lifx.com/products/lifx-z-starter-kit-without-homekit)** light strip without HomeKit as bed underglow (x2) and ceiling wash lights (x3).
-- **[Milight CCT LED RF Controller](https://www.futlight.com/productdetails.aspx?id=293&typeid=146)** for white-adjustable undercabinet kitchen lights (x4), connected to appropriate UL-listed power supplies.
-- **[24V 3014 Warm White Cool White LED Strip](http://ledmontreal.com/en/led-strips-without-accessories/24v-led-strips-without-accessories/cct-adjustable-led-strip.html)** encased in custom cut and assembled [light-diffusing aluminum profiles](http://ledmontreal.com/en/led-bars-and-profiles-led-montreal/continuous-lighting-aluminum-profile.html), connected to above RF controllers.
-- **[Adalight](https://learn.adafruit.com/adalight-diy-ambient-tv-lighting)** DIY 100-dots TV backlighting controlled by [Lightpack+Prismatik](https://github.com/psieg/Lightpack) on HTPC.
-- **Fairy lights** via TP-Link WiFi outlets (x3).
-- **DIY LED nightstand** via TP-Link WiFi outlet.
+#### Lights (see [`/lights/`](./lights))
+- **[Nanoleaf Aurora](https://nanoleaf.me)** [WiFi] light panels kit. Pretty!
+- **[LIFX+](https://www.lifx.com/products/lifx-plus)** [WiFi] A19 RGB light bulb (x2).
+- **[LIFX Z](https://www.lifx.com/products/lifx-z-starter-kit-without-homekit)** [WiFi] light strip without HomeKit as bed underglow (x2) and ceiling wash lights (x3).
+- **[Milight CCT LED RF Controller](https://www.futlight.com/productdetails.aspx?id=293&typeid=146)** [2.4Ghz] for white-adjustable undercabinet kitchen lights (x4), connected to appropriate UL-listed power supplies.
+- **[24V 3014 Warm White Cool White LED Strip](http://ledmontreal.com/en/led-strips-without-accessories/24v-led-strips-without-accessories/cct-adjustable-led-strip.html)** encased in custom cut and assembled [light-diffusing aluminum profiles](http://ledmontreal.com/en/led-bars-and-profiles-led-montreal/continuous-lighting-aluminum-profile.html) (x4), connected to above RF controllers.
+- **[Adalight](https://learn.adafruit.com/adalight-diy-ambient-tv-lighting)** [Ethernet] DIY 100-dots TV backlighting controlled by [Lightpack+Prismatik](https://github.com/psieg/Lightpack) on HTPC.
+- **Fairy lights** [WiFi] via TP-Link outlets (x3).
+- **DIY LED nightstand** [WiFi] via TP-Link outlet.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 #### Sensors
-- **[Aeotec Door / Window Sensor Gen5](https://aeotec.com/z-wave-door-window-sensor)** for front door.
-- **[Aeotec MultiSensor 6](https://aeotec.com/z-wave-sensor)** for temperature/humidity/presence detection.
-- **[AcuRite 06044M Wireless Sensor](https://www.acurite.com/indoor-temperature-sensor-and-humidity-gauge.html)** for cheap temperature and humidity monitoring.
-- **[Dome Leak Sensor](https://domeha.com/z-wave-leak-sensor)** (x2) in case the dishwasher breaks a seal, a shower curtain has not been closed properly …or a toilet has overflowed. 🤢
+- **[AcuRite 06044M Wireless Sensor](https://www.acurite.com/indoor-temperature-sensor-and-humidity-gauge.html)** [433Mhz] for cheap temperature and humidity monitoring.
+- **[Aeotec Door / Window Sensor Gen5](https://aeotec.com/z-wave-door-window-sensor)** [Z-Wave] for front door.
+- **[Aeotec MultiSensor 6](https://aeotec.com/z-wave-sensor)** [Z-Wave] for temperature/humidity/presence detection.
+- **[Airthings Wave radon detector](https://airthings.com/wave/)** [Bluetooth Low Energy] to keep an eye on this cancer-causing radioactive gas.
+- **[Dome Leak Sensor](https://domeha.com/z-wave-leak-sensor)** [Z-Wave] (x2) in case the dishwasher breaks a seal, a shower curtain has not been closed properly …or a toilet has overflowed. 🤢
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
 #### Human interfaces
 - **[Acer Iconia One 10" tablet](https://www.acer.com/ac/en/CA/content/series/iconiaone10)** (1280x800 IPS screen) wallmounted as a kiosk. See [`/appdaemon/dashboards/`](appdaemon/dashboards).
-- **[Aeotec Minimote](https://www.youtube.com/watch?v=5Vc1Ift7ND8)** Z-Wave remote control.
-- **[Flic](https://flic.io)** bluetooth low energy buttons.
+- **[Aeotec Minimote](https://www.youtube.com/watch?v=5Vc1Ift7ND8)** [Z-Wave] remote control.
+- **[Flic](https://flic.io)** [Bluetooth Low Energy] buttons (x2).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
@@ -353,9 +355,10 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 
 ### Software
-- **[Hass.io](https://home-assistant.io)** on Raspberry Pi (production setup).
+- **[Airthings Wave to MQTT](https://github.com/hpeyerl/airthingswave-mqtt) by @hpeyerl** as a Bluetooth bridge on Raspberry Pi Zero W.
 - **[Docker](https://www.docker.com)** on local machine (for development). True, Hass.io is Docker-based too… 😉
 - **[Fully Kiosk Browser](https://www.ozerov.de/fully-kiosk-browser/)** on wallmounted tablet for display and input.
+- **[Hass.io](https://home-assistant.io)** on Raspberry Pi 3 Model B (production setup).
 - **[LANnouncer](http://www.keybounce.com/lannouncer/)** on wallmounted tablet for simple audio and text-to-speech messaging.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>

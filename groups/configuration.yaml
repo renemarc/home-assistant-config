@@ -40,6 +40,7 @@ automations:
     - automation.go_to_sleep
     - automation.humidity_notify
     - automation.humidor_notify
+    - automation.radon_notify
     - automation.scene_daylight
     - automation.scene_gaming
     - automation.scene_romantic

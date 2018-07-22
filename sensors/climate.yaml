@@ -376,6 +376,104 @@
 
 
 #
+# Airthings Wave radon detector
+#
+# The Airthings Wave radon detector is a Bluetooth Low Energy (BLE) device.
+# Instead of using its mobile app, a Raspberry Pi Zero W is setup as a Bluetooth
+# to MQTT bridge allowing the device's sensors to be integrated easily.
+#
+# Thanks Herb Peyerl! :-)
+#
+# @link https://github.com/hpeyerl/airthingswave-mqtt
+# @link https://airthings.com/raspberry-pi/
+# @link https://airthings.com/wave/
+#
+- platform: mqtt
+  name: Radon Daily
+  state_topic: "airthings-wave/Radon-Day"
+  unit_of_measurement: 'Bq/m3'
+  value_template: >-
+    {{ value | round }}
+
+- platform: mqtt
+  name: Radon Long Term
+  state_topic: "airthings-wave/Radon-Long-Term"
+  unit_of_measurement: 'Bq/m3'
+  value_template: >-
+    {{ value | round }}
+
+- platform: mqtt
+  name: Radon Detector Humidity Exact
+  state_topic: "airthings-wave/Humidity"
+  unit_of_measurement: '%'
+  device_class: humidity
+  value_template: >-
+    {% set calibration = 0 %}
+    {% set humidity = value | float %}
+
+    {{ (humidity + calibration) | round(1) }}
+
+- platform: mqtt
+  name: Radon Detector Temperature Exact
+  state_topic: "airthings-wave/Temperature"
+  unit_of_measurement: '°C'
+  device_class: temperature
+  value_template: >-
+    {% set calibration = 0 %}
+    {% set temperature = value | float %}
+
+    {{ (temperature + calibration) | round(1) }}
+
+- platform: template
+  sensors:
+    radon_friendly:
+      friendly_name: Radon
+      icon_template: mdi:radioactive
+      value_template: >-
+        {% set radon = states('sensor.radon_daily') | int(-1) %}
+
+        {% if radon < 0 %}
+          unknown
+        {% elif radon >= 150 %}
+          Danger
+        {% elif radon >= 100 %}
+          High
+        {% elif radon > 50 %}
+          OK-High
+        {% else %}
+          OK
+        {% endif %}
+
+    radon_detector_humidity:
+      friendly_name: Radon Detector Humidity
+      unit_of_measurement: '%'
+      icon_template: mdi:water-percent
+      value_template: "{{ states('sensor.radon_detector_humidity_exact') | round }}"
+
+    radon_detector_temperature:
+      friendly_name: Radon Detector Temperature
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: "{{ states('sensor.radon_detector_temperature_exact') | round }}"
+
+- platform: filter
+  name: Radon Detector Humidity Filtered
+  entity_id: sensor.radon_detector_humidity_exact
+  filters:
+    - filter: lowpass
+      time_constant: 10
+      precision: 1
+
+- platform: filter
+  name: Radon Detector Temperature Filtered
+  entity_id: sensor.radon_detector_temperature_exact
+  filters:
+    - filter: lowpass
+      time_constant: 10
+      precision: 1
+
+
+#
 # Average temperature
 #
 # The appartment being mostly open plan, one can calculate an average

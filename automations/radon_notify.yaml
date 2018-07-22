@@ -1,0 +1,93 @@
+#
+# Check if radon levels are too high
+#
+# Radon (Rn) is an element that comes from the natural decay of underground
+# uranium, thorium, and radium. It is a radioactive, colorless, and odorless
+# noble gas. Radon tends to accumulate in enclosed locations like houses. It has
+# a short half-life of 3.8 days before decaying into non-gaseous, sticky
+# radioactive elements. This means that when breathing in air or dust particles,
+# radioactive elements can be deposited inside the lungs, increasing the odds
+# of developping lung cancer. Keeping a place well ventilated is a good way to
+# migitage this risk.
+#
+# @link https://en.wikipedia.org/wiki/Radon#Concentration_scale
+# @link http://www.who.int/news-room/fact-sheets/detail/radon-and-health
+#
+- id: radon_notify
+  alias: Radon NOTIFY
+  trigger:
+    # When radon is getting too high.
+    - platform: numeric_state
+      entity_id: sensor.radon_daily
+      above: 100
+
+  action:
+    # Pin a warning message in the frontend.
+    - service: persistent_notification.create
+      data:
+        notification_id: radon
+      data_template:
+        title: >-
+          {% set radon = states('sensor.radon_daily') | int %}
+          {% if (radon > 150) %}
+            Radon levels are WAY too high
+          {% elif (radon >= 100) %}
+            Radon levels are too high
+          {% endif %}
+        message: >-
+          {% set radon = states('sensor.radon_daily') | int %}
+          {% set unit = state_attr('sensor.radon_daily', 'unit_of_measurement') %}
+          {% if (radon >= 150) %}
+            {{ radon }} {{ unit }} is dangerous!<br>
+            <strong>Air out the place NOW!<strong>
+          {% elif (radon >= 100) %}
+            {{ radon }} {{ unit }} is excessive.<br>
+            <strong>Air out the place.<strong>
+          {% endif %}
+
+    # Warn someone by text to take action.
+    - service: notify.text
+      data_template:
+        title: >-
+          {% set radon = states('sensor.radon_daily') | int %}
+          {% if (radon > 150) %}
+            Radon levels are WAY too high
+          {% elif (radon >= 100) %}
+            Radon levels are too high
+          {% endif %}
+        message: |
+          {% set radon = states('sensor.radon_daily') | int %}
+          {% set unit = state_attr('sensor.radon_daily', 'unit_of_measurement') %}
+          {% if (radon >= 150) %}
+          {{ radon }} {{ unit }} is dangerous!
+          Air out the place NOW!
+          {% elif (radon >= 100) %}
+          {{ radon }} {{ unit }} is excessive.
+          Air out the place.
+          {% endif %}
+
+    # Play a warning sound and message.
+    - condition: state
+      entity_id: input_boolean.quiet_mode
+      state: 'off'
+    - service: notify.sound
+      data:
+        message: "alarm"
+        data:
+          method: "alarm"
+    - delay:
+        seconds: 2
+    - service: notify.speech
+      data_template:
+        message: >-
+          {% set radon = states('sensor.radon_daily') | int %}
+          {% set unit = state_attr('sensor.radon_daily', 'unit_of_measurement') %}
+          {% if (radon >= 150) %}
+            Radon levels are way too high.
+            Currently at {{ radon }} Becquerels.
+            Air out the place NOW!
+          {% elif (radon >= 100) %}
+            Radon levels are too high
+            Currently at {{ radon }} Becquerels, which is excessive.
+            Air out the place.
+          {% endif %}

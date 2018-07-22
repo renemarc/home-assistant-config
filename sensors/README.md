@@ -35,7 +35,7 @@ Each YAML file groups together all related sensors and contains details on usage
 
 ### [`😓 ./climate.yaml`](climate.yaml)
 
-Indoor climate conditions.
+Indoor climate conditions and air quality.
 
 <div align="center">
     <figure>
