@@ -99,6 +99,29 @@
           mdi:battery-outline
         {% endif %}
 
+    kitchen_leak_sensor_battery:
+      friendly_name: Kitchen Leak Sensor Battery
+      unit_of_measurement: '%'
+      value_template: >-
+        {% set battery_level = states.zwave.kitchen_leak_sensor.attributes.battery_level | default(0) | int %}
+
+        {% if battery_level %}
+          {{ battery_level | round }}
+        {% else %}
+          {{ states('zwave.front_door') }}
+        {%- endif %}
+      icon_template: >-
+        {% set battery_level = states.zwave.kitchen_leak_sensor.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-outline
+        {% endif %}
+
     lounge_multisensor_battery:
       friendly_name: Lounge Multisensor Battery
       unit_of_measurement: '%'
@@ -112,6 +135,29 @@
         {%- endif %}
       icon_template: >-
         {% set battery_level = states.zwave.lounge_multisensor.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-outline
+        {% endif %}
+
+    washroom_leak_sensor_battery:
+      friendly_name: Washroom Leak Sensor Battery
+      unit_of_measurement: '%'
+      value_template: >-
+        {% set battery_level = states.zwave.washroom_leak_sensor.attributes.battery_level | default(0) | int %}
+
+        {% if battery_level %}
+          {{ battery_level | round }}
+        {% else %}
+          {{ states('zwave.front_door') }}
+        {%- endif %}
+      icon_template: >-
+        {% set battery_level = states.zwave.washroom_leak_sensor.attributes.battery_level | default(0) | int %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
 
         {% if battery_round >= 100 %}

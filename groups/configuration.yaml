@@ -26,6 +26,9 @@ modes:
     - input_boolean.quiet_mode
     - input_boolean.low_mode
     - input_boolean.scene_mode
+    - sensor.hline_dashed
+    - input_boolean.leak_test
+    - sensor.leak_status
     - input_boolean.motion_detected
     - input_boolean.tamper_detected
     - variable.tamper_detected

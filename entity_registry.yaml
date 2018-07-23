@@ -198,3 +198,63 @@ zwave.zstick:
   name:
   platform: zwave
   unique_id: node-1
+sensor.kitchen_leak_sensor_sourcenodeid:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 7-72057594161414177
+sensor.kitchen_leak_sensor_flood:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 7-72057594161414273
+zwave.kitchen_leak_sensor:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-7
+sensor.kitchen_leak_sensor_alarm_type:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 7-72057594161414145
+sensor.kitchen_leak_sensor_alarm_level:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 7-72057594161414161
+binary_sensor.kitchen_leak_sensor:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 7-72057594160349184
+zwave.washroom_leak_sensor:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-8
+sensor.washroom_leak_sensor_sourcenodeid:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 8-72057594178191393
+sensor.washroom_leak_sensor_flood:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 8-72057594178191489
+sensor.washroom_leak_sensor_alarm_type:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 8-72057594178191361
+sensor.washroom_leak_sensor_alarm_level:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 8-72057594178191377
+binary_sensor.washroom_leak_sensor:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 8-72057594177126400

@@ -191,6 +191,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 ### Presence and basic security
 - **Cellphone device sensing**, to check who is currently home or away.
 - **Tamper monitoring**, in case a perimeter device has been played with.
+- **Water leak monitoring**, to be able to react quickly when a pipe breaks.
 - **Opened door alert**, to know if someone left an exteral door open.
 - **Opened door indicators** where a chime is played and a few lights change colour briefly and subtly when the front door opens/closes, say to indicate an oblivious  showering partner that their better half has left or just came in.
 
@@ -330,6 +331,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[Aeotec Door / Window Sensor Gen5](https://aeotec.com/z-wave-door-window-sensor)** for front door.
 - **[Aeotec MultiSensor 6](https://aeotec.com/z-wave-sensor)** for temperature/humidity/presence detection.
 - **[AcuRite 06044M Wireless Sensor](https://www.acurite.com/indoor-temperature-sensor-and-humidity-gauge.html)** for cheap temperature and humidity monitoring.
+- **[Dome Leak Sensor](https://domeha.com/z-wave-leak-sensor)** (x2) in case the dishwasher breaks a seal, a shower curtain has not been closed properly …or a toilet has overflowed. 🤢
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 

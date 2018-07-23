@@ -46,6 +46,7 @@ kitchen:
     - light.island
     - display.kiosk
     - binary_sensor.kiosk_motion_auto
+    - binary_sensor.kitchen_leak_sensor
     # - light.mqtt_countertop
     # - light.mqtt_sink
     # - light.mqtt_microwave
@@ -72,3 +73,4 @@ washroom:
   name: Washroom
   entities:
     - light.shower
+    - binary_sensor.washroom_leak_sensor

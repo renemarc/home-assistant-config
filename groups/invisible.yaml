@@ -25,6 +25,13 @@ kitchen_lights:
     - light.microwave
     - light.island
 
+leak_sensors:
+  name: Leak sensors
+  entities:
+    - binary_sensor.kitchen_leak_sensor
+    - binary_sensor.washroom_leak_sensor
+    - input_boolean.leak_test
+
 lifx_lights:
   name: LIFX Lights
   entities:

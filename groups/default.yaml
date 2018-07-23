@@ -71,6 +71,7 @@ security:
   control: hidden
   entities:
     - sensor.doors_status
+    - sensor.leak_status
     - sensor.motion_status
     - sensor.tamper_status
 

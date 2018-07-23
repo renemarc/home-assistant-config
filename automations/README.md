@@ -99,6 +99,11 @@ Warn whenever the front door is opening or closing.
 Check if humidity is too high or too low.
 
 
+### [`🌊 ./leak_notify.yaml`](leak_notify.yaml)
+
+Check if a water leak is detected somewhere.
+
+
 ### [`🔆️ ./scene_daylight.yaml`](scene_daylight.yaml)
 
 Toggle the daylight scene.

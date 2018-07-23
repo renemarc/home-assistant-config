@@ -188,13 +188,11 @@ lounge_humidity:
 #
 # Battery
 #
-kiosk_battery:
+bedroom_multisensor_battery:
     widget_type: sensor
-    entity: sensor.kiosk_battery
-    title: Battery Status
-    title2: Kiosk
+    entity: sensor.bedroom_multisensor_battery
+    title2: Bedroom
     widget_style: "background-color:inherit;"
-    title_style: "background-color:#555;padding:5px 156% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
     title2_style: "margin-top:3px;"
 
 front_door_sensor_battery:
@@ -204,12 +202,20 @@ front_door_sensor_battery:
     widget_style: "background-color:inherit;"
     title2_style: "margin-top:3px;"
 
-bedroom_multisensor_battery:
+kiosk_battery:
     widget_type: sensor
-    entity: sensor.bedroom_multisensor_battery
-    title2: Bedroom
+    entity: sensor.kiosk_battery
+    title: Battery Status
+    title2: Kiosk
     widget_style: "background-color:inherit;"
+    title_style: "background-color:#555;padding:5px 156% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
     title2_style: "margin-top:3px;"
+
+kitchen_leak_sensor_battery:
+    widget_type: sensor
+    entity: sensor.kitchen_leak_sensor_battery
+    title2: Kitchen Leak
+    widget_style: "background-color:inherit;"
 
 lounge_multisensor_battery:
     widget_type: sensor
@@ -217,6 +223,12 @@ lounge_multisensor_battery:
     title2: Lounge
     widget_style: "background-color:inherit;"
     title2_style: "margin-top:3px;"
+
+washroom_leak_sensor_battery:
+    widget_type: sensor
+    entity: sensor.washroom_leak_sensor_battery
+    title2: Washroom Leak
+    widget_style: "background-color:inherit;"
 
 
 #
@@ -228,6 +240,12 @@ status_doors:
     title: Doors
     icon_on: mdi-lock-open-outline
     icon_off: mdi-lock
+
+status_leak:
+    widget_type: binary_sensor
+    entity: group.leak_sensors
+    title: Leak
+    icon_on: mdi-water
 
 status_motion:
     widget_type: binary_sensor
@@ -246,8 +264,8 @@ status_tamper:
 layout:
     - include: header
     - nav_main,         label(6x1), reload, temperature, clock
-    - nav_switchboard,  uptime, uptime_host, database_size, log_size, spacer(2x1), status_doors, status_motion, status_tamper
+    - nav_switchboard,  uptime, uptime_host, database_size, log_size, spacer(1x1), status_doors, status_motion, status_leak, status_tamper
     - nav_weather,      cpu_temp, cpu_use, memory_use, disk_use, spacer(2x1), sensor.speedtest_ping, upspeed, downspeed
     - nav_spacer(1x2)
     -                   average_temperature, bedroom_temperature, lounge_temperature, spacer(2x1), kiosk_battery, front_door_sensor_battery, bedroom_multisensor_battery, lounge_multisensor_battery
-    - nav_status,       average_humidity, bedroom_humidity, lounge_humidity
+    - nav_status,       average_humidity, bedroom_humidity, lounge_humidity, spacer(2x1), kitchen_leak_sensor_battery, washroom_leak_sensor_battery

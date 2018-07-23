@@ -44,6 +44,10 @@ doors_open:
   name: Doors are open
   icon: mdi:door-open
 
+leak_test:
+  name: Leak test
+  icon: mdi:pipe-leak
+
 motion_detected:
   name: Motion detected
   icon: mdi:run

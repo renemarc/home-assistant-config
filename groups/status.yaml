@@ -19,10 +19,12 @@ status_view:
 battery:
   name: Battery Levels
   entities:
-    - sensor.kiosk_battery
-    - sensor.front_door_sensor_battery
     - sensor.bedroom_multisensor_battery
+    - sensor.front_door_sensor_battery
+    - sensor.kiosk_battery
+    - sensor.kitchen_leak_sensor_battery
     - sensor.lounge_multisensor_battery
+    - sensor.washroom_leak_sensor_battery
 
 humidity:
   name: Humidity

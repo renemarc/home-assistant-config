@@ -36,6 +36,8 @@ automation.kitchen_*:
   icon: mdi:food-fork-drink
 automation.kiosk_*:
   icon: mdi:tablet
+automation.leak_*:
+  icon: mdi:pipe-leak
 automation.lightpack_*:
   icon: mdi:television
 automation.lounge_*:
@@ -57,7 +59,7 @@ automation.tamper_*:
 automation.video_player_*:
   icon: mdi:plex
 automation.washroom_*:
-  icon: mdi:water-pump
+  icon: mdi:shower
 
 
 #

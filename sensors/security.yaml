@@ -36,6 +36,52 @@
 
 
 #
+# Leak detection status
+#
+# Returns a comma-separated list of locations where leaks are detected.
+#
+# @see /automations/leak_notify.yaml
+#
+- platform: template
+  sensors:
+    leak_location:
+      value_template: >-
+        {% for entity_id in state_attr('group.leak_sensors', 'entity_id') -%}
+          {% if is_state(entity_id, 'on') -%}
+            {{ ' ' + state_attr(entity_id, 'friendly_name') }},
+          {%- endif %}
+        {%- endfor %}
+
+    leak_location_friendly:
+      value_template: >-
+        {% set value = states('sensor.leak_location') %}
+
+        {{ value[:-1] }}
+
+    leak_status:
+      friendly_name_template: >-
+        {% if is_state('group.leak_sensors', 'on') %}
+          Leak detected
+        {% else %}
+          Leak monitoring
+        {% endif %}
+      icon_template: >-
+        {% if is_state('group.leak_sensors', 'on') %}
+          mdi:pipe-leak
+        {% else %}
+          mdi:pipe
+        {% endif %}
+      value_template: >-
+        {% set value = states('sensor.leak_location_friendly') %}
+
+        {% if value != '' %}
+          {{ value }}
+        {% else %}
+          OK
+        {% endif %}
+
+
+#
 # Motion detection status
 #
 # Returns a comma-separated list of locations where motion is detected.

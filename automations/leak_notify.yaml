@@ -1,0 +1,58 @@
+#
+# Check if a water leak is detected somewhere
+#
+# @subscribe group.leak_sensors
+#
+# @link https://domeha.com/z-wave-leak-sensor
+#
+- id: leak_notify
+  alias: Leak NOTIFY
+  trigger:
+    # When a leak is detected somewhere.
+    - platform: state
+      entity_id: group.leak_sensors
+      to: 'on'
+
+  action:
+    # Delay the notifications, to allow the location to be determined. Hack-ish.
+    - delay:
+        seconds: 2
+
+    # Warn someone to take action.
+    - service: notify.text
+      data:
+        title: "Water leak"
+        message: |
+          A leak has been detected.
+          {% if states('sensor.leak_location_friendly') != '' %}
+            Location: {{ states('sensor.leak_location_friendly') }}
+          {% endif %}
+
+    # Pin a warning message in the frontend.
+    - service: persistent_notification.create
+      data:
+        notification_id: water
+        title: "Water leak"
+        message: |
+          {% if states('sensor.leak_location_friendly') != '' %}
+            A leak has been detected at location:
+            <strong>{{ states('sensor.leak_location_friendly') }}</strong>.
+          {% else %}
+            A leak has been detected.
+          {% endif %}
+
+    # Play a warning sound and message.
+    - service: notify.sound
+      data:
+        message: "alarm"
+        data:
+          method: "alarm"
+    - delay:
+        seconds: 2
+    - service: notify.speech
+      data_template:
+        message: >-
+          A water leak has been detected.
+          {% if states('sensor.leak_location_friendly') != '' %}
+            Check the {{ states('sensor.leak_location_friendly') }}!
+          {% endif %}
