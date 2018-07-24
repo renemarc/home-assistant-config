@@ -99,6 +99,11 @@ Warn whenever the front door is opening or closing.
 Check if humidity is too high or too low.
 
 
+### [`🇨🇺 ./humidor_notify.yaml`](humidor_notify.yaml)
+
+Check if humidity is too high or too low in the humidor.
+
+
 ### [`🌊 ./leak_notify.yaml`](leak_notify.yaml)
 
 Check if a water leak is detected somewhere.

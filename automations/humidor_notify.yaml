@@ -1,0 +1,59 @@
+#
+# Check if humidity is too high or too low in the humidor
+#
+# Cigars should be kept in a humidity-controlled environment, between 65% and
+# 74%, with the ideal sweet spot at 70%.
+#
+- id: humidor_notify
+  alias: Humidor NOTIFY
+  trigger:
+    # When humidity is getting too high.
+    - platform: numeric_state
+      entity_id: sensor.humidor_humidity_filtered
+      above: 74
+
+    # When humidity is getting too low.
+    - platform: numeric_state
+      entity_id: sensor.humidor_humidity_filtered
+      below: 65
+
+  action:
+    # Pin a warning message in the frontend.
+    - service: persistent_notification.create
+      data:
+        notification_id: humidor
+      data_template:
+        title: >-
+          {% set humidity = states('sensor.humidor_humidity_filtered') | int %}
+          {% if humidity > 74 %}
+            Humidor humidity is too high
+          {% else %}
+            Humidor humidity is too low
+          {% endif %}
+        message: >-
+          {% set humidity = states('sensor.humidor_humidity_filtered') | int %}
+          {% if humidity > 74 %}
+            {{ humidity }}% is excessive.<strong>
+          {% else %}
+            {{ humidity }}% is too dry.<br>
+            <strong>Add some distilled water to its humidifier.</strong>
+          {% endif %}
+
+    # Warn someone by text to take action.
+    - service: notify.text
+      data_template:
+        title: >-
+          {% set humidity = states('sensor.humidor_humidity_filtered') | int %}
+          {% if humidity > 74 %}
+            Humidor humidity is too high
+          {% else %}
+            Humidor humidity is too low
+          {% endif %}
+        message: |
+          {% set humidity = states('sensor.humidor_humidity_filtered') | int %}
+          {% if humidity > 74 %}
+          {{ humidity }}% is excessive.
+          {% else %}
+          {{ humidity }}% is too dry.
+          Add some distilled water to its humidifier.
+          {% endif %}

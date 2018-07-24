@@ -19,11 +19,13 @@ status_view:
 battery:
   name: Battery Levels
   entities:
-    - sensor.bedroom_multisensor_battery
+    # - sensor.bedroom_multisensor_battery
     - sensor.front_door_sensor_battery
+    - sensor.humidor_multisensor_battery
     - sensor.kiosk_battery
     - sensor.kitchen_leak_sensor_battery
-    - sensor.lounge_multisensor_battery
+    # - sensor.lounge_multisensor_battery
+    - sensor.washroom_multisensor_battery
     - sensor.washroom_leak_sensor_battery
 
 humidity:
@@ -32,7 +34,9 @@ humidity:
     - sensor.average_humidity
     - sensor.hline_dashed
     - sensor.bedroom_humidity
+    - sensor.humidor_humidity
     - sensor.lounge_humidity
+    - sensor.washroom_humidity
 
 network:
   name: Network
@@ -68,4 +72,6 @@ temperature:
     - sensor.average_temperature
     - sensor.hline_dashed
     - sensor.bedroom_temperature
+    - sensor.humidor_temperature
     - sensor.lounge_temperature
+    - sensor.washroom_temperature

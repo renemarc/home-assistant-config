@@ -4,7 +4,7 @@
 # Useful to indicate to an otherwise oblivious showering partner that someone
 # likely just came in or left the premises.
 #
-# @subscribe binary_sensor.front_door_sensor
+# @subscribe binary_sensor.front_door
 #
 # @see /lights/lifx.yaml
 #
@@ -13,7 +13,7 @@
   trigger:
     # When the front door sensor senses openness or closure.
     - platform: state
-      entity_id: binary_sensor.front_door_sensor
+      entity_id: binary_sensor.front_door
 
   action:
     # Flash some smart lights, in case one didn't hear a door opening/closing.
@@ -25,13 +25,13 @@
         cycles: 1
       data_template:
         mode: >-
-          {% if is_state('binary_sensor.front_door_sensor', 'on') %}
+          {% if is_state('binary_sensor.front_door', 'on') %}
             breathe
           {% else %}
             blink
           {% endif %}
         color_name: >-
-          {% if is_state('binary_sensor.front_door_sensor', 'on') %}
+          {% if is_state('binary_sensor.front_door', 'on') %}
             cyan
           {% else %}
             purple
@@ -39,7 +39,7 @@
 
     # Play a welcoming sound.
     - condition: state
-      entity_id: binary_sensor.front_door_sensor
+      entity_id: binary_sensor.front_door
       state: 'on'
     - condition: state
       entity_id: input_boolean.quiet_mode

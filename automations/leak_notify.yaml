@@ -18,16 +18,6 @@
     - delay:
         seconds: 2
 
-    # Warn someone to take action.
-    - service: notify.text
-      data:
-        title: "Water leak"
-        message: |
-          A leak has been detected.
-          {% if states('sensor.leak_location_friendly') != '' %}
-            Location: {{ states('sensor.leak_location_friendly') }}
-          {% endif %}
-
     # Pin a warning message in the frontend.
     - service: persistent_notification.create
       data:
@@ -39,6 +29,16 @@
             <strong>{{ states('sensor.leak_location_friendly') }}</strong>.
           {% else %}
             A leak has been detected.
+          {% endif %}
+
+    # Warn someone to take action.
+    - service: notify.text
+      data:
+        title: "Water leak"
+        message: |
+          A leak has been detected.
+          {% if states('sensor.leak_location_friendly') != '' -%}
+            Location: {{ states('sensor.leak_location_friendly') }}
           {% endif %}
 
     # Play a warning sound and message.
@@ -53,6 +53,6 @@
       data_template:
         message: >-
           A water leak has been detected.
-          {% if states('sensor.leak_location_friendly') != '' %}
+          {% if states('sensor.leak_location_friendly') != '' -%}
             Check the {{ states('sensor.leak_location_friendly') }}!
           {% endif %}

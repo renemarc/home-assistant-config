@@ -5,6 +5,8 @@ automation.daily_greeting:
   icon: mdi:human-greeting
 automation.humidity_notify:
   icon: mdi:water-percent
+automation.humidor_notify:
+  icon: mdi:bow-tie
 automation.front_door_notify:
   icon: mdi:door-open
 automation.go_to_sleep:
@@ -32,8 +34,9 @@ binary_sensor.flic_80e4da72e890:
   friendly_name: Flic white
 binary_sensor.flic_80e4da737711:
   friendly_name: Flic blue
-binary_sensor.front_door_sensor:
+binary_sensor.front_door:
   device_class: door
+  friendly_name: Front door
 binary_sensor.kitchen_leak_sensor:
   device_class: moisture
   friendly_name: Kitchen floor
@@ -45,13 +48,21 @@ binary_sensor.kitchen_leak_sensor:
     theme: >-
       return state == 'on' ? 'card-critical'
       : null;
-binary_sensor.lounge_multisensor_sensor:
+binary_sensor.bedroom_motion:
   device_class: motion
+  friendly_name: Bedroom
+  group:
+    group.bedroom:
+      friendly_name: Motion
+binary_sensor.lounge_motion:
+  device_class: motion
+  friendly_name: Lounge
   group:
     group.lounge:
       friendly_name: Motion
 binary_sensor.kiosk_motion_auto:
   device_class: motion
+  friendly_name: Kiosk
   group:
     group.kitchen:
       friendly_name: Motion
@@ -66,6 +77,12 @@ binary_sensor.washroom_leak_sensor:
     theme: >-
       return state == 'on' ? 'card-critical'
       : null;
+binary_sensor.washroom_motion:
+  device_class: motion
+  friendly_name: Washroom
+  group:
+    group.washroom:
+      friendly_name: Motion
 
 
 #
@@ -137,7 +154,7 @@ input_boolean.leak_test:
     theme: >-
       return state == 'on' ? 'card-warning'
       : null;
-input_boolean.motion_detected:
+input_boolean.motion_test:
   confirm_controls_show_lock: true
   templates:
     theme: >-
@@ -394,6 +411,10 @@ sensor.bedroom_humidity:
     group.humidity:
       friendly_name: Bedroom
       icon: mdi:hotel
+      extra_data_template: "Tracked"
+sensor.bedroom_luminance_friendly:
+  extra_badge:
+    entity_id: sensor.bedroom_luminance
 sensor.bedroom_temperature:
   icon: mdi:thermometer
   group:
@@ -402,6 +423,21 @@ sensor.bedroom_temperature:
     group.temperature:
       friendly_name: Bedroom
       icon: mdi:hotel
+      extra_data_template: "Tracked"
+sensor.humidor_humidity:
+  icon: mdi:water-percent
+  group:
+    group.lounge:
+      friendly_name: Humidor
+    group.humidity:
+      friendly_name: Humidor
+      icon: mdi:bow-tie
+sensor.humidor_temperature:
+  icon: mdi:thermometer
+  group:
+    group.temperature:
+      friendly_name: Humidor
+      icon: mdi:bow-tie
 sensor.lounge_humidity:
   icon: mdi:water-percent
   group:
@@ -410,6 +446,10 @@ sensor.lounge_humidity:
     group.humidity:
       friendly_name: Lounge
       icon: mdi:sofa
+      extra_data_template: "Tracked"
+sensor.lounge_luminance_friendly:
+  extra_badge:
+    entity_id: sensor.lounge_luminance
 sensor.lounge_temperature:
   icon: mdi:thermometer
   group:
@@ -418,6 +458,26 @@ sensor.lounge_temperature:
     group.temperature:
       friendly_name: Lounge
       icon: mdi:sofa
+      extra_data_template: "Tracked"
+sensor.washroom_humidity:
+  icon: mdi:water-percent
+  group:
+    group.washroom:
+      friendly_name: Humidity
+    group.humidity:
+      friendly_name: Washroom
+      icon: mdi:shower
+sensor.washroom_luminance_friendly:
+  extra_badge:
+    entity_id: sensor.washroom_luminance
+sensor.washroom_temperature:
+  icon: mdi:thermometer
+  group:
+    group.washroom:
+      friendly_name: Temperature
+    group.temperature:
+      friendly_name: Washroom
+      icon: mdi:shower
 
 
 #
@@ -521,6 +581,13 @@ sensor.front_door_sensor_battery:
       icon: mdi:door
     group.kitchen:
       friendly_name: Front Door Battery
+sensor.humidor_multisensor_battery:
+  group:
+    group.battery:
+      friendly_name: Humidor
+      icon: mdi:bow-tie
+    group.lounge:
+      friendly_name: Humidor Battery
 sensor.kiosk_battery:
   group:
     group.battery:
@@ -546,9 +613,16 @@ sensor.washroom_leak_sensor_battery:
   group:
     group.battery:
       friendly_name: Washroom Leak
-      icon: mdi:shower
+      icon: mdi:pipe-leak
     group.washroom:
       friendly_name: Leak Battery
+sensor.washroom_multisensor_battery:
+  group:
+    group.battery:
+      friendly_name: Washroom
+      icon: mdi:shower
+    group.lounge:
+      friendly_name: Multisensor Battery
 
 
 #
@@ -682,6 +756,8 @@ scene.shutdown:
 #
 # Scripts
 #
+script.tamper_reset:
+  icon: mdi:restart
 script.wake_up:
   icon: mdi:weather-sunny
 
@@ -689,6 +765,8 @@ script.wake_up:
 #
 # Switches
 #
+switch.aeotec_zstick_disco_light:
+  friendly_name: Z-Stick Light
 switch.bedroom_fan:
   icon: mdi:fan
   group:
@@ -706,7 +784,6 @@ switch.souvenirs_light:
   icon: mdi:trophy
 switch.window_light:
   icon: mdi:creation
-
 
 #
 # Updater

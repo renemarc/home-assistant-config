@@ -36,7 +36,7 @@
 # @link https://home-assistant.io/components/mqtt/
 #
 - platform: mqtt
-  name: Bedroom AcuRite Battery
+  name: Humidor AcuRite Battery
   state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '%'
   value_template: >-
@@ -50,14 +50,14 @@
 
 - platform: template
   sensors:
-    bedroom_multisensor_battery:
-      friendly_name: Bedroom Multisensor Battery
+    humidor_multisensor_battery:
+      friendly_name: Humidor Multisensor Battery
       unit_of_measurement: '%'
       value_template: >-
-        {{ states('sensor.bedroom_acurite_battery') }}
+        {{ states('sensor.humidor_acurite_battery') }}
 
       icon_template: >-
-        {% set battery_level = states('sensor.bedroom_acurite_battery') | default(0) | int %}
+        {% set battery_level = states('sensor.humidor_acurite_battery') | default(0) | int %}
 
         {% if battery_level > 10 %}
           mdi:battery
@@ -158,6 +158,29 @@
         {%- endif %}
       icon_template: >-
         {% set battery_level = states.zwave.washroom_leak_sensor.attributes.battery_level | default(0) | int %}
+        {% set battery_round = (battery_level / 10) | int * 10 %}
+
+        {% if battery_round >= 100 %}
+          mdi:battery
+        {% elif battery_round > 0 %}
+          mdi:battery-{{ battery_round }}
+        {% else %}
+          mdi:battery-outline
+        {% endif %}
+
+    washroom_multisensor_battery:
+      friendly_name: Washroom Multisensor Battery
+      unit_of_measurement: '%'
+      value_template: >-
+        {% set battery_level = state_attr('zwave.washroom_multisensor', 'battery_level') | default(0) %}
+
+        {% if battery_level %}
+          {{ battery_level | round }}
+        {% else %}
+          {{ states('zwave.lounge_multisensor') }}
+        {%- endif %}
+      icon_template: >-
+        {% set battery_level = state_attr('zwave.washroom_multisensor', 'battery_level') | default(0) %}
         {% set battery_round = (battery_level / 10) | int * 10 %}
 
         {% if battery_round >= 100 %}

@@ -23,7 +23,7 @@
       value_template: >-
         {% set dummy = is_state('input_boolean.doors_open', 'on') %}
         {% set value = '' %}
-        {% if is_state('binary_sensor.front_door_sensor', 'on') %}
+        {% if is_state('binary_sensor.front_door', 'on') %}
           {% set value = value + 'Front Door,' %}
         {% endif %}
         {% set value = value[:-1] %}
@@ -86,33 +86,59 @@
 #
 # Returns a comma-separated list of locations where motion is detected.
 #
-# @see /automations/modes/motion_auto.yaml
-#
 - platform: template
   sensors:
+    motion_location:
+      value_template: >-
+        {% set value = '' %}
+
+        {% if is_state('binary_sensor.bedroom_motion', 'on') %}
+          {% set value = value + state_attr('binary_sensor.bedroom_motion', 'friendly_name') + '|' %}
+        {% endif %}
+
+        {% if is_state('binary_sensor.front_door', 'on') %}
+          {% set value = value + state_attr('binary_sensor.front_door', 'friendly_name') + '|' %}
+        {% endif %}
+
+        {% if is_state('binary_sensor.kiosk_motion_auto', 'on') %}
+          {% set value = value + state_attr('binary_sensor.kiosk_motion_auto', 'friendly_name') + '|' %}
+        {% endif %}
+
+        {% if is_state('binary_sensor.lounge_motion', 'on') %}
+          {% set value = value + state_attr('binary_sensor.lounge_motion', 'friendly_name') + '|' %}
+        {% endif %}
+
+        {% if is_state('binary_sensor.washroom_motion', 'on') %}
+          {% set value = value + state_attr('binary_sensor.washroom_motion', 'friendly_name') + '|' %}
+        {% endif %}
+
+        {% if is_state('input_boolean.motion_test', 'on') %}
+          {% set value = value + state_attr('input_boolean.motion_test', 'friendly_name') + '|' %}
+        {% endif %}
+
+        {% set value = value[:-1] %}
+        {% set value = value | replace(" Multisensor", "") %}
+        {% set value = value | replace(" Sensor", "") %}
+        {% set value = value | replace(" Motion", "") %}
+        {% set value = value | replace("|", ", ") %}
+
+        {{ value }}
+
     motion_status:
       friendly_name_template: >-
-        {% if is_state('input_boolean.motion_detected', 'on') %}
+        {% if is_state('group.motion_sensors', 'on') %}
           Motion detected
         {% else %}
           Motion monitoring
         {% endif %}
       icon_template: >-
-        {% if is_state('input_boolean.motion_detected', 'on') %}
-          mdi:walk
+        {% if is_state('group.motion_sensors', 'on') %}
+          mdi:run
         {% else %}
           mdi:radar
         {% endif %}
       value_template: >-
-        {% set dummy = is_state('input_boolean.motion_detected', 'on') %}
-        {% set value = '' %}
-        {% if is_state('binary_sensor.kiosk_motion_auto', 'on') %}
-          {% set value = value + ' Kiosk,' %}
-        {% endif %}
-        {% if is_state('binary_sensor.lounge_multisensor_sensor', 'on') %}
-          {% set value = value + ' Lounge,' %}
-        {% endif %}
-        {% set value = value[:-1] %}
+        {% set value = states('sensor.motion_location') %}
 
         {% if value != '' %}
           {{ value }}

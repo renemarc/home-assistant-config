@@ -42,8 +42,11 @@ lifx_lights:
 motion_sensors:
   name: Motion sensors
   entities:
+    - binary_sensor.front_door
     - binary_sensor.kiosk_motion_auto
-    - binary_sensor.lounge_multisensor_sensor
+    - binary_sensor.lounge_motion
+    - binary_sensor.washroom_motion
+    - input_boolean.motion_test
 
 washroom_lights:
   name: Washroom Lights

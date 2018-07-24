@@ -94,11 +94,6 @@ When noise makers should be allowed to run.
 
 ## Flags
 
-### [`🏃‍♂️️ ./motion_auto.yaml`](motion_auto.yaml)
-
-Toggle flag when motion is sensed or is no longer detected.
-
-
 ### [`🖐️️ ./tamper_start.yaml`](tamper_start.yaml)
 
 Detect when perimeter device is being tempered with.

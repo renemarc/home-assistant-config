@@ -4,7 +4,7 @@
 # Marks the perimeter as breached when any door is open, and safe when all are
 # closed.
 #
-# @subscribe binary_sensor.front_door_sensor
+# @subscribe binary_sensor.front_door
 #
 # @publish input_boolean.doors_open
 #
@@ -14,12 +14,12 @@
     # When an external door sensor has changed.
     - platform: state
       entity_id:
-        - binary_sensor.front_door_sensor
+        - binary_sensor.front_door
 
   action:
     # Toggle doors status.
     - service_template: >
-        {% if is_state('binary_sensor.front_door_sensor', 'on') %}
+        {% if is_state('binary_sensor.front_door', 'on') %}
           input_boolean.turn_on
         {% else %}
           input_boolean.turn_off
