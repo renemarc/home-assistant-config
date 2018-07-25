@@ -47,6 +47,7 @@ kitchen:
     - light.microwave
     - light.island
     - display.kiosk
+    - sensor.kitchen_temperature
     - binary_sensor.kiosk_motion_auto
     - binary_sensor.kitchen_leak_sensor
     # - light.mqtt_countertop

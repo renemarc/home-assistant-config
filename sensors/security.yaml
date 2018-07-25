@@ -63,7 +63,7 @@
         {% if is_state('group.leak_sensors', 'on') %}
           Leak detected
         {% else %}
-          Leak monitoring
+          Leaks
         {% endif %}
       icon_template: >-
         {% if is_state('group.leak_sensors', 'on') %}
@@ -77,7 +77,7 @@
         {% if value != '' %}
           {{ value }}
         {% else %}
-          OK
+          Clear
         {% endif %}
 
 
@@ -129,7 +129,7 @@
         {% if is_state('group.motion_sensors', 'on') %}
           Motion detected
         {% else %}
-          Motion monitoring
+          Motion
         {% endif %}
       icon_template: >-
         {% if is_state('group.motion_sensors', 'on') %}
@@ -143,7 +143,60 @@
         {% if value != '' %}
           {{ value }}
         {% else %}
-          OK
+          Clear
+        {% endif %}
+
+
+#
+# Smoke detection status
+#
+# @see /automations/siren_notify.yaml
+# @see /misc/binary_sensors.yaml
+#
+# @link https://discoverecolink.com/product/firefighter-wireless-smoke-co-audio-sensor/
+#
+- platform: template
+  sensors:
+    smoke_location:
+      value_template: >-
+        {% set value = '' %}
+
+        {% if is_state('binary_sensor.siren_monitor_smoke', 'on') %}
+          {% set value = value + state_attr('binary_sensor.siren_monitor_smoke', 'friendly_name') + '|' %}
+        {% endif %}
+
+        {% if is_state('input_boolean.smoke_test', 'on') %}
+          {% set value = value + state_attr('input_boolean.smoke_test', 'friendly_name') + '|' %}
+        {% endif %}
+
+        {% set value = value[:-1] %}
+        {% set value = value | replace(" Multisensor", "") %}
+        {% set value = value | replace(" Sensor", "") %}
+        {% set value = value | replace(" Motion", "") %}
+        {% set value = value | replace("|", ", ") %}
+
+        {{ value }}
+
+    smoke_status:
+      friendly_name_template: >-
+        {% if is_state('group.smoke_sensors', 'on') %}
+          Smoke detected
+        {% else %}
+          Smoke
+        {% endif %}
+      icon_template: >-
+        {% if is_state('group.smoke_sensors', 'on') %}
+          mdi:alarm-bell
+        {% else %}
+          mdi:smoke-detector
+        {% endif %}
+      value_template: >-
+        {% set value = states('sensor.smoke_location') %}
+
+        {% if value != '' %}
+          {{ value }}
+        {% else %}
+          Clear
         {% endif %}
 
 
@@ -162,7 +215,7 @@
         {% if is_state('input_boolean.tamper_detected', 'on') %}
           Tampering detected
         {% else %}
-          Tamper monitoring
+          Tampering
         {% endif %}
       icon_template: >-
         {% if is_state('input_boolean.tamper_detected', 'on') %}
@@ -175,5 +228,5 @@
         {% if not is_state('variable.tamper_detected', 'False') %}
           {{ states('variable.tamper_detected') }}
         {% else %}
-          OK
+          Clear
         {% endif %}

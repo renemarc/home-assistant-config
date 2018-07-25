@@ -52,6 +52,10 @@ motion_test:
   name: Motion test
   icon: mdi:run
 
+smoke_test:
+  name: Smoke test
+  icon: mdi:smoke-detector
+
 tamper_detected:
   name: Tamper detected
   icon: mdi:security-home

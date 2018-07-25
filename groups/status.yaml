@@ -9,8 +9,8 @@ status_view:
     - group.system
     - group.network
     - group.battery
-    - group.humidity
     - group.temperature
+    - group.humidity
 
 
 #
@@ -25,6 +25,7 @@ battery:
     - sensor.kiosk_battery
     - sensor.kitchen_leak_sensor_battery
     # - sensor.lounge_multisensor_battery
+    - sensor.siren_monitor_battery
     - sensor.washroom_multisensor_battery
     - sensor.washroom_leak_sensor_battery
 
@@ -73,5 +74,6 @@ temperature:
     - sensor.hline_dashed
     - sensor.bedroom_temperature
     - sensor.humidor_temperature
+    - sensor.kitchen_temperature
     - sensor.lounge_temperature
     - sensor.washroom_temperature

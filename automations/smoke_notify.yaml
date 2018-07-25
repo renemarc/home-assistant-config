@@ -1,0 +1,31 @@
+#
+# Warn someone if the smoke detector has been triggered
+#
+# @subscribe binary_sensors.siren_monitor_smoke
+#
+- id: smoke_notify
+  alias: Smoke NOTIFY
+  trigger:
+    # When smoke is detected.
+    - platform: state
+      entity_id: group.smoke_sensors
+      to: 'on'
+
+  action:
+    # Warn someone to take action.
+    - service: notify.text
+      data:
+        title: "Smoke alert"
+        message: |
+          The siren is alerting those inside.
+          Do check with the neighbors!
+          Location: {{ states('sensor.smoke_location') }}
+
+    # Pin a warning message in the frontend.
+    - service: persistent_notification.create
+      data:
+        notification_id: smoke
+        title: "Smoke alert"
+        message: |
+          <strong>Take care of this NOW!</strong>
+          Location: {{ states('sensor.smoke_location') }}

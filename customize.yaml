@@ -21,6 +21,8 @@ automation.scene_romantic:
   icon: mdi:home-heart
 automation.scene_select:
   icon: mdi:looks
+automation.smoke_notify:
+  icon: mdi:smoke-detector
 automation.update_notify:
   icon: mdi:cloud-upload
 automation.wake_up:
@@ -66,6 +68,12 @@ binary_sensor.kiosk_motion_auto:
   group:
     group.kitchen:
       friendly_name: Motion
+binary_sensor.siren_monitor_smoke:
+  # icon: mdi:smoke-detector
+  templates:
+    theme: >-
+      return state == 'on' ? 'card-critical'
+      : null;
 binary_sensor.washroom_leak_sensor:
   device_class: moisture
   friendly_name: Washroom floor
@@ -150,16 +158,10 @@ group.weather_view:
 #
 input_boolean.leak_test:
   confirm_controls_show_lock: true
-  templates:
-    theme: >-
-      return state == 'on' ? 'card-warning'
-      : null;
 input_boolean.motion_test:
   confirm_controls_show_lock: true
-  templates:
-    theme: >-
-      return state == 'on' ? 'card-warning'
-      : null;
+input_boolean.smoke_test:
+  confirm_controls_show_lock: true
 input_boolean.tamper_detected:
   confirm_controls_show_lock: true
   templates:
@@ -367,17 +369,22 @@ sensor.good_vibes:
 sensor.leak_status:
   templates:
     theme: >-
-      return state != 'OK' ? 'card-critical'
+      return state != 'Clear' ? 'card-critical'
       : null;
 sensor.motion_status:
   templates:
     theme: >-
-      return state != 'OK' ? 'card-warning'
+      return state != 'Clear' ? 'card-warning'
+      : null;
+sensor.smoke_status:
+  templates:
+    theme: >-
+      return state != 'Clear' ? 'card-critical'
       : null;
 sensor.tamper_status:
   templates:
     theme: >-
-      return state != 'OK'
+      return state != 'Clear'
       ? entities['input_boolean.tamper_detected'].state == 'on' ? 'card-critical'
       : 'card-warning'
       : null;
@@ -438,6 +445,14 @@ sensor.humidor_temperature:
     group.temperature:
       friendly_name: Humidor
       icon: mdi:bow-tie
+sensor.kitchen_temperature:
+  icon: mdi:thermometer
+  group:
+    group.kitchen:
+      friendly_name: Temperature
+    group.temperature:
+      friendly_name: Kitchen
+      icon: mdi:food-fork-drink
 sensor.lounge_humidity:
   icon: mdi:water-percent
   group:
@@ -609,6 +624,13 @@ sensor.lounge_multisensor_battery:
       icon: mdi:sofa
     group.lounge:
       friendly_name: Multisensor Battery
+sensor.siren_monitor_battery:
+  group:
+    group.battery:
+      friendly_name: Siren Monitor
+      icon: mdi:smoke-detector
+    group.kitchen:
+      friendly_name: Siren Monitor Battery
 sensor.washroom_leak_sensor_battery:
   group:
     group.battery:

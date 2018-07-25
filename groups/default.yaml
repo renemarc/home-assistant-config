@@ -73,6 +73,8 @@ security:
     - sensor.doors_status
     - sensor.leak_status
     - sensor.motion_status
+    - sensor.siren_status
+    - sensor.smoke_status
     - sensor.tamper_status
 
 wallpaper:

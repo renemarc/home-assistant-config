@@ -18,6 +18,11 @@ binary_sensor.lounge_motion:
   name:
   platform: zwave
   unique_id: 5-72057594126794752
+binary_sensor.siren_monitor:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244235264
 binary_sensor.washroom_motion:
   config_entry_id:
   name:
@@ -269,6 +274,47 @@ sensor.lounge_multisensor_ultraviolet:
   platform: zwave
   unique_id: 5-72057594126811570
 
+sensor.siren_monitor_alarm_level:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300241
+sensor.siren_monitor_alarm_type:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300225
+sensor.siren_monitor_burglar:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300385
+sensor.siren_monitor_carbon_monoxide:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300305
+sensor.siren_monitor_power_management:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300401
+sensor.siren_monitor_smoke:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300289
+sensor.siren_monitor_sourcenodeid:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594245300257
+sensor.siren_monitor_temperature:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244251666
+
 sensor.washroom_leak_sensor_alarm_level:
   config_entry_id:
   name:
@@ -357,6 +403,11 @@ zwave.minimote:
   name:
   platform: zwave
   unique_id: node-6
+zwave.siren_monitor:
+  config_entry_id:
+  name:
+  platform: zwave
+  unique_id: node-12
 zwave.washroom_leak_sensor:
   config_entry_id:
   name:

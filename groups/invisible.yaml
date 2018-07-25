@@ -48,6 +48,12 @@ motion_sensors:
     - binary_sensor.washroom_motion
     - input_boolean.motion_test
 
+smoke_sensors:
+  name: Smoke sensors
+  entities:
+    - binary_sensor.siren_monitor_smoke
+    - input_boolean.smoke_test
+
 washroom_lights:
   name: Washroom Lights
   entities:

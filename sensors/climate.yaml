@@ -157,6 +157,48 @@
 
 
 #
+# Kitchen climate
+#
+# Calibration offsets:
+#   Temperature: -0.5°C
+#
+# The Ecolink FireFighter smoke alarm monitor is in the kitchen, but even if
+# it is a Z Wave device, is offers no configuration options trough the Z Wave
+# management interface. We'll override the values here instead.
+#
+- platform: template
+  sensors:
+    kitchen_temperature_exact:
+      friendly_name: Kitchen Temperature Exact
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {% set calibration = -0.5 %}
+        {% set temperature = states('sensor.siren_monitor_temperature') | float | round(1) %}
+
+        {{ temperature + calibration }}
+
+    kitchen_temperature:
+      friendly_name: Kitchen Temperature
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: "{{ states('sensor.kitchen_temperature_exact') | round }}"
+
+- platform: filter
+  name: Kitchen Temperature Filtered
+  entity_id: sensor.kitchen_temperature_exact
+  filters:
+    - filter: outlier
+      window_size: 4
+      radius: 2.0
+    - filter: lowpass
+      time_constant: 10
+    - filter: time_simple_moving_average
+      window_size: 00:05
+      precision: 2
+
+
+#
 # Lounge climate
 #
 # Calibration offsets (set through Zwave configuration panel):

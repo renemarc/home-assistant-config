@@ -215,7 +215,7 @@ logger:
   logs:
     aiohttp.server: critical # EBOX newer component bug.
     custom_components.display: critical # When tablet is offline.
-    homeassistant.helpers.entity: fatal # EBOX legacy component bug.
+    homeassistant.components.media_player.plex: fatal # When Plex is offline.
 
 
 #

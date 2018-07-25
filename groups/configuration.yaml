@@ -44,6 +44,7 @@ automations:
     - automation.scene_gaming
     - automation.scene_romantic
     - automation.scene_select
+    - automation.smoke_notify
     - automation.tamper_detection_notify
     - automation.theme_auto
     - automation.update_notify
@@ -125,6 +126,8 @@ configuration:
     - sensor.leak_status
     - input_boolean.motion_test
     - sensor.motion_status
+    - input_boolean.smoke_test
+    - sensor.smoke_status
     - input_boolean.tamper_detected
     - variable.tamper_detected
     - script.tamper_reset
