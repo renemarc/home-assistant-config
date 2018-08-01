@@ -54,19 +54,19 @@ binary_sensor.kitchen_leak_sensor:
       : null;
 binary_sensor.bedroom_motion:
   device_class: motion
-  friendly_name: Bedroom
+  friendly_name: Bedroom Motion
   group:
     group.bedroom:
       friendly_name: Motion
 binary_sensor.lounge_motion:
   device_class: motion
-  friendly_name: Lounge
+  friendly_name: Lounge Motion
   group:
     group.lounge:
       friendly_name: Motion
 binary_sensor.kiosk_motion_auto:
   device_class: motion
-  friendly_name: Kiosk
+  friendly_name: Kiosk Motion
   group:
     group.kitchen:
       friendly_name: Motion
@@ -89,7 +89,7 @@ binary_sensor.washroom_leak_sensor:
       : null;
 binary_sensor.washroom_motion:
   device_class: motion
-  friendly_name: Washroom
+  friendly_name: Washroom Motion
   group:
     group.washroom:
       friendly_name: Motion
@@ -396,9 +396,10 @@ sensor.tamper_status:
 # Sensors: Climate
 #
 sensor.average_humidity:
-  group:
-    group.humidity:
-      friendly_name: Average
+  friendly_name: Average
+  # group:
+  #   group.humidity:
+  #     friendly_name: Average
 sensor.average_humidity_friendly:
   extra_badge:
     entity_id: sensor.average_humidity
@@ -409,91 +410,116 @@ sensor.average_humidity_friendly:
       : v > 50 || v < 35 ? 'card-warning'
       : null;
 sensor.average_temperature:
-  group:
-    group.temperature:
-      friendly_name: Average
+  friendly_name: Average
+  # group:
+  #   group.temperature:
+  #     friendly_name: Average
 sensor.bedroom_humidity:
+  friendly_name: Bedroom
   icon: mdi:water-percent
   group:
     group.bedroom:
       friendly_name: Humidity
     group.humidity:
-      friendly_name: Bedroom
+      # friendly_name: Bedroom
       icon: mdi:hotel
       extra_data_template: "Tracked"
+sensor.bedroom_luminance:
+  friendly_name: Bedroom
 sensor.bedroom_luminance_friendly:
   extra_badge:
     entity_id: sensor.bedroom_luminance
 sensor.bedroom_temperature:
+  friendly_name: Bedroom
   icon: mdi:thermometer
   group:
     group.bedroom:
       friendly_name: Temperature
     group.temperature:
-      friendly_name: Bedroom
+      # friendly_name: Bedroom
       icon: mdi:hotel
       extra_data_template: "Tracked"
 sensor.humidor_humidity:
+  friendly_name: Humidor
   icon: mdi:water-percent
   group:
-    group.lounge:
-      friendly_name: Humidor
+    # group.lounge:
+    #   friendly_name: Humidor
     group.humidity:
-      friendly_name: Humidor
+      # friendly_name: Humidor
       icon: mdi:bow-tie
 sensor.humidor_temperature:
+  friendly_name: Humidor
   icon: mdi:thermometer
   group:
     group.temperature:
-      friendly_name: Humidor
+      # friendly_name: Humidor
       icon: mdi:bow-tie
+sensor.kitchen_humidity:
+  friendly_name: Kitchen
+  icon: mdi:water-percent
+  group:
+    group.kitchen:
+      friendly_name: Humidity
+    group.humidity:
+      # friendly_name: Kitchen
+      icon: mdi:food-fork-drink
 sensor.kitchen_temperature:
+  friendly_name: Kitchen
   icon: mdi:thermometer
   group:
     group.kitchen:
       friendly_name: Temperature
     group.temperature:
-      friendly_name: Kitchen
+      # friendly_name: Kitchen
       icon: mdi:food-fork-drink
 sensor.lounge_humidity:
+  friendly_name: Lounge
   icon: mdi:water-percent
   group:
     group.lounge:
       friendly_name: Humidity
     group.humidity:
-      friendly_name: Lounge
+      # friendly_name: Lounge
       icon: mdi:sofa
       extra_data_template: "Tracked"
+sensor.lounge_luminance:
+  friendly_name: Lounge
 sensor.lounge_luminance_friendly:
   extra_badge:
     entity_id: sensor.lounge_luminance
 sensor.lounge_temperature:
+  friendly_name: Lounge
   icon: mdi:thermometer
   group:
     group.lounge:
       friendly_name: Temperature
     group.temperature:
-      friendly_name: Lounge
+      # friendly_name: Lounge
       icon: mdi:sofa
       extra_data_template: "Tracked"
 sensor.washroom_humidity:
+  friendly_name: Washroom
   icon: mdi:water-percent
   group:
     group.washroom:
       friendly_name: Humidity
     group.humidity:
-      friendly_name: Washroom
+      # friendly_name: Washroom
       icon: mdi:shower
+sensor.washroom_luminance:
+  friendly_name: Washroom
 sensor.washroom_luminance_friendly:
   extra_badge:
     entity_id: sensor.washroom_luminance
 sensor.washroom_temperature:
+  friendly_name: Washroom
   icon: mdi:thermometer
   group:
     group.washroom:
       friendly_name: Temperature
     group.temperature:
-      friendly_name: Washroom
+      # friendly_name: Washroom
       icon: mdi:shower
 sensor.radon_detector_humidity:
   icon: mdi:water-percent
@@ -775,6 +801,10 @@ sensor.dark_sky_summary:
   extra_data_template: >-
     ${entities['sensor.outside_temperature'].state}${entities['sensor.outside_temperature'].attributes['unit_of_measurement']}
   theme: card-secondary-title
+sensor.outside_humidity:
+  friendly_name: Outside
+sensor.outside_temperature:
+  friendly_name: Outside
 sensor.weather_details:
   custom_ui_state_card: state-card-value_only
 sensor.wind_speed:
@@ -786,6 +816,7 @@ sensor.wind_speed:
       return v >= 89 ? 'card-critical'
       : v >= 39 ? 'card-warning'
       : null;
+
 
 #
 # Scenes
@@ -849,3 +880,6 @@ variable.tamper_detected:
       ? entities['input_boolean.tamper_detected'].state == 'on' ? 'card-critical'
       : 'card-warning'
       : null;
+
+persistent_notification.httplogin:
+  friendly_name: HTTP Login

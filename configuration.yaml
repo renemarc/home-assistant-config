@@ -112,7 +112,7 @@ group: !include_dir_merge_named groups/
 #
 # @link https://home-assistant.io/components/history/
 #
-# history:
+history:
 
 
 #
@@ -257,7 +257,7 @@ notify: !include_dir_merge_list notifications/
 #
 # Database recorder
 #
-# Reduce the number of tracked entities and length of history.
+# Limit the number of tracked entities and length of history.
 #
 # @link https://home-assistant.io/components/recorder/
 #

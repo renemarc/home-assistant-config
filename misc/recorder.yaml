@@ -1,21 +1,29 @@
+#
+# Database recorder
+#
+# Limit the number of tracked entities and length of history.
+#
+# @link https://home-assistant.io/components/recorder/
+#
 purge_interval: 2
 purge_keep_days: 5
-exclude:
-  domains:
-    - camera
-    - group
-    - light
-    - scene
-    - script
-    - sensor
-    - sun
-    - updater
-    - zone
-    - zwave
-  entities:
-    - switch.aeotec_zstick_disco_light
 include:
+  domains:
+    - device_tracker
   entities:
+    - binary_sensor.front_door
+    - binary_sensor.bedroom_motion
+    - binary_sensor.kitchen_leak_sensor
+    - binary_sensor.lounge_motion
+    - binary_sensor.washroom_leak_sensor
+    - binary_sensor.washroom_motion
+
+    - input_boolean.low_mode
+    - input_boolean.nap_mode
+    - input_boolean.night_mode
+    - input_boolean.quiet_mode
+    - input_boolean.scene_mode
+
     - sensor.aqi
     - sensor.aqi_carbon_monoxide
     - sensor.aqi_carbon_monoxide_friendly
@@ -26,16 +34,47 @@ include:
     - sensor.aqi_ozone_friendly
     - sensor.aqi_particles
     - sensor.aqi_particles_friendly
+
     - sensor.average_humidity
     - sensor.average_humidity_friendly
     - sensor.average_temperature
     - sensor.bedroom_humidity
+    - sensor.bedroom_luminance
     - sensor.bedroom_temperature
+    - sensor.humidor_humidity
+    - sensor.humidor_temperature
+    - sensor.kitchen_humidity
+    - sensor.kitchen_temperature
     - sensor.lounge_humidity
     - sensor.lounge_luminance
     - sensor.lounge_temperature
     - sensor.outside_humidity
     - sensor.outside_temperature
+    - sensor.washroom_humidity
+    - sensor.washroom_luminance
+    - sensor.washroom_temperature
+
+    - sensor.radon_friendly
+    - sensor.radon_daily
+    - sensor.radon_long_term
     - sensor.uv
     - sensor.uv_friendly
     - sensor.wind_speed
+
+    - sensor.doomsday_clock
+    - sensor.speedtest_ping
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+
+    - sensor.doors_status
+    - sensor.leak_status
+    - sensor.motion_status
+    - sensor.smoke_status
+    - sensor.tamper_status
+
+    - switch.bedroom_fan
+    - switch.dehumidifier
+
+exclude:
+  domains:
+    - switch

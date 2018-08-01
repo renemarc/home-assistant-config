@@ -8,6 +8,7 @@
 - platform: template
   sensors:
     doors_status:
+      friendly_name: Doors
       friendly_name_template: >-
         {% if is_state('input_boolean.doors_open', 'on') %}
           Doors open
@@ -59,6 +60,7 @@
         {{ value[:-1] }}
 
     leak_status:
+      friendly_name: Leaks
       friendly_name_template: >-
         {% if is_state('group.leak_sensors', 'on') %}
           Leak detected
@@ -125,6 +127,7 @@
         {{ value }}
 
     motion_status:
+      friendly_name: Motion
       friendly_name_template: >-
         {% if is_state('group.motion_sensors', 'on') %}
           Motion detected
@@ -178,6 +181,7 @@
         {{ value }}
 
     smoke_status:
+      friendly_name: Smoke
       friendly_name_template: >-
         {% if is_state('group.smoke_sensors', 'on') %}
           Smoke detected
@@ -211,6 +215,7 @@
 - platform: template
   sensors:
     tamper_status:
+      friendly_name: Tampering
       friendly_name_template: >-
         {% if is_state('input_boolean.tamper_detected', 'on') %}
           Tampering detected
