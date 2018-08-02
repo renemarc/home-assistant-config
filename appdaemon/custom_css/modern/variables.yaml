@@ -44,6 +44,7 @@ head_includes:
 #
 
 body_includes:
+ - !secret appdaemon_hass_url_motion_js
  - |
     <script>
     /**
@@ -51,11 +52,15 @@ body_includes:
      *
      * It turns off the sensor before turning it on again, to make sure that
      * any change is registered. A bit dirty, but it works!
+     *
+     * Variable "appdaemon_hass_url_motion_js" is defined in the secrets file,
+     * with the format:
+     *   [HOST]:[PORT]/api/states/binary_sensor.kiosk_motion?api_password=[PASS]
      */
     if (typeof fully != 'undefined') {
       function reportKioskMotion() {
         var xhttp = new XMLHttpRequest();
-        xhttp.open('POST', 'http://hassio.local:8123/api/states/binary_sensor.kiosk_motion', false);
+        xhttp.open('POST', appdaemon_hass_url_motion_js, false);
         xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         xhttp.send(JSON.stringify({
           'state': 'off',
@@ -63,7 +68,7 @@ body_includes:
             'friendly_name': 'Kiosk Motion'
           }
         }));
-        xhttp.open('POST', 'http://hassio.local:8123/api/states/binary_sensor.kiosk_motion', false);
+        xhttp.open('POST', appdaemon_hass_url_motion_js, false);
         xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         xhttp.send(JSON.stringify({
           'state': 'on',
@@ -75,6 +80,7 @@ body_includes:
       fully.bind('onMotion', 'reportKioskMotion();');
     }
     </script>
+
 
 #
 # Styles
