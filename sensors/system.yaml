@@ -44,18 +44,20 @@
       friendly_name: Home Assistant Version
       icon_template: mdi:update
       value_template: >-
-        {% if states('sensor.current_version') != 'unknown' %}
-          Home Assistant {{ states('sensor.current_version') }}
-        {% else %}
-          Home Assistant
-        {% endif %}
+        {% set version = states('sensor.current_version') %}
+
+        Home Assistant {% if version != 'unknown' -%}
+          {{ version }}
+        {%- endif %}
 
     update_available:
       friendly_name: Update Available
       icon_template: mdi:update
       value_template: >-
-        {% if states('updater.updater') != 'unknown' %}
-          Update available: {{ states('updater.updater') }}
+        {% set version = states('updater.updater') %}
+
+        {% if version != 'unknown' %}
+          Update available: {{ version }}
         {% endif %}
 
 
@@ -72,18 +74,27 @@
       icon_template: mdi:harddisk
       unit_of_measurement: '%'
       value_template: >-
-        {% set disk_use = states('sensor.disk_use_home') | float %}
-        {% set disk_free = states('sensor.disk_free_home') | float %}
+        {% set disk_use = states('sensor.disk_use_home') | float(-1) %}
+        {% set disk_free = states('sensor.disk_free_home') | float(-1) %}
 
-        {{ (100 * disk_use / (disk_use + disk_free)) | round }}
+        {% if disk_use >= 0 and disk_free >= 0 %}
+          {{ (100 * disk_use / (disk_use + disk_free)) | round }}
+        {% else %}
+          unknown
+        {% endif %}
 
     disk_free_percent:
       friendly_name: Disk Free /home
       icon_template: mdi:harddisk
       unit_of_measurement: '%'
       value_template: >-
-        {{ 100 - states('sensor.disk_use_percent') | float | round }}
+        {% set disk_use = states('sensor.disk_use_percent') | int(-1) %}
 
+        {% if disk_use >= 0 %}
+          {{ 100 - disk_use }}
+        {% else %}
+          unknown
+        {% endif %}
 
 #
 # RAM space
@@ -98,17 +109,27 @@
       icon_template: mdi:memory
       unit_of_measurement: '%'
       value_template: >-
-        {% set memory_use = states('sensor.memory_use') | float %}
-        {% set memory_free = states('sensor.memory_free') | float %}
+        {% set memory_use = states('sensor.memory_use') | float(-1) %}
+        {% set memory_free = states('sensor.memory_free') | float(-1) %}
 
-        {{ (100 * memory_use / (memory_use + memory_free)) | round }}
+        {% if memory_use >= 0 and memory_free >= 0 %}
+          {{ (100 * memory_use / (memory_use + memory_free)) | round }}
+        {% else %}
+          unknown
+        {% endif %}
 
     memory_free_percent:
       friendly_name: Memory Free
       icon_template: mdi:memory
       unit_of_measurement: '%'
       value_template: >-
-        {{ 100 - states('sensor.memory_use_percent') | float | round }}
+        {% set memory_use = states('sensor.memory_use_percent') | int(-1) %}
+
+        {% if memory_use >= 0 %}
+          {{ 100 - memory_use }}
+        {% else %}
+          unknown
+        {% endif %}
 
 
 #
@@ -123,47 +144,53 @@
       friendly_name: Server Uptime
       icon_template: mdi:server
       value_template: >-
-        {% set slb = states('sensor.since_last_boot').split(' ') %}
-        {% set count = slb | length %}
-        {% set hms = slb[count - 1] %}
-        {% set hms_trimmed = hms.split('.')[0] %}
-        {% set hms_split = hms_trimmed.split(':') %}
-        {% set seconds = hms_split[2] | int %}
-        {% set minutes = hms_split[1] | int %}
-        {% set hours = hms_split[0] | int %}
-        {% set days = slb[0]|int %}
+        {% set slb = states('sensor.since_last_boot') %}
 
-        {% if hours == 0 and minutes == 0 %}
-          {{ time }} seconds
-        {% else %}
-          {%- if days > 0 -%}
-            {%- if days == 1 -%}
-              1 day
-            {%- else -%}
-              {{ days }} days
-            {%- endif -%}
-          {%- endif -%}
-          {%- if hours > 0 and days < 7 -%}
+        {% if slb != 'unknown' %}
+          {% set slb = slb.split(' ') %}
+          {% set count = slb | length %}
+          {% set hms = slb[count - 1] %}
+          {% set hms_trimmed = hms.split('.')[0] %}
+          {% set hms_split = hms_trimmed.split(':') %}
+          {% set seconds = hms_split[2] | int %}
+          {% set minutes = hms_split[1] | int %}
+          {% set hours = hms_split[0] | int %}
+          {% set days = slb[0]|int %}
+
+          {% if hours == 0 and minutes == 0 %}
+            {{ time }} seconds
+          {% else %}
             {%- if days > 0 -%}
-              {{ ', ' }}
-            {%- endif -%}
-            {%- if hours == 1 -%}
-              1 hour
-            {%- else -%}
-              {{ hours }} hours
-            {%- endif -%}
-          {%- endif -%}
-          {%- if days == 0 and minutes > 0 -%}
-            {%- if hours > 0 -%}
-              {{ ', ' }}{{ minutes }} min
-            {%- else -%}
-              {%- if minutes == 1 -%}
-                1 minute
+              {%- if days == 1 -%}
+                1 day
               {%- else -%}
-                {{ minutes }} minutes
+                {{ days }} days
               {%- endif -%}
             {%- endif -%}
-          {%- endif -%}
+            {%- if hours > 0 and days < 7 -%}
+              {%- if days > 0 -%}
+                {{ ', ' }}
+              {%- endif -%}
+              {%- if hours == 1 -%}
+                1 hour
+              {%- else -%}
+                {{ hours }} hours
+              {%- endif -%}
+            {%- endif -%}
+            {%- if days == 0 and minutes > 0 -%}
+              {%- if hours > 0 -%}
+                {{ ', ' }}{{ minutes }} min
+              {%- else -%}
+                {%- if minutes == 1 -%}
+                  1 minute
+                {%- else -%}
+                  {{ minutes }} minutes
+                {%- endif -%}
+              {%- endif -%}
+            {%- endif -%}
+          {% endif %}
+        {% else %}
+          unknown
         {% endif %}
 
 
@@ -188,45 +215,49 @@
       friendly_name: Uptime
       icon_template: mdi:home-assistant
       value_template: >-
-        {% set uptime = states('sensor.uptime') | float %}
-        {% set time = (3600 * uptime) | int %}
-        {% set minutes = ((time % 3600) / 60) | int %}
-        {% set hours = ((time % 86400) / 3600) | int %}
-        {% set days = (time / 86400) | int %}
+        {% set uptime = states('sensor.uptime') | float(-1) %}
 
-        {% if time < 60 %}
-          {{ time }} seconds
-        {% else %}
-          {%- if days > 0 -%}
-            {%- if days == 1 -%}
-              1 day
-            {%- else -%}
-              {{ days }} days
-            {%- endif -%}
-          {%- endif -%}
-          {%- if hours > 0 and days < 7 -%}
+        {% if uptime >= 0 %}
+          {% set time = (3600 * uptime) | int %}
+          {% set minutes = ((time % 3600) / 60) | int %}
+          {% set hours = ((time % 86400) / 3600) | int %}
+          {% set days = (time / 86400) | int %}
+
+          {% if time < 60 %}
+            {{ time }} seconds
+          {% else %}
             {%- if days > 0 -%}
-              {{ ', ' }}
-            {%- endif -%}
-            {%- if hours == 1 -%}
-              1 hour
-            {%- else -%}
-              {{ hours }} hours
-            {%- endif -%}
-          {%- endif -%}
-          {%- if days == 0 and minutes > 0 -%}
-            {%- if hours > 0 -%}
-              {{ ', ' }}{{ minutes }} min
-            {%- else -%}
-              {%- if minutes == 1 -%}
-                1 minute
+              {%- if days == 1 -%}
+                1 day
               {%- else -%}
-                {{ minutes }} minutes
+                {{ days }} days
               {%- endif -%}
             {%- endif -%}
-          {%- endif -%}
+            {%- if hours > 0 and days < 7 -%}
+              {%- if days > 0 -%}
+                {{ ', ' }}
+              {%- endif -%}
+              {%- if hours == 1 -%}
+                1 hour
+              {%- else -%}
+                {{ hours }} hours
+              {%- endif -%}
+            {%- endif -%}
+            {%- if days == 0 and minutes > 0 -%}
+              {%- if hours > 0 -%}
+                {{ ', ' }}{{ minutes }} min
+              {%- else -%}
+                {%- if minutes == 1 -%}
+                  1 minute
+                {%- else -%}
+                  {{ minutes }} minutes
+                {%- endif -%}
+              {%- endif -%}
+            {%- endif -%}
+          {% endif %}
+        {% else %}
+          unknown
         {% endif %}
-
 
 #
 # CPU average load
@@ -241,11 +272,17 @@
       icon_template: mdi:chip
       unit_of_measurement: '%'
       value_template: >-
-         {% set load1 = '{0:0.2f}'.format(states('sensor.load_1m') | float) %}
-         {% set load5 = '{0:0.2f}'.format(states('sensor.load_5m') | float) %}
-         {% set load15 = '{0:0.2f}'.format(states('sensor.load_15m') | float) %}
+        {% set load1 = states('sensor.load_1m') | float(-1) %}
+        {% set load5 = states('sensor.load_5m') | float(-1) %}
+        {% set load15 = states('sensor.load_15m') | float(-1) %}
 
-         {{ load1 }} {{ load5 }} {{ load15 }}
+        {% if load1 > 0 and load5 > 0 and load15 > 0 %}
+          {% set load1f = '{0:0.2f}'.format(load1) %}
+          {% set load5f = '{0:0.2f}'.format(load5) %}
+          {% set load15f = '{0:0.2f}'.format(load15) %}
+
+          {{ load1f }} {{ load5f }} {{ load15f }}
+        {% endif %}
 
 
 #
@@ -262,8 +299,9 @@
 - platform: command_line
   name: CPU Cores
   scan_interval: 86400
-  command: "grep 'model name' /proc/cpuinfo | wc -l"
   icon_template: mdi:chip
+  command: >-
+    grep 'model name' /proc/cpuinfo | wc -l
 
 
 #
@@ -279,9 +317,17 @@
   name: CPU Temp
   scan_interval: 60
   unit_of_measurement: °C
-  command: cat /sys/class/thermal/thermal_zone0/temp
   icon_template: mdi:thermometer
-  value_template: '{{ (value | multiply(0.001)) | round(0) }}'
+  command: >-
+    if [ -e /sys/class/thermal/thermal_zone0/temp ]
+      then cat /sys/class/thermal/thermal_zone0/temp
+    fi
+  value_template: >-
+    {% if value != '' %}
+      {{ value | multiply(0.001) | round }}
+    {% else %}
+      unknown
+    {% endif %}
 
 
 #
@@ -304,14 +350,20 @@
       icon_template: mdi:database
       unit_of_measurement: 'MiB'
       value_template: >-
-         {{ states('sensor.homeassistant_v2db') | round }}
+        {{ states('sensor.homeassistant_v2db') | round }}
 
     log_size:
       friendly_name: Log Size
       icon_template: mdi:history
       unit_of_measurement: 'KiB'
       value_template: >-
-         {{ (states.sensor.homeassistantlog.attributes.bytes / 1024) | round }}
+        {% set size = state_attr('sensor.homeassistantlog', 'bytes') %}
+
+        {% if size != None %}
+          {{ (size / 1024) | round }}
+        {% else %}
+          unknown
+        {% endif %}
 
 
 #

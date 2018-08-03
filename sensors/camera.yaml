@@ -25,7 +25,7 @@
   json_attributes:
     - images
   value_template: >-
-    {% if value_json and value_json.images[0] %}
+    {% if value_json and value_json.images[0] and value_json.images[0].copyright %}
       {% set parts = value_json.images[0].copyright.split('(') %}
 
       {% for part in parts %}
@@ -71,7 +71,7 @@
     - url
   value_template: >-
     {% if value_json and value_json.title %}
-      {% if value_json.media_type == 'video' %}
+      {% if value_json.media_type and value_json.media_type == 'video' %}
         Video:
       {%- endif %} {{ value_json.title }}
     {% endif %}

@@ -31,13 +31,13 @@
         {{ states('sensor.humidor_acurite_battery') }}
 
       icon_template: >-
-        {% set battery_level = states('sensor.humidor_acurite_battery') %}
+        {% set battery_level = states('sensor.humidor_acurite_battery') | int(-1) %}
 
-        {% if battery_level == 'unknown' %}
+        {% if battery_level < 0 %}
           mdi:battery-unknown
-        {% elif battery_level|int > 10 %}
+        {% elif battery_level > 10 %}
           mdi:battery
-        {% elif battery_round|int == 10 %}
+        {% elif battery_level == 10 %}
           mdi:battery-alert
         {% else %}
           mdi:battery-outline
@@ -179,29 +179,29 @@
       friendly_name: Siren Monitor Battery
       unit_of_measurement: '%'
       value_template: >-
-        {% set battery_level = states('sensor.siren_monitor_power_management') %}
+        {% set battery_level = states('sensor.siren_monitor_power_management') | int(-1) %}
 
-        {% if battery_level == 'unknown' %}
+        {% if battery_level < 0 %}
           unknown
-        {% elif battery_level|int == 0 %}
+        {% elif battery_level == 0 %}
           100
-        {% elif battery_level|int == 10 %}
+        {% elif battery_level == 10 %}
           10
-        {% elif battery_round|int == 11 %}
+        {% elif battery_round == 11 %}
           5
         {% else %}
           0
         {% endif %}
       icon_template: >-
-        {% set battery_level = states('sensor.siren_monitor_power_management') %}
+        {% set battery_level = states('sensor.siren_monitor_power_management') | int(-1) %}
 
-        {% if battery_level == 'unknown' %}
+        {% if battery_level < 0 %}
           mdi:battery-unknown
-        {% elif battery_level|int == 0 %}
+        {% elif battery_level == 0 %}
           mdi:battery
-        {% elif battery_level|int == 10 %}
+        {% elif battery_level == 10 %}
           mdi:battery-10
-        {% elif battery_round|int == 11 %}
+        {% elif battery_round == 11 %}
           mdi:battery-alert
         {% else %}
           mdi:battery-outline

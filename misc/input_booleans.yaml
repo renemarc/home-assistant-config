@@ -40,8 +40,8 @@ kitchen_lights_override:
 #
 # Security
 #
-doors_open:
-  name: Doors are open
+door_test:
+  name: Door test
   icon: mdi:door-open
 
 leak_test:

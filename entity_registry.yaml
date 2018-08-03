@@ -33,8 +33,6 @@ binary_sensor.washroom_leak_sensor:
   name:
   platform: zwave
   unique_id: 8-72057594177126400
-
-
 light.bedroom:
   config_entry_id:
   name:
@@ -75,8 +73,6 @@ light.underbed:
   name:
   platform: lifx
   unique_id: d0:73:d5:15:0c:ae
-
-
 media_player.plex_htpc_chrome:
   config_entry_id:
   name:
@@ -132,8 +128,6 @@ media_player.plex_macbook_safari:
   name:
   platform: plex
   unique_id: w4tj5tb6p0of4l8itvl039jn
-
-
 sensor.bedroom_multisensor_alarm_level:
   config_entry_id:
   name:
@@ -174,7 +168,6 @@ sensor.bedroom_multisensor_ultraviolet:
   name:
   platform: zwave
   unique_id: 10-72057594210697650
-
 sensor.front_door_access_control:
   config_entry_id:
   name:
@@ -200,7 +193,6 @@ sensor.front_door_sourcenodeid:
   name:
   platform: zwave
   unique_id: 4-72057594111082529
-
 sensor.his_iphone_battery_level:
   config_entry_id:
   name:
@@ -211,7 +203,6 @@ sensor.his_iphone_battery_state:
   name:
   platform: ios
   unique_id: state_cellphone_him
-
 sensor.kitchen_leak_sensor_alarm_level:
   config_entry_id:
   name:
@@ -232,7 +223,6 @@ sensor.kitchen_leak_sensor_sourcenodeid:
   name:
   platform: zwave
   unique_id: 7-72057594161414177
-
 sensor.lounge_multisensor_alarm_type:
   config_entry_id:
   name:
@@ -273,7 +263,6 @@ sensor.lounge_multisensor_ultraviolet:
   name:
   platform: zwave
   unique_id: 5-72057594126811570
-
 sensor.siren_monitor_alarm_level:
   config_entry_id:
   name:
@@ -314,7 +303,6 @@ sensor.siren_monitor_temperature:
   name:
   platform: zwave
   unique_id: 12-72057594244251666
-
 sensor.washroom_leak_sensor_alarm_level:
   config_entry_id:
   name:
@@ -335,7 +323,6 @@ sensor.washroom_leak_sensor_sourcenodeid:
   name:
   platform: zwave
   unique_id: 8-72057594178191393
-
 sensor.washroom_multisensor_alarm_level:
   config_entry_id:
   name:
@@ -376,8 +363,6 @@ sensor.washroom_multisensor_ultraviolet:
   name:
   platform: zwave
   unique_id: 11-72057594227474866
-
-
 zwave.bedroom_multisensor:
   config_entry_id:
   name:
@@ -423,3 +408,8 @@ zwave.zstick:
   name:
   platform: zwave
   unique_id: node-1
+media_player.chrome:
+  config_entry_id:
+  name:
+  platform: plex
+  unique_id: g9cmwlagwerujlrbwjzad6i1

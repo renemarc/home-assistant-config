@@ -7,27 +7,38 @@
 #
 - platform: template
   sensors:
+    doors_location:
+      value_template: >-
+        {% set entities = [
+            states.binary_sensor.front_door,
+            states.input_boolean.door_test,
+          ]
+        %}
+        {% set value = entities | selectattr('state', 'equalto', 'on')
+                                | map(attribute='name')
+                                | join(',') %}
+        {% set value = value | replace(" Multisensor", "") %}
+        {% set value = value | replace(" Sensor", null) %}
+        {% set value = value | replace(",", ", ") %}
+
+        {{ value }}
+
     doors_status:
       friendly_name: Doors
       friendly_name_template: >-
-        {% if is_state('input_boolean.doors_open', 'on') %}
+        {% if is_state('group.door_sensors', 'on') %}
           Doors open
         {% else %}
           External doors
         {% endif %}
       icon_template: >-
-        {% if is_state('input_boolean.doors_open', 'on') %}
+        {% if is_state('group.door_sensors', 'on') %}
           mdi:door-open
         {% else %}
           mdi:door-closed
         {% endif %}
       value_template: >-
-        {% set dummy = is_state('input_boolean.doors_open', 'on') %}
-        {% set value = '' %}
-        {% if is_state('binary_sensor.front_door', 'on') %}
-          {% set value = value + 'Front Door,' %}
-        {% endif %}
-        {% set value = value[:-1] %}
+        {% set value = states('sensor.doors_location') %}
 
         {% if value != '' %}
           {{ value }}
@@ -47,17 +58,19 @@
   sensors:
     leak_location:
       value_template: >-
-        {% for entity_id in state_attr('group.leak_sensors', 'entity_id') -%}
-          {% if is_state(entity_id, 'on') -%}
-            {{ ' ' + state_attr(entity_id, 'friendly_name') }},
-          {%- endif %}
-        {%- endfor %}
+        {% set entities = [
+            states.binary_sensor.kitchen_leak_sensor,
+            states.binary_sensor.washroom_leak_sensor,
+            states.input_boolean.leak_test,
+          ]
+        %}
+        {% set value = entities | selectattr('state', 'equalto', 'on')
+                                | map(attribute='name')
+                                | join(',') %}
+        {% set value = value | replace(" Sensor", null) %}
+        {% set value = value | replace(",", ", ") %}
 
-    leak_location_friendly:
-      value_template: >-
-        {% set value = states('sensor.leak_location') %}
-
-        {{ value[:-1] }}
+        {{ value }}
 
     leak_status:
       friendly_name: Leaks
@@ -74,7 +87,7 @@
           mdi:pipe
         {% endif %}
       value_template: >-
-        {% set value = states('sensor.leak_location_friendly') %}
+        {% set value = states('sensor.leak_location') %}
 
         {% if value != '' %}
           {{ value }}
@@ -88,41 +101,28 @@
 #
 # Returns a comma-separated list of locations where motion is detected.
 #
+# @see https://community.home-assistant.io/t/jinja2-expert-help-needed/10183/26
+#
 - platform: template
   sensors:
     motion_location:
       value_template: >-
-        {% set value = '' %}
-
-        {% if is_state('binary_sensor.bedroom_motion', 'on') %}
-          {% set value = value + state_attr('binary_sensor.bedroom_motion', 'friendly_name') + '|' %}
-        {% endif %}
-
-        {% if is_state('binary_sensor.front_door', 'on') %}
-          {% set value = value + state_attr('binary_sensor.front_door', 'friendly_name') + '|' %}
-        {% endif %}
-
-        {% if is_state('binary_sensor.kiosk_motion_auto', 'on') %}
-          {% set value = value + state_attr('binary_sensor.kiosk_motion_auto', 'friendly_name') + '|' %}
-        {% endif %}
-
-        {% if is_state('binary_sensor.lounge_motion', 'on') %}
-          {% set value = value + state_attr('binary_sensor.lounge_motion', 'friendly_name') + '|' %}
-        {% endif %}
-
-        {% if is_state('binary_sensor.washroom_motion', 'on') %}
-          {% set value = value + state_attr('binary_sensor.washroom_motion', 'friendly_name') + '|' %}
-        {% endif %}
-
-        {% if is_state('input_boolean.motion_test', 'on') %}
-          {% set value = value + state_attr('input_boolean.motion_test', 'friendly_name') + '|' %}
-        {% endif %}
-
-        {% set value = value[:-1] %}
-        {% set value = value | replace(" Multisensor", "") %}
-        {% set value = value | replace(" Sensor", "") %}
-        {% set value = value | replace(" Motion", "") %}
-        {% set value = value | replace("|", ", ") %}
+        {% set entities = [
+            states.binary_sensor.bedroom_motion,
+            states.binary_sensor.front_door,
+            states.binary_sensor.kiosk_motion_auto,
+            states.binary_sensor.lounge_motion,
+            states.binary_sensor.washroom_motion,
+            states.input_boolean.motion_test,
+          ]
+        %}
+        {% set value = entities | selectattr('state', 'equalto', 'on')
+                                | map(attribute='name')
+                                | join(',') %}
+        {% set value = value | replace(" Multisensor", null) %}
+        {% set value = value | replace(" Sensor", null) %}
+        {% set value = value | replace(" Motion", null) %}
+        {% set value = value | replace(",", ", ") %}
 
         {{ value }}
 
@@ -162,21 +162,17 @@
   sensors:
     smoke_location:
       value_template: >-
-        {% set value = '' %}
-
-        {% if is_state('binary_sensor.siren_monitor_smoke', 'on') %}
-          {% set value = value + state_attr('binary_sensor.siren_monitor_smoke', 'friendly_name') + '|' %}
-        {% endif %}
-
-        {% if is_state('input_boolean.smoke_test', 'on') %}
-          {% set value = value + state_attr('input_boolean.smoke_test', 'friendly_name') + '|' %}
-        {% endif %}
-
-        {% set value = value[:-1] %}
-        {% set value = value | replace(" Multisensor", "") %}
-        {% set value = value | replace(" Sensor", "") %}
-        {% set value = value | replace(" Motion", "") %}
-        {% set value = value | replace("|", ", ") %}
+        {% set entities = [
+            states.binary_sensor.siren_monitor_smoke,
+            states.input_boolean.smoke_test,
+          ]
+        %}
+        {% set value = entities | selectattr('state', 'equalto', 'on')
+                                | map(attribute='name')
+                                | join(',') %}
+        {% set value = value | replace(" Multisensor", null) %}
+        {% set value = value | replace(" Sensor", null) %}
+        {% set value = value | replace(",", ", ") %}
 
         {{ value }}
 
@@ -230,6 +226,7 @@
         {% endif %}
       value_template: >-
         {% set dummy = is_state('input_boolean.tamper_detected', 'on') %}
+
         {% if not is_state('variable.tamper_detected', 'False') %}
           {{ states('variable.tamper_detected') }}
         {% else %}

@@ -35,7 +35,6 @@ automations:
     - automation.cct_limitlessled
     - automation.daily_greeting
     - automation.doors_notify
-    - automation.doors_verify
     - automation.front_door_notify
     - automation.go_to_sleep
     - automation.humidity_notify
@@ -122,7 +121,8 @@ configuration:
   name: Configuration Switches
   control: hidden
   entities:
-    - switch.aeotec_zstick_disco_light
+    - input_boolean.door_test
+    - sensor.doors_status
     - input_boolean.leak_test
     - sensor.leak_status
     - input_boolean.motion_test
@@ -132,3 +132,4 @@ configuration:
     - input_boolean.tamper_detected
     - variable.tamper_detected
     - script.tamper_reset
+    - switch.aeotec_zstick_disco_light

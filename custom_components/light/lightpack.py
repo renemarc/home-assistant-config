@@ -91,7 +91,7 @@ class Lightpack(Light):
                 if (profile != None):
                     telnet.read_until(b"\n", timeout=0.2)
                     telnet.write(("setprofile:" + profile + "\n").encode('ascii'))
-                    _LOGGER.error('lightpack profile set to : ' + profile)
+                    _LOGGER.info('lightpack profile set to : ' + profile)
             else:
                 telnet.write(("setstatus:off\n").encode('ascii'))
             telnet.read_until(b"\n", timeout=0.2)

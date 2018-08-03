@@ -3,14 +3,14 @@
 #
 # Todo: Add condition that no one has been detected at home.
 #
-# @subscribe input_boolean.doors_open
+# @subscribe group.door_sensors
 #
 - id: doors_notify
   alias: Doors NOTIFY
   trigger:
     # When a door has been left open for a while.
     - platform: state
-      entity_id: input_boolean.doors_open
+      entity_id: group.door_sensors
       to: 'on'
       for:
         minutes: 10

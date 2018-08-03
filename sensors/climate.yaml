@@ -13,31 +13,22 @@
       friendly_name: Bedroom Humidity Exact
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.bedroom_multisensor_relative_humidity') | round(1) }}"
+      value_template: >-
+        {{ states('sensor.bedroom_multisensor_relative_humidity') | round(1) }}
 
     bedroom_humidity:
       friendly_name: Bedroom Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.bedroom_multisensor_relative_humidity') | round }}"
-
-    bedroom_temperature_exact:
-      friendly_name: Bedroom Temperature Exact
-      unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.bedroom_multisensor_temperature') }}"
-
-    bedroom_temperature:
-      friendly_name: Bedroom Temperature
-      unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.bedroom_multisensor_temperature') | round }}"
+      value_template: >-
+        {{ states('sensor.bedroom_multisensor_relative_humidity') | round }}
 
     bedroom_luminance:
       friendly_name: Bedroom Luminance
       unit_of_measurement: 'lx'
       icon_template: mdi:blur
-      value_template: "{{ states('sensor.bedroom_multisensor_luminance') | round }}"
+      value_template: >-
+        {{ states('sensor.bedroom_multisensor_luminance') | round }}
 
     bedroom_luminance_friendly:
       friendly_name: Bedroom Luminance
@@ -45,21 +36,33 @@
       value_template: >-
         {% set lx = states('sensor.bedroom_multisensor_luminance') | int(-1) %}
 
-        {% if lx < 0 %}
-          unknown
-        {% elif 0 <= lx <= 10 %}
-          Dark
-        {% elif 11 <= lx <= 400 %}
-          Dim
-        {% elif 401 <= lx <= 1000 %}
-          Normal
-        {% elif 1001 <= lx <= 5000 %}
-          Bright
-        {% elif 5001 <= lx %}
+        {% if lx > 5000 %}
           Outdoors
+        {% elif lx > 1000 %}
+          Bright
+        {% elif lx > 400 %}
+          Normal
+        {% elif lx > 10 %}
+          Dim
+        {% elif lx >= 0 %}
+          Dark
         {% else %}
-          N/A
+          unknown
         {% endif %}
+
+    bedroom_temperature_exact:
+      friendly_name: Bedroom Temperature Exact
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.bedroom_multisensor_temperature') }}
+
+    bedroom_temperature:
+      friendly_name: Bedroom Temperature
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.bedroom_multisensor_temperature') | round }}
 
 - platform: filter
   name: Bedroom Humidity Filtered
@@ -123,13 +126,15 @@
       friendly_name: Humidor Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.humidor_humidity_exact') | round }}"
+      value_template: >-
+        {{ states('sensor.humidor_humidity_exact') | round }}
 
     humidor_temperature:
       friendly_name: Humidor Humidity
       unit_of_measurement: '°C'
       icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.humidor_temperature_exact') | round }}"
+      value_template: >-
+        {{ states('sensor.humidor_temperature_exact') | round }}
 
 - platform: filter
   name: Humidor Humidity Filtered
@@ -174,15 +179,20 @@
       icon_template: mdi:thermometer
       value_template: >-
         {% set calibration = -0.5 %}
-        {% set temperature = states('sensor.siren_monitor_temperature') | float | round(1) %}
+        {% set temperature = states('sensor.siren_monitor_temperature') | round(1) %}
 
-        {{ temperature + calibration }}
+        {% if temperature != 'unknown' %}
+          {{ temperature + calibration }}
+        {% else %}
+          unknown
+        {% endif %}
 
     kitchen_temperature:
       friendly_name: Kitchen Temperature
       unit_of_measurement: '°C'
       icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.kitchen_temperature_exact') | round }}"
+      value_template: >-
+        {{ states('sensor.kitchen_temperature_exact') | round }}
 
 - platform: filter
   name: Kitchen Temperature Filtered
@@ -214,31 +224,22 @@
       friendly_name: Lounge Humidity Exact
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.lounge_multisensor_relative_humidity') }}"
+      value_template: >-
+        {{ states('sensor.lounge_multisensor_relative_humidity') }}
 
     lounge_humidity:
       friendly_name: Lounge Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.lounge_humidity_exact') | round }}"
-
-    lounge_temperature_exact:
-      friendly_name: Lounge Temperature Exact
-      unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.lounge_multisensor_temperature') }}"
-
-    lounge_temperature:
-      friendly_name: Lounge Temperature
-      unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.lounge_temperature_exact') | round }}"
+      value_template: >-
+        {{ states('sensor.lounge_humidity_exact') | round }}
 
     lounge_luminance:
       friendly_name: Lounge Luminance
       unit_of_measurement: 'lx'
       icon_template: mdi:blur
-      value_template: "{{ states('sensor.lounge_multisensor_luminance') | round }}"
+      value_template: >-
+        {{ states('sensor.lounge_multisensor_luminance') | round }}
 
     lounge_luminance_friendly:
       friendly_name: Lounge Luminance
@@ -246,21 +247,33 @@
       value_template: >-
         {% set lx = states('sensor.lounge_multisensor_luminance') | int(-1) %}
 
-        {% if lx < 0 %}
-          unknown
-        {% elif 0 <= lx <= 10 %}
-          Dark
-        {% elif 11 <= lx <= 400 %}
-          Dim
-        {% elif 401 <= lx <= 1000 %}
-          Normal
-        {% elif 1001 <= lx <= 5000 %}
-          Bright
-        {% elif 5001 <= lx %}
+        {% if lx > 5000 %}
           Outdoors
+        {% elif lx > 1000 %}
+          Bright
+        {% elif lx > 400 %}
+          Normal
+        {% elif lx > 10 %}
+          Dim
+        {% elif lx >= 0 %}
+          Dark
         {% else %}
-          N/A
+          unknown
         {% endif %}
+
+    lounge_temperature_exact:
+      friendly_name: Lounge Temperature Exact
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.lounge_multisensor_temperature') }}
+
+    lounge_temperature:
+      friendly_name: Lounge Temperature
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.lounge_temperature_exact') | round }}
 
 - platform: filter
   name: Lounge Humidity Filtered
@@ -302,31 +315,22 @@
       friendly_name: Washroom Humidity Exact
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.washroom_multisensor_relative_humidity') }}"
+      value_template: >-
+        {{ states('sensor.washroom_multisensor_relative_humidity') }}
 
     washroom_humidity:
       friendly_name: Washroom Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.washroom_multisensor_relative_humidity') | round }}"
-
-    washroom_temperature_exact:
-      friendly_name: Washroom Temperature Exact
-      unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.washroom_multisensor_temperature') }}"
-
-    washroom_temperature:
-      friendly_name: Washroom Temperature
-      unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.washroom_multisensor_temperature') | round }}"
+      value_template: >-
+        {{ states('sensor.washroom_multisensor_relative_humidity') | round }}
 
     washroom_luminance:
       friendly_name: Washroom Luminance
       unit_of_measurement: 'lx'
       icon_template: mdi:blur
-      value_template: "{{ states('sensor.washroom_multisensor_luminance') | round }}"
+      value_template: >-
+        {{ states('sensor.washroom_multisensor_luminance') | round }}
 
     washroom_luminance_friendly:
       friendly_name: Washroom Luminance
@@ -334,21 +338,33 @@
       value_template: >-
         {% set lx = states('sensor.washroom_multisensor_luminance') | int(-1) %}
 
-        {% if lx < 0 %}
-          unknown
-        {% elif 0 <= lx <= 10 %}
-          Dark
-        {% elif 11 <= lx <= 400 %}
-          Dim
-        {% elif 401 <= lx <= 1000 %}
-          Normal
-        {% elif 1001 <= lx <= 5000 %}
-          Bright
-        {% elif 5001 <= lx %}
+        {% if lx > 5000 %}
           Outdoors
+        {% elif lx > 1000 %}
+          Bright
+        {% elif lx > 400 %}
+          Normal
+        {% elif lx > 10 %}
+          Dim
+        {% elif lx >= 0 %}
+          Dark
         {% else %}
-          N/A
+          unknown
         {% endif %}
+
+    washroom_temperature_exact:
+      friendly_name: Washroom Temperature Exact
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.washroom_multisensor_temperature') }}
+
+    washroom_temperature:
+      friendly_name: Washroom Temperature
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.washroom_multisensor_temperature') | round }}
 
 - platform: filter
   name: Washroom Humidity Filtered
@@ -432,29 +448,31 @@
       value_template: >-
         {% set radon = states('sensor.radon_daily') | int(-1) %}
 
-        {% if radon < 0 %}
-          unknown
-        {% elif radon >= 150 %}
+        {% if radon >= 150 %}
           Danger
         {% elif radon >= 100 %}
           High
-        {% elif radon > 50 %}
+        {% elif radon >= 50 %}
           OK-High
-        {% else %}
+        {% elif radon >= 0 %}
           OK
+        {% else %}
+          unknown
         {% endif %}
 
     radon_detector_humidity:
       friendly_name: Radon Detector Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.radon_detector_humidity_exact') | round }}"
+      value_template: >-
+        {{ states('sensor.radon_detector_humidity_exact') | round }}
 
     radon_detector_temperature:
       friendly_name: Radon Detector Temperature
       unit_of_measurement: '°C'
       icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.radon_detector_temperature_exact') | round }}"
+      value_template: >-
+        {{ states('sensor.radon_detector_temperature_exact') | round }}
 
 - platform: filter
   name: Radon Detector Humidity Filtered
@@ -495,7 +513,8 @@
       friendly_name: Temperature
       unit_of_measurement: '°C'
       icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.average_temperature_exact') | round }}"
+      value_template: >-
+        {{ states('sensor.average_temperature_exact') | round }}
 
 
 #
@@ -522,7 +541,8 @@
       friendly_name: Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.average_humidity_exact') | round }}"
+      value_template: >-
+        {{ states('sensor.average_humidity_exact') | round }}
 
 - platform: template
   sensors:
@@ -530,7 +550,7 @@
       friendly_name: Humidity
       icon_template: mdi:water-percent
       value_template: >-
-        {% set humidity = states('sensor.average_humidity') | int %}
+        {% set humidity = states('sensor.average_humidity') | int(-1) %}
 
         {% if humidity > 90 %}
           Mold imminent
@@ -544,6 +564,8 @@
           OK
         {% elif humidity >= 30 %}
           OK-Low
-        {% else %}
+        {% elif humidity >= 0 %}
           Too dry
+        {% else %}
+          unknown
         {% endif %}

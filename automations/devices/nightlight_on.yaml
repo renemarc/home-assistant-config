@@ -1,7 +1,7 @@
 #
 # Turn on nightlights when appropriate
 #
-# @subscribe group.motion_sensors
+# @subscribe group.motion_sensors_critical
 # @subscribe input_boolean.night_mode
 #
 - id: nightlight_on
@@ -9,7 +9,7 @@
   trigger:
     # When motion is detected.
     - platform: state
-      entity_id: group.motion_sensors
+      entity_id: group.motion_sensors_critical
       to: 'on'
 
   condition:

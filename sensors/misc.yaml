@@ -32,22 +32,27 @@
       value_template: >-
         {% set counter = 0 %}
         {% set modes = '' %}
+
         {% if is_state('input_boolean.nap_mode', 'on') %}
           {% set modes = modes + '+ Nap ' %}
           {% set counter = counter + 1 %}
         {% endif %}
+
         {% if is_state('input_boolean.night_mode', 'on') %}
           {% set modes = modes + '+ Night ' %}
           {% set counter = counter + 1 %}
         {% endif %}
+
         {% if is_state('input_boolean.quiet_mode', 'on') %}
           {% set modes = modes + '+ Quiet ' %}
           {% set counter = counter + 1 %}
         {% endif %}
+
         {% if is_state('input_boolean.scene_mode', 'on') %}
           {% set modes = modes + '+ Scene ' %}
           {% set counter = counter + 1 %}
         {% endif %}
+
         {% if modes == '' %}
           {% set modes = 'Regular ' %}
           {% set counter = counter + 1 %}
@@ -64,23 +69,20 @@
 #
 # @link http://www.lifestalker.com/2017/04/four-word-quotes.html
 #
-- platform: random
-  name: Good Vibes index
-  scan_interval: 60
-  maximum: 42
-
 - platform: template
   sensors:
     good_vibes:
       friendly_name: Good Vibes
       icon_template: mdi:emoticon-happy
+      entity_id:
+        - sensor.time
       value_template: >-
-        {% set index = states('sensor.good_vibes_index') | int %}
         {% set vibes = [
           "Be great.",
           "Be happy!",
+          "Be in the now.",
           "Be the hero.",
-          "Begin anywhere. —John Cage",
+          "Begin anywhere.",
           "Compliment someone today.",
           "Do something great.",
           "Don't worry, be happy.",
@@ -95,6 +97,7 @@
           "Just go for it.",
           "Just ship it.",
           "Live with passion.",
+          "Love yourself.",
           "Never doubt your instinct.",
           "People envy you",
           "People want to be you",
@@ -113,7 +116,7 @@
           "You are the best!",
           "You are the champion...",
           "You are the most awesome!",
-          "You are your choices. —Seneca",
+          "You are your choices.",
           "You can do great things!",
           "You can move mountains",
           "You live only once.",
@@ -121,5 +124,6 @@
           "You make people happy.",
           "Your time is now.",
         ] %}
+        {% set index = range(0, vibes|length - 1) | random %}
 
         {{ vibes[index] }}

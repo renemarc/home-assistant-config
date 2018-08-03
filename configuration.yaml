@@ -150,9 +150,7 @@ http:
   api_password: !secret http_password
   base_url: !secret http_base_url
   server_port: !secret http_server_port
-  cors_allowed_origins:
-    - !secret http_cors_origin_1
-    - !secret http_cors_origin_2
+  cors_allowed_origins: !secret http_cors_allowed_origins
 
 
 #
@@ -215,7 +213,10 @@ logger:
   logs:
     aiohttp.server: critical # EBOX newer component bug.
     custom_components.display: critical # When tablet is offline.
+    homeassistant.components.device_tracker.unifi: fatal # When Unifi Controller is temporarily unreachable.
     homeassistant.components.media_player.plex: fatal # When Plex is offline.
+    homeassistant.components.switch.tplink: error # When switch is unplugged.
+    pyunifi.controller: error # When Unifi Controller is temporarily unreachable.
 
 
 #

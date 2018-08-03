@@ -24,9 +24,9 @@
         notification_id: water
         title: "Water leak"
         message: |
-          {% if states('sensor.leak_location_friendly') != '' %}
+          {% if states('sensor.leak_location') != '' %}
             A leak has been detected at location:
-            <strong>{{ states('sensor.leak_location_friendly') }}</strong>.
+            <strong>{{ states('sensor.leak_location') }}</strong>.
           {% else %}
             A leak has been detected.
           {% endif %}
@@ -37,8 +37,8 @@
         title: "Water leak"
         message: |
           A leak has been detected.
-          {% if states('sensor.leak_location_friendly') != '' -%}
-            Location: {{ states('sensor.leak_location_friendly') }}
+          {% if states('sensor.leak_location') != '' -%}
+            Location: {{ states('sensor.leak_location') }}
           {% endif %}
 
     # Play a warning sound and message.
@@ -53,6 +53,6 @@
       data_template:
         message: >-
           A water leak has been detected.
-          {% if states('sensor.leak_location_friendly') != '' -%}
-            Check the {{ states('sensor.leak_location_friendly') }}!
+          {% if states('sensor.leak_location') != '' -%}
+            Check the {{ states('sensor.leak_location') }}!
           {% endif %}

@@ -3,7 +3,7 @@
 #
 # Todo: use an OFF timer instead of relying on motion detectors.
 #
-# @subscribe group.motion_sensors
+# @subscribe group.motion_sensors_critical
 # @subscribe input_boolean.night_mode
 #
 - id: nightlight_off
@@ -11,7 +11,7 @@
   trigger:
     # Motion no longer detected.
     - platform: state
-      entity_id: group.motion_sensors
+      entity_id: group.motion_sensors_critical
       to: 'off'
 
   condition:

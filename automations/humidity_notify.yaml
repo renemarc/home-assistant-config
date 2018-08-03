@@ -5,7 +5,7 @@
 # Mold grows above 55% relative humidity, and thrives above 70%.
 # Only verify if doors and windows are closed.
 #
-# @subscribe input_boolean.doors_open
+# @subscribe group.door_sensors
 # @subscribe input_boolean.windows_open
 #
 - id: humidity_notify
@@ -24,7 +24,7 @@
   condition:
     # If doors have been closed for a while.
     - condition: state
-      entity_id: input_boolean.doors_open
+      entity_id: group.door_sensors
       state: 'off'
       for:
         minutes: 60

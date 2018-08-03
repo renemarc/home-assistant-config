@@ -188,17 +188,17 @@ lounge_humidity:
 #
 # Battery
 #
-bedroom_multisensor_battery:
-    widget_type: sensor
-    entity: sensor.bedroom_multisensor_battery
-    title2: Bedroom
-    widget_style: "background-color:inherit;"
-    title2_style: "margin-top:3px;"
-
 front_door_sensor_battery:
     widget_type: sensor
     entity: sensor.front_door_sensor_battery
     title2: Front Door
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
+
+humidor_multisensor_battery:
+    widget_type: sensor
+    entity: sensor.humidor_multisensor_battery
+    title2: Humidor
     widget_style: "background-color:inherit;"
     title2_style: "margin-top:3px;"
 
@@ -236,7 +236,7 @@ washroom_leak_sensor_battery:
 #
 status_doors:
     widget_type: binary_sensor
-    entity: input_boolean.doors_open
+    entity: group.door_sensors
     title: Doors
     icon_on: mdi-lock-open-outline
     icon_off: mdi-lock
@@ -249,7 +249,7 @@ status_leak:
 
 status_motion:
     widget_type: binary_sensor
-    entity: input_boolean.motion_detected
+    entity: group.motion_sensors
     title: Motion
 
 status_tamper:
@@ -267,5 +267,5 @@ layout:
     - nav_switchboard,  uptime, uptime_host, database_size, log_size, spacer(1x1), status_doors, status_motion, status_leak, status_tamper
     - nav_weather,      cpu_temp, cpu_use, memory_use, disk_use, spacer(2x1), sensor.speedtest_ping, upspeed, downspeed
     - nav_spacer(1x2)
-    -                   average_temperature, bedroom_temperature, lounge_temperature, spacer(2x1), kiosk_battery, front_door_sensor_battery, bedroom_multisensor_battery, lounge_multisensor_battery
+    -                   average_temperature, bedroom_temperature, lounge_temperature, spacer(2x1), kiosk_battery, front_door_sensor_battery, humidor_multisensor_battery, lounge_multisensor_battery
     - nav_status,       average_humidity, bedroom_humidity, lounge_humidity, spacer(2x1), kitchen_leak_sensor_battery, washroom_leak_sensor_battery

@@ -84,11 +84,6 @@ Greet the day with a daily briefing.
 Warn someone if a door was left open for too long.
 
 
-### [`🚪️ ./doors_verify.yaml`](doors_verify.yaml)
-
-Verify the state of all external doors.
-
-
 ### [`🚪️ ./front_door_notify.yaml`](front_door_notify.yaml)
 
 Warn whenever the front door is opening or closing.

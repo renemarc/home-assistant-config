@@ -9,7 +9,7 @@
 - platform: ebox
   username: !secret ebox_username
   password: !secret ebox_password
-  scan_interval: 900
+  scan_interval: 3600
   monitored_variables:
    - before_offpeak_download
    - before_offpeak_upload
@@ -37,13 +37,13 @@
       icon_template: mdi:briefcase-download
       unit_of_measurement: 'Gb'
       value_template: >-
-        {% set limit = states('sensor.ebox_data_limit') %}
-        {% set download = states('sensor.ebox_download') %}
+        {% set limit = states('sensor.ebox_data_limit') | float(-1) %}
+        {% set download = states('sensor.ebox_download') | float(-1) %}
 
-        {% if limit != 'unknown' and limit|int == 0 %}
+        {% if limit == 0 %}
           ∞
-        {% elif limit != 'unknown' and download != 'unknown' %}
-          {{ (limit|float - download|float) | int }}
+        {% elif limit > 0 and download >= 0 %}
+          {{ (limit - download) | int }}
         {% else %}
           unknown
         {% endif %}
@@ -53,16 +53,15 @@
       icon_template: mdi:speedometer
       unit_of_measurement: 'Gb'
       value_template: >-
-        {% set limit = states('sensor.ebox_data_limit') %}
+        {% set days = states('sensor.days_remaining_in_month') | int(-1) %}
         {% set download = states('sensor.ebox_download_remaining') %}
-        {% set days = states('sensor.days_remaining_in_month') %}
 
-        {% if limit != 'unknown' and limit|int == 0 %}
+        {% if download == '∞' %}
           ∞
-        {% elif download == 'unknown' or days == 'unknown' %}
+        {% elif download == 'unknown' or days < 0 %}
           unknown
-        {% elif download|float > 0 and days|int > 0 %}
-          {{ (download|float / days|int) | int }}
+        {% elif download|float > 0 and days > 0 %}
+          {{ (download|float / days) | int }}
         {% else %}
           0
         {% endif %}
