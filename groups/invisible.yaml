@@ -73,12 +73,12 @@ smoke_sensors:
 waqi:
   name: World Air Quality Index
   entities:
-    - sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada
-    - sensor.waqi_drummond_montreal_canada
-    - sensor.waqi_molson_montreal_canada
-    - sensor.waqi_rivesud_de_montreal_quebec_canada
-    - sensor.waqi_stdominique_montreal_canada
-    - sensor.waqi_verdun_montreal_canada
+    - sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec
+    - sensor.waqi_drummond_montreal
+    - sensor.waqi_molson_montreal
+    - sensor.waqi_rivesud_de_montreal_quebec
+    - sensor.waqi_stdominique_montreal
+    - sensor.waqi_verdun_montreal
 
 washroom_lights:
   name: Washroom Lights

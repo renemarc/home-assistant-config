@@ -563,8 +563,8 @@ sensor.aqi_friendly:
   extra_badge:
     entity_id: sensor.aqi
   extra_data_template: >-
-    return entities['sensor.aqi_stations_count'].state != 'unknown' ?
-    entities['sensor.aqi_stations_count'].state + ' stations average'
+    var v = parseInt(entities['sensor.aqi_stations_count'].state);
+    return v > 1 ? v + ' stations average'
     : null;
   templates:
     theme: >-

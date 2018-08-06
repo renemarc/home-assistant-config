@@ -110,6 +110,23 @@ These are default Home Assistant components that were copied from the core to al
 </div>
 
 
+### [`🌫 ./sensor/waqi.py`](sensor/waqi.py)
+
+[WAQI](https://github.com/home-assistant/home-assistant/blob/master/homeassistant/components/sensor/waqi.py) World Air Quality Index:
+- Added support for location query by UID (otherwise some locations are never returned when doing a general keyword search).
+
+<div align="center">
+    <figure>
+        <div>
+            <img src="../www/screenshots/group-atmosphere.png" alt="Atmospheric Safety group" title="Atmospheric Safety group" width="325">
+        </div>
+        <figcaption>
+            <p><strong>World Air Quality Index</strong></p>
+        </figcaption>
+    </figure>
+</div>
+
+
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
