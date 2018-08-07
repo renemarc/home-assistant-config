@@ -73,6 +73,11 @@ light.underbed:
   name:
   platform: lifx
   unique_id: d0:73:d5:15:0c:ae
+media_player.plex_cellphone_his:
+  config_entry_id:
+  name:
+  platform: plex
+  unique_id: B3C17286-AC4F-47E0-B813-F77DE6B57256
 media_player.plex_htpc_chrome:
   config_entry_id:
   name:
@@ -193,12 +198,12 @@ sensor.front_door_sourcenodeid:
   name:
   platform: zwave
   unique_id: 4-72057594111082529
-sensor.his_iphone_battery_level:
+sensor.his_cellphone_battery_level:
   config_entry_id:
   name:
   platform: ios
   unique_id: level_cellphone_him
-sensor.his_iphone_battery_state:
+sensor.his_cellphone_battery_state:
   config_entry_id:
   name:
   platform: ios
@@ -408,8 +413,3 @@ zwave.zstick:
   name:
   platform: zwave
   unique_id: node-1
-media_player.chrome:
-  config_entry_id:
-  name:
-  platform: plex
-  unique_id: g9cmwlagwerujlrbwjzad6i1

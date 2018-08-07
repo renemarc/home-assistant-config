@@ -143,8 +143,11 @@ switch_air_filter:
 # Kitchen
 #
 label_kitchen:
-    widget_type: label
     title2: Kitchen
+    widget_type: multisensor
+    title2: Kitchen
+    entity: sensor.kitchen_temperature
+    entity2: ""
     widget_style: "background-color:SADDLEBROWN;"
     title2_style: "font-size:175%;font-weight:400;"
 
@@ -177,8 +180,10 @@ light_sink:
 # Washroom
 #
 label_washroom:
-    widget_type: label
+    widget_type: multisensor
     title2: Toilet
+    entity: sensor.washroom_temperature
+    entity2: sensor.washroom_humidity
     widget_style: "background-color:ROYALBLUE;"
     title2_style: "font-size:175%;font-weight:400;"
 
