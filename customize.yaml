@@ -13,6 +13,8 @@ automation.go_to_sleep:
   icon: mdi:weather-night
 automation.theme_auto:
   icon: mdi:theme-light-dark
+automation.power_supply_notify:
+  icon: mdi:flash-circle
 automation.radon_notify:
   icon: mdi:radioactive
 automation.scene_daylight:

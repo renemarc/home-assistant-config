@@ -78,6 +78,13 @@ A local copy of my depressing [Doomsday Clock sensor](https://github.com/renemar
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
+### [`⚡ ./sensor/rpi_power.py`](sensor/rpi_power.py)
+
+Verifies that the host's power supply is [providing sufficient voltage](https://community.home-assistant.io/t/raspberry-pi-power-sensor-updated-2018-07-25/58155) thanks to this [Raspberry Pi power sensor by **@ludeeus**](https://github.com/custom-components/sensor.rpi_power).
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+
 ### [`❓ ./variable.py`](variables.py)
 
 The missing link that allows storage of non-boolean values using the [Variable component by **@rogro82**](https://github.com/rogro82/hass-variables).

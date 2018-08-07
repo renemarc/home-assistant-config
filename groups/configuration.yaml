@@ -39,6 +39,7 @@ automations:
     - automation.go_to_sleep
     - automation.humidity_notify
     - automation.humidor_notify
+    - automation.power_supply_notify
     - automation.radon_notify
     - automation.scene_daylight
     - automation.scene_gaming
