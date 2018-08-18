@@ -50,7 +50,8 @@ binary_sensor.kitchen_leak_sensor:
       friendly_name: Floor
   templates:
     theme: >-
-      return state == 'on' ? 'card-critical'
+      return state == 'on'
+      ? 'card-critical'
       : null;
 binary_sensor.bedroom_motion:
   device_class: motion
@@ -74,7 +75,8 @@ binary_sensor.siren_monitor_smoke:
   # icon: mdi:smoke-detector
   templates:
     theme: >-
-      return state == 'on' ? 'card-critical'
+      return state == 'on'
+      ? 'card-critical'
       : null;
 binary_sensor.washroom_leak_sensor:
   device_class: moisture
@@ -85,7 +87,8 @@ binary_sensor.washroom_leak_sensor:
       friendly_name: Floor
   templates:
     theme: >-
-      return state == 'on' ? 'card-critical'
+      return state == 'on'
+      ? 'card-critical'
       : null;
 binary_sensor.washroom_motion:
   device_class: motion
@@ -116,15 +119,19 @@ device_tracker.cellphone_her:
   icon: mdi:cellphone-iphone
   extra_data_template:
     - >-
-      ${entities['device_tracker.laptop_her'].attributes['friendly_name']} is
-      ${entities['device_tracker.laptop_her'].state}.
+      var e = 'device_tracker.laptop_her';
+      return entities[e] !== undefined && entities[e].state != 'unknown'
+      ? entities[e].attributes['friendly_name'] + ' is ' + entities[e].state + '.'
+      : null;
 device_tracker.cellphone_him:
   friendly_name: !secret nickname_him
   icon: mdi:cellphone-iphone
   extra_data_template:
     - >-
-      ${entities['device_tracker.laptop_him'].attributes['friendly_name']} is
-      ${entities['device_tracker.laptop_him'].state}.
+      var e = 'device_tracker.laptop_him';
+      return entities[e] !== undefined && entities[e].state != 'unknown'
+      ? entities[e].attributes['friendly_name'] + ' is ' + entities[e].state + '.'
+      : null;
 device_tracker.laptop_her:
   friendly_name: Her laptop
   icon: mdi:laptop
@@ -170,7 +177,8 @@ input_boolean.tamper_detected:
   confirm_controls_show_lock: true
   templates:
     theme: >-
-      return state == 'on' ? 'card-critical'
+      return state == 'on'
+      ? 'card-critical'
       : null;
 
 
@@ -194,9 +202,8 @@ input_select.lightpack_effect:
 #
 light.aurora:
   extra_data_template: >-
-    return (attributes.brightness) ?
-    attributes.effect + ' @ ' +
-    Math.round(attributes.brightness / 255 * 100) + '%'
+    return (attributes.brightness)
+    ? attributes.effect + ' @ ' + Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:vector-triangle
   slider_theme:
@@ -208,8 +215,10 @@ light.aurora:
   state_card_mode: break-slider
 light.bedroom:
   extra_data_template: >-
-    return (state === 'on' && entities['sensor.ceiling_effect_loaded'].state) ?
-    entities['sensor.ceiling_effect_loaded'].state
+    var e = 'sensor.ceiling_effect_loaded',
+        v = entities[e] !== undefined && entities[e].state != 'unknown' && entities[e].state;
+    return state === 'on' && v
+    ? v
     : null;
   icon: mdi:led-strip
   slider_theme:
@@ -220,9 +229,9 @@ light.bedroom:
     report_when_not_changed: false
 light.countertop:
   extra_data_template: >-
-    return (attributes.brightness) ?
-    Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
-    Math.round(attributes.brightness / 255 * 100) + '%'
+    return (attributes.brightness)
+    ? Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
+      Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:border-top
   assumed_state: false
@@ -234,9 +243,9 @@ light.countertop:
     report_when_not_changed: false
 light.island:
   extra_data_template: >-
-    return (attributes.brightness) ?
-    Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
-    Math.round(attributes.brightness / 255 * 100) + '%'
+    return (attributes.brightness)
+    ? Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
+      Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:table-column
   assumed_state: false
@@ -248,8 +257,10 @@ light.island:
     report_when_not_changed: false
 light.headboard:
   extra_data_template: >-
-    return (state === 'on' && entities['sensor.bed_effect_loaded'].state) ?
-    entities['sensor.bed_effect_loaded'].state
+    var e = 'sensor.bed_effect_loaded',
+        v = entities[e] !== undefined && entities[e].state != 'unknown' && entities[e].state;
+    return state === 'on' && v
+    ? v
     : null;
   icon: mdi:gate
   slider_theme:
@@ -260,14 +271,18 @@ light.headboard:
     report_when_not_changed: false
 light.lightpack:
   extra_data_template: >-
-    return (state === 'on' && entities['sensor.lightpack_effect_loaded'].state) ?
-    entities['sensor.lightpack_effect_loaded'].state
+    var e = 'sensor.lightpack_effect_loaded',
+        v = entities[e] !== undefined && entities[e].state != 'unknown' && entities[e].state;
+    return state === 'on' && v
+    ? v
     : null;
   icon: mdi:television
 light.lounge:
   extra_data_template: >-
-    return (state === 'on' && entities['sensor.ceiling_effect_loaded'].state) ?
-    entities['sensor.ceiling_effect_loaded'].state
+    var e = 'sensor.ceiling_effect_loaded',
+        v = entities[e] !== undefined && entities[e].state != 'unknown' && entities[e].state;
+    return state === 'on' && v
+    ? v
     : null;
   icon: mdi:led-strip
   slider_theme:
@@ -278,9 +293,9 @@ light.lounge:
     report_when_not_changed: false
 light.microwave:
   extra_data_template: >-
-    return (attributes.brightness) ?
-    Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
-    Math.round(attributes.brightness / 255 * 100) + '%'
+    return (attributes.brightness)
+    ? Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
+      Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:gradient
   assumed_state: false
@@ -292,8 +307,10 @@ light.microwave:
     report_when_not_changed: false
 light.middle:
   extra_data_template: >-
-    return (state === 'on' && entities['sensor.ceiling_effect_loaded'].state) ?
-    entities['sensor.ceiling_effect_loaded'].state
+    var e = 'sensor.ceiling_effect_loaded',
+        v = entities[e] !== undefined && entities[e].state != 'unknown' && entities[e].state;
+    return state === 'on' && v
+    ? v
     : null;
   icon: mdi:led-strip
   slider_theme:
@@ -304,9 +321,9 @@ light.middle:
     report_when_not_changed: false
 light.shower:
   extra_data_template: >-
-    return (attributes.brightness) ?
-    Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
-    Math.round(attributes.brightness / 255 * 100) + '%'
+    return (attributes.brightness)
+    ? Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
+      Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:spotlight
   slider_theme:
@@ -318,9 +335,9 @@ light.shower:
   state_card_mode: break-slider
 light.sink:
   extra_data_template: >-
-    return (attributes.brightness) ?
-    Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
-    Math.round(attributes.brightness / 255 * 100) + '%'
+    return (attributes.brightness)
+    ? Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
+      Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:water-pump
   assumed_state: false
@@ -332,9 +349,9 @@ light.sink:
     report_when_not_changed: false
 light.spotlight:
   extra_data_template: >-
-    return (attributes.brightness) ?
-    Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
-    Math.round(attributes.brightness / 255 * 100) + '%'
+    return (attributes.brightness)
+    ? Math.round(1000000 / attributes.color_temp / 50) * 50 + ' K @ ' +
+      Math.round(attributes.brightness / 255 * 100) + '%'
     : null;
   icon: mdi:spotlight-beam
   slider_theme:
@@ -346,8 +363,10 @@ light.spotlight:
   state_card_mode: break-slider
 light.underbed:
   extra_data_template: >-
-    return (state === 'on' && entities['sensor.bed_effect_loaded'].state) ?
-    entities['sensor.bed_effect_loaded'].state
+    var e = 'sensor.bed_effect_loaded',
+        v = entities[e] !== undefined && entities[e].state != 'unknown' && entities[e].state;
+    return state === 'on' && v
+    ? v
     : null;
   icon: mdi:hotel
   slider_theme:
@@ -388,8 +407,9 @@ sensor.smoke_status:
 sensor.tamper_status:
   templates:
     theme: >-
-      return state != 'Clear'
-      ? entities['input_boolean.tamper_detected'].state == 'on' ? 'card-critical'
+      var e = 'input_boolean.tamper_detected';
+      return state != 'Clear' && entities[e] !== undefined
+      ? entities[e].state == 'on' ? 'card-critical'
       : 'card-warning'
       : null;
 
@@ -407,7 +427,8 @@ sensor.average_humidity_friendly:
     entity_id: sensor.average_humidity
   templates:
     theme: >-
-      var v = parseInt(entities['sensor.average_humidity'].state);
+      var e = 'sensor.average_humidity',
+          v = entities[e] !== undefined && parseInt(entities[e].state);
       return v > 55 || v < 30 ? 'card-critical'
       : v > 50 || v < 35 ? 'card-warning'
       : null;
@@ -539,9 +560,17 @@ sensor.radon_friendly:
   extra_badge:
     entity_id: sensor.radon_daily
   extra_data_template: >-
-    return entities['sensor.radon_long_term'].state != 'unknown' ?
-    'Average: ' + entities['sensor.radon_long_term'].state
+    var e = 'radon_long_term';
+    return entities[e] !== undefined && entities[e].state != 'unknown'
+    ? 'Average: ' + entities[e].state
     : null;
+  templates:
+    theme: >-
+      var e = 'sensor.radon_daily',
+          v = entities[e] !== undefined && parseInt(entities[e].state);
+      return v >= 200 ? 'card-critical'
+      : v >= 100 ? 'card-warning'
+      : null;
 
 
 #
@@ -549,13 +578,14 @@ sensor.radon_friendly:
 #
 sensor.aqi_carbon_monoxide_friendly:
   extra_data_template: >-
-    return entities['sensor.aqi_carbon_monoxide'].state != 'unknown' ?
-    entities['sensor.aqi_carbon_monoxide'].state + ' ' +
-    entities['sensor.aqi_carbon_monoxide'].attributes['unit_of_measurement']
+    var e = 'sensor.aqi_carbon_monoxide';
+    return entities[e] !== undefined && entities[e].state != 'unknown'
+    ? entities[e].state + ' ' + entities[e].attributes['unit_of_measurement']
     : null;
   templates:
     theme: >-
-      var v = parseInt(entities['sensor.aqi_carbon_monoxide'].state);
+      var e = 'sensor.aqi_carbon_monoxide',
+          v = entities[e] !== undefined && parseInt(entities[e].state);
       return v > 100 ? 'card-critical'
       : v > 50 ? 'card-warning'
       : null;
@@ -563,36 +593,41 @@ sensor.aqi_friendly:
   extra_badge:
     entity_id: sensor.aqi
   extra_data_template: >-
-    var v = parseInt(entities['sensor.aqi_stations_count'].state);
-    return v > 1 ? v + ' stations average'
+    var e = 'sensor.aqi_stations_count',
+        v = entities[e] !== undefined && parseInt(entities[e].state);
+    return v > 1
+    ? v + ' stations average'
     : null;
   templates:
     theme: >-
-      var v = parseInt(entities['sensor.aqi'].state);
+      var e = 'sensor.aqi',
+          v = entities[e] !== undefined && parseInt(entities[e].state);
       return v > 100 ? 'card-critical'
       : v > 50 ? 'card-warning'
       : null;
 sensor.aqi_nitrogen_dioxide_friendly:
   extra_data_template: >-
-    return entities['sensor.aqi_nitrogen_dioxide'].state != 'unknown' ?
-    entities['sensor.aqi_nitrogen_dioxide'].state + ' ' +
-    entities['sensor.aqi_nitrogen_dioxide'].attributes['unit_of_measurement']
+    var e = 'sensor.aqi_nitrogen_dioxide';
+    return entities[e] !== undefined && entities[e].state != 'unknown'
+    ? entities[e].state + ' ' + entities[e].attributes['unit_of_measurement']
     : null;
   templates:
     theme: >-
-      var v = parseInt(entities['sensor.aqi_nitrogen_dioxide'].state);
+      var e = 'sensor.aqi_nitrogen_dioxide',
+          v = entities[e] !== undefined && parseInt(entities[e].state);
       return v > 100 ? 'card-critical'
       : v > 50 ? 'card-warning'
       : null;
 sensor.aqi_ozone_friendly:
   extra_data_template: >-
-    return entities['sensor.aqi_ozone'].state != 'unknown' ?
-    entities['sensor.aqi_ozone'].state + ' ' +
-    entities['sensor.aqi_ozone'].attributes['unit_of_measurement']
+    var e = 'sensor.aqi_ozone';
+    return entities[e] !== undefined && entities[e].state != 'unknown'
+    ? entities[e].state + ' ' + entities[e].attributes['unit_of_measurement']
     : null;
   templates:
     theme: >-
-      var v = parseInt(entities['sensor.aqi_ozone'].state);
+      var e = 'sensor.aqi_ozone',
+          v = entities[e] !== undefined && parseInt(entities[e].state);
       return v > 100 ? 'card-critical'
       : v > 50 ? 'card-warning'
       : null;
@@ -600,25 +635,27 @@ sensor.aqi_particles:
   device_class: pm25
 sensor.aqi_particles_friendly:
   extra_data_template: >-
-    return entities['sensor.aqi_particles'].state != 'unknown' ?
-    entities['sensor.aqi_particles'].state + ' ' +
-    entities['sensor.aqi_particles'].attributes['unit_of_measurement']
+    var e = 'sensor.aqi_particles';
+    return entities[e] !== undefined && entities[e].state != 'unknown'
+    ? entities[e].state + ' ' + entities[e].attributes['unit_of_measurement']
     : null;
   templates:
     theme: >-
-      var v = parseInt(entities['sensor.aqi_particles'].state);
+      var e = 'sensor.aqi_particles',
+          v = entities[e] !== undefined && parseInt(entities[e].state);
       return v > 100 ? 'card-critical'
       : v > 50 ? 'card-warning'
       : null;
 sensor.aqi_sulphur_dioxide_friendly:
   extra_data_template: >-
-    return entities['sensor.aqi_sulphur_dioxide'].state != 'unknown' ?
-    entities['sensor.aqi_sulphur_dioxide'].state + ' ' +
-    entities['sensor.aqi_sulphur_dioxide'].attributes['unit_of_measurement']
+    var e = 'sensor.aqi_sulphur_dioxide';
+    return entities[e] !== undefined && entities[e].state != 'unknown'
+    ? entities[e].state + ' ' + entities[e].attributes['unit_of_measurement']
     : null;
   templates:
     theme: >-
-      var v = parseInt(entities['sensor.aqi_sulphur_dioxide'].state);
+      var e = 'sensor.aqi_sulphur_dioxide',
+          v = entities[e] !== undefined && parseInt(entities[e].state);
       return v > 100 ? 'card-critical'
       : v > 50 ? 'card-warning'
       : null;
@@ -627,10 +664,12 @@ sensor.uv_friendly:
     entity_id: sensor.uv
   templates:
     theme: >-
-      var v = parseInt(entities['sensor.uv'].state);
+      var e = 'sensor.uv',
+          v = entities[e] !== undefined && parseInt(entities[e].state);
       return v >= 6 ? 'card-critical'
       : v >= 3 ? 'card-warning'
       : null;
+
 
 #
 # Sensors: Power
@@ -707,15 +746,25 @@ sensor.processor_use:
   friendly_name: CPU Load
   icon: mdi:chip
   extra_data_template: >-
-    return
-    entities['sensor.average_load'].state + ' ' +
-    '(' + entities['sensor.cpu_cores'].state + ' cores)';
+    var a = 'sensor.average_load',
+        b = 'sensor.cpu_cores',
+        c = null,
+        d = null;
+    if (entities[a] !== undefined && entities[a].state != 'unknown') {
+      c = entities[a].state;
+    }
+    if (entities[b] !== undefined && entities[b].state != 'unknown') {
+      d = '(' + entities[b].state + ' cores)';
+    }
+    return c && d ? c + ' ' + d
+    : c || d;
 sensor.disk_use_percent:
   extra_data_template: >-
-    return
-    Math.round(parseFloat(entities['sensor.disk_free_home'].state)) + ' ' +
-    entities['sensor.disk_free_home'].attributes['unit_of_measurement'] +
-    ' available';
+    var e = 'sensor.disk_free_home';
+    return entities[e] !== undefined && entities[e].state != 'unknown'
+    ? Math.round(parseFloat(entities[e].state)) + ' ' +
+      entities[e].attributes['unit_of_measurement'] + ' available'
+    : null;
 sensor.ebox_download_before_offpeak:
   friendly_name: Downloads
 sensor.ebox_upload_before_offpeak:
@@ -726,10 +775,11 @@ sensor.ipv4_address_eth0:
   friendly_name: Local IP Address
 sensor.memory_use_percent:
   extra_data_template: >-
-    return
-    Math.round(parseFloat(entities['sensor.memory_free'].state)) + ' ' +
-    entities['sensor.memory_free'].attributes['unit_of_measurement'] +
-    ' available';
+    var e = 'sensor.memory_free';
+    return entities[e] !== undefined && entities[e].state != 'unknown'
+    ? Math.round(parseFloat(entities[e].state)) + ' ' +
+      entities[e].attributes['unit_of_measurement'] + ' available'
+    : null;
 sensor.speedtest_download:
   friendly_name: Downspeed
   icon: mdi:download-network
@@ -755,7 +805,9 @@ sensor.home_to_market_hour:
     entity_id: sensor.home_to_market
   templates:
     theme: >-
-      var v = parseInt(entities['sensor.home_to_market'].state);
+      var e = 'sensor.home_to_market';
+      if (entities[e] === undefined) return null;
+      var v = parseInt(entities[e].state);
       return v <= 5 ? 'card-critical'
       : v <= 10 ? 'card-warning'
       : null;
@@ -774,7 +826,9 @@ sensor.home_to_metro_hour:
     entity_id: sensor.home_to_metro
   templates:
     theme: >-
-      var v = parseInt(entities['sensor.home_to_metro'].state);
+      var e = 'sensor.home_to_metro';
+      if (entities[e] === undefined) return null;
+      var v = parseInt(entities[e].state);
       return v <= 5 ? 'card-critical'
       : v <= 10 ? 'card-warning'
       : null;
@@ -805,7 +859,10 @@ sensor.dark_sky_hourly_summary:
 sensor.dark_sky_summary:
   friendly_name: " "
   extra_data_template: >-
-    ${entities['sensor.outside_temperature'].state}${entities['sensor.outside_temperature'].attributes['unit_of_measurement']}
+    var e = 'sensor.outside_temperature';
+    return entities[e] !== undefined && entities[e].state != 'unknown'
+    ? entities[e].state + entities[e].attributes['unit_of_measurement']
+    : null;
   theme: card-secondary-title
 sensor.outside_humidity:
   friendly_name: Outside
@@ -872,7 +929,10 @@ switch.window_light:
 updater.updater:
   custom_ui_state_card: state-card-custom-ui
   extra_data_template: >-
-    Current version: ${entities['sensor.current_version'].state}
+    var e = 'sensor.current_version';
+    return entities[e] !== undefined && entities[e].state != 'unknown'
+    ? 'Current version: ' + entities[e].state
+    : null;
 
 
 #
@@ -883,7 +943,8 @@ variable.tamper_detected:
   icon: mdi:security-home
   templates:
     theme: >-
-      return state != 'False'
-      ? entities['input_boolean.tamper_detected'].state == 'on' ? 'card-critical'
-      : 'card-warning'
+      var e = 'input_boolean.tamper_detected';
+      return state != 'False' && entities[e] !== undefined
+      ? entities[e].state == 'on'
+      ? 'card-critical' : 'card-warning'
       : null;
