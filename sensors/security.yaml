@@ -72,28 +72,28 @@
 
         {{ value }}
 
-    leak_status:
-      friendly_name: Leaks
-      friendly_name_template: >-
-        {% if is_state('group.leak_sensors', 'on') %}
-          Leak detected
-        {% else %}
-          Leaks
-        {% endif %}
-      icon_template: >-
-        {% if is_state('group.leak_sensors', 'on') %}
-          mdi:pipe-leak
-        {% else %}
-          mdi:pipe
-        {% endif %}
-      value_template: >-
-        {% set value = states('sensor.leak_location') %}
+    # leak_status:
+    #   friendly_name: Leaks
+    #   friendly_name_template: >-
+    #     {% if is_state('group.leak_sensors', 'on') %}
+    #       Leak detected
+    #     {% else %}
+    #       Leaks
+    #     {% endif %}
+    #   icon_template: >-
+    #     {% if is_state('group.leak_sensors', 'on') %}
+    #       mdi:pipe-leak
+    #     {% else %}
+    #       mdi:pipe
+    #     {% endif %}
+    #   value_template: >-
+    #     {% set value = states('sensor.leak_location') %}
 
-        {% if value != '' %}
-          {{ value }}
-        {% else %}
-          Clear
-        {% endif %}
+    #     {% if value != '' %}
+    #       {{ value }}
+    #     {% else %}
+    #       Clear
+    #     {% endif %}
 
 
 #
