@@ -459,18 +459,20 @@ sensor.bedroom_temperature:
     group.bedroom:
       friendly_name: Temperature
     group.temperature:
-      # friendly_name: Bedroom
       icon: mdi:hotel
       extra_data_template: "Tracked"
 sensor.humidor_humidity:
   friendly_name: Humidor
   icon: mdi:water-percent
   group:
-    # group.lounge:
-    #   friendly_name: Humidor
     group.humidity:
-      # friendly_name: Humidor
       icon: mdi:bow-tie
+  templates:
+    theme: >-
+      var v = parseInt(state);
+      return v > 80 || v < 60 ? 'card-critical'
+      : v >= 74 || v <= 65 ? 'card-warning'
+      : null;
 sensor.humidor_temperature:
   friendly_name: Humidor
   icon: mdi:thermometer
@@ -748,14 +750,10 @@ sensor.processor_use:
   extra_data_template: >-
     var a = 'sensor.average_load',
         b = 'sensor.cpu_cores',
-        c = null,
-        d = null;
-    if (entities[a] !== undefined && entities[a].state != 'unknown') {
-      c = entities[a].state;
-    }
-    if (entities[b] !== undefined && entities[b].state != 'unknown') {
-      d = '(' + entities[b].state + ' cores)';
-    }
+        c = (entities[a] !== undefined && entities[a].state != 'unknown')
+            ? entities[a].state : null,
+        d = (entities[b] !== undefined && entities[b].state != 'unknown')
+            ? '(' + entities[b].state + ' cores)' : null;
     return c && d ? c + ' ' + d
     : c || d;
 sensor.disk_use_percent:

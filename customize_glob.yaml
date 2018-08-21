@@ -85,7 +85,7 @@ sensor.*_fan:
       friendly_name: Fan
 sensor.*_humidity:
   device_class: humidity
-sensor.[!outside]*_humidity:
+sensor.[!outside|humidor]*_humidity:
   group:
     group.bedroom:
       friendly_name: Humidity

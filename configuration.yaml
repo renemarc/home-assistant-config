@@ -104,7 +104,9 @@ group: !include_dir_merge_named groups/
 #
 # Enable the Hass.io panel
 #
-# hassio:
+# @link https://www.home-assistant.io/hassio/
+#
+hassio:
 
 
 #
@@ -213,6 +215,7 @@ logger:
   logs:
     aiohttp.server: critical # EBOX newer component bug.
     custom_components.display: critical # When tablet is offline.
+    custom_components.light.lightpack: critical # When Lightpack is offline.
     homeassistant.components.device_tracker.unifi: fatal # When Unifi Controller is temporarily unreachable.
     homeassistant.components.media_player.plex: fatal # When Plex is offline.
     homeassistant.components.switch.tplink: error # When switch is unplugged.
