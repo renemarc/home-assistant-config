@@ -58,7 +58,7 @@ motion_sensors:
 motion_sensors_critical:
   name: Motion sensors
   entities:
-    - binary_sensor.front_door
+    # - binary_sensor.front_door # Sensor reliability issues.
     - binary_sensor.kiosk_motion_auto
     - binary_sensor.lounge_motion
     - binary_sensor.washroom_motion

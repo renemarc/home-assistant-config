@@ -553,6 +553,12 @@ sensor.radon_detector_humidity:
     group.humidity:
       friendly_name: Radon Detector
       icon: mdi:radioactive
+  templates:
+    theme: >-
+      var v = parseInt(state);
+      return v > 55 || v < 30 ? 'card-critical'
+      : v > 50 || v < 35 ? 'card-warning'
+      : null;
 sensor.radon_detector_temperature:
   icon: mdi:thermometer
   group:
