@@ -11,6 +11,7 @@ status_view:
     - group.battery
     - group.temperature
     - group.humidity
+    - group.devices
 
 
 #
@@ -19,15 +20,22 @@ status_view:
 battery:
   name: Battery Levels
   entities:
-    # - sensor.bedroom_multisensor_battery
+    # - sensor.bedroom_multisensor_battery # USB-powered
     - sensor.front_door_sensor_battery
     - sensor.humidor_multisensor_battery
     - sensor.kiosk_battery
     - sensor.kitchen_leak_sensor_battery
-    # - sensor.lounge_multisensor_battery
+    # - sensor.lounge_multisensor_battery # USB-powered
     - sensor.siren_monitor_battery
     - sensor.washroom_multisensor_battery
     - sensor.washroom_leak_sensor_battery
+
+devices:
+  name: Devices
+  icon: mdi:sitemap
+  entities:
+    - sensor.printer_toner_black
+    - sensor.printer_drum_black
 
 humidity:
   name: Humidity

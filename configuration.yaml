@@ -63,6 +63,7 @@ device_tracker: !include misc/device_trackers.yaml
 discovery:
   ignore:
     - google_cast
+    - samsung_printer
 
 
 #

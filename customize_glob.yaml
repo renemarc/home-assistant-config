@@ -123,11 +123,10 @@ sensor.hline_dashed*:
     height: 0
     backgroundcolor: inherit
     bordertop: '1px dashed silver'
-sensor.radon_*:
-  icon: mdi:radioactive
+sensor.printer_*_black:
   templates:
     theme: >-
       var v = parseInt(state);
-      return v >= 150 ? 'card-critical'
-      : v >= 100 ? 'card-warning'
+      return v < 5 ? 'card-critical'
+      : v <= 10 ? 'card-warning'
       : null;

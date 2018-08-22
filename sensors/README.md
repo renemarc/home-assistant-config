@@ -239,7 +239,7 @@ Everything time related.
 
 ### [`⁉ ./misc.yaml`](misc.yaml)
 
-Everything else.
+Everything else, including printer consumables status.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 

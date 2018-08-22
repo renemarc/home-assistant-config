@@ -72,7 +72,6 @@ binary_sensor.kiosk_motion_auto:
     group.kitchen:
       friendly_name: Motion
 binary_sensor.siren_monitor_smoke:
-  # icon: mdi:smoke-detector
   templates:
     theme: >-
       return state == 'on'
@@ -399,6 +398,22 @@ sensor.motion_status:
     theme: >-
       return state != 'Clear' ? 'card-warning'
       : null;
+sensor.printer_drum_black:
+  friendly_name: Printer Drum
+  extra_data_template: >-
+    var e = 'sensor.printer_drum_remain';
+    return entities[e] !== undefined && entities[e].state != 'unknown'
+    ? Math.round(parseFloat(entities[e].state)) + ' ' +
+      entities[e].attributes['unit_of_measurement'] + ' remaining'
+    : null;
+sensor.printer_toner_black:
+  friendly_name: Printer Toner
+  extra_data_template: >-
+    var e = 'sensor.printer_toner_remain';
+    return entities[e] !== undefined && entities[e].state != 'unknown'
+    ? Math.round(parseFloat(entities[e].state)) + ' ' +
+      entities[e].attributes['unit_of_measurement'] + ' remaining'
+    : null;
 sensor.smoke_status:
   templates:
     theme: >-
@@ -419,9 +434,6 @@ sensor.tamper_status:
 #
 sensor.average_humidity:
   friendly_name: Average
-  # group:
-  #   group.humidity:
-  #     friendly_name: Average
 sensor.average_humidity_friendly:
   extra_badge:
     entity_id: sensor.average_humidity
@@ -434,9 +446,6 @@ sensor.average_humidity_friendly:
       : null;
 sensor.average_temperature:
   friendly_name: Average
-  # group:
-  #   group.temperature:
-  #     friendly_name: Average
 sensor.bedroom_humidity:
   friendly_name: Bedroom
   icon: mdi:water-percent
@@ -444,7 +453,6 @@ sensor.bedroom_humidity:
     group.bedroom:
       friendly_name: Humidity
     group.humidity:
-      # friendly_name: Bedroom
       icon: mdi:hotel
       extra_data_template: "Tracked"
 sensor.bedroom_luminance:
@@ -478,7 +486,6 @@ sensor.humidor_temperature:
   icon: mdi:thermometer
   group:
     group.temperature:
-      # friendly_name: Humidor
       icon: mdi:bow-tie
 sensor.kitchen_humidity:
   friendly_name: Kitchen
@@ -487,7 +494,6 @@ sensor.kitchen_humidity:
     group.kitchen:
       friendly_name: Humidity
     group.humidity:
-      # friendly_name: Kitchen
       icon: mdi:food-fork-drink
 sensor.kitchen_temperature:
   friendly_name: Kitchen
@@ -496,7 +502,6 @@ sensor.kitchen_temperature:
     group.kitchen:
       friendly_name: Temperature
     group.temperature:
-      # friendly_name: Kitchen
       icon: mdi:food-fork-drink
 sensor.lounge_humidity:
   friendly_name: Lounge
@@ -505,7 +510,6 @@ sensor.lounge_humidity:
     group.lounge:
       friendly_name: Humidity
     group.humidity:
-      # friendly_name: Lounge
       icon: mdi:sofa
       extra_data_template: "Tracked"
 sensor.lounge_luminance:
@@ -520,7 +524,6 @@ sensor.lounge_temperature:
     group.lounge:
       friendly_name: Temperature
     group.temperature:
-      # friendly_name: Lounge
       icon: mdi:sofa
       extra_data_template: "Tracked"
 sensor.washroom_humidity:
@@ -530,7 +533,6 @@ sensor.washroom_humidity:
     group.washroom:
       friendly_name: Humidity
     group.humidity:
-      # friendly_name: Washroom
       icon: mdi:shower
 sensor.washroom_luminance:
   friendly_name: Washroom
@@ -544,7 +546,6 @@ sensor.washroom_temperature:
     group.washroom:
       friendly_name: Temperature
     group.temperature:
-      # friendly_name: Washroom
       icon: mdi:shower
 sensor.radon_detector_humidity:
   icon: mdi:water-percent
