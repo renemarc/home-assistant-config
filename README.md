@@ -238,9 +238,10 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 ### General information
 - **[Local bus schedules](https://home-assistant.io/components/sensor.gtfs/)** with the next 3 departures. See [`/gtfs/`](gtfs) for optimization hints.
-- **[Doomsday Clock](https://github.com/renemarc/home-assistant-custom-components)** in case egocentric psychopaths keep on playing Russian roulette with humanity's future. 
-- **Network status monitoring** for latency, upspeed, downspeed.
+- **[Doomsday Clock](https://github.com/renemarc/home-assistant-doomsday-clock)** in case egocentric psychopaths keep on playing Russian roulette with humanity's future. 
+- **Network status monitoring** for latency, upspeed, downspeed, and monthly consumption.
 - **Home Assistant status monitoring** for geek cred with average load, RAM use, disk use, uptime, and update availability. 🤓
+- **[Daily audio greeting](https://instaud.io/2Eye)** to start the day on a informed, uplifting note. See [`/automations/notifications/`](/automations/notifications).
 
 <div align="center">
     <figure>

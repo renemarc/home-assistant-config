@@ -15,6 +15,7 @@
 #
 - id: radon_notify
   alias: Radon NOTIFY
+
   trigger:
     # When radon is getting too high.
     - platform: numeric_state

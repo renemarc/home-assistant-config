@@ -1,5 +1,5 @@
 #
-# Check if Raspberry Pi's power supply is providing enough
+# Check if Raspberry Pi's power supply is providing enough energy
 #
 # @subscribe sensor.rpi_power_status
 #

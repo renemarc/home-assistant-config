@@ -10,6 +10,7 @@
 #
 - id: front_door_notify
   alias: Front door NOTIFY
+
   trigger:
     # When the front door sensor senses openness or closure.
     - platform: state

@@ -68,7 +68,7 @@ They do have couple of minor annoyances however:
     </figure>
 </div>
 
-I have their white colour gradually shift from daylight to warm white with varying intensity based on the time of day in [`/automations/cct_lifx.yaml`](../automations/cct_lifx.yaml). They also serve as nightlights through [`/automations/devices/nightlight_on.yaml`](../automations/devices/nightlight_on.yaml), IR illuminators and for some alerts like [`/automations/front_door_notify.yaml`](../automations/front_door_notify.yaml).
+I have their white colour gradually shift from daylight to warm white with varying intensity based on the time of day in [`/automations/cct_lifx.yaml`](../automations/cct_lifx.yaml). They also serve as nightlights through [`/automations/devices/nightlight_on.yaml`](../automations/devices/nightlight_on.yaml), IR illuminators and for some alerts like [`/automations/notifications/front_door_notify.yaml`](../automations/notifications/front_door_notify.yaml).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 

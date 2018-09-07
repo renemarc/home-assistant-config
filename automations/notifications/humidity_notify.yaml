@@ -10,6 +10,7 @@
 #
 - id: humidity_notify
   alias: Humidity NOTIFY
+
   trigger:
     # When humidity is getting too high.
     - platform: numeric_state

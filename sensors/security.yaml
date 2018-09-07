@@ -52,7 +52,7 @@
 #
 # Returns a comma-separated list of locations where leaks are detected.
 #
-# @see /automations/leak_notify.yaml
+# @see /automations/notifications/leak_notify.yaml
 #
 - platform: template
   sensors:
@@ -153,7 +153,7 @@
 #
 # Smoke detection status
 #
-# @see /automations/siren_notify.yaml
+# @see /automations/notifications/siren_notify.yaml
 # @see /misc/binary_sensors.yaml
 #
 # @link https://discoverecolink.com/product/firefighter-wireless-smoke-co-audio-sensor/

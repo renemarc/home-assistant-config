@@ -6,6 +6,7 @@
 #
 - id: daily_greeting
   alias: Daily greeting
+
   trigger:
     # When night mode is disabled.
     - platform: state

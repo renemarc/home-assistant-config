@@ -1,13 +1,4 @@
 #
-# Raspberry Pi undervoltage monitoring
-#
-# @link https://github.com/custom-components/sensor.rpi_power
-# @link https://community.home-assistant.io/t/raspberry-pi-power-sensor-updated-2018-07-25/58155/
-#
-- platform: rpi_power
-  text_state: false
-
-#
 # AcuRite battery monitoring
 #
 # This device only has two power state: `OK` (1) and `low` (0). If no signal is
@@ -90,6 +81,16 @@
         {% else %}
           mdi:battery-unknown
         {% endif %}
+
+
+#
+# Raspberry Pi undervoltage monitoring
+#
+# @link https://github.com/custom-components/sensor.rpi_power
+# @link https://community.home-assistant.io/t/raspberry-pi-power-sensor-updated-2018-07-25/58155/
+#
+- platform: rpi_power
+  text_state: false
 
 
 #

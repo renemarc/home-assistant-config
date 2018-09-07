@@ -6,6 +6,7 @@
 #
 - id: humidor_notify
   alias: Humidor NOTIFY
+
   trigger:
     # When humidity is getting too high.
     - platform: numeric_state

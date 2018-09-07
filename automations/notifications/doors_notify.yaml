@@ -7,6 +7,7 @@
 #
 - id: doors_notify
   alias: Doors NOTIFY
+
   trigger:
     # When a door has been left open for a while.
     - platform: state

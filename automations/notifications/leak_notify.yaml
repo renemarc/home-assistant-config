@@ -7,6 +7,7 @@
 #
 - id: leak_notify
   alias: Leak NOTIFY
+
   trigger:
     # When a leak is detected somewhere.
     - platform: state

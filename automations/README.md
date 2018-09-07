@@ -59,6 +59,11 @@ For automations related to individual smart devices.
 
 For all automations related to modes.
 
+
+### [`📂 ./notifications/`](notifications)
+
+Visual and audio notifications.
+
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
@@ -72,36 +77,6 @@ Adjust LIFX bulbs colour temperature (CCT) based on cyrcadian rythm.
 ### [`💡️ ./cct_limitlessled.yaml`](cct_limitlessled.yaml)
 
 Adjust LimitlessLED/MiLight colour temperature (CCT) based on cyrcadian rythm.
-
-
-### [`🗣️️ ./daily_greeting.yaml`](daily_greeting.yaml)
-
-Greet the day with a daily briefing.
-
-
-### [`🚪 ./doors_notify.yaml`](doors_notify.yaml)
-
-Warn someone if a door was left open for too long.
-
-
-### [`🚪️ ./front_door_notify.yaml`](front_door_notify.yaml)
-
-Warn whenever the front door is opening or closing.
-
-
-### [`⚗️️ ./humidity_notify.yaml`](humidity_notify.yaml)
-
-Check if humidity is too high or too low.
-
-
-### [`🇨🇺 ./humidor_notify.yaml`](humidor_notify.yaml)
-
-Check if humidity is too high or too low in the humidor.
-
-
-### [`🌊 ./leak_notify.yaml`](leak_notify.yaml)
-
-Check if a water leak is detected somewhere.
 
 
 ### [`🔆️ ./scene_daylight.yaml`](scene_daylight.yaml)
@@ -124,19 +99,9 @@ Toggle the romantic scene.
 Manually select a global scene.
 
 
-### [`🖐 ./tamper_notify.yaml`](tamper_notify.yaml)
-
-Warn someone if the tamper flag has changed.
-
-
 ### [`🌈️ ./theme_auto.yaml`](theme_auto.yaml)
 
 Set theme to "normal" during daytime and "dark" during night mode.
-
-
-### [`🆕️ ./update_notify.yaml`](update_notify.yaml)
-
-Notify when a new version of Home Assistant is available.
 
 
 ### [`⏰️ ./wake_up.yaml`](wake_up.yaml)

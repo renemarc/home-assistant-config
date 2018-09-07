@@ -12,6 +12,7 @@ configuration_view:
     - group.automations_modes
     - group.automations_devices
     - group.automations_areas
+    - group.automations_notifications
 
 
 #
@@ -33,22 +34,11 @@ automations:
   entities:
     - automation.cct_lifx
     - automation.cct_limitlessled
-    - automation.daily_greeting
-    - automation.doors_notify
-    - automation.front_door_notify
-    - automation.go_to_sleep
-    - automation.humidity_notify
-    - automation.humidor_notify
-    - automation.power_supply_notify
-    - automation.radon_notify
     - automation.scene_daylight
     - automation.scene_gaming
     - automation.scene_romantic
     - automation.scene_select
-    - automation.smoke_notify
-    - automation.tamper_detection_notify
     - automation.theme_auto
-    - automation.update_notify
     - automation.wake_up
 
 automations_areas:
@@ -117,6 +107,21 @@ automations_modes:
     - automation.quiet_mode_stop
     - automation.tamper_detection_start
     - automation.tamper_detection_stop
+
+automations_notifications:
+  name: Notifications Automations
+  control: hidden
+  entities:
+    - automation.daily_greeting
+    - automation.doors_notify
+    - automation.front_door_notify
+    - automation.humidity_notify
+    - automation.humidor_notify
+    - automation.power_supply_notify
+    - automation.radon_notify
+    - automation.smoke_notify
+    - automation.tamper_detection_notify
+    - automation.update_notify
 
 configuration:
   name: Configuration Switches

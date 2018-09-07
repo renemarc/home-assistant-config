@@ -79,7 +79,7 @@ Reports on loaded effects for smart lights.
 
 ### [`🔋 ./power.yaml`](power.yaml)
 
-Battery levels.
+Battery levels and power monitoring.
 
 <div align="center">
     <figure>

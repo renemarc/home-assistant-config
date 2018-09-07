@@ -18,7 +18,7 @@
 
 <h1 align="center">Notifications</h1>
 
-Useful during development of automations, I later keep using them for simple warnings like when the dehumidifier is likely full in [`/automations/humidity_notify.yaml`](../automations/humidity_notify.yaml)  or if a door has been left open for too long in [`/automations/doors_notify.yaml`](../automations/doors_notify.yaml).
+Useful during development of automations, I later keep using them for simple warnings like when the dehumidifier is likely full in [`/automations/notifications/humidity_notify.yaml`](../automations/notifications/humidity_notify.yaml)  or if a door has been left open for too long in [`/automations/notifications/doors_notify.yaml`](../automations/notifications/doors_notify.yaml).
 
 
 ## Files

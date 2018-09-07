@@ -5,6 +5,7 @@
 #
 - id: smoke_notify
   alias: Smoke NOTIFY
+
   trigger:
     # When smoke is detected.
     - platform: state
