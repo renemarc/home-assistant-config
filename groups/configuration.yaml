@@ -13,6 +13,7 @@ configuration_view:
     - group.automations_devices
     - group.automations_areas
     - group.automations_notifications
+    # - group.counters
 
 
 #
@@ -113,12 +114,15 @@ automations_notifications:
   control: hidden
   entities:
     - automation.daily_greeting
-    - automation.doors_notify
+    - automation.door_notify
+    - automation.door_notify_reset
     - automation.front_door_notify
     - automation.humidity_notify
     - automation.humidor_notify
+    - automation.humidor_notify_reset
     - automation.power_supply_notify
     - automation.radon_notify
+    - automation.radon_notify_reset
     - automation.smoke_notify
     - automation.tamper_detection_notify
     - automation.update_notify
@@ -128,7 +132,7 @@ configuration:
   control: hidden
   entities:
     - input_boolean.door_test
-    - sensor.doors_status
+    - sensor.door_status
     - input_boolean.leak_test
     - sensor.leak_status
     - input_boolean.motion_test
@@ -139,3 +143,9 @@ configuration:
     - variable.tamper_detected
     - script.tamper_reset
     - switch.aeotec_zstick_disco_light
+
+counters:
+  name: Counters
+  control: hidden
+  entities:
+    - counter.humidor_notify

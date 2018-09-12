@@ -1,8 +1,8 @@
 #
 # Warn whenever the front door is opening or closing
 #
-# Useful to indicate to an otherwise oblivious showering partner that someone
-# likely just came in or left the premises.
+# Flashes some lights briefly. Useful to indicate to an otherwise oblivious
+# showering partner that someone likely just came in or left the premises.
 #
 # @subscribe binary_sensor.front_door
 #

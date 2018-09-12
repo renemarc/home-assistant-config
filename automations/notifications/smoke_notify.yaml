@@ -20,7 +20,7 @@
         message: |
           The siren is alerting those inside.
           Do check with the neighbors!
-          Location: {{ states('sensor.smoke_location') }}
+          Location: {{ states('sensor.smoke_location') }}.
 
     # Pin a warning message in the frontend.
     - service: persistent_notification.create
@@ -29,4 +29,4 @@
         title: "Smoke alert"
         message: |
           <strong>Take care of this NOW!</strong>
-          Location: {{ states('sensor.smoke_location') }}
+          Location: {{ states('sensor.smoke_location') }}.

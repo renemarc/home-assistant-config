@@ -66,7 +66,7 @@ include:
     - sensor.speedtest_download
     - sensor.speedtest_upload
 
-    - sensor.doors_status
+    - sensor.door_status
     - sensor.leak_status
     - sensor.motion_status
     - sensor.smoke_status

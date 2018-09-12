@@ -3,11 +3,11 @@
 #
 # Returns a comma-separated list of doors currently open.
 #
-# @see /automations/doors_verify.yaml
+# @see /automations/notifications/door_notify.yaml
 #
 - platform: template
   sensors:
-    doors_location:
+    door_location:
       value_template: >-
         {% set entities = [
             states.binary_sensor.front_door,
@@ -23,11 +23,11 @@
 
         {{ value }}
 
-    doors_status:
+    door_status:
       friendly_name: Doors
       friendly_name_template: >-
         {% if is_state('group.door_sensors', 'on') %}
-          Doors open
+          Door open
         {% else %}
           External doors
         {% endif %}
@@ -38,7 +38,7 @@
           mdi:door-closed
         {% endif %}
       value_template: >-
-        {% set value = states('sensor.doors_location') %}
+        {% set value = states('sensor.door_location') %}
 
         {% if value != '' %}
           {{ value }}

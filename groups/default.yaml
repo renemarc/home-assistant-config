@@ -71,7 +71,7 @@ security:
   name: Security Status
   control: hidden
   entities:
-    - sensor.doors_status
+    - sensor.door_status
     - sensor.leak_status
     - sensor.motion_status
     - sensor.smoke_status

@@ -51,9 +51,14 @@ Flexible intermediary data holder, using the [third-party](https://github.com/ro
 Essentially used for [Flic buttons](https://flic.io) and [Fully Kiosk Browser](https://www.ozerov.de/fully-kiosk-browser) motion sensor.
 
 
+### [`🔢 ./counters.yaml`](counters.yaml)
+
+Currently used by some [`/automations/notifications`](../automations/notifications) to limit the number of consecutive notifications sent out, in order to avoid nagging when action cannot immediately be taken (say, while we are out of town).
+
+
 ### [`📍 ./device_trackers.yaml`](device_trackers.yaml)
 
-For tracking device presence with ~~Bluetooth and~~ [UniFi](https://www.ubnt.com/unifi/unifi-cloud-key/) wireless access point.
+For tracking device presence with ~~Bluetooth and~~ a [UniFi](https://www.ubnt.com/unifi/unifi-cloud-key/) wireless access point.
 
 
 ### [`🎦 ./displays.yaml`](displays.yaml)

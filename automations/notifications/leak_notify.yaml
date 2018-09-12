@@ -39,7 +39,7 @@
         message: |
           A leak has been detected.
           {% if states('sensor.leak_location') != '' -%}
-            Location: {{ states('sensor.leak_location') }}
+          Location: {{ states('sensor.leak_location') }}.
           {% endif %}
 
     # Play a warning sound and message.

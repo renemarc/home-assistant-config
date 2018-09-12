@@ -10,15 +10,74 @@
 # of developping lung cancer. Keeping a place well ventilated is a good way to
 # migitage this risk.
 #
+# Notifications are sent whenever radon levels reach tresholds, and reminders
+# are then sent every few hours until levels get back to normal. Only
+# a few reminders are sent out however, to avoid notification spam when action
+# cannot immediately be taken to bring radiation levels back to normal (say,
+# while out of town).
+#
 # @link https://en.wikipedia.org/wiki/Radon#Concentration_scale
-# @link http://www.who.int/news-room/fact-sheets/detail/radon-and-health
+# @link https://www.who.int/news-room/fact-sheets/detail/radon-and-health
+# @link https://airthings.com/us/radon-levels/
+#
+# @subscribe counter.radon_notify
+# @subscribe input_boolean.quiet_mode
+# @subscribe sensor.radon_daily
+#
+# @publish counter.radon_notify
+#
+# @see automations/notifications/radon_notify_reset.yaml
 #
 - id: radon_notify
   alias: Radon NOTIFY
 
   trigger:
-    # When radon is getting too high.
+    # When radon levels are over the recommended maximum.
     - platform: numeric_state
+      entity_id: sensor.radon_daily
+      above: 200
+      for:
+        seconds: 10
+
+    # When radon levels are way too high.
+    - platform: numeric_state
+      entity_id: sensor.radon_daily
+      above: 150
+      for:
+        seconds: 10
+
+    # When radon levels are getting too high.
+    - platform: numeric_state
+      entity_id: sensor.radon_daily
+      above: 100
+      for:
+        seconds: 10
+
+    # When quiet mode is disabled.
+    - platform: state
+      entity_id: input_boolean.quiet_mode
+      to: 'off'
+      for:
+        minutes: 2
+
+    # When the last check was a while ago (reminder).
+    - platform: time
+      hours: '/12'
+      minutes: 00
+      seconds: 00
+
+  condition:
+    # If automation was not trigered lately (hey, do not nag).
+    - condition: template
+      value_template: >-
+        {% set delay = 6 * 60 * 60 %}
+        {% set current = as_timestamp(utcnow()) %}
+        {% set last = as_timestamp(state_attr('automation.radon_notify', 'last_triggered')) | float %}
+
+        {{ current - last > delay }}
+
+    # If radon levels are too high.
+    - condition: numeric_state
       entity_id: sensor.radon_daily
       above: 100
 
@@ -30,16 +89,21 @@
       data_template:
         title: >-
           {% set radon = states('sensor.radon_daily') | int %}
-          {% if (radon > 150) %}
+          {% if (radon >= 200) %}
             Radon levels are WAY too high
-          {% elif (radon >= 100) %}
+          {% elif (radon >= 150) %}
             Radon levels are too high
+          {% elif (radon >= 100) %}
+            Radon levels are getting too high
           {% endif %}
         message: >-
           {% set radon = states('sensor.radon_daily') | int %}
           {% set unit = state_attr('sensor.radon_daily', 'unit_of_measurement') %}
-          {% if (radon >= 150) %}
+          {% if (radon >= 200) %}
             {{ radon }} {{ unit }} is dangerous!<br>
+            <strong>Air out the place NOW, and start looking into mitigation solutions!<strong>
+          {% elif (radon >= 150) %}
+            {{ radon }} {{ unit }} is getting dangerous.<br>
             <strong>Air out the place NOW!<strong>
           {% elif (radon >= 100) %}
             {{ radon }} {{ unit }} is excessive.<br>
@@ -47,24 +111,37 @@
           {% endif %}
 
     # Warn someone by text to take action.
+    - condition: numeric_state
+      entity_id: counter.radon_notify
+      above: 0
+    - service: counter.decrement
+      entity_id: counter.radon_notify
     - service: notify.text
       data_template:
         title: >-
           {% set radon = states('sensor.radon_daily') | int %}
-          {% if (radon > 150) %}
+          {% if (radon >= 200) %}
             Radon levels are WAY too high
-          {% elif (radon >= 100) %}
+          {% elif (radon >= 150) %}
             Radon levels are too high
+          {% elif (radon >= 100) %}
+            Radon levels are getting too high
           {% endif %}
         message: |
           {% set radon = states('sensor.radon_daily') | int %}
           {% set unit = state_attr('sensor.radon_daily', 'unit_of_measurement') %}
-          {% if (radon >= 150) %}
+          {% if (radon >= 200) %}
           {{ radon }} {{ unit }} is dangerous!
+          Air out the place NOW, and start looking into mitigation solutions!
+          {% elif (radon >= 150) %}
+          {{ radon }} {{ unit }} is getting dangerous.
           Air out the place NOW!
           {% elif (radon >= 100) %}
           {{ radon }} {{ unit }} is excessive.
           Air out the place.
+          {% endif %}
+          {% if states('counter.radon_notify')|int == 10 -%}
+            No further notifications will be sent about this issue until it gets resolved.
           {% endif %}
 
     # Play a warning sound and message.
@@ -82,13 +159,16 @@
       data_template:
         message: >-
           {% set radon = states('sensor.radon_daily') | int %}
-          {% set unit = state_attr('sensor.radon_daily', 'unit_of_measurement') %}
-          {% if (radon >= 150) %}
-            Radon levels are way too high.
-            Currently at {{ radon }} Becquerels.
-            Air out the place NOW!
+          {% if (radon >= 200) %}
+            Radon levels are WAY too high.
+            Radiation is currently at {{ radon }} becquerels per cubic meter, which is dangerous.
+            Air out the place NOW, and start looking into mitigation solutions!
+          {% elif (radon >= 150) %}
+            Radon levels are too high.
+            Radiation is currently at {{ radon }} becquerels per cubic meter, which is getting dangerous.
+            Air out the place NOW.
           {% elif (radon >= 100) %}
-            Radon levels are too high
-            Currently at {{ radon }} Becquerels, which is excessive.
+            Radon levels are getting too high
+            Radiation is currently at {{ radon }} becquerels per cubic meter, which is excessive.
             Air out the place.
           {% endif %}

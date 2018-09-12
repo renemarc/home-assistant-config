@@ -30,8 +30,10 @@ automation.ceiling_*:
   icon: mdi:led-strip
 automation.dehumidifier_*:
   icon: mdi:water-off
-automation.doors_*:
+automation.door_*:
   icon: mdi:door-open
+automation.humidor_*:
+  icon: mdi:bow-tie
 automation.kitchen_*:
   icon: mdi:food-fork-drink
 automation.kiosk_*:
@@ -54,6 +56,8 @@ automation.night_mode_*:
   icon: mdi:weather-night
 automation.quiet_mode_*:
   icon: mdi:volume-mute
+automation.radon_*:
+  icon: mdi:radioactive
 automation.tamper_*:
   icon: mdi:security-home
 automation.video_player_*:

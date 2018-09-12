@@ -18,9 +18,9 @@
         title: "Home security issue"
         message: |
           A perimeter device has been tampered with.
+          Device: {{ states('variable.tamper_detected') }}.
           Current state: {% if is_state('input_boolean.tamper_detected', 'on') -%}
-          Tampered{% else %}Reset{% endif %}
-          Device: {{ states('variable.tamper_detected') }}
+          Tampered{% else %}Reset{% endif %}.
 
     # Pin a warning message in the frontend.
     - condition: state

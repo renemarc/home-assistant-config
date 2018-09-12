@@ -3,10 +3,46 @@
 #
 automation.daily_greeting:
   icon: mdi:human-greeting
+automation.door_notify:
+  extra_data_template:
+  - >-
+    var e = 'counter.door_notify';
+    if (entities[e] === undefined || entities[e].state === 'unknown') return null;
+    var max = entities[e].attributes['initial'],
+        left = entities[e].state,
+        name = entities[e].attributes['friendly_name'];
+    if (left == max) return null;
+    return max - left + '/' + max + ' ' + name.toLowerCase() + ' sent.'
+  - >-
+    if(!attributes.last_triggered)return null;
+    var t,s=(new Date()-new Date(attributes.last_triggered))/1e3;
+    return(
+    (t=Math.floor(s/86400))?t+(t>1?" days":" day"):
+    (t=Math.floor(s/3600))?t+(t>1?" hours":" hour"):
+    (t=Math.floor(s/60))?t+(t>1?" minutes":" minute"):
+    (t=Math.floor(s))!==1?t+" seconds":" second"
+    )+" ago";
 automation.humidity_notify:
   icon: mdi:water-percent
 automation.humidor_notify:
-  icon: mdi:bow-tie
+  extra_data_template:
+  - >-
+    var e = 'counter.humidor_notify';
+    if (entities[e] === undefined || entities[e].state === 'unknown') return null;
+    var max = entities[e].attributes['initial'],
+        left = entities[e].state,
+        name = entities[e].attributes['friendly_name'];
+    if (left == max) return null;
+    return max - left + '/' + max + ' ' + name.toLowerCase() + ' sent.'
+  - >-
+    if(!attributes.last_triggered)return null;
+    var t,s=(new Date()-new Date(attributes.last_triggered))/1e3;
+    return(
+    (t=Math.floor(s/86400))?t+(t>1?" days":" day"):
+    (t=Math.floor(s/3600))?t+(t>1?" hours":" hour"):
+    (t=Math.floor(s/60))?t+(t>1?" minutes":" minute"):
+    (t=Math.floor(s))!==1?t+" seconds":" second"
+    )+" ago";
 automation.front_door_notify:
   icon: mdi:door-open
 automation.go_to_sleep:
@@ -16,7 +52,24 @@ automation.theme_auto:
 automation.power_supply_notify:
   icon: mdi:flash-circle
 automation.radon_notify:
-  icon: mdi:radioactive
+  extra_data_template:
+  - >-
+    var e = 'counter.radon_notify';
+    if (entities[e] === undefined || entities[e].state === 'unknown') return null;
+    var max = entities[e].attributes['initial'],
+        left = entities[e].state,
+        name = entities[e].attributes['friendly_name'];
+    if (left == max) return null;
+    return max - left + '/' + max + ' ' + name.toLowerCase() + ' sent.'
+  - >-
+    if(!attributes.last_triggered)return null;
+    var t,s=(new Date()-new Date(attributes.last_triggered))/1e3;
+    return(
+    (t=Math.floor(s/86400))?t+(t>1?" days":" day"):
+    (t=Math.floor(s/3600))?t+(t>1?" hours":" hour"):
+    (t=Math.floor(s/60))?t+(t>1?" minutes":" minute"):
+    (t=Math.floor(s))!==1?t+" seconds":" second"
+    )+" ago";
 automation.scene_daylight:
   icon: mdi:weather-sunny
 automation.scene_gaming:
@@ -383,7 +436,7 @@ light.underbed:
 #
 sensor.bing_wallpaper:
   custom_ui_state_card: state-card-value_only
-sensor.doors_status:
+sensor.door_status:
   templates:
     theme: >-
       return state != 'Closed' ? 'card-warning'
@@ -571,9 +624,9 @@ sensor.radon_friendly:
   extra_badge:
     entity_id: sensor.radon_daily
   extra_data_template: >-
-    var e = 'radon_long_term';
+    var e = 'sensor.radon_long_term';
     return entities[e] !== undefined && entities[e].state != 'unknown'
-    ? 'Average: ' + entities[e].state
+    ? 'Long Term: ' + entities[e].state
     : null;
   templates:
     theme: >-
@@ -813,7 +866,7 @@ sensor.home_to_market_hour:
   templates:
     theme: >-
       var e = 'sensor.home_to_market';
-      if (entities[e] === undefined) return null;
+      if (entities[e] === undefined || entities[e].state === 'unknown') return null;
       var v = parseInt(entities[e].state);
       return v <= 5 ? 'card-critical'
       : v <= 10 ? 'card-warning'
@@ -834,7 +887,7 @@ sensor.home_to_metro_hour:
   templates:
     theme: >-
       var e = 'sensor.home_to_metro';
-      if (entities[e] === undefined) return null;
+      if (entities[e] === undefined || entities[e].state === 'unknown') return null;
       var v = parseInt(entities[e].state);
       return v <= 5 ? 'card-critical'
       : v <= 10 ? 'card-warning'

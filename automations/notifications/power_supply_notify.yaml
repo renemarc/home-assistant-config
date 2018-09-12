@@ -18,8 +18,7 @@
       data:
         notification_id: power_supply
       data_template:
-        title: >-
-          Raspbery Pi power issue
+        title: "Raspbery Pi power issue"
         message: >-
           {% set description = state_attr('sensor.rpi_power_status', 'description') %}
           {% set status = states('sensor.rpi_power_status') %}
@@ -29,8 +28,7 @@
     # Warn someone by text to take action.
     - service: notify.text
       data_template:
-        title: >-
-          Raspbery Pi power issue
+        title: "Raspbery Pi power issue"
         message: >-
           {% set description = state_attr('sensor.rpi_power_status', 'description') %}
           {% set status = states('sensor.rpi_power_status') %}

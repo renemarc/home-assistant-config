@@ -39,6 +39,14 @@ config:
 
 
 #
+# Counters
+#
+# @link https://www.home-assistant.io/components/counter/
+#
+counter: !include misc/counters.yaml
+
+
+#
 # Enable the UI customizer
 #
 # @link https://github.com/andrey-git/home-assistant-customizer

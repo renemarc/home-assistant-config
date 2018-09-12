@@ -1,0 +1,73 @@
+#
+# Warn someone if a door was left open for too long
+#
+# Notifications are sent whenever at least one door has been left open for a
+# while, and reminders are then sent every few minutes until all doors are
+# closed. Only a few reminders are sent out however, to avoid notification spam
+# when a door has actually been purposefully left open (for example, while
+# moving things in and out).
+#
+# @subscribe counter.door_notify
+# @subscribe group.door_sensors
+# @subscribe group.presence
+#
+# @publish counter.door_notify
+#
+# @see automations/notifications/door_notify_reset.yaml
+#
+- id: door_notify
+  alias: Door NOTIFY
+
+  trigger:
+    # When a door has been left open for a while.
+    - platform: state
+      entity_id: group.door_sensors
+      to: 'on'
+      for:
+        minutes: 10
+
+    # When the last check was a while ago (reminder).
+    - platform: time
+      minutes: '/10'
+      seconds: 00
+
+  condition:
+    # If automation was not trigered lately (hey, do not nag).
+    - condition: template
+      value_template: >-
+        {% set delay = 5 * 60 %}
+        {% set current = as_timestamp(utcnow()) %}
+        {% set last = as_timestamp(state_attr('automation.door_notify', 'last_triggered')) | float %}
+
+        {{ current - last > delay }}
+
+    # If at least one door is currently open.
+    - condition: state
+      entity_id: group.door_sensors
+      state: 'on'
+      for:
+        minutes: 10
+
+    # # If no known person is home.
+    # - condition: state
+    #   entity_id: group.presence
+    #   state: 'not_home'
+
+  action:
+    # Warn someone by text to take action.
+    - condition: numeric_state
+      entity_id: counter.door_notify
+      above: 0
+    - service: counter.decrement
+      entity_id: counter.door_notify
+    - service: notify.text
+      data:
+        title: "Home security issue"
+        message: |
+          A door has been left open for too long.
+          {% if states('sensor.door_location') != '' -%}
+            Location: {{ states('sensor.door_location') }}.
+          {% endif %}
+          {% if states('counter.door_notify')|int == 10 -%}
+            No further notifications will be sent about this issue until it gets resolved.
+          {% endif %}

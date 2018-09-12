@@ -448,11 +448,11 @@
       value_template: >-
         {% set radon = states('sensor.radon_daily') | int(-1) %}
 
-        {% if radon >= 150 %}
+        {% if radon >= 200 %}
           Danger
-        {% elif radon >= 100 %}
+        {% elif radon >= 150 %}
           High
-        {% elif radon >= 50 %}
+        {% elif radon >= 100 %}
           OK-High
         {% elif radon >= 0 %}
           OK

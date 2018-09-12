@@ -7,22 +7,43 @@
 #
 # @subscribe group.door_sensors
 # @subscribe input_boolean.windows_open
+# @subscribe sensor.average_humidity
 #
 - id: humidity_notify
   alias: Humidity NOTIFY
 
   trigger:
+    # When humidity is way too high.
+    - platform: numeric_state
+      entity_id: sensor.average_humidity
+      above: 65
+      for:
+        seconds: 10
+
     # When humidity is getting too high.
     - platform: numeric_state
       entity_id: sensor.average_humidity
       above: 55
+      for:
+        seconds: 10
 
     # When humidity is getting too low.
     - platform: numeric_state
       entity_id: sensor.average_humidity
       below: 35
+      for:
+        seconds: 10
 
   condition:
+    # If automation was not trigered lately (hey, do not nag).
+    - condition: template
+      value_template: >-
+        {% set delay = 30 * 60 %}
+        {% set current = as_timestamp(utcnow()) %}
+        {% set last = as_timestamp(state_attr('automation.humidity_notify', 'last_triggered')) | float %}
+
+        {{ current - last > delay }}
+
     # If doors have been closed for a while.
     - condition: state
       entity_id: group.door_sensors
@@ -46,11 +67,11 @@
         title: >-
           {% set humidity = states('sensor.average_humidity') | int %}
           {% if (humidity > 65) %}
-            Home humidity is WAY too high
+            Indoor humidity is WAY too high
           {% elif (humidity >= 55) %}
-            Home humidity is too high
+            Indoor humidity is too high
           {% else %}
-            Home humidity is too low
+            Indoor humidity is too low
           {% endif %}
         message: >-
           {% set humidity = states('sensor.average_humidity') | int %}
@@ -71,11 +92,11 @@
         title: >-
           {% set humidity = states('sensor.average_humidity') | int %}
           {% if (humidity > 65) %}
-            Home humidity is WAY too high
+            Indoor humidity is WAY too high
           {% elif (humidity >= 55) %}
-            Home humidity is too high
+            Indoor humidity is too high
           {% else %}
-            Home humidity is too low
+            Indoor humidity is too low
           {% endif %}
         message: |
           {% set humidity = states('sensor.average_humidity') | int %}
@@ -106,16 +127,16 @@
         message: >-
           {% set humidity = states('sensor.average_humidity') | int %}
           {% if (humidity > 65) %}
-            Humidity is way too high.
+            Indoor humidity is way too high.
             Currently at {{ states('sensor.average_humidity') }}%.
             There is a risk of mold!
-            Check the dehumidifier NOW!
+            Do check the dehumidifier NOW!
           {% elif (humidity >= 55) %}
-            Humidity is too high.
+            Indoor humidity is too high.
             Currently at {{ states('sensor.average_humidity') }}% which is excessive.
             Check the dehumidifier.
           {% else %}
-            Humidity is too low.
+            Indoor humidity is too low.
             Currently at {{ states('sensor.average_humidity') }}% which is too dry.
             Check the humidifier.
           {% endif %}
