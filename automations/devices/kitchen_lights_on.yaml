@@ -14,7 +14,7 @@
         click_type: single
 
   condition:
-    # If all kitchen links are off.
+    # If all kitchen lights are off.
     - condition: state
       entity_id: group.kitchen_lights
       state: 'off'

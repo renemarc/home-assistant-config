@@ -85,11 +85,13 @@ automations_devices:
     - automation.kitchen_lights_toggle
     - automation.kiosk_auto
     - automation.kiosk_low_power
+    - automation.lightpack_auto
     - automation.lightpack_effect
     - automation.lightpack_select
     - automation.nightlight_off
     - automation.nightlight_on
     - automation.scene_effect
+    - automation.tv_off
     - automation.video_player_resume
     - automation.video_player_stop
 

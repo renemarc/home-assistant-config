@@ -40,6 +40,10 @@ sequence:
       entity_id: input_select.ceiling_effect
       option: Blissful
 
+  # Turn on the lounge's TV.
+  - service: switch.turn_on
+    entity_id: switch.lounge_tv
+
   # Set TV backlight effect.
   - service: input_select.select_option
     data:

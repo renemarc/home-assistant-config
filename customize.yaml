@@ -974,6 +974,10 @@ switch.bedside_light:
 switch.dehumidifier:
   icon: mdi:water-off
   confirm_controls_show_lock: true
+switch.lounge_tv:
+  group:
+    group.lounge:
+      friendly_name: TV
 switch.nightstand_light:
   icon: mdi:page-layout-body
 switch.souvenirs_light:

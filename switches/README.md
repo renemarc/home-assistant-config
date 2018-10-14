@@ -39,6 +39,105 @@ The [Z-Stick Zwave Gen5](https://aeotec.com/z-wave-usb-stick) USB dongle has a c
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
+## HDMI-CEC TV switch
+
+This switch allows basic MQTT status and control of televisions using [this HDMI-CEC to MQTT bridge](https://github.com/michaelarnauts/cec-mqtt-bridge) by **@michaelarnauts** that talks to the Mosquitto MQTT add-on. Using the [CEC protocol](https://en.wikipedia.org/wiki/Consumer_Electronics_Control), the connected television can then have its power state known and toggled through the UI, Apple HomeKit, and most importantly in automations.
+
+The bridge is hosted on a inexpensive, dedicated, Wi-Fi enabled [Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/) connected to a free HDMI port on the lounge's television. Contrary to most video cards, all Raspberry Pi models fully support the HDMI-CEC prototol.
+
+The quickest route would have been to simply install the code directly on a full-blown Raspbian installation, but that leads to possible file system corruption during ungraceful shutdowns (pulled plug, power outages), SD card degradation due to regular disk writes, the need for security management, eventual OS upgrade cycles and other manual maintenance. All that for a simple TV switch? No thanks.
+
+Instead, this RPi is running [ResinOS](https://resinos.io/) (like Hass.io did before moving on to their own HassOS) to create an Docker-powered plug-in appliance thanks to its read-only root file system and non-persistent RAM logging that minimize chances of SD card corruption.
+
+[Initial deployment was done locally](https://docs.resin.io/learn/develop/local-mode/) using a [development OS image of ResinOS](https://docs.resin.io/reference/OS/overview/2.x/#dev-vs-prod-images) (password-less SSH access, exposed Docker socket) to make sure everything worked fine. Then I rebuilt the device using a production image to secure most access points to the device except for secured CLI and remote management using resin.io's [free-tier](https://resin.io/pricing/) control panel service. This way there is little maintenance to do, except click-deploying OS updates whenever security or performance updates are available. And if I add more TVs later, it's just as simple to manage many such IoT devices as it is to manage one. A bit like when updating firmware for other smart devices. Easy! 😃
+
+
+### Local/Test installation
+
+With the base ResinOS running on the RPi, and with the [resin-cli installed](https://docs.resin.io/reference/cli/):
+```
+git clone git@github.com:michaelarnauts/cec-mqtt-bridge.git
+cd cec-mqtt-bridge
+cp config.default.ini config.ini
+```
+
+Then edit the `config.ini` file with your MQTT details.
+
+Finally, create the Docker container and push the app to the device (assuming here that hostname is named **resin.local**):
+```
+sudo resin local push resin.local --source .
+```
+
+To test communication or debug CEC codes, connect to the app container using:
+```
+sudo resin local ssh resin.local
+```
+
+First, list the CEC-enabled devices using:
+```
+echo "scan" | cec-client RPI -s -d 1
+```
+
+Then simply listen to the CEC bus while using your remote control or while testing your integration:
+```
+cec-client RPI -s -d 31
+```
+
+See [Gordon Turner's blog post](https://blog.gordonturner.com/2016/12/14/using-cec-client-on-a-raspberry-pi/) for more information, and use [CEC-O-MATIC](http://www.cec-o-matic.com/) to decypher those obscure `10:47:43:45:43:54:65:73:74:65:72` CEC messages and generate your own replies.
+
+
+### Production installation
+
+As of this writing, a development build cannot yet be promoted into a production build, so if everything is working well in test let's rebuild things in production.
+
+First, create a Raspberry Pi app on the [resin.io dashboard](https://dashboard.resin.io/) corresponging to your model.
+
+Then, add a device to your app in the resin.io dashboard, selecting **Production** edition. You can either configure WiFi here first or manually configure it on the resulting image by using:
+
+```
+sudo resin local configure ~/Downloads/resin-APPNAME-raspberry-pi-VERSION.img 
+```
+
+Once burned to an SD card and the Raspberry Pi booted up, it will be listed on your dashboard.
+
+Ideally, instead of relying on a configuration file, setup environment variables for any or all of the following. This way, should you have more than one device you can setup fleet-wide configuration values and some device-specific ones, without having to rebuild the app.
+
+```
+MQTT_BROKER
+MQTT_PORT
+MQTT_USER
+MQTT_PASSWORD
+MQTT_PREFIX
+CEC_ENABLED
+CEC_ID
+CEC_PORT
+CEC_DEVICES
+IR_ENABLED
+```
+
+Then, add resin.io as a remote to the Git project:
+```
+git remote add resin USERNAME@git.resin.io:USERNAME/APPNAME.git
+```
+
+Push the codebase directory (including configuration file) to the resin.io build pipeline, deploying it to your Raspberry Pi.
+```
+resin push APPNAME
+```
+
+Later, should you add another TV, simply add another device to this application and override some environment variables like MQTT_PREFIX for this specific device. The new device will then automatically be provisioned and ready to go!
+
+### Tweaks
+
+You can tweak your application in the dashboard and [override boot settings](https://docs.resin.io/reference/OS/advanced/), for instance so that the CEC-to-MQTT bridge doesn't switch the TV to the Resin blank screen when booting up by adding:
+
+```
+RESIN_HOST_CONFIG_hdmi_ignore_cec_init=1
+```
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+
 ## Customization
 
 Some customization of switches is done in [`/customize.yaml`](../customize.yaml). For privacy as well as for development and testing purposes any sensitive data is hidden and referenced in the non-commited [`/secrets.yaml`](../secrets-dummy.yaml) file.

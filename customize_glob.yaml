@@ -60,6 +60,8 @@ automation.radon_*:
   icon: mdi:radioactive
 automation.tamper_*:
   icon: mdi:security-home
+automation.tv_*:
+  icon: mdi:television-classic
 automation.video_player_*:
   icon: mdi:plex
 automation.washroom_*:

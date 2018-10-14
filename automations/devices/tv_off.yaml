@@ -1,0 +1,53 @@
+#
+# Turn off the television if nobody seems to be home.
+#
+# @subscribe group.presence
+# @subscribe group.motion_sensors
+# @subscribe switch.lounge_tv
+#
+# @publish switch.lounge_tv
+#
+
+- id: tv_off
+  alias: TV OFF
+  trigger:
+    # No known person is home.
+    - platform: state
+      entity_id: group.presence
+      to: 'not_home'
+      for:
+        hours: 2
+
+    # Motion is no longer detected.
+    - platform: state
+      entity_id: group.motion_sensors
+      to: 'off'
+      for:
+        hours: 2
+
+  condition:
+    # If TV is on.
+    - condition: state
+      entity_id: switch.lounge_tv
+      state: 'on'
+
+    # No known person is home.
+    - condition: state
+      entity_id: group.presence
+      state: 'not_home'
+      for:
+        hours: 2
+
+    # No motion has been detected.
+    - condition: state
+      entity_id: group.motion_sensors
+      state: 'off'
+      for:
+        hours: 2
+
+  action:
+    # Turn off the TV.
+    - service: homeassistant.turn_off
+      data:
+        entity_id:
+          - switch.lounge_tv

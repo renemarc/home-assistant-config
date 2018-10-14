@@ -231,6 +231,12 @@ A DIY 100 LED dots Arduino setup running [Adalight](https://learn.adafruit.com/a
     </figure>
 </div>
 
+### [`📺 ./lightpack_auto.yaml`](lightpack_auto.yaml)
+
+Change Lightpack effect based on TV state.
+
+Unless a scene is selected, set the Lightpack to react to the screen contents if the TV is on, otherwise set the bias light to something that is not distracting.
+
 
 ### [`🌈 ./lightpack_effect.yaml`](lightpack_effect.yaml)
 
@@ -264,6 +270,11 @@ Turn on nightlights when appropriate.
 ## Video players
 
 Video players automations are linked to HTPC usage, and only run in response to the state of video players and their types of content.
+
+
+### [`📺 ./tv_off.yaml`](tv_off.yaml)
+
+Turn off the television if nobody seems to be home.
 
 
 ### [`▶️ ./video_player_resume.yaml`](video_player_resume.yaml)

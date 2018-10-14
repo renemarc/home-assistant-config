@@ -67,6 +67,7 @@ lounge:
     - light.spotlight
     - switch.souvenirs_light
     - switch.window_light
+    - switch.lounge_tv
     - sensor.lounge_temperature
     - sensor.lounge_humidity
     - sensor.lounge_luminance_friendly
