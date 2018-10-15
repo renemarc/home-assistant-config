@@ -309,7 +309,9 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[Milight iBox2 WiFi Bridge](https://www.futlight.com/productdetails.aspx?id=239&typeid=125)** for kitchen RF LED strip controllers, using [LimitlessLED](https://home-assistant.io/components/light.limitlessled/) integration.
 - **[NooElec NESDR SMArt](http://www.nooelec.com/store/nesdr-smart.html)** RTL-SDR (software-defined radio) USB dongle for reading AcuRite sensors.
 - **[Raspberry Pi 3 Model B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)** running Hass.io.
-- **[Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)** running [Airthings Wave to MQTT](https://github.com/hpeyerl/airthingswave-mqtt) in order to interface with this Bluetooth radon detector.
+- **[Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)** (x2), each managed through [resin.io](https://resin.io/) to run as simple, dedicated plug-in bridges for the following services:
+    1. **[Airthings Wave to MQTT](https://github.com/hpeyerl/airthingswave-mqtt)** in order to interface with [this Bluetooth radon detector](https://airthings.com/wave/).
+    2. **[Flic bridge](https://github.com/renemarc/flic-resin)** to connect with [these Bluetooth Low Energy buttons](https://flic.io/).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
@@ -329,10 +331,10 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
-#### Sensors
-- **[AcuRite 06044M Wireless Sensor](https://www.acurite.com/indoor-temperature-sensor-and-humidity-gauge.html)** [433Mhz] for cheap temperature and humidity monitoring.
+#### Sensors (see [`/sensors/`](./sensors))
+- **[AcuRite 06044M Wireless Sensor](https://www.acurite.com/indoor-temperature-sensor-and-humidity-gauge.html)** [433Mhz] for cheap temperature and humidity monitoring inside a cigar humidor.
 - **[Aeotec Door / Window Sensor Gen5](https://aeotec.com/z-wave-door-window-sensor)** [Z-Wave] for front door.
-- **[Aeotec MultiSensor 6](https://aeotec.com/z-wave-sensor)** [Z-Wave] for temperature/humidity/presence detection.
+- **[Aeotec MultiSensor 6](https://aeotec.com/z-wave-sensor)** [Z-Wave] (x3) for temperature/humidity/presence detection.
 - **[Airthings Wave radon detector](https://airthings.com/wave/)** [Bluetooth Low Energy] to keep an eye on this cancer-causing radioactive gas.
 - **[Dome Leak Sensor](https://domeha.com/z-wave-leak-sensor)** [Z-Wave] (x2) in case the dishwasher breaks a seal, a shower curtain has not been closed properly …or a toilet has overflowed. 🤢
 
@@ -368,7 +370,6 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 #### Hass.io add-ons
 - **[AppDaemon](https://github.com/home-assistant/appdaemon)** for HADashboard tablet UI.
 - **[Bluetooth BCM43xx](https://home-assistant.io/addons/bluetooth_bcm43xx)** to use Raspberry Pi's bluetooth.
-- **[Flicd](https://github.com/pschmitt/hassio-addons)** to connect with Flic bluetooth buttons.
 - **[Mosquitto MQTT broker](https://home-assistant.io/addons/mosquitto)** for standard IoT messaging.
 - **[RTL_433 to MQTT Bridge](https://github.com/james-fry/hassio-addons)** to receive and decode AcuRite radio signals.
 - **[Samba share](https://home-assistant.io/addons/samba)** for configuration file sharing.

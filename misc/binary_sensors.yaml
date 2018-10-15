@@ -11,7 +11,7 @@
 # This points to the local flicd daemon that handles the actual Flic buttons.
 #
 # @link https://flic.io/
-# @link https://github.com/pschmitt/hassio-addons/tree/master/flicd
+# @link https://github.com/renemarc/resin-flic
 # @link https://home-assistant.io/components/binary_sensor.flic/
 #
 - platform: flic
