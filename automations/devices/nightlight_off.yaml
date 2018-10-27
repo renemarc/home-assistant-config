@@ -1,6 +1,7 @@
 #
 # Turn off nightlights when no longer needed
 #
+# Todo: split this into area-managed automations.
 # Todo: use an OFF timer instead of relying on motion detectors.
 #
 # @subscribe group.motion_sensors_critical
@@ -8,6 +9,8 @@
 #
 - id: nightlight_off
   alias: Nightlight OFF
+  initial_state: 'off'
+
   trigger:
     # Motion no longer detected.
     - platform: state

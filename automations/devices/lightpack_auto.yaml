@@ -51,7 +51,7 @@
       data_template:
         option: >-
           {% if is_state('switch.lounge_tv', 'off') %}
-            Romantic
+            Daylight
           {% else %}
             Default
           {% endif %}
