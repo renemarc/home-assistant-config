@@ -155,14 +155,20 @@ binary_sensor.washroom_motion:
 #
 # Cameras
 #
+camera.bing_wallpaper:
+  hide_control: true
 camera.environment_canada_rain:
-  friendly_name: Rain
+  friendly_name: "Radar: Rain"
+  hide_control: true
 camera.environment_canada_snow:
-  friendly_name: Snow
+  friendly_name: "Radar: Snow"
+  hide_control: true
 camera.noaa_geocolor:
-  friendly_name: GeoColor
+  friendly_name: "Satellite: Geocolor"
+  hide_control: true
 camera.noaa_water_vapour:
-  friendly_name: Water Vapour
+  friendly_name: "Satellite: Water Vapour"
+  hide_control: true
 
 
 #

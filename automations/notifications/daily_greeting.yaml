@@ -71,7 +71,7 @@
           {%- endif -%}
           .
 
-          {%- if 40 <= windspeed -%}
+          {% if 40 <= windspeed -%}
             It is windy. {%
           endif -%}
           A {{ states('sensor.wind_scale_friendly') | lower }} is blowing from the {{ states('sensor.wind_bearing_cardinal_friendly') }}.

@@ -199,6 +199,15 @@ ios:
 
 
 #
+# LIFX
+#
+# @link https://www.home-assistant.io/components/lifx/
+#
+lifx: !include misc/lifx.yaml
+
+
+
+#
 # Lights
 #
 # @link https://home-assistant.io/components/light/

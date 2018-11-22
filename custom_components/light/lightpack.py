@@ -19,7 +19,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_API_KEY): cv.string
 })
 
-def setup_platform(hass, config, add_devices, discovery_info=None):
+def setup_platform(hass, config, add_entities, discovery_info=None):
     # Assign configuration variables. The configuration check takes care they are present.
     host = config.get(CONF_HOST)
     port = config.get(CONF_PORT)
@@ -27,7 +27,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
 
     # Add device
     lightpack = Lightpack(host, port, api_key)
-    add_devices([lightpack])
+    add_entities([lightpack])
 
     def set_profile(call):
         """Instruct the light to change profile."""

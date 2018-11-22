@@ -6,7 +6,7 @@
 #
 # @subscribe binary_sensor.front_door
 #
-# @see /lights/lifx.yaml
+# @see /misc/lifx.yaml
 #
 - id: front_door_notify
   alias: Front door NOTIFY

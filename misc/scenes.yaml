@@ -8,7 +8,7 @@
 #
 # LIFX cloud scenes
 #
-# @see /lights/lifx.yaml
+# @see /misc/lifx.yaml
 #
 # @link https://api.developer.lifx.com/docs/list-scenes
 # @link https://home-assistant.io/components/scene.lifx_cloud/

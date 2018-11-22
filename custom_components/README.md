@@ -42,13 +42,6 @@ Interact with Android devices running the [Fully Kiosk Browser](https://www.ozer
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
-### [`💡 ./light/lifx.py`](light/lifx.py)
-
-[Temporary fix](https://github.com/renemarc/aiolifx_effects/commit/d4452f9b812e7ae694f3abeecf1620de37e54a64) for LIFX component to avoid random _Set of coroutines/Futures is empty_ critical errors.
-
-<p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
-
 ### [`📺 ./light/lightpack.py`](light/lightpack.py)
 
 Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) monitor bias lighting using this [Lightpack component by **@kklemm91**](https://github.com/kklemm91/Lightpack-HASS).

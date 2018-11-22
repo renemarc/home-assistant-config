@@ -46,7 +46,7 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_VALUE_TEMPLATE): cv.template,
 })
 
-def setup_platform(hass, config, add_devices, discovery_info=None):
+def setup_platform(hass, config, add_entities, discovery_info=None):
     """Set up the Doomsday Clock sensor."""
     name = config.get(CONF_NAME)
     resource = CONF_RESOURCE
@@ -68,7 +68,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
         _LOGGER.error("Unable to fetch URL: %s", resource)
         return False
 
-    add_devices([
+    add_entities([
         DoomsdayClockSensor(rest, name, selector, unit_of_measurement, icon,
             value_template)
         ], True)

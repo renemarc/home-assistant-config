@@ -59,8 +59,9 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 })
 
 
-@asyncio.coroutine
-def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
+
+async def async_setup_platform(hass, config, async_add_entities,
+                               discovery_info=None):
     """Set up the requested World Air Quality Index locations."""
     import waqiasync
 
@@ -75,7 +76,7 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
         for location_name in locations:
             if isinstance(location_name, int) or \
                 isinstance(location_name, str) and location_name.isdigit():
-                station = yield from client.get_station_by_number(location_name)
+                station = await client.get_station_by_number(location_name)
                 _LOGGER.debug("The following station was returned: %s", station)
                 waqi_sensor = WaqiSensor(client, station)
                 if {waqi_sensor.uid,
@@ -83,7 +84,7 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
                     waqi_sensor.station_name}:
                     dev.append(waqi_sensor)
             else:
-                stations = yield from client.search(location_name)
+                stations = await client.search(location_name)
                 _LOGGER.debug("The following stations were returned: %s", stations)
                 for station in stations:
                     waqi_sensor = WaqiSensor(client, station)
@@ -96,7 +97,7 @@ def async_setup_platform(hass, config, async_add_devices, discovery_info=None):
             asyncio.TimeoutError):
         _LOGGER.exception('Failed to connect to WAQI servers.')
         raise PlatformNotReady
-    async_add_devices(dev, True)
+    async_add_entities(dev, True)
 
 
 class WaqiSensor(Entity):
@@ -179,13 +180,12 @@ class WaqiSensor(Entity):
             except (IndexError, KeyError):
                 return {ATTR_ATTRIBUTION: ATTRIBUTION}
 
-    @asyncio.coroutine
-    def async_update(self):
+    async def async_update(self):
         """Get the latest data and updates the states."""
         if self.uid:
-            result = yield from self._client.get_station_by_number(self.uid)
+            result = await self._client.get_station_by_number(self.uid)
         elif self.url:
-            result = yield from self._client.get_station_by_name(self.url)
+            result = await self._client.get_station_by_name(self.url)
         else:
             result = None
         self._data = result

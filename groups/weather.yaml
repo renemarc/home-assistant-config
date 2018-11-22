@@ -7,12 +7,9 @@ weather_view:
   icon: mdi:weather-partlycloudy
   entities:
     - group.weather
-    - group.radar_rain
-    - group.radar_snow
+    - group.radar_satellite
     - group.atmospheric_safety
     - group.weather_forecast
-    - group.satellite_geocolor
-    - group.satellite_water
 
 
 #
@@ -30,24 +27,13 @@ atmospheric_safety:
     - sensor.aqi_nitrogen_dioxide_friendly
     - sensor.aqi_sulphur_dioxide_friendly
 
-radar_rain:
-  name: Rain Radar Map
+radar_satellite:
+  name: Maps
+  control: hidden
   entities:
     - camera.environment_canada_rain
-
-radar_snow:
-  name: Snow Radar Map
-  entities:
     - camera.environment_canada_snow
-
-satellite_geocolor:
-  name: Geocolor Satellite Map
-  entities:
     - camera.noaa_geocolor
-
-satellite_water:
-  name: Water Vapour Satellite Map
-  entities:
     - camera.noaa_water_vapour
 
 weather:
@@ -58,7 +44,6 @@ weather:
     - sensor.outside_humidity
     - sensor.wind_speed
     - sensor.dark_sky_hourly_summary
-
 
 weather_forecast:
   name: Weekly Forecast

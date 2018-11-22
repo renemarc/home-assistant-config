@@ -20,13 +20,13 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_TEXT_STATE, default=False): cv.boolean,
     })
 
-def setup_platform(hass, config, add_devices, discovery_info=None):
+def setup_platform(hass, config, add_entities, discovery_info=None):
     """Set up the sensor platform"""
     import os
     text_state = config.get(CONF_TEXT_STATE)
     exist = os.path.isfile(SYSFILE)
     if exist:
-        add_devices([RaspberryChargerSensor(text_state)], True)
+        add_entities([RaspberryChargerSensor(text_state)], True)
     else:
         _LOGGER.critical('Can not read system information, your hardware is not supported.')
 
