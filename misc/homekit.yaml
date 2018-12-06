@@ -7,6 +7,7 @@ filter:
     - input_boolean.night_mode
     - input_boolean.quiet_mode
     - light.bedroom
+    - light.bedside
     - light.countertop
     - light.headboard
     - light.island
@@ -14,20 +15,24 @@ filter:
     - light.lounge
     - light.microwave
     - light.middle
+    - light.nightstand
     - light.sink
+    - light.souvenirs
     - light.underbed
+    - light.window
     - sensor.aqi_particles
     - sensor.average_humidity
     - sensor.average_temperature
     - sensor.bedroom_humidity
     - sensor.bedroom_temperature
+    - sensor.humidor_humidity
+    - sensor.kitchen_temperature
     - sensor.lounge_humidity
     - sensor.lounge_temperature
     - sensor.outside_humidity
     - sensor.outside_temperature
+    - sensor.washroom_humidity
+    - sensor.washroom_temperature
     - switch.bedroom_fan
-    - switch.bedside_light
     - switch.dehumidifier
-    - switch.nightstand_light
-    - switch.souvenirs_light
-    - switch.window_light
+    - switch.lounge_tv

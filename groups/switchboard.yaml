@@ -23,8 +23,8 @@ bedroom:
     - light.underbed
     - light.headboard
     - sensor.hline_dashed
-    - switch.nightstand_light
-    - switch.bedside_light
+    - light.nightstand
+    - light.bedside
     - switch.bedroom_fan
     - sensor.bedroom_temperature
     - sensor.bedroom_humidity
@@ -65,8 +65,8 @@ lounge:
     - light.lightpack
     - sensor.hline_dashed_2
     - light.spotlight
-    - switch.souvenirs_light
-    - switch.window_light
+    - light.souvenirs
+    - light.window
     - switch.lounge_tv
     - sensor.lounge_temperature
     - sensor.lounge_humidity

@@ -127,6 +127,7 @@ binary_sensor.kiosk_motion_auto:
     group.kitchen:
       friendly_name: Motion
 binary_sensor.siren_monitor_smoke:
+  device_class: smoke
   templates:
     theme: >-
       return state == 'on'
@@ -287,6 +288,8 @@ light.bedroom:
     off_when_min: true
     pin: true
     report_when_not_changed: false
+light.bedside:
+  icon: mdi:creation
 light.countertop:
   extra_data_template: >-
     return (attributes.brightness)
@@ -380,6 +383,8 @@ light.middle:
     off_when_min: true
     pin: true
     report_when_not_changed: false
+light.nightstand:
+  icon: mdi:page-layout-body
 light.shower:
   extra_data_template: >-
     if(!attributes.brightness)return null;
@@ -446,6 +451,8 @@ light.spotlight:
     pin: true
     report_when_not_changed: false
   state_card_mode: break-slider
+light.souvenirs:
+  icon: mdi:trophy
 light.underbed:
   extra_data_template: >-
     var e = 'sensor.bed_effect_loaded',
@@ -460,6 +467,8 @@ light.underbed:
     off_when_min: true
     pin: true
     report_when_not_changed: false
+light.window:
+  icon: mdi:creation
 
 
 #
@@ -1012,7 +1021,6 @@ switch.lounge_tv:
 switch.nightstand_light:
   icon: mdi:page-layout-body
 switch.souvenirs_light:
-  friendly_name: Souvenirs Light
   icon: mdi:trophy
 switch.window_light:
   icon: mdi:creation

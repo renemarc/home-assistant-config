@@ -1,0 +1,24 @@
+#
+# Light switches
+#
+# Assign existing switches as lights.
+#
+# @see /switches/
+#
+# @link https://www.home-assistant.io/components/light.switch/
+#
+- platform: switch
+  name: Bedside
+  entity_id: switch.bedside_light
+
+- platform: switch
+  name: Nightstand
+  entity_id: switch.nightstand_light
+
+- platform: switch
+  name: Souvenirs
+  entity_id: switch.souvenirs_light
+
+- platform: switch
+  name: Window
+  entity_id: switch.window_light

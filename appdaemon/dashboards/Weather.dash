@@ -143,7 +143,7 @@ weekly_forecast:
 temperature_today:
     widget_type: entitysensor
     title: Today
-    entity: sensor.dark_sky_daytime_high_temperature
+    entity: sensor.dark_sky_daytime_high_temperature_0
     sub_entity: sensor.weather_low_friendly
     title2_entity: sensor.feels_like
     widget_style: "background-color:inherit;"

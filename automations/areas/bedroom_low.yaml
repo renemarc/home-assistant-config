@@ -42,5 +42,5 @@
     - service: homeassistant.turn_on
       data:
         entity_id:
-        - switch.bedside_light
-        - switch.nightstand_light
+        - light.bedside
+        - light.nightstand

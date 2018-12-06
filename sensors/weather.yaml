@@ -6,6 +6,7 @@
 - platform: darksky
   api_key: !secret darksky_api_key
   forecast:
+    - 0
     - 1
     - 2
   monitored_conditions:
@@ -218,14 +219,14 @@
     weather_low:
       friendly_name: Low Temperature
       value_template: >-
-        {{ states('sensor.dark_sky_overnight_low_temperature') | round }}
+        {{ states('sensor.dark_sky_overnight_low_temperature_0') | round }}
 
     weather_low_friendly:
       friendly_name: Low Temperature
       value_template: >-
-        {% set temp = states('sensor.dark_sky_overnight_low_temperature') | round %}
+        {% set temp = states('sensor.dark_sky_overnight_low_temperature_0') | round %}
 
-        min: {{ temp }}˚
+        low: {{ temp }}˚
 
     weather_low_1:
       friendly_name: Low Temperature
@@ -237,7 +238,7 @@
       value_template: >-
         {% set temp = states('sensor.dark_sky_overnight_low_temperature_1') | round %}
 
-        min: {{ temp }}˚
+        low: {{ temp }}˚
 
     weather_low_2:
       friendly_name: Low Temperature
@@ -249,7 +250,7 @@
       value_template: >-
         {% set temp = states('sensor.dark_sky_overnight_low_temperature_2') | round %}
 
-        min: {{ temp }}˚
+        low: {{ temp }}˚
 
 
 #

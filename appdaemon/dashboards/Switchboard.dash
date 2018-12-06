@@ -238,13 +238,13 @@ underglow_underbed:
 light_bedside:
     widget_type: switch
     title: Bedside
-    entity: switch.bedside_light
+    entity: light.bedside
     widget_style: "background-color:INDIGO;"
 
 light_nightstand:
     widget_type: switch
     title: Nightstand
-    entity: switch.nightstand_light
+    entity: light.nightstand
     widget_style: "background-color:INDIGO;"
 
 fan_bedroom:
@@ -310,13 +310,13 @@ light_lamp:
 light_souvenirs:
     widget_type: switch
     title: Souvenirs
-    entity: switch.souvenirs_light
+    entity: light.souvenirs
     widget_style: "background-color:DARKRED;"
 
 light_window:
     widget_type: switch
     title: Window
-    entity: switch.window_light
+    entity: light.window
     widget_style: "background-color:DARKRED;"
 
 switch_tv:

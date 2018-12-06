@@ -19,17 +19,17 @@ sequence:
   - service: homeassistant.turn_on
     data:
       entity_id:
-        - switch.souvenirs_light
-        - switch.window_light
+        - light.souvenirs
+        - light.window
 
   # Dim the spot lights.
   # Todo: Investigate moving to https://home-assistant.io/components/light/
   - service: light.lifx_set_state
     data:
       entity_id:
+        - light.lounge_lamp
         - light.shower
         - light.spotlight
-        - light.lounge_lamp
     data_template:
       kelvin: 2500
       brightness_pct: 40
