@@ -8,7 +8,7 @@ from homeassistant.helpers.entity import Entity
 import homeassistant.helpers.config_validation as cv
 from homeassistant.components.sensor import (PLATFORM_SCHEMA)
 
-__version__ = '0.0.7'
+__version__ = '0.0.8'
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -20,13 +20,13 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_TEXT_STATE, default=False): cv.boolean,
     })
 
-def setup_platform(hass, config, add_entities, discovery_info=None):
+def setup_platform(hass, config, add_devices, discovery_info=None):
     """Set up the sensor platform"""
     import os
     text_state = config.get(CONF_TEXT_STATE)
     exist = os.path.isfile(SYSFILE)
     if exist:
-        add_entities([RaspberryChargerSensor(text_state)], True)
+        add_devices([RaspberryChargerSensor(text_state)], True)
     else:
         _LOGGER.critical('Can not read system information, your hardware is not supported.')
 
@@ -53,6 +53,8 @@ class RaspberryChargerSensor(Entity):
             self._description = 'CPU is throttled due to under-voltage.'
         elif _throttled == '5000':
             self._description = 'CPU is throttled due to under-voltage.'
+        elif _throttled == '8000':
+            self._description = 'Soft Temp limit has occurred.'
         else:
             self._description = 'There is a problem with your power supply or system.'
         if self._text_state:
@@ -81,3 +83,4 @@ class RaspberryChargerSensor(Entity):
     def device_state_attributes(self):
         """Return the attribute(s) of the sensor"""
         return self._attribute
+

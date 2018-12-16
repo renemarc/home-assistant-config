@@ -11,7 +11,7 @@ from homeassistant.exceptions import TemplateError
 from homeassistant.loader import bind_hass
 from homeassistant.helpers.entity import Entity
 from homeassistant.helpers.entity_component import EntityComponent
-from homeassistant.helpers.restore_state import async_get_last_state
+from homeassistant.helpers.restore_state import RestoreEntity
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -107,7 +107,7 @@ async def async_setup(hass, config):
     await component.async_add_entities(entities)
     return True
 
-class Variable(Entity):
+class Variable(RestoreEntity):
     """Representation of a variable."""
 
     def __init__(self, variable_id, name, value, attributes, restore):
@@ -120,8 +120,9 @@ class Variable(Entity):
 
     async def async_added_to_hass(self):
         """Run when entity about to be added."""
+        super().async_added_to_hass()
         if self._restore == True:
-            state = await async_get_last_state(self.hass, self.entity_id)
+            state = await self.async_get_last_state()
             if state:
                 self._value = state.state
 

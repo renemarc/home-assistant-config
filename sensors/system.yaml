@@ -20,7 +20,7 @@
     - type: memory_use
     - type: memory_free
     - type: processor_use
-    - type: since_last_boot
+    - type: last_boot
 
 
 #
@@ -144,18 +144,16 @@
       friendly_name: Server Uptime
       icon_template: mdi:server
       value_template: >-
-        {% set slb = states('sensor.since_last_boot') %}
+        {% set lb = states('sensor.last_boot') %}
 
-        {% if slb != 'unknown' %}
-          {% set slb = slb.split(' ') %}
-          {% set count = slb | length %}
-          {% set hms = slb[count - 1] %}
-          {% set hms_trimmed = hms.split('.')[0] %}
-          {% set hms_split = hms_trimmed.split(':') %}
-          {% set seconds = hms_split[2] | int %}
-          {% set minutes = hms_split[1] | int %}
-          {% set hours = hms_split[0] | int %}
-          {% set days = slb[0]|int %}
+        {% if lb != 'unknown' %}
+          {% set seconds = (as_timestamp(now()) - as_timestamp(lb))|int %}
+          {% set days = (seconds / 86400)|int %}
+          {% set seconds = seconds % 86400 %}
+          {% set hours = (seconds / 3600)|int %}
+          {% set seconds = seconds % 3600 %}
+          {% set minutes = (seconds / 60)|int %}
+          {% set seconds = seconds % 60 %}
 
           {% if hours == 0 and minutes == 0 %}
             {{ time }} seconds
