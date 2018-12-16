@@ -35,6 +35,7 @@ automations:
   entities:
     - automation.cct_lifx
     - automation.cct_limitlessled
+    - automation.homekit_start
     - automation.scene_daylight
     - automation.scene_gaming
     - automation.scene_romantic

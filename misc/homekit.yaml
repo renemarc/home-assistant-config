@@ -1,4 +1,4 @@
-auto_start: true
+auto_start: false
 port: !secret homekit_port
 filter:
   include_entities:

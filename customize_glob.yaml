@@ -32,6 +32,8 @@ automation.dehumidifier_*:
   icon: mdi:water-off
 automation.door_*:
   icon: mdi:door-open
+automation.homekit_*:
+  icon: mdi:home-automation
 automation.humidor_*:
   icon: mdi:bow-tie
 automation.kitchen_*:

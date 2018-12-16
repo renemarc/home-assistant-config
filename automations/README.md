@@ -79,6 +79,11 @@ Adjust LIFX bulbs colour temperature (CCT) based on cyrcadian rythm.
 Adjust LimitlessLED/MiLight colour temperature (CCT) based on cyrcadian rythm.
 
 
+### [`🏠 ./homekit_start.yaml`](homekit_start.yaml)
+
+Start the HomeKit server when everything is ready.
+
+
 ### [`🔆️ ./scene_daylight.yaml`](scene_daylight.yaml)
 
 Toggle the daylight scene.
