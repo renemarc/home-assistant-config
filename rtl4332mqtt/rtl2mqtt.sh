@@ -173,33 +173,32 @@ OFFSET="$(jq --raw-output '.frequency_offset' $CONFIG_PATH)"
 
 # Start the listener and enter an endless loop
 echo "Starting RTL_433 with parameters:"
-echo "MQTT Host =" $MQTT_HOST
-echo "MQTT Port =" $MQTT_PORT
-echo "MQTT User =" $MQTT_USER
-echo "MQTT Password =" $MQTT_PASS
-echo "MQTT Topic =" $MQTT_TOPIC
-echo "RTL_433 Protocol =" $PROTOCOL
-echo "RTL_433 Frequency =" $FREQUENCY
-echo "RTL_433 Gain =" $GAIN
-echo "RTL_433 Frequency Offset =" $OFFSET
+echo "MQTT Host = $MQTT_HOST"
+echo "MQTT Port = $MQTT_PORT"
+echo "MQTT User = $MQTT_USER"
+echo "MQTT Password = $MQTT_PASS"
+echo "MQTT Topic = $MQTT_TOPIC"
+echo "RTL_433 Protocol = $PROTOCOL"
+echo "RTL_433 Frequency = $FREQUENCY"
+echo "RTL_433 Gain = $GAIN"
+echo "RTL_433 Frequency Offset = $OFFSET"
 
 #set -x  ## uncomment for MQTT logging...
 
-/usr/local/bin/rtl_433 -F json -R $PROTOCOL -f $FREQUENCY -g $GAIN -p $OFFSET | while read line
+/usr/local/bin/rtl_433 -F json -R "$PROTOCOL" -f "$FREQUENCY" -g "$GAIN" -p "$OFFSET" | while read -r line
 do
-  DEVICE="$(echo $line | jq --raw-output '.model' | tr -s ' ' '_')" # replace ' ' with '_'
-  DEVICEID="$(echo $line | jq --raw-output '.id' | tr -s ' ' '_')"
+  DEVICE="$(echo "$line" | jq --raw-output '.model' | tr -s ' ' '_')" # replace ' ' with '_'
+  DEVICEID="$(echo "$line" | jq --raw-output '.id' | tr -s ' ' '_')"
+  MQTT_PATH="$MQTT_TOPIC"
 
-  MQTT_PATH=$MQTT_TOPIC
-
-  if [ ${#DEVICE} > 0 ]; then
-    MQTT_PATH=$MQTT_PATH/"$DEVICE"
+  if [ ${#DEVICE} -gt 0 ]; then
+    MQTT_PATH="$MQTT_PATH"/"$DEVICE"
   fi
-  if [ ${#DEVICEID} > 0 ]; then
-    MQTT_PATH=$MQTT_PATH/"$DEVICEID"
+  if [ ${#DEVICEID} -gt 0 ]; then
+    MQTT_PATH="$MQTT_PATH"/"$DEVICEID"
   fi
 
   # Create file with touch /tmp/rtl_433.log if logging is needed
-  [ -w /tmp/rtl_433.log ] && echo $line >> rtl_433.log
-  echo $line | /usr/bin/mosquitto_pub -h $MQTT_HOST -p $MQTT_PORT -u $MQTT_USER -P $MQTT_PASS -i RTL_433 -r -l -t $MQTT_PATH
+  [ -w /tmp/rtl_433.log ] && echo "$line" >> rtl_433.log
+  echo "$line" | /usr/bin/mosquitto_pub -h "$MQTT_HOST" -p "$MQTT_PORT" -u "$MQTT_USER" -P "$MQTT_PASS" -i RTL_433 -r -l -t "$MQTT_PATH"
 done

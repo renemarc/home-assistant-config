@@ -7,8 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -16,13 +14,11 @@
     </div>
 </figure>
 
-
 <h1 align="center">Docker</h1>
 
 This folder contains configuration files to run a development-oriented [Docker](https://www.docker.com/) installation of Home Assistant.
 
 See also [`/docker-compose.yml`](../docker-compose.yml) for actual container definitions.
-
 
 ## Files
 
@@ -30,11 +26,9 @@ See also [`/docker-compose.yml`](../docker-compose.yml) for actual container def
 
 Environment variables for all Docker containers.
 
-
 ### [`💬 ./mosquitto.conf`](mosquitto.conf)
 
 Basic configuration file for [Mosquitto](https://mosquitto.org/).
-
 
 <!--
 Footer starts.

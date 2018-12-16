@@ -7,7 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -23,16 +22,13 @@
     </div>
 </figure>
 
-
 <h1 align="center">Themes</h1>
 
 These CSS configurations serve to bonify the frontend's user interface and improve the user experience.
 
-
 ## Whole themes
 
 These full themes change the whole look of Home Assistant.
-
 
 ### [`🌞 ./normal.yaml`](normal.yaml)
 
@@ -51,7 +47,6 @@ Contains minor improvements over Home Assistant's [default theme](https://github
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`🌜 ./dark.yaml`](dark.yaml)
 
 Automtically set by [`/automations/theme_auto.yaml`](../automations/theme_auto.yaml) whenever **night_mode** in [`/misc/input_booleans.yaml`](../misc/input_booleans.yaml) is enabled. Based on [PmxMononight](https://community.home-assistant.io/t/share-your-themes/22018/38) by PhysicalMagic.
@@ -69,11 +64,9 @@ Automtically set by [`/automations/theme_auto.yaml`](../automations/theme_auto.y
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Card themes
 
 These focused themes are used when modifying the display of specific sensors only.
-
 
 ### [`🥈 ./card-secondary-title.yaml`](card-secondary-title.yaml)
 
@@ -91,7 +84,6 @@ Used in [`/customize.yaml`](../customize.yaml) to replace a sensor's title with 
 </div>
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ### [`⚠ ./card-warning.yaml`](card-warning.yaml)
 
@@ -111,7 +103,6 @@ Used in [`/customize_glob.yaml`](../customize_glob.yaml) to highlight a sensor i
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`🚨 ./card-critical.yaml`](card-critical.yaml)
 
 Used to highlight a sensor in red whenever its state is within a critical range that should command attention. Compatible with both normal and dark themes by also using transparency.
@@ -127,7 +118,6 @@ Used to highlight a sensor in red whenever its state is within a critical range 
         </figcaption>
     </figure>
 </div>
-
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>

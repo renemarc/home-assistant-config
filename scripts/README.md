@@ -7,7 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -16,16 +15,13 @@
     </div>
 </figure>
 
-
 <h1 align="center">Scripts</h1>
 
 For the most part, actions and requirements are based on publish–subscribe pattern where devices and rooms are smart-enough to respond themselves to global parameters and responsible for their own states. See [`/automations/`](../automations) and [`/misc/input_booleans.yaml`](../misc/input_booleans.yaml) for details.
 
-
 ## Smart scenes
 
 Smart scenes are a hybrid approach, where global parameters are used when appropriate, and some direct control is employed to achieve a specific setup. They are used both in [`/automations/`](../automations) and as a manual selector in [`/misc/input_selects.yaml`](../misc/input_selects.yaml) and [`/appdaemon/dashboards/Main.dash`](../appdaemon/dashboards/Main.dash).
-
 
 ### [`🔆 ./scene_daylight.yaml`](scene_daylight.yaml)
 
@@ -44,13 +40,11 @@ Turn on all lights, and set most of the smart ones to a bright daylight white te
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`🏠 ./scene_default.yaml`](scene_default.yaml)
 
 Used to disable scene mode and return light selectors to their default states.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ### [`👾 ./scene_gaming.yaml`](scene_gaming.yaml)
 
@@ -69,7 +63,6 @@ Set lounge smart lights to video gaming themed colours and effects, as the HTPC 
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`📺 ./scene_movie.yaml`](scene_movie.yaml)
 
 Enable lounge ambiant lights and set its smart ones to television-friendly colours and effects.
@@ -87,7 +80,6 @@ Enable lounge ambiant lights and set its smart ones to television-friendly colou
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`💏 ./scene_romantic.yaml`](scene_romantic.yaml)
 
 Turn on accent lights, dim some others, pick a romantic colour theme, set the mood for _looooove!_
@@ -104,7 +96,6 @@ Turn on accent lights, dim some others, pick a romantic colour theme, set the mo
 </div>
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ## Other scripts
 
@@ -125,7 +116,6 @@ Reset the state for tampered perimeter devices list.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`☀ ./wake_up.yaml`](wake_up.yaml)
 
 Quickly disable all blocking modes, therefore activating all lights.
@@ -140,7 +130,6 @@ Quickly disable all blocking modes, therefore activating all lights.
         </figcaption>
     </figure>
 </div>
-
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>

@@ -7,7 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -21,11 +20,9 @@
     </div>
 </figure>
 
-
 <h1 align="center">Screenshots</h1>
 
 Screenshots of UI elements features in this repository. A [screenshot making guide](#screenshot-making-guide) is available below.
-
 
 ## Cards
 
@@ -133,7 +130,6 @@ Screenshots of UI elements features in this repository. A [screenshot making gui
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Area groups
 
 <div align="center">
@@ -197,7 +193,6 @@ Screenshots of UI elements features in this repository. A [screenshot making gui
 </div>
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ## Sensors groups
 
@@ -333,7 +328,6 @@ Screenshots of UI elements features in this repository. A [screenshot making gui
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Menus
 
 <div align="center">
@@ -360,7 +354,6 @@ Screenshots of UI elements features in this repository. A [screenshot making gui
 </div>
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ## Various
 
@@ -426,11 +419,9 @@ Screenshots of UI elements features in this repository. A [screenshot making gui
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Screenshot making guide
 
 These are the steps I used to make these screenshots and animated GIFs. The resulting web-optimized retina images are then embeded at half-width in the README.md files to make them look regular size, while keeping their sharpness on high-resolution screens withouth requiring too much bandwidth. These steps can also be performed on a regular-resolution screen, ideally while zoomed at %200.
-
 
 ### UI groups
 
@@ -441,7 +432,6 @@ These are the steps I used to make these screenshots and animated GIFs. The resu
     - Save in non-compressed format for reference (PNG, PSD, BMP...)
 3. Export as web-optimized PNG.
 4. Use [TinyPNG](https://tinypng.com) to compress web-optimized PNG further.
-
 
 ### HADashboard static image
 
@@ -454,7 +444,6 @@ These are the steps I used to make these screenshots and animated GIFs. The resu
     - Save in non-compressed format for reference (PNG, PSD, BMP...)
 3. Export as web-optimized PNG.
 4. Use [TinyPNG](https://tinypng.com) to compress web-optimized PNG further.
-
 
 ### HADashboard animated GIF
 
@@ -470,7 +459,6 @@ These are the steps I used to make these screenshots and animated GIFs. The resu
 5. If needed, use [ImageMagick](https://www.imagemagick.org/) to make it loop indefinitely:
    `mogrify -loop 0 dashboard-example-1080.gif`
 6. Use [ezgif.com](https://ezgif.com/optimize) to compress animated GIF at 35%.
-
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>

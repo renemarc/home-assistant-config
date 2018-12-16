@@ -7,7 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -27,16 +26,13 @@
     </div>
 </figure>
 
-
 <h1 align="center">UI views and groups</h1>
 
 To avoid a mess of sensors, the state cards are placed into different pages (views), based on a simple architecture. The goal is always to present only as much info as needed, and data presented must be easy to find and consume.
 
-
 ## Organization
 
 Views are split into 5 pages, organized in a similar fashion as [`/appdaemon/dashboards/`](../appdaemon/dashboards) only with more administrative features.
-
 
 ### [`🏠 ./default.yaml`](default.yaml)
 
@@ -63,7 +59,6 @@ With regular actions, climate control, bus schedules and a pretty picture of the
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`🔘 ./switchboard.yaml`](switchboard.yaml)
 
 Organized by room and control zone.
@@ -87,7 +82,6 @@ Organized by room and control zone.
 </div>
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ### [`🌦 ./weather.yaml`](weather.yaml)
 
@@ -115,7 +109,6 @@ With current conditions, forecasts, air quality, radar and satellite maps.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`👀 ./status.yaml`](status.yaml)
 
 Geeky details about Home Assistant, network, battery status and per-location temperature and humidity.
@@ -140,7 +133,6 @@ Geeky details about Home Assistant, network, battery status and per-location tem
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`⚙ ./configuration.yaml`](configuration.yaml)
 
 States and automation overrides.
@@ -162,7 +154,6 @@ States and automation overrides.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Other
 
 ### [`🙈 ./invisible.yaml`](invisible.yaml)
@@ -171,13 +162,11 @@ For logical groups referenced in code but not displayed in views.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Customization
 
 The bulk of the customization is done in [`/customize.yaml`](../customize.yaml) and [`/customize_glob.yaml`](../customize_glob.yaml).
 
 The looks of many state cards depend on Custom UI and other templates in [`/www/custom_ui/`](../www/custom_ui).
-
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>

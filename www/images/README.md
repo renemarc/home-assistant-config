@@ -7,7 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -16,7 +15,6 @@
         <a href="#images" title="Images"><img src="technology-diagram.png" alt="Home Assistant technology diagram" width="140"></a>
     </div>
 </figure>
-
 
 <h1 align="center">Images</h1>
 
@@ -44,7 +42,6 @@ Various supporting images useful in documenting this repository.
         </figcaption>
     </figure>
 </div>
-
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>

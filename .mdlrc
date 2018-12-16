@@ -1,0 +1,5 @@
+#
+# Markdownlint configuration
+#
+
+style "./markdownlint.rb"

@@ -10,7 +10,6 @@
 [![Build Status][img-travis-ci]][link-travis-ci]
 [![Tweet][img-twitter]][link-twitter]
 
-
 Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io](https://home-assistant.io/hassio/) on a [Raspberry Pi](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) for a one bedroom apartment, offering convenience automations over lights and climate while providing multiple intuitive user controls.
 
 <div align="center">
@@ -43,32 +42,29 @@ Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io]
     </figure>
 </div>
 
+## Table of contents 📑
 
-## Table of contents
+1. **[TL;DR](#tldr-)**
+2. **[Overview](#overview-)**\
+    [Goals](#goals-) | [Agile development](#agile-development-)
+3. **[Key features](#key-features-)**\
+    [Climate control](#climate-control-) | [Weather report](#weather-report-) | [Lighting control](#lighting-control-) | [Presence and basic security](#presence-and-basic-security-) | [Modes and scenes](#modes-and-scenes-) | [General information](#general-information-) | [Additional human interfaces](#additional-human-interfaces-)
+4. **[Setup](#setup-)**\
+    [Supporting hardware choices](#supporting-hardware-choices-) | [Configuration](#configuration-) | [Systems and bridges](#systems-and-bridges-) | [Physical devices](#physical-devices-) | [Software](#software-) | [Usage](#usage-)
+5. **[License](#license-)**
+6. **[Thanks](#thanks-)**
 
-1. **[TL;DR](#tldr)**
-1. **[Overview](#overview)**  
-    [Goals](#goals) | [Agile development](#agile-development)
-1. **[Key features](#Goals)**  
-    [Climate control](#climate-control) | [Weather report](#weather-report) | [Lighting control](#lighting-control) | [Presence and basic security](#presence-and-basic-security) | [Modes and scenes](#modes-and-scenes) | [General information](#general-information) | [Additional human interfaces](#additional-human-interfaces)
-1. **[Setup](#setup)**  
-    [Diagram](#diagram) | [Supporting hardware choices](#supporting-hardware-choices) | 
-    [Configuration](#configuration) | [System and interfaces](#system-and-interfaces) | [Physical devices](#physical-devices) | [Software](#software) | [Usage](#usage)
-1. **[License](#license)**
-1. **[Thanks](#thanks)**
-
-
-## TL;DR
+## TL;DR 🏃
 
 This is a fully documented working configuration for Home Assistant, with screenshots, hints and comments. [Browse the code](#) to have a look! 👀
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+## Overview 🌅
 
-## Overview
+### Goals ⚽
 
-### Goals
-- **Inconspicuous**: I like tech alright, but like any good butlers it should stay out of sight yet stay summonable. Think Fiji villa, not server room.
+- **Inconspicuous**: I love tech alright, but like any good butlers it should stay out of sight yet stay summonable. Think Fiji villa, not server room.
 - **Modular**: Both code and devices should be easily replaceable.
 - **Internet independent**: As much local processing as possible for the essential features.
 - **Accessible through multiple ways:** Computers, tablet (kiosk), voice, smart phones, wireless buttons, remotes.
@@ -76,7 +72,7 @@ This is a fully documented working configuration for Home Assistant, with screen
 - **Redundant controls:** Multiple interfaces should be able to control devices without interference. State changes from manual interventions or dedicated manufacturer apps should be tracked whenever possible.
 - **No information overload:** Provide just enough insights to get an idea of what's going on. And no need for data that's best consumed on more interactive devices (like stock prices, Steam community status…)
 - **Not everything should be networked:** Bathroom fan, pantry and laundry room lights have their independent motion sensors and that's a good thing. Same independence goes for the smoke detector: I sure don't want to require extensive skin grafts because I forgot an extra space in a YAML file. 😱
-- **No Alexa/Cortana/Google Voice:** I don't want to have advertising agencies, online stores, or other AI-feeding Big Brother tech-monsters listening in to everything we say _and do_ just for the dubious convenience of switching lights on by voice command. There are offline solutions that are privacy-counscious.
+- **No Alexa/Cortana/Google Voice:** I don't want to have advertising agencies, online stores, or other AI-feeding Big Brother tech-monsters listening in to everything we say _and do_ just for the dubious convenience of toggling lights by voice command. Privacy-centered, offline voice-control solutions like [Mycroft](https://mycroft.ai/blog/usability-vs-privacy-keeping-things-in-balance/) and [Snips](https://snips.ai/technology/) look far more appealing.
 
 <div align="center">
     <figure>
@@ -91,8 +87,7 @@ This is a fully documented working configuration for Home Assistant, with screen
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
-### Agile development
+### Agile development 🖖
 
 This configuration is built with an [Agile](http://agilemanifesto.org/)-like methodology, lead by following main user stories:
 
@@ -117,10 +112,10 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+## Key features ✅
 
-## Key features
+### Climate control 🌡
 
-### Climate control
 - **Temperature monitoring**, averaged and rounded to compensate for sensor calibration issues.
 - **Humidity monitoring**, also averaged and rounded.
 - **Toggle dehumidifier when needed**, based on humidity averaged from multiple sensors, and only during the afternoon so not to bother anyone.
@@ -142,8 +137,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+### Weather report ⛅
 
-### Weather report
 - **Easy to read status and forecasts** using [Dark Sky](https://darksky.net/) data and only showcasing parameters that actually matter, shown in obvious ways.
 - **Outdoor quality monitoring** with numeric levels and human-friendly categorization for ozone, carbon monoxide, nitrogen dioxide, sulphur dioxide, 2.5μm particulate matter and UV light, averaged from multiple surrounding public local stations.
 - **Weather radar and satellite maps** for [local rain and snow](https://weather.gc.ca/radar/index_e.html) from Environment Canada and [regional air masses](http://www.nhc.noaa.gov/satellite.php) from the U.S. National Oceanic and Atmospheric Administration.
@@ -163,15 +158,15 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+### Lighting control 💡
 
-### Lighting control
 - **Control for all pluggable lights**, smart ones at [`/lights/`](lights) and basic ones using [`/switches/`](switches).
 - **Nanoleaf Aurora control**:
-    + Manual theme selection.
-    + Automatically rotate through device-based themes based on time of day (unless manually selected above).
+    - Manual theme selection.
+    - Automatically rotate through device-based themes based on time of day (unless manually selected above).
 - **LIFX Z bed underglow lights and ceiling wash lights control**:
-    + Manual theme selection.
-    + Automatically rotate through cloud-based themes based on time of day (unless manually selected above).
+    - Manual theme selection.
+    - Automatically rotate through cloud-based themes based on time of day (unless manually selected above).
 - **Automatically correlated colour temperature (CCT)**, for [f.lux](https://justgetflux.com/)-like white temperature shift to gradually remove blue light based on a custom colour and brightness curve, not simply based on the sun …otherwise Canadian winters would be quite yellow!
 - **Motion-based nightlights**, where strategic lights fade in, dimmed very low, when movement is detected at night, say when someone wakes up to go the bathroom …again.
 - See [`/lights/`](lights) and [`/automations/`](automations).
@@ -190,8 +185,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+### Presence and basic security 👮
 
-### Presence and basic security
 - **Cellphone device sensing**, to check who is currently home or away.
 - **Tamper monitoring**, in case a perimeter device has been played with.
 - **Water leak monitoring**, to be able to react quickly when a pipe breaks.
@@ -212,18 +207,18 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+### Modes and scenes 🌈
 
-### Modes and scenes
 - **Mode based** where unless a blocking mode is set, devices will turn on. Think of a river or a horse: tame it to keep it under control, but release the restraints and they will do their thing: 🐎
-    + **Quiet mode** where noise makers know to stop or not to start.
-    + **Nap time mode** that fades out lights in and near the bedroom and enables quiet mode.
-    + **Night mode** fades out all lights outside of bedroom, enabling quiet mode too.
-    + **Low-power mode** where each room knows which device should be on or off to achieve a more economical and calm state.
+    - **Quiet mode** where noise makers know to stop or not to start.
+    - **Nap time mode** that fades out lights in and near the bedroom and enables quiet mode.
+    - **Night mode** fades out all lights outside of bedroom, enabling quiet mode too.
+    - **Low-power mode** where each room knows which device should be on or off to achieve a more economical and calm state.
 - **Smart rooms** that know which devices should be on or off based on the modes above. No need for heavy centralized control, let local managers handle their teams!
 - **Good morning action** that releases all blocking modes, allowing all lights to turn on gradually, and noise-making devices are allowed to run if needed.
 - **Smart global scenes** based on [`/scripts/`](scripts) instead of scenes, to allow for sequences and conditions:
-    + **Movie scene** turns on ambiance lighting and dims smart lights when playing a movie, then returns to standard automations when pausing/stopping.
-    + **Daylight, Gaming and Romantic global scenes** fades in and out different lights, sets effects and changes light colours to set a perfect mood.
+    - **Movie scene** turns on ambiance lighting and dims smart lights when playing a movie, then returns to standard automations when pausing/stopping.
+    - **Daylight/Gaming/Romantic global scenes** fade in and out different lights, select effects and change light colours to set a perfect mood.
 
 <div align="center">
     <figure>
@@ -238,10 +233,10 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+### General information 🛎
 
-### General information
 - **[Local bus schedules](https://home-assistant.io/components/sensor.gtfs/)** with the next 3 departures. See [`/gtfs/`](gtfs) for optimization hints.
-- **[Doomsday Clock](https://github.com/renemarc/home-assistant-doomsday-clock)** in case egocentric psychopaths keep on playing Russian roulette with humanity's future. 
+- **[Doomsday Clock](https://github.com/renemarc/home-assistant-doomsday-clock)** in case egocentric psychopaths keep on playing Russian roulette with humanity's future.
 - **Network status monitoring** for latency, upspeed, downspeed, and monthly consumption.
 - **Home Assistant status monitoring** for geek cred with average load, RAM use, disk use, uptime, and update availability. 🤓
 - **[Daily audio greeting](https://instaud.io/2Eye/?autoplay=1)** to start the day on a informed, uplifting note. See [`/automations/notifications/`](/automations/notifications).
@@ -260,8 +255,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+### Additional human interfaces 📲
 
-### Additional human interfaces
 - **Aeotec Minimote** to quickly control global scenes and modes.
 - **[Flic buttons](https://flic.io)** on nightstand and in the kitchen for triggering modes and controlling localized lights, depending on current states and click types.
 - **[HADashboard](https://home-assistant.io/docs/ecosystem/hadashboard/)** for wall-mounted tablet, featuring indoor sensors reports, transit schedules, weather forecast and radar/sattelite maps, wrapped in an obvious navigation scheme for much UX goodness. Have a look at [`/appdaemon/dashboards/`](appdaemon/dashboards), you'll like! 😍
@@ -270,10 +265,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+## Setup 🔩
 
-## Setup
-
-### Diagram
 <div align="center">
     <figure>
         <div>
@@ -287,92 +280,92 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+### Supporting hardware choices 🧱
 
-### Supporting hardware choices
 - **Ubiquiti router and access point** because forking over some dough for reliable, rock-solid prosumer networking gear makes everything run smoothly. And because hearing one less complaint (dropped WiFi signal) from the girlfriend is priceless. 🤕
 - **Uninterruptible power supply** to ride over transient power failures.
-- **Z-Wave** for reliability and guaranteed interoperability between vendors (unlike Zigbee…)
 - **WiFi** for its cheapness, omnipresence and non requirement of vendor-specific hubs.
+- **Z-Wave** for reliability and guaranteed interoperability between vendors (unlike Zigbee…)
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+### Configuration ⚙
 
-### Configuration
 - **Dedicated, firewalled VLAN** (Virtual LAN) to segregate all IoT devices from other equipment …because I cannot trust that my vacuum cleaner won't go on a killing spree. Ever seen [_Runaway (1984)_](https://www.youtube.com/watch?v=zCZY9Z6WvSY) with Tom Selleck? Eek! 😱
 - **Local static IPs** for all devices to minimize random drops.
 - **Local development** on a local virtual machine using Docker, then pulled with GIT on a Raspberry Pi.
+- **Plentiful documentation**, for my later self and to help out others.
 - **Shareable code** with all identifiers kept in a non-committed, _secrets_ file.
-- **Loads of documentation**, for my later self and to help out others.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+### Systems and bridges 🌉
 
-### System and interfaces
 - **[Aeotec Z-Stick Gen5](https://aeotec.com/z-wave-usb-stick)** Z-Wave USB dongle.
 - **[Milight iBox2 WiFi Bridge](https://www.futlight.com/productdetails.aspx?id=239&typeid=125)** for kitchen RF LED strip controllers, using [LimitlessLED](https://home-assistant.io/components/light.limitlessled/) integration.
 - **[NooElec NESDR SMArt](http://www.nooelec.com/store/nesdr-smart.html)** RTL-SDR (software-defined radio) USB dongle for reading AcuRite sensors.
-- **[Raspberry Pi 3 Model B](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/)** running Hass.io.
-- **[Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)** (x2), each managed through [resin.io](https://resin.io/) to run as simple, dedicated plug-in bridges for the following services:
-    1. **[Airthings Wave to MQTT](https://github.com/hpeyerl/airthingswave-mqtt)** by Herb Peyerl (**[@hpeyerl](https://github.com/hpeyerl)**) in order to interface with [this Bluetooth radon detector](https://airthings.com/wave/).
+- **[Raspberry Pi 3 Model B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/)** running Hass.io.
+- **[Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)** (x3), each managed through [resin.io](https://resin.io/) to run as simple, dedicated plug-in bridges for the following services:
+    1. **[Airthings Wave to MQTT bridge](https://github.com/renemarc/balena-airthingswave)** based on the [Python module by Herb Peyerl](https://github.com/hpeyerl/airthingswave-mqtt) (**[@hpeyerl](https://github.com/hpeyerl)**) in order to interface with [this Bluetooth radon detector](https://airthings.com/wave/).
     2. **[CEC MQTT bridge](https://github.com/michaelarnauts/cec-mqtt-bridge)** by Michaël Arnauts (**[@michaelarnauts](https://github.com/michaelarnauts)**) to provide basic switching control and state sensing to a connected television.
-    3. **[Flic smart button bridge](https://github.com/renemarc/resin-flic)** to connect with [these Bluetooth Low Energy buttons](https://flic.io/).
+    3. **[Flic smart button bridge](https://github.com/renemarc/balena-flic)** to connect with [these Bluetooth Low Energy buttons](https://flic.io/).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+### Physical devices 🔨
 
-### Physical devices
+#### Lights 💡 (see [`/lights/`](./lights))
 
-#### Lights (see [`/lights/`](./lights))
-- **[Nanoleaf Aurora](https://nanoleaf.me)** [WiFi] light panels kit. Pretty!
-- **[LIFX+](https://www.lifx.com/products/lifx-plus)** [WiFi] A19 RGB light bulb (x2).
-- **[LIFX Z](https://www.lifx.com/products/lifx-z-starter-kit-without-homekit)** [WiFi] light strip without HomeKit as bed underglow (x2) and ceiling wash lights (x3).
-- **[Milight CCT LED RF Controller](https://www.futlight.com/productdetails.aspx?id=293&typeid=146)** [2.4Ghz] for white-adjustable undercabinet kitchen lights (x4), connected to appropriate UL-listed power supplies.
-- **[24V 3014 Warm White Cool White LED Strip](http://ledmontreal.com/en/led-strips-without-accessories/24v-led-strips-without-accessories/cct-adjustable-led-strip.html)** encased in custom cut and assembled [light-diffusing aluminum profiles](http://ledmontreal.com/en/led-bars-and-profiles-led-montreal/continuous-lighting-aluminum-profile.html) (x4), connected to above RF controllers.
-- **[Adalight](https://learn.adafruit.com/adalight-diy-ambient-tv-lighting)** [Ethernet] DIY 100-dots TV backlighting controlled by [Lightpack+Prismatik](https://github.com/psieg/Lightpack) on HTPC.
-- **Fairy lights** [WiFi] via TP-Link outlets (x3).
-- **DIY LED nightstand** [WiFi] via TP-Link outlet.
-
-<p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
-
-#### Sensors (see [`/sensors/`](./sensors))
-- **[AcuRite 06044M Wireless Sensor](https://www.acurite.com/indoor-temperature-sensor-and-humidity-gauge.html)** [433Mhz] for cheap temperature and humidity monitoring inside a cigar humidor.
-- **[Aeotec Door / Window Sensor Gen5](https://aeotec.com/z-wave-door-window-sensor)** [Z-Wave] for front door.
-- **[Aeotec MultiSensor 6](https://aeotec.com/z-wave-sensor)** [Z-Wave] (x3) for temperature/humidity/presence detection.
-- **[Airthings Wave radon detector](https://airthings.com/wave/)** [Bluetooth Low Energy] to keep an eye on this cancer-causing radioactive gas.
-- **[Dome Leak Sensor](https://domeha.com/z-wave-leak-sensor)** [Z-Wave] (x2) in case the dishwasher breaks a seal, a shower curtain has not been closed properly …or a toilet has overflowed. 🤢
+- **[24V 3014 Warm White Cool White LED Strip](http://ledmontreal.com/en/led-strips-without-accessories/24v-led-strips-without-accessories/cct-adjustable-led-strip.html)** encased in custom cut and assembled [light-diffusing aluminum profiles](http://ledmontreal.com/en/led-bars-and-profiles-led-montreal/continuous-lighting-aluminum-profile.html) (x4), connected to Milight RF controllers below.
+- **[Adalight](https://learn.adafruit.com/adalight-diy-ambient-tv-lighting)** <sup>[Ethernet]</sup> DIY 100-dots TV backlighting controlled by [Lightpack+Prismatik](https://github.com/psieg/Lightpack) on HTPC.
+- **DIY LED nightstand** <sup>[WiFi]</sup> via TP-Link outlet.
+- **Fairy lights** <sup>[WiFi]</sup> via TP-Link outlets (x3).
+- **[LIFX+](https://www.lifx.com/products/lifx-plus)** <sup>[Z-Wave]</sup> A19 RGBWW light bulbs (x2).
+- **[LIFX Z](https://www.lifx.com/products/lifx-z-starter-kit-without-homekit)** <sup>[Z-Wave]</sup> light strip without HomeKit as bed underglow (x2) and ceiling wash lights (x3).
+- **[Milight CCT LED RF Controller](https://www.futlight.com/productdetails.aspx?id=293&typeid=146)** <sup>[2.4Ghz]</sup> for white-adjustable undercabinet kitchen lights (x4), connected to appropriate UL-listed power supplies.
+- **[Nanoleaf Aurora](https://nanoleaf.me)** <sup>[Z-Wave]</sup> light panels kit. Pretty!
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+#### Sensors 📡 (see [`/sensors/`](./sensors))
 
-#### Human interfaces
-- **[Acer Iconia One 10" tablet](https://www.acer.com/ac/en/CA/content/series/iconiaone10)** (1280x800 IPS screen) wallmounted as a kiosk. See [`/appdaemon/dashboards/`](appdaemon/dashboards).
-- **[Aeotec Minimote](https://www.youtube.com/watch?v=5Vc1Ift7ND8)** [Z-Wave] remote control.
-- **[Flic](https://flic.io)** [Bluetooth Low Energy] buttons (x2).
+- **[AcuRite 06044M Wireless Sensor](https://www.acurite.com/indoor-temperature-sensor-and-humidity-gauge.html)** <sup>[433Mhz]</sup> for cheap temperature and humidity monitoring inside a cigar humidor.
+- **[Aeotec Door / Window Sensor Gen5](https://aeotec.com/z-wave-door-window-sensor)** <sup>[Z-Wave]</sup> for front door.
+- **[Aeotec MultiSensor 6](https://aeotec.com/z-wave-sensor)** <sup>[Z-Wave]</sup> (x3) for temperature/humidity/presence detection.
+- **[Airthings Wave radon detector](https://airthings.com/wave/)** <sup>[Bluetooth Low Energy]</sup> to keep an eye on this cancer-causing radioactive gas.
+- **[Dome Leak Sensor](https://domeha.com/z-wave-leak-sensor)** <sup>[Z-Wave]</sup> (x2) in case the dishwasher breaks a seal, a shower curtain has not been closed properly …or a toilet has overflowed. 🤢
+- **[Ecolink Firefighter](https://products.z-wavealliance.org/products/1827)** <sup>[Z-Wave]</sup> to warn those outside that the fire alarm has been triggered.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+#### Human interfaces 🕹️
 
-#### Switches and other devices
-- **[TP-Link Smart Wi-Fi Plug Mini outlets](http://www.tp-link.com/us/products/details/cat-5516_HS105.html)** to control dumb devices (x6).
+- **[Acer Iconia One 10" tablet](https://www.acer.com/ac/en/CA/content/series/iconiaone10)** <sup>[WiFi]</sup> with its 1280x800 IPS screen wallmounted as a kiosk. See [`/appdaemon/dashboards/`](appdaemon/dashboards).
+- **[Aeotec Minimote](https://www.youtube.com/watch?v=5Vc1Ift7ND8)** <sup>[Z-Wave]</sup> remote control.
+- **[Flic](https://flic.io)** <sup>[Bluetooth Low Energy]</sup> buttons (x2).
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+#### Switches and other devices 🔌
+
 - **[Frigidaire dehumidifier](http://www.dehumidifierbuyersguide.com/frigidaire-ffad7033r1-review)** via TP-Link WiFi outlet.
 - **Oscillating fan** via TP-Link WiFi outlet.
+- **[TP-Link Smart Plug Mini outlets](http://www.tp-link.com/us/products/details/cat-5516_HS105.html)** <sup>[WiFi]</sup> to control dumb devices (x6).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+### Software 💻
 
-### Software
 - **[Docker](https://www.docker.com)** on local machine (for development). True, Hass.io is Docker-based too… 😉
 - **[Fully Kiosk Browser](https://www.ozerov.de/fully-kiosk-browser/)** on wallmounted tablet for display and input.
-- **[Hass.io](https://home-assistant.io)** on Raspberry Pi 3 Model B (production setup).
+- **[Hass.io](https://home-assistant.io)** on Raspberry Pi 3 Model B+ (production setup).
 - **[LANnouncer](http://www.keybounce.com/lannouncer/)** on wallmounted tablet for simple audio and text-to-speech messaging.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+#### Hass.io add-ons ➕
 
-#### Hass.io add-ons
 - **[AppDaemon](https://github.com/home-assistant/appdaemon)** for HADashboard tablet UI.
-- **[Bluetooth BCM43xx](https://home-assistant.io/addons/bluetooth_bcm43xx)** to use Raspberry Pi's bluetooth.
 - **[Mosquitto MQTT broker](https://home-assistant.io/addons/mosquitto)** for standard IoT messaging.
 - **[RTL_433 to MQTT Bridge](https://github.com/james-fry/hassio-addons)** to receive and decode AcuRite radio signals.
 - **[Samba share](https://home-assistant.io/addons/samba)** for configuration file sharing.
@@ -380,49 +373,48 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+#### Community components and widgets 🏘️
 
-#### Community components and widgets
 - **[Custom UI elements](https://github.com/andrey-git/home-assistant-custom-ui)** to improve the display of sensors and jazz up the interface a bit.
-- **[Display](https://github.com/daemondazz/homeassistant-displays)** platform for integration with the Fully Kiosk Browser..
+- **[Display platform](https://github.com/daemondazz/homeassistant-displays)** for integration with the Fully Kiosk Browser.
+- **[Doomsday Clock component](https://github.com/renemarc/home-assistant-doomsday-clock)** to track how close humanity is to a man-made global catastrophe.
 - **[Horizontal line state card](https://github.com/covrig/homeassistant-hline)** to visually separate long lists of sensors.
-- **[Lightpack](https://github.com/kklemm91/Lightpack-HASS)** component.
+- **[Lightpack component](https://github.com/kklemm91/Lightpack-HASS)** to control TV bias lights.
+- **[Raspberry Pi power sensor](https://github.com/custom-components/sensor.rpi_power)** to warn in case of insufficient power supply.
 - **[Text-only state card](https://community.home-assistant.io/t/display-only-text-in-card/20536/26)** for wordy sensor states.
-- **[Variable](https://github.com/rogro82/hass-variables)** component for non-boolean values.
+- **[Variable component](https://github.com/rogro82/hass-variables)** for non-boolean values.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
-### Usage
+### Usage 📘
 
 In an empty directory, type:
 
 ```shell
 git clone --recurse-submodules git@github.com:renemarc/home-assistant-config.git .
 
+echo "secrets.yaml filter=secret merge=keepMine" > .gitattributes
+
 cp secrets-dummy.yaml secrets.yaml
 
 cp appdaemon/secrets-dummy.yaml appdaemon/secrets.yaml
-
-echo "secrets.yaml filter=secret merge=keepMine" > .gitattributes
 ```
 
 Actual secrets and auto-generated sensitive files are obviously kept off this repo! 😉
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+## License 📃
 
-## License
-
-This projet's code and configuration is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
-
-All other documentation is licensed under the Creative Commons [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+- Code and configuration is licensed under the [Apache 2.0 License](https://www.apache.org/licenses/LICENSE-2.0).
+- Documentation is licensed under the Creative Commons [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0) License](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
-## Thanks
+## Thanks 💕
 
 Kudos to:
+
 - **The [dedicated core team](https://home-assistant.io/blog)** that builds and manages Home Assistant. They work fast and humbly.
 - **The horde of volunteer developers** of all components and add-ons.
 - **The [vibrant community](https://community.home-assistant.io)**, always willing to help and share code samples.
@@ -430,21 +422,9 @@ Kudos to:
 
 Thank you for all your dedication, helpfulness and valuable insights. Cheers! 🍻😃
 
-
-<!--
-Footer starts.
--->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 <p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
-<!--
-Footer ends.
--->
-
-
-<!--
-Image references.
--->
 
 [img-ha-version]:https://img.shields.io/badge/Home_Assistant-0.83.3-53c1f1.svg?logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIxLjgsMTNIMjBWMjFIMTNWMTcuNjdMMTUuNzksMTQuODhMMTYuNSwxNUMxNy42NiwxNSAxOC42LDE0LjA2IDE4LjYsMTIuOUMxOC42LDExLjc0IDE3LjY2LDEwLjggMTYuNSwxMC44QTIuMSwyLjEgMCAwLDAgMTQuNCwxMi45TDE0LjUsMTMuNjFMMTMsMTUuMTNWOS42NUMxMy42Niw5LjI5IDE0LjEsOC42IDE0LjEsNy44QTIuMSwyLjEgMCAwLDAgMTIsNS43QTIuMSwyLjEgMCAwLDAgOS45LDcuOEM5LjksOC42IDEwLjM0LDkuMjkgMTEsOS42NVYxNS4xM0w5LjUsMTMuNjFMOS42LDEyLjlBMi4xLDIuMSAwIDAsMCA3LjUsMTAuOEEyLjEsMi4xIDAgMCwwIDUuNCwxMi45QTIuMSwyLjEgMCAwLDAgNy41LDE1TDguMjEsMTQuODhMMTEsMTcuNjdWMjFINFYxM0gyLjI1QzEuODMsMTMgMS40MiwxMyAxLjQyLDEyLjc5QzEuNDMsMTIuNTcgMS44NSwxMi4xNSAyLjI4LDExLjcyTDExLDNDMTEuMzMsMi42NyAxMS42NywyLjMzIDEyLDIuMzNDMTIuMzMsMi4zMyAxMi42NywyLjY3IDEzLDNMMTcsN1Y2SDE5VjlMMjEuNzgsMTEuNzhDMjIuMTgsMTIuMTggMjIuNTksMTIuNTkgMjIuNiwxMi44QzIyLjYsMTMgMjIuMiwxMyAyMS44LDEzTTcuNSwxMkEwLjksMC45IDAgMCwxIDguNCwxMi45QTAuOSwwLjkgMCAwLDEgNy41LDEzLjhBMC45LDAuOSAwIDAsMSA2LjYsMTIuOUEwLjksMC45IDAgMCwxIDcuNSwxMk0xNi41LDEyQzE3LDEyIDE3LjQsMTIuNCAxNy40LDEyLjlDMTcuNCwxMy40IDE3LDEzLjggMTYuNSwxMy44QTAuOSwwLjkgMCAwLDEgMTUuNiwxMi45QTAuOSwwLjkgMCAwLDEgMTYuNSwxMk0xMiw2LjlDMTIuNSw2LjkgMTIuOSw3LjMgMTIuOSw3LjhDMTIuOSw4LjMgMTIuNSw4LjcgMTIsOC43QzExLjUsOC43IDExLjEsOC4zIDExLjEsNy44QzExLjEsNy4zIDExLjUsNi45IDEyLDYuOVoiIGZpbGw9IiNmZmZmZmYiIC8+PC9zdmc+Cg==&maxAge=21600
 [img-hassio]:https://img.shields.io/badge/config_for-Hass.io-53c1f1.svg?logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTEyLDE1LjVBMy41LDMuNSAwIDAsMSA4LjUsMTJBMy41LDMuNSAwIDAsMSAxMiw4LjVBMy41LDMuNSAwIDAsMSAxNS41LDEyQTMuNSwzLjUgMCAwLDEgMTIsMTUuNU0xOS40MywxMi45N0MxOS40NywxMi42NSAxOS41LDEyLjMzIDE5LjUsMTJDMTkuNSwxMS42NyAxOS40NywxMS4zNCAxOS40MywxMUwyMS41NCw5LjM3QzIxLjczLDkuMjIgMjEuNzgsOC45NSAyMS42Niw4LjczTDE5LjY2LDUuMjdDMTkuNTQsNS4wNSAxOS4yNyw0Ljk2IDE5LjA1LDUuMDVMMTYuNTYsNi4wNUMxNi4wNCw1LjY2IDE1LjUsNS4zMiAxNC44Nyw1LjA3TDE0LjUsMi40MkMxNC40NiwyLjE4IDE0LjI1LDIgMTQsMkgxMEM5Ljc1LDIgOS41NCwyLjE4IDkuNSwyLjQyTDkuMTMsNS4wN0M4LjUsNS4zMiA3Ljk2LDUuNjYgNy40NCw2LjA1TDQuOTUsNS4wNUM0LjczLDQuOTYgNC40Niw1LjA1IDQuMzQsNS4yN0wyLjM0LDguNzNDMi4yMSw4Ljk1IDIuMjcsOS4yMiAyLjQ2LDkuMzdMNC41NywxMUM0LjUzLDExLjM0IDQuNSwxMS42NyA0LjUsMTJDNC41LDEyLjMzIDQuNTMsMTIuNjUgNC41NywxMi45N0wyLjQ2LDE0LjYzQzIuMjcsMTQuNzggMi4yMSwxNS4wNSAyLjM0LDE1LjI3TDQuMzQsMTguNzNDNC40NiwxOC45NSA0LjczLDE5LjAzIDQuOTUsMTguOTVMNy40NCwxNy45NEM3Ljk2LDE4LjM0IDguNSwxOC42OCA5LjEzLDE4LjkzTDkuNSwyMS41OEM5LjU0LDIxLjgyIDkuNzUsMjIgMTAsMjJIMTRDMTQuMjUsMjIgMTQuNDYsMjEuODIgMTQuNSwyMS41OEwxNC44NywxOC45M0MxNS41LDE4LjY3IDE2LjA0LDE4LjM0IDE2LjU2LDE3Ljk0TDE5LjA1LDE4Ljk1QzE5LjI3LDE5LjAzIDE5LjU0LDE4Ljk1IDE5LjY2LDE4LjczTDIxLjY2LDE1LjI3QzIxLjc4LDE1LjA1IDIxLjczLDE0Ljc4IDIxLjU0LDE0LjYzTDE5LjQzLDEyLjk3WiIgZmlsbD0iI2ZmZmZmZiIgLz48L3N2Zz4K&maxAge=86400
@@ -453,10 +433,6 @@ Image references.
 [img-release]:https://img.shields.io/github/release/renemarc/home-assistant-config/all.svg?logo=github&logoColor=white&maxAge=21600
 [img-travis-ci]:https://img.shields.io/travis/renemarc/home-assistant-config.svg?branch=master&logo=travis
 [img-twitter]:https://img.shields.io/twitter/url/http/shields.io.svg?style=social&maxAge=86400
-
-<!--
-Link references.
--->
 
 [link-board]:https://github.com/renemarc/home-assistant-config/projects/1
 [link-ha-version]:https://github.com/home-assistant/home-assistant/tree/0.83.3

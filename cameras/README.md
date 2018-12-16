@@ -7,7 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -20,11 +19,9 @@
     </div>
 </figure>
 
-
 <h1 align="center">Cameras</h1>
 
 Camera sensors are used to fetch and display web images in [`/appdaemon/dashboards/`](../appdaemon/dashboards).
-
 
 ## Weather cameras
 
@@ -44,7 +41,6 @@ Camera sensors are used to fetch and display web images in [`/appdaemon/dashboar
     </figure>
 </div>
 
-
 ### [`🛰 ./noaa.yaml`](noaa.yaml)
 
 NOAA's (U.S. National Oceanic and Atmospheric Administration) colourized and water vapour [GOES-East satellite images](https://www.star.nesdis.noaa.gov/GOES/GOES16_sectors.php?sector=ne) for the current air masses. Unlike the radar maps above these are not animated in the dashboards because precision is less relevant at those scales.
@@ -63,13 +59,11 @@ NOAA's (U.S. National Oceanic and Atmospheric Administration) colourized and wat
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Other
 
 ### [`🖼 ./wallpapers.yaml`](wallpapers.yaml)
 
-Pretty daily pictures from [Bing](https://bing.com) and [NASA](https://apod.nasa.gov/apod/astropix.html), showcased in [`/appdaemon/dashboards/Main.dash`](../appdaemon/dashboards/Main.dash) 
-
+Pretty daily pictures from [Bing](https://bing.com) and [NASA](https://apod.nasa.gov/apod/astropix.html), showcased in [`/appdaemon/dashboards/Main.dash`](../appdaemon/dashboards/Main.dash).
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>

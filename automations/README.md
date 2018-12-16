@@ -7,7 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -15,7 +14,6 @@
 (Scene by comedian Tamori)"><img src="https://media.giphy.com/media/CmFMWpEa4IFtS/giphy.gif" alt="Ticket clerk hidden inside a turnstile"></a>
     </div>
 </figure>
-
 
 <h1 align="center">Automations</h1>
 
@@ -42,23 +40,19 @@ To help clarify and document this pattern in the files' comments, automations an
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Folders
 
 ### [`📂 ./areas/`](areas)
 
 Contains automations related to smart areas.
 
-
 ### [`📂 ./devices/`](devices)
 
 For automations related to individual smart devices.
 
-
 ### [`📂 ./modes/`](modes)
 
 For all automations related to modes.
-
 
 ### [`📂 ./notifications/`](notifications)
 
@@ -66,63 +60,51 @@ Visual and audio notifications.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Files
 
 ### [`💡️ ./cct_lifx.yaml`](cct_lifx.yaml)
 
 Adjust LIFX bulbs colour temperature (CCT) based on cyrcadian rythm.
 
-
 ### [`💡️ ./cct_limitlessled.yaml`](cct_limitlessled.yaml)
 
 Adjust LimitlessLED/MiLight colour temperature (CCT) based on cyrcadian rythm.
-
 
 ### [`🏠 ./homekit_start.yaml`](homekit_start.yaml)
 
 Start the HomeKit server when everything is ready.
 
-
 ### [`🔆️ ./scene_daylight.yaml`](scene_daylight.yaml)
 
 Toggle the daylight scene.
-
 
 ### [`👾 ./scene_gaming.yaml`](scene_gaming.yaml)
 
 Toggle the gaming scene.
 
-
 ### [`💏️ ./scene_romantic.yaml`](scene_romantic.yaml)
 
 Toggle the romantic scene.
-
 
 ### [`🔘️️ ./scene_select.yaml`](scene_select.yaml)
 
 Manually select a global scene.
 
-
 ### [`🌈️ ./theme_auto.yaml`](theme_auto.yaml)
 
 Set theme to "normal" during daytime and "dark" during night mode.
-
 
 ### [`⏰️ ./wake_up.yaml`](wake_up.yaml)
 
 Wake up all devices.
 
-
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ## Customization
 
 The bulk of the customization is done in [`/customize.yaml`](../customize.yaml) and [`/customize_glob.yaml`](../customize_glob.yaml).
 
 The looks of many state cards depend on Custom UI and other templates in [`/www/custom_ui/`](../www/custom_ui).
-
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>

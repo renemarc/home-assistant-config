@@ -3,12 +3,13 @@
 #
 # Radon (Rn) is an element that comes from the natural decay of underground
 # uranium, thorium, and radium. It is a radioactive, colorless, and odorless
-# noble gas. Radon tends to accumulate in enclosed locations like houses. It has
-# a short half-life of 3.8 days before decaying into non-gaseous, sticky
-# radioactive elements. This means that when breathing in air or dust particles,
-# radioactive elements can be deposited inside the lungs, increasing the odds
-# of developping lung cancer. Keeping a place well ventilated is a good way to
-# migitage this risk.
+# noble gas. Radon-222 tends to accumulate in enclosed locations like houses.
+# It has a short half-life of 3.8 days before decaying into other short-lived
+# radioactive gases (Polonium-218, Lead-214, Bismuth-214, Polonium-214) then
+# into solid, long-lasting, radiactive Lead-210. This means that when breathing
+# in air or dust particles, radioactive isotopes either transmutate or get
+# deposited inside the lungs, increasing the odds of developping lung cancer.
+# Keeping a place well ventilated is a good way to mitigate this risk.
 #
 # Notifications are sent whenever radon levels reach tresholds, and reminders
 # are then sent every few hours until levels get back to normal. Only

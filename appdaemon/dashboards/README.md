@@ -7,7 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -17,7 +16,6 @@
         <a href="#-statusdash" title="Status dashboard"><img src="../../www/screenshots/dashboard-status.png" alt="Status dashboard" width="400"></a>
     </div>
 </figure>
-
 
 <h1 align="center">AppDaemon dashboards</h1>
 
@@ -31,11 +29,9 @@ These dashboards target a 10" display tablet with 1024x800 resolution using a fu
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Fixed elements
 
 The top menu and left-hand navigation are fixed. The navigation colours change depending on which dashboard you're on and the top menu title changes accordingly. That makes navigation intuitive for anyone.
-
 
 ### [`📰 ./header.yaml`](header.yaml)
 
@@ -43,11 +39,9 @@ Contains fixed elements showing at the top of each dashboard.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Organization
 
 Dashboards are split into 4 pages, organized in a similar fashion as [`/groups/`](../../groups) only with less administrative features and prettier colours.
-
 
 ### [`🏠 ./Main.dash`](Main.dash)
 
@@ -66,7 +60,6 @@ With a feel-good welcome message, common actions, quick weather status, bus sche
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`🔘 ./Switchboard.dash`](Switchboard.dash)
 
 Organized my room and control zone, including climate control. Looks kind of like Tetris! 😃
@@ -83,7 +76,6 @@ Organized my room and control zone, including climate control. Looks kind of lik
 </div>
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ### [`🌦 ./Weather.dash`](Weather.dash)
 
@@ -102,7 +94,6 @@ With current conditions, forecasts, air quality, and rotating satellite images a
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`👀 ./Status.dash`](Status.dash)
 
 Geeky details about Home Assistant, network, battery status and per-location temperature and humidity.
@@ -120,13 +111,11 @@ Geeky details about Home Assistant, network, battery status and per-location tem
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Theme
 
 The [`/appdaemon/custom_css/modern/`](../custom_css/modern) theme is based on an adapted version of the default theme. Only some CSS rules differ, in addition to support for third-party and custom widgets.
 
 The contents of many tiles depend on specific [template sensors](../../sensors) to make information easier to digest.
-
 
 <!--
 Footer starts.

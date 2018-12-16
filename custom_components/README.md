@@ -7,7 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -18,7 +17,6 @@
         <a href="#-sensorwaqipy" title="WAQI"><img src="../www/screenshots/group-atmosphere.png" alt="Atmospheric Safety group" title="Atmospheric Safety group" width="140"></a>
     </div>
 </figure>
-
 
 <h1 align="center">Custom components, community contributions, and overrides</h1>
 
@@ -41,7 +39,6 @@ Interact with Android devices running the [Fully Kiosk Browser](https://www.ozer
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`📺 ./light/lightpack.py`](light/lightpack.py)
 
 Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) monitor bias lighting using this [Lightpack component by **@kklemm91**](https://github.com/kklemm91/Lightpack-HASS).
@@ -58,7 +55,6 @@ Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) moni
 </div>
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ### [`💀 ./sensor/doomsday_clock.py`](sensor/doomsday_clock.py)
 
@@ -77,13 +73,11 @@ A local copy of my depressing [Doomsday Clock sensor](https://github.com/renemar
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`⚡ ./sensor/rpi_power.py`](sensor/rpi_power.py)
 
 Verifies that the host's power supply is [providing sufficient voltage](https://community.home-assistant.io/t/raspberry-pi-power-sensor-updated-2018-07-25/58155) thanks to this [Raspberry Pi power sensor by **@ludeeus**](https://github.com/custom-components/sensor.rpi_power).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ### [`❓ ./variable.py`](variables.py)
 
@@ -91,15 +85,14 @@ The missing link that allows storage of non-boolean values using the [Variable c
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Overriden components
 
 These are default Home Assistant components that were copied from the core to alter their behaviour. These changes really should be turned into appropriate [PRs](https://github.com/home-assistant/home-assistant/pulls).
 
-
 ### [`🚌 ./sensor/gtfs.py`](sensor/gtfs.py)
 
 [GTFS](https://github.com/home-assistant/home-assistant/blob/master/homeassistant/components/sensor/gtfs.py) public transit schedules component:
+
 - Added support for next bus departures.
 - Simplified query, making it cacheable in order to increase IO performance.
 - Allow querying departures after midnight.
@@ -119,10 +112,10 @@ These are default Home Assistant components that were copied from the core to al
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`🌫 ./sensor/waqi.py`](sensor/waqi.py)
 
 [WAQI](https://github.com/home-assistant/home-assistant/blob/master/homeassistant/components/sensor/waqi.py) World Air Quality Index:
+
 - Added support for location query by UID (otherwise some locations are never returned when doing a general keyword search).
 
 <div align="center">
@@ -135,7 +128,6 @@ These are default Home Assistant components that were copied from the core to al
         </figcaption>
     </figure>
 </div>
-
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>

@@ -7,7 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -15,11 +14,9 @@
     </div>
 </figure>
 
-
 <h1 align="center">Modes and flags automations</h1>
 
 This directory gathers all automations related to defining the states of modes and flags, essentially booleans used as master switches.
-
 
 ## Modes logic explained
 
@@ -41,18 +38,15 @@ In the interest of redundancy and convenience, mode control is also available us
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Modes
 
 ### [`🔅️ ./low_mode_start.yaml`](low_mode_start.yaml)
 
 Enable low-power state for a more relaxed environment. **Auto-start disabled.**
 
-
 ### [`🔆️ ./low_mode_stop.yaml`](low_mode_stop.yaml)
 
 Disable low-power state. **Auto-start disabled.**
-
 
 ### [`😴️ ./nap_mode_start.yaml`](nap_mode_start.yaml)
 
@@ -60,11 +54,9 @@ When someone takes a nap.
 
 Subscribers should shut off bedroom lights, lower potentially disruptive light sources elsewhere, and minimize noises without preventing someone else from being active.
 
-
 ### [`😃️ ./nap_mode_stop.yaml`](nap_mode_stop.yaml)
 
 When someone ends their nap.
-
 
 ### [`🌌️ ./night_mode_start.yaml`](night_mode_start.yaml)
 
@@ -72,11 +64,9 @@ Enable night (dark) mode.
 
 Subscribers should shut off all non-essential indoor lights and noise sources, except for bedroom devices which should respond to [`nap_mode_start.yaml`](nap_mode_start.yaml) instead.
 
-
 ### [`🌅️ ./night_mode_stop.yaml`](night_mode_stop.yaml)
 
 Disable night (dark) mode.
-
 
 ### [`🔇 ./quiet_mode_start.yaml`](quiet_mode_start.yaml)
 
@@ -84,13 +74,11 @@ When noise makers should not be running.
 
 Subscribers should quiet down noisy machines and mute non-critical alarms.
 
-
 ### [`🔊️ ./quiet_mode_stop.yaml`](quiet_mode_stop.yaml)
 
 When noise makers should be allowed to run.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ## Flags
 
@@ -98,20 +86,17 @@ When noise makers should be allowed to run.
 
 Detect when perimeter device is being tempered with.
 
-
 ### [`🔄️ ./tamper_stop.yaml`](tamper_stop.yaml)
 
 Reset flag when tampered devices have their own alarm reset.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Customization
 
 The bulk of the customization is done in [`/customize.yaml`](../../customize.yaml) and [`/customize_glob.yaml`](../../customize_glob.yaml).
 
 The looks of many state cards depend on Custom UI and other templates in [`/www/custom_ui/`](../../www/custom_ui).
-
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>

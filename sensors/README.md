@@ -7,7 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -25,11 +24,9 @@
     </div>
 </figure>
 
-
 <h1 align="center">Sensors</h1>
 
 Each YAML file groups together all related sensors and contains details on usage.
-
 
 ## Device sensors
 
@@ -69,13 +66,11 @@ Indoor climate conditions and air quality.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`💡 ./light.yaml`](light.yaml)
 
 Reports on loaded effects for smart lights.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ### [`🔋 ./power.yaml`](power.yaml)
 
@@ -94,7 +89,6 @@ Battery levels and power monitoring.
 </div>
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ## Data-source sensors
 
@@ -116,7 +110,6 @@ Battery levels and power monitoring.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`📸 ./camera.yaml`](camera.yaml)
 
 Data sources for some [`/cameras`](../cameras).
@@ -134,7 +127,6 @@ Data sources for some [`/cameras`](../cameras).
 </div>
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ### [`🚌 ./gtfs.yaml`](gtfs.yaml)
 
@@ -154,10 +146,9 @@ Data sources for some [`/cameras`](../cameras).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`📡 ./network.yaml`](network.yaml)
 
-Internet connection speed and latency testing. 
+Internet connection speed and latency testing.
 
 <div align="center">
     <figure>
@@ -172,7 +163,6 @@ Internet connection speed and latency testing.
 </div>
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ### [`🤓 ./system.yaml`](system.yaml)
 
@@ -191,7 +181,6 @@ Geeky details on HASS and its hardware status.
 </div>
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ### [`🌦 ./weather.yaml`](weather.yaml)
 
@@ -215,7 +204,6 @@ Everything weather related.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Generic sensors
 
 ### [`⏳ ./calendar.yaml`](calendar.yaml)
@@ -236,13 +224,11 @@ Everything time related.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`⁉ ./misc.yaml`](misc.yaml)
 
 Everything else, including printer consumables status.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ## Usage
 
@@ -250,11 +236,9 @@ Some sensors are used for information display only in [`/groups/`](../groups) an
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Customization
 
 The bulk of the customization is done in [`/customize.yaml`](../customize.yaml) and some in [`/customize_glob.yaml`](../customize_glob.yaml).
-
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>

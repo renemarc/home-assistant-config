@@ -7,7 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -19,11 +18,9 @@
     </div>
 </figure>
 
-
 <h1 align="center">Public folder</h1>
 
 This is Home Assistant's publicly accessible web folder.
-
 
 ## Contents
 
@@ -45,7 +42,6 @@ Where custom state card templates are stored.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`🖼 ./images/`](images)
 
 <div align="center">
@@ -61,7 +57,6 @@ Where custom state card templates are stored.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`📸 ./screenshots/`](screenshots)
 
 <div align="center">
@@ -75,7 +70,6 @@ Where custom state card templates are stored.
         </figcaption>
     </figure>
 </div>
-
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>

@@ -7,7 +7,6 @@
 
 <p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
 
-
 <!-- Hero -->
 <figure>
     <div align="center">
@@ -18,13 +17,11 @@
     </div>
 </figure>
 
-
 <h1 align="center">Custom UI state cards</h1>
 
 These state cards are used to adapt the looks of Home Assistant sensors for easier information consumption.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ## Third-party state cards
 
@@ -33,7 +30,6 @@ These state cards are used to adapt the looks of Home Assistant sensors for easi
 Debuging and development files for **Custom UI elements** below.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ### [`🌈 ./state-card-custom-ui(-es5?).html(.gz?)`](state-card-custom-ui.html)
 
@@ -53,7 +49,6 @@ Debuging and development files for **Custom UI elements** below.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ### [`➖ ./state-card-hline(_es5?).html`](state-card-hline.html)
 
 [Horizontal line state card](https://github.com/covrig/homeassistant-hline) to visually separate long lists of sensors.
@@ -70,7 +65,6 @@ Debuging and development files for **Custom UI elements** below.
 </div>
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
 
 ### [`📝 ./state-card-value_only.html`](state-card-value_only.html)
 
@@ -89,11 +83,9 @@ Debuging and development files for **Custom UI elements** below.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-
 ## Customization
 
 Actual customization of state cards is done in [`/customize.yaml`](../../customize.yaml) and [`/customize_glob.yaml`](../../customize_glob.yaml).
-
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
