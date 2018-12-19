@@ -37,8 +37,8 @@
       data:
         entity_id:
           - light.lightpack
-          - switch.souvenirs_light
-          - switch.window_light
+          - light.souvenirs
+          - light.window
 
     # Turn on some smart lights.
     - service: homeassistant.turn_on

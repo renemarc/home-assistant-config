@@ -12,11 +12,11 @@
 #
 aurora_brightness:
   value: False
-  restore: true
+  restore: True
 
 aurora_effect:
   value: False
-  restore: true
+  restore: True
 
 
 #
@@ -24,7 +24,7 @@ aurora_effect:
 #
 bed_effect:
   value: False
-  restore: true
+  restore: True
   attributes:
     uuid: ''
 
@@ -34,7 +34,7 @@ bed_effect:
 #
 ceiling_effect:
   value: False
-  restore: true
+  restore: True
   attributes:
     uuid: ''
 
@@ -44,11 +44,12 @@ ceiling_effect:
 #
 lightpack_effect:
   value: False
-  restore: true
+  restore: True
 
 
 #
 # Perimeter tamper detection
+#
 tamper_detected:
   value: False
   restore: False

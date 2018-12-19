@@ -1,0 +1,43 @@
+#
+# Code Climate Quality configuration file
+#
+# Helps keep code and documentation clean.
+#
+# @link https://docs.codeclimate.com/
+#
+
+version: 2
+
+# Configure built-in checks
+checks:
+  argument-count:
+    enabled: false
+  file-lines:
+    enabled: false
+  identical-code:
+    enabled: false
+  method-lines:
+    enabled: false
+  similar-code:
+    enabled: false
+
+# Enable community plugins
+plugins:
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  git-legal:
+    enabled: true
+  markdownlint:
+    enabled: true
+  shellcheck:
+    enabled: true
+
+# Exclude non-original content
+exclude_patterns:
+- "**/*.dash"
+- "appdaemon/custom_widgets/"
+- "custom_components/"
+- "custom_ui_update.sh"
+- "www/custom_ui"

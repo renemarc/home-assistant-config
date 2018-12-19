@@ -38,6 +38,11 @@
         - light.spotlight
       to: 'on'
 
+    # When night mode is disabled.
+    - platform: state
+      entity_id: input_boolean.night_mode
+      to: 'off'
+
     # When scenes are disabled.
     - platform: state
       entity_id: input_boolean.scene_mode

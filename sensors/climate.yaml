@@ -1,26 +1,117 @@
 #
 # Bedroom climate
 #
+# Calibration offsets (set through Zwave configuration panel):
+#   Humidity: +6.0% (0+6 = 6)
+#   Temperature: -2.4°C (256-24 = 232 = 0xE8 -> +0x01 = 0xE801 = 59393 -> -65536 = -6143)
+#
+# @link https://www.tabsoverspaces.com/233657-calibrating-aeotec-multisensor-6s-temperature-using-openzwave-in-domoticz/
+#
+- platform: template
+  sensors:
+    bedroom_humidity_exact:
+      friendly_name: Bedroom Humidity Exact
+      unit_of_measurement: '%'
+      icon_template: mdi:water-percent
+      value_template: >-
+        {{ states('sensor.bedroom_multisensor_relative_humidity') | round(1) }}
+
+    bedroom_humidity:
+      friendly_name: Bedroom Humidity
+      unit_of_measurement: '%'
+      icon_template: mdi:water-percent
+      value_template: >-
+        {{ states('sensor.bedroom_multisensor_relative_humidity') | round }}
+
+    bedroom_luminance:
+      friendly_name: Bedroom Luminance
+      unit_of_measurement: 'lx'
+      icon_template: mdi:blur
+      value_template: >-
+        {{ states('sensor.bedroom_multisensor_luminance') | round }}
+
+    bedroom_luminance_friendly:
+      friendly_name: Bedroom Luminance
+      icon_template: mdi:blur
+      value_template: >-
+        {% set lx = states('sensor.bedroom_multisensor_luminance') | int(-1) %}
+
+        {% if lx > 5000 %}
+          Outdoors
+        {% elif lx > 1000 %}
+          Bright
+        {% elif lx > 400 %}
+          Normal
+        {% elif lx > 10 %}
+          Dim
+        {% elif lx >= 0 %}
+          Dark
+        {% else %}
+          unknown
+        {% endif %}
+
+    bedroom_temperature_exact:
+      friendly_name: Bedroom Temperature Exact
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.bedroom_multisensor_temperature') }}
+
+    bedroom_temperature:
+      friendly_name: Bedroom Temperature
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.bedroom_multisensor_temperature') | round }}
+
+- platform: filter
+  name: Bedroom Humidity Filtered
+  entity_id: sensor.bedroom_humidity_exact
+  filters:
+    - filter: outlier
+      window_size: 4
+      radius: 4.0
+    - filter: lowpass
+      time_constant: 10
+      precision: 1
+
+- platform: filter
+  name: Bedroom Temperature Filtered
+  entity_id: sensor.bedroom_temperature_exact
+  filters:
+    - filter: outlier
+      window_size: 4
+      radius: 2.0
+    - filter: lowpass
+      time_constant: 10
+    - filter: time_simple_moving_average
+      window_size: 00:05
+      precision: 2
+
+
+#
+# Humidor climate
+#
 # Calibration offsets:
-#   Humidity: -1.5%
-#   Temperature: +0.2°C
+#   Humidity: -0.5%
+#   Temperature: 0.2°C
 #
 - platform: mqtt
-  name: Bedroom AcuRite
+  name: Humidor AcuRite
   state_topic: "home/Acurite_tower_sensor/11846"
 
 - platform: mqtt
-  name: Bedroom Humidity Exact
+  name: Humidor Humidity Exact
   state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '%'
   value_template: >-
-    {% set calibration = -1.5 %}
+    {% set calibration = -0.5 %}
     {% set humidity = value_json.humidity %}
 
     {{ humidity + calibration }}
 
 - platform: mqtt
-  name: Bedroom Temperature Exact
+  name: Humidor Temperature Exact
   state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '°C'
   value_template: >-
@@ -31,43 +122,101 @@
 
 - platform: template
   sensors:
-    bedroom_humidity:
-      friendly_name: Bedroom Humidity
+    humidor_humidity:
+      friendly_name: Humidor Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.bedroom_humidity_exact') | round }}"
+      value_template: >-
+        {{ states('sensor.humidor_humidity_exact') | round }}
 
-    bedroom_temperature:
-      friendly_name: Bedroom Humidity
+    humidor_temperature:
+      friendly_name: Humidor Humidity
       unit_of_measurement: '°C'
       icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.bedroom_temperature_exact') | round }}"
+      value_template: >-
+        {{ states('sensor.humidor_temperature_exact') | round }}
 
 - platform: filter
-  name: Bedroom Humidity Filtered
-  entity_id: sensor.bedroom_humidity_exact
+  name: Humidor Humidity Filtered
+  entity_id: sensor.humidor_humidity_exact
   filters:
+    - filter: outlier
+      window_size: 4
+      radius: 4.0
     - filter: lowpass
       time_constant: 10
       precision: 1
 
 - platform: filter
-  name: Bedroom Temperature Filtered
-  entity_id: sensor.bedroom_temperature_exact
+  name: Humidor Temperature Filtered
+  entity_id: sensor.humidor_temperature_exact
   filters:
+    - filter: outlier
+      window_size: 4
+      radius: 2.0
     - filter: lowpass
       time_constant: 10
-      precision: 1
+    - filter: time_simple_moving_average
+      window_size: 00:05
+      precision: 2
+
+
+#
+# Kitchen climate
+#
+# Calibration offsets:
+#   Temperature: -0.5°C
+#
+# The Ecolink FireFighter smoke alarm monitor is in the kitchen, but even if
+# it is a Z Wave device, is offers no configuration options trough the Z Wave
+# management interface. We'll override the values here instead.
+#
+- platform: template
+  sensors:
+    kitchen_temperature_exact:
+      friendly_name: Kitchen Temperature Exact
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {% set calibration = -0.5 %}
+        {% set temperature = states('sensor.siren_monitor_temperature') | round(1) %}
+
+        {% if temperature != 'unknown' %}
+          {{ temperature + calibration }}
+        {% else %}
+          unknown
+        {% endif %}
+
+    kitchen_temperature:
+      friendly_name: Kitchen Temperature
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.kitchen_temperature_exact') | round }}
+
+- platform: filter
+  name: Kitchen Temperature Filtered
+  entity_id: sensor.kitchen_temperature_exact
+  filters:
+    - filter: outlier
+      window_size: 4
+      radius: 2.0
+    - filter: lowpass
+      time_constant: 10
+    - filter: time_simple_moving_average
+      window_size: 00:05
+      precision: 2
 
 
 #
 # Lounge climate
 #
 # Calibration offsets (set through Zwave configuration panel):
-#   Humidity: +5.0% (5)
-#   Temperature: -1.1°C (256-11 = 245 = 0xF5 -> +0x01 = 0xF501 = 62721 -> -65536 = -2815)
+#   Humidity: +3.7% (0+4 = 4)
+#   Temperature: -0.8°C (256-8 = 248 = 0xF8 -> +0x01 = 0xF801 = 63489 -> -65536 = -2047)
 #
 # @link https://www.tabsoverspaces.com/233657-calibrating-aeotec-multisensor-6s-temperature-using-openzwave-in-domoticz/
+# @link https://docs.microsoft.com/en-us/windows/desktop/sensorsapi/understanding-and-interpreting-lux-values
 #
 - platform: template
   sensors:
@@ -75,36 +224,64 @@
       friendly_name: Lounge Humidity Exact
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.lounge_multisensor_relative_humidity') }}"
+      value_template: >-
+        {{ states('sensor.lounge_multisensor_relative_humidity') }}
 
     lounge_humidity:
       friendly_name: Lounge Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.lounge_multisensor_relative_humidity') | round }}"
-
-    lounge_temperature_exact:
-      friendly_name: Lounge Temperature Exact
-      unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.lounge_multisensor_temperature') }}"
-
-    lounge_temperature:
-      friendly_name: Lounge Temperature
-      unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.lounge_multisensor_temperature') | round }}"
+      value_template: >-
+        {{ states('sensor.lounge_humidity_exact') | round }}
 
     lounge_luminance:
       friendly_name: Lounge Luminance
       unit_of_measurement: 'lx'
       icon_template: mdi:blur
-      value_template: "{{ states('sensor.lounge_multisensor_luminance') | round }}"
+      value_template: >-
+        {{ states('sensor.lounge_multisensor_luminance') | round }}
+
+    lounge_luminance_friendly:
+      friendly_name: Lounge Luminance
+      icon_template: mdi:blur
+      value_template: >-
+        {% set lx = states('sensor.lounge_multisensor_luminance') | int(-1) %}
+
+        {% if lx > 5000 %}
+          Outdoors
+        {% elif lx > 1000 %}
+          Bright
+        {% elif lx > 400 %}
+          Normal
+        {% elif lx > 10 %}
+          Dim
+        {% elif lx >= 0 %}
+          Dark
+        {% else %}
+          unknown
+        {% endif %}
+
+    lounge_temperature_exact:
+      friendly_name: Lounge Temperature Exact
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.lounge_multisensor_temperature') }}
+
+    lounge_temperature:
+      friendly_name: Lounge Temperature
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.lounge_temperature_exact') | round }}
 
 - platform: filter
   name: Lounge Humidity Filtered
   entity_id: sensor.lounge_humidity_exact
   filters:
+    - filter: outlier
+      window_size: 4
+      radius: 4.0
     - filter: lowpass
       time_constant: 10
       precision: 1
@@ -112,6 +289,202 @@
 - platform: filter
   name: Lounge Temperature Filtered
   entity_id: sensor.lounge_temperature_exact
+  filters:
+    - filter: outlier
+      window_size: 4
+      radius: 2.0
+    - filter: lowpass
+      time_constant: 10
+    - filter: time_simple_moving_average
+      window_size: 00:05
+      precision: 2
+
+
+#
+# Washroom climate
+#
+# Calibration offsets (set through Zwave configuration panel):
+#   Humidity: +2.0% (0+2 = 2)
+#   Temperature: -1.3°C (256-13 = 243 = 0xF3 -> +0x01 = 0xF301 = 62209 -> -65536 = -3327)
+#
+# @link https://www.tabsoverspaces.com/233657-calibrating-aeotec-multisensor-6s-temperature-using-openzwave-in-domoticz/
+#
+- platform: template
+  sensors:
+    washroom_humidity_exact:
+      friendly_name: Washroom Humidity Exact
+      unit_of_measurement: '%'
+      icon_template: mdi:water-percent
+      value_template: >-
+        {{ states('sensor.washroom_multisensor_relative_humidity') }}
+
+    washroom_humidity:
+      friendly_name: Washroom Humidity
+      unit_of_measurement: '%'
+      icon_template: mdi:water-percent
+      value_template: >-
+        {{ states('sensor.washroom_multisensor_relative_humidity') | round }}
+
+    washroom_luminance:
+      friendly_name: Washroom Luminance
+      unit_of_measurement: 'lx'
+      icon_template: mdi:blur
+      value_template: >-
+        {{ states('sensor.washroom_multisensor_luminance') | round }}
+
+    washroom_luminance_friendly:
+      friendly_name: Washroom Luminance
+      icon_template: mdi:blur
+      value_template: >-
+        {% set lx = states('sensor.washroom_multisensor_luminance') | int(-1) %}
+
+        {% if lx > 5000 %}
+          Outdoors
+        {% elif lx > 1000 %}
+          Bright
+        {% elif lx > 400 %}
+          Normal
+        {% elif lx > 10 %}
+          Dim
+        {% elif lx >= 0 %}
+          Dark
+        {% else %}
+          unknown
+        {% endif %}
+
+    washroom_temperature_exact:
+      friendly_name: Washroom Temperature Exact
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.washroom_multisensor_temperature') }}
+
+    washroom_temperature:
+      friendly_name: Washroom Temperature
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.washroom_multisensor_temperature') | round }}
+
+- platform: filter
+  name: Washroom Humidity Filtered
+  entity_id: sensor.washroom_humidity_exact
+  filters:
+    - filter: outlier
+      window_size: 4
+      radius: 4.0
+    - filter: lowpass
+      time_constant: 10
+      precision: 1
+
+- platform: filter
+  name: Washroom Temperature Filtered
+  entity_id: sensor.washroom_temperature_exact
+  filters:
+    - filter: outlier
+      window_size: 4
+      radius: 2.0
+    - filter: lowpass
+      time_constant: 10
+    - filter: time_simple_moving_average
+      window_size: 00:05
+      precision: 2
+
+
+#
+# Airthings Wave radon detector
+#
+# The Airthings Wave radon detector is a Bluetooth Low Energy (BLE) device.
+# Instead of using its mobile app, a Raspberry Pi Zero W is setup as a Bluetooth
+# to MQTT bridge allowing the device's sensors to be integrated easily.
+#
+# Thanks Herb Peyerl! :-)
+#
+# @link https://github.com/hpeyerl/airthingswave-mqtt
+# @link https://airthings.com/raspberry-pi/
+# @link https://airthings.com/wave/
+#
+- platform: mqtt
+  name: Radon Daily
+  state_topic: "airthings-wave/Radon-Day"
+  unit_of_measurement: 'Bq/m3'
+  value_template: >-
+    {{ value | round }}
+
+- platform: mqtt
+  name: Radon Long Term
+  state_topic: "airthings-wave/Radon-Long-Term"
+  unit_of_measurement: 'Bq/m3'
+  value_template: >-
+    {{ value | round }}
+
+- platform: mqtt
+  name: Radon Detector Humidity Exact
+  state_topic: "airthings-wave/Humidity"
+  unit_of_measurement: '%'
+  device_class: humidity
+  value_template: >-
+    {% set calibration = 0 %}
+    {% set humidity = value | float %}
+
+    {{ (humidity + calibration) | round(1) }}
+
+- platform: mqtt
+  name: Radon Detector Temperature Exact
+  state_topic: "airthings-wave/Temperature"
+  unit_of_measurement: '°C'
+  device_class: temperature
+  value_template: >-
+    {% set calibration = 0 %}
+    {% set temperature = value | float %}
+
+    {{ (temperature + calibration) | round(1) }}
+
+- platform: template
+  sensors:
+    radon_friendly:
+      friendly_name: Radon
+      icon_template: mdi:radioactive
+      value_template: >-
+        {% set radon = states('sensor.radon_daily') | int(-1) %}
+
+        {% if radon >= 200 %}
+          Danger
+        {% elif radon >= 150 %}
+          High
+        {% elif radon >= 100 %}
+          OK-High
+        {% elif radon >= 0 %}
+          OK
+        {% else %}
+          unknown
+        {% endif %}
+
+    radon_detector_humidity:
+      friendly_name: Radon Detector Humidity
+      unit_of_measurement: '%'
+      icon_template: mdi:water-percent
+      value_template: >-
+        {{ states('sensor.radon_detector_humidity_exact') | round }}
+
+    radon_detector_temperature:
+      friendly_name: Radon Detector Temperature
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.radon_detector_temperature_exact') | round }}
+
+- platform: filter
+  name: Radon Detector Humidity Filtered
+  entity_id: sensor.radon_detector_humidity_exact
+  filters:
+    - filter: lowpass
+      time_constant: 10
+      precision: 1
+
+- platform: filter
+  name: Radon Detector Temperature Filtered
+  entity_id: sensor.radon_detector_temperature_exact
   filters:
     - filter: lowpass
       time_constant: 10
@@ -140,7 +513,8 @@
       friendly_name: Temperature
       unit_of_measurement: '°C'
       icon_template: mdi:thermometer
-      value_template: "{{ states('sensor.average_temperature_exact') | round }}"
+      value_template: >-
+        {{ states('sensor.average_temperature_exact') | round }}
 
 
 #
@@ -167,7 +541,8 @@
       friendly_name: Humidity
       unit_of_measurement: '%'
       icon_template: mdi:water-percent
-      value_template: "{{ states('sensor.average_humidity_exact') | round }}"
+      value_template: >-
+        {{ states('sensor.average_humidity_exact') | round }}
 
 - platform: template
   sensors:
@@ -175,7 +550,7 @@
       friendly_name: Humidity
       icon_template: mdi:water-percent
       value_template: >-
-        {% set humidity = states('sensor.average_humidity') | int %}
+        {% set humidity = states('sensor.average_humidity') | int(-1) %}
 
         {% if humidity > 90 %}
           Mold imminent
@@ -189,6 +564,8 @@
           OK
         {% elif humidity >= 30 %}
           OK-Low
-        {% else %}
+        {% elif humidity >= 0 %}
           Too dry
+        {% else %}
+          unknown
         {% endif %}

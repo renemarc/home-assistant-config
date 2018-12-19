@@ -1,0 +1,25 @@
+#
+# Start the HomeKit server when everything is ready
+#
+# Turning off this automation allows for testing of a partial configuration
+# without loosing the disabled accessories' settings.
+#
+- id: homekit_start
+  alias: HomeKit START
+
+  trigger:
+    # When Z-Wave is ready.
+    - platform: event
+      event_type: zwave.network_ready
+
+    # When Z-Wave network is ready.
+    - platform: event
+      event_type: zwave.network_complete
+
+    # When Z-Wave partial network works.
+    - platform: event
+      event_type: zwave.network_complete_some_dead
+
+  action:
+    # Start HomeKit.
+    - service: homekit.start

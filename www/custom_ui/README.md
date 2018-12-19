@@ -1,6 +1,27 @@
-# Custom UI state cards
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
+
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / [www](..) / **custom_ui** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#-state-card-custom-ui-es5htmlgz" title="Custom UI elements"><img src="../screenshots/group-weather.png" alt="Weather group" width="140"></a>
+        <a href="#-state-card-custom-ui-es5htmlgz" title="Custom UI elements"><img src="../screenshots/group-climate.png" alt="Climate Control group" width="140"></a>
+        <a href="#-state-card-hline_es5html" title="Horizontal line"><img src="../screenshots/card-horizontal-line.png" alt="Horizontal line state card" width="140"></a>
+        <a href="#-state-card-value_onlyhtml" title="Value-only"><img src="../screenshots/group-forecast.png" alt="Value-only state card" width="140"></a>
+    </div>
+</figure>
+
+<h1 align="center">Custom UI state cards</h1>
 
 These state cards are used to adapt the looks of Home Assistant sensors for easier information consumption.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 ## Third-party state cards
 
@@ -8,6 +29,7 @@ These state cards are used to adapt the looks of Home Assistant sensors for easi
 
 Debuging and development files for **Custom UI elements** below.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 ### [`🌈 ./state-card-custom-ui(-es5?).html(.gz?)`](state-card-custom-ui.html)
 
@@ -25,6 +47,7 @@ Debuging and development files for **Custom UI elements** below.
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 ### [`➖ ./state-card-hline(_es5?).html`](state-card-hline.html)
 
@@ -41,6 +64,7 @@ Debuging and development files for **Custom UI elements** below.
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 ### [`📝 ./state-card-value_only.html`](state-card-value_only.html)
 
@@ -57,7 +81,17 @@ Debuging and development files for **Custom UI elements** below.
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 ## Customization
 
 Actual customization of state cards is done in [`/customize.yaml`](../../customize.yaml) and [`/customize_glob.yaml`](../../customize_glob.yaml).
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🔙 Back to `/www/`](../)
+
+[🏠 Home][link-repo]

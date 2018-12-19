@@ -4,7 +4,7 @@
 # Only if doors and windows are closed, and only when we're allowed to mame some
 # noise.
 #
-# @subscribe input_boolean.doors_open
+# @subscribe group.door_sensors
 # @subscribe input_boolean.quiet_mode
 # @subscribe input_boolean.windows_open
 #
@@ -36,7 +36,7 @@
 
     # If doors have been closed for a while.
     - condition: state
-      entity_id: input_boolean.doors_open
+      entity_id: group.door_sensors
       state: 'off'
       for:
         minutes: 5

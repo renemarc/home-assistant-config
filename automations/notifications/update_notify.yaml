@@ -5,6 +5,7 @@
 #
 - id: update_notify
   alias: Update NOTIFY
+
   trigger:
     # When the updater service finds something new.
     platform: state

@@ -39,6 +39,14 @@ config:
 
 
 #
+# Counters
+#
+# @link https://www.home-assistant.io/components/counter/
+#
+counter: !include misc/counters.yaml
+
+
+#
 # Enable the UI customizer
 #
 # @link https://github.com/andrey-git/home-assistant-customizer
@@ -63,6 +71,7 @@ device_tracker: !include misc/device_trackers.yaml
 discovery:
   ignore:
     - google_cast
+    - samsung_printer
 
 
 #
@@ -104,7 +113,9 @@ group: !include_dir_merge_named groups/
 #
 # Enable the Hass.io panel
 #
-# hassio:
+# @link https://www.home-assistant.io/hassio/
+#
+hassio:
 
 
 #
@@ -112,7 +123,7 @@ group: !include_dir_merge_named groups/
 #
 # @link https://home-assistant.io/components/history/
 #
-# history:
+history:
 
 
 #
@@ -142,17 +153,15 @@ homekit: !include misc/homekit.yaml
 #
 # Enable the web server
 #
-# `cors_allowed_origins` includes the domain:port for Appdaemon.
+# `cors_allowed_origins` includes the domain:port for AppDaemon.
 #
 # @link https://home-assistant.io/components/http/
 #
 http:
-  # api_password: !secret http_password
-  # base_url: !secret http_base_url
+  api_password: !secret http_password
+  base_url: !secret http_base_url
   server_port: !secret http_server_port
-  cors_allowed_origins:
-    - !secret http_cors_origin_1
-    - !secret http_cors_origin_2
+  cors_allowed_origins: !secret http_cors_allowed_origins
 
 
 #
@@ -190,6 +199,15 @@ ios:
 
 
 #
+# LIFX
+#
+# @link https://www.home-assistant.io/components/lifx/
+#
+lifx: !include misc/lifx.yaml
+
+
+
+#
 # Lights
 #
 # @link https://home-assistant.io/components/light/
@@ -215,7 +233,11 @@ logger:
   logs:
     aiohttp.server: critical # EBOX newer component bug.
     custom_components.display: critical # When tablet is offline.
-    homeassistant.helpers.entity: fatal # EBOX legacy component bug.
+    custom_components.light.lightpack: critical # When Lightpack is offline.
+    homeassistant.components.device_tracker.unifi: fatal # When Unifi Controller is temporarily unreachable.
+    homeassistant.components.media_player.plex: fatal # When Plex is offline.
+    homeassistant.components.switch.tplink: error # When switch is unplugged.
+    pyunifi.controller: error # When Unifi Controller is temporarily unreachable.
 
 
 #
@@ -244,6 +266,12 @@ mqtt:
   port: !secret mqtt_port
   username: !secret mqtt_username
   password: !secret mqtt_password
+  birth_message:
+    topic: 'hass/status'
+    payload: 'online'
+  will_message:
+    topic: 'hass/status'
+    payload: 'offline'
 
 
 #
@@ -257,7 +285,7 @@ notify: !include_dir_merge_list notifications/
 #
 # Database recorder
 #
-# Reduce the number of tracked entities and length of history.
+# Limit the number of tracked entities and length of history.
 #
 # @link https://home-assistant.io/components/recorder/
 #

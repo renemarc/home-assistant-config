@@ -24,5 +24,5 @@
     # Turn off binary devices.
     - service: homeassistant.turn_off
       entity_id:
-        - switch.nightstand_light
-        - switch.bedside_light
+        - light.bedside
+        - light.nightstand

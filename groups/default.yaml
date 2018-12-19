@@ -35,6 +35,7 @@ climate:
     - sensor.average_temperature
     - sensor.average_humidity_friendly
     - switch.dehumidifier
+    - sensor.radon_friendly
 
 notifications:
   name: Notifications
@@ -70,8 +71,10 @@ security:
   name: Security Status
   control: hidden
   entities:
-    - sensor.doors_status
+    - sensor.door_status
+    - sensor.leak_status
     - sensor.motion_status
+    - sensor.smoke_status
     - sensor.tamper_status
 
 wallpaper:

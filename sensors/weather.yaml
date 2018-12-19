@@ -6,6 +6,7 @@
 - platform: darksky
   api_key: !secret darksky_api_key
   forecast:
+    - 0
     - 1
     - 2
   monitored_conditions:
@@ -20,6 +21,7 @@
     - temperature_high
     - temperature_low
     - apparent_temperature
+    - apparent_temperature_high
     - humidity
     - wind_speed
     - wind_bearing
@@ -40,14 +42,14 @@
       icon_template: mdi:thermometer
       unit_of_measurement: '°C'
       value_template: >-
-        {{ states('sensor.dark_sky_temperature') | round(0) }}
+        {{ states('sensor.dark_sky_temperature') | round }}
 
     outside_humidity:
       friendly_name: Humidity
       icon_template: mdi:water-percent
       unit_of_measurement: '%'
       value_template: >-
-        {{ states('sensor.dark_sky_humidity') | round(0) }}
+        {{ states('sensor.dark_sky_humidity') | round }}
 
 
 #
@@ -61,50 +63,55 @@
     feels_like:
       friendly_name: Feels Like
       value_template: >-
-        {% set temperature = states('sensor.outside_temperature') %}
-        {% set apparent = states('sensor.dark_sky_apparent_temperature') | round(0) %}
+        {% set temperature = states('sensor.outside_temperature') | round %}
+        {% set apparent = states('sensor.dark_sky_apparent_temperature') | round %}
 
-        {% if apparent != temperature %}
+        {% if apparent != 'unknown' and apparent != temperature %}
           Feels like {{ apparent }}˚
         {% endif %}
 
     feels_like_1:
       friendly_name: Feels Like
       value_template: >-
-        {% set temperature = states('sensor.dark_sky_daily_high_temperature_1') %}
-        {% set apparent = states('sensor.dark_sky_daily_high_apparent_temperature_1') | round(0) %}
+        {% set temperature = states('sensor.dark_sky_daytime_high_temperature_1') | round %}
+        {% set apparent = states('sensor.dark_sky_daytime_high_apparent_temperature_1') | round %}
 
-        {% if apparent != temperature %}
+        {% if apparent != 'unknown' and apparent != temperature %}
           Will feel like {{ apparent }}˚
         {% endif %}
 
     feels_like_2:
       friendly_name: Feels Like
       value_template: >-
-        {% set temperature = states('sensor.dark_sky_daily_high_temperature_2') %}
-        {% set apparent = states('sensor.dark_sky_daily_high_apparent_temperature_2') | round(0) %}
+        {% set temperature = states('sensor.dark_sky_daytime_high_temperature_2') | round %}
+        {% set apparent = states('sensor.dark_sky_daytime_high_apparent_temperature_2') | round %}
 
-        {% if apparent != temperature %}
+        {% if apparent != 'unknown' and apparent != temperature %}
           Will feel like {{ apparent }}˚
         {% endif %}
 
     weather_summary:
       friendly_name: Weather Summary
       value_template: >-
-        {{ states('sensor.dark_sky_temperature') | round(0) }}˚ {{ states('sensor.dark_sky_summary') }}.
+        {% if states('sensor.dark_sky_temperature') != 'unknown' %}
+          {{ states('sensor.dark_sky_temperature') | round }}˚
+        {%- endif -%}
+        {%- if states('sensor.dark_sky_summary') != 'unknown' -%}
+          {{ ' ' ~ states('sensor.dark_sky_summary') }}.
+        {%- endif %}
 
     weather_details:
       friendly_name: Weather Details
       value_template: >-
-        {% set temperature = states('sensor.dark_sky_temperature') | round(0) %}
-        {% set apparent = states('sensor.dark_sky_apparent_temperature') | round(0) %}
+        {% set temperature = states('sensor.dark_sky_temperature') | round %}
+        {% set apparent = states('sensor.dark_sky_apparent_temperature') | round %}
         {% set summary = states('sensor.dark_sky_minutely_summary') %}
 
         {% if summary == 'unknown' %}
           {% set summary = '' %}
         {% endif %}
 
-        {% if apparent != temperature %}
+        {% if apparent != 'unknown' and apparent != temperature %}
           Feels like {{ apparent }}˚. {{ summary }}
         {% else %}
           {{ summary }}
@@ -123,9 +130,11 @@
     precip_probability:
       friendly_name: Probability of Precipitation
       value_template: >-
-        {% set precip = states('sensor.dark_sky_precip_probability') | int %}
+        {% set precip = states('sensor.dark_sky_precip_probability') | int(-1) %}
 
-        {% if precip > 0 %}
+        {% if precip < 0 %}
+          unknown
+        {% elif precip > 0 %}
           {{ precip }} %
         {% else %}
           —
@@ -134,9 +143,11 @@
     precip_probability_friendly:
       friendly_name: Probability of Precipitation
       value_template: >-
-        {% set precip = states('sensor.dark_sky_precip_probability') | int %}
+        {% set precip = states('sensor.dark_sky_precip_probability') | int(-1) %}
 
-        {% if precip > 0 %}
+        {% if precip < 0 %}
+          unknown
+        {% elif precip > 0 %}
           precip: {{ precip }} %
         {% else %}
           no precipitation
@@ -145,9 +156,11 @@
     precip_probability_1:
       friendly_name: Probability of Precipitation
       value_template: >-
-        {% set precip = states('sensor.dark_sky_precip_probability_1') | int %}
+        {% set precip = states('sensor.dark_sky_precip_probability_1') | int(-1) %}
 
-        {% if precip > 0 %}
+        {% if precip < 0 %}
+          unknown
+        {% elif precip > 0 %}
           {{ precip }} %
         {% else %}
           —
@@ -156,9 +169,11 @@
     precip_probability_friendly_1:
       friendly_name: Probability of Precipitation
       value_template: >-
-        {% set precip = states('sensor.dark_sky_precip_probability_1') | int %}
+        {% set precip = states('sensor.dark_sky_precip_probability_1') | int(-1) %}
 
-        {% if precip > 0 %}
+        {% if precip < 0 %}
+          unknown
+        {% elif precip > 0 %}
           precip: {{ precip }} %
         {% else %}
           no precipitation
@@ -167,9 +182,11 @@
     precip_probability_2:
       friendly_name: Probability of Precipitation
       value_template: >-
-        {% set precip = states('sensor.dark_sky_precip_probability_2') | int %}
+        {% set precip = states('sensor.dark_sky_precip_probability_2') | int(-1) %}
 
-        {% if precip > 0 %}
+        {% if precip < 0 %}
+          unknown
+        {% elif precip > 0 %}
           {{ precip }} %
         {% else %}
           —
@@ -178,9 +195,11 @@
     precip_probability_friendly_2:
       friendly_name: Probability of Precipitation
       value_template: >-
-        {% set precip = states('sensor.dark_sky_precip_probability_2') | int %}
+        {% set precip = states('sensor.dark_sky_precip_probability_2') | int(-1) %}
 
-        {% if precip > 0 %}
+        {% if precip < 0 %}
+          unknown
+        {% elif precip > 0 %}
           precip: {{ precip }} %
         {% else %}
           no precipitation
@@ -200,14 +219,14 @@
     weather_low:
       friendly_name: Low Temperature
       value_template: >-
-        {{ states('sensor.dark_sky_overnight_low_temperature') | round }}
+        {{ states('sensor.dark_sky_overnight_low_temperature_0') | round }}
 
     weather_low_friendly:
       friendly_name: Low Temperature
       value_template: >-
-        {% set temp = states('sensor.dark_sky_overnight_low_temperature') | round %}
+        {% set temp = states('sensor.dark_sky_overnight_low_temperature_0') | round %}
 
-        min: {{ temp }}˚
+        low: {{ temp }}˚
 
     weather_low_1:
       friendly_name: Low Temperature
@@ -219,7 +238,7 @@
       value_template: >-
         {% set temp = states('sensor.dark_sky_overnight_low_temperature_1') | round %}
 
-        min: {{ temp }}˚
+        low: {{ temp }}˚
 
     weather_low_2:
       friendly_name: Low Temperature
@@ -231,7 +250,7 @@
       value_template: >-
         {% set temp = states('sensor.dark_sky_overnight_low_temperature_2') | round %}
 
-        min: {{ temp }}˚
+        low: {{ temp }}˚
 
 
 #
@@ -264,6 +283,8 @@
           Cloudy
         {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
           Partly Cloudy
+        {% else %}
+          unknown
         {% endif %}
 
     weather_icon_friendly_1:
@@ -289,6 +310,8 @@
           Cloudy
         {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
           Partly Cloudy
+        {% else %}
+          unknown
         {% endif %}
 
     weather_icon_friendly_2:
@@ -314,6 +337,8 @@
           Cloudy
         {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
           Partly Cloudy
+        {% else %}
+          unknown
         {% endif %}
 
 
@@ -335,56 +360,68 @@
       unit_of_measurement: 'km/h'
       friendly_name_template: >-
         {{ states('sensor.wind_scale_friendly') }}
-      value_template: >-
-        {{ (states('sensor.dark_sky_wind_speed')|float * 3600 / 1000) | round(0) }}
       icon_template: >-
-        {% set speed = (states('sensor.dark_sky_wind_speed')|float * 3600 / 1000) | round(0) %}
+        {% set speed = (states('sensor.dark_sky_wind_speed')|float(-1) * 3600 / 1000) %}
 
-        {% if 39 <= speed %}
+        {% if speed >= 39 %}
           mdi:weather-windy
-        {% else %}
+        {% elif speed >= 0 %}
           mdi:airballoon
+        {% else %}
+          mdi:cloud-question
+        {% endif %}
+      value_template: >-
+        {% set speed = (states('sensor.dark_sky_wind_speed')|float(-1) * 3600 / 1000) %}
+
+        {% if speed >= 0 %}
+          {{ speed | round }}
+        {% else %}
+          unknown
         {% endif %}
 
     wind_scale_friendly:
       friendly_name: Wind Scale
-      value_template: >-
-        {% set speed = (states('sensor.dark_sky_wind_speed')|float * 3600 / 1000) | round(0) %}
-
-        {% if speed < 1 %}
-          Calm
-        {% elif 1 <= speed <= 5 %}
-          Light air
-        {% elif 6 <= speed <= 11 %}
-          Light breeze
-        {% elif 12 <= speed <= 19 %}
-          Gentle breeze
-        {% elif 20 <= speed <= 28 %}
-          Moderate breeze
-        {% elif 29 <= speed <= 38 %}
-          Fresh breeze
-        {% elif 39 <= speed <= 49 %}
-          Strong breeze
-        {% elif 50 <= speed <= 61 %}
-          High wind
-        {% elif 62 <= speed <= 74 %}
-          Fresh gale
-        {% elif 75 <= speed <= 88 %}
-          Strong gale
-        {% elif 89 <= speed <= 102 %}
-          Storm
-        {% elif 103 <= speed <= 117 %}
-          Violent storm
-        {% elif 118 <= speed %}
-          Hurricane force
-        {% endif %}
       icon_template: >-
-        {% set speed = (states('sensor.dark_sky_wind_speed')|float * 3600 / 1000) | round(1) %}
+        {% set speed = (states('sensor.dark_sky_wind_speed')|float(-1) * 3600 / 1000) %}
 
-        {% if 40 <= speed %}
+        {% if speed >= 39 %}
           mdi:weather-windy
-        {% else %}
+        {% elif speed >= 0 %}
           mdi:airballoon
+        {% else %}
+          mdi:cloud-question
+        {% endif %}
+      value_template: >-
+        {% set speed = (states('sensor.dark_sky_wind_speed')|float(-1) * 3600 / 1000) %}
+
+        {% if speed >= 118 %}
+          Hurricane force
+        {% elif speed >= 103 %}
+          Violent storm
+        {% elif speed >= 89 %}
+          Storm
+        {% elif speed >= 75 %}
+          Strong gale
+        {% elif speed >= 62 %}
+          Fresh gale
+        {% elif speed >= 50 %}
+          High wind
+        {% elif speed >= 39 %}
+          Strong breeze
+        {% elif speed >= 29 %}
+          Fresh breeze
+        {% elif speed >= 20 %}
+          Moderate breeze
+        {% elif speed >= 12 %}
+          Gentle breeze
+        {% elif speed >= 6 %}
+          Light breeze
+        {% elif speed >= 1 %}
+          Light air
+        {% elif speed >= 0 %}
+          Calm
+        {% elif speed < 0 %}
+          unknown
         {% endif %}
 
 
@@ -404,17 +441,21 @@
     wind_bearing_cardinal:
       friendly_name: Wind Bearing
       value_template: >-
-        {% set degrees = states('sensor.dark_sky_wind_bearing') | int %}
-        {% set val = (degrees / 45) | int %}
+        {% set degrees = states('sensor.dark_sky_wind_bearing') | int(-1) %}
         {% set directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'] %}
 
-        {{ directions[(val % 8)] }}
+        {% if degrees >= 0 %}
+          {% set val = (degrees / 45) | int %}
+
+          {{ directions[(val % 8)] }}
+        {% else %}
+          unknown
+        {% endif %}
 
     wind_bearing_cardinal_friendly:
       friendly_name: Wind Bearing
       value_template: >-
-        {% set degrees = states('sensor.dark_sky_wind_bearing') | int %}
-        {% set val = (degrees / 45) | int %}
+        {% set degrees = states('sensor.dark_sky_wind_bearing') | int(-1) %}
         {% set directions = [
           'North',
           'Northeast',
@@ -426,22 +467,32 @@
           'Northwest'
         ] %}
 
-        {{ directions[(val % 8)] }}
+        {% if degrees >= 0 %}
+          {% set val = (degrees / 45) | int %}
+
+          {{ directions[(val % 8)] }}
+        {% else %}
+          unknown
+        {% endif %}
 
     wind_bearing_cardinal_16:
       friendly_name: Wind Bearing
       value_template: >-
-        {% set degrees = states('sensor.dark_sky_wind_bearing') | int %}
-        {% set val = (degrees / 22.5 + 0.5) | int %}
+        {% set degrees = states('sensor.dark_sky_wind_bearing') | int(-1) %}
         {% set directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'] %}
 
-        {{ directions[(val % 16)] }}
+        {% if degrees >= 0 %}
+          {% set val = (degrees / 22.5 + 0.5) | int %}
+
+          {{ directions[(val % 16)] }}
+        {% else %}
+          unknown
+        {% endif %}
 
     wind_bearing_cardinal_16_friendly:
       friendly_name: Wind Bearing
       value_template: >-
-        {% set degrees = states('sensor.dark_sky_wind_bearing') | int %}
-        {% set val = (degrees / 22.5 + 0.5) | int %}
+        {% set degrees = states('sensor.dark_sky_wind_bearing') | int(-1) %}
         {% set directions = [
           'North',
           'North-Northeast',
@@ -461,4 +512,10 @@
           'North-Northwest'
         ] %}
 
-        {{ directions[(val % 16)] }}
+        {% if degrees >= 0 %}
+          {% set val = (degrees / 22.5 + 0.5) | int %}
+
+          {{ directions[(val % 16)] }}
+        {% else %}
+          unknown
+        {% endif %}

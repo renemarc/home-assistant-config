@@ -14,14 +14,14 @@ sequence:
   - service: homeassistant.turn_on
     data:
       entity_id:
+        - light.bedside
         - light.countertop
         - light.island
         - light.microwave
+        - light.nightstand
         - light.sink
-        - switch.bedside_light
-        - switch.nightstand_light
-        - switch.souvenirs_light
-        - switch.window_light
+        - light.souvenirs
+        - light.window
 
   # Set smart lights to the max.
   - service: light.lifx_set_state

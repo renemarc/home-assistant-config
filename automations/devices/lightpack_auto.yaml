@@ -1,0 +1,57 @@
+#
+# Change Lightpack effect based on TV state
+#
+# Unless a scene is selected, set the Lightpack to react to the screen contents
+# if the TV is on, otherwise set the bias light to something that is not
+# distracting.
+#
+# @subscribe switch.lounge_tv
+#
+# @publish input_select.lightpack_effect
+#
+# @see /automations/devices/lightpack_effect.yaml
+# @see /custom_components/light/lightpack.yaml
+#
+# @link https://github.com/psieg/Lightpack
+#
+
+- id: lightpack_auto
+  alias: Lightpack AUTO
+  trigger:
+    # When the Lightpack is turned on.
+    - platform: state
+      entity_id: light.lightpack
+      to: 'on'
+
+    # When scenes are disabled.
+    - platform: state
+      entity_id: input_boolean.scene_mode
+      to: 'off'
+
+    # When the television power state is toggled.
+    - platform: state
+      entity_id: switch.lounge_tv
+
+  condition:
+    # If Lightpack is on.
+    - condition: state
+      entity_id: light.lightpack
+      state: 'on'
+
+    # If no scenes are enabled.
+    - condition: state
+      entity_id: input_boolean.scene_mode
+      state: 'off'
+
+  action:
+    # Set backlight to screen-reactive if TV is on.
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.lightpack_effect
+      data_template:
+        option: >-
+          {% if is_state('switch.lounge_tv', 'off') %}
+            Daylight
+          {% else %}
+            Default
+          {% endif %}

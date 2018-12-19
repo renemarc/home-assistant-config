@@ -1,12 +1,27 @@
-# Scripts
+<!-- Header -->
+[link-profile]:https://github.com/renemarc
+[link-repo]:https://github.com/renemarc/home-assistant-config
+
+<a name="top"></a>
+<code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **sensors** /</code>
+
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+
+<!-- Hero -->
+<figure>
+    <div align="center">
+        <a href="#smart-scenes" title="Scripts
+(Philips Hue commercial)"><img src="https://media.giphy.com/media/NR9nzexxmvIfC/giphy.gif" alt="Philips Hue commercial"></a>
+    </div>
+</figure>
+
+<h1 align="center">Scripts</h1>
 
 For the most part, actions and requirements are based on publish–subscribe pattern where devices and rooms are smart-enough to respond themselves to global parameters and responsible for their own states. See [`/automations/`](../automations) and [`/misc/input_booleans.yaml`](../misc/input_booleans.yaml) for details.
-
 
 ## Smart scenes
 
 Smart scenes are a hybrid approach, where global parameters are used when appropriate, and some direct control is employed to achieve a specific setup. They are used both in [`/automations/`](../automations) and as a manual selector in [`/misc/input_selects.yaml`](../misc/input_selects.yaml) and [`/appdaemon/dashboards/Main.dash`](../appdaemon/dashboards/Main.dash).
-
 
 ### [`🔆 ./scene_daylight.yaml`](scene_daylight.yaml)
 
@@ -15,7 +30,7 @@ Turn on all lights, and set most of the smart ones to a bright daylight white te
 <div align="center">
     <figure>
         <div>
-            <a href="https://cheezburger.com/7425309184"><img src="https://media.giphy.com/media/CPutABwbvXC92/giphy.gif" alt="Opening curtains"></a>
+            <a href="https://cheezburger.com/7425309184" title="Daylight!"><img src="https://media.giphy.com/media/CPutABwbvXC92/giphy.gif" alt="Opening curtains"></a>
         </div>
         <figcaption>
             <p><strong>Daylight!</strong></p>
@@ -23,10 +38,13 @@ Turn on all lights, and set most of the smart ones to a bright daylight white te
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 ### [`🏠 ./scene_default.yaml`](scene_default.yaml)
 
 Used to disable scene mode and return light selectors to their default states.
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 ### [`👾 ./scene_gaming.yaml`](scene_gaming.yaml)
 
@@ -43,6 +61,8 @@ Set lounge smart lights to video gaming themed colours and effects, as the HTPC 
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 ### [`📺 ./scene_movie.yaml`](scene_movie.yaml)
 
 Enable lounge ambiant lights and set its smart ones to television-friendly colours and effects.
@@ -50,13 +70,15 @@ Enable lounge ambiant lights and set its smart ones to television-friendly colou
 <div align="center">
     <figure>
         <div>
-            <a href="https://youtu.be/sOnqjkJTMaA?t=3m50s" title="Michael Jackson's Thriller music video"><img src="https://media.giphy.com/media/pUeXcg80cO8I8/giphy.gif" alt="Michael Jackson in Thriller"></a>
+            <a href="https://www.youtube.com/watch?v=sOnqjkJTMaA&t=3m50s" title="Michael Jackson's Thriller music video"><img src="https://media.giphy.com/media/pUeXcg80cO8I8/giphy.gif" alt="Michael Jackson in Thriller"></a>
         </div>
         <figcaption>
             <p><strong><a href="https://www.youtube.com/watch?v=sOnqjkJTMaA&t=3m50s" title="Michael Jackson's Thriller music video">♫♬♪ You know it's thriller, Thriller night... ♪♫♬</a></strong></p>
         </figcaption>
     </figure>
 </div>
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 ### [`💏 ./scene_romantic.yaml`](scene_romantic.yaml)
 
@@ -65,13 +87,15 @@ Turn on accent lights, dim some others, pick a romantic colour theme, set the mo
 <div align="center">
     <figure>
         <div>
-            <a href="https://youtu.be/zmTj1oqCBKo?t=14s" title="Quagmire's home automation. Giggity Giggity!"><img src="https://i.ytimg.com/vi/zmTj1oqCBKo/mqdefault.jpg" alt="Quagmire's home automation"></a>
+            <a href="https://www.youtube.com/watch?v=zmTj1oqCBKo?t=14s" title="Quagmire's home automation. Giggity Giggity!"><img src="https://i.ytimg.com/vi/zmTj1oqCBKo/mqdefault.jpg" alt="Quagmire's home automation"></a>
         </div>
         <figcaption>
-           <p><strong><a href="https://youtu.be/zmTj1oqCBKo?t=14s" title="Giggity!">Quagmire's Home Automation.</a> Giggity Giggity!</strong></p>
+           <p><strong><a href="https://www.youtube.com/watch?v=zmTj1oqCBKo?t=14s" title="Giggity!">Quagmire's Home Automation.</a> Giggity Giggity!</strong></p>
         </figcaption>
     </figure>
 </div>
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 ## Other scripts
 
@@ -90,6 +114,7 @@ Reset the state for tampered perimeter devices list.
     </figure>
 </div>
 
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 ### [`☀ ./wake_up.yaml`](wake_up.yaml)
 
@@ -105,3 +130,10 @@ Quickly disable all blocking modes, therefore activating all lights.
         </figcaption>
     </figure>
 </div>
+
+<!-- Footer -->
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+
+[🏠 Home][link-repo]

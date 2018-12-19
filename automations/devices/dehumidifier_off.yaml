@@ -1,7 +1,7 @@
 #
 # Turn off the dehumidifier when it's no longer relevant
 #
-# @subscribe input_boolean.doors_open
+# @subscribe group.door_sensors
 # @subscribe input_boolean.quiet_mode
 # @subscribe input_boolean.windows_open
 #
@@ -22,7 +22,7 @@
 
     # When outside doors have been open for a while.
     - platform: state
-      entity_id: input_boolean.doors_open
+      entity_id: group.door_sensors
       to: 'on'
       for:
         minutes: 10

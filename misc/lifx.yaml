@@ -15,4 +15,4 @@
 # @link https://home-assistant.io/components/light.lifx/
 # @link https://home-assistant.io/components/scene.lifx_cloud/
 #
-- platform: lifx
+light:

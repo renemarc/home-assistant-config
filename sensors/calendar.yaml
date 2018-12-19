@@ -3,6 +3,8 @@
 #
 # Manipulates time and dates to make them more human-friendly.
 #
+# Using a date sensor instead of now() inside templates avoids constant updates.
+#
 # @link https://home-assistant.io/components/sensor.time_date/
 #
 - platform: time_date
@@ -22,7 +24,6 @@
         {% set datetime = strptime(date, '%Y-%m-%d') %}
         {{ datetime.strftime('%A') }}
       value_template: >-
-        {# Using a sensor instead of now() to avoid constant updating. #}
         {% set date = states('sensor.date') %}
         {% set datetime = strptime(date, '%Y-%m-%d') %}
         {% set month = datetime.strftime('%B') %}
@@ -34,7 +35,6 @@
       friendly_name: Date
       icon_template: mdi:calendar-today
       value_template: >-
-        {# Using a sensor instead of now() to avoid constant updating. #}
         {% set date = states('sensor.date') %}
         {% set datetime = strptime(date, '%Y-%m-%d') %}
         {% set weekday = datetime.strftime('%A') %}
@@ -114,10 +114,28 @@
           {{ hour_str }}
         {% endif %}
 
+    time_quarterly:
+      friendly_name: Time
+      icon_template: mdi:clock
+      value_template: >-
+        {% set hour = states('sensor.time').split(':')[0] | int %}
+        {% set minutes = states('sensor.time').split(':')[1] | int %}
+
+        {% if minutes >= 45 %}
+          {% set minute = '45' %}
+        {% elif minutes >= 30 %}
+          {% set minute = '30' %}
+        {% elif minutes >= 15 %}
+          {% set minute = '15' %}
+        {% else %}
+          {% set minute = '00' %}
+        {% endif %}
+
+        {{ hour }}:{{ minute }}
+
     after_tomorrow:
       friendly_name: After Tomorrow
       value_template: >-
-        {# Using a sensor instead of now() to avoid constant updating. #}
         {% set date = states('sensor.date') %}
         {% set datetime = strptime(date, '%Y-%m-%d') %}
         {% set timestamp = as_timestamp(datetime) + 2*24*60*60 %}
@@ -138,7 +156,6 @@
       friendly_name: Days in Month
       icon_template: mdi:calendar
       value_template: >-
-        {# Using a sensor instead of now() to avoid constant updating. #}
         {% set date = states('sensor.date') %}
         {% set datetime = strptime(date, '%Y-%m-%d') %}
         {% set month = datetime.month %}
@@ -175,9 +192,9 @@
         {% endif %}
       value_template: >-
         {% if is_state('sun.sun', 'above_horizon') %}
-          sets at {% set timestamp = as_timestamp(states.sun.sun.attributes.next_setting) | timestamp_custom('%H:%M') %} {{ timestamp.lstrip('0') }}
+          sets at {% set timestamp = as_timestamp(state_attr('sun.sun', 'next_setting')) | timestamp_custom('%H:%M') %} {{ timestamp.lstrip('0') }}
         {% else %}
-          rises at {% set timestamp = as_timestamp(states.sun.sun.attributes.next_rising) | timestamp_custom('%H:%M') %} {{ timestamp.lstrip('0') }}
+          rises at {% set timestamp = as_timestamp(state_attr('sun.sun', 'next_rising')) | timestamp_custom('%H:%M') %} {{ timestamp.lstrip('0') }}
         {% endif %}
 
     sun_state_friendly:
@@ -190,7 +207,7 @@
         {% endif %}
       value_template: >-
         {% set current = as_timestamp(strptime(states('sensor.time__date'), '%H:%M, %Y-%m-%d')) %}
-        {% set dusk = as_timestamp(states.sun.sun.attributes.next_dusk) %}
+        {% set dusk = as_timestamp(state_attr('sun.sun', 'next_dusk')) %}
 
         {% if current <= dusk %}
           {# output example "will set at around 8." #}
@@ -200,7 +217,7 @@
           {# output example "will set in a few minutes." #}
           {# output example "is setting." #}
 
-          {% set setting = as_timestamp(states.sun.sun.attributes.next_setting) %}
+          {% set setting = as_timestamp(state_attr('sun.sun', 'next_setting')) %}
 
           {% if current >= setting %}
             is setting
@@ -250,8 +267,8 @@
           {# output example "will rise in a few minutes." #}
           {# output example "is rising." #}
 
-          {% set dawn = as_timestamp(states.sun.sun.attributes.next_dawn) %}
-          {% set rising = as_timestamp(states.sun.sun.attributes.next_rising) %}
+          {% set dawn = as_timestamp(state_attr('sun.sun', 'next_dawn')) %}
+          {% set rising = as_timestamp(state_attr('sun.sun', 'next_rising')) %}
 
           {% set diff = ((rising - current) / 60 / 60) %}
           {% set hour = diff | int %}

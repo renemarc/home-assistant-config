@@ -28,5 +28,7 @@ secrets.yaml
 !.github
 !.gitignore
 !.gitkeep
+!/.codeclimate.yml
 !/.HA_VERSION
+!/.mdlrc
 !/.travis.yml

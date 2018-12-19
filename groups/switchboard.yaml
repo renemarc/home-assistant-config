@@ -8,8 +8,8 @@ switchboard_view:
   entities:
     - group.ceiling
     - group.washroom
-    - group.kitchen
     - group.lounge
+    - group.kitchen
     - group.bedroom
 
 
@@ -23,11 +23,13 @@ bedroom:
     - light.underbed
     - light.headboard
     - sensor.hline_dashed
-    - switch.nightstand_light
-    - switch.bedside_light
+    - light.nightstand
+    - light.bedside
     - switch.bedroom_fan
     - sensor.bedroom_temperature
     - sensor.bedroom_humidity
+    - sensor.bedroom_luminance_friendly
+    - binary_sensor.bedroom_motion
 
 ceiling:
   name: Ceiling
@@ -45,7 +47,9 @@ kitchen:
     - light.microwave
     - light.island
     - display.kiosk
+    - sensor.kitchen_temperature
     - binary_sensor.kiosk_motion_auto
+    - binary_sensor.kitchen_leak_sensor
     # - light.mqtt_countertop
     # - light.mqtt_sink
     # - light.mqtt_microwave
@@ -61,14 +65,20 @@ lounge:
     - light.lightpack
     - sensor.hline_dashed_2
     - light.spotlight
-    - switch.souvenirs_light
-    - switch.window_light
+    - light.souvenirs
+    - light.window
+    - switch.lounge_tv
     - sensor.lounge_temperature
     - sensor.lounge_humidity
-    - sensor.lounge_luminance
-    - binary_sensor.lounge_multisensor_sensor
+    - sensor.lounge_luminance_friendly
+    - binary_sensor.lounge_motion
 
 washroom:
   name: Washroom
   entities:
     - light.shower
+    - sensor.washroom_temperature
+    - sensor.washroom_humidity
+    - sensor.washroom_luminance_friendly
+    - binary_sensor.washroom_motion
+    - binary_sensor.washroom_leak_sensor

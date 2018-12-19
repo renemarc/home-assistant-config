@@ -11,7 +11,7 @@
 # This points to the local flicd daemon that handles the actual Flic buttons.
 #
 # @link https://flic.io/
-# @link https://github.com/pschmitt/hassio-addons/tree/master/flicd
+# @link https://github.com/renemarc/resin-flic
 # @link https://home-assistant.io/components/binary_sensor.flic/
 #
 - platform: flic
@@ -34,7 +34,7 @@
 #
 # The "binary_sensor.kiosk_motion" is dynamically created by the first
 # "onMotion" event call for a custom Javascript declared in all dashboards using
-# the "Modern" theme.. Two API calls are done sequentially, one to turn off the
+# the "Modern" theme. Two API calls are done sequentially, one to turn off the
 # binary sensor, then other to turn it right  back on. This way the sensor state
 # is guaranteed to change, and the  "last_changed" and "last_updated" timestamps
 # along with it.
@@ -54,3 +54,29 @@
       value_template: >-
         {{ is_state('binary_sensor.kiosk_motion', 'on')
            and (180 >= as_timestamp(now()) - as_timestamp(states.binary_sensor.kiosk_motion.last_changed)) }}
+
+
+#
+# FireFighter Siren Monitor smoke alarm sensor
+#
+# The Ecolink FireFighter Z-Wave Plus for Smoke and CO Detectors does have a
+# binary sensor exposed by the Z-Wave management console, but it does not relate
+# to smoke or burglar ...and the unit has no configuration options exposed.
+#
+# The siren monitor returns 0x02 for both smoke and CO detection, or 0x00 when
+# no such events are triggered.
+#
+# There are no garage, fireplace or any other fuel burning equipment here, and
+# so there are no CO detectors that need to be listened to either.
+#
+# @link https://discoverecolink.com/product/firefighter-wireless-smoke-co-audio-sensor/
+#
+- platform: template
+  sensors:
+    siren_monitor_smoke:
+      friendly_name: Smoke detector
+      device_class: smoke
+      entity_id:
+        - sensor.siren_monitor_smoke
+      value_template: >-
+        {{ is_state('sensor.siren_monitor_smoke', '2') }}
