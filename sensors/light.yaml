@@ -8,7 +8,10 @@
   sensors:
     aurora_effect_loaded:
       friendly_name: Aurora Effect Loaded
-      value_template: '{{ states.light.aurora.attributes.effect }}'
+      value_template: >-
+        {% if is_state('light.aurora', 'on') and state_attr('light.aurora', 'effect') != None %}
+          {{ state_attr('light.aurora', 'effect') }}
+        {% endif %}
 
 
 #

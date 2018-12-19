@@ -1,0 +1,129 @@
+#
+# Check if humidity is too high or too low in the humidor
+#
+# Cigars should be kept in a humidity-controlled environment, between 65% and
+# 74%, with the ideal sweet spot at 70%.
+#
+# Notifications are sent whenever humidity levels cross boundaries, and
+# reminders are then sent every few hours until levels get back to normal. Only
+# a few reminders are sent out however, to avoid notification spam when action
+# cannot immediately be taken to bring humidity levels back to normal (say,
+# while out of town).
+#
+# @subscribe counter.humidor_notify
+# @subscribe sensor.humidor_humidity_filtered
+#
+# @publish counter.humidor_notify
+#
+# @see automations/notifications/humidor_notify_reset.yaml
+#
+- id: humidor_notify
+  alias: Humidor NOTIFY
+
+  trigger:
+    # When humidity is way too high.
+    - platform: numeric_state
+      entity_id: sensor.humidor_humidity_filtered
+      above: 85
+      for:
+        seconds: 10
+
+    # When humidity is getting too high.
+    - platform: numeric_state
+      entity_id: sensor.humidor_humidity_filtered
+      above: 74
+      for:
+        seconds: 10
+
+    # When humidity is getting too low.
+    - platform: numeric_state
+      entity_id: sensor.humidor_humidity_filtered
+      below: 65
+      for:
+        seconds: 10
+
+    # When humidity is way too low.
+    - platform: numeric_state
+      entity_id: sensor.humidor_humidity_filtered
+      below: 55
+      for:
+        seconds: 10
+
+    # When the last check was a while ago (reminder).
+    - platform: time
+      hours: '/12'
+      minutes: 00
+      seconds: 00
+
+  condition:
+    # If automation was not trigered lately (hey, do not nag).
+    - condition: template
+      value_template: >-
+        {% set delay = 6 * 60 * 60 %}
+        {% set current = as_timestamp(utcnow()) %}
+        {% set last = as_timestamp(state_attr('automation.humidor_notify', 'last_triggered')) | float %}
+
+        {{ current - last > delay }}
+
+    # If humidity is out of acceptable range.
+    - condition: numeric_state
+      entity_id: sensor.humidor_humidity_filtered
+      above: 74
+      below: 65
+
+  action:
+    # Pin a warning message in the frontend.
+    - service: persistent_notification.create
+      data:
+        notification_id: humidor
+      data_template:
+        title: >-
+          {% set humidity = states('sensor.humidor_humidity_filtered') | int %}
+          {% if humidity > 85 %}
+            Humidor is way too moist
+          {% elif humidity > 74 %}
+            Humidor is too moist
+          {% elif humidity < 55 %}
+            Humidor is dry
+          {% else %}
+            Humidor is getting dry
+          {% endif %}
+        message: >-
+          {% set humidity = states('sensor.humidor_humidity_filtered') | int %}
+          {% if humidity > 74 %}
+            {{ humidity }}% humidity is excessive.<strong>
+          {% else %}
+            {{ humidity }}% humidity is too low.<br>
+            <strong>Add some distilled water to its humidifier.</strong>
+          {% endif %}
+
+    # Warn someone by text to take action.
+    - condition: numeric_state
+      entity_id: counter.humidor_notify
+      above: 0
+    - service: counter.decrement
+      entity_id: counter.humidor_notify
+    - service: notify.text
+      data_template:
+        title: >-
+          {% set humidity = states('sensor.humidor_humidity_filtered') | int %}
+          {% if humidity > 85 %}
+            Humidor is WAY too moist
+          {% elif humidity > 74 %}
+            Humidor is too moist
+          {% elif humidity < 55 %}
+            Humidor is dry
+          {% else %}
+            Humidor is getting dry
+          {% endif %}
+        message: |
+          {% set humidity = states('sensor.humidor_humidity_filtered') | int %}
+          {% if humidity > 74 %}
+          {{ humidity }}% humidity is excessive.
+          {% else %}
+          {{ humidity }}% humidity is too low.
+          Add some distilled water to its humidifier.
+          {% endif %}
+          {% if states('counter.humidor_notify')|int == 10 -%}
+            No further notifications will be sent about this issue until it gets resolved.
+          {% endif %}

@@ -13,12 +13,14 @@
   limit_refetch_to_url_change: true
   content_type: image/jpg
   still_image_url: >-
-    {% if states('sensor.bing_wallpaper') != 'unknown' and states.sensor.bing_wallpaper.attributes.images[0] %}
-      {% set path = states.sensor.bing_wallpaper.attributes.images[0].urlbase %}
+    {% set images = state_attr('sensor.bing_wallpaper', 'images') %}
+
+    {% if images is iterable and images[0].urlbase %}
+      {% set path = images[0].urlbase %}
 
       https://www.bing.com{{ path }}_800x600.jpg
     {% else %}
-      {% set port = states('sensor.server_port') | int %}
+      {% set port = states('sensor.server_port') | int(8123) %}
 
       http://127.0.0.1:{{ port }}/local/images/wallpaper-1.jpg
     {% endif %}
@@ -41,23 +43,24 @@
   limit_refetch_to_url_change: true
   content_type: image/jpg
   still_image_url: >-
-    {% set image = '' %}
+    {% set image = None %}
+    {% set url = state_attr('sensor.apod', 'url') %}
 
-    {% if states('sensor.apod') != 'unknown' and states.sensor.apod.attributes.url %}
-      {% set url = states.sensor.apod.attributes.url %}
-
-      {% if states.sensor.apod.attributes.media_type == 'video' %}
+    {% if url != None %}
+      {% if state_attr('sensor.apod', 'media_type') == 'video' %}
         {% if 'youtube.com' in url %}
           {% set video = url.split('/')[4].split('?')[0] %}
           {% set image = 'https://img.youtube.com/vi/' + video + '/hqdefault.jpg' %}
         {% endif %}
       {% else %}
-        {% set image = states.sensor.apod.attributes.url %}
+        {% set image = url %}
       {% endif %}
-    {% else %}
-      {% set port = states('sensor.server_port') | int %}
+    {% endif %}
 
-      {% set image = 'http://127.0.0.1:' + port + '/local/images/wallpaper-2.jpg' %}
+    {% if image == None %}
+      {% set port = states('sensor.server_port') | int(8123) %}
+
+      {% set image = 'http://127.0.0.1:' ~ port ~ '/local/images/wallpaper-2.jpg' %}
     {% endif %}
 
     {{ image }}

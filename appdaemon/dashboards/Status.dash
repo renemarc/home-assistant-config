@@ -128,6 +128,17 @@ downspeed:
 
 
 #
+# Indoor Air Quality
+#
+radon:
+    widget_type: sensor
+    title: Radon
+    entity: sensor.radon_daily
+    sub_entity: sensor.radon_friendly
+    state_text_style: "background-color:#555;"
+
+
+#
 # Temperatures
 #
 average_temperature:
@@ -136,7 +147,7 @@ average_temperature:
     title: Temperature
     title2: Average
     widget_style: "background-color:inherit;"
-    title_style: "background-color:#555;padding:5px 104% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
+    title_style: "background-color:#555;padding:5px 156% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
     title2_style: "margin-top:3px;"
     value_style: "color:orange;"
     unit_style: "color:orange;"
@@ -155,6 +166,12 @@ lounge_temperature:
     widget_style: "background-color:inherit;"
     title2_style: "margin-top:3px;"
 
+washroom_temperature:
+    widget_type: sensor
+    entity: sensor.washroom_temperature
+    title2: Washroom
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
 
 #
 # Humidity
@@ -165,7 +182,7 @@ average_humidity:
     title: Humidity
     title2: Average
     widget_style: "background-color:inherit;"
-    title_style: "background-color:#555;padding:5px 104% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
+    title_style: "background-color:#555;padding:5px 156% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
     title2_style: "margin-top:3px;"
     value_style: "color:orange;"
     unit_style: "color:orange;"
@@ -184,39 +201,63 @@ lounge_humidity:
     widget_style: "background-color:inherit;"
     title2_style: "margin-top:3px;"
 
+washroom_humidity:
+    widget_type: sensor
+    entity: sensor.washroom_humidity
+    title2: Washroom
+    widget_style: "background-color:inherit;"
+    title2_style: "margin-top:3px;"
+
 
 #
 # Battery
 #
-kiosk_battery:
+front_door_sensor_battery:
     widget_type: sensor
-    entity: sensor.kiosk_battery
+    entity: sensor.front_door_sensor_battery
     title: Battery Status
-    title2: Kiosk
+    title2: Front Door
     widget_style: "background-color:inherit;"
     title_style: "background-color:#555;padding:5px 156% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
     title2_style: "margin-top:3px;"
 
-front_door_sensor_battery:
+humidor_multisensor_battery:
     widget_type: sensor
-    entity: sensor.front_door_sensor_battery
-    title2: Front Door
+    entity: sensor.humidor_multisensor_battery
+    title2: Humidor
     widget_style: "background-color:inherit;"
     title2_style: "margin-top:3px;"
 
-bedroom_multisensor_battery:
+kiosk_battery:
     widget_type: sensor
-    entity: sensor.bedroom_multisensor_battery
-    title2: Bedroom
+    entity: sensor.kiosk_battery
+    title2: Kiosk
     widget_style: "background-color:inherit;"
     title2_style: "margin-top:3px;"
 
-lounge_multisensor_battery:
+kitchen_leak_sensor_battery:
     widget_type: sensor
-    entity: sensor.lounge_multisensor_battery
-    title2: Lounge
+    entity: sensor.kitchen_leak_sensor_battery
+    title2: Kitchen Leak
     widget_style: "background-color:inherit;"
-    title2_style: "margin-top:3px;"
+
+siren_monitor_battery:
+    widget_type: sensor
+    entity: sensor.siren_monitor_battery
+    title2: Siren Monitor
+    widget_style: "background-color:inherit;"
+
+washroom_multisensor_battery:
+    widget_type: sensor
+    entity: sensor.washroom_multisensor_battery
+    title2: Washroom
+    widget_style: "background-color:inherit;"
+
+washroom_leak_sensor_battery:
+    widget_type: sensor
+    entity: sensor.washroom_leak_sensor_battery
+    title2: Washroom Leak
+    widget_style: "background-color:inherit;"
 
 
 #
@@ -224,14 +265,20 @@ lounge_multisensor_battery:
 #
 status_doors:
     widget_type: binary_sensor
-    entity: input_boolean.doors_open
+    entity: group.door_sensors
     title: Doors
     icon_on: mdi-lock-open-outline
     icon_off: mdi-lock
 
+status_leak:
+    widget_type: binary_sensor
+    entity: group.leak_sensors
+    title: Leak
+    icon_on: mdi-water
+
 status_motion:
     widget_type: binary_sensor
-    entity: input_boolean.motion_detected
+    entity: group.motion_sensors
     title: Motion
 
 status_tamper:
@@ -246,8 +293,8 @@ status_tamper:
 layout:
     - include: header
     - nav_main,         label(6x1), reload, temperature, clock
-    - nav_switchboard,  uptime, uptime_host, database_size, log_size, spacer(2x1), status_doors, status_motion, status_tamper
-    - nav_weather,      cpu_temp, cpu_use, memory_use, disk_use, spacer(2x1), sensor.speedtest_ping, upspeed, downspeed
+    - nav_switchboard,  uptime, uptime_host, database_size, log_size, spacer(1x1), status_doors, status_motion, status_leak, status_tamper
+    - nav_weather,      cpu_temp, cpu_use, memory_use, disk_use, spacer(1x1), radon, sensor.speedtest_ping, upspeed, downspeed
     - nav_spacer(1x2)
-    -                   average_temperature, bedroom_temperature, lounge_temperature, spacer(2x1), kiosk_battery, front_door_sensor_battery, bedroom_multisensor_battery, lounge_multisensor_battery
-    - nav_status,       average_humidity, bedroom_humidity, lounge_humidity
+    -                   average_temperature, bedroom_temperature, lounge_temperature, washroom_temperature, spacer(1x1), front_door_sensor_battery, humidor_multisensor_battery, kiosk_battery, kitchen_leak_sensor_battery
+    - nav_status,       average_humidity, bedroom_humidity, lounge_humidity, washroom_humidity, spacer(1x1), siren_monitor_battery, washroom_multisensor_battery, washroom_leak_sensor_battery

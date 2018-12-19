@@ -1,0 +1,24 @@
+#
+# Toggle the television
+#
+# @link https://www.home-assistant.io/components/switch.mqtt/
+#
+- platform: mqtt
+  name: Lounge TV
+  icon: mdi:television-classic
+
+  availability_topic: "lounge/bridge/status"
+  payload_available: "online"
+  payload_not_available: "offline"
+
+  command_topic: "lounge/cec/0/cmd"
+  payload_on: "on"
+  payload_off: "off"
+
+  state_topic: "lounge/cec/0"
+  state_on: "on"
+  state_off: "off"
+
+  optimistic: false
+  qos: 2
+  retain: false

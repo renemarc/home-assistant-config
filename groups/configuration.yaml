@@ -7,11 +7,13 @@ configuration_view:
   icon: mdi:settings
   entities:
     - group.modes
+    - group.configuration
     - group.automations
     - group.automations_modes
     - group.automations_devices
     - group.automations_areas
-    - group.configuration_switches
+    - group.automations_notifications
+    # - group.counters
 
 
 #
@@ -26,9 +28,6 @@ modes:
     - input_boolean.quiet_mode
     - input_boolean.low_mode
     - input_boolean.scene_mode
-    - input_boolean.motion_detected
-    - input_boolean.tamper_detected
-    - variable.tamper_detected
 
 automations:
   name: Automations
@@ -36,19 +35,12 @@ automations:
   entities:
     - automation.cct_lifx
     - automation.cct_limitlessled
-    - automation.daily_greeting
-    - automation.doors_notify
-    - automation.doors_verify
-    - automation.front_door_notify
-    - automation.go_to_sleep
-    - automation.humidity_notify
+    - automation.homekit_start
     - automation.scene_daylight
     - automation.scene_gaming
     - automation.scene_romantic
     - automation.scene_select
-    - automation.tamper_detection_notify
     - automation.theme_auto
-    - automation.update_notify
     - automation.wake_up
 
 automations_areas:
@@ -94,11 +86,13 @@ automations_devices:
     - automation.kitchen_lights_toggle
     - automation.kiosk_auto
     - automation.kiosk_low_power
+    - automation.lightpack_auto
     - automation.lightpack_effect
     - automation.lightpack_select
     - automation.nightlight_off
     - automation.nightlight_on
     - automation.scene_effect
+    - automation.tv_off
     - automation.video_player_resume
     - automation.video_player_stop
 
@@ -118,9 +112,43 @@ automations_modes:
     - automation.tamper_detection_start
     - automation.tamper_detection_stop
 
-configuration_switches:
+automations_notifications:
+  name: Notifications Automations
+  control: hidden
+  entities:
+    - automation.daily_greeting
+    - automation.door_notify
+    - automation.door_notify_reset
+    - automation.front_door_notify
+    - automation.humidity_notify
+    - automation.humidor_notify
+    - automation.humidor_notify_reset
+    - automation.power_supply_notify
+    - automation.radon_notify
+    - automation.radon_notify_reset
+    - automation.smoke_notify
+    - automation.tamper_detection_notify
+    - automation.update_notify
+
+configuration:
   name: Configuration Switches
   control: hidden
   entities:
-    - switch.aeotec_zstick_disco_light
+    - input_boolean.door_test
+    - sensor.door_status
+    - input_boolean.leak_test
+    - sensor.leak_status
+    - input_boolean.motion_test
+    - sensor.motion_status
+    - input_boolean.smoke_test
+    - sensor.smoke_status
+    - input_boolean.tamper_detected
+    - variable.tamper_detected
     - script.tamper_reset
+    - switch.aeotec_zstick_disco_light
+
+counters:
+  name: Counters
+  control: hidden
+  entities:
+    - counter.humidor_notify

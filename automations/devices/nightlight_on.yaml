@@ -1,15 +1,19 @@
 #
 # Turn on nightlights when appropriate
 #
-# @subscribe input_boolean.motion_detected
+# Todo: split this into area-managed automations.
+#
+# @subscribe group.motion_sensors_critical
 # @subscribe input_boolean.night_mode
 #
 - id: nightlight_on
   alias: Nightlight ON
+  initial_state: 'off'
+
   trigger:
     # When motion is detected.
     - platform: state
-      entity_id: input_boolean.motion_detected
+      entity_id: group.motion_sensors_critical
       to: 'on'
 
   condition:

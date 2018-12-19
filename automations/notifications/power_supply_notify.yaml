@@ -1,0 +1,36 @@
+#
+# Check if Raspberry Pi's power supply is providing enough energy
+#
+# @subscribe sensor.rpi_power_status
+#
+- id: power_supply_notify
+  alias: Power supply NOTIFY
+
+  trigger:
+    # When supplied power is out of spec.
+    - platform: numeric_state
+      entity_id: sensor.rpi_power_status
+      above: 0
+
+  action:
+    # Pin a warning message in the frontend.
+    - service: persistent_notification.create
+      data:
+        notification_id: power_supply
+      data_template:
+        title: "Raspbery Pi power issue"
+        message: >-
+          {% set description = state_attr('sensor.rpi_power_status', 'description') %}
+          {% set status = states('sensor.rpi_power_status') %}
+
+          {{ description }} (Code {{ status }})
+
+    # Warn someone by text to take action.
+    - service: notify.text
+      data_template:
+        title: "Raspbery Pi power issue"
+        message: >-
+          {% set description = state_attr('sensor.rpi_power_status', 'description') %}
+          {% set status = states('sensor.rpi_power_status') %}
+
+          {{ description }} (Code {{ status }})

@@ -69,7 +69,7 @@ slideshow:
     refresh: 5
     cache: 600
     img_list:
-        - !secret camera_environment_canada_snow_1
+        - !secret camera_environment_canada_rain_1
         - !secret camera_bing
         - !secret camera_noaa_geocolor
         - !secret camera_apod
@@ -135,17 +135,37 @@ temperature_now:
 weather_icon_now:
     widget_type: iconsensor
     entity: sensor.dark_sky_icon
-    state_icons:
-        clear-day: mdi-weather-sunny
-        clear-night: mdi-weather-night
-        rain: mdi-weather-rainy
-        snow: mdi-weather-snowy
-        sleet: mdi-weather-snowy-rainy
-        wind: mdi-weather-windy
-        fog: mdi-weather-fog
-        cloudy: mdi-weather-cloudy
-        partly-cloudy-day: mdi-weather-partlycloudy
-        partly-cloudy-night: mdi-weather-partlycloudy
+    icons:
+        clear-day:
+            icon: mdi-weather-sunny
+            style: "$style_active"
+        clear-night:
+            icon: mdi-weather-night
+            style: "$style_active"
+        rain:
+            icon: mdi-weather-rainy
+            style: "$style_active"
+        snow:
+            icon: mdi-weather-snowy
+            style: "$style_active"
+        sleet:
+            icon: mdi-weather-snowy-rainy
+            style: "$style_active"
+        wind:
+            icon: mdi-weather-windy
+            style: "$style_active"
+        fog:
+            icon: mdi-weather-fog
+            style: "$style_active"
+        cloudy:
+            icon: mdi-weather-cloudy
+            style: "$style_active"
+        partly-cloudy-day:
+            icon: mdi-weather-partlycloudy
+            style: "$style_active"
+        partly-cloudy-night:
+            icon: mdi-weather-partlycloudy
+            style: "$style_active"
     title2_entity: sensor.weather_icon_friendly
     sub_entity: sensor.precip_probability_friendly
     widget_style: "background-color:inherit;"

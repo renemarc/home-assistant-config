@@ -14,67 +14,102 @@
 #
 # Ratings for templates below are USA ones instead of Canadians.
 #
+# Not all stations track the same air quality properties. Instead of hard-coding
+# which station has what, the "aqi_*" template sensors check if a given
+# attribute is available for each station in the "waqi" group. Dead stations and
+# stale values are filtered out and an average attribute value is returned.
+#
 # @link https://en.wikipedia.org/wiki/Air_quality_index
 # @link https://home-assistant.io/components/sensor.waqi/
 #
 - platform: waqi
   token: !secret waqi_token
-  locations:
-    - !secret waqi_location1
-    - !secret waqi_location2
-    - !secret waqi_location3
+  locations: !secret waqi_locations
+
+
+#
+# WAQI: Active stations
+#
+- platform: template
+  sensors:
+    aqi_stations:
+      friendly_name: AQI Stations
+      icon_template: mdi:radar
+      entity_id:
+        - sensor.time_quarterly
+      value_template: >-
+        {% set attribute = 'name' %}
+        {% set max_hours_behind = 4 %}
+        {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
+        {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('attributes.time', 'lt', cutoff)
+                                 | selectattr(attribute)
+                                 | map(attribute=attribute)
+                                 | join('|') %}
+
+        {% if stations %}
+          {{ stations }}
+        {% endif %}
+
+    aqi_stations_count:
+      friendly_name: AQI Stations Count
+      icon_template: mdi:radar
+      value_template: >-
+        {% set stations = states('sensor.aqi_stations') %}
+        {% if stations != '' %}
+          {{ stations.split('|') | length }}
+        {% else %}
+          0
+        {% endif %}
 
 
 #
 # WAQI: Average
 #
-- platform: min_max
-  name: AQI exact
-  type: mean
-  round_digits: 0
-  entity_ids:
-    - sensor.waqi_rivesud_de_montreal_quebec_canada
-    - sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada
-    - sensor.waqi_drummond_montreal_canada
-
 - platform: template
   sensors:
     aqi:
       friendly_name: Air Quality Index
       icon_template: mdi:chemical-weapon
+      entity_id:
+        - sensor.time_quarterly
       value_template: >-
-        {% set index = states('sensor.aqi_exact') %}
+        {% set attribute = 'state' %}
+        {% set max_hours_behind = 4 %}
+        {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
+        {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('attributes.time', 'lt', cutoff)
+                                 | selectattr(attribute)
+                                 | map(attribute=attribute)
+                                 | map('float')
+                                 | list %}
 
-        {% if index != 'unknown' %}
-          {{ index | float | round }}
+        {% if stations %}
+          {{ (stations|sum / stations|length) | round }}
         {% else %}
-          {{ index }}
+          unknown
         {% endif %}
 
     aqi_friendly:
       friendly_name: Air Quality Index
       icon_template: mdi:chemical-weapon
       value_template: >-
-        {% set index = states('sensor.aqi_exact') %}
+        {% set index = states('sensor.aqi') | float(-1) %}
 
-        {% if index != 'unknown' %}
-          {% set index = index | float | round %}
-
-          {% if 0 <= index <= 50 %}
-            Good
-          {% elif 51 <= index <= 100 %}
-            Moderate
-          {% elif 101 <= index <= 150 %}
-            Unhealthy for Sensitive Groups
-          {% elif 151 <= index <= 200 %}
-            Unhealthy
-          {% elif 201 <= index <= 300 %}
-            Very Unhealthy
-          {% elif 301 <= index %}
-            Hazardous
-          {% else %}
-            N/A
-          {% endif %}
+        {% if index > 300 %}
+          Hazardous
+        {% elif index > 200 %}
+          Very Unhealthy
+        {% elif index > 150 %}
+          Unhealthy
+        {% elif index > 100 %}
+          Unhealthy for Sensitive Groups
+        {% elif index > 50 %}
+          Moderate
+        {% elif index >= 0 %}
+          Good
+        {% else %}
+          unknown
         {% endif %}
 
 
@@ -87,24 +122,21 @@
       friendly_name: Carbon Monoxide
       icon_template: mdi:fire
       unit_of_measurement: 'PPM'
+      entity_id:
+        - sensor.time_quarterly
       value_template: >-
-        {% set levels = 0 %}
-        {% set counter = 0 %}
-        {% if states('sensor.waqi_rivesud_de_montreal_quebec_canada') != 'unknown' and states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.co is defined %}
-          {% set levels = levels + states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.co %}
-          {% set counter = counter + 1 %}
-        {% endif %}
-        {% if states('sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada') != 'unknown' and states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.co is defined %}
-          {% set levels = levels + states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.co %}
-          {% set counter = counter + 1 %}
-        {% endif %}
-        {% if states('sensor.waqi_drummond_montreal_canada') != 'unknown' and states.sensor.waqi_drummond_montreal_canada.attributes.co is defined %}
-          {% set levels = levels + states.sensor.waqi_drummond_montreal_canada.attributes.co %}
-          {% set counter = counter + 1 %}
-        {% endif %}
+        {% set attribute = 'attributes.co' %}
+        {% set max_hours_behind = 4 %}
+        {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
+        {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('attributes.time', 'lt', cutoff)
+                                 | selectattr(attribute)
+                                 | map(attribute=attribute)
+                                 | map('float')
+                                 | list %}
 
-        {% if counter > 0 %}
-          {{ (levels / counter) | round }}
+        {% if stations %}
+          {{ (stations|sum / stations|length) | round }}
         {% else %}
           unknown
         {% endif %}
@@ -115,22 +147,20 @@
       value_template: >-
         {% set co = states('sensor.aqi_carbon_monoxide') | int(-1) %}
 
-        {% if co < 0 %}
-          unknown
-        {% elif 0 <= co <= 50 %}
-          Good
-        {% elif 51 <= co <= 100 %}
-          Moderate
-        {% elif 101 <= co <= 150 %}
-          Unhealthy for Sensitive Groups
-        {% elif 151 <= co <= 200 %}
-          Unhealthy
-        {% elif 201 <= co <= 300 %}
-          Very Unhealthy
-        {% elif 301 <= co %}
+        {% if co > 300 %}
           Hazardous
+        {% elif co > 200 %}
+          Very Unhealthy
+        {% elif co > 150 %}
+          Unhealthy
+        {% elif co > 100 %}
+          Unhealthy for Sensitive Groups
+        {% elif co > 50 %}
+          Moderate
+        {% elif co >= 0 %}
+          Good
         {% else %}
-          N/A
+          unknown
         {% endif %}
 
 
@@ -143,24 +173,21 @@
       friendly_name: PM2.5
       icon_template: mdi:chart-bubble
       unit_of_measurement: 'PPM'
+      entity_id:
+        - sensor.time_quarterly
       value_template: >-
-        {% set levels = 0 %}
-        {% set counter = 0 %}
-        {% if states('sensor.waqi_rivesud_de_montreal_quebec_canada') != 'unknown' and states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.pm_2_5 is defined %}
-          {% set levels = levels + states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.pm_2_5 %}
-          {% set counter = counter + 1 %}
-        {% endif %}
-        {% if states('sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada') != 'unknown' and states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.pm_2_5 is defined %}
-          {% set levels = levels + states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.pm_2_5 %}
-          {% set counter = counter + 1 %}
-        {% endif %}
-        {% if states('sensor.waqi_drummond_montreal_canada') != 'unknown' and states.sensor.waqi_drummond_montreal_canada.attributes.pm_2_5 is defined %}
-          {% set levels = levels + states.sensor.waqi_drummond_montreal_canada.attributes.pm_2_5 %}
-          {% set counter = counter + 1 %}
-        {% endif %}
+        {% set attribute = 'attributes.pm_2_5' %}
+        {% set max_hours_behind = 4 %}
+        {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
+        {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('attributes.time', 'lt', cutoff)
+                                 | selectattr(attribute)
+                                 | map(attribute=attribute)
+                                 | map('float')
+                                 | list %}
 
-        {% if counter > 0 %}
-          {{ (levels / counter) | round }}
+        {% if stations %}
+          {{ (stations|sum / stations|length) | round }}
         {% else %}
           unknown
         {% endif %}
@@ -171,22 +198,20 @@
       value_template: >-
         {% set pm25 = states('sensor.aqi_particles') | int(-1) %}
 
-        {% if pm25 < 0 %}
-          unknown
-        {% elif 0 <= pm25 <= 50 %}
-          Good
-        {% elif 51 <= pm25 <= 100 %}
-          Moderate
-        {% elif 101 <= pm25 <= 150 %}
-          Unhealthy for Sensitive Groups
-        {% elif 151 <= pm25 <= 200 %}
-          Unhealthy
-        {% elif 201 <= pm25 <= 300 %}
-          Very Unhealthy
-        {% elif 301 <= pm25 %}
+        {% if pm25 > 300 %}
           Hazardous
+        {% elif pm25 > 200 %}
+          Very Unhealthy
+        {% elif pm25 > 150 %}
+          Unhealthy
+        {% elif pm25 > 100 %}
+          Unhealthy for Sensitive Groups
+        {% elif pm25 > 50 %}
+          Moderate
+        {% elif pm25 >= 0 %}
+          Good
         {% else %}
-          N/A
+          unknown
         {% endif %}
 
 
@@ -199,24 +224,21 @@
       friendly_name: Nitrogen Dioxide
       icon_template: mdi:car
       unit_of_measurement: 'PPM'
+      entity_id:
+        - sensor.time_quarterly
       value_template: >-
-        {% set levels = 0 %}
-        {% set counter = 0 %}
-        {% if states('sensor.waqi_rivesud_de_montreal_quebec_canada') != 'unknown' and states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.nitrogen_dioxide is defined %}
-          {% set levels = levels + states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.nitrogen_dioxide %}
-          {% set counter = counter + 1 %}
-        {% endif %}
-        {% if states('sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada') != 'unknown' and states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.nitrogen_dioxide is defined %}
-          {% set levels = levels + states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.nitrogen_dioxide %}
-          {% set counter = counter + 1 %}
-        {% endif %}
-        {% if states('sensor.waqi_drummond_montreal_canada') != 'unknown' and states.sensor.waqi_drummond_montreal_canada.attributes.nitrogen_dioxide is defined %}
-          {% set levels = levels + states.sensor.waqi_drummond_montreal_canada.attributes.nitrogen_dioxide %}
-          {% set counter = counter + 1 %}
-        {% endif %}
+        {% set attribute = 'attributes.nitrogen_dioxide' %}
+        {% set max_hours_behind = 4 %}
+        {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
+        {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('attributes.time', 'lt', cutoff)
+                                 | selectattr(attribute)
+                                 | map(attribute=attribute)
+                                 | map('float')
+                                 | list %}
 
-        {% if counter > 0 %}
-          {{ (levels / counter) | round }}
+        {% if stations %}
+          {{ (stations|sum / stations|length) | round }}
         {% else %}
           unknown
         {% endif %}
@@ -227,22 +249,20 @@
       value_template: >-
         {% set nox = states('sensor.aqi_nitrogen_dioxide') | int(-1) %}
 
-        {% if nox < 0 %}
-          unknown
-        {% elif 0 <= nox <= 50 %}
-          Good
-        {% elif 51 <= nox <= 100 %}
-          Moderate
-        {% elif 101 <= nox <= 150 %}
-          Unhealthy for Sensitive Groups
-        {% elif 151 <= nox <= 200 %}
-          Unhealthy
-        {% elif 201 <= nox <= 300 %}
-          Very Unhealthy
-        {% elif 301 <= nox %}
+        {% if nox > 300 %}
           Off the Scale
+        {% elif nox > 200 %}
+          Very Unhealthy
+        {% elif nox > 150 %}
+          Unhealthy
+        {% elif nox > 100 %}
+          Unhealthy for Sensitive Groups
+        {% elif nox > 50 %}
+          Moderate
+        {% elif nox >= 0 %}
+          Good
         {% else %}
-          N/A
+          unknown
         {% endif %}
 
 
@@ -255,24 +275,21 @@
       friendly_name: Ozone
       icon_template: mdi:earth
       unit_of_measurement: 'PPM'
+      entity_id:
+        - sensor.time_quarterly
       value_template: >-
-        {% set levels = 0 %}
-        {% set counter = 0 %}
-        {% if states('sensor.waqi_rivesud_de_montreal_quebec_canada') != 'unknown' and states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.ozone is defined %}
-          {% set levels = levels + states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.ozone %}
-          {% set counter = counter + 1 %}
-        {% endif %}
-        {% if states('sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada') != 'unknown' and states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.ozone is defined %}
-          {% set levels = levels + states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.ozone %}
-          {% set counter = counter + 1 %}
-        {% endif %}
-        {% if states('sensor.waqi_drummond_montreal_canada') != 'unknown' and states.sensor.waqi_drummond_montreal_canada.attributes.ozone is defined %}
-          {% set levels = levels + states.sensor.waqi_drummond_montreal_canada.attributes.ozone %}
-          {% set counter = counter + 1 %}
-        {% endif %}
+        {% set attribute = 'attributes.ozone' %}
+        {% set max_hours_behind = 4 %}
+        {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
+        {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('attributes.time', 'lt', cutoff)
+                                 | selectattr(attribute)
+                                 | map(attribute=attribute)
+                                 | map('float')
+                                 | list %}
 
-        {% if counter > 0 %}
-          {{ (levels / counter) | round }}
+        {% if stations %}
+          {{ (stations|sum / stations|length) | round }}
         {% else %}
           unknown
         {% endif %}
@@ -283,22 +300,20 @@
       value_template: >-
         {% set ozone = states('sensor.aqi_ozone') | int(-1) %}
 
-        {% if ozone < 0 %}
-          unknown
-        {% elif 0 <= ozone <= 50 %}
-          Good
-        {% elif 51 <= ozone <= 100 %}
-          Moderate
-        {% elif 101 <= ozone <= 150 %}
-          Unhealthy for Sensitive Groups
-        {% elif 151 <= ozone <= 200 %}
-          Unhealthy
-        {% elif 201 <= ozone <= 300 %}
-          Very Unhealthy
-        {% elif 301 <= ozone %}
+        {% if ozone > 300 %}
           Hazardous
+        {% elif ozone > 200 %}
+          Very Unhealthy
+        {% elif ozone > 150 %}
+          Unhealthy
+        {% elif ozone > 100 %}
+          Unhealthy for Sensitive Groups
+        {% elif ozone > 50 %}
+          Moderate
+        {% elif ozone >= 0 %}
+          Good
         {% else %}
-          N/A
+          unknown
         {% endif %}
 
 
@@ -311,24 +326,21 @@
       friendly_name: Sulphur Dioxide
       icon_template: mdi:factory
       unit_of_measurement: 'PPM'
+      entity_id:
+        - sensor.time_quarterly
       value_template: >-
-        {% set levels = 0 %}
-        {% set counter = 0 %}
-        {% if states('sensor.waqi_rivesud_de_montreal_quebec_canada') != 'unknown' and states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.sulfur_dioxide is defined %}
-          {% set levels = levels + states.sensor.waqi_rivesud_de_montreal_quebec_canada.attributes.sulfur_dioxide %}
-          {% set counter = counter + 1 %}
-        {% endif %}
-        {% if states('sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada') != 'unknown' and states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.sulfur_dioxide is defined %}
-          {% set levels = levels + states.sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada.attributes.sulfur_dioxide %}
-          {% set counter = counter + 1 %}
-        {% endif %}
-        {% if states('sensor.waqi_drummond_montreal_canada') != 'unknown' and states.sensor.waqi_drummond_montreal_canada.attributes.sulfur_dioxide is defined %}
-          {% set levels = levels + states.sensor.waqi_drummond_montreal_canada.attributes.sulfur_dioxide %}
-          {% set counter = counter + 1 %}
-        {% endif %}
+        {% set attribute = 'attributes.sulfur_dioxide' %}
+        {% set max_hours_behind = 4 %}
+        {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
+        {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('attributes.time', 'lt', cutoff)
+                                 | selectattr(attribute)
+                                 | map(attribute=attribute)
+                                 | map('float')
+                                 | list %}
 
-        {% if counter > 0 %}
-          {{ (levels / counter) | round }}
+        {% if stations %}
+          {{ (stations|sum / stations|length) | round }}
         {% else %}
           unknown
         {% endif %}
@@ -339,22 +351,20 @@
       value_template: >-
         {% set so2 = states('sensor.aqi_sulphur_dioxide') | int(-1) %}
 
-        {% if so2 < 0 %}
-          unknown
-        {% elif 0 <= so2 <= 50 %}
-          Good
-        {% elif 51 <= so2 <= 100 %}
-          Moderate
-        {% elif 101 <= so2 <= 150 %}
-          Unhealthy for Sensitive Groups
-        {% elif 151 <= so2 <= 200 %}
-          Unhealthy
-        {% elif 201 <= so2 <= 300 %}
-          Very Unhealthy
-        {% elif 301 <= so2 %}
+        {% if so2 > 300 %}
           Off the Scale
+        {% elif so2 > 200 %}
+          Very Unhealthy
+        {% elif so2 > 150 %}
+          Unhealthy
+        {% elif so2 > 100 %}
+          Unhealthy for Sensitive Groups
+        {% elif so2 > 50 %}
+          Moderate
+        {% elif so2 >= 0 %}
+          Good
         {% else %}
-          N/A
+          unknown
         {% endif %}
 
 
@@ -378,18 +388,18 @@
       friendly_name: UV Index
       icon_template: mdi:sunglasses
       value_template: >-
-        {% set uv = states('sensor.dark_sky_uv_index') | float %}
+        {% set uv = states('sensor.dark_sky_uv_index') | int(-1) %}
 
-        {% if 0 <= uv < 3 %}
-          Low
-        {% elif 3 <= uv < 6 %}
-          Moderate
-        {% elif 6 <= uv < 8 %}
-          High
-        {% elif 8 <= uv < 11 %}
-          Very high
-        {% elif 11 <= uv %}
+        {% if uv >= 11 %}
           Extreme
+        {% elif uv >= 8 %}
+          Very high
+        {% elif uv >= 6 %}
+          High
+        {% elif uv >= 3 %}
+          Moderate
+        {% elif uv >= 0 %}
+          Low
         {% else %}
-          N/A
+          unknown
         {% endif %}

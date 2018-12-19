@@ -143,8 +143,11 @@ switch_air_filter:
 # Kitchen
 #
 label_kitchen:
-    widget_type: label
     title2: Kitchen
+    widget_type: multisensor
+    title2: Kitchen
+    entity: sensor.kitchen_temperature
+    entity2: ""
     widget_style: "background-color:SADDLEBROWN;"
     title2_style: "font-size:175%;font-weight:400;"
 
@@ -177,8 +180,10 @@ light_sink:
 # Washroom
 #
 label_washroom:
-    widget_type: label
+    widget_type: multisensor
     title2: Toilet
+    entity: sensor.washroom_temperature
+    entity2: sensor.washroom_humidity
     widget_style: "background-color:ROYALBLUE;"
     title2_style: "font-size:175%;font-weight:400;"
 
@@ -233,13 +238,13 @@ underglow_underbed:
 light_bedside:
     widget_type: switch
     title: Bedside
-    entity: switch.bedside_light
+    entity: light.bedside
     widget_style: "background-color:INDIGO;"
 
 light_nightstand:
     widget_type: switch
     title: Nightstand
-    entity: switch.nightstand_light
+    entity: light.nightstand
     widget_style: "background-color:INDIGO;"
 
 fan_bedroom:
@@ -305,13 +310,19 @@ light_lamp:
 light_souvenirs:
     widget_type: switch
     title: Souvenirs
-    entity: switch.souvenirs_light
+    entity: light.souvenirs
     widget_style: "background-color:DARKRED;"
 
 light_window:
     widget_type: switch
     title: Window
-    entity: switch.window_light
+    entity: light.window
+    widget_style: "background-color:DARKRED;"
+
+switch_tv:
+    widget_type: switch
+    title: TV
+    entity: switch.lounge_tv
     widget_style: "background-color:DARKRED;"
 
 
@@ -325,4 +336,4 @@ layout:
     - nav_weather,      label_kitchen, light_microwave, spacer, label_washroom, light_shower, spacer, label_climate, switch_air_filter
     - nav_spacer(1x2),  light_island, light_sink, light_countertop, spacer, light_lavatory, spacer, switch_dehumidifier, switch_humidifier
     -                   label_bedroom, light_bed_effect, underglow_headboard, underglow_underbed, label_lounge, light_aurora_effect, light_aurora, light_tv_backlight_effect, light_tv_backlight
-    - nav_status,       light_nightstand, light_bedside, fan_bedroom, spacer, light_spotlight, light_souvenirs, light_window, light_lamp
+    - nav_status,       light_nightstand, light_bedside, fan_bedroom, spacer, light_spotlight, light_souvenirs, light_window, light_lamp, switch_tv

@@ -50,8 +50,8 @@
       data:
         entity_id:
           - light.lightpack
-          - switch.souvenirs_light
-          - switch.window_light
+          - light.souvenirs
+          - light.window
 
     # Turn on smart lights.
     - service: light.turn_on

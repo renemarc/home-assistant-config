@@ -99,15 +99,31 @@ wind_icon:
     widget_type: iconsensor
     entity: sensor.wind_bearing_cardinal
     title2_entity: sensor.wind_bearing_cardinal_friendly
-    state_icons:
-        N: mdi-arrow-up
-        NE: mdi-arrow-top-right
-        E: mdi-arrow-right
-        SE: mdi-arrow-bottom-right
-        S: mdi-arrow-down
-        SW: mdi-arrow-bottom-left
-        W: mdi-arrow-left
-        NW: mdi-arrow-top-left
+    icons:
+        "N":
+            icon: mdi-arrow-up
+            style: "$style_active"
+        "NE":
+            icon: mdi-arrow-top-right
+            style: "$style_active"
+        "E":
+            icon: mdi-arrow-right
+            style: "$style_active"
+        "SE":
+            icon: mdi-arrow-bottom-right
+            style: "$style_active"
+        "S":
+            icon: mdi-arrow-down
+            style: "$style_active"
+        "SW":
+            icon: mdi-arrow-bottom-left
+            style: "$style_active"
+        "W":
+            icon: mdi-arrow-left
+            style: "$style_active"
+        "NW":
+            icon: mdi-arrow-top-left
+            style: "$style_active"
     widget_style: "background-color:inherit;"
 
 
@@ -127,7 +143,7 @@ weekly_forecast:
 temperature_today:
     widget_type: entitysensor
     title: Today
-    entity: sensor.dark_sky_daytime_high_temperature
+    entity: sensor.dark_sky_daytime_high_temperature_0
     sub_entity: sensor.weather_low_friendly
     title2_entity: sensor.feels_like
     widget_style: "background-color:inherit;"
@@ -161,17 +177,37 @@ temperature_after_tomorrow:
 weather_icon_today:
     widget_type: iconsensor
     entity: sensor.dark_sky_icon
-    state_icons:
-        clear-day: mdi-weather-sunny
-        clear-night: mdi-weather-night
-        rain: mdi-weather-rainy
-        snow: mdi-weather-snowy
-        sleet: mdi-weather-snowy-rainy
-        wind: mdi-weather-windy
-        fog: mdi-weather-fog
-        cloudy: mdi-weather-cloudy
-        partly-cloudy-day: mdi-weather-partlycloudy
-        partly-cloudy-night: mdi-weather-partlycloudy
+    icons:
+        clear-day:
+            icon: mdi-weather-sunny
+            style: "$style_active"
+        clear-night:
+            icon: mdi-weather-night
+            style: "$style_active"
+        rain:
+            icon: mdi-weather-rainy
+            style: "$style_active"
+        snow:
+            icon: mdi-weather-snowy
+            style: "$style_active"
+        sleet:
+            icon: mdi-weather-snowy-rainy
+            style: "$style_active"
+        wind:
+            icon: mdi-weather-windy
+            style: "$style_active"
+        fog:
+            icon: mdi-weather-fog
+            style: "$style_active"
+        cloudy:
+            icon: mdi-weather-cloudy
+            style: "$style_active"
+        partly-cloudy-day:
+            icon: mdi-weather-partlycloudy
+            style: "$style_active"
+        partly-cloudy-night:
+            icon: mdi-weather-partlycloudy
+            style: "$style_active"
     title2_entity: sensor.weather_icon_friendly
     sub_entity: sensor.precip_probability_friendly
     widget_style: "background-color:inherit;"
@@ -181,17 +217,37 @@ weather_icon_today:
 weather_icon_tomorrow:
     widget_type: iconsensor
     entity: sensor.dark_sky_icon_1
-    state_icons:
-        clear-day: mdi-weather-sunny
-        clear-night: mdi-weather-night
-        rain: mdi-weather-rainy
-        snow: mdi-weather-snowy
-        sleet: mdi-weather-snowy-rainy
-        wind: mdi-weather-windy
-        fog: mdi-weather-fog
-        cloudy: mdi-weather-cloudy
-        partly-cloudy-day: mdi-weather-partlycloudy
-        partly-cloudy-night: mdi-weather-partlycloudy
+    icons:
+        clear-day:
+            icon: mdi-weather-sunny
+            style: "$style_active"
+        clear-night:
+            icon: mdi-weather-night
+            style: "$style_active"
+        rain:
+            icon: mdi-weather-rainy
+            style: "$style_active"
+        snow:
+            icon: mdi-weather-snowy
+            style: "$style_active"
+        sleet:
+            icon: mdi-weather-snowy-rainy
+            style: "$style_active"
+        wind:
+            icon: mdi-weather-windy
+            style: "$style_active"
+        fog:
+            icon: mdi-weather-fog
+            style: "$style_active"
+        cloudy:
+            icon: mdi-weather-cloudy
+            style: "$style_active"
+        partly-cloudy-day:
+            icon: mdi-weather-partlycloudy
+            style: "$style_active"
+        partly-cloudy-night:
+            icon: mdi-weather-partlycloudy
+            style: "$style_active"
     title2_entity: sensor.weather_icon_friendly_1
     sub_entity: sensor.precip_probability_friendly_1
     widget_style: "background-color:inherit;"
@@ -201,17 +257,37 @@ weather_icon_tomorrow:
 weather_icon_after_tomorrow:
     widget_type: iconsensor
     entity: sensor.dark_sky_icon_2
-    state_icons:
-        clear-day: mdi-weather-sunny
-        clear-night: mdi-weather-night
-        rain: mdi-weather-rainy
-        snow: mdi-weather-snowy
-        sleet: mdi-weather-snowy-rainy
-        wind: mdi-weather-windy
-        fog: mdi-weather-fog
-        cloudy: mdi-weather-cloudy
-        partly-cloudy-day: mdi-weather-partlycloudy
-        partly-cloudy-night: mdi-weather-partlycloudy
+    icons:
+        clear-day:
+            icon: mdi-weather-sunny
+            style: "$style_active"
+        clear-night:
+            icon: mdi-weather-night
+            style: "$style_active"
+        rain:
+            icon: mdi-weather-rainy
+            style: "$style_active"
+        snow:
+            icon: mdi-weather-snowy
+            style: "$style_active"
+        sleet:
+            icon: mdi-weather-snowy-rainy
+            style: "$style_active"
+        wind:
+            icon: mdi-weather-windy
+            style: "$style_active"
+        fog:
+            icon: mdi-weather-fog
+            style: "$style_active"
+        cloudy:
+            icon: mdi-weather-cloudy
+            style: "$style_active"
+        partly-cloudy-day:
+            icon: mdi-weather-partlycloudy
+            style: "$style_active"
+        partly-cloudy-night:
+            icon: mdi-weather-partlycloudy
+            style: "$style_active"
     title2_entity: sensor.weather_icon_friendly_2
     sub_entity: sensor.precip_probability_friendly_2
     widget_style: "background-color:inherit;"

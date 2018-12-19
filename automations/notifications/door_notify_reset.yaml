@@ -1,0 +1,24 @@
+#
+# Reset door notifications counter
+#
+# @subscribe counter.door_notify
+# @subscribe group.door_sensors
+#
+# @see automations/notifications/door_notify.yaml
+#
+- id: door_notify_reset
+  alias: Door NOTIFY RESET
+
+  trigger:
+    # When all doors are closed.
+    - platform: state
+      entity_id: group.door_sensors
+      to: 'off'
+      for:
+        seconds: 2
+
+  action:
+    # Reset the notification counter.
+    - service: counter.reset
+      data:
+        entity_id: counter.door_notify

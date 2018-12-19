@@ -119,15 +119,29 @@ function baseiconsensor(widget_id, url, skin, parameters)
 
     function set_view(self, state)
     {
-        //alert(state)
-        if (state in self.state_icons)
+        if ("icons" in self.parameters)
         {
-            self.set_icon(self, "icon", self.state_icons[state]);
-            self.set_field(self, "icon_style", self.css.icon_style_active);
+            if (state in self.parameters.icons)
+            {
+                self.set_icon(self, "icon", self.parameters.icons[state].icon);
+                self.set_field(self, "icon_style", self.parameters.icons[state].style)
+            }
+            else if ("default" in self.parameters.icons)
+            {
+                self.set_icon(self, "icon", self.parameters.icons.default.icon);
+                self.set_field(self, "icon_style", self.parameters.icons.default.style)
+            }
+            else
+            {
+                self.set_icon(self, "icon", "fa-circle-thin");
+                self.set_field(self, "icon_style", "color: white")
+            }
+
         }
+
         if ("state_text" in self.parameters && self.parameters.state_text == 1)
         {
-            self.set_field(self, "state_text", self.map_state(self, state));
+            self.set_field(self, "state_text", self.map_state(self, state))
         }
     }
 

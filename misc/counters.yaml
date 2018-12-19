@@ -1,0 +1,56 @@
+#
+# Counters
+#
+# @link https://www.home-assistant.io/components/counter/
+#
+
+
+#
+# Door notification counter
+#
+# Help to avoid notification spam when action a door was purposefully left open
+# (for example, while moving things in and out). Notifications will cease once
+# the counter reaches zero.
+#
+# @see /automations/notifications/door_notify.yaml
+# @see /automations/notifications/door_notify_reset.yaml
+#
+door_notify:
+  name: Notifications
+  icon: mdi:door-open
+  initial: 10
+  step: 1
+
+
+#
+# Humidor humidity notification counter
+#
+# Helo to avoid spamming when action cannot immediately be taken to bring
+# humidity levels back to normal (say, while on vacation).
+# Notifications will cease once the counter reaches zero.
+#
+# @see /automations/notifications/humidor_notify.yaml
+# @see /automations/notifications/humidor_notify_reset.yaml
+#
+humidor_notify:
+  name: Notifications
+  icon: mdi:bow-tie
+  initial: 10
+  step: 1
+
+
+#
+# Radon notification counter
+#
+# Helo to avoid spamming when action cannot immediately be taken to bring
+# radon levels back to normal (say, while on vacation).
+# Notifications will cease once the counter reaches zero.
+#
+# @see /automations/notifications/radon_notify.yaml
+# @see /automations/notifications/radon_notify_reset.yaml
+#
+radon_notify:
+  name: Notifications
+  icon: mdi:radioactive
+  initial: 20
+  step: 1

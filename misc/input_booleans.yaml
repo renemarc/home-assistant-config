@@ -40,13 +40,21 @@ kitchen_lights_override:
 #
 # Security
 #
-doors_open:
-  name: Doors are open
+door_test:
+  name: Door test
   icon: mdi:door-open
 
-motion_detected:
-  name: Motion detected
+leak_test:
+  name: Leak test
+  icon: mdi:pipe-leak
+
+motion_test:
+  name: Motion test
   icon: mdi:run
+
+smoke_test:
+  name: Smoke test
+  icon: mdi:smoke-detector
 
 tamper_detected:
   name: Tamper detected

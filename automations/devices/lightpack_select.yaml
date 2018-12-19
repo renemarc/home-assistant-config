@@ -19,6 +19,8 @@
       entity_id:
         - light.lightpack
       to: 'on'
+      for:
+        seconds: 2
 
   action:
     # Update the Lightpack effect variables.

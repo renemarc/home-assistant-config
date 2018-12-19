@@ -19,18 +19,18 @@ sequence:
   - service: homeassistant.turn_on
     data:
       entity_id:
-        - switch.bedside_light
-        - switch.nightstand_light
-        - switch.souvenirs_light
-        - switch.window_light
+        - light.bedside
+        - light.nightstand
+        - light.souvenirs
+        - light.window
 
   # Dim and colourize the spot lights.
   - service: light.lifx_set_state
     data:
       entity_id:
+        - light.lounge_lamp
         - light.shower
         - light.spotlight
-        - light.lounge_lamp
     data_template:
       color_name: magenta
       brightness_pct: 50

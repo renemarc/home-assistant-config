@@ -1,11 +1,12 @@
 #
 # Greet the day with a daily briefing
 #
-# @subscribe input_boolean.night_mode
 # @subscribe input_boolean.nap_mode
+# @subscribe input_boolean.night_mode
 #
 - id: daily_greeting
   alias: Daily greeting
+
   trigger:
     # When night mode is disabled.
     - platform: state
@@ -36,8 +37,9 @@
         message: >-
           {% set temperature = states('sensor.outside_temperature') | int %}
           {% set apparent = states('sensor.dark_sky_apparent_temperature') | round(0) %}
-          {% set minutely = states('sensor.dark_sky_minutely_summary') | lower %}
-          {% set hourly = states('sensor.dark_sky_hourly_summary')  | lower %}
+          {% set summary = states('sensor.dark_sky_summary') | lower | regex_replace('(\d)[–-](\d)', '\\1 to \\2') %}
+          {% set minutely = states('sensor.dark_sky_minutely_summary') | lower | regex_replace('(\d)[–-](\d)', '\\1 to \\2') %}
+          {% set hourly = states('sensor.dark_sky_hourly_summary') | lower | regex_replace('(\d)[–-](\d)', '\\1 to \\2') %}
           {% set windspeed = (states('sensor.dark_sky_wind_speed')|float * 3600 / 1000) | round(1) %}
           {% set hour = states('sensor.time').split(':')[0] | int %}
 
@@ -53,26 +55,23 @@
 
           We are {{ states('sensor.date_long') }} and it is {{ states('sensor.time_long') }}.
 
-          Outside temperature is {{ temperature }}˚ {%
-           if apparent != temperature -%}
-           but feels like {{ apparent }}
+          Outside temperature is {{ temperature }}˚
+          {%- if apparent != temperature
+           %} but feels like {{ apparent }}
           {%- endif -%}
           .
 
           {% if minutely != 'unknown' -%}
-            It will be {{ minutely.rstrip('.') }} {%
-            if hourly != 'unknown' -%}
-              and will be {{ hourly }}
-            {% endif %}
-          {% else -%}
-            It is currently {{ states('sensor.dark_sky_summary') -}}
-            {%- if hourly != 'unknown' %} and will be {{ hourly }}
-            {%- else -%}
-              .
-            {%- endif %}
-          {% endif %}
+            It will be {{ minutely.rstrip('.') }}
+          {%- else -%}
+            It is currently {{ summary }}
+          {%- endif -%}
+          {%- if hourly != 'unknown'
+            %} and will be {{ hourly.rstrip('.') }}
+          {%- endif -%}
+          .
 
-          {%- if 40 <= windspeed -%}
+          {% if 40 <= windspeed -%}
             It is windy. {%
           endif -%}
           A {{ states('sensor.wind_scale_friendly') | lower }} is blowing from the {{ states('sensor.wind_bearing_cardinal_friendly') }}.

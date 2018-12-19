@@ -1,0 +1,30 @@
+#
+# Reset radon notifications counter
+#
+# @subscribe sensor.radon_daily
+#
+# @publish counter.radon_notify
+#
+# @see automations/notifications/radon_notify.yaml
+#
+- id: radon_notify_reset
+  alias: Radon NOTIFY RESET
+
+  trigger:
+    # When radon is back below acceptable levels.
+    - platform: numeric_state
+      entity_id: sensor.radon_daily
+      below: 100
+      for:
+        seconds: 30
+
+  action:
+    # Remove the warning message from the frontend.
+    - service: persistent_notification.dismiss
+      data:
+        notification_id: radon
+
+    # Reset the notification counter.
+    - service: counter.reset
+      data:
+        entity_id: counter.radon_notify

@@ -3,30 +3,42 @@
 #
 # Returns a comma-separated list of doors currently open.
 #
-# @see /automations/doors_verify.yaml
+# @see /automations/notifications/door_notify.yaml
 #
 - platform: template
   sensors:
-    doors_status:
+    door_location:
+      value_template: >-
+        {% set entities = [
+            states.binary_sensor.front_door,
+            states.input_boolean.door_test,
+          ]
+        %}
+        {% set value = entities | selectattr('state', 'equalto', 'on')
+                                | map(attribute='name')
+                                | join(',') %}
+        {% set value = value | replace(" Multisensor", "") %}
+        {% set value = value | replace(" Sensor", null) %}
+        {% set value = value | replace(",", ", ") %}
+
+        {{ value }}
+
+    door_status:
+      friendly_name: Doors
       friendly_name_template: >-
-        {% if is_state('input_boolean.doors_open', 'on') %}
-          Doors open
+        {% if is_state('group.door_sensors', 'on') %}
+          Door open
         {% else %}
           External doors
         {% endif %}
       icon_template: >-
-        {% if is_state('input_boolean.doors_open', 'on') %}
+        {% if is_state('group.door_sensors', 'on') %}
           mdi:door-open
         {% else %}
           mdi:door-closed
         {% endif %}
       value_template: >-
-        {% set dummy = is_state('input_boolean.doors_open', 'on') %}
-        {% set value = '' %}
-        {% if is_state('binary_sensor.front_door_sensor', 'on') %}
-          {% set value = value + 'Front Door,' %}
-        {% endif %}
-        {% set value = value[:-1] %}
+        {% set value = states('sensor.door_location') %}
 
         {% if value != '' %}
           {{ value }}
@@ -36,42 +48,155 @@
 
 
 #
+# Leak detection status
+#
+# Returns a comma-separated list of locations where leaks are detected.
+#
+# @see /automations/notifications/leak_notify.yaml
+#
+- platform: template
+  sensors:
+    leak_location:
+      value_template: >-
+        {% set entities = [
+            states.binary_sensor.kitchen_leak_sensor,
+            states.binary_sensor.washroom_leak_sensor,
+            states.input_boolean.leak_test,
+          ]
+        %}
+        {% set value = entities | selectattr('state', 'equalto', 'on')
+                                | map(attribute='name')
+                                | join(',') %}
+        {% set value = value | replace(" Sensor", null) %}
+        {% set value = value | replace(",", ", ") %}
+
+        {{ value }}
+
+    # leak_status:
+    #   friendly_name: Leaks
+    #   friendly_name_template: >-
+    #     {% if is_state('group.leak_sensors', 'on') %}
+    #       Leak detected
+    #     {% else %}
+    #       Leaks
+    #     {% endif %}
+    #   icon_template: >-
+    #     {% if is_state('group.leak_sensors', 'on') %}
+    #       mdi:pipe-leak
+    #     {% else %}
+    #       mdi:pipe
+    #     {% endif %}
+    #   value_template: >-
+    #     {% set value = states('sensor.leak_location') %}
+
+    #     {% if value != '' %}
+    #       {{ value }}
+    #     {% else %}
+    #       Clear
+    #     {% endif %}
+
+
+#
 # Motion detection status
 #
 # Returns a comma-separated list of locations where motion is detected.
 #
-# @see /automations/modes/motion_auto.yaml
+# @see https://community.home-assistant.io/t/jinja2-expert-help-needed/10183/26
 #
 - platform: template
   sensors:
+    motion_location:
+      value_template: >-
+        {% set entities = [
+            states.binary_sensor.bedroom_motion,
+            states.binary_sensor.front_door,
+            states.binary_sensor.kiosk_motion_auto,
+            states.binary_sensor.lounge_motion,
+            states.binary_sensor.washroom_motion,
+            states.input_boolean.motion_test,
+          ]
+        %}
+        {% set value = entities | selectattr('state', 'equalto', 'on')
+                                | map(attribute='name')
+                                | join(',') %}
+        {% set value = value | replace(" Multisensor", null) %}
+        {% set value = value | replace(" Sensor", null) %}
+        {% set value = value | replace(" Motion", null) %}
+        {% set value = value | replace(",", ", ") %}
+
+        {{ value }}
+
     motion_status:
+      friendly_name: Motion
       friendly_name_template: >-
-        {% if is_state('input_boolean.motion_detected', 'on') %}
+        {% if is_state('group.motion_sensors', 'on') %}
           Motion detected
         {% else %}
-          Motion monitoring
+          Motion
         {% endif %}
       icon_template: >-
-        {% if is_state('input_boolean.motion_detected', 'on') %}
-          mdi:walk
+        {% if is_state('group.motion_sensors', 'on') %}
+          mdi:run
         {% else %}
           mdi:radar
         {% endif %}
       value_template: >-
-        {% set dummy = is_state('input_boolean.motion_detected', 'on') %}
-        {% set value = '' %}
-        {% if is_state('binary_sensor.kiosk_motion_auto', 'on') %}
-          {% set value = value + ' Kiosk,' %}
-        {% endif %}
-        {% if is_state('binary_sensor.lounge_multisensor_sensor', 'on') %}
-          {% set value = value + ' Lounge,' %}
-        {% endif %}
-        {% set value = value[:-1] %}
+        {% set value = states('sensor.motion_location') %}
 
         {% if value != '' %}
           {{ value }}
         {% else %}
-          OK
+          Clear
+        {% endif %}
+
+
+#
+# Smoke detection status
+#
+# @see /automations/notifications/siren_notify.yaml
+# @see /misc/binary_sensors.yaml
+#
+# @link https://discoverecolink.com/product/firefighter-wireless-smoke-co-audio-sensor/
+#
+- platform: template
+  sensors:
+    smoke_location:
+      value_template: >-
+        {% set entities = [
+            states.binary_sensor.siren_monitor_smoke,
+            states.input_boolean.smoke_test,
+          ]
+        %}
+        {% set value = entities | selectattr('state', 'equalto', 'on')
+                                | map(attribute='name')
+                                | join(',') %}
+        {% set value = value | replace(" Multisensor", null) %}
+        {% set value = value | replace(" Sensor", null) %}
+        {% set value = value | replace(",", ", ") %}
+
+        {{ value }}
+
+    smoke_status:
+      friendly_name: Smoke
+      friendly_name_template: >-
+        {% if is_state('group.smoke_sensors', 'on') %}
+          Smoke detected
+        {% else %}
+          Smoke
+        {% endif %}
+      icon_template: >-
+        {% if is_state('group.smoke_sensors', 'on') %}
+          mdi:alarm-bell
+        {% else %}
+          mdi:smoke-detector
+        {% endif %}
+      value_template: >-
+        {% set value = states('sensor.smoke_location') %}
+
+        {% if value != '' %}
+          {{ value }}
+        {% else %}
+          Clear
         {% endif %}
 
 
@@ -86,11 +211,12 @@
 - platform: template
   sensors:
     tamper_status:
+      friendly_name: Tampering
       friendly_name_template: >-
         {% if is_state('input_boolean.tamper_detected', 'on') %}
           Tampering detected
         {% else %}
-          Tamper monitoring
+          Tampering
         {% endif %}
       icon_template: >-
         {% if is_state('input_boolean.tamper_detected', 'on') %}
@@ -100,8 +226,9 @@
         {% endif %}
       value_template: >-
         {% set dummy = is_state('input_boolean.tamper_detected', 'on') %}
+
         {% if not is_state('variable.tamper_detected', 'False') %}
           {{ states('variable.tamper_detected') }}
         {% else %}
-          OK
+          Clear
         {% endif %}

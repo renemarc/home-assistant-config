@@ -61,71 +61,70 @@
       friendly_name: Bus to Market
       icon_template: mdi:bus
       value_template: >-
-        {% set countdown = states('sensor.home_to_market') %}
-        {% if countdown == 'unknown' %}
+        {% set countdown = states('sensor.home_to_market') | int(-1) %}
+
+        {% if countdown > 60 %}
+          {% set hours = (countdown / 60) | int %}
+          {% set minutes = countdown % 60 %}
+          {% if minutes < 10 %}
+            {% set minutes = '0' ~ minutes %}
+          {% endif %}
+
+          {{hours}}:{{minutes}}
+        {% elif countdown >= 0 %}
           {{countdown}}
         {% else %}
-          {% set countdown = countdown | int %}
-          {% if countdown > 60 %}
-            {% set hours = (countdown / 60) | int %}
-            {% set minutes = (countdown % 60) | int %}
-            {% if minutes < 10 %}
-              {% set minutes = '0' + minutes | string %}
-            {% endif %}
-            {{hours}}:{{minutes}}
-          {% else %}
-            {{countdown}}
-          {% endif %}
+          unknown
         {% endif %}
 
     home_to_market_2_countdown:
       friendly_name: Bus to Market 2
       icon_template: mdi:bus
       value_template: >-
-        {% set countdown = states('sensor.home_to_market_2') %}
-        {% if countdown == 'unknown' %}
+        {% set countdown = states('sensor.home_to_market_2') | int(-1) %}
+
+        {% if countdown > 60 %}
+          {% set hours = (countdown / 60) | int %}
+          {% set minutes = countdown % 60 %}
+          {% if minutes < 10 %}
+            {% set minutes = '0' ~ minutes %}
+          {% endif %}
+
+          {{hours}}:{{minutes}}
+        {% elif countdown >= 0 %}
           {{countdown}}
         {% else %}
-          {% set countdown = countdown | int %}
-          {% if countdown > 60 %}
-            {% set hours = (countdown / 60) | int %}
-            {% set minutes = (countdown % 60) | int %}
-            {% if minutes < 10 %}
-              {% set minutes = '0' + minutes | string %}
-            {% endif %}
-            {{hours}}:{{minutes}}
-          {% else %}
-            {{countdown}}
-          {% endif %}
+          unknown
         {% endif %}
 
     home_to_market_3_countdown:
       friendly_name: Bus to Market 3
       icon_template: mdi:bus
       value_template: >-
-        {% set countdown = states('sensor.home_to_market_3') %}
-        {% if countdown == 'unknown' %}
+        {% set countdown = states('sensor.home_to_market_3') | int(-1) %}
+
+        {% if countdown > 60 %}
+          {% set hours = (countdown / 60) | int %}
+          {% set minutes = countdown % 60 %}
+          {% if minutes < 10 %}
+            {% set minutes = '0' ~ minutes %}
+          {% endif %}
+
+          {{hours}}:{{minutes}}
+        {% elif countdown >= 0 %}
           {{countdown}}
         {% else %}
-          {% set countdown = countdown | int %}
-          {% if countdown > 60 %}
-            {% set hours = (countdown / 60) | int %}
-            {% set minutes = (countdown % 60) | int %}
-            {% if minutes < 10 %}
-              {% set minutes = '0' + minutes | string %}
-            {% endif %}
-            {{hours}}:{{minutes}}
-          {% else %}
-            {{countdown}}
-          {% endif %}
+          unknown
         {% endif %}
 
     home_to_market_hour:
       friendly_name: Bus to Market
       icon_template: mdi:bus
       value_template: >-
-        {% if 'Origin Stop Departure Time' in states.sensor.home_to_market.attributes %}
-          {% set departure = states.sensor.home_to_market.attributes['Origin Stop Departure Time'].split(' ') %}
+        {% set departure = state_attr('sensor.home_to_market', 'Origin Stop Departure Time') %}
+
+        {% if departure != None %}
+          {% set departure = departure.split(' ') %}
           {% set hms = departure[1].split(':') %}
 
           {{hms[0]}}:{{hms[1]}}
@@ -137,8 +136,10 @@
       friendly_name: Bus to Market (Next)
       icon_template: mdi:bus
       value_template: >-
-        {% if 'Origin Stop Departure Time' in states.sensor.home_to_market_2.attributes %}
-          {% set departure = states.sensor.home_to_market_2.attributes['Origin Stop Departure Time'].split(' ') %}
+        {% set departure = state_attr('sensor.home_to_market_2', 'Origin Stop Departure Time') %}
+
+        {% if departure != None %}
+          {% set departure = departure.split(' ') %}
           {% set hms = departure[1].split(':') %}
 
           {{hms[0]}}:{{hms[1]}}
@@ -150,8 +151,10 @@
       friendly_name: Bus to Market (After)
       icon_template: mdi:bus
       value_template: >-
-        {% if 'Origin Stop Departure Time' in states.sensor.home_to_market_3.attributes %}
-          {% set departure = states.sensor.home_to_market_3.attributes['Origin Stop Departure Time'].split(' ') %}
+        {% set departure = state_attr('sensor.home_to_market_3', 'Origin Stop Departure Time') %}
+
+        {% if departure != None %}
+          {% set departure = departure.split(' ') %}
           {% set hms = departure[1].split(':') %}
 
           {{hms[0]}}:{{hms[1]}}
@@ -159,76 +162,74 @@
           unknown
         {% endif %}
 
-
     home_to_metro_countdown:
       friendly_name: Bus to Metro
       icon_template: mdi:bus
       value_template: >-
-        {% set countdown = states('sensor.home_to_metro') %}
-        {% if countdown == 'unknown' %}
+        {% set countdown = states('sensor.home_to_metro') | int(-1) %}
+
+        {% if countdown > 60 %}
+          {% set hours = (countdown / 60) | int %}
+          {% set minutes = countdown % 60 %}
+          {% if minutes < 10 %}
+            {% set minutes = '0' ~ minutes %}
+          {% endif %}
+
+          {{hours}}:{{minutes}}
+        {% elif countdown >= 0 %}
           {{countdown}}
         {% else %}
-          {% set countdown = countdown | int %}
-          {% if countdown > 60 %}
-            {% set hours = (countdown / 60) | int %}
-            {% set minutes = (countdown % 60) | int %}
-            {% if minutes < 10 %}
-              {% set minutes = '0' + minutes | string %}
-            {% endif %}
-            {{hours}}:{{minutes}}
-          {% else %}
-            {{countdown}}
-          {% endif %}
+          unknown
         {% endif %}
 
     home_to_metro_2_countdown:
       friendly_name: Bus to Metro 2
       icon_template: mdi:bus
       value_template: >-
-        {% set countdown = states('sensor.home_to_metro_2') %}
-        {% if countdown == 'unknown' %}
+        {% set countdown = states('sensor.home_to_metro_2') | int(-1) %}
+
+        {% if countdown > 60 %}
+          {% set hours = (countdown / 60) | int %}
+          {% set minutes = countdown % 60 %}
+          {% if minutes < 10 %}
+            {% set minutes = '0' ~ minutes %}
+          {% endif %}
+
+          {{hours}}:{{minutes}}
+        {% elif countdown >= 0 %}
           {{countdown}}
         {% else %}
-          {% set countdown = countdown | int %}
-          {% if countdown > 60 %}
-            {% set hours = (countdown / 60) | int %}
-            {% set minutes = (countdown % 60) | int %}
-            {% if minutes < 10 %}
-              {% set minutes = '0' + minutes | string %}
-            {% endif %}
-            {{hours}}:{{minutes}}
-          {% else %}
-            {{countdown}}
-          {% endif %}
+          unknown
         {% endif %}
 
     home_to_metro_3_countdown:
       friendly_name: Bus to Metro 3
       icon_template: mdi:bus
       value_template: >-
-        {% set countdown = states('sensor.home_to_metro_3') %}
-        {% if countdown == 'unknown' %}
+        {% set countdown = states('sensor.home_to_metro_3') | int(-1) %}
+
+        {% if countdown > 60 %}
+          {% set hours = (countdown / 60) | int %}
+          {% set minutes = countdown % 60 %}
+          {% if minutes < 10 %}
+            {% set minutes = '0' ~ minutes %}
+          {% endif %}
+
+          {{hours}}:{{minutes}}
+        {% elif countdown >= 0 %}
           {{countdown}}
         {% else %}
-          {% set countdown = countdown | int %}
-          {% if countdown > 60 %}
-            {% set hours = (countdown / 60) | int %}
-            {% set minutes = (countdown % 60) | int %}
-            {% if minutes < 10 %}
-              {% set minutes = '0' + minutes | string %}
-            {% endif %}
-            {{hours}}:{{minutes}}
-          {% else %}
-            {{countdown}}
-          {% endif %}
+          unknown
         {% endif %}
 
     home_to_metro_hour:
       friendly_name: Bus to Metro
       icon_template: mdi:bus
       value_template: >-
-        {% if 'Origin Stop Departure Time' in states.sensor.home_to_metro.attributes %}
-          {% set departure = states.sensor.home_to_metro.attributes['Origin Stop Departure Time'].split(' ') %}
+        {% set departure = state_attr('sensor.home_to_metro', 'Origin Stop Departure Time') %}
+
+        {% if departure != None %}
+          {% set departure = departure.split(' ') %}
           {% set hms = departure[1].split(':') %}
 
           {{hms[0]}}:{{hms[1]}}
@@ -240,8 +241,10 @@
       friendly_name: Bus to Metro (Next)
       icon_template: mdi:bus
       value_template: >-
-        {% if 'Origin Stop Departure Time' in states.sensor.home_to_metro_2.attributes %}
-          {% set departure = states.sensor.home_to_metro_2.attributes['Origin Stop Departure Time'].split(' ') %}
+        {% set departure = state_attr('sensor.home_to_metro_2', 'Origin Stop Departure Time') %}
+
+        {% if departure != None %}
+          {% set departure = departure.split(' ') %}
           {% set hms = departure[1].split(':') %}
 
           {{hms[0]}}:{{hms[1]}}
@@ -253,8 +256,10 @@
       friendly_name: Bus to Metro (After)
       icon_template: mdi:bus
       value_template: >-
-        {% if 'Origin Stop Departure Time' in states.sensor.home_to_metro_3.attributes %}
-          {% set departure = states.sensor.home_to_metro_3.attributes['Origin Stop Departure Time'].split(' ') %}
+        {% set departure = state_attr('sensor.home_to_metro_3', 'Origin Stop Departure Time') %}
+
+        {% if departure != None %}
+          {% set departure = departure.split(' ') %}
           {% set hms = departure[1].split(':') %}
 
           {{hms[0]}}:{{hms[1]}}
