@@ -93,7 +93,7 @@ binary_sensor.flic_80e4da72e890:
   friendly_name: Flic white
 binary_sensor.flic_80e4da737711:
   friendly_name: Flic blue
-binary_sensor.front_door:
+binary_sensor.front_door_sensor:
   device_class: door
   friendly_name: Front door
 binary_sensor.kitchen_leak_sensor:
@@ -108,13 +108,13 @@ binary_sensor.kitchen_leak_sensor:
       return state == 'on'
       ? 'card-critical'
       : null;
-binary_sensor.bedroom_motion:
+binary_sensor.bedroom_multisensor:
   device_class: motion
   friendly_name: Bedroom Motion
   group:
     group.bedroom:
       friendly_name: Motion
-binary_sensor.lounge_motion:
+binary_sensor.lounge_multisensor:
   device_class: motion
   friendly_name: Lounge Motion
   group:
@@ -145,7 +145,7 @@ binary_sensor.washroom_leak_sensor:
       return state == 'on'
       ? 'card-critical'
       : null;
-binary_sensor.washroom_motion:
+binary_sensor.washroom_multisensor:
   device_class: motion
   friendly_name: Washroom Motion
   group:

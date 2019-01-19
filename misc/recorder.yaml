@@ -11,12 +11,12 @@ include:
   domains:
     - device_tracker
   entities:
-    - binary_sensor.front_door
-    - binary_sensor.bedroom_motion
+    - binary_sensor.front_door_sensor
+    - binary_sensor.bedroom_multisensor
     - binary_sensor.kitchen_leak_sensor
-    - binary_sensor.lounge_motion
+    - binary_sensor.lounge_multisensor
     - binary_sensor.washroom_leak_sensor
-    - binary_sensor.washroom_motion
+    - binary_sensor.washroom_multisensor
 
     - input_boolean.low_mode
     - input_boolean.nap_mode

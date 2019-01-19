@@ -29,7 +29,7 @@ bedroom:
     - sensor.bedroom_temperature
     - sensor.bedroom_humidity
     - sensor.bedroom_luminance_friendly
-    - binary_sensor.bedroom_motion
+    - binary_sensor.bedroom_multisensor
 
 ceiling:
   name: Ceiling
@@ -71,7 +71,7 @@ lounge:
     - sensor.lounge_temperature
     - sensor.lounge_humidity
     - sensor.lounge_luminance_friendly
-    - binary_sensor.lounge_motion
+    - binary_sensor.lounge_multisensor
 
 washroom:
   name: Washroom
@@ -80,5 +80,5 @@ washroom:
     - sensor.washroom_temperature
     - sensor.washroom_humidity
     - sensor.washroom_luminance_friendly
-    - binary_sensor.washroom_motion
+    - binary_sensor.washroom_multisensor
     - binary_sensor.washroom_leak_sensor

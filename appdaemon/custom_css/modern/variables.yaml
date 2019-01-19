@@ -59,28 +59,31 @@ body_includes:
      * with the format:
      *   [HOST]:[PORT]/api/states/binary_sensor.kiosk_motion?api_password=[PASS]
      */
+    function reportKioskMotion() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.open('POST', appdaemon_hass_url_motion_js, false);
+      xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      xhttp.send(JSON.stringify({
+        'state': 'off',
+        'attributes': {
+          'friendly_name': 'Kiosk Motion'
+        }
+      }));
+      xhttp.open('POST', appdaemon_hass_url_motion_js, false);
+      xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      xhttp.send(JSON.stringify({
+        'state': 'on',
+        'attributes': {
+          'friendly_name': 'Kiosk Motion'
+        }
+      }));
+    }
     if (typeof fully != 'undefined') {
-      function reportKioskMotion() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.open('POST', appdaemon_hass_url_motion_js, false);
-        xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-        xhttp.send(JSON.stringify({
-          'state': 'off',
-          'attributes': {
-            'friendly_name': 'Kiosk Motion'
-          }
-        }));
-        xhttp.open('POST', appdaemon_hass_url_motion_js, false);
-        xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
-        xhttp.send(JSON.stringify({
-          'state': 'on',
-          'attributes': {
-            'friendly_name': 'Kiosk Motion'
-          }
-        }));
-      }
       fully.bind('onMotion', 'reportKioskMotion();');
     }
+    // else {
+    //   $(window).on('load', reportKioskMotion);
+    // }
     </script>
 
 

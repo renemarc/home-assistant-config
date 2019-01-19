@@ -20,7 +20,7 @@ ceiling_lights:
 door_sensors:
   name: Doors sensors
   entities:
-    - binary_sensor.front_door
+    - binary_sensor.front_door_sensor
     - input_boolean.door_test
 
 kitchen_lights:
@@ -48,20 +48,20 @@ lifx_lights:
 motion_sensors:
   name: Motion sensors
   entities:
-    - binary_sensor.bedroom_motion
-    - binary_sensor.front_door
+    - binary_sensor.bedroom_multisensor
+    - binary_sensor.front_door_sensor
     - binary_sensor.kiosk_motion_auto
-    - binary_sensor.lounge_motion
-    - binary_sensor.washroom_motion
+    - binary_sensor.lounge_multisensor
+    - binary_sensor.washroom_multisensor
     - input_boolean.motion_test
 
 motion_sensors_critical:
   name: Motion sensors
   entities:
-    # - binary_sensor.front_door # Sensor reliability issues.
+    # - binary_sensor.front_door_sensor # Sensor reliability issues.
     - binary_sensor.kiosk_motion_auto
-    - binary_sensor.lounge_motion
-    - binary_sensor.washroom_motion
+    - binary_sensor.lounge_multisensor
+    - binary_sensor.washroom_multisensor
     - input_boolean.motion_test
 
 smoke_sensors:

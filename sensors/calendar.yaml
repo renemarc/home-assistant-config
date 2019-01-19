@@ -206,7 +206,7 @@
           mdi:weather-night
         {% endif %}
       value_template: >-
-        {% set current = as_timestamp(strptime(states('sensor.time__date'), '%H:%M, %Y-%m-%d')) %}
+        {% set current = as_timestamp(strptime(states('sensor.time_date'), '%H:%M, %Y-%m-%d')) %}
         {% set dusk = as_timestamp(state_attr('sun.sun', 'next_dusk')) %}
 
         {% if current <= dusk %}

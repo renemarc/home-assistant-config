@@ -10,7 +10,7 @@
     door_location:
       value_template: >-
         {% set entities = [
-            states.binary_sensor.front_door,
+            states.binary_sensor.front_door_sensor,
             states.input_boolean.door_test,
           ]
         %}
@@ -108,11 +108,11 @@
     motion_location:
       value_template: >-
         {% set entities = [
-            states.binary_sensor.bedroom_motion,
-            states.binary_sensor.front_door,
+            states.binary_sensor.bedroom_multisensor,
+            states.binary_sensor.front_door_sensor,
             states.binary_sensor.kiosk_motion_auto,
-            states.binary_sensor.lounge_motion,
-            states.binary_sensor.washroom_motion,
+            states.binary_sensor.lounge_multisensor,
+            states.binary_sensor.washroom_multisensor,
             states.input_boolean.motion_test,
           ]
         %}
