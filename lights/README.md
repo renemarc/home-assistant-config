@@ -132,7 +132,7 @@ For my HTPC I use a 100 LED dots DIY build of the [Adalight](https://learn.adafr
     </figure>
 </div>
 
-To allow [the third-party component](https://github.com/kklemm91/Lightpack-HASS) [`/custom_components/`](../custom_components#-lightlightpackpy) to communicate with your Lightpack device, one has to enable the sockets API in Prismatik and optionally add a password. If your IoT LAN is segregated from your TV-connected computer you will also have to play with your firewall rules.
+To allow [the third-party component](https://github.com/mihalski/homeassistant/blob/master/custom_components/light/lightpack.py) [`/custom_components/`](../custom_components#-lightlightpackpy) to communicate with your Lightpack device, one has to enable the sockets API in Prismatik and optionally add a password. If your IoT LAN is segregated from your TV-connected computer you will also have to play with your firewall rules.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 

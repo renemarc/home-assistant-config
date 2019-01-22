@@ -382,7 +382,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[Display platform](https://github.com/daemondazz/homeassistant-displays)** for integration with the Fully Kiosk Browser.
 - **[Doomsday Clock component](https://github.com/renemarc/home-assistant-doomsday-clock)** to track how close humanity is to a man-made global catastrophe.
 - **[Horizontal line state card](https://github.com/covrig/homeassistant-hline)** to visually separate long lists of sensors.
-- **[Lightpack component](https://github.com/kklemm91/Lightpack-HASS)** to control TV bias lights.
+- **[Lightpack component](https://github.com/mihalski/homeassistant/blob/master/custom_components/light/lightpack.py)** to control TV bias lights.
 - **[Raspberry Pi power sensor](https://github.com/custom-components/sensor.rpi_power)** to warn in case of insufficient power supply.
 - **[Text-only state card](https://community.home-assistant.io/t/display-only-text-in-card/20536)** for wordy sensor states.
 - **[Variable component](https://github.com/rogro82/hass-variables)** for non-boolean values.

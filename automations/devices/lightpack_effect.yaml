@@ -6,6 +6,8 @@
 # but let's use a translation map here to reduce name binding between Home
 # Assistant and daily HTPC usage.
 #
+# Effects are changed without interfering with the power state.
+#
 # @subscribe variable.lightpack_effect
 #
 # @see /automations/devices/lightpack_select.yaml
@@ -21,20 +23,13 @@
       entity_id: variable.lightpack_effect
 
   action:
-    # Turn on the Lightpack so that the switch represents the actual state,
-    # since sending the effect in the next step will turn on the light anyway.
-    - service: homeassistant.turn_on
-      data:
-        entity_id:
-          - light.lightpack
-
     # Send the effect's real name to the Lightpack API.
-    - service: light.set_profile
+    - service: light.lightpack_set_effect
       data:
         entity_id:
           - light.lightpack
       data_template:
-        profile: >-
+        effect: >-
           {% set effects = {
             'Default':  'Ambilight',
             'Daylight': 'Daylight',

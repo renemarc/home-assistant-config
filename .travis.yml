@@ -19,6 +19,9 @@ before_install:
 
 install:
   - pip3 install homeassistant==${HA_VERSION}
+  - pip3 install boltons
+  - pip3 install future
+  - pip3 install https://github.com/renemarc/py-lightpack/archive/feature/expand-api-command-set.tar.gz
 
 script:
-  - hass --script check_config -c . -f
+  - hass --script check_config --config . --files

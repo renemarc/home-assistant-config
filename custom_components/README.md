@@ -41,7 +41,7 @@ Interact with Android devices running the [Fully Kiosk Browser](https://www.ozer
 
 ### [`📺 ./light/lightpack.py`](light/lightpack.py)
 
-Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) monitor bias lighting using this [Lightpack component by **@kklemm91**](https://github.com/kklemm91/Lightpack-HASS).
+Supports operation of [Prismatik](https://github.com/psieg/Lightpack) monitor bias lighting using this [Lightpack component by **@mihalski**](https://github.com/mihalski/homeassistant/blob/master/custom_components/light/lightpack.py), updated with latest API commands. Previously I was using basic functions with the [Lightpack component by **@kklemm91**](https://github.com/kklemm91/Lightpack-HASS).
 
 <div align="center">
     <figure>
