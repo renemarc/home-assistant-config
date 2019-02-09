@@ -16,7 +16,7 @@ from homeassistant.const import CONF_NAME
 from homeassistant.helpers.entity import Entity
 import homeassistant.helpers.config_validation as cv
 
-REQUIREMENTS = ['pygtfs-homeassistant==0.1.3.dev0']
+REQUIREMENTS = ['pygtfs==0.1.5']
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -24,13 +24,21 @@ CONF_DATA = 'data'
 CONF_DESTINATION = 'destination'
 CONF_ORIGIN = 'origin'
 CONF_OFFSET = 'offset'
-CONF_POSITION = 'position'
 
 DEFAULT_NAME = 'GTFS Sensor'
 DEFAULT_PATH = 'gtfs'
-DEFAULT_POSITION = '1'
 
 ICON = 'mdi:train'
+ICONS = {
+    0: 'mdi:tram',
+    1: 'mdi:subway',
+    2: 'mdi:train',
+    3: 'mdi:bus',
+    4: 'mdi:ferry',
+    5: 'mdi:train-variant',
+    6: 'mdi:gondola',
+    7: 'mdi:stairs',
+}
 
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 
@@ -40,12 +48,10 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_DATA): cv.string,
     vol.Optional(CONF_NAME): cv.string,
     vol.Optional(CONF_OFFSET, default=0): cv.time_period,
-    vol.Optional(CONF_POSITION, default=DEFAULT_POSITION): cv.positive_int,
 })
 
 
-def get_next_departure(sched, start_station_id, end_station_id, offset,
-    position):
+def get_next_departure(sched, start_station_id, end_station_id, offset):
     """Get the next departure for the given schedule."""
     origin_station = sched.stops_by_id(start_station_id)[0]
     destination_station = sched.stops_by_id(end_station_id)[0]
@@ -53,32 +59,26 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
     now = datetime.datetime.now() + offset
     day_name = now.strftime('%A').lower()
     now_str = now.strftime('%H:%M:%S')
-    now_time = now.time()
     today = now.strftime('%Y-%m-%d')
-    tomorrow_obj = datetime.date.today() + datetime.timedelta(days=1)
-    tomorrow = tomorrow_obj.strftime('%Y-%m-%d')
-    skip = int(position) - 1
 
     from sqlalchemy.sql import text
 
     sql_query = text("""
     SELECT trip.trip_id, trip.route_id,
-           time(origin_stop_time.departure_time),
-           time(destination_stop_time.arrival_time),
-           time(origin_stop_time.arrival_time),
-           time(origin_stop_time.departure_time),
-           origin_stop_time.drop_off_type,
-           origin_stop_time.pickup_type,
-           origin_stop_time.shape_dist_traveled,
-           origin_stop_time.stop_headsign,
-           origin_stop_time.stop_sequence,
-           time(destination_stop_time.arrival_time),
-           time(destination_stop_time.departure_time),
-           destination_stop_time.drop_off_type,
-           destination_stop_time.pickup_type,
-           destination_stop_time.shape_dist_traveled,
-           destination_stop_time.stop_headsign,
-           destination_stop_time.stop_sequence
+           time(origin_stop_time.arrival_time) AS origin_arrival_time,
+           time(origin_stop_time.departure_time) AS origin_depart_time,
+           origin_stop_time.drop_off_type AS origin_drop_off_type,
+           origin_stop_time.pickup_type AS origin_pickup_type,
+           origin_stop_time.shape_dist_traveled AS origin_shape_dist_traveled,
+           origin_stop_time.stop_headsign AS origin_stop_headsign,
+           origin_stop_time.stop_sequence AS origin_stop_sequence,
+           time(destination_stop_time.arrival_time) AS dest_arrival_time,
+           time(destination_stop_time.departure_time) AS dest_depart_time,
+           destination_stop_time.drop_off_type AS dest_drop_off_type,
+           destination_stop_time.pickup_type AS dest_pickup_type,
+           destination_stop_time.shape_dist_traveled AS dest_dist_traveled,
+           destination_stop_time.stop_headsign AS dest_stop_headsign,
+           destination_stop_time.stop_sequence AS dest_stop_sequence
     FROM trips trip
     INNER JOIN calendar calendar
                ON trip.service_id = calendar.service_id
@@ -91,76 +91,66 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
     INNER JOIN stops end_station
                ON destination_stop_time.stop_id = end_station.stop_id
     WHERE calendar.{day_name} = 1
+               AND origin_depart_time > time(:now_str)
     AND start_station.stop_id = :origin_station_id
-    AND end_station.stop_id = :end_station_id
-    AND origin_stop_time.stop_sequence < destination_stop_time.stop_sequence
+               AND end_station.stop_id = :end_station_id
+    AND origin_stop_sequence < dest_stop_sequence
     AND calendar.start_date <= :today
     AND calendar.end_date >= :today
     ORDER BY origin_stop_time.departure_time
+    LIMIT 1
     """.format(day_name=day_name))
-    result = sched.engine.execute(sql_query,
+    result = sched.engine.execute(sql_query, now_str=now_str,
                                   origin_station_id=origin_station.id,
                                   end_station_id=destination_station.id,
                                   today=today)
-
-    rows = result.fetchall()
     item = {}
-    for i,row in enumerate(rows):
-        if (datetime.datetime.strptime(row[2], '%H:%M:%S').time() > now_time):
-            schedule_idx = i + skip
-            if schedule_idx < len(rows):
-                item = rows[schedule_idx]
-                if (datetime.datetime.strptime(item[2], '%H:%M:%S').time()
-                    <= now_time):
-                    today = tomorrow
-            break
+    for row in result:
+        item = row
 
     if item == {}:
         return None
 
-    departure_time_string = '{} {}'.format(today, item[2])
-    arrival_time_string = '{} {}'.format(today if item[3] > item[2]
-                                         else tomorrow, item[3])
-    departure_time = datetime.datetime.strptime(departure_time_string,
-                                                TIME_FORMAT)
-    arrival_time = datetime.datetime.strptime(arrival_time_string,
-                                              TIME_FORMAT)
+    origin_arrival_time = '{} {}'.format(today, item['origin_arrival_time'])
+    origin_depart_time = '{} {}'.format(today, item['origin_depart_time'])
+    dest_arrival_time = '{} {}'.format(today, item['dest_arrival_time'])
+    dest_depart_time = '{} {}'.format(today, item['dest_depart_time'])
 
-    seconds_until = (departure_time-datetime.datetime.now()).total_seconds()
+    depart_time = datetime.datetime.strptime(origin_depart_time, TIME_FORMAT)
+    arrival_time = datetime.datetime.strptime(dest_arrival_time, TIME_FORMAT)
+
+    seconds_until = (depart_time - datetime.datetime.now()).total_seconds()
     minutes_until = int(seconds_until / 60)
 
-    route = sched.routes_by_id(item[1])[0]
-
-    origin_stoptime_arrival_time = '{} {}'.format(today, item[4])
-    origin_stoptime_departure_time = '{} {}'.format(today, item[5])
-    dest_stoptime_arrival_time = '{} {}'.format(today if item[11] > item[5]
-                                                else tomorrow, item[11])
-    dest_stoptime_depart_time = '{} {}'.format(today if item[12] > item[5]
-                                               else tomorrow, item[12])
+    route = sched.routes_by_id(item['route_id'])[0]
 
     origin_stop_time_dict = {
-        'Arrival Time': origin_stoptime_arrival_time,
-        'Departure Time': origin_stoptime_departure_time,
-        'Drop Off Type': item[6], 'Pickup Type': item[7],
-        'Shape Dist Traveled': item[8], 'Headsign': item[9],
-        'Sequence': item[10]
+        'Arrival Time': origin_arrival_time,
+        'Departure Time': origin_depart_time,
+        'Drop Off Type': item['origin_drop_off_type'],
+        'Pickup Type': item['origin_pickup_type'],
+        'Shape Dist Traveled': item['origin_shape_dist_traveled'],
+        'Headsign': item['origin_stop_headsign'],
+        'Sequence': item['origin_stop_sequence']
     }
 
     destination_stop_time_dict = {
-        'Arrival Time': dest_stoptime_arrival_time,
-        'Departure Time': dest_stoptime_depart_time,
-        'Drop Off Type': item[13], 'Pickup Type': item[14],
-        'Shape Dist Traveled': item[15], 'Headsign': item[16],
-        'Sequence': item[17]
+        'Arrival Time': dest_arrival_time,
+        'Departure Time': dest_depart_time,
+        'Drop Off Type': item['dest_drop_off_type'],
+        'Pickup Type': item['dest_pickup_type'],
+        'Shape Dist Traveled': item['dest_dist_traveled'],
+        'Headsign': item['dest_stop_headsign'],
+        'Sequence': item['dest_stop_sequence']
     }
 
     return {
-        'trip_id': item[0],
-        'trip': sched.trips_by_id(item[0])[0],
+        'trip_id': item['trip_id'],
+        'trip': sched.trips_by_id(item['trip_id'])[0],
         'route': route,
         'agency': sched.agencies_by_id(route.agency_id)[0],
         'origin_station': origin_station,
-        'departure_time': departure_time,
+        'departure_time': depart_time,
         'destination_station': destination_station,
         'arrival_time': arrival_time,
         'seconds_until_departure': seconds_until,
@@ -178,7 +168,6 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     destination = config.get(CONF_DESTINATION)
     name = config.get(CONF_NAME)
     offset = config.get(CONF_OFFSET)
-    position = config.get(CONF_POSITION)
 
     if not os.path.exists(gtfs_dir):
         os.makedirs(gtfs_dir)
@@ -189,9 +178,9 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
 
     import pygtfs
 
-    split_file_name = os.path.splitext(data)
+    (gtfs_root, _) = os.path.splitext(data)
 
-    sqlite_file = "{}.sqlite".format(split_file_name[0])
+    sqlite_file = "{}.sqlite?check_same_thread=False".format(gtfs_root)
     joined_path = os.path.join(gtfs_dir, sqlite_file)
     gtfs = pygtfs.Schedule(joined_path)
 
@@ -200,21 +189,20 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         pygtfs.append_feed(gtfs, os.path.join(gtfs_dir, data))
 
     add_entities([
-        GTFSDepartureSensor(gtfs, name, origin, destination, offset,
-            position)])
+        GTFSDepartureSensor(gtfs, name, origin, destination, offset)])
 
 
 class GTFSDepartureSensor(Entity):
     """Implementation of an GTFS departures sensor."""
 
-    def __init__(self, pygtfs, name, origin, destination, offset, position):
+    def __init__(self, pygtfs, name, origin, destination, offset):
         """Initialize the sensor."""
         self._pygtfs = pygtfs
         self.origin = origin
         self.destination = destination
         self._offset = offset
-        self._position = position
         self._custom_name = name
+        self._icon = ICON
         self._name = ''
         self._unit_of_measurement = 'min'
         self._state = 0
@@ -245,20 +233,16 @@ class GTFSDepartureSensor(Entity):
     @property
     def icon(self):
         """Icon to use in the frontend, if any."""
-        return ICON
+        return self._icon
 
     def update(self):
         """Get the latest data from GTFS and update the states."""
         with self.lock:
             self._departure = get_next_departure(
-                self._pygtfs, self.origin, self.destination, self._offset,
-                self._position)
+                self._pygtfs, self.origin, self.destination, self._offset)
             if not self._departure:
-                self._state = None
-                self._attributes = {
-                    'position': self._position,
-                    'Info': 'No more departures today',
-                    }
+                self._state = 0
+                self._attributes = {'Info': 'No more departures today'}
                 if self._name == '':
                     self._name = (self._custom_name or DEFAULT_NAME)
                 return
@@ -282,7 +266,8 @@ class GTFSDepartureSensor(Entity):
             # Build attributes
             self._attributes = {}
             self._attributes['offset'] = self._offset.seconds / 60
-            self._attributes['position'] = self._position
+
+            self._icon = ICONS.get(route.route_type, ICON)
 
             def dict_for_table(resource):
                 """Return a dict for the SQLAlchemy resource given."""
