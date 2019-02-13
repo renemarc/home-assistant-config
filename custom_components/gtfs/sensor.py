@@ -12,7 +12,7 @@ import threading
 import voluptuous as vol
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
-from homeassistant.const import CONF_NAME
+from homeassistant.const import CONF_MODE, CONF_NAME
 from homeassistant.helpers.entity import Entity
 import homeassistant.helpers.config_validation as cv
 
@@ -25,6 +25,7 @@ CONF_DESTINATION = 'destination'
 CONF_ORIGIN = 'origin'
 CONF_OFFSET = 'offset'
 
+DEFAULT_MODE = 'countdown'
 DEFAULT_NAME = 'GTFS Sensor'
 DEFAULT_PATH = 'gtfs'
 
@@ -39,13 +40,25 @@ ICONS = {
     6: 'mdi:gondola',
     7: 'mdi:stairs',
 }
-
+MODE_AUTO = 'auto'
+MODE_COUNTDOWN = 'countdown'
+MODE_DEPARTURE = 'departure'
+MODE_TIMER = 'timer'
+MODE_TYPES = {
+    MODE_AUTO,
+    MODE_COUNTDOWN,
+    MODE_DEPARTURE,
+    MODE_TIMER,
+}
+DATE_FORMAT = '%Y-%m-%d'
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
+UNIT_OF_MEASUREMENT = 'min'
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_ORIGIN): cv.string,
     vol.Required(CONF_DESTINATION): cv.string,
     vol.Required(CONF_DATA): cv.string,
+    vol.Optional(CONF_MODE, default=DEFAULT_MODE): vol.In(MODE_TYPES),
     vol.Optional(CONF_NAME): cv.string,
     vol.Optional(CONF_OFFSET, default=0): cv.time_period,
 })
@@ -59,7 +72,7 @@ def get_next_departure(sched, start_station_id, end_station_id, offset):
     now = datetime.datetime.now() + offset
     day_name = now.strftime('%A').lower()
     now_str = now.strftime('%H:%M:%S')
-    today = now.strftime('%Y-%m-%d')
+    today = now.strftime(DATE_FORMAT)
 
     from sqlalchemy.sql import text
 
@@ -69,7 +82,7 @@ def get_next_departure(sched, start_station_id, end_station_id, offset):
            time(origin_stop_time.departure_time) AS origin_depart_time,
            origin_stop_time.drop_off_type AS origin_drop_off_type,
            origin_stop_time.pickup_type AS origin_pickup_type,
-           origin_stop_time.shape_dist_traveled AS origin_shape_dist_traveled,
+           origin_stop_time.shape_dist_traveled AS origin_dist_traveled,
            origin_stop_time.stop_headsign AS origin_stop_headsign,
            origin_stop_time.stop_sequence AS origin_stop_sequence,
            time(destination_stop_time.arrival_time) AS dest_arrival_time,
@@ -111,10 +124,27 @@ def get_next_departure(sched, start_station_id, end_station_id, offset):
     if item == {}:
         return None
 
-    origin_arrival_time = '{} {}'.format(today, item['origin_arrival_time'])
+    # Format arrival and departure dates and times, accounting for the
+    # possibility of times crossing over midnight.
+    origin_arrival = now
+    if item['origin_arrival_time'] > item['origin_depart_time']:
+        origin_arrival -= datetime.timedelta(days=1)
+    origin_arrival_time = '{} {}'.format(origin_arrival.strftime(DATE_FORMAT),
+                                         item['origin_arrival_time'])
+
     origin_depart_time = '{} {}'.format(today, item['origin_depart_time'])
-    dest_arrival_time = '{} {}'.format(today, item['dest_arrival_time'])
-    dest_depart_time = '{} {}'.format(today, item['dest_depart_time'])
+
+    dest_arrival = now
+    if item['dest_arrival_time'] < item['origin_depart_time']:
+        dest_arrival += datetime.timedelta(days=1)
+    dest_arrival_time = '{} {}'.format(dest_arrival.strftime(DATE_FORMAT),
+                                       item['dest_arrival_time'])
+
+    dest_depart = dest_arrival
+    if item['dest_depart_time'] < item['dest_arrival_time']:
+        dest_depart += datetime.timedelta(days=1)
+    dest_depart_time = '{} {}'.format(dest_depart.strftime(DATE_FORMAT),
+                                      item['dest_depart_time'])
 
     depart_time = datetime.datetime.strptime(origin_depart_time, TIME_FORMAT)
     arrival_time = datetime.datetime.strptime(dest_arrival_time, TIME_FORMAT)
@@ -129,7 +159,7 @@ def get_next_departure(sched, start_station_id, end_station_id, offset):
         'Departure Time': origin_depart_time,
         'Drop Off Type': item['origin_drop_off_type'],
         'Pickup Type': item['origin_pickup_type'],
-        'Shape Dist Traveled': item['origin_shape_dist_traveled'],
+        'Shape Dist Traveled': item['origin_dist_traveled'],
         'Headsign': item['origin_stop_headsign'],
         'Sequence': item['origin_stop_sequence']
     }
@@ -166,6 +196,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     data = config.get(CONF_DATA)
     origin = config.get(CONF_ORIGIN)
     destination = config.get(CONF_DESTINATION)
+    mode = config.get(CONF_MODE)
     name = config.get(CONF_NAME)
     offset = config.get(CONF_OFFSET)
 
@@ -189,13 +220,18 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         pygtfs.append_feed(gtfs, os.path.join(gtfs_dir, data))
 
     add_entities([
-        GTFSDepartureSensor(gtfs, name, origin, destination, offset)])
+        GTFSDepartureSensor(pygtfs=gtfs,
+                            name=name,
+                            origin=origin,
+                            destination=destination,
+                            offset=offset,
+                            mode=mode)])
 
 
 class GTFSDepartureSensor(Entity):
     """Implementation of an GTFS departures sensor."""
 
-    def __init__(self, pygtfs, name, origin, destination, offset):
+    def __init__(self, pygtfs, name, origin, destination, offset, mode):
         """Initialize the sensor."""
         self._pygtfs = pygtfs
         self.origin = origin
@@ -203,9 +239,10 @@ class GTFSDepartureSensor(Entity):
         self._offset = offset
         self._custom_name = name
         self._icon = ICON
+        self._mode = mode
         self._name = ''
-        self._unit_of_measurement = 'min'
-        self._state = 0
+        self._unit_of_measurement = UNIT_OF_MEASUREMENT
+        self._state = None
         self._attributes = {}
         self.lock = threading.Lock()
         self.update()
@@ -241,14 +278,13 @@ class GTFSDepartureSensor(Entity):
             self._departure = get_next_departure(
                 self._pygtfs, self.origin, self.destination, self._offset)
             if not self._departure:
-                self._state = 0
+                self._state = None
                 self._attributes = {'Info': 'No more departures today'}
                 if self._name == '':
                     self._name = (self._custom_name or DEFAULT_NAME)
                 return
 
-            self._state = self._departure['minutes_until_departure']
-
+            minutes = self._departure['minutes_until_departure']
             origin_station = self._departure['origin_station']
             destination_station = self._departure['destination_station']
             origin_stop_time = self._departure['origin_stop_time']
@@ -256,6 +292,21 @@ class GTFSDepartureSensor(Entity):
             agency = self._departure['agency']
             route = self._departure['route']
             trip = self._departure['trip']
+
+            if self._mode == MODE_DEPARTURE:
+                self._state = datetime.datetime.strptime(
+                    origin_stop_time["Departure Time"],
+                    TIME_FORMAT).strftime('%H:%M')
+                self._unit_of_measurement = None
+            elif self._mode == MODE_TIMER or self._mode == MODE_AUTO and \
+                    abs(minutes) >= 60:
+                hour = int(minutes / 60)
+                minute = abs(minutes) % 60
+                self._state = '{0}:{1:02d}'.format(hour, minute)
+                self._unit_of_measurement = None
+            else:
+                self._state = minutes
+                self._unit_of_measurement = UNIT_OF_MEASUREMENT
 
             name = '{} {} to {} next departure'
             self._name = (self._custom_name or
