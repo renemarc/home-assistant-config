@@ -12,7 +12,7 @@ import threading
 import voluptuous as vol
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
-from homeassistant.const import CONF_NAME
+from homeassistant.const import CONF_MODE, CONF_NAME
 from homeassistant.helpers.entity import Entity
 import homeassistant.helpers.config_validation as cv
 
@@ -25,6 +25,7 @@ CONF_DESTINATION = 'destination'
 CONF_ORIGIN = 'origin'
 CONF_OFFSET = 'offset'
 
+DEFAULT_MODE = 'countdown'
 DEFAULT_NAME = 'GTFS Sensor'
 DEFAULT_PATH = 'gtfs'
 
@@ -39,13 +40,24 @@ ICONS = {
     6: 'mdi:gondola',
     7: 'mdi:stairs',
 }
-
+MODE_AUTO = 'auto'
+MODE_COUNTDOWN = 'countdown'
+MODE_DEPARTURE = 'departure'
+MODE_TIMER = 'timer'
+MODE_TYPES = {
+    MODE_AUTO,
+    MODE_COUNTDOWN,
+    MODE_DEPARTURE,
+    MODE_TIMER,
+}
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
+UNIT_OF_MEASUREMENT = 'min'
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_ORIGIN): cv.string,
     vol.Required(CONF_DESTINATION): cv.string,
     vol.Required(CONF_DATA): cv.string,
+    vol.Optional(CONF_MODE, default=DEFAULT_MODE): vol.In(MODE_TYPES),
     vol.Optional(CONF_NAME): cv.string,
     vol.Optional(CONF_OFFSET, default=0): cv.time_period,
 })
@@ -166,6 +178,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
     data = config.get(CONF_DATA)
     origin = config.get(CONF_ORIGIN)
     destination = config.get(CONF_DESTINATION)
+    mode = config.get(CONF_MODE)
     name = config.get(CONF_NAME)
     offset = config.get(CONF_OFFSET)
 
@@ -189,13 +202,18 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         pygtfs.append_feed(gtfs, os.path.join(gtfs_dir, data))
 
     add_entities([
-        GTFSDepartureSensor(gtfs, name, origin, destination, offset)])
+        GTFSDepartureSensor(pygtfs=gtfs,
+                            name=name,
+                            origin=origin,
+                            destination=destination,
+                            offset=offset,
+                            mode=mode)])
 
 
 class GTFSDepartureSensor(Entity):
     """Implementation of an GTFS departures sensor."""
 
-    def __init__(self, pygtfs, name, origin, destination, offset):
+    def __init__(self, pygtfs, name, origin, destination, offset, mode):
         """Initialize the sensor."""
         self._pygtfs = pygtfs
         self.origin = origin
@@ -203,8 +221,9 @@ class GTFSDepartureSensor(Entity):
         self._offset = offset
         self._custom_name = name
         self._icon = ICON
+        self._mode = mode
         self._name = ''
-        self._unit_of_measurement = 'min'
+        self._unit_of_measurement = UNIT_OF_MEASUREMENT
         self._state = 0
         self._attributes = {}
         self.lock = threading.Lock()
@@ -247,8 +266,7 @@ class GTFSDepartureSensor(Entity):
                     self._name = (self._custom_name or DEFAULT_NAME)
                 return
 
-            self._state = self._departure['minutes_until_departure']
-
+            minutes = self._departure['minutes_until_departure']
             origin_station = self._departure['origin_station']
             destination_station = self._departure['destination_station']
             origin_stop_time = self._departure['origin_stop_time']
@@ -256,6 +274,21 @@ class GTFSDepartureSensor(Entity):
             agency = self._departure['agency']
             route = self._departure['route']
             trip = self._departure['trip']
+            minutes = 100 - 200
+            if self._mode == MODE_DEPARTURE:
+                self._state = datetime.datetime.strptime(
+                    origin_stop_time["Departure Time"],
+                    TIME_FORMAT).strftime('%H:%M')
+                self._unit_of_measurement = None
+            elif self._mode == MODE_TIMER or self._mode == MODE_AUTO and \
+                    abs(minutes) >= 60:
+                hour = int(minutes / 60)
+                minute = abs(minutes) % 60
+                self._state = '{0}:{1:02d}'.format(hour, minute)
+                self._unit_of_measurement = None
+            else:
+                self._state = minutes
+                self._unit_of_measurement = UNIT_OF_MEASUREMENT
 
             name = '{} {} to {} next departure'
             self._name = (self._custom_name or
