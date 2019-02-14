@@ -195,10 +195,25 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
     if item == {}:
         return None
 
-    origin_arrival_time = '{} {}'.format(now_date, item['origin_arrival_time'])
-    origin_depart_time = '{} {}'.format(now_date, item['origin_depart_time'])
-    dest_arrival_time = '{} {}'.format(now_date, item['dest_arrival_time'])
-    dest_depart_time = '{} {}'.format(now_date, item['dest_depart_time'])
+    origin_arrival = now
+    if item['dest_arrival_time'] < item['origin_depart_time']:
+        origin_arrival -= datetime.timedelta(days=1)
+    origin_arrival_time = '{} {}'.format(origin_arrival.strftime(DATE_FORMAT),
+                                         item['origin_arrival_time'])
+
+    origin_depart_time = '{} {}'.format(today, item['origin_depart_time'])
+
+    dest_arrival = now
+    if item['dest_arrival_time'] < item['origin_depart_time']:
+        dest_arrival += datetime.timedelta(days=1)
+    dest_arrival_time = '{} {}'.format(dest_arrival.strftime(DATE_FORMAT),
+                                       item['dest_arrival_time'])
+
+    dest_depart = dest_arrival
+    if item['dest_depart_time'] < item['dest_arrival_time']:
+        dest_depart += datetime.timedelta(days=1)
+    dest_depart_time = '{} {}'.format(dest_depart.strftime(DATE_FORMAT),
+                                      item['dest_depart_time'])
 
     depart_time = datetime.datetime.strptime(origin_depart_time, TIME_FORMAT)
     arrival_time = datetime.datetime.strptime(dest_arrival_time, TIME_FORMAT)
