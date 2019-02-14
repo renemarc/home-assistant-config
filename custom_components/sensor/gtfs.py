@@ -223,7 +223,7 @@ class GTFSDepartureSensor(Entity):
         self._icon = ICON
         self._name = ''
         self._unit_of_measurement = 'min'
-        self._state = 0
+        self._state = None
         self._attributes = {}
         self.lock = threading.Lock()
         self.update()
@@ -259,7 +259,7 @@ class GTFSDepartureSensor(Entity):
             self._departure = get_next_departure(
                 self._pygtfs, self.origin, self.destination, self._offset)
             if not self._departure:
-                self._state = 0
+                self._state = None
                 self._attributes = {'Info': 'No more departures today'}
                 if self._name == '':
                     self._name = (self._custom_name or DEFAULT_NAME)
