@@ -328,9 +328,10 @@ sensor:
     origin: !secret gtfs_origin_1
     destination: !secret gtfs_destination_1
     data: !secret gtfs_data
-    scan_interval: 60
     include_tomorrow: true
+    mode: auto
 #    offset: 172800
+#    scan_interval: 60
 
 
 #
