@@ -274,6 +274,7 @@ class GTFSDepartureSensor(Entity):
             agency = self._departure['agency']
             route = self._departure['route']
             trip = self._departure['trip']
+            trip_id = self._departure['trip_id']
 
             name = '{} {} to {} next departure'
             self._name = (self._custom_name or
@@ -281,11 +282,10 @@ class GTFSDepartureSensor(Entity):
                                       origin_station.stop_id,
                                       destination_station.stop_id))
 
-            # Build attributes
-            self._attributes = {}
-            self._attributes['offset'] = self._offset.seconds / 60
-
             self._icon = ICONS.get(route.route_type, ICON)
+
+            # Build attributes
+            self._attributes['offset'] = self._offset.seconds / 60
 
             def dict_for_table(resource):
                 """Return a dict for the SQLAlchemy resource given."""
@@ -306,11 +306,22 @@ class GTFSDepartureSensor(Entity):
                         pretty_key = '{} {}'.format(prefix, pretty_key)
                     self._attributes[pretty_key] = val
 
-            append_keys(dict_for_table(agency), 'Agency')
-            append_keys(dict_for_table(route), 'Route')
-            append_keys(dict_for_table(trip), 'Trip')
-            append_keys(dict_for_table(origin_station), 'Origin Station')
-            append_keys(dict_for_table(destination_station),
-                        'Destination Station')
-            append_keys(origin_stop_time, 'Origin Stop')
-            append_keys(destination_stop_time, 'Destination Stop')
+            if "Agency ID" not in self._attributes.keys():
+                append_keys(dict_for_table(agency), 'Agency')
+
+            if "Route ID" not in self._attributes.keys():
+                append_keys(dict_for_table(route), 'Route')
+
+            if "Origin Station Stop ID" not in self._attributes.keys():
+                append_keys(dict_for_table(origin_station), "Origin Station")
+
+            if "Destination Station Stop ID" not in self._attributes.keys():
+                append_keys(dict_for_table(destination_station),
+                            "Destination Station")
+
+            if "Trip ID" not in self._attributes.keys() \
+                    or self._attributes["Trip ID"] != trip_id:
+                _LOGGER.info("Fetch trip details for %s", trip_id)
+                append_keys(dict_for_table(trip), 'Trip')
+                append_keys(origin_stop_time, "Origin Stop")
+                append_keys(destination_stop_time, "Destination Stop")
