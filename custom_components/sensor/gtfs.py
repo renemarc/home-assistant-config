@@ -157,17 +157,14 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
     timetable = {}
     yesterday_first = today_first = tomorrow_first = None
     for row in result:
-        row = dict(row)
         if row['yesterday'] == 1 and yesterday_date >= row['start_date']:
-            row['day'] = 'yesterday'
             if yesterday_first is None:
                 yesterday_first = row['origin_departure_date']
             if yesterday_first != row['origin_departure_date']:
                 idx = '{} {}'.format(now_date,
                                      row['origin_depart_time'])
-                timetable[idx] = row
+                timetable[idx] = {**row, **{'day': 'yesterday'}}
         if row['today'] == 1:
-            row['day'] = 'today'
             if today_first is None:
                 today_first = row['origin_departure_date']
             if today_first == row['origin_departure_date']:
@@ -175,16 +172,15 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
             else:
                 idx_prefix = tomorrow_date
             idx = '{} {}'.format(idx_prefix, row['origin_depart_time'])
-            timetable[idx] = row
+            timetable[idx] = {**row, **{'day': 'today'}}
         if 'tomorrow' in row and row['tomorrow'] == 1 and tomorrow_date <= \
                 row['end_date']:
-            row['day'] = 'tomorrow'
             if tomorrow_first is None:
                 tomorrow_first = row['origin_departure_date']
             if tomorrow_first == row['origin_departure_date']:
                 idx = '{} {}'.format(tomorrow_date,
                                      row['origin_depart_time'])
-                timetable[idx] = row
+                timetable[idx] = {**row, **{'day': 'tomorrow'}}
 
     _LOGGER.debug("Timetable: %s", sorted(timetable.keys()))
 
