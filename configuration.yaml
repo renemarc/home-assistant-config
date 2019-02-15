@@ -329,13 +329,13 @@ sensor:
     destination: !secret gtfs_destination_1
     data: !secret gtfs_data
     include_tomorrow: true
-    mode: auto
+    mode: timer
     departures:
       - 0
       - 1
       - 2
-#      - 10
-#    offset: 9000
+      - 5
+#    offset: -86400
 #    offset: 172800
 #    scan_interval: 60
 

@@ -209,6 +209,9 @@ def get_next_departure(sched, start_station_id, end_station_id, offset,
 
         if skip == position:
             item = timetable[key]
+            _LOGGER.debug("Departure %d found for station %s @ %s -> %s",
+                          position, start_station_id, key,
+                          item)
         skip += 1
 
         # Trim tomorrow's useless departures, if any
