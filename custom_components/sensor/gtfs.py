@@ -303,12 +303,17 @@ async def async_get_next_departure(sched, start_station_id, end_station_id, offs
         'Sequence': item['dest_stop_sequence']
     }
 
+    try:
+        agency = sched.agencies_by_id(route.agency_id)[0]
+    except IndexError:
+        agency = None
+
     return {
         'trip_id': item['trip_id'],
         'day': item['day'],
         'trip': sched.trips_by_id(item['trip_id'])[0],
         'route': route,
-        'agency': sched.agencies_by_id(route.agency_id)[0],
+        'agency': agency,
         'origin_station': origin_station,
         'departure_time': depart_time,
         'destination_station': destination_station,
@@ -518,7 +523,7 @@ class GTFSDepartureSensor(Entity):
                         pretty_key = '{} {}'.format(prefix, pretty_key)
                     self._attributes[pretty_key] = val
 
-            if "Agency ID" not in self._attributes.keys():
+            if "Agency ID" not in self._attributes.keys() and agency:
                 append_keys(dict_for_table(agency), 'Agency')
 
             if "Route ID" not in self._attributes.keys():
