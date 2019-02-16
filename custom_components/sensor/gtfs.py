@@ -14,6 +14,7 @@ import voluptuous as vol
 from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import CONF_MODE, CONF_NAME
 from homeassistant.helpers.entity import Entity
+from typing import Optional
 import homeassistant.helpers.config_validation as cv
 
 REQUIREMENTS = ['pygtfs==0.1.5']
@@ -75,8 +76,9 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 })
 
 
-async def async_get_next_departure(sched, start_station_id, end_station_id, offset, 
-                       position, hass, include_tomorrow=False):
+async def async_get_next_departure(sched, start_station_id, end_station_id,
+                                   offset, position, hass,
+                                   include_tomorrow=False) -> Optional[dict]:
     """Get the next departure for the given schedule."""
     origin_station = sched.stops_by_id(start_station_id)[0]
     destination_station = sched.stops_by_id(end_station_id)[0]
@@ -325,7 +327,8 @@ async def async_get_next_departure(sched, start_station_id, end_station_id, offs
     }
 
 
-async def async_setup_platform(hass, config, add_entities, discovery_info=None):
+async def async_setup_platform(hass, config, add_entities,
+                               discovery_info=None) -> None:
     """Set up the GTFS sensor."""
     gtfs_dir = hass.config.path(DEFAULT_PATH)
     data = config.get(CONF_DATA)
@@ -408,12 +411,13 @@ class GTFSDepartureSensor(Entity):
     """Implementation of an GTFS departures sensor."""
 
     def __init__(self, pygtfs, name, origin, destination, offset, position,
-                 include_tomorrow, mode):
+                 include_tomorrow, mode) -> None:
         """Initialize the sensor."""
         self._pygtfs = pygtfs
         self.origin = origin
         self.destination = destination
         self.position = position
+        self._departure = None
         self._include_tomorrow = include_tomorrow
         self._offset = offset
         self._custom_name = name
@@ -426,33 +430,33 @@ class GTFSDepartureSensor(Entity):
         self.lock = asyncio.Lock()
 
     @property
-    def name(self):
+    def name(self) -> str:
         """Return the name of the sensor."""
         if self.position == 0:
             return self._name
         return '{} {} '.format(self._name, self.position)
 
     @property
-    def state(self):
+    def state(self) -> Optional[str]:
         """Return the state of the sensor."""
         return self._state
 
     @property
-    def unit_of_measurement(self):
+    def unit_of_measurement(self) -> Optional[str]:
         """Return the unit of measurement of this entity, if any."""
         return self._unit_of_measurement
 
     @property
-    def device_state_attributes(self):
+    def device_state_attributes(self) -> dict:
         """Return the state attributes."""
         return self._attributes
 
     @property
-    def icon(self):
+    def icon(self) -> str:
         """Icon to use in the frontend, if any."""
         return self._icon
 
-    async def async_update(self):
+    async def async_update(self) -> None:
         """Get the latest data from GTFS and update the states."""
         async with self.lock:
             self._departure = await async_get_next_departure(
@@ -504,12 +508,12 @@ class GTFSDepartureSensor(Entity):
             self._attributes['day'] = self._departure['day']
             self._attributes['offset'] = self._offset.seconds / 60
 
-            def dict_for_table(resource):
+            def dict_for_table(resource) -> dict:
                 """Return a dict for the SQLAlchemy resource given."""
                 return dict((col, getattr(resource, col))
                             for col in resource.__table__.columns.keys())
 
-            def append_keys(resource, prefix=None):
+            def append_keys(resource, prefix=None) -> None:
                 """Properly format key val pairs to append to attributes."""
                 for key, val in resource.items():
                     if val == "" or val is None or key == 'feed_id':
