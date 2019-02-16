@@ -8,6 +8,7 @@ import asyncio
 import os
 import logging
 import datetime
+import threading
 
 import voluptuous as vol
 
@@ -58,6 +59,7 @@ DATE_FORMAT = '%Y-%m-%d'
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 UNIT_OF_MEASUREMENT = 'min'
 DATA_KEY = 'gtfs'
+LOCK_KEY_FORMAT = 'lock.{}'
 TRIP_KEY_FORMAT = '{}::{}'
 SQL_RESULT_PER_DAY = 1440
 
@@ -76,12 +78,15 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
 })
 
 
-async def async_get_next_departure(sched, start_station_id, end_station_id,
+def get_next_departure(sched, start_station_id, end_station_id,
                                    offset, position, hass,
                                    include_tomorrow=False) -> Optional[dict]:
     """Get the next departure for the given schedule."""
-    origin_station = sched.stops_by_id(start_station_id)[0]
-    destination_station = sched.stops_by_id(end_station_id)[0]
+    try:
+        origin_station = sched.stops_by_id(start_station_id)[0]
+        destination_station = sched.stops_by_id(end_station_id)[0]
+    except IndexError:
+        return None
 
     now = datetime.datetime.now() + offset
     # now = datetime.datetime.strptime("2019-02-14 23:45:00", TIME_FORMAT)
@@ -327,8 +332,7 @@ async def async_get_next_departure(sched, start_station_id, end_station_id,
     }
 
 
-async def async_setup_platform(hass, config, add_entities,
-                               discovery_info=None) -> None:
+def setup_platform(hass, config, add_entities, discovery_info=None) -> None:
     """Set up the GTFS sensor."""
     gtfs_dir = hass.config.path(DEFAULT_PATH)
     data = config.get(CONF_DATA)
@@ -344,6 +348,7 @@ async def async_setup_platform(hass, config, add_entities,
     if DATA_KEY not in hass.data:
         hass.data[DATA_KEY] = dict()
 
+    lock_key = LOCK_KEY_FORMAT.format(data)
     trip_key = TRIP_KEY_FORMAT.format(origin, destination)
     hass.data[DATA_KEY][trip_key] = {
         'min': min(departures),
@@ -362,13 +367,22 @@ async def async_setup_platform(hass, config, add_entities,
 
     (gtfs_root, _) = os.path.splitext(data)
 
-    sqlite_file = "{}.sqlite?check_same_thread=False".format(gtfs_root)
+    sqlite_file = "{}.sqlite".format(gtfs_root)
     joined_path = os.path.join(gtfs_dir, sqlite_file)
+
+    # Reduce chances for race conditions when creating the database
+    if not os.path.isfile(joined_path):
+        import time
+        import random
+        time.sleep(random.randrange(10, 1000) / 1000)
+
+    joined_path = "{}?check_same_thread=False".format(joined_path)
     gtfs = pygtfs.Schedule(joined_path)
 
     # Create database file if it doesn't exist
     # pylint: disable=no-member
-    if not gtfs.feeds:
+    if not gtfs.feeds and lock_key not in hass.data[DATA_KEY]:
+        hass.data[DATA_KEY][lock_key] = True
         _LOGGER.info("Creating database for \"%s\", this may take some time.",
                      data)
         pygtfs.append_feed(gtfs, os.path.join(gtfs_dir, data))
@@ -427,7 +441,7 @@ class GTFSDepartureSensor(Entity):
         self._unit_of_measurement = UNIT_OF_MEASUREMENT
         self._state = None
         self._attributes = {}
-        self.lock = asyncio.Lock()
+        self.lock = threading.Lock()
 
     @property
     def name(self) -> str:
@@ -456,10 +470,10 @@ class GTFSDepartureSensor(Entity):
         """Icon to use in the frontend, if any."""
         return self._icon
 
-    async def async_update(self) -> None:
+    def update(self) -> None:
         """Get the latest data from GTFS and update the states."""
-        async with self.lock:
-            self._departure = await async_get_next_departure(
+        with self.lock:
+            self._departure = get_next_departure(
                 self._pygtfs, self.origin, self.destination, self._offset,
                 self.position, self.hass, self._include_tomorrow)
             if not self._departure:

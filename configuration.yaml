@@ -340,18 +340,18 @@ sensor:
 #    offset: -86400
 #    offset: 172800
 #    scan_interval: 60
-#  - platform: gtfs
-#    name: 'Home to Market'
-#    origin: !secret gtfs_origin_2
-#    destination: !secret gtfs_destination_2
-#    data: !secret gtfs_data
-#    include_tomorrow: true
-#    mode: timer
-#    departures:
-#      - 0
-#      - 1
-#    custom_sql:
-#      - "UPDATE routes SET agency_id = (SELECT agency_id FROM agency WHERE feed_id = 1)"
+  - platform: gtfs
+    name: 'Home to Market'
+    origin: !secret gtfs_origin_2
+    destination: !secret gtfs_destination_2
+    data: !secret gtfs_data
+    include_tomorrow: true
+    mode: timer
+    departures:
+      - 0
+      - 1
+    custom_sql:
+      - "UPDATE routes SET agency_id = (SELECT agency_id FROM agency WHERE feed_id = 1)"
 
 
 
