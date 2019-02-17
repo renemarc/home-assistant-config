@@ -324,7 +324,7 @@ sensor:
       - 'time_date'
   - platform: version
   - platform: gtfs
-    name: 'Home to Metro'
+#    name: 'Home to Metro'
     origin: !secret gtfs_origin_1
     destination: !secret gtfs_destination_1
     data: !secret gtfs_data

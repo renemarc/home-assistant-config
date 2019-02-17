@@ -4,7 +4,6 @@ Support for GTFS (Google/General Transport Format Schema).
 For more details about this platform, please refer to the documentation at
 https://home-assistant.io/components/sensor.gtfs/
 """
-import asyncio
 import os
 import logging
 import datetime
@@ -59,8 +58,9 @@ DATE_FORMAT = '%Y-%m-%d'
 TIME_FORMAT = '%Y-%m-%d %H:%M:%S'
 UNIT_OF_MEASUREMENT = 'min'
 DATA_KEY = 'gtfs'
-LOCK_KEY_FORMAT = 'lock.{}'
-TRIP_KEY_FORMAT = '{}::{}'
+NAME_FORMAT = 'GTFS {origin} to {destination}'
+LOCK_KEY_FORMAT = 'lock.{source}'
+TRIP_KEY_FORMAT = '{origin}::{destination}'
 SQL_RESULT_PER_DAY = 1440
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
@@ -91,7 +91,8 @@ def get_next_departure(sched, start_station_id, end_station_id,
     now = datetime.datetime.now() + offset
     # now = datetime.datetime.strptime("2019-02-14 23:45:00", TIME_FORMAT)
     now_date = now.strftime(DATE_FORMAT)
-    trip_key = TRIP_KEY_FORMAT.format(start_station_id, end_station_id)
+    trip_key = TRIP_KEY_FORMAT.format(origin=start_station_id,
+                                      destination=end_station_id)
 
     # Load timetable from cache or fetch a new one.
     if trip_key in hass.data[DATA_KEY] \
@@ -348,8 +349,10 @@ def setup_platform(hass, config, add_entities, discovery_info=None) -> None:
     if DATA_KEY not in hass.data:
         hass.data[DATA_KEY] = dict()
 
-    lock_key = LOCK_KEY_FORMAT.format(data)
-    trip_key = TRIP_KEY_FORMAT.format(origin, destination)
+    lock_key = LOCK_KEY_FORMAT.format(source=data)
+    trip_key = TRIP_KEY_FORMAT.format(origin=origin,
+                                      destination=destination)
+
     hass.data[DATA_KEY][trip_key] = {
         'min': min(departures),
         'max': max(departures),
@@ -434,11 +437,10 @@ class GTFSDepartureSensor(Entity):
         self._departure = None
         self._include_tomorrow = include_tomorrow
         self._offset = offset
-        self._custom_name = name
         self._icon = ICON
         self._mode = mode
-        self._name = ''
-        self._unit_of_measurement = UNIT_OF_MEASUREMENT
+        self._name = name
+        self._unit_of_measurement = None
         self._state = None
         self._attributes = {}
         self.lock = threading.Lock()
@@ -446,6 +448,9 @@ class GTFSDepartureSensor(Entity):
     @property
     def name(self) -> str:
         """Return the name of the sensor."""
+        if not self._name:
+            self._name = NAME_FORMAT.format(origin=self.origin,
+                                            destination=self.destination)
         if self.position == 0:
             return self._name
         return '{} {} '.format(self._name, self.position)
@@ -478,11 +483,9 @@ class GTFSDepartureSensor(Entity):
                 self.position, self.hass, self._include_tomorrow)
             if not self._departure:
                 self._state = None
-                self._attributes = {}
+                self._attributes = dict()
                 self._attributes['Info'] = "No more departures" if \
                     self._include_tomorrow else "No more departures today"
-                if self._name == '':
-                    self._name = (self._custom_name or DEFAULT_NAME)
                 return
 
             minutes = self._departure['minutes_until_departure']
@@ -509,12 +512,6 @@ class GTFSDepartureSensor(Entity):
             else:
                 self._state = minutes
                 self._unit_of_measurement = UNIT_OF_MEASUREMENT
-
-            name = '{} {} to {} next departure'
-            self._name = (self._custom_name or
-                          name.format(agency.agency_name,
-                                      origin_station.stop_id,
-                                      destination_station.stop_id))
 
             self._icon = ICONS.get(route.route_type, ICON)
 
