@@ -341,6 +341,14 @@ switch: !include_dir_merge_list switches/
 
 
 #
+# System health
+#
+# @link https://home-assistant.io/components/system_health/
+#
+system_health:
+
+
+#
 # Text to speech
 #
 # @link https://home-assistant.io/components/tts/

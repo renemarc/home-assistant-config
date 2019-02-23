@@ -2,6 +2,10 @@ auto_start: false
 port: !secret homekit_port
 filter:
   include_entities:
+    - binary_sensor.bedroom_multisensor
+    - binary_sensor.kiosk_motion_auto
+    - binary_sensor.lounge_multisensor
+    - binary_sensor.washroom_multisensor
     - input_boolean.low_mode
     - input_boolean.nap_mode
     - input_boolean.night_mode
