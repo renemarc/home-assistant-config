@@ -27,8 +27,8 @@
   alias: CCT LIFX
   trigger:
     # Every five minutes.
-    - platform: time
-      minutes: /5
+    - platform: time_pattern
+      minutes: '/5'
       seconds: 00
 
     # When an item which was turned off or disconnected comes back online.

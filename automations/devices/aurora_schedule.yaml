@@ -19,7 +19,7 @@
   alias: Aurora SCHEDULE
   trigger:
     # Every hour on the hour.
-    - platform: time
+    - platform: time_pattern
       minutes: 00
       seconds: 00
 

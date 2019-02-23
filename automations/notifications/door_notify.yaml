@@ -27,7 +27,7 @@
         minutes: 10
 
     # When the last check was a while ago (reminder).
-    - platform: time
+    - platform: time_pattern
       minutes: '/10'
       seconds: 00
 

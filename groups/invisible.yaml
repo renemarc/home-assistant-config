@@ -73,7 +73,7 @@ smoke_sensors:
 waqi:
   name: World Air Quality Index
   entities:
-    - sensor.waqi_brossard__secteur_du_parc_sorbonne_quebec_canada
+    - sensor.waqi_brossard_secteur_du_parc_sorbonne_quebec_canada
     - sensor.waqi_drummond_montreal_canada
     - sensor.waqi_molson_montreal_canada
     - sensor.waqi_rivesud_de_montreal_quebec_canada

@@ -62,7 +62,7 @@
         minutes: 2
 
     # When the last check was a while ago (reminder).
-    - platform: time
+    - platform: time_pattern
       hours: '/12'
       minutes: 00
       seconds: 00
