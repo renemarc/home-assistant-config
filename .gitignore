@@ -19,6 +19,7 @@ __pycache__/
 deps/
 gtfs/*
 tts/
+venv/
 ip_bans.yaml
 known_devices.yaml
 OZW_Log.txt

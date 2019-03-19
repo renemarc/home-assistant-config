@@ -1,7 +1,7 @@
 #
 # EBOX.ca ISP bandwidth usage
 #
-# @see /custom_components/sensor/ebox.py
+# @see /custom_components/ebox/sensor.py
 #
 # @link https://client.ebox.ca/
 # @link https://home-assistant.io/components/sensor.ebox/
@@ -104,28 +104,8 @@
 #
 # Speedtest.net network speed testing
 #
-# Actual performance is limited by the hosts NIC throughout.
+# https://home-assistant.io/components/speedtestdotnet/
 #
-# @link https://home-assistant.io/components/sensor.speedtest/
-#
-- platform: speedtest
-  monitored_conditions:
-    - ping
-    - download
-    - upload
-  server_id: !secret speedtest_server_id
-  hour:
-    - 0
-    - 3
-    - 6
-    - 9
-    - 12
-    - 15
-    - 18
-    - 21
-  minute:
-    - 15
-
 - platform: template
   sensors:
     speedtest_ping_rounded:

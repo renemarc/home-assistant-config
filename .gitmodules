@@ -1,3 +1,0 @@
-[submodule "custom_components/display"]
-	path = custom_components/display
-	url = https://github.com/daemondazz/homeassistant-displays.git

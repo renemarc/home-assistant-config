@@ -474,8 +474,11 @@ light.window:
 #
 # Sensors: Miscellaneous
 #
+sensor.apod:
+  icon: mdi:star
 sensor.bing_wallpaper:
   custom_ui_state_card: state-card-value_only
+  icon: mdi:bing
 sensor.door_status:
   templates:
     theme: >-
@@ -846,6 +849,10 @@ sensor.washroom_multisensor_battery:
 #
 # Sensors: System
 #
+sensor.cpu_cores:
+  icon: mdi:chip
+sensor.cpu_temp:
+  icon: mdi:thermometer
 sensor.processor_use:
   friendly_name: CPU Load
   icon: mdi:chip

@@ -33,7 +33,7 @@ List of light effects and global scenes for the frontend and for [`/appdaemon/da
 
 ### [`❓ ./variables.yaml`](variables.yaml)
 
-Flexible intermediary data holder, using the [third-party](https://github.com/rogro82/hass-variables) [`/custom_components/varyable.py`](../custom_components/varyable.py).
+Flexible intermediary data holder, using the [third-party](https://github.com/rogro82/hass-variables) [`/custom_components/variable.py`](../custom_components/variable.py).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 

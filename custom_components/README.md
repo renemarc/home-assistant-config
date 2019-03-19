@@ -39,7 +39,7 @@ Interact with Android devices running the [Fully Kiosk Browser](https://www.ozer
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-### [`📺 ./light/lightpack.py`](light/lightpack.py)
+### [`📺 ./lightpack/light.py`](lightpack/light.py)
 
 Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) monitor bias lighting using this [Lightpack component by **@kklemm91**](https://github.com/kklemm91/Lightpack-HASS).
 
@@ -56,7 +56,7 @@ Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) moni
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-### [`💀 ./sensor/doomsday_clock.py`](sensor/doomsday_clock.py)
+### [`💀 ./doomsday_clock/sensor.py`](doomsday_clock/sensor.py)
 
 A local copy of my depressing [Doomsday Clock sensor](https://github.com/renemarc/home-assistant-doomsday-clock) that tracks the _Bulletin of the Atomic Scientists_' [world threat assessment index](https://thebulletin.org/doomsday-clock/) indicating how close humanity is to a man-made global catastrophe either through nuclear war or climate change.
 
@@ -73,7 +73,7 @@ A local copy of my depressing [Doomsday Clock sensor](https://github.com/renemar
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-### [`⚡ ./sensor/rpi_power.py`](sensor/rpi_power.py)
+### [`⚡ ./rpi_power/sensor.py`](rpi_power/sensor.py)
 
 Verifies that the host's power supply is [providing sufficient voltage](https://community.home-assistant.io/t/raspberry-pi-power-sensor-updated-2018-07-25/58155) thanks to this [Raspberry Pi power sensor by **@ludeeus**](https://github.com/custom-components/sensor.rpi_power).
 

@@ -9,7 +9,7 @@
 # @subscribe variable.lightpack_effect
 #
 # @see /automations/devices/lightpack_select.yaml
-# @see /custom_components/light/lightpack.yaml
+# @see /custom_components/lightpack/light.yaml
 #
 # @link https://github.com/psieg/Lightpack
 #

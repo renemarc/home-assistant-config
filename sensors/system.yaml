@@ -296,7 +296,6 @@
 - platform: command_line
   name: CPU Cores
   scan_interval: 86400
-  icon_template: mdi:chip
   command: >-
     grep 'model name' /proc/cpuinfo | wc -l
 
@@ -314,7 +313,6 @@
   name: CPU Temp
   scan_interval: 60
   unit_of_measurement: °C
-  icon_template: mdi:thermometer
   command: >-
     if [ -e /sys/class/thermal/thermal_zone0/temp ]
       then cat /sys/class/thermal/thermal_zone0/temp

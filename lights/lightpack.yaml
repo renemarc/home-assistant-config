@@ -3,14 +3,13 @@
 #
 # Make sure that the Prismatik software has its sockets server enabled.
 #
-# @see /custom_components/light/lightpack.yaml
+# @see /custom_components/lightpack/light.yaml
 #
 # @link https://github.com/kklemm91/Lightpack-HASS
 # @link https://github.com/psieg/Lightpack
 # @link https://learn.adafruit.com/adalight-diy-ambient-tv-lighting
 #
 - platform: lightpack
-  name: Lightpack
   host: !secret lightpack_host
   port: !secret lightpack_port
   api_key: !secret lightpack_api_key

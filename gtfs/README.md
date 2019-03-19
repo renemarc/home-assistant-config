@@ -103,7 +103,7 @@ Voilà! The resulting file can be copied over to the Raspberry Pi and Home Assis
 
 ## Next few scheduled stop times
 
-I use a modified GTFS sensor at [`/custom_components/sensor/gtfs.py`](../custom_components/sensor/gtfs.py) that allows for querying the next few scheduled times. I still need to do a PR for Home Assistant to submit this change. See [`/sensors/gtfs.yaml`](../sensors/gtfs.yaml).
+I use a modified GTFS sensor at [`/custom_components/gtfs/sensor.py`](../custom_components/gtfs/sensor.py) that allows for querying the next few scheduled times. I still need to do a PR for Home Assistant to submit this change. See [`/sensors/gtfs.yaml`](../sensors/gtfs.yaml).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 

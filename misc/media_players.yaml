@@ -28,7 +28,7 @@
 # @link https://home-assistant.io/components/media_player.plex/
 #
 - platform: plex
-  name: Plex
+  # name: Plex
   entity_namespace: plex
   include_non_clients: true
   scan_interval: 5

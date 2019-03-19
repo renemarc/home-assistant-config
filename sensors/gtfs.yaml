@@ -1,7 +1,7 @@
 #
 # Public Transit
 #
-# @see /custom_components/sensor/gtfs.py
+# @see /custom_components/gtfs/sensor.py
 # @see /appdaemon/dashboards/Main.dash
 # @see /groups/default.yaml
 # @see /customize.yaml

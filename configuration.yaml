@@ -346,6 +346,14 @@ shell_command: !include misc/shell_commands.yaml
 
 
 #
+# Speedtest.net
+#
+# @link https://home-assistant.io/components/speedtestdotnet/
+#
+speedtestdotnet: !include misc/speedtest.yaml
+
+
+#
 # Track the sun
 #
 # @link https://home-assistant.io/components/sun/
