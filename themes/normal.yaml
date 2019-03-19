@@ -3,10 +3,14 @@
 #
 # Modifies the default theme very slightly for better usability.
 #
-# @link https://github.com/home-assistant/home-assistant-polymer/blob/master/src/resources/ha-style.html
+# @link https://github.com/home-assistant/home-assistant-polymer/blob/master/src/resources/ha-style.ts
 #
 
 # Text colours
 secondary-text-color: rgb(153, 153, 153)
 # Labels
 label-badge-red: rgb(68, 115, 158)
+
+# Camera images for Lovelace views background images (include API password).
+background-main: !secret lovelace_camera_bing_wallpaper
+background-weather: !secret lovelace_camera_noaa_geocolor

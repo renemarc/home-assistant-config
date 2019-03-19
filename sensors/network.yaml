@@ -19,18 +19,14 @@
 
 - platform: template
   sensors:
-    ebox_usage_friendly:
-      friendly_name: Monthly Usage
-      icon_template: mdi:percent
-      unit_of_measurement: '%'
+    ebox_download_before_offpeak_rounded:
+      friendly_name_template: >
+        {{ state_attr('sensor.ebox_download_before_offpeak', 'friendly_name') }}
+      icon_template: >
+        {{ state_attr('sensor.ebox_download_before_offpeak', 'icon') }}
+      unit_of_measurement: 'Gb'
       value_template: >-
-        {% set usage = states('sensor.ebox_usage') %}
-
-        {% if usage != 'unknown' %}
-          {{ usage | round }}
-        {% else %}
-          unknown
-        {% endif %}
+        {{ states('sensor.ebox_download_before_offpeak') | round }}
 
     ebox_download_remaining:
       friendly_name: Remaining Downloads
@@ -38,7 +34,7 @@
       unit_of_measurement: 'Gb'
       value_template: >-
         {% set limit = states('sensor.ebox_data_limit') | float(-1) %}
-        {% set download = states('sensor.ebox_download') | float(-1) %}
+        {% set download = states('sensor.ebox_download_before_offpeak') | float(-1) %}
 
         {% if limit == 0 %}
           ∞
@@ -66,6 +62,44 @@
           0
         {% endif %}
 
+    ebox_upload_before_offpeak_rounded:
+      friendly_name_template: >
+        {{ state_attr('sensor.ebox_upload_before_offpeak', 'friendly_name') }}
+      icon_template: >
+        {{ state_attr('sensor.ebox_upload_before_offpeak', 'icon') }}
+      unit_of_measurement: 'Gb'
+      value_template: >-
+        {{ states('sensor.ebox_upload_before_offpeak') | round }}
+
+    ebox_upload_remaining:
+      friendly_name: Remaining Uploads
+      icon_template: mdi:briefcase-upload
+      unit_of_measurement: 'Gb'
+      value_template: >-
+        {% set limit = states('sensor.ebox_data_limit') | float(-1) %}
+        {% set upload = states('sensor.ebox_upload_before_offpeak') | float(-1) %}
+
+        {% if limit == 0 %}
+          ∞
+        {% elif limit > 0 and upload >= 0 %}
+          {{ (limit - upload) | int }}
+        {% else %}
+          unknown
+        {% endif %}
+
+    ebox_usage_friendly:
+      friendly_name: Monthly Usage
+      icon_template: mdi:percent
+      unit_of_measurement: '%'
+      value_template: >-
+        {% set usage = states('sensor.ebox_usage') %}
+
+        {% if usage != 'unknown' %}
+          {{ usage | round }}
+        {% else %}
+          unknown
+        {% endif %}
+
 
 #
 # Speedtest.net network speed testing
@@ -91,3 +125,44 @@
     - 21
   minute:
     - 15
+
+- platform: template
+  sensors:
+    speedtest_ping_rounded:
+      friendly_name: Ping
+      icon_template: mdi:timer
+      unit_of_measurement: 'ms'
+      value_template: >-
+        {% set value = states('sensor.speedtest_ping') %}
+
+        {% if value != 'unknown' %}
+          {{ value | round }}
+        {% else %}
+          unknown
+        {% endif %}
+
+    speedtest_download_rounded:
+      friendly_name: Downspeed
+      icon_template: mdi:download-network
+      unit_of_measurement: 'Mbit/s'
+      value_template: >-
+        {% set value = states('sensor.speedtest_download') %}
+
+        {% if value != 'unknown' %}
+          {{ value | round }}
+        {% else %}
+          unknown
+        {% endif %}
+
+    speedtest_upload_rounded:
+      friendly_name: Upspeed
+      icon_template: mdi:upload-network
+      unit_of_measurement: 'Mbit/s'
+      value_template: >-
+        {% set value = states('sensor.speedtest_upload') %}
+
+        {% if value != 'unknown' %}
+          {{ value | round }}
+        {% else %}
+          unknown
+        {% endif %}

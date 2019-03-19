@@ -61,7 +61,7 @@ automation.quiet_mode_*:
 automation.radon_*:
   icon: mdi:radioactive
 automation.tamper_*:
-  icon: mdi:security-home
+  icon: mdi:shield-home
 automation.tv_*:
   icon: mdi:television-classic
 automation.video_player_*:

@@ -222,7 +222,7 @@
         {% if is_state('input_boolean.tamper_detected', 'on') %}
           mdi:home-alert
         {% else %}
-          mdi:security-home
+          mdi:shield-home
         {% endif %}
       value_template: >-
         {% set dummy = is_state('input_boolean.tamper_detected', 'on') %}

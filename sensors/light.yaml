@@ -60,3 +60,186 @@
         {% if is_state('light.lightpack', 'on') %}
           {{ states('variable.lightpack_effect') }}
         {% endif %}
+
+
+- platform: template
+  sensors:
+    light_countertop_brightness:
+      unit_of_measurement: '%'
+      entity_id: light.countertop
+      value_template: >-
+        {% set element = 'light.countertop' %}
+        {% if is_state(element, 'on') %}
+          {{ (state_attr(element, 'brightness') | int / 255 * 100) | round }}
+        {% else %}
+          0
+        {% endif %}
+    light_countertop_color_temp:
+      unit_of_measurement: 'K'
+      entity_id: light.countertop
+      value_template: >-
+        {% set element = 'light.countertop' %}
+        {% set color_temp = state_attr(element, 'color_temp') %}
+        {% set steps = 50 %}
+        {% if is_state(element, 'on') and color_temp %}
+          {{ ((1000000 / color_temp / steps) | round * steps) }}
+        {% else %}
+          0
+        {% endif %}
+
+    light_island_brightness:
+      unit_of_measurement: '%'
+      entity_id: light.island
+      value_template: >-
+        {% set element = 'light.island' %}
+        {% if is_state(element, 'on') %}
+          {{ (state_attr(element, 'brightness') | int / 255 * 100) | round }}
+        {% else %}
+          0
+        {% endif %}
+    light_island_color_temp:
+      unit_of_measurement: 'K'
+      entity_id: light.island
+      value_template: >-
+        {% set element = 'light.island' %}
+        {% set color_temp = state_attr(element, 'color_temp') %}
+        {% set steps = 50 %}
+        {% if is_state(element, 'on') and color_temp %}
+          {{ ((1000000 / color_temp / steps) | round * steps) }}
+        {% else %}
+          0
+        {% endif %}
+
+    light_microwave_brightness:
+      unit_of_measurement: '%'
+      entity_id: light.microwave
+      value_template: >-
+        {% set element = 'light.microwave' %}
+        {% if is_state(element, 'on') %}
+          {{ (state_attr(element, 'brightness') | int / 255 * 100) | round }}
+        {% else %}
+          0
+        {% endif %}
+    light_microwave_color_temp:
+      unit_of_measurement: 'K'
+      entity_id: light.microwave
+      value_template: >-
+        {% set element = 'light.microwave' %}
+        {% set color_temp = state_attr(element, 'color_temp') %}
+        {% set steps = 50 %}
+        {% if is_state(element, 'on') and color_temp %}
+          {{ ((1000000 / color_temp / steps) | round * steps) }}
+        {% else %}
+          0
+        {% endif %}
+
+    light_sink_brightness:
+      unit_of_measurement: '%'
+      entity_id: light.sink
+      value_template: >-
+        {% set element = 'light.sink' %}
+        {% if is_state(element, 'on') %}
+          {{ (state_attr(element, 'brightness') | int / 255 * 100) | round }}
+        {% else %}
+          0
+        {% endif %}
+    light_sink_color_temp:
+      unit_of_measurement: 'K'
+      entity_id: light.sink
+      value_template: >-
+        {% set element = 'light.sink' %}
+        {% set color_temp = state_attr(element, 'color_temp') %}
+        {% set steps = 50 %}
+        {% if is_state(element, 'on') and color_temp %}
+          {{ ((1000000 / color_temp / steps) | round * steps) }}
+        {% else %}
+          0
+        {% endif %}
+
+    light_shower_brightness:
+      unit_of_measurement: '%'
+      entity_id: light.shower
+      value_template: >-
+        {% set element = 'light.shower' %}
+        {% if is_state(element, 'on') %}
+          {{ (state_attr(element, 'brightness') | int / 255 * 100) | round }}
+        {% else %}
+          0
+        {% endif %}
+    light_shower_color_temp:
+      unit_of_measurement: 'K'
+      entity_id: light.shower
+      value_template: >-
+        {% set element = 'light.shower' %}
+        {% set color_temp = state_attr(element, 'color_temp') %}
+        {% set steps = 50 %}
+        {% if is_state(element, 'on') and color_temp %}
+          {{ ((1000000 / color_temp / steps) | round * steps) }}
+        {% else %}
+          0
+        {% endif %}
+    light_shower_color:
+      entity_id: light.shower
+      value_template: >-
+        {% set element = 'light.shower' %}
+        {% set hs_color = state_attr(element, 'hs_color') %}
+        {% if is_state(element, 'on') and hs_color %}
+          {% set hs_color = hs_color[0] %}
+          {% if hs_color > 344 or hs_color < 15 %} Red
+          {% elif hs_color > 327 %} Rose
+          {% elif hs_color > 291 %} Magenta
+          {% elif hs_color > 270 %} Purple
+          {% elif hs_color > 260 %} Violet
+          {% elif hs_color > 240 %} Indigo
+          {% elif hs_color > 193 %} Blue
+          {% elif hs_color > 163 %} Cyan
+          {% elif hs_color > 79 %} Green
+          {% elif hs_color > 70 %} Lime
+          {% elif hs_color > 45 %} Yellow
+          {% else %} Orange
+          {% endif %}
+        {% endif %}
+
+    light_spotlight_brightness:
+      unit_of_measurement: '%'
+      entity_id: light.spotlight
+      value_template: >-
+        {% set element = 'light.spotlight' %}
+        {% if is_state(element, 'on') %}
+          {{ (state_attr(element, 'brightness') | int / 255 * 100) | round }}
+        {% else %}
+          0
+        {% endif %}
+    light_spotlight_color_temp:
+      unit_of_measurement: 'K'
+      entity_id: light.spotlight
+      value_template: >-
+        {% set element = 'light.spotlight' %}
+        {% set color_temp = state_attr(element, 'color_temp') %}
+        {% set steps = 50 %}
+        {% if is_state(element, 'on') and color_temp %}
+          {{ ((1000000 / color_temp / steps) | round * steps) }}
+        {% else %}
+          0
+        {% endif %}
+    light_spotlight_color:
+      entity_id: light.spotlight
+      value_template: >-
+        {% set element = 'light.spotlight' %}
+        {% set hs_color = state_attr(element, 'hs_color') %}
+        {% if is_state(element, 'on') and hs_color %}
+          {% set hs_color = hs_color[0] %}
+          {% if hs_color > 344 or hs_color < 15 %} Red
+          {% elif hs_color > 327 %} Rose
+          {% elif hs_color > 291 %} Magenta
+          {% elif hs_color > 270 %} Purple
+          {% elif hs_color > 260 %} Violet
+          {% elif hs_color > 240 %} Indigo
+          {% elif hs_color > 193 %} Blue
+          {% elif hs_color > 163 %} Cyan
+          {% elif hs_color > 79 %} Green
+          {% elif hs_color > 70 %} Lime
+          {% elif hs_color > 45 %} Yellow
+          {% else %} Orange
+          {% endif %}
+        {% endif %}

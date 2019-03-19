@@ -643,10 +643,10 @@ sensor.washroom_temperature:
     group.temperature:
       icon: mdi:shower
 sensor.radon_detector_humidity:
+  friendly_name: Radon Detector
   icon: mdi:water-percent
   group:
     group.humidity:
-      friendly_name: Radon Detector
       icon: mdi:radioactive
   templates:
     theme: >-
@@ -655,10 +655,10 @@ sensor.radon_detector_humidity:
       : v > 50 || v < 35 ? 'card-warning'
       : null;
 sensor.radon_detector_temperature:
+  friendly_name: Radon Detector
   icon: mdi:thermometer
   group:
     group.temperature:
-      friendly_name: Radon Detector
       icon: mdi:radioactive
 sensor.radon_friendly:
   extra_badge:
@@ -1043,7 +1043,7 @@ updater.updater:
 #
 variable.tamper_detected:
   friendly_name: Tamper location
-  icon: mdi:security-home
+  icon: mdi:shield-home
   templates:
     theme: >-
       var e = 'input_boolean.tamper_detected';

@@ -268,7 +268,6 @@
     average_load:
       friendly_name: Average load
       icon_template: mdi:chip
-      unit_of_measurement: '%'
       value_template: >-
         {% set load1 = states('sensor.load_1m') | float(-1) %}
         {% set load5 = states('sensor.load_5m') | float(-1) %}
@@ -348,14 +347,14 @@
       icon_template: mdi:database
       unit_of_measurement: 'MiB'
       value_template: >-
-        {{ states('sensor.homeassistant_v2db') | round }}
+        {{ states('sensor.home_assistant_v2_db') | round }}
 
     log_size:
       friendly_name: Log Size
       icon_template: mdi:history
       unit_of_measurement: 'KiB'
       value_template: >-
-        {% set size = state_attr('sensor.homeassistantlog', 'bytes') %}
+        {% set size = state_attr('sensor.home_assistant_log', 'bytes') %}
 
         {% if size != None %}
           {{ (size / 1024) | round }}
