@@ -23,8 +23,8 @@ resources:
     type: js
   - url: /customcards/github/kalkih/mini-graph-card-bundle.js?track=true
     type: module
-  - url: /customcards/github/matisaul/vertical-style-card.js?track=true
-    type: js
+  # - url: /customcards/github/matisaul/vertical-style-card.js?track=true
+  #   type: js
   - url: /customcards/github/maykar/compact-custom-header.js?track=true
     type: module
   - url: /customcards/github/MizterB/secondaryinfo-entity-row.js?track=true
@@ -80,6 +80,10 @@ styles:
   #   "--label-badge-text-color": rgb(255, 255, 255)
   graph-color-humidity: &graph-color-humidity DEEPSKYBLUE
   graph-color-temperature: &graph-color-temperature ORANGE
+  button-card: &button-card
+    - font-weight: bold
+    # - border-radius: 12px
+    - margin: 5px
 
 
 #
@@ -125,7 +129,7 @@ views:
         #
         # Action center
         #
-        - type: "custom:vertical-style-card"
+        - type: "custom:vertical-stack-in-card"
           cards:
           - type: horizontal-stack
             cards:
@@ -135,8 +139,7 @@ views:
                 name: Wake Up
                 color: rgb(255, 233, 155)
                 color_type: card
-                style:
-                  - font-weight: bold
+                style: *button-card
 
               - entity: input_boolean.nap_mode
                 type: "custom:button-card"
@@ -144,8 +147,7 @@ views:
                 name: Sleep
                 icon: mdi:sleep
                 color: var(--paper-toggle-button-checked-button-color)
-                style:
-                  - font-weight: bold
+                style: *button-card
 
               - entity: input_boolean.night_mode
                 type: "custom:button-card"
@@ -153,8 +155,7 @@ views:
                 name: Night
                 icon: mdi:weather-night
                 color: var(--paper-toggle-button-checked-button-color)
-                style:
-                  - font-weight: bold
+                style: *button-card
 
           - type: horizontal-stack
             cards:
@@ -167,8 +168,7 @@ views:
                 name: Quiet
                 icon: mdi:volume-mute
                 color: var(--paper-toggle-button-checked-button-color)
-                style:
-                  - font-weight: bold
+                style: *button-card
 
               - entity: input_boolean.low_mode
                 type: "custom:button-card"
@@ -176,8 +176,7 @@ views:
                 name: Eco
                 icon: mdi:weather-sunset-down
                 color: var(--paper-toggle-button-checked-button-color)
-                style:
-                  - font-weight: bold
+                style: *button-card
 
           - type: entities
             show_header_toggle: false
@@ -922,12 +921,15 @@ views:
                 icon: mdi:shower
 
       #
-      # Network
+      # WAN
       #
       - type: entities
-        title: Network
+        title: Internet Access
         show_header_toggle: false
         entities:
+          - entity: sensor.wan_ip_address
+            name: Public IP Address
+            icon: mdi:wan
           - entity: sensor.speedtest_ping_rounded
             secondary_info: last-changed
           - entity: sensor.speedtest_upload_rounded
@@ -953,6 +955,41 @@ views:
             items:
               - sensor.ebox_usage_friendly
               - sensor.ebox_download_daily_capacity
+
+      #
+      # LAN
+      #
+      - type: entities
+        title: Local Area Network
+        show_header_toggle: false
+        entities:
+          - entity: sensor.unifi_gateway_alerts
+            name: Alerts
+          - entity: sensor.unifi_gateway_lan_clients
+            type: "custom:secondaryinfo-entity-row"
+            secondary_info: >-
+              <small><strong>
+              [[ if(sensor.unifi_gateway_lan_guests > 0, sensor.unifi_gateway_lan_guests, '') ]]
+              [[ if(sensor.unifi_gateway_lan_guests > 1, 'guests', if(sensor.unifi_gateway_lan_guests > 0, 'guest', '')) ]]
+              </strong></small>
+          - entity: sensor.unifi_gateway_wlan_clients
+            type: "custom:secondaryinfo-entity-row"
+            secondary_info: >-
+              <small><strong>
+              [[ if(sensor.unifi_gateway_wlan_guests > 0, sensor.unifi_gateway_wlan_guests, '') ]]
+              [[ if(sensor.unifi_gateway_wlan_guests > 1, 'guests', if(sensor.unifi_gateway_wlan_guests > 0, 'guest', '')) ]]
+              </strong></small>
+          - type: "custom:fold-entity-row"
+            head:
+              type: section
+              label: Router
+            items:
+            - entity: sensor.unifi_uptime
+              name: Uptime
+            - entity: sensor.unifi_gateway_processor_use
+              name: CPU Load
+            - entity: sensor.unifi_gateway_memory_use
+              name: Memory Use
 
       #
       # Devices

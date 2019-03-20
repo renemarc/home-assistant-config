@@ -123,7 +123,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     if DATA_ENTITIES not in hass.data:
         hass.data[DATA_ENTITIES] = []
 
-    if fully_kiosk_device not in hass.data[DATA_ENTITIES] and fully_kiosk_device.update():
+    if fully_kiosk_device not in hass.data[DATA_ENTITIES]:
         hass.data[DATA_ENTITIES].append(fully_kiosk_device)
         add_devices([fully_kiosk_device])
 
@@ -239,8 +239,10 @@ class FullyKioskDevice(DisplayDevice):
             'manufacturer': data['deviceManufacturer'],
             'model': data['deviceModel'],
             'device_id': data['deviceID'],
+            'mac_address': data['mac'],
             'version': data['appVersionName'],
             'battery_level': data['batteryLevel'],
+            'display_resolution': '{}x{}'.format(data['displayWidthPixels'], data['displayHeightPixels']),
             'kiosk_mode': data['kioskMode'],
             'maintenance_mode': data['maintenanceMode'],
             'screensaver_on': (data['currentFragment'] == 'screensaver'),

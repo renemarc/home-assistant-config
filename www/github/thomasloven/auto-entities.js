@@ -1,5 +1,5 @@
 customElements.whenDefined('card-tools').then(() => {
-class AutoEntities extends cardTools.litElement() {
+class AutoEntities extends cardTools.LitElement {
 
   setConfig(config) {
     if(!config || !config.card)
@@ -16,8 +16,11 @@ class AutoEntities extends cardTools.litElement() {
   match(pattern, str){
     if (typeof(str) === "string" && typeof(pattern) === "string") {
       if((pattern.startsWith('/') && pattern.endsWith('/')) || pattern.indexOf('*') !== -1) {
-        if(pattern[0] !== '/')
-          pattern = `/${pattern.replace(/\*/g, '.*')}/`;
+        if(pattern[0] !== '/') {
+          pattern = pattern.replace(/\./g, '\.');
+          pattern = pattern.replace(/\*/g, '.*');
+          pattern = `/^${pattern}$/`;
+        }
         var regex = new RegExp(pattern.substr(1).slice(0,-1));
         return regex.test(str);
       }
@@ -163,8 +166,8 @@ class AutoEntities extends cardTools.litElement() {
   }
   render() {
     if(this.entities.length === 0 && this._config.show_empty === false)
-      return cardTools.litHtml()``;
-    return cardTools.litHtml()`
+      return cardTools.LitHtml``;
+    return cardTools.LitHtml`
       <div id="root">${this.card}</div>
     `;
   }
