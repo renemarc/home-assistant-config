@@ -368,8 +368,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[AppDaemon](https://github.com/home-assistant/appdaemon)** for HADashboard tablet UI.
 - **[Check Home Assistant configuration](https://home-assistant.io/addons/check_config/)** to validate current configuration before upgrading.
 - **[Log Viewer](https://github.com/hassio-addons/addon-log-viewer)** to stream the log file to a browser window.
-- **[Lovelace Migration](https://github.com/hassio-addons/addon-lovelace-migration)** to start converting Custom UI panels to Lovelace UI.
-- **[Mosquitto MQTT broker](https://home-assistant.io/addons/mosquitto)** for standard IoT messaging.
+- **[MQTT Server & Web client](https://github.com/hassio-addons/addon-mqtt)** for standard IoT messaging using [Mosquitto](https://mosquitto.org/), plus a [HiveMQ](https://www.hivemq.com/) web interface.
 - **[RTL_433 to MQTT Bridge](https://github.com/james-fry/hassio-addons)** to receive and decode AcuRite radio signals.
 - **[Samba share](https://home-assistant.io/addons/samba)** for configuration file sharing.
 - **[SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh)** for secure command-line access.

@@ -1,7 +1,7 @@
 #
 # AcuRite battery monitoring
 #
-# This device only has two power state: `OK` (1) and `low` (0). If no signal is
+# This device only has two power state: `OK` (0) and `low` (1). If no signal is
 # received we assume that the battery is dead.
 #
 # @see /rtl4332mqtt/rtl2mqtt.sh
@@ -10,16 +10,16 @@
 # @link https://home-assistant.io/components/mqtt/
 #
 - platform: mqtt
-  name: Humidor AcuRite Battery
+  name: Humidor AcuRite Power
   state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '%'
   value_template: >-
-    {% set battery_level = value_json.battery | int %}
+    {% set battery_low = value_json.battery_low | int %}
 
-    {% if battery_level %}
-      100
-    {% else %}
+    {% if battery_low %}
       10
+    {% else %}
+      100
     {% endif %}
 
 - platform: template
@@ -28,10 +28,10 @@
       friendly_name: Humidor Multisensor Battery
       unit_of_measurement: '%'
       value_template: >-
-        {{ states('sensor.humidor_acurite_battery') }}
+        {{ states('sensor.humidor_acurite_power') }}
 
       icon_template: >-
-        {% set battery_level = states('sensor.humidor_acurite_battery') | int(-1) %}
+        {% set battery_level = states('sensor.humidor_acurite_power') | int(-1) %}
 
         {% if battery_level < 0 %}
           mdi:battery-unknown

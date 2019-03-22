@@ -283,6 +283,7 @@ mqtt:
   port: !secret mqtt_port
   username: !secret mqtt_username
   password: !secret mqtt_password
+  client_id: home-assistant
   birth_message:
     topic: 'hass/status'
     payload: 'online'
