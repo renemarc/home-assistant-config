@@ -25,6 +25,23 @@
       http://127.0.0.1:{{ port }}/local/images/wallpaper-1.jpg
     {% endif %}
 
+- platform: generic
+  name: Bing Wallpaper HD
+  limit_refetch_to_url_change: true
+  content_type: image/jpg
+  still_image_url: >-
+    {% set images = state_attr('sensor.bing_wallpaper', 'images') %}
+
+    {% if images is iterable and images[0].urlbase %}
+      {% set path = images[0].urlbase %}
+
+      https://www.bing.com{{ path }}_1920x1080.jpg
+    {% else %}
+      {% set port = states('sensor.server_port') | int(8123) %}
+
+      http://127.0.0.1:{{ port }}/local/images/wallpaper-1.jpg
+    {% endif %}
+
 
 #
 # NASA's Astronomy picture of the day
@@ -45,6 +62,33 @@
   still_image_url: >-
     {% set image = None %}
     {% set url = state_attr('sensor.apod', 'url') %}
+
+    {% if url != None %}
+      {% if state_attr('sensor.apod', 'media_type') == 'video' %}
+        {% if 'youtube.com' in url %}
+          {% set video = url.split('/')[4].split('?')[0] %}
+          {% set image = 'https://img.youtube.com/vi/' + video + '/hqdefault.jpg' %}
+        {% endif %}
+      {% else %}
+        {% set image = url %}
+      {% endif %}
+    {% endif %}
+
+    {% if image == None %}
+      {% set port = states('sensor.server_port') | int(8123) %}
+
+      {% set image = 'http://127.0.0.1:' ~ port ~ '/local/images/wallpaper-2.jpg' %}
+    {% endif %}
+
+    {{ image }}
+
+- platform: generic
+  name: Astronomy Picture of the Day HD
+  limit_refetch_to_url_change: true
+  content_type: image/jpg
+  still_image_url: >-
+    {% set image = None %}
+    {% set url = state_attr('sensor.apod', 'hdurl') %}
 
     {% if url != None %}
       {% if state_attr('sensor.apod', 'media_type') == 'video' %}

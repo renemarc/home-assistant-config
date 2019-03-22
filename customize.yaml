@@ -781,66 +781,52 @@ sensor.uv_friendly:
 #
 # Sensors: Power
 #
-sensor.bedroom_multisensor_battery:
-  group:
-    group.battery:
-      friendly_name: Bedroom
-      icon: mdi:hotel
-    group.bedroom:
-      friendly_name: Multisensor Battery
 sensor.front_door_sensor_battery:
+  friendly_name: Front Door
   group:
     group.battery:
-      friendly_name: Front Door
       icon: mdi:door
     group.kitchen:
       friendly_name: Front Door Battery
 sensor.humidor_multisensor_battery:
+  friendly_name: Humidor
   group:
     group.battery:
-      friendly_name: Humidor
       icon: mdi:bow-tie
     group.lounge:
       friendly_name: Humidor Battery
 sensor.kiosk_battery:
+  friendly_name: Kiosk
   group:
     group.battery:
-      friendly_name: Kiosk
       icon: mdi:tablet
     group.kitchen:
       friendly_name: Kiosk Battery
 sensor.kitchen_leak_sensor_battery:
+  friendly_name: Kitchen Leak
   group:
     group.battery:
-      friendly_name: Kitchen Leak
       icon: mdi:food-fork-drink
     group.kitchen:
       friendly_name: Leak Battery
-sensor.lounge_multisensor_battery:
-  group:
-    group.battery:
-      friendly_name: Lounge
-      icon: mdi:sofa
-    group.lounge:
-      friendly_name: Multisensor Battery
 sensor.siren_monitor_battery:
+  friendly_name: Siren Monitor
   group:
     group.battery:
-      friendly_name: Siren Monitor
       icon: mdi:smoke-detector
     group.kitchen:
       friendly_name: Siren Monitor Battery
 sensor.washroom_leak_sensor_battery:
+  friendly_name: Washroom Leak
   group:
     group.battery:
-      friendly_name: Washroom Leak
       icon: mdi:pipe-leak
     group.washroom:
       friendly_name: Leak Battery
 sensor.washroom_multisensor_battery:
+  friendly_name: Washroom
   group:
     group.battery:
-      friendly_name: Washroom
       icon: mdi:shower
     group.lounge:
       friendly_name: Multisensor Battery
@@ -971,10 +957,6 @@ sensor.dark_sky_summary:
     ? entities[e].state + entities[e].attributes['unit_of_measurement']
     : null;
   theme: card-secondary-title
-sensor.outside_humidity:
-  friendly_name: Outside
-sensor.outside_temperature:
-  friendly_name: Outside
 sensor.weather_details:
   custom_ui_state_card: state-card-value_only
 sensor.wind_speed:

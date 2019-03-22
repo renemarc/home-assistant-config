@@ -23,6 +23,7 @@
     - apparent_temperature
     - apparent_temperature_high
     - humidity
+    - pressure
     - wind_speed
     - wind_bearing
     - precip_probability

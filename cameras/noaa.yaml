@@ -26,6 +26,19 @@
 
     https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/GEOCOLOR/600x600.jpg#{{ timestamp }}
 
+- platform: generic
+  name: NOAA GeoColor HD
+  scan_interval: 10800
+  limit_refetch_to_url_change: true
+  content_type: image/jpeg
+  still_image_url: >-
+    {% set delta = 180 %}
+    {% set time = states('sensor.time') %}
+    {% set offset = delta * 60 %}
+    {% set current = as_timestamp(utcnow()) %}
+    {% set timestamp = (current - (current % offset)) | int %}
+
+    https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/GEOCOLOR/1200x1200.jpg#{{ timestamp }}
 
 - platform: generic
   name: NOAA Water Vapour
@@ -40,3 +53,17 @@
     {% set timestamp = (current - (current % offset)) | int %}
 
     https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/10/600x600.jpg#{{ timestamp }}
+
+- platform: generic
+  name: NOAA Water Vapour HD
+  scan_interval: 10800
+  limit_refetch_to_url_change: true
+  content_type: image/jpeg
+  still_image_url: >-
+    {% set delta = 180 %}
+    {% set time = states('sensor.time') %}
+    {% set offset = delta * 60 %}
+    {% set current = as_timestamp(utcnow()) %}
+    {% set timestamp = (current - (current % offset)) | int %}
+
+    https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/10/1200x1200.jpg#{{ timestamp }}

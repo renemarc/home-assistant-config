@@ -130,7 +130,7 @@
         {{ states('sensor.humidor_humidity_exact') | round }}
 
     humidor_temperature:
-      friendly_name: Humidor Humidity
+      friendly_name: Humidor Temperature
       unit_of_measurement: '°C'
       icon_template: mdi:thermometer
       value_template: >-

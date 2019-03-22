@@ -41,6 +41,7 @@ include:
     - sensor.bedroom_humidity
     - sensor.bedroom_luminance
     - sensor.bedroom_temperature
+    - sensor.dark_sky_pressure
     - sensor.humidor_humidity
     - sensor.humidor_temperature
     - sensor.kitchen_humidity

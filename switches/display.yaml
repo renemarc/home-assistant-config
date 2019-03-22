@@ -1,0 +1,28 @@
+#
+# Displays
+#
+# The domain for the `display` custom platform isn't part of Polymer's
+# `DOMAINS_TOGGLE` list, therefore Lovelace UI will not show a toggle for it.
+#
+# Creating a switch template to bridge the display circumvents this issue.
+#
+# @see /custom_components/display/
+#
+# @link https://github.com/daemondazz/homeassistant-displays
+# @link https://github.com/home-assistant/home-assistant-polymer/blob/dev/src/common/const.ts
+#
+- platform: template
+  switches:
+    kiosk:
+      friendly_name: Kiosk
+      icon_template: mdi:tablet
+      value_template: >-
+        {{ states('display.kiosk') }}
+      turn_on:
+        service: homeassistant.turn_on
+        data:
+          entity_id: display.kiosk
+      turn_off:
+        service: homeassistant.turn_off
+        data:
+          entity_id: display.kiosk

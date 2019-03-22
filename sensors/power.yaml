@@ -54,7 +54,7 @@
 - platform: template
   sensors:
     kiosk_battery:
-      friendly_name: Kiosk battery
+      friendly_name: Kiosk Battery
       unit_of_measurement: '%'
       value_template: >-
         {% set battery_level = state_attr('display.kiosk', 'battery_level') %}
@@ -142,34 +142,6 @@
         {% endif %}
       icon_template: >-
         {% set battery_level = state_attr('zwave.kitchen_leak_sensor', 'battery_level') %}
-
-        {% if battery_level != None %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-outline
-          {% endif %}
-        {% else %}
-          mdi:battery-unknown
-        {% endif %}
-
-    lounge_multisensor_battery:
-      friendly_name: Lounge Multisensor Battery
-      unit_of_measurement: '%'
-      value_template: >-
-        {% set battery_level = state_attr('zwave.lounge_multisensor', 'battery_level') %}
-
-        {% if battery_level != None %}
-          {{ battery_level | round }}
-        {% else %}
-          unknown
-        {% endif %}
-      icon_template: >-
-        {% set battery_level = state_attr('zwave.lounge_multisensor', 'battery_level') %}
 
         {% if battery_level != None %}
           {% set battery_round = (battery_level / 10) | int * 10 %}

@@ -14,5 +14,6 @@ ha-card-border-radius: 12px
 label-badge-red: rgb(68, 115, 158)
 
 # Camera images for Lovelace views background images (include API password).
+background-climate: !secret lovelace_camera_apod
 background-main: !secret lovelace_camera_bing_wallpaper
 background-weather: !secret lovelace_camera_noaa_geocolor

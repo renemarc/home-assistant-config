@@ -79,7 +79,7 @@
           Air quality is {{ states('sensor.aqi_friendly') | lower }}
           {%- if is_state('sun.sun', 'above_horizon') -%}
             , UV index is {{ states('sensor.uv_friendly') | lower }}
-          {%- endif %} and the sun {{ states('sensor.sun_state_friendly') }}.
+          {%- endif %} and {{ states('sensor.sun_state_friendly') }}
 
           Have a nice day!
 

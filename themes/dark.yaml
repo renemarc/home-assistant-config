@@ -72,5 +72,6 @@ paper-slider-disabled-active-color: 'hsl(var(--base-hue), 80%, 25%)'
 paper-slider-disabled-secondary-color: 'hsl(var(--base-hue), 80%, 25%)'
 
 # Camera images for Lovelace views background images (include API password).
+background-climate: !secret lovelace_camera_apod
 background-main: !secret lovelace_camera_bing_wallpaper
 background-weather: !secret lovelace_camera_noaa_geocolor

@@ -184,9 +184,33 @@
   sensors:
     sun_state:
       friendly_name: Sun
+      friendly_name_template: >-
+        {% set next_dawn = as_timestamp(state_attr('sun.sun', 'next_dawn')) %}
+        {% set next_rising = as_timestamp(state_attr('sun.sun', 'next_rising')) %}
+        {% set next_setting = as_timestamp(state_attr('sun.sun', 'next_setting')) %}
+        {% set next_dusk = as_timestamp(state_attr('sun.sun', 'next_dusk')) %}
+
+        {% if next_dawn >= next_rising %}
+          Is is dawn
+        {% elif next_rising >= next_setting %}
+          Sun is up
+        {% elif next_setting >= next_dusk %}
+          It is dusk
+        {% else %}
+          Sun is down
+        {% endif %}
       icon_template: >-
-        {% if is_state('sun.sun', 'above_horizon') %}
+        {% set next_dawn = as_timestamp(state_attr('sun.sun', 'next_dawn')) %}
+        {% set next_rising = as_timestamp(state_attr('sun.sun', 'next_rising')) %}
+        {% set next_setting = as_timestamp(state_attr('sun.sun', 'next_setting')) %}
+        {% set next_dusk = as_timestamp(state_attr('sun.sun', 'next_dusk')) %}
+
+        {% if next_dawn >= next_rising %}
+          mdi:weather-sunset-up
+        {% elif next_rising >= next_setting %}
           mdi:weather-sunny
+        {% elif next_setting >= next_dusk %}
+          mdi:weather-sunset-down
         {% else %}
           mdi:weather-night
         {% endif %}
@@ -197,35 +221,74 @@
           rises at {% set timestamp = as_timestamp(state_attr('sun.sun', 'next_rising')) | timestamp_custom('%H:%M') %} {{ timestamp.lstrip('0') }}
         {% endif %}
 
+    #
+    # Human-readable state of the sun
+    #
+    # Output examples:
+    #   - Dawn is almost here.
+    #   - It is dawn.
+    #   - The sun will rise soon.
+    #   - The sun is rising.
+    #   - The sun will set at around 8.
+    #   - The sun will set at around a quarter past 8.
+    #   - The sun will set at around 8 and a half.
+    #   - The sun will set at around a quarter to 9.
+    #   - The sun will set soon.
+    #   - The sun is setting.
+    #   - It is dusk.
+    #   - It will be dark soon.
+    #   - The sun will rise in about 7 hours.
+    #   - The sun rise in about 7 and a half hours.
+    #   - The sun rise in soon.
+    #
     sun_state_friendly:
       friendly_name: Sun
       icon_template: >-
-        {% if is_state('sun.sun', 'above_horizon') %}
+        {% set next_dawn = as_timestamp(state_attr('sun.sun', 'next_dawn')) %}
+        {% set next_rising = as_timestamp(state_attr('sun.sun', 'next_rising')) %}
+        {% set next_setting = as_timestamp(state_attr('sun.sun', 'next_setting')) %}
+        {% set next_dusk = as_timestamp(state_attr('sun.sun', 'next_dusk')) %}
+
+        {% if next_dawn >= next_rising %}
+          mdi:weather-sunset-up
+        {% elif next_rising >= next_setting %}
           mdi:weather-sunny
+        {% elif next_setting >= next_dusk %}
+          mdi:weather-sunset-down
         {% else %}
           mdi:weather-night
         {% endif %}
       value_template: >-
         {% set current = as_timestamp(strptime(states('sensor.time_date'), '%H:%M, %Y-%m-%d')) %}
-        {% set dusk = as_timestamp(state_attr('sun.sun', 'next_dusk')) %}
+        {% set next_dawn = as_timestamp(state_attr('sun.sun', 'next_dawn')) %}
+        {% set next_rising = as_timestamp(state_attr('sun.sun', 'next_rising')) %}
+        {% set next_setting = as_timestamp(state_attr('sun.sun', 'next_setting')) %}
+        {% set next_dusk = as_timestamp(state_attr('sun.sun', 'next_dusk')) %}
+        {% set next_noon = as_timestamp(state_attr('sun.sun', 'next_noon')) %}
+        {% set elevation = state_attr('sun.sun', 'elevation') %}
+        {% set elevation_sunrise = 3 %}
+        {% set elevation_sunset = 2 %}
+        {% set warning_dawn = 30*60 %}
+        {% set warning_sunrise = 15*60 %}
+        {% set warning_sunset = 30*60 %}
+        {% set warning_dusk = 15*60 %}
 
-        {% if current <= dusk %}
-          {# output example "will set at around 8." #}
-          {# output example "will set at around a quarter past 8." #}
-          {# output example "will set at around 8 and a half." #}
-          {# output example "will set at around a quarter to 9." #}
-          {# output example "will set in a few minutes." #}
-          {# output example "is setting." #}
+        {% if (next_dawn - current) <= warning_dawn %}
+          Dawn is almost here.
 
-          {% set setting = as_timestamp(state_attr('sun.sun', 'next_setting')) %}
-
-          {% if current >= setting %}
-            is setting
-          {% elif (setting - current) <= 60*30 %}
-            will set in a few minutes
+        {% elif next_dawn >= next_rising %}
+          {% if (next_rising - current) > warning_sunrise %}
+            It is dawn.
           {% else %}
-            {% set hour = setting|timestamp_custom('%H') | int %}
-            {% set minute = setting|timestamp_custom('%M') | int %}
+            The sun will rise soon.
+          {% endif %}
+
+        {% elif next_rising >= next_setting %}
+          {% if next_noon < next_setting and elevation <= elevation_sunrise %}
+            The sun is rising.
+          {% elif (next_setting - current) > warning_sunset %}
+            {% set hour = next_setting|timestamp_custom('%H') | int %}
+            {% set minute = next_setting|timestamp_custom('%M') | int %}
 
             {% set minute_friendly = '' %}
             {% set half = false %}
@@ -255,22 +318,25 @@
             {% endif %}
 
             {% if half %}
-              will set at around {{ hour_friendly }} and a half
+              The sun will set at around {{ hour_friendly }} and a half.
             {% else %}
-              will set at around {{ minute_friendly }}{{ hour_friendly }}
+              The sun will set at around {{ minute_friendly }}{{ hour_friendly }}.
             {% endif %}
-
+          {% elif next_noon > next_setting and elevation <= elevation_sunset %}
+            The sun is setting.
+          {% else %}
+            The sun will set soon.
           {% endif %}
+
+        {% elif next_setting >= next_dusk %}
+          {% if (next_dusk - current) > warning_dusk %}
+            It is dusk.
+          {% else %}
+            It will be dark soon.
+          {% endif %}
+
         {% else %}
-          {# output example "will rise in about 7 hours." #}
-          {# output example "will rise in about 7 and a half hours." #}
-          {# output example "will rise in a few minutes." #}
-          {# output example "is rising." #}
-
-          {% set dawn = as_timestamp(state_attr('sun.sun', 'next_dawn')) %}
-          {% set rising = as_timestamp(state_attr('sun.sun', 'next_rising')) %}
-
-          {% set diff = ((rising - current) / 60 / 60) %}
+          {% set diff = ((next_rising - current) / 60 / 60) %}
           {% set hour = diff | int %}
           {% set minute = (diff - hour) | round(2) %}
 
@@ -281,11 +347,10 @@
               {% set minute_friendly = ' and a half' %}
             {% endif %}
 
-            will rise in about {{hour}}{{ minute_friendly }} hour{% if hour > 0 %}s{% endif %}
-          {% elif (rising - dawn) < 0%}
-            is rising
+            The sun will rise in about {{hour}}{{ minute_friendly }} hour{% if hour > 0 %}s{% endif %}.
           {% else %}
-            will rise in a few minutes
+            The sun will rise soon.
           {% endif %}
 
         {% endif %}
+
