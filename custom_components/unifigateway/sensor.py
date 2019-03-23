@@ -1,9 +1,8 @@
 """
-Support for Unifi Security Gateway Units.
+Support for UniFi Security Gateway units.
 
 For more details about this platform, please refer to the documentation at
 https://github.com/custom-components/sensor.unifigateway
-
 """
 
 import logging
@@ -18,14 +17,10 @@ from homeassistant.const import (
     CONF_NAME, CONF_HOST, CONF_USERNAME, CONF_PASSWORD,
     CONF_MONITORED_CONDITIONS, CONF_VERIFY_SSL)
 
-from pyunifi.controller import APIError
-
 __version__ = '0.2.0'
 REQUIREMENTS = ['pyunifi==2.16']
 
 _LOGGER = logging.getLogger(__name__)
-
-DOMAIN = 'sensor'
 
 CONF_PORT = 'port'
 CONF_SITE_ID = 'site_id'
@@ -56,8 +51,8 @@ USG_SENSORS = {
     SENSOR_FIRMWARE:['Firmware Upgradable', '', 'mdi:database-plus']
 }
 
-POSSIBLE_MONITORED = [ SENSOR_VPN, SENSOR_WWW, SENSOR_WAN, SENSOR_LAN, SENSOR_WLAN,
-                      SENSOR_ALERTS, SENSOR_FIRMWARE ]
+POSSIBLE_MONITORED = [SENSOR_VPN, SENSOR_WWW, SENSOR_WAN, SENSOR_LAN,
+                      SENSOR_WLAN, SENSOR_ALERTS, SENSOR_FIRMWARE]
 DEFAULT_MONITORED = POSSIBLE_MONITORED
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
@@ -70,12 +65,12 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_VERIFY_SSL, default=DEFAULT_VERIFY_SSL): vol.Any(
         cv.boolean, cv.isfile),
     vol.Optional(CONF_MONITORED_CONDITIONS, default=DEFAULT_MONITORED):
-        vol.All(cv.ensure_list, [vol.In(POSSIBLE_MONITORED)])
-
+        vol.All(cv.ensure_list, [vol.In(POSSIBLE_MONITORED)]),
 })
 
+
 def setup_platform(hass, config, add_entities, discovery_info=None):
-    """Set up the Unifi device_tracker."""
+    """Set up the UniFi sensor."""
     from pyunifi.controller import Controller, APIError
 
     name = config.get(CONF_NAME)
@@ -90,11 +85,12 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         ctrl = Controller(host, username, password, port, version='v4',
                           site_id=site_id, ssl_verify=verify_ssl)
     except APIError as ex:
-        _LOGGER.error("Failed to connect to Unifi: %s", ex)
+        _LOGGER.error("Failed to connect to UniFi Security Gateway: %s", ex)
         return False
 
     for sensor in config.get(CONF_MONITORED_CONDITIONS):
         add_entities([UnifiGatewaySensor(hass, ctrl, name, sensor)], True)
+
 
 class UnifiGatewaySensor(Entity):
     """Implementation of a UniFi Gateway sensor."""
@@ -132,50 +128,53 @@ class UnifiGatewaySensor(Entity):
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
+        """Update the sensor"""
+        from pyunifi.controller import APIError
 
         if self._sensor == SENSOR_ALERTS:
-          try:
-              unarchived_alerts = self._ctrl.get_alerts()
-          except APIError as ex:
-              _LOGGER.error("Failed to access alerts info: %s", ex)
+            try:
+                unarchived_alerts = self._ctrl.get_alerts()
+            except APIError as ex:
+                _LOGGER.error("Failed to access alerts info: %s", ex)
 
-          self._attributes = {}
-          for index, alert in enumerate(unarchived_alerts,start=1):
-            if not alert['archived']:
-              self._attributes[str(index)] = alert
+            self._attributes = {}
+            for index, alert in enumerate(unarchived_alerts, start=1):
+                if not alert['archived']:
+                    self._attributes[str(index)] = alert
 
-          self._state = len(self._attributes)
+            self._state = len(self._attributes)
 
         elif self._sensor == SENSOR_FIRMWARE:
-          try:
-            aps = self._ctrl.get_aps()
-          except APIError as ex:
-            _LOGGER.error("Failed to scan aps: %s", ex)
+            try:
+                aps = self._ctrl.get_aps()
+            except APIError as ex:
+                _LOGGER.error("Failed to scan aps: %s", ex)
 
-          # Set the attributes based on device name - this may not be unique
-          # but is user-readability preferred
-          self._attributes = {}
-          self._state = 0
-          for devices in aps:
-            if devices.get('upgradable'):
-                self._attributes[devices['name']] = devices['upgradable']
-                self._state += 1
+            # Set the attributes based on device name - this may not be unique
+            # but is user-readability preferred
+            self._attributes = {}
+            self._state = 0
+            for devices in aps:
+                if devices.get('upgradable'):
+                    self._attributes[devices['name']] = devices['upgradable']
+                    self._state += 1
 
         else:
-          # get_healthinfo() call made for each of 4 sensors - should only be for 1
-          try:
-              # Check that function exists...potential errors on startup otherwise
-              if hasattr(self._ctrl,'get_healthinfo'):
-                  self._alldata = self._ctrl.get_healthinfo()
+            # get_healthinfo() call made for each of 4 sensors - should only
+            # be for 1.
+            try:
+                # Check that function exists... potential errors on startup
+                # otherwise.
+                if hasattr(self._ctrl, 'get_healthinfo'):
+                    self._alldata = self._ctrl.get_healthinfo()
 
-                  for sub in self._alldata:
-                      if sub['subsystem'] == self._sensor:
-                          self._data = sub
-                          self._state = sub['status'].upper()
-                          for attr in sub:
-                              self._attributes[attr] = sub[attr]
-
-              else:
-                  _LOGGER.error("no healthinfo attribute for controller")
-          except APIError as ex:
-              _LOGGER.error("Failed to access health info: %s", ex)
+                    for sub in self._alldata:
+                        if sub['subsystem'] == self._sensor:
+                            self._data = sub
+                            self._state = sub['status'].upper()
+                            for attr in sub:
+                                self._attributes[attr] = sub[attr]
+                else:
+                    _LOGGER.error("no healthinfo attribute for controller")
+            except APIError as ex:
+                _LOGGER.error("Failed to access health info: %s", ex)
