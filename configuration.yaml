@@ -3,7 +3,7 @@
 #
 # @link https://home-assistant.io/components/automation/
 #
-automation: !include_dir_merge_list automations/
+#automation: !include_dir_merge_list automations/
 
 
 #
@@ -11,7 +11,7 @@ automation: !include_dir_merge_list automations/
 #
 # @link https://home-assistant.io/components/binary_sensor/
 #
-binary_sensor: !include misc/binary_sensors.yaml
+#binary_sensor: !include misc/binary_sensors.yaml
 
 
 #
@@ -19,7 +19,7 @@ binary_sensor: !include misc/binary_sensors.yaml
 #
 # @link https://home-assistant.io/components/camera/
 #
-camera: !include_dir_merge_list cameras/
+#camera: !include_dir_merge_list cameras/
 
 
 #
@@ -51,7 +51,7 @@ counter: !include misc/counters.yaml
 #
 # @link https://github.com/custom-components/custom_updater/
 #
-custom_updater: !include misc/custom_updater.yaml
+#custom_updater: !include misc/custom_updater.yaml
 
 
 #
@@ -68,7 +68,7 @@ custom_updater: !include misc/custom_updater.yaml
 #
 # @link https://home-assistant.io/components/device_tracker/
 #
-device_tracker: !include misc/device_trackers.yaml
+#device_tracker: !include misc/device_trackers.yaml
 
 
 #
@@ -76,10 +76,10 @@ device_tracker: !include misc/device_trackers.yaml
 #
 # @link https://home-assistant.io/components/discovery/
 #
-discovery:
-  ignore:
-    - google_cast
-    - samsung_printer
+#discovery:
+#  ignore:
+#    - google_cast
+#    - samsung_printer
 
 
 #
@@ -89,7 +89,7 @@ discovery:
 #
 # @link https://github.com/daemondazz/homeassistant-displays
 #
-display: !include misc/displays.yaml
+#display: !include misc/displays.yaml
 
 
 #
@@ -115,7 +115,7 @@ frontend:
 #
 # @link https://home-assistant.io/components/group/
 #
-group: !include_dir_merge_named groups/
+#group: !include_dir_merge_named groups/
 
 
 #
@@ -123,7 +123,7 @@ group: !include_dir_merge_named groups/
 #
 # @link https://www.home-assistant.io/hassio/
 #
-hassio:
+#hassio:
 
 
 #
@@ -155,7 +155,7 @@ homeassistant:
 #
 # @link https://www.home-assistant.io/components/homekit/
 #
-homekit: !include misc/homekit.yaml
+#homekit: !include misc/homekit.yaml
 
 
 #
@@ -166,7 +166,7 @@ homekit: !include misc/homekit.yaml
 # @link https://home-assistant.io/components/http/
 #
 http:
-  api_password: !secret http_password
+#  api_password: !secret http_password
   base_url: !secret http_base_url
   server_port: !secret http_server_port
   cors_allowed_origins: !secret http_cors_allowed_origins
@@ -186,7 +186,7 @@ http:
 #
 # @link https://home-assistant.io/components/input_boolean/
 #
-input_boolean: !include misc/input_booleans.yaml
+#input_boolean: !include misc/input_booleans.yaml
 
 
 #
@@ -194,7 +194,7 @@ input_boolean: !include misc/input_booleans.yaml
 #
 # @link https://home-assistant.io/components/input_select/
 #
-input_select: !include misc/input_selects.yaml
+#input_select: !include misc/input_selects.yaml
 
 
 #
@@ -203,7 +203,7 @@ input_select: !include misc/input_selects.yaml
 # @link https://itunes.apple.com/us/app/home-assistant-open-source-home-automation/id1099568401
 # @link https://home-assistant.io/docs/ecosystem/ios/
 #
-ios:
+#ios:
 
 
 #
@@ -211,7 +211,7 @@ ios:
 #
 # @link https://www.home-assistant.io/components/lifx/
 #
-lifx: !include misc/lifx.yaml
+#lifx: !include misc/lifx.yaml
 
 
 
@@ -220,7 +220,7 @@ lifx: !include misc/lifx.yaml
 #
 # @link https://home-assistant.io/components/light/
 #
-light: !include_dir_merge_list lights/
+#light: !include_dir_merge_list lights/
 
 
 #
@@ -241,10 +241,11 @@ logger:
   logs:
     aiohttp.server: critical # EBOX newer component bug.
     custom_components.display: critical # When tablet is offline.
-    custom_components.light.lightpack: critical # When Lightpack is offline.
-    homeassistant.components.device_tracker.unifi: fatal # When Unifi Controller is temporarily unreachable.
-    homeassistant.components.media_player.plex: fatal # When Plex is offline.
-    homeassistant.components.switch.tplink: error # When switch is unplugged.
+    custom_components.gtfs.sensor: debug
+    custom_components.lightpack.light: critical # When Lightpack is offline.
+    homeassistant.components.unifi.device_tracker: fatal # When Unifi Controller is temporarily unreachable.
+    homeassistant.components.plex.media_player: fatal # When Plex is offline.
+    homeassistant.components.tplink.switch: error # When switch is unplugged.
     pyunifi.controller: error # When Unifi Controller is temporarily unreachable.
 
 
@@ -270,7 +271,7 @@ lovelace:
 #
 # @link https://home-assistant.io/components/media_player/
 #
-media_player: !include misc/media_players.yaml
+#media_player: !include misc/media_players.yaml
 
 
 #
@@ -278,18 +279,18 @@ media_player: !include misc/media_players.yaml
 #
 # @link https://home-assistant.io/components/mqtt/
 #
-mqtt:
-  broker: !secret mqtt_broker
-  port: !secret mqtt_port
-  username: !secret mqtt_username
-  password: !secret mqtt_password
-  client_id: home-assistant
-  birth_message:
-    topic: 'hass/status'
-    payload: 'online'
-  will_message:
-    topic: 'hass/status'
-    payload: 'offline'
+#mqtt:
+#  broker: !secret mqtt_broker
+#  port: !secret mqtt_port
+#  username: !secret mqtt_username
+#  password: !secret mqtt_password
+#  client_id: home-assistant
+#  birth_message:
+#    topic: 'hass/status'
+#    payload: 'online'
+#  will_message:
+#    topic: 'hass/status'
+#    payload: 'offline'
 
 
 #
@@ -297,7 +298,7 @@ mqtt:
 #
 # @link https://home-assistant.io/components/notify/
 #
-notify: !include_dir_merge_list notifications/
+#notify: !include_dir_merge_list notifications/
 
 
 #
@@ -315,7 +316,7 @@ recorder: !include misc/recorder.yaml
 #
 # @link https://home-assistant.io/components/scene/
 #
-scene: !include misc/scenes.yaml
+#scene: !include misc/scenes.yaml
 
 
 #
@@ -323,7 +324,7 @@ scene: !include misc/scenes.yaml
 #
 # @link https://home-assistant.io/components/script/
 #
-script: !include_dir_named scripts/
+#script: !include_dir_named scripts/
 
 
 #
@@ -331,7 +332,24 @@ script: !include_dir_named scripts/
 #
 # @link https://home-assistant.io/components/sensor/
 #
-sensor: !include_dir_merge_list sensors/
+#sensor: !include_dir_merge_list sensors/
+sensor:
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'time_date'
+  - platform: version
+  - platform: gtfs
+#    name: 'Home to Metro'
+    origin: !secret gtfs_origin_1
+    destination: !secret gtfs_destination_1
+    data: !secret gtfs_data
+#    data: toto
+    include_tomorrow: true
+#    offset: 3600
+#    scan_interval: 60
 
 
 #
@@ -339,7 +357,7 @@ sensor: !include_dir_merge_list sensors/
 #
 # @link https://home-assistant.io/components/shell_command/
 #
-shell_command: !include misc/shell_commands.yaml
+#shell_command: !include misc/shell_commands.yaml
 
 
 #
@@ -347,7 +365,7 @@ shell_command: !include misc/shell_commands.yaml
 #
 # @link https://home-assistant.io/components/speedtestdotnet/
 #
-speedtestdotnet: !include misc/speedtest.yaml
+#speedtestdotnet: !include misc/speedtest.yaml
 
 
 #
@@ -363,7 +381,7 @@ sun:
 #
 # @link https://home-assistant.io/components/switch/
 #
-switch: !include_dir_merge_list switches/
+#switch: !include_dir_merge_list switches/
 
 
 #
@@ -379,8 +397,8 @@ system_health:
 #
 # @link https://home-assistant.io/components/tts/
 #
-tts:
-  - platform: google
+#tts:
+#  - platform: google
 
 
 #
@@ -393,8 +411,8 @@ tts:
 # @link https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
 # @link https://home-assistant.io/components/updater/
 #
-updater:
-  include_used_components: true
+#updater:
+#  include_used_components: true
 
 
 #
@@ -404,7 +422,7 @@ updater:
 #
 # @link https://github.com/rogro82/hass-variables
 #
-variable: !include misc/variables.yaml
+#variable: !include misc/variables.yaml
 
 
 
@@ -413,7 +431,7 @@ variable: !include misc/variables.yaml
 #
 # @link https://www.home-assistant.io/components/weather/
 #
-weather: !include misc/weather.yaml
+#weather: !include misc/weather.yaml
 
 
 #
@@ -421,7 +439,7 @@ weather: !include misc/weather.yaml
 #
 # @link https://home-assistant.io/components/zone/
 #
-zone: !include misc/zones.yaml
+#zone: !include misc/zones.yaml
 
 
 #
@@ -431,6 +449,6 @@ zone: !include misc/zones.yaml
 # @link https://home-assistant.io/docs/z-wave/
 # @link https://home-assistant.io/components/zwave/
 #
-zwave:
-  usb_path: /dev/ttyACM0
-  network_key: !secret zwave_network_key
+#zwave:
+#  usb_path: /dev/ttyACM0
+#  network_key: !secret zwave_network_key
