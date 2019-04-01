@@ -345,10 +345,13 @@ sensor:
 #    name: 'Home to Metro'
     origin: !secret gtfs_origin_1
     destination: !secret gtfs_destination_1
-#    destination: 8279182712
     data: !secret gtfs_data
-#    data: toto
     include_tomorrow: true
+    departures:
+      - 0
+      - 1
+      - 2
+      - 3
 #    offset: 3600
 #    scan_interval: 60
 #

@@ -48,10 +48,12 @@ ATTR_WHEELCHAIR_DESTINATION = \
 ATTR_WHEELCHAIR_ORIGIN = 'origin_station_wheelchair_boarding_available'
 
 CONF_DATA = 'data'
+CONF_DEPARTURES = 'departures'
 CONF_DESTINATION = 'destination'
 CONF_ORIGIN = 'origin'
 CONF_TOMORROW = 'include_tomorrow'
 
+DEFAULT_NAME = 'GTFS Sensor'
 DEFAULT_PATH = 'gtfs'
 
 BICYCLE_ALLOWED_DEFAULT = STATE_UNKNOWN
@@ -84,7 +86,6 @@ LOCATION_TYPE_OPTIONS = {
     2: "Station Entrance/Exit",
     3: 'Other',
 }
-NAME_FORMAT = '{origin} to {destination}'
 PICKUP_TYPE_DEFAULT = STATE_UNKNOWN
 PICKUP_TYPE_OPTIONS = {
     0: 'Regular',
@@ -124,13 +125,15 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({  # type: ignore
     vol.Required(CONF_DATA): cv.string,
     vol.Optional(CONF_NAME): cv.string,
     vol.Optional(CONF_OFFSET, default=0): cv.time_period,
+    vol.Optional(CONF_DEPARTURES, default=0):
+        vol.All(cv.ensure_list, [vol.Range(min=0, max=10)]),
     vol.Optional(CONF_TOMORROW, default=False): cv.boolean,
 })
 
 
 def get_next_departure(schedule: Any, start_station_id: Any,
                        end_station_id: Any, offset: cv.time_period,
-                       include_tomorrow: bool = False) -> dict:
+                       position: int, include_tomorrow: bool = False) -> dict:
     """Get the next departure for the given schedule."""
     now = datetime.datetime.now() + offset
     now_date = now.strftime(dt_util.DATE_STR_FORMAT)
@@ -268,19 +271,25 @@ def get_next_departure(schedule: Any, start_station_id: Any,
                 timetable[idx] = {**row, **extras}
 
     # Flag last departures.
-    for idx in [yesterday_last, today_last]:
-        if idx:
-            timetable[idx]['last'] = True
+    for idx in filter(None, [yesterday_last, today_last]):
+        timetable[idx]['last'] = True
 
     _LOGGER.debug("Timetable: %s", sorted(timetable.keys()))
 
     item = {}  # type: dict
+    skip = 0
     for key in sorted(timetable.keys()):
-        if dt_util.parse_datetime(key) > now:
-            item = timetable[key]
-            _LOGGER.debug("Departure found for station %s @ %s -> %s",
-                          start_station_id, key, item)
-            break
+        if dt_util.parse_datetime(key) <= now:
+            continue
+
+        if skip != position:
+            skip += 1
+            continue
+
+        item = timetable[key]
+        _LOGGER.debug("Departure #%d found for station %s @ %s -> %s",
+                      position, start_station_id, key, item)
+        break
 
     if item == {}:
         return {}
@@ -355,6 +364,7 @@ def setup_platform(hass: HomeAssistantType, config: ConfigType,
     gtfs_dir = hass.config.path(DEFAULT_PATH)
     data = config[CONF_DATA]
     origin = config.get(CONF_ORIGIN)
+    departures = config.get(CONF_DEPARTURES)
     destination = config.get(CONF_DESTINATION)
     name = config.get(CONF_NAME)
     offset = config.get(CONF_OFFSET)
@@ -379,27 +389,39 @@ def setup_platform(hass: HomeAssistantType, config: ConfigType,
     if not gtfs.feeds:
         pygtfs.append_feed(gtfs, os.path.join(gtfs_dir, data))
 
-    add_entities([
-        GTFSDepartureSensor(gtfs, name, origin, destination, offset,
-                            include_tomorrow)])
+    sensors = []
+    for position in departures:
+        sensors.append(GTFSDepartureSensor(
+            destination=destination,
+            include_tomorrow=include_tomorrow,
+            name=name,
+            offset=offset,
+            origin=origin,
+            position=position,
+            pygtfs=gtfs,
+        ))
+
+    add_entities(sensors)
 
 
 class GTFSDepartureSensor(Entity):
     """Implementation of a GTFS departure sensor."""
 
     def __init__(self, pygtfs: Any, name: Optional[Any], origin: Any,
-                 destination: Any, offset: cv.time_period,
+                 destination: Any, offset: cv.time_period, position: int,
                  include_tomorrow: bool) -> None:
         """Initialize the sensor."""
         self._pygtfs = pygtfs
         self.origin = origin
         self.destination = destination
+        self.position = position
         self._include_tomorrow = include_tomorrow
         self._offset = offset
+        self._custom_name = name
 
         self._available = False
         self._icon = ICON
-        self._name = name  # type: Optional[str]
+        self._name = ''
         self._state = None  # type: Optional[str]
         self._attributes = {}  # type: dict
 
@@ -416,33 +438,9 @@ class GTFSDepartureSensor(Entity):
     @property
     def name(self) -> str:
         """Return the name of the sensor."""
-        if self._name:
+        if self.position == 0:
             return self._name
-
-        if not self._route:
-            return '{origin} to {destination}'.format(
-                origin=getattr(self._origin,
-                               'stop_name',
-                               self.origin),
-                destination=getattr(self._destination,
-                                    'stop_name',
-                                    self.destination),
-            )
-
-        return '{route_type} {route_name}: {destination}'.format(
-            route_type=ROUTE_TYPE_OPTIONS[self._route.route_type],
-            route_name=(getattr(self._route, 'route_short_name', False)
-                        or getattr(self._route, 'route_long_name', '')),
-            destination=(getattr(self._destination, 'stop_headsign', False)
-                         or getattr(self._trip, 'trip_headsign', False)
-                         or getattr(self._trip, 'trip_short_name', False)
-                         or getattr(self._destination, 'short_name', '')),
-        )
-
-    @property
-    def entity_id(self) -> str:
-        """Return the entity ID."""
-        return 'sensor.gtfs_{}_to_{}'.format(self.origin, self.destination)
+        return '{} {}'.format(self._name, self.position)
 
     @property
     def state(self) -> Optional[str]:  # type: ignore
@@ -495,7 +493,7 @@ class GTFSDepartureSensor(Entity):
             # Fetch next departure
             self._departure = get_next_departure(
                 self._pygtfs, self.origin, self.destination, self._offset,
-                self._include_tomorrow)
+                self.position, self._include_tomorrow)
 
             # Define the state as a UTC timestamp with ISO 8601 format
             if not self._departure:
@@ -533,13 +531,24 @@ class GTFSDepartureSensor(Entity):
                         self._route.agency_id)
                     self._agency = False
 
-            # Assign attributes and icon
+            # Assign attributes, icon and name
             self.update_attributes()
 
             if self._route:
                 self._icon = ICONS.get(self._route.route_type, ICON)
             else:
                 self._icon = ICON
+
+            name = '{agency} {origin} to {destination} next departure'
+            if not self._departure:
+                name = '{default}'
+            self._name = (self._custom_name or
+                          name.format(agency=getattr(self._agency,
+                                                     'agency_name',
+                                                     DEFAULT_NAME),
+                                      default=DEFAULT_NAME,
+                                      origin=self.origin,
+                                      destination=self.destination))
 
     def update_attributes(self) -> None:
         """Update state attributes."""
