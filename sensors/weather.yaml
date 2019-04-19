@@ -92,7 +92,24 @@
         {% endif %}
 
     weather_summary:
-      friendly_name: Weather Summary
+      entity_id:
+        - sensor.dark_sky_temperature
+        - sensor.dark_sky_apparent_temperature
+        - sensor.dark_sky_minutely_summary
+      friendly_name_template: >-
+        {% set temperature = states('sensor.dark_sky_temperature') | round %}
+        {% set apparent = states('sensor.dark_sky_apparent_temperature') | round %}
+        {% set summary = states('sensor.dark_sky_minutely_summary') %}
+
+        {% if summary == 'unknown' %}
+          {% set summary = '' %}
+        {% endif %}
+
+        {{ summary }} {% if apparent != 'unknown' and apparent != temperature -%}
+          Feels like {{ apparent }}˚.
+        {% endif %}
+      icon_template: >-
+        {{ state_attr('sensor.dark_sky_summary', 'icon') }}
       value_template: >-
         {% if states('sensor.dark_sky_temperature') != 'unknown' %}
           {{ states('sensor.dark_sky_temperature') | round }}˚
@@ -103,6 +120,8 @@
 
     weather_details:
       friendly_name: Weather Details
+      icon_template: >-
+        {{ state_attr('sensor.dark_sky_summary', 'icon') }}
       value_template: >-
         {% set temperature = states('sensor.dark_sky_temperature') | round %}
         {% set apparent = states('sensor.dark_sky_apparent_temperature') | round %}

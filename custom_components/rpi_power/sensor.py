@@ -8,7 +8,7 @@ from homeassistant.helpers.entity import Entity
 import homeassistant.helpers.config_validation as cv
 from homeassistant.components.sensor import (PLATFORM_SCHEMA)
 
-__version__ = '0.0.8'
+__version__ = '0.1.0'
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -28,7 +28,7 @@ def setup_platform(hass, config, add_devices, discovery_info=None):
     if exist:
         add_devices([RaspberryChargerSensor(text_state)], True)
     else:
-        _LOGGER.critical('Can not read system information, your hardware is not supported.')
+        _LOGGER.critical('Cant find the system class needed for this component, make sure that your kernel is recent and the hardware is supported.')
 
 class RaspberryChargerSensor(Entity):
     """The class for this sensor"""
@@ -42,19 +42,19 @@ class RaspberryChargerSensor(Entity):
         """The update method"""
         _throttled = open(SYSFILE, 'r').read()[:-1]
         if _throttled == '0':
-            self._description = 'No throttling detected'
+            self._description = 'Everything is working as intended'
         elif _throttled == '1000':
-            self._description = 'An under-voltage has occurred.'
+            self._description = 'Under-voltage was detected, consider getting a uninterruptible power supply for your Raspberry Pi.'
         elif _throttled == '2000':
-            self._description = 'ARM frequency capped due to under-voltage.'
+            self._description = 'Your Raspberry Pi is limited due to a bad powersupply, replace the power supply cable or power supply itself.'
         elif _throttled == '3000':
-            self._description = 'ARM frequency capped due to under-voltage.'
+            self._description = 'Your Raspberry Pi is limited due to a bad powersupply, replace the power supply cable or power supply itself.'
         elif _throttled == '4000':
-            self._description = 'CPU is throttled due to under-voltage.'
+            self._description = 'The Raspberry Pi is throttled due to a bad power supply this can lead to corruption and instability, please replace your changer and cables.'
         elif _throttled == '5000':
-            self._description = 'CPU is throttled due to under-voltage.'
+            self._description = 'The Raspberry Pi is throttled due to a bad power supply this can lead to corruption and instability, please replace your changer and cables.'
         elif _throttled == '8000':
-            self._description = 'Soft Temp limit has occurred.'
+            self._description = 'Your Raspberry Pi is overheating, consider getting a fan or heat sinks.'
         else:
             self._description = 'There is a problem with your power supply or system.'
         if self._text_state:
@@ -77,7 +77,7 @@ class RaspberryChargerSensor(Entity):
     @property
     def icon(self):
         """Return the icon of the sensor"""
-        return 'mdi:raspberrypi'
+        return 'mdi:raspberry-pi'
 
     @property
     def device_state_attributes(self):

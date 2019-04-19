@@ -15,7 +15,7 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.helpers.event import async_track_time_interval
 
-VERSION = '4.2.18'
+VERSION = '4.2.19'
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -118,7 +118,7 @@ async def async_setup(hass, config):
         if 'components' in conf_track:
             await components_controller.update_all()
         if 'python_scripts' in conf_track:
-            python_scripts_controller.update_all()
+            await python_scripts_controller.update_all()
 
     async def install_service(call):
         """Install single component/card."""

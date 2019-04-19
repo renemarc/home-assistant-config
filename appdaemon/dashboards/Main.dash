@@ -87,29 +87,27 @@ slideshow:
 good_morning:
     widget_type: script
     entity: script.wake_up
-    title2: Good morning!
-    icon_on: mdi-weather-sunny
-    icon_off: mdi-weather-sunny
+    title2: Awaken
 
 quiet_mode:
     widget_type: input_boolean
     entity: input_boolean.quiet_mode
-    title2: Be quiet
+    title2: Quiet
 
 low_power_mode:
     widget_type: input_boolean
     entity: input_boolean.low_mode
-    title2: Low power
+    title2: Eco
 
 nap_mode:
     widget_type: input_boolean
     entity: input_boolean.nap_mode
-    title2: Go to sleep
+    title2: Sleep
 
 night_mode:
     widget_type: input_boolean
     entity: input_boolean.night_mode
-    title2: Good night!
+    title2: Dark
 
 scene:
     widget_type: input_select
@@ -264,4 +262,4 @@ layout:
     - nav_weather,      outdoor_safety, daily_forecast(2x1)
     - nav_spacer(1x2),  spacer, to_metro, to_market
     -                   spacer, to_metro_2, to_market_2
-    - nav_status,       good_morning, night_mode, nap_mode, scene, quiet_mode, low_power_mode, spacer, to_metro_3, to_market_3
+    - nav_status,       good_morning, nap_mode, night_mode, scene, quiet_mode, low_power_mode, spacer, to_metro_3, to_market_3

@@ -35,6 +35,8 @@ resources:
   #   type: js
   - url: /customcards/github/thomasloven/card-tools.js?track=true
     type: js
+  - url: /customcards/github/thomasloven/dummy-entity-row.js?track=true
+    type: js
   - url: /customcards/github/thomasloven/fold-entity-row.js?track=true
     type: js
   # - url: /customcards/github/thomasloven/layout-card.js?track=true
@@ -46,15 +48,21 @@ resources:
   - url: /customcards/github/thomasloven/useful-markdown-card.js?track=true
     type: js
 
-
 #
 # Custom styles
 #
 styles:
-  button-card: &button-card
-    - font-weight: bold
-    - border-radius: 8px
-    - margin: 8px 5px 2px
+  button-card-states: &button-card-states
+    - value: 'on'
+      color: var(--paper-toggle-button-checked-button-color)
+      style:
+        - color: var(--primary-background-color)
+        - font-weight: bold
+    - value: 'off'
+      color: var(--paper-toggle-button-unchecked-button-color)
+      style:
+        - color: var(--secondary-text-color)
+        - font-weight: bold
   graph-card-horizontal: &graph-card-horizontal
     fill: fade
     icon: false
@@ -100,81 +108,78 @@ views:
         clock_format: 24
         notifications: clock
         exceptions:
-        - conditions:
-            user_agent: Mobile
-            media_query: "(max-width: 600px)"
-          config:
-            options: hide
-            notifications: hide
+          - conditions:
+              user_agent: Mobile
+              media_query: "(max-width: 600px)"
+            config:
+              options: hide
+              notifications: hide
 
       #
       # Fixed first column
       #
       - type: vertical-stack
         cards:
-        #
-        # Wallpaper caption
-        #
-        - type: "custom:useful-markdown-card"
-          content: >
-            [[ sensor.bing_wallpaper ]]
+          #
+          # Wallpaper caption
+          #
+          - type: "custom:useful-markdown-card"
+            style:
+              background-color: rgba(50,50,50,0.3)
+            content: >
+              [[ sensor.bing_wallpaper ]]
 
-        #
-        # Action center
-        #
-        - type: "custom:vertical-stack-in-card"
-          cards:
-            - type: horizontal-stack
-              cards:
-                - entity: script.wake_up
-                  type: "custom:button-card"
-                  icon: mdi:power
-                  name: Awaken
-                  color: rgb(255, 233, 155)
-                  color_type: card
-                  style: *button-card
+          #
+          # Action center
+          #
+          - type: "custom:vertical-stack-in-card"
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - entity: script.wake_up
+                    type: "custom:button-card"
+                    color_type: card
+                    icon: mdi:power
+                    name: Awaken
+                    state: *button-card-states
 
-                - entity: input_boolean.nap_mode
-                  type: "custom:button-card"
-                  color_type: card
-                  name: Sleep
-                  icon: mdi:sleep
-                  color: var(--paper-toggle-button-checked-button-color)
-                  style: *button-card
+                  - entity: input_boolean.nap_mode
+                    type: "custom:button-card"
+                    color_type: card
+                    icon: mdi:sleep
+                    name: Sleep
+                    state: *button-card-states
 
-                - entity: input_boolean.night_mode
-                  type: "custom:button-card"
-                  color_type: card
-                  name: Dark
-                  icon: mdi:weather-night
-                  color: var(--paper-toggle-button-checked-button-color)
-                  style: *button-card
+                  - entity: input_boolean.night_mode
+                    type: "custom:button-card"
+                    color_type: card
+                    icon: mdi:weather-night
+                    name: Dark
+                    state: *button-card-states
 
-            - type: horizontal-stack
-              cards:
-                - type: "custom:button-card"
-                  color_type: blank-card
+              - type: horizontal-stack
+                cards:
+                  - type: "custom:button-card"
+                    color_type: blank-card
 
-                - entity: input_boolean.quiet_mode
-                  type: "custom:button-card"
-                  color_type: card
-                  name: Quiet
-                  icon: mdi:volume-mute
-                  color: var(--paper-toggle-button-checked-button-color)
-                  style: *button-card
+                  - entity: input_boolean.quiet_mode
+                    type: "custom:button-card"
+                    color_type: card
+                    icon: mdi:volume-mute
+                    name: Quiet
+                    state: *button-card-states
 
-                - entity: input_boolean.low_mode
-                  type: "custom:button-card"
-                  color_type: card
-                  name: Eco
-                  icon: mdi:weather-sunset-down
-                  color: var(--paper-toggle-button-checked-button-color)
-                  style: *button-card
+                  - entity: input_boolean.low_mode
+                    type: "custom:button-card"
+                    color_type: card
+                    icon: mdi:weather-sunset-down
+                    name: Eco
+                    state: *button-card-states
 
-            - type: entities
-              show_header_toggle: false
-              entities:
-                - input_select.scene
+              - type: entities
+                show_header_toggle: false
+                entities:
+                  - input_select.scene
 
       #
       # Climate and air quality
@@ -184,31 +189,35 @@ views:
           - type: horizontal-stack
             cards:
               - type: "custom:mini-graph-card"
-                entities:
-                 - entity: sensor.average_temperature
-                   name: Temperature
-                   color: *graph-color-temperature
                 align_state: right
                 decimals: 0
                 hour24: true
                 show: *graph-card-horizontal
+                entities:
+                  - entity: sensor.average_temperature
+                    name: Temperature
+                    color: *graph-color-temperature
+
               - type: "custom:mini-graph-card"
+                align_state: right
+                decimals: 0
+                hour24: true
+                show: *graph-card-horizontal
                 entities:
                   - entity: sensor.average_humidity
                     name: Humidity
                     color: *graph-color-humidity
-                align_state: right
-                decimals: 0
-                hour24: true
-                show: *graph-card-horizontal
+
           - type: entities
             title: "Climate & Air Quality"
             show_header_toggle: false
             entities:
               - entity: switch.dehumidifier
                 type: "custom:toggle-lock-entity-row"
+
               - entity: sensor.average_humidity_friendly
                 name: Humidity
+
               - entity: sensor.radon_friendly
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
@@ -217,12 +226,14 @@ views:
                   [[ sensor.radon_long_term ]]</span>
                   long term
                   </strong></small>
+
           - type: horizontal-stack
             cards:
               - type: "custom:mini-graph-card"
                 entities:
                   - entity: sensor.radon_daily
                     color: ORANGE
+
                   - entity: sensor.radon_long_term
                     name: Long Term
                     color: LIGHTGRAY
@@ -244,40 +255,50 @@ views:
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
               <strong style="color:var(--primary-text-color);">[[ sensor.home_to_metro_hour ]]</strong>
+
           - type: divider
             style: *transit_divider
+
           - entity: sensor.home_to_metro_2
             type: "custom:secondaryinfo-entity-row"
             name: ' '
             icon: ' '
             secondary_info: >-
               <strong style="color:var(--primary-text-color);">[[ sensor.home_to_metro_2_hour ]]</strong>
+
           - type: divider
             style: *transit_divider
+
           - entity: sensor.home_to_metro_3
             type: "custom:secondaryinfo-entity-row"
             name: ' '
             icon: ' '
             secondary_info: >-
               <strong style="color:var(--primary-text-color);">[[ sensor.home_to_metro_3_hour ]]</strong>
+
           - type: section
             label: To the market
+
           - entity: sensor.home_to_market
             name: ' '
             icon: 'mdi:cart'
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
               <strong style="color:var(--primary-text-color);">[[ sensor.home_to_market_hour ]]</strong>
+
           - type: divider
             style: *transit_divider
+
           - entity: sensor.home_to_market_2
             name: ' '
             icon: ' '
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
               <strong style="color:var(--primary-text-color);">[[ sensor.home_to_market_2_hour ]]</strong>
+
           - type: divider
             style: *transit_divider
+
           - entity: sensor.home_to_market_3
             name: ' '
             icon: ' '
@@ -314,6 +335,7 @@ views:
               [[ if(device_tracker.laptop_her != 'unknown', device_tracker.laptop_her, '') ]]
               </span>
               </strong></small>
+
           - entity: device_tracker.cellphone_him
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
@@ -382,25 +404,27 @@ views:
           - type: horizontal-stack
             cards:
               - type: "custom:mini-graph-card"
+                align_state: right
+                decimals: 0
+                hour24: true
+                hours_to_show: 12
+                show: *graph-card-horizontal
                 entities:
                   - entity: sensor.bedroom_temperature
                     name: Temperature
                     color: *graph-color-temperature
+
+              - type: "custom:mini-graph-card"
                 align_state: right
                 decimals: 0
                 hour24: true
                 hours_to_show: 12
                 show: *graph-card-horizontal
-              - type: "custom:mini-graph-card"
                 entities:
                   - entity: sensor.bedroom_humidity
                     name: Humidity
                     color: *graph-color-humidity
-                align_state: right
-                decimals: 0
-                hour24: true
-                hours_to_show: 12
-                show: *graph-card-horizontal
+
           - type: entities
             title: Bedroom
             show_header_toggle: true
@@ -425,16 +449,17 @@ views:
           - type: horizontal-stack
             cards:
               - type: "custom:mini-graph-card"
-                entities:
-                  - entity: sensor.kitchen_temperature
-                    name: Temperature
-                    color: *graph-color-temperature
                 align_state: right
                 decimals: 0
                 height: 50
                 hour24: true
                 hours_to_show: 12
                 show: *graph-card-horizontal
+                entities:
+                  - entity: sensor.kitchen_temperature
+                    name: Temperature
+                    color: *graph-color-temperature
+
           - type: entities
             title: Kitchen
             show_header_toggle: true
@@ -447,6 +472,7 @@ views:
                   [[ if(sensor.light_countertop_brightness > 0, '@', '') ]]
                   [[ if(sensor.light_countertop_brightness > 0, sensor.light_countertop_brightness, '') ]][[ if(sensor.light_countertop_brightness > 0, sensor.light_countertop_brightness.attributes.unit_of_measurement , '') ]]
                   </strong></small>
+
               - entity: light.sink
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
@@ -455,6 +481,7 @@ views:
                   [[ if(sensor.light_sink_brightness > 0, '@', '') ]]
                   [[ if(sensor.light_sink_brightness > 0, sensor.light_sink_brightness, '') ]][[ if(sensor.light_sink_brightness > 0, sensor.light_sink_brightness.attributes.unit_of_measurement , '') ]]
                   </strong></small>
+
               - entity: light.microwave
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
@@ -463,6 +490,7 @@ views:
                   [[ if(sensor.light_microwave_brightness > 0, '@', '') ]]
                   [[ if(sensor.light_microwave_brightness > 0, sensor.light_microwave_brightness, '') ]][[ if(sensor.light_microwave_brightness > 0, sensor.light_microwave_brightness.attributes.unit_of_measurement , '') ]]
                   </strong></small>
+
               - entity: light.island
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
@@ -471,10 +499,13 @@ views:
                   [[ if(sensor.light_island_brightness > 0, '@', '') ]]
                   [[ if(sensor.light_island_brightness > 0, sensor.light_island_brightness, '') ]][[ if(sensor.light_island_brightness > 0, sensor.light_island_brightness.attributes.unit_of_measurement , '') ]]
                   </strong></small>
+
               - switch.kiosk
               - type: section
+
               - entity: binary_sensor.kitchen_leak_sensor
                 name: Floor
+
               - entity: binary_sensor.kiosk_motion_auto
                 name: Motion
 
@@ -486,25 +517,27 @@ views:
           - type: horizontal-stack
             cards:
               - type: "custom:mini-graph-card"
+                align_state: right
+                decimals: 0
+                hour24: true
+                hours_to_show: 12
+                show: *graph-card-horizontal
                 entities:
                   - entity: sensor.lounge_temperature
                     name: Temperature
                     color: *graph-color-temperature
+
+              - type: "custom:mini-graph-card"
                 align_state: right
                 decimals: 0
                 hour24: true
                 hours_to_show: 12
                 show: *graph-card-horizontal
-              - type: "custom:mini-graph-card"
                 entities:
                   - entity: sensor.lounge_humidity
                     name: Humidity
                     color: *graph-color-humidity
-                align_state: right
-                decimals: 0
-                hour24: true
-                hours_to_show: 12
-                show: *graph-card-horizontal
+
           - type: entities
             title: Lounge
             show_header_toggle: true
@@ -512,11 +545,13 @@ views:
               - entity: light.aurora
                 type: "custom:slider-entity-row"
                 toggle: true
+
               - input_select.aurora_effect
               - type: section
               - light.lightpack
               - input_select.lightpack_effect
               - type: section
+
               - entity: light.spotlight
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
@@ -526,11 +561,15 @@ views:
                   [[ if(sensor.light_spotlight_brightness > 0, '@', '') ]]
                   [[ if(sensor.light_spotlight_brightness > 0, sensor.light_spotlight_brightness, '') ]][[ if(sensor.light_spotlight_brightness > 0, sensor.light_spotlight_brightness.attributes.unit_of_measurement , '') ]]
                   </strong></small>
+
               - light.souvenirs
               - light.window
+
               - entity: switch.lounge_tv
                 name: TV
+
               - type: section
+
               - entity: binary_sensor.lounge_multisensor
                 name: Motion
 
@@ -542,26 +581,28 @@ views:
           - type: horizontal-stack
             cards:
               - type: "custom:mini-graph-card"
-                entities:
-                  - entity: sensor.washroom_temperature
-                    name: Temperature
-                    color: *graph-color-temperature
                 align_state: right
                 decimals: 0
                 hour24: true
                 hours_to_show: 12
                 show: *graph-card-horizontal
-              - type: "custom:mini-graph-card"
                 entities:
-                  - entity: sensor.washroom_humidity
-                    name: Humidity
-                    color: *graph-color-humidity
+                  - entity: sensor.washroom_temperature
+                    name: Temperature
+                    color: *graph-color-temperature
+
+              - type: "custom:mini-graph-card"
                 align_state: right
                 line_color: blue
                 decimals: 0
                 hour24: true
                 hours_to_show: 12
                 show: *graph-card-horizontal
+                entities:
+                  - entity: sensor.washroom_humidity
+                    name: Humidity
+                    color: *graph-color-humidity
+
           - type: entities
             title: Washroom
             show_header_toggle: true
@@ -575,9 +616,12 @@ views:
                   [[ if(sensor.light_shower_brightness > 0, '@', '') ]]
                   [[ if(sensor.light_shower_brightness > 0, sensor.light_shower_brightness, '') ]][[ if(sensor.light_shower_brightness > 0, sensor.light_shower_brightness.attributes.unit_of_measurement , '') ]]
                   </strong></small>
+
               - type: section
+
               - entity: binary_sensor.washroom_leak_sensor
                 name: Floor
+
               - entity: binary_sensor.washroom_multisensor
                 name: Motion
 
@@ -617,62 +661,55 @@ views:
               - type: horizontal-stack
                 cards:
                   - type: "custom:mini-graph-card"
+                    align_state: right
+                    decimals: 0
+                    hour24: true
+                    hours_to_show: 12
+                    show: *graph-card-horizontal
                     entities:
                       - entity: sensor.outside_temperature
                         name: Temperature
                         color: *graph-color-temperature
+
+                  - type: "custom:mini-graph-card"
                     align_state: right
                     decimals: 0
                     hour24: true
                     hours_to_show: 12
                     show: *graph-card-horizontal
-                  - type: "custom:mini-graph-card"
                     entities:
                       - entity: sensor.outside_humidity
                         name: Humidity
                         color: *graph-color-humidity
-                    align_state: right
-                    decimals: 0
-                    hour24: true
-                    hours_to_show: 12
-                    show: *graph-card-horizontal
+
               - type: entities
                 entities:
-                  - entity: sensor.dark_sky_summary
-                    type: "custom:secondaryinfo-entity-row"
-                    secondary_info: >-
-                      <strong>
-                      <div style="color:var(--primary-text-color);">[[ sensor.feels_like ]]</div>
-                      <small>[[ sensor.dark_sky_minutely_summary ]]</small>
-                      </strong>
+                  - type: "custom:dummy-entity-row"
+                    entity: sensor.weather_summary
+
                   - entity: sensor.wind_speed
                     type: "custom:secondaryinfo-entity-row"
                     secondary_info: >-
                       <small><strong>
                       [[ sensor.wind_bearing_cardinal_16_friendly ]]
                       </strong></small>
+
                   - sensor.sun_state
-              - type: conditional
-                conditions:
-                  - entity: sun.sun
-                    state: "above_horizon"
-                card:
-                  type: entities
-                  entities:
-                    - entity: sensor.uv_friendly
-                      type: "custom:secondaryinfo-entity-row"
-                      secondary_info: >-
-                        <small><strong>
-                        [[ if(sun.sun != 'below_horizon', sensor.uv, 'The sun is down...') ]]
-                        </strong></small>
+
+                  - entity: sensor.uv_friendly
+                    type: "custom:secondaryinfo-entity-row"
+                    secondary_info: >-
+                      <small><strong>
+                      [[ if(sun.sun != 'below_horizon', sensor.uv, 'The sun is down...') ]]
+                      </strong></small>
+
               - type: "custom:useful-markdown-card"
                 content: |
                   [[ sensor.dark_sky_hourly_summary ]]
 
                   [[ sensor.dark_sky_daily_summary ]]
+
               - type: "custom:mini-graph-card"
-                entities:
-                  - entity: sensor.dark_sky_pressure
                 align_state: right
                 decimals: 0
                 height: 50
@@ -710,6 +747,8 @@ views:
                   labels: true
                   name: false
                   points: true
+                entities:
+                  - entity: sensor.dark_sky_pressure
 
           #
           # World safety
@@ -737,6 +776,7 @@ views:
             aspect_ratio: 4x3
             show_info: true
             show_state: false
+
           - type: picture-entity
             title: 'Radar: Snow'
             entity: camera.environment_canada_snow
@@ -744,6 +784,7 @@ views:
             aspect_ratio: 4x3
             show_info: true
             show_state: false
+
           - type: picture-entity
             title: 'Satellite: Geocolor'
             entity: camera.noaa_geocolor
@@ -751,6 +792,7 @@ views:
             aspect_ratio: 4x3
             show_info: true
             show_state: false
+
           - type: picture-entity
             title: 'Satellite: Water Vapour'
             entity: camera.noaa_water_vapour
@@ -773,8 +815,6 @@ views:
       - type: "custom:vertical-stack-in-card"
         cards:
           - type: "custom:mini-graph-card"
-            entities:
-              - entity: sensor.aqi
             align_state: right
             decimals: 0
             height: 50
@@ -799,6 +839,9 @@ views:
               labels: true
               name: false
               points: true
+            entities:
+              - entity: sensor.aqi
+
           - type: entities
             show_header_toggle: false
             entities:
@@ -808,49 +851,45 @@ views:
                   <small><strong>
                   [[ sensor.aqi_stations_count ]] [[ if(sensor.aqi_stations_count == 1, 'station', 'stations') ]] reporting
                   </strong></small>
+
               - type: section
+
               - entity: sensor.aqi_particles_friendly
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
                   <small><strong>
                   [[ sensor.aqi_particles ]] [[ sensor.aqi_particles.attributes.unit_of_measurement ]]
                   </strong></small>
+
               - entity: sensor.aqi_ozone_friendly
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
                   <small><strong>
                   [[ sensor.aqi_ozone ]] [[ sensor.aqi_ozone.attributes.unit_of_measurement ]]
                   </strong></small>
+
               - entity: sensor.aqi_carbon_monoxide_friendly
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
                   <small><strong>
                   [[ sensor.aqi_carbon_monoxide ]] [[ sensor.aqi_carbon_monoxide.attributes.unit_of_measurement ]]
                   </strong></small>
+
               - entity: sensor.aqi_nitrogen_dioxide_friendly
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
                   <small><strong>
                   [[ sensor.aqi_nitrogen_dioxide ]] [[ sensor.aqi_nitrogen_dioxide.attributes.unit_of_measurement ]]
                   </strong></small>
+
               - entity: sensor.aqi_sulphur_dioxide_friendly
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
                   <small><strong>
                   [[ sensor.aqi_sulphur_dioxide ]] [[ sensor.aqi_sulphur_dioxide.attributes.unit_of_measurement ]]
                   </strong></small>
+
           - type: "custom:mini-graph-card"
-            entities:
-              - entity: sensor.aqi_particles
-                color: Brown
-              - entity: sensor.aqi_ozone
-                color: DeepSkyBlue
-              - entity: sensor.aqi_carbon_monoxide
-                color: DarkSlateGray
-              - entity: sensor.aqi_nitrogen_dioxide
-                color: DarkOrange
-              - entity: sensor.aqi_sulphur_dioxide
-                color: GOLD
             align_state: right
             decimals: 0
             height: 75
@@ -862,6 +901,17 @@ views:
               name: false
               points: true
               state: false
+            entities:
+              - entity: sensor.aqi_particles
+                color: Brown
+              - entity: sensor.aqi_ozone
+                color: DeepSkyBlue
+              - entity: sensor.aqi_carbon_monoxide
+                color: DarkSlateGray
+              - entity: sensor.aqi_nitrogen_dioxide
+                color: DarkOrange
+              - entity: sensor.aqi_sulphur_dioxide
+                color: GOLD
 
 
   #
@@ -885,15 +935,16 @@ views:
           - type: horizontal-stack
             cards:
               - type: "custom:mini-graph-card"
-                entities:
-                  - entity: sensor.average_temperature
-                    name: Temperature
-                    color: *graph-color-temperature
                 align_state: right
                 decimals: 0
                 height: 50
                 hour24: true
                 show: *graph-card-solo
+                entities:
+                  - entity: sensor.average_temperature
+                    name: Temperature
+                    color: *graph-color-temperature
+
           - type: entities
             title: Temperatures
             show_header_toggle: false
@@ -903,17 +954,22 @@ views:
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
                   <small><strong>Tracked</strong></small>
+
               - entity: sensor.humidor_temperature
                 icon: mdi:bow-tie
+
               - entity: sensor.kitchen_temperature
                 icon: mdi:food-fork-drink
+
               - entity: sensor.lounge_temperature
                 icon: mdi:sofa
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
                   <small><strong>Tracked</strong></small>
+
               - entity: sensor.radon_detector_temperature
                 icon: mdi:radioactive
+
               - entity: sensor.washroom_temperature
                 icon: mdi:shower
 
@@ -925,14 +981,15 @@ views:
           - type: horizontal-stack
             cards:
               - type: "custom:mini-graph-card"
-                entities:
-                  - entity: sensor.average_humidity
-                    color: *graph-color-humidity
                 align_state: right
                 decimals: 0
                 height: 50
                 hour24: true
                 show: *graph-card-solo
+                entities:
+                  - entity: sensor.average_humidity
+                    color: *graph-color-humidity
+
           - type: entities
             title: Humidity Levels
             show_header_toggle: false
@@ -942,15 +999,19 @@ views:
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
                   <small><strong>Tracked</strong></small>
+
               - entity: sensor.humidor_humidity
                 icon: mdi:bow-tie
+
               - entity: sensor.lounge_humidity
                 icon: mdi:sofa
                 type: "custom:secondaryinfo-entity-row"
                 secondary_info: >-
                   <small><strong>Tracked</strong></small>
+
               - entity: sensor.radon_detector_humidity
                 icon: mdi:radioactive
+
               - entity: sensor.washroom_humidity
                 icon: mdi:shower
 
@@ -981,29 +1042,34 @@ views:
               <small><strong>
               <a href="[[ updater.updater.attributes.release_notes ]]" target="_new" style="color:var(--secondary-text-color);"">Release notes</a>
               </strong></small>
+
           - sensor.ipv4_address_eth0
           - sensor.uptime_friendly
           - sensor.uptime_host
           - type: section
           - sensor.cpu_temp
+
           - entity: sensor.processor_use
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
               <small><strong>
               [[ sensor.average_load ]] ([[ sensor.cpu_cores ]] cores)
               </strong></small>
+
           - entity: sensor.memory_use_percent
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
               <small><strong>
               [[ sensor.memory_free ]] [[ sensor.memory_free.attributes.unit_of_measurement ]] available
               </strong></small>
+
           - entity: sensor.disk_use_percent
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
               <small><strong>
               [[ sensor.disk_free_home ]] [[ sensor.disk_free_home.attributes.unit_of_measurement ]] available
               </strong></small>
+
           - type: section
           - sensor.database_size
           - sensor.log_size
@@ -1021,6 +1087,7 @@ views:
               <small><strong>
               [[ sensor.printer_toner_remain ]] [[ sensor.printer_drum_remain.attributes.unit_of_measurement ]] remaining
               </strong></small>
+
           - entity: sensor.printer_drum_black
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
@@ -1039,12 +1106,12 @@ views:
             card:
               type: "custom:bar-card"
               severity:
-                - value: 50
-                  hue: '0'
-                - value: 75
-                  hue: '40'
+                - value: 20
+                  color: '#bf4040'
+                - value: 30
+                  color: '#bf9540'
                 - value: 100
-                  hue: '120'
+                  color: '#40bf40'
               align: left
               animation: "off"
               columns: 2
@@ -1061,7 +1128,6 @@ views:
                 text-align: left
                 font-size: normal
               value_style:
-                margin: 2px
                 font-size: small
             filter:
               include:
@@ -1077,24 +1143,30 @@ views:
           - entity: sensor.wan_ip_address
             name: Public IP Address
             icon: mdi:wan
+
           - entity: sensor.speedtest_ping_rounded
             secondary_info: last-changed
+
           - entity: sensor.speedtest_upload_rounded
             secondary_info: last-changed
+
           - entity: sensor.speedtest_download_rounded
             secondary_info: last-changed
+
           - entity: sensor.ebox_upload_before_offpeak_rounded
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
               <small><strong>
               [[ sensor.ebox_upload_remaining ]] [[ sensor.ebox_upload_remaining.attributes.unit_of_measurement ]] available
               </strong></small>
+
           - entity: sensor.ebox_download_before_offpeak_rounded
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
               <small><strong>
               [[ sensor.ebox_download_remaining ]] [[ sensor.ebox_download_remaining.attributes.unit_of_measurement ]] available
               </strong></small>
+
           - type: "custom:fold-entity-row"
             head:
               type: section
@@ -1112,6 +1184,7 @@ views:
         entities:
           - entity: sensor.unifi_gateway_alerts
             name: Alerts
+
           - entity: sensor.unifi_gateway_lan_clients
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
@@ -1119,6 +1192,7 @@ views:
               [[ if(sensor.unifi_gateway_lan_guests > 0, sensor.unifi_gateway_lan_guests, '') ]]
               [[ if(sensor.unifi_gateway_lan_guests > 1, 'guests', if(sensor.unifi_gateway_lan_guests > 0, 'guest', '')) ]]
               </strong></small>
+
           - entity: sensor.unifi_gateway_wlan_clients
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
@@ -1126,17 +1200,20 @@ views:
               [[ if(sensor.unifi_gateway_wlan_guests > 0, sensor.unifi_gateway_wlan_guests, '') ]]
               [[ if(sensor.unifi_gateway_wlan_guests > 1, 'guests', if(sensor.unifi_gateway_wlan_guests > 0, 'guest', '')) ]]
               </strong></small>
+
           - type: "custom:fold-entity-row"
             head:
               type: section
               label: Router
             items:
-            - entity: sensor.unifi_uptime
-              name: Uptime
-            - entity: sensor.unifi_gateway_processor_use
-              name: CPU Load
-            - entity: sensor.unifi_gateway_memory_use
-              name: Memory Use
+              - entity: sensor.unifi_uptime
+                name: Uptime
+
+              - entity: sensor.unifi_gateway_processor_use
+                name: CPU Load
+
+              - entity: sensor.unifi_gateway_memory_use
+                name: Memory Use
 
 
   #
@@ -1302,14 +1379,38 @@ views:
         title: Configuration Switches
         show_header_toggle: false
         entities:
-          - input_boolean.door_test
           - sensor.door_status
-          - input_boolean.leak_test
-          - input_boolean.motion_test
+          - entity: input_boolean.door_test
+            type: "custom:toggle-lock-entity-row"
+            name: Test
+            icon: ' '
+          - type: section
+
+          - sensor.leak_location
+          - entity: input_boolean.leak_test
+            type: "custom:toggle-lock-entity-row"
+            name: Test
+            icon: ' '
+          - type: section
+
           - sensor.motion_status
-          - input_boolean.smoke_test
+          - entity: input_boolean.motion_test
+            type: "custom:toggle-lock-entity-row"
+            name: Test
+            icon: ' '
+          - type: section
+
           - sensor.smoke_status
-          - input_boolean.tamper_detected
+          - entity: input_boolean.smoke_test
+            type: "custom:toggle-lock-entity-row"
+            name: Test
+            icon: ' '
+          - type: section
+
           - variable.tamper_detected
-          - script.tamper_reset
+          - input_boolean.tamper_detected
+          - entity: script.tamper_reset
+            name: Reset
+          - type: section
+
           - switch.aeotec_zstick_disco_light

@@ -985,7 +985,7 @@ scene.shutdown:
 script.tamper_reset:
   icon: mdi:restart
 script.wake_up:
-  icon: mdi:weather-sunny
+  icon: mdi:power
 
 
 #

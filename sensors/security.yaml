@@ -57,6 +57,18 @@
 - platform: template
   sensors:
     leak_location:
+      friendly_name_template: >-
+        {% if is_state('group.leak_sensors', 'on') %}
+          Leak detected
+        {% else %}
+          Leaks
+        {% endif %}
+      icon_template: >-
+        {% if is_state('group.leak_sensors', 'on') %}
+          mdi:pipe-leak
+        {% else %}
+          mdi:pipe
+        {% endif %}
       value_template: >-
         {% set entities = [
             states.binary_sensor.kitchen_leak_sensor,
