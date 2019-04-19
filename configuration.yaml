@@ -358,6 +358,20 @@ sensor:
 #    data: !secret gtfs_data
 #    include_tomorrow: true
 
+  - platform: gtfs
+#    name: 'Home to Market'
+    origin: !secret gtfs_origin_2
+    destination: !secret gtfs_destination_2
+    data: !secret gtfs_data
+    include_tomorrow: true
+
+  - platform: gtfs
+#    name: Action
+    origin: '0401'
+    destination: '0405'
+    data: action-canberra
+    include_tomorrow: true
+
 #
 # Shell commands
 #

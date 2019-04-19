@@ -24,6 +24,8 @@ import homeassistant.util.dt as dt_util
 
 REQUIREMENTS = ['pygtfs==0.1.5']
 
+PARALLEL_UPDATES = 0
+
 _LOGGER = logging.getLogger(__name__)
 
 ATTR_ARRIVAL = 'arrival'
@@ -54,6 +56,8 @@ CONF_TOMORROW = 'include_tomorrow'
 
 DEFAULT_NAME = 'GTFS Sensor'
 DEFAULT_PATH = 'gtfs'
+
+KEY_DATA = 'gtfs'
 
 BICYCLE_ALLOWED_DEFAULT = STATE_UNKNOWN
 BICYCLE_ALLOWED_OPTIONS = {
@@ -372,15 +376,31 @@ def setup_platform(hass: HomeAssistantType, config: ConfigType,
 
     sqlite_file = "{}.sqlite?check_same_thread=False".format(gtfs_root)
     joined_path = os.path.join(gtfs_dir, sqlite_file)
+    source_path = os.path.join(gtfs_dir, data)
+
     gtfs = pygtfs.Schedule(joined_path)
 
-    # pylint: disable=no-member
-    if not gtfs.feeds:
+    if KEY_DATA not in hass.data:
+        hass.data[KEY_DATA] = dict()
+    build_key = 'build'
+    if build_key not in hass.data[KEY_DATA]:
+        hass.data[KEY_DATA][build_key] = []
+
+    # Build the database, or wait for a previous thread to complete it first
+    # if not gtfs.feeds:
+    if not gtfs.feeds and data not in hass.data[KEY_DATA][build_key]:
+        hass.data[KEY_DATA][build_key].append(data)
+
+        _LOGGER.info("append %s", data)
+
+        _LOGGER.info("Creating database for \"%s\", this may take some time",
+                     data)
         pygtfs.append_feed(gtfs, os.path.join(gtfs_dir, data))
+        _LOGGER.info("Database \"%s.sqlite\" creation complete", data)
 
     add_entities([
         GTFSDepartureSensor(gtfs, name, origin, destination, offset,
-                            include_tomorrow)])
+                            include_tomorrow, source_path)])
 
 
 class GTFSDepartureSensor(Entity):
@@ -388,7 +408,7 @@ class GTFSDepartureSensor(Entity):
 
     def __init__(self, pygtfs: Any, name: Optional[Any], origin: Any,
                  destination: Any, offset: cv.time_period,
-                 include_tomorrow: bool) -> None:
+                 include_tomorrow: bool, source_path) -> None:
         """Initialize the sensor."""
         self._pygtfs = pygtfs
         self.origin = origin
@@ -409,6 +429,8 @@ class GTFSDepartureSensor(Entity):
         self._origin = None
         self._route = None
         self._trip = None
+
+        self._source_path = source_path
 
         self.lock = threading.Lock()
         self.update()
@@ -445,6 +467,21 @@ class GTFSDepartureSensor(Entity):
 
     def update(self) -> None:
         """Get the latest data from GTFS and update the states."""
+        # if not self._pygtfs.feeds:
+        #     data = 'rtl-longueuil'
+        #     if data not in self.hass.data[KEY_DATA]['build']:
+        #         self.hass.data[KEY_DATA]['build'].append(data)
+        #
+        #         import pygtfs
+        #         # from pygtfs.gtfs_entities import Feed
+        #
+        #         # feed = self._pygtfs.session.query(Feed).first()
+        #         # if not feed:
+        #         _LOGGER.info("Creating database for \"%s\", this may take some time",
+        #                      'toto')
+        #         pygtfs.append_feed(self._pygtfs, self._source_path)
+        #         _LOGGER.info("Database \"%s.sqlite\" creation complete", 'toto')
+
         with self.lock:
             # Fetch valid stop information once
             if not self._origin:
