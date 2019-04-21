@@ -20,6 +20,152 @@
 
 
 #
+# Domain statistics
+#
+# Overview of the number of devices/scripts/sensors for some categories.
+#
+- platform: template
+  sensors:
+    count_automations:
+      friendly_name: Automations Count
+      icon_template: mdi:arrow-decision-auto
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ states.automation | list | count }}
+
+    count_automations_disabled:
+      friendly_name: Disabled Automations Count
+      icon_template: mdi:arrow-decision-auto
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ states.automation | selectattr('state', 'eq', 'off')
+                             | list
+                             | count }}
+
+    count_interfaces:
+      friendly_name: Interfaces Count
+      icon_template: mdi:gesture-tap
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {% set buttons = states.binary_sensor | map('regex_search','\.flic_')
+                                              | select('equalto', True)
+                                              | list
+                                              | count %}
+        {% set displays = states.display | list | count %}
+        {{ buttons + displays }}
+
+    count_lights:
+      friendly_name: Lights Count
+      icon_template: mdi:lightbulb
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ states.light | list | count }}
+
+    count_lights_unavailable:
+      friendly_name: Lights Unavailable Count
+      icon_template: mdi:lightbulb
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ states.light | selectattr('state', 'eq', 'unavailable')
+                        | list
+                        | count }}
+
+    count_motion_sensors:
+      friendly_name: Motion Sensors Count
+      icon_template: mdi:walk
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ states.binary_sensor | selectattr('attributes.device_class', 'in', ['door', 'motion'])
+                                | list
+                                | count }}
+
+    count_motion_sensors_unavailable:
+      friendly_name: Motion Sensors Unavailable Count
+      icon_template: mdi:walk
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ states.binary_sensor | selectattr('attributes.device_class', 'in', ['door', 'motion'])
+                                | selectattr('state', 'in', ['dead', 'unavailable'])
+                                | list
+                                | count }}
+
+    count_security_sensors:
+      friendly_name: Security Sensors Count
+      icon_template: mdi:shield-home
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {% set burglar = states.sensor | map('regex_search','_burglar')
+                                       | select('equalto', True)
+                                       | list
+                                       | count %}
+        {% set classes = states.binary_sensor | selectattr('attributes.device_class', 'in', ['moisture', 'smoke'])
+                                              | list
+                                              | count %}
+        {{ burglar + classes }}
+
+    count_security_sensors_unavailable:
+      friendly_name: Security Sensors Count
+      icon_template: mdi:shield-home
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {% set burglar = states.sensor | map('regex_search','_burglar')
+                                       | selectattr('state', 'in', ['dead', 'unavailable'])
+                                       | select('equalto', True)
+                                       | list
+                                       | count %}
+        {% set classes = states.binary_sensor | selectattr('attributes.device_class', 'in', ['moisture', 'smoke'])
+                                              | selectattr('state', 'in', ['dead', 'unavailable'])
+                                              | list
+                                              | count %}
+        {{ burglar + classes }}
+
+    count_switches:
+      friendly_name: Switches Count
+      icon_template: mdi:toggle-switch
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ states.switch | list | count }}
+
+    count_switches_unavailable:
+      friendly_name: Switches Unavailable Count
+      icon_template: mdi:arrow-decision-auto
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ states.switch | selectattr('state', 'eq', 'unavailable')
+                         | list
+                         | count }}
+
+    count_zwave:
+      friendly_name: Zwave Nodes Count
+      icon_template: mdi:z-wave
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ states.zwave | list | count }}
+
+    count_zwave_unavailable:
+      friendly_name: Zwave Nodes Unavailable Count
+      icon_template: mdi:z-wave
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ states.zwave | selectattr('state', 'eq', 'dead')
+                        | list
+                        | count }}
+
+
+#
 # Current modes
 #
 # @see /appdaemon/dashboards/Switchboard.dash

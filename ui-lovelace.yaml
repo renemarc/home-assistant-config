@@ -1215,6 +1215,70 @@ views:
               - entity: sensor.unifi_gateway_memory_use
                 name: Memory Use
 
+      #
+      # HASS overview
+      #
+      - type: entities
+        title: Domains
+        show_header_toggle: false
+        entities:
+          - entity: sensor.count_automations
+            type: "custom:secondaryinfo-entity-row"
+            name: Automations
+            secondary_info: >-
+              <small><strong>
+              [[ if(sensor.count_automations_disabled > 0, sensor.count_automations_disabled, '') ]]
+              [[ if(sensor.count_automations_disabled > 0, 'disabled', '') ]]
+              </strong></small>
+
+          - entity: sensor.count_interfaces
+            name: Interfaces
+
+          - entity: sensor.count_lights
+            type: "custom:secondaryinfo-entity-row"
+            name: Lights
+            secondary_info: >-
+              <small><strong>
+              [[ if(sensor.count_lights_unavailable > 0, sensor.count_lights_unavailable, '') ]]
+              [[ if(sensor.count_lights_unavailable > 0, 'unavailable', '') ]]
+              </strong></small>
+
+          - entity: sensor.count_motion_sensors
+            type: "custom:secondaryinfo-entity-row"
+            name: Motion Sensors
+            secondary_info: >-
+              <small><strong>
+              [[ if(sensor.count_motion_sensors_unavailable > 0, sensor.count_motion_sensors_unavailable, '') ]]
+              [[ if(sensor.count_motion_sensors_unavailable > 0, 'unavailable', '') ]]
+              </strong></small>
+
+          - entity: sensor.count_security_sensors
+            type: "custom:secondaryinfo-entity-row"
+            name: Security Sensors
+            secondary_info: >-
+              <small><strong>
+              [[ if(sensor.count_security_sensors_unavailable > 0, sensor.count_security_sensors_unavailable, '') ]]
+              [[ if(sensor.count_security_sensors_unavailable > 0, 'unavailable', '') ]]
+              </strong></small>
+
+          - entity: sensor.count_switches
+            type: "custom:secondaryinfo-entity-row"
+            name: Switches
+            secondary_info: >-
+              <small><strong>
+              [[ if(sensor.count_switches_unavailable > 0, sensor.count_switches_unavailable, '') ]]
+              [[ if(sensor.count_switches_unavailable > 0, 'unavailable', '') ]]
+              </strong></small>
+
+          - entity: sensor.count_zwave
+            type: "custom:secondaryinfo-entity-row"
+            name: Z-Wave Nodes
+            secondary_info: >-
+              <small><strong>
+              [[ if(sensor.count_zwave_unavailable > 0, sensor.count_zwave_unavailable, '') ]]
+              [[ if(sensor.count_zwave_unavailable > 0, 'unavailable', '') ]]
+              </strong></small>
+
 
   #
   # Automations
@@ -1379,38 +1443,46 @@ views:
         title: Configuration Switches
         show_header_toggle: false
         entities:
-          - sensor.door_status
-          - entity: input_boolean.door_test
-            type: "custom:toggle-lock-entity-row"
-            name: Test
-            icon: ' '
-          - type: section
+          - type: "custom:fold-entity-row"
+            head: sensor.door_status
+            items:
+              - entity: input_boolean.door_test
+                type: "custom:toggle-lock-entity-row"
+                name: Test
+                icon: mdi:check-decagram
 
-          - sensor.leak_location
-          - entity: input_boolean.leak_test
-            type: "custom:toggle-lock-entity-row"
-            name: Test
-            icon: ' '
-          - type: section
+          - type: "custom:fold-entity-row"
+            head: sensor.leak_location
+            items:
+              - entity: input_boolean.leak_test
+                type: "custom:toggle-lock-entity-row"
+                name: Test
+                icon: mdi:check-decagram
 
-          - sensor.motion_status
-          - entity: input_boolean.motion_test
-            type: "custom:toggle-lock-entity-row"
-            name: Test
-            icon: ' '
-          - type: section
+          - type: "custom:fold-entity-row"
+            head: sensor.motion_status
+            items:
+              - entity: input_boolean.motion_test
+                type: "custom:toggle-lock-entity-row"
+                name: Test
+                icon: mdi:check-decagram
 
-          - sensor.smoke_status
-          - entity: input_boolean.smoke_test
-            type: "custom:toggle-lock-entity-row"
-            name: Test
-            icon: ' '
-          - type: section
+          - type: "custom:fold-entity-row"
+            head: sensor.smoke_status
+            items:
+              - entity: input_boolean.smoke_test
+                type: "custom:toggle-lock-entity-row"
+                name: Test
+                icon: mdi:check-decagram
 
-          - variable.tamper_detected
-          - input_boolean.tamper_detected
-          - entity: script.tamper_reset
-            name: Reset
-          - type: section
+          - type: "custom:fold-entity-row"
+            head:
+              entity: variable.tamper_detected
+              name: Tampering
+            items:
+              - input_boolean.tamper_detected
+              - entity: script.tamper_reset
+                name: Reset
 
+          - type: section
           - switch.aeotec_zstick_disco_light
