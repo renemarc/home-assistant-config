@@ -89,9 +89,20 @@ The missing link that allows storage of non-boolean values using the [Variable c
 
 These are default Home Assistant components that were copied from the core to alter their behaviour. These changes really should be turned into appropriate [PRs](https://github.com/home-assistant/home-assistant/pulls).
 
-### [`🚌 ./sensor/gtfs.py`](sensor/gtfs.py)
+### [`😺 ./github/sensor.py`](github/sensor.py)
 
-[GTFS](https://github.com/home-assistant/home-assistant/blob/master/homeassistant/components/sensor/gtfs.py) public transit schedules component:
+[GitHub](https://www.home-assistant.io/components/github/) component:
+
+- Added support for forks count.
+- Added support for 14-day clones count.
+- Added support for 14-day view count.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
+
+### [`🚌 ./gtfs/sensor.py`](gtfs/sensor.py)
+
+[GTFS](https://www.home-assistant.io/components/gtfs/) public transit schedules component:
 
 - Added support for next bus departures.
 - Simplified query, making it cacheable in order to increase IO performance.

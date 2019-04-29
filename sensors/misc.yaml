@@ -211,6 +211,78 @@
 
 
 #
+# Github Public Configuration Repository
+#
+# @link https://github.com/renemarc/home-assistant-config
+# @link https://home-assistant.io/components/github/
+#
+- platform: github
+  access_token: !secret github_access_token
+  scan_interval: 3600
+  repositories:
+    - path: 'renemarc/home-assistant-config'
+      name: Config Repo
+
+- platform: template
+  sensors:
+    config_repo_clones:
+      friendly_name: Config Repo Clones
+      icon_template: mdi:content-copy
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ state_attr('sensor.home_assistant_config', 'clones') }}
+
+    config_repo_clones_uniques:
+      friendly_name: Config Repo Clones Uniques
+      icon_template: mdi:content-copy
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ state_attr('sensor.home_assistant_config', 'clones_uniques') }}
+
+    config_repo_forks:
+      friendly_name: Config Repo Forks
+      icon_template: mdi:source-fork
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ state_attr('sensor.home_assistant_config', 'forks') }}
+
+    config_repo_issues:
+      friendly_name: Config Repo Issues
+      icon_template: mdi:alert-circle-outline
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ state_attr('sensor.home_assistant_config', 'open_issues') }}
+
+    config_repo_stargazers:
+      friendly_name: Config Repo Stargazers
+      icon_template: mdi:star-face
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ state_attr('sensor.home_assistant_config', 'stargazers') }}
+
+    config_repo_views:
+      friendly_name: Config Repo Views
+      icon_template: mdi:eye
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ state_attr('sensor.home_assistant_config', 'views') }}
+
+    config_repo_views_uniques:
+      friendly_name: Config Repo Views Uniques
+      icon_template: mdi:eye
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {{ state_attr('sensor.home_assistant_config', 'views_uniques') }}
+
+
+#
 # Random positive quotes, to brighten up the day!
 #
 # @link http://www.lifestalker.com/2017/04/four-word-quotes.html

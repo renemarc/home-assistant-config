@@ -31,8 +31,8 @@ resources:
     type: module
   - url: /customcards/github/thomasloven/auto-entities.js?track=true
     type: js
-  # - url: /customcards/github/thomasloven/card-modder.js?track=true
-  #   type: js
+  - url: /customcards/github/thomasloven/card-modder.js?track=true
+    type: js
   - url: /customcards/github/thomasloven/card-tools.js?track=true
     type: js
   - url: /customcards/github/thomasloven/dummy-entity-row.js?track=true
@@ -126,13 +126,16 @@ views:
           - type: "custom:useful-markdown-card"
             style:
               background-color: rgba(50,50,50,0.3)
-            content: >
+            content: >-
               [[ sensor.bing_wallpaper ]]
+
+
 
           #
           # Action center
           #
           - type: "custom:vertical-stack-in-card"
+            title: " "
             cards:
               - type: horizontal-stack
                 cards:
@@ -360,11 +363,11 @@ views:
             - entity_id: "*battery*"
               state: 'unknown'
             - entity_id: "*battery*"
-              state: '< 35'
+              state: '< 40'
             - attributes:
-                battery: '< 35'
+                battery: '< 40'
             - attributes:
-                battery_level: '< 35'
+                battery_level: '< 40'
           exclude:
             - entity_id: group.*
 
@@ -1108,7 +1111,7 @@ views:
               severity:
                 - value: 20
                   color: '#bf4040'
-                - value: 30
+                - value: 40
                   color: '#bf9540'
                 - value: 100
                   color: '#40bf40'
@@ -1216,7 +1219,7 @@ views:
                 name: Memory Use
 
       #
-      # HASS overview
+      # Domain overview
       #
       - type: entities
         title: Domains
@@ -1422,10 +1425,132 @@ views:
       - type: "custom:compact-custom-header"
 
       #
-      # Lovelace UI Custom Updater
+      # Configuration Repository
       #
-      - type: "custom:tracker-card"
-        title: UI Updater
+      - type: "custom:vertical-stack-in-card"
+        cards:
+          - type: entities
+            title: Public Configuration Repo
+            show_header_toggle: false
+            entities:
+              - entity: sensor.config_repo_stargazers
+                name: Stargazers
+
+              - entity: sensor.config_repo_forks
+                name: Forks
+
+              - entity: sensor.config_repo_issues
+                name: Issues
+
+              - type: weblink
+                icon: mdi:github-circle
+                name: renemarc/home-assistant-config
+                url: "https://github.com/renemarc/home-assistant-config"
+
+          - type: horizontal-stack
+            cards:
+              - type: "custom:mini-graph-card"
+                decimals: 0
+                hour24: true
+                hours_to_show: 336
+                points_per_hour: 0.03
+                show:
+                  fill: fade
+                  icon: false
+                  labels: true
+                  name: false
+                  points: hover
+                  state: false
+                entities:
+                  - entity: sensor.config_repo_views
+                    name: Views
+                  - entity: sensor.config_repo_views_uniques
+                    name: Uniques
+
+              - type: "custom:mini-graph-card"
+                decimals: 0
+                hour24: true
+                hours_to_show: 336
+                points_per_hour: 0.03
+                show:
+                  fill: fade
+                  icon: false
+                  labels: true
+                  name: false
+                  points: hover
+                  state: false
+                entities:
+                  - entity: sensor.config_repo_clones
+                    name: Clones
+                  - entity: sensor.config_repo_clones_uniques
+                    name: Uniques
+
+          # - type: "custom:fold-entity-row"
+          #   head:
+          #     type: section
+          #     label: Last 2 weeks
+          #   items:
+          #     # - sensor.config_repo_clones
+          #     # - sensor.config_repo_views
+
+          #     - type: "custom:mini-graph-card"
+          #       align_state: right
+          #       decimals: 0
+          #       height: 75
+          #       hour24: true
+          #       hours_to_show: 36
+          #       points_per_hour: 0.08
+          #       show:
+          #         fill: fade
+          #         icon: false
+          #         labels: true
+          #         name: false
+          #         points: hover
+          #         state: false
+          #       entities:
+          #         - entity: sensor.config_repo_views
+          #         - entity: sensor.config_repo_views_uniques
+          #           name: Uniques
+
+          #     - type: "custom:mini-graph-card"
+          #       align_state: right
+          #       decimals: 0
+          #       height: 75
+          #       hour24: true
+          #       hours_to_show: 36
+          #       points_per_hour: 0.08
+          #       show:
+          #         fill: fade
+          #         icon: false
+          #         labels: true
+          #         name: false
+          #         points: hover
+          #         state: false
+          #       entities:
+          #         - entity: sensor.config_repo_clones
+          #         - entity: sensor.config_repo_clones_uniques
+          #           name: Uniques
+
+
+          # - type: "custom:fold-entity-row"
+          #   head:
+          #     type: section
+          #     label: Last 2 weeks
+          #   items:
+          #     - sensor.config_repo_clones
+          #     - sensor.config_repo_views
+
+
+          #     - type: "custom:mini-graph-card"
+          #       align_state: right
+          #       decimals: 0
+          #       hour24: true
+          #       hours_to_show: 12
+          #       show: *graph-card-horizontal
+          #       entities:
+          #         - entity: sensor.config_repo_views
+          #           name: Views
+
 
       #
       # Extra Modes
@@ -1486,3 +1611,10 @@ views:
 
           - type: section
           - switch.aeotec_zstick_disco_light
+
+      #
+      # Lovelace UI Custom Updater
+      #
+      - type: "custom:tracker-card"
+        title: UI Updater
+
