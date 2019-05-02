@@ -175,24 +175,6 @@ camera.noaa_water_vapour:
 #
 # Device trackers
 #
-device_tracker.cellphone_her:
-  friendly_name: !secret nickname_her
-  icon: mdi:cellphone-iphone
-  extra_data_template:
-    - >-
-      var e = 'device_tracker.laptop_her';
-      return entities[e] !== undefined && entities[e].state != 'unknown'
-      ? entities[e].attributes['friendly_name'] + ' is ' + entities[e].state + '.'
-      : null;
-device_tracker.cellphone_him:
-  friendly_name: !secret nickname_him
-  icon: mdi:cellphone-iphone
-  extra_data_template:
-    - >-
-      var e = 'device_tracker.laptop_him';
-      return entities[e] !== undefined && entities[e].state != 'unknown'
-      ? entities[e].attributes['friendly_name'] + ' is ' + entities[e].state + '.'
-      : null;
 device_tracker.laptop_her:
   friendly_name: Her laptop
   icon: mdi:laptop
@@ -469,6 +451,31 @@ light.underbed:
     report_when_not_changed: false
 light.window:
   icon: mdi:creation
+
+
+#
+# Persons
+#
+person.her:
+  entity_picture: !secret picture_her
+  friendly_name: !secret nickname_her
+  icon: mdi:gender-female
+  extra_data_template:
+    - >-
+      var e = 'device_tracker.laptop_her';
+      return entities[e] !== undefined && entities[e].state != 'unknown'
+      ? entities[e].attributes['friendly_name'] + ' is ' + entities[e].state + '.'
+      : null;
+person.him:
+  entity_picture: !secret picture_him
+  friendly_name: !secret nickname_him
+  icon: mdi:gender-male
+  extra_data_template:
+    - >-
+      var e = 'device_tracker.laptop_him';
+      return entities[e] !== undefined && entities[e].state != 'unknown'
+      ? entities[e].attributes['friendly_name'] + ' is ' + entities[e].state + '.'
+      : null;
 
 
 #

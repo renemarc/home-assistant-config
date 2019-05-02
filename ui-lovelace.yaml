@@ -328,7 +328,7 @@ views:
         title: Presence
         show_header_toggle: false
         entities:
-          - entity: device_tracker.cellphone_her
+          - entity: person.her
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
               <small><strong>
@@ -339,7 +339,7 @@ views:
               </span>
               </strong></small>
 
-          - entity: device_tracker.cellphone_him
+          - entity: person.him
             type: "custom:secondaryinfo-entity-row"
             secondary_info: >-
               <small><strong>

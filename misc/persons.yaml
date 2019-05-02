@@ -1,0 +1,18 @@
+#
+# Person presence detection
+#
+# @link https://www.home-assistant.io/components/person/
+#
+
+- name: Her
+  id: her
+  device_trackers:
+    - device_tracker.cellphone_her
+
+- name: Him
+  id: him
+  user_id: !secret user_id_him
+  device_trackers:
+    - device_tracker.cellphone_him
+    - device_tracker.cellphone_him_app
+    - device_tracker.cellphone_him_bt

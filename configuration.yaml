@@ -301,6 +301,14 @@ notify: !include_dir_merge_list notifications/
 
 
 #
+# Person presence detection
+#
+# @link https://www.home-assistant.io/components/person/
+#
+person: !include misc/persons.yaml
+
+
+#
 # Database recorder
 #
 # Limit the number of tracked entities and length of history.

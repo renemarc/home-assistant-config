@@ -55,7 +55,11 @@
                                               | list
                                               | count %}
         {% set displays = states.display | list | count %}
-        {{ buttons + displays }}
+        {% set remotes = states.zwave | map('regex_search','mote')
+                                              | select('equalto', True)
+                                              | list
+                                              | count %}
+        {{ buttons + displays + remotes }}
 
     count_lights:
       friendly_name: Lights Count

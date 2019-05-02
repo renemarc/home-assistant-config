@@ -8,11 +8,11 @@
 #
 # Bluetooth
 #
-# Disabled until deemed useful or not.
-#
 # https://home-assistant.io/components/device_tracker.bluetooth_tracker/
 #
-#- platform: bluetooth_tracker
+- platform: bluetooth_tracker
+  request_rssi: true
+  track_new_devices: true
 
 
 #
@@ -29,6 +29,9 @@
   username: !secret unifi_username
   password: !secret unifi_password
   verify_ssl: false
-  track_new_devices: true
-  interval_seconds: 10
+
   consider_home: 180
+  detection_time: 60
+  interval_seconds: 12
+  ssid_filter: !secret unifi_ssid_filter
+  track_new_devices: true
