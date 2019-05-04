@@ -7,15 +7,23 @@ class LayoutCard extends cardTools.LitElement {
     this.layout = config.layout || 'auto';
     this.minCols = config.column_num || 1;
     this.maxCols = config.max_columns || 100;
-    this.colWidth = config.column_width || 300;
+    this.colWidth = config.column_width || 400;
     this.maxWidth = config.max_width || 500;
     this.minHeight = config.min_height || 5;
     this.rtl = config.rtl || false;
     this.cardSize = 1;
 
+    this.make_cards();
+
     window.addEventListener('resize', () => this.build());
     window.addEventListener('hass-open-menu', () => setTimeout(() => this.build(), 100));
     window.addEventListener('hass-close-menu', () => setTimeout(() => this.build(), 100));
+    window.addEventListener('location-changed', () => {
+      if(location.hash === "") setTimeout(() =>
+        this.build(), 100)
+    });
+    if(config.rebuild)
+      window.setTimeout(() => this.build(), config.rebuild);
   }
 
   render() {
@@ -69,7 +77,7 @@ class LayoutCard extends cardTools.LitElement {
   }
 
   make_cards() {
-    this.cards = this.config.cards.map((c) => {
+    this._cards = this.config.cards.map((c) => {
       if (typeof c === 'string') return c;
       const card = cardTools.createCard(c);
       if(this._hass) card.hass = this._hass;
@@ -86,6 +94,7 @@ class LayoutCard extends cardTools.LitElement {
   }
 
   build() {
+    if (this.offsetParent === null) return;
     const root = this.shadowRoot.querySelector("#columns");
     while(root.lastChild) {
       root.removeChild(root.lastChild);
@@ -93,7 +102,7 @@ class LayoutCard extends cardTools.LitElement {
 
     this.update_columns();
 
-    if(!this.cards) this.make_cards();
+    if(!this._cards) this.make_cards();
 
     let cols = [];
     let colSize = [];
@@ -114,7 +123,7 @@ class LayoutCard extends cardTools.LitElement {
     }
 
     let i = 0;
-    this.cards.forEach((c) => {
+    this._cards.forEach((c) => {
       const isBreak = (typeof(c) === 'string');
       const sz = c.getCardSize ? c.getCardSize() : 1;
 
@@ -163,8 +172,8 @@ class LayoutCard extends cardTools.LitElement {
 
   set hass(hass) {
     this._hass = hass;
-    if(this.cards)
-      this.cards
+    if(this._cards)
+      this._cards
         .filter((c) => typeof(c) !== 'string')
         .forEach((c) => c.hass = hass);
   }

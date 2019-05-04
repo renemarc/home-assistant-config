@@ -88,13 +88,13 @@
   content_type: image/jpg
   still_image_url: >-
     {% set image = None %}
-    {% set url = state_attr('sensor.apod', 'hdurl') %}
+    {% set url = state_attr('sensor.apod', 'hdurl') or state_attr('sensor.apod', 'url') %}
 
     {% if url != None %}
       {% if state_attr('sensor.apod', 'media_type') == 'video' %}
         {% if 'youtube.com' in url %}
           {% set video = url.split('/')[4].split('?')[0] %}
-          {% set image = 'https://img.youtube.com/vi/' + video + '/hqdefault.jpg' %}
+          {% set image = 'https://img.youtube.com/vi/' + video + '/maxresdefault.jpg' %}
         {% endif %}
       {% else %}
         {% set image = url %}
@@ -108,3 +108,47 @@
     {% endif %}
 
     {{ image }}
+
+
+#
+# Local file wallpapers
+#
+# All source images are licensed under Creative Commons CC0.
+#
+# Sources:
+#   automations: https://unsplash.com/photos/2EJCSULRwC8
+#   configuration: https://unsplash.com/photos/401OD83Ke6o
+#   hardware: https://unsplash.com/photos/FO7JIlwjOtU
+#   switches: https://unsplash.com/photos/f_0t4fYEauU
+#   wallpaper 1: https://pxhere.com/en/photo/335
+#   wallpaper 2: https://pxhere.com/en/photo/1087220
+#
+- platform: local_file
+  name: Wallpaper 1
+  file_path: /config/www/images/wallpaper-1.jpg
+  scan_interval: 21600
+
+- platform: local_file
+  name: Wallpaper 2
+  file_path: /config/www/images/wallpaper-2.jpg
+  scan_interval: 21600
+
+- platform: local_file
+  name: Wallpaper Automations
+  file_path: /config/www/images/wallpaper-automations.jpg
+  scan_interval: 21600
+
+- platform: local_file
+  name: Wallpaper Configuration
+  file_path: /config/www/images/wallpaper-configuration.jpg
+  scan_interval: 21600
+
+- platform: local_file
+  name: Wallpaper Hardware
+  file_path: /config/www/images/wallpaper-hardware.jpg
+  scan_interval: 21600
+
+- platform: local_file
+  name: Wallpaper Switchboard
+  file_path: /config/www/images/wallpaper-switchboard.jpg
+  scan_interval: 21600

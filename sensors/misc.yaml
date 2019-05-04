@@ -32,7 +32,7 @@
       entity_id:
         - sensor.time
       value_template: >-
-        {{ states.automation | list | count }}
+        {{ states.automation | count }}
 
     count_automations_disabled:
       friendly_name: Disabled Automations Count
@@ -43,6 +43,26 @@
         {{ states.automation | selectattr('state', 'eq', 'off')
                              | list
                              | count }}
+
+    count_automations_friendly:
+      friendly_name: Automations Count
+      icon_template: mdi:arrow-decision-auto
+      entity_id:
+        - sensor.time
+      value_template: >-
+        {% set all = states('sensor.count_automations') | int %}
+        {% set disabled = states('sensor.count_automations_disabled') | int %}
+        {% set enabled = all - disabled %}
+
+        {% if all == 0 %}
+          No automation exists.
+        {% elif enabled == all %}
+          All {{ all }} automations enabled.
+        {% elif disabled == all %}
+          {{ enabled }} enabled automations, all {{ all }} disabled.
+        {% else %}
+          {{ enabled }} enabled automations, {{ disabled }} disabled.
+        {% endif %}
 
     count_interfaces:
       friendly_name: Interfaces Count
@@ -184,17 +204,22 @@
         {% set modes = '' %}
 
         {% if is_state('input_boolean.nap_mode', 'on') %}
-          {% set modes = modes + '+ Nap ' %}
+          {% set modes = modes + '+ Sleep ' %}
           {% set counter = counter + 1 %}
         {% endif %}
 
         {% if is_state('input_boolean.night_mode', 'on') %}
-          {% set modes = modes + '+ Night ' %}
+          {% set modes = modes + '+ Dark ' %}
           {% set counter = counter + 1 %}
         {% endif %}
 
         {% if is_state('input_boolean.quiet_mode', 'on') %}
           {% set modes = modes + '+ Quiet ' %}
+          {% set counter = counter + 1 %}
+        {% endif %}
+
+        {% if is_state('input_boolean.low_mode', 'on') %}
+          {% set modes = modes + '+ Eco ' %}
           {% set counter = counter + 1 %}
         {% endif %}
 
@@ -308,7 +333,7 @@
           "Compliment someone today.",
           "Do something great.",
           "Don't worry, be happy.",
-          "Dream big dreams",
+          "Dream big dreams.",
           "Enjoy life!",
           "Enjoy the little things.",
           "Everybody loves you!",
@@ -321,8 +346,8 @@
           "Live with passion.",
           "Love yourself.",
           "Never doubt your instinct.",
-          "People envy you",
-          "People want to be you",
+          "People envy you.",
+          "People want to be you.",
           "Pick one thing and do it.",
           "Ride like the wind.",
           "Seize the day!",
@@ -340,7 +365,7 @@
           "You are the most awesome!",
           "You are your choices.",
           "You can do great things!",
-          "You can move mountains",
+          "You can move mountains.",
           "You live only once.",
           "You look delicious!",
           "You make people happy.",

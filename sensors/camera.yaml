@@ -32,7 +32,7 @@
           {%- if not loop.first %}({% endif %}
           {{- part -}}
         {%- endif -%}
-      {% endfor %}
+      {% endfor %}.
     {% endif %}
 
 
@@ -71,7 +71,7 @@
     {% if value_json and value_json.title %}
       {% if value_json.media_type and value_json.media_type == 'video' %}
         Video:
-      {%- endif %} {{ value_json.title }}
+      {%- endif %} {{ value_json.title }}.
     {% endif %}
 
 
