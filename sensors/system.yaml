@@ -362,6 +362,26 @@
 
 
 #
+# Git current branch
+#
+# Returns the selected local git branch. This command supports up to 3 levels
+# of depth: `group/name/extra`.
+#
+# The command `git` is not installed inside the Docker container used by Hassio,
+# therefore we rely on basic linux commands instead.
+#
+# If git were available, the following command would be all we need:
+#   `git -C /config/.git symbolic-ref --short HEAD`
+#
+# source:
+#   https://stackoverflow.com/a/33133769
+#
+- platform: command_line
+  name: Git branch
+  command: 'cat /config/.git/HEAD | cut -d \  -f 2 | cut -d / -f 3,4,5'
+
+
+#
 # Server port
 #
 # Used as a flexible placeholder for cameras.

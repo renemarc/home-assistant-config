@@ -851,7 +851,7 @@ views:
                 card:
                   type: "custom:useful-markdown-card"
                   content: |
-                    [[ sensor.feels_like ]][[ if(sensor.feels_like != '', '.', '') ]] [[ sensor.dark_sky_hourly_summary ]]
+                    [[ sensor.dark_sky_minutely_summary ]] [[ sensor.feels_like ]][[ if(sensor.feels_like != '', '.', '') ]]
 
           #
           # Body
@@ -1823,7 +1823,7 @@ views:
                 card:
                   type: "custom:useful-markdown-card"
                   content: |
-                    Configuration
+                    On “[[ sensor.git_branch ]]” branch.
 
           #
           # Body
@@ -1851,6 +1851,9 @@ views:
 
                       - entity: sensor.config_repo_issues
                         name: Issues
+
+                      - entity: sensor.git_branch
+                        name: Local branch
 
                       - type: weblink
                         icon: mdi:github-circle

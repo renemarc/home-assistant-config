@@ -491,6 +491,8 @@ sensor.door_status:
     theme: >-
       return state != 'Closed' ? 'card-warning'
       : null;
+sensor.git_branch:
+  icon: mdi:git
 sensor.good_vibes:
   custom_ui_state_card: state-card-value_only
 sensor.leak_status:
