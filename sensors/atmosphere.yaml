@@ -30,6 +30,10 @@
 #
 # WAQI: Active stations
 #
+# Since a template sensor will not be updated without parsable entities inside
+# `value_template`, an `entity_id` key is used pointing to a regularly updated
+# sensor.
+#
 - platform: template
   sensors:
     aqi_stations:
@@ -65,6 +69,10 @@
 
 #
 # WAQI: Average
+#
+# Since a template sensor will not be updated without parsable entities inside
+# `value_template`, an `entity_id` key is used pointing to a regularly updated
+# sensor.
 #
 - platform: template
   sensors:
@@ -115,6 +123,10 @@
 
 #
 # WAQI: Carbon monoxide
+#
+# Since a template sensor will not be updated without parsable entities inside
+# `value_template`, an `entity_id` key is used pointing to a regularly updated
+# sensor.
 #
 - platform: template
   sensors:
@@ -167,6 +179,10 @@
 #
 # WAQI: Particulate matter 2.5μm
 #
+# Since a template sensor will not be updated without parsable entities inside
+# `value_template`, an `entity_id` key is used pointing to a regularly updated
+# sensor.
+#
 - platform: template
   sensors:
     aqi_particles:
@@ -217,6 +233,10 @@
 
 #
 # WAQI: Nitrogen dioxide
+#
+# Since a template sensor will not be updated without parsable entities inside
+# `value_template`, an `entity_id` key is used pointing to a regularly updated
+# sensor.
 #
 - platform: template
   sensors:
@@ -269,6 +289,10 @@
 #
 # WAQI: Ozone
 #
+# Since a template sensor will not be updated without parsable entities inside
+# `value_template`, an `entity_id` key is used pointing to a regularly updated
+# sensor.
+#
 - platform: template
   sensors:
     aqi_ozone:
@@ -319,6 +343,10 @@
 
 #
 # WAQI: Sulphur dioxide
+#
+# Since a template sensor will not be updated without parsable entities inside
+# `value_template`, an `entity_id` key is used pointing to a regularly updated
+# sensor.
 #
 - platform: template
   sensors:
@@ -384,11 +412,141 @@
       value_template: >-
         {{ states('sensor.dark_sky_uv_index') }}
 
+    uv_0:
+      friendly_name: UV Index
+      icon_template: mdi:sunglasses
+      value_template: >-
+        {{ states('sensor.dark_sky_uv_index_0') }}
+
+    uv_1:
+      friendly_name: UV Index
+      icon_template: mdi:sunglasses
+      value_template: >-
+        {{ states('sensor.dark_sky_uv_index_1') }}
+
+    uv_2:
+      friendly_name: UV Index
+      icon_template: mdi:sunglasses
+      value_template: >-
+        {{ states('sensor.dark_sky_uv_index_2') }}
+
+    uv_3:
+      friendly_name: UV Index
+      icon_template: mdi:sunglasses
+      value_template: >-
+        {{ states('sensor.dark_sky_uv_index_3') }}
+
+    uv_4:
+      friendly_name: UV Index
+      icon_template: mdi:sunglasses
+      value_template: >-
+        {{ states('sensor.dark_sky_uv_index_4') }}
+
     uv_friendly:
       friendly_name: UV Index
       icon_template: mdi:sunglasses
       value_template: >-
         {% set uv = states('sensor.dark_sky_uv_index') | int(-1) %}
+
+        {% if uv >= 11 %}
+          Extreme
+        {% elif uv >= 8 %}
+          Very high
+        {% elif uv >= 6 %}
+          High
+        {% elif uv >= 3 %}
+          Moderate
+        {% elif uv >= 0 %}
+          Low
+        {% else %}
+          unknown
+        {% endif %}
+
+    uv_friendly_0:
+      friendly_name: UV Index
+      icon_template: mdi:sunglasses
+      value_template: >-
+        {% set uv = states('sensor.dark_sky_uv_index_0') | int(-1) %}
+
+        {% if uv >= 11 %}
+          Extreme
+        {% elif uv >= 8 %}
+          Very high
+        {% elif uv >= 6 %}
+          High
+        {% elif uv >= 3 %}
+          Moderate
+        {% elif uv >= 0 %}
+          Low
+        {% else %}
+          unknown
+        {% endif %}
+
+    uv_friendly_1:
+      friendly_name: UV Index
+      icon_template: mdi:sunglasses
+      value_template: >-
+        {% set uv = states('sensor.dark_sky_uv_index_1') | int(-1) %}
+
+        {% if uv >= 11 %}
+          Extreme
+        {% elif uv >= 8 %}
+          Very high
+        {% elif uv >= 6 %}
+          High
+        {% elif uv >= 3 %}
+          Moderate
+        {% elif uv >= 0 %}
+          Low
+        {% else %}
+          unknown
+        {% endif %}
+
+    uv_friendly_2:
+      friendly_name: UV Index
+      icon_template: mdi:sunglasses
+      value_template: >-
+        {% set uv = states('sensor.dark_sky_uv_index_2') | int(-1) %}
+
+        {% if uv >= 11 %}
+          Extreme
+        {% elif uv >= 8 %}
+          Very high
+        {% elif uv >= 6 %}
+          High
+        {% elif uv >= 3 %}
+          Moderate
+        {% elif uv >= 0 %}
+          Low
+        {% else %}
+          unknown
+        {% endif %}
+
+    uv_friendly_3:
+      friendly_name: UV Index
+      icon_template: mdi:sunglasses
+      value_template: >-
+        {% set uv = states('sensor.dark_sky_uv_index_3') | int(-1) %}
+
+        {% if uv >= 11 %}
+          Extreme
+        {% elif uv >= 8 %}
+          Very high
+        {% elif uv >= 6 %}
+          High
+        {% elif uv >= 3 %}
+          Moderate
+        {% elif uv >= 0 %}
+          Low
+        {% else %}
+          unknown
+        {% endif %}
+
+    uv_friendly_4:
+      friendly_name: UV Index
+      icon_template: mdi:sunglasses
+      value_template: >-
+        {% set uv = states('sensor.dark_sky_uv_index_4') | int(-1) %}
 
         {% if uv >= 11 %}
           Extreme

@@ -146,6 +146,7 @@ popup_cards:
 #
 title: Home
 views:
+
   #
   # Main view
   #
@@ -159,6 +160,7 @@ views:
         layout: vertical
         max_width: 100%
         cards:
+
           #
           # Header
           #
@@ -166,6 +168,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Compact Custom Header
               #
@@ -199,6 +202,7 @@ views:
             column_width: 300
             max_columns: 4
             cards:
+
               #
               # Action center
               #
@@ -389,7 +393,6 @@ views:
                 title: Security Status
                 show_header_toggle: false
                 entities:
-                  # - sensor.door_status
                   - type: "custom:fold-entity-row"
                     head: sensor.door_status
                     items:
@@ -424,8 +427,6 @@ views:
                         name: Test
                         icon: mdi:check-decagram
 
-                  # - sensor.motion_status
-                  # - sensor.smoke_status
                   - sensor.tamper_status
 
               #
@@ -501,6 +502,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Wallpaper caption
               #
@@ -527,6 +529,7 @@ views:
         layout: vertical
         max_width: 100%
         cards:
+
           #
           # Header
           #
@@ -534,6 +537,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Compact Custom Header
               #
@@ -557,6 +561,7 @@ views:
             column_width: 300
             max_columns: 4
             cards:
+
               #
               # Bedroom
               #
@@ -805,6 +810,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Wallpaper caption
               #
@@ -831,6 +837,7 @@ views:
         layout: vertical
         max_width: 100%
         cards:
+
           #
           # Header
           #
@@ -838,6 +845,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Compact Custom Header
               #
@@ -850,8 +858,9 @@ views:
                 style: *header-card-style
                 card:
                   type: "custom:useful-markdown-card"
-                  content: |
-                    [[ sensor.dark_sky_minutely_summary ]] [[ sensor.feels_like ]][[ if(sensor.feels_like != '', '.', '') ]]
+                  content: >-
+                    [[ sensor.dark_sky_minutely_summary ]]
+                    [[ sensor.feels_like ]][[ if(sensor.feels_like != '', '.', '') ]]
 
           #
           # Body
@@ -861,111 +870,208 @@ views:
             column_width: 300
             max_columns: 4
             cards:
+
               #
               # Current conditions and forecast
               #
-              - type: vertical-stack
+              - type: "custom:vertical-stack-in-card"
                 cards:
-                  - type: "custom:vertical-stack-in-card"
+                  - type: horizontal-stack
                     cards:
-                      - type: horizontal-stack
-                        cards:
-                          - type: "custom:mini-graph-card"
-                            align_state: right
-                            decimals: 0
-                            hour24: true
-                            hours_to_show: 12
-                            show: *graph-card-horizontal
-                            entities:
-                              - entity: sensor.outside_temperature
-                                name: Temperature
-                                color: *graph-color-temperature
-
-                          - type: "custom:mini-graph-card"
-                            align_state: right
-                            decimals: 0
-                            hour24: true
-                            hours_to_show: 12
-                            show: *graph-card-horizontal
-                            entities:
-                              - entity: sensor.outside_humidity
-                                name: Humidity
-                                color: *graph-color-humidity
-
-                      - type: entities
+                      - type: "custom:mini-graph-card"
+                        align_state: right
+                        decimals: 0
+                        hour24: true
+                        hours_to_show: 12
+                        show: *graph-card-horizontal
                         entities:
-                          - type: "custom:dummy-entity-row"
-                            entity: sensor.weather_summary
-
-                          - entity: sensor.wind_speed
-                            type: "custom:secondaryinfo-entity-row"
-                            secondary_info: >-
-                              <small><strong>
-                              [[ sensor.wind_bearing_cardinal_16_friendly ]]
-                              </strong></small>
-
-                          - sensor.sun_state
-
-                          - entity: sensor.uv_friendly
-                            type: "custom:secondaryinfo-entity-row"
-                            secondary_info: >-
-                              <small><strong>
-                              [[ if(sun.sun != 'below_horizon', sensor.uv, 'The sun is down...') ]]
-                              </strong></small>
-
-                      - type: "custom:useful-markdown-card"
-                        content: |
-                          [[ sensor.dark_sky_hourly_summary ]]
-
-                          [[ sensor.dark_sky_daily_summary ]]
+                          - entity: sensor.outside_temperature
+                            name: Temperature
+                            color: *graph-color-temperature
 
                       - type: "custom:mini-graph-card"
                         align_state: right
                         decimals: 0
-                        height: 50
                         hour24: true
-                        color_thresholds:
-                          - value: 0
-                            color: "#0000cc"
-                          - value: 980
-                            color: "#0066cc"
-                          - value: 985
-                            color: "#0099cc"
-                          - value: 990
-                            color: "#00ccff"
-                          - value: 995
-                            color: "#00ffcc"
-                          - value: 1000
-                            color: "#00ff99"
-                          - value: 1005
-                            color: "#ccff00"
-                          - value: 1010
-                            color: "#ffff66"
-                          - value: 1015
-                            color: "#ffcc00"
-                          - value: 1020
-                            color: "#ff9933"
-                          - value: 1025
-                            color: "#ff6600"
-                          - value: 1030
-                            color: "#ff3300"
-                          - value: 1035
-                            color: "#cc3300"
-                        show:
-                          fill: fade
-                          icon: false
-                          labels: true
-                          name: false
-                          points: true
+                        hours_to_show: 12
+                        show: *graph-card-horizontal
                         entities:
-                          - entity: sensor.dark_sky_pressure
+                          - entity: sensor.outside_humidity
+                            name: Humidity
+                            color: *graph-color-humidity
 
-                  #
-                  # World safety
-                  #
                   - type: entities
-                    show_header_toggle: false
                     entities:
+                      - type: "custom:dummy-entity-row"
+                        entity: sensor.weather_summary
+
+                      - entity: sensor.wind_speed
+                        type: "custom:secondaryinfo-entity-row"
+                        secondary_info: >-
+                          <small><strong>
+                          [[ sensor.wind_bearing_cardinal_16_friendly ]]
+                          </strong></small>
+
+                      - sensor.sun_state
+
+                      - entity: sensor.uv_friendly
+                        type: "custom:secondaryinfo-entity-row"
+                        secondary_info: >-
+                          <small><strong>
+                          [[ if(sun.sun != 'below_horizon', sensor.uv, 'The sun is down...') ]]
+                          </strong></small>
+
+                  - type: "custom:mini-graph-card"
+                    align_state: right
+                    decimals: 0
+                    height: 50
+                    hour24: true
+                    color_thresholds:
+                      - value: 0
+                        color: "#0000cc"
+                      - value: 980
+                        color: "#0066cc"
+                      - value: 985
+                        color: "#0099cc"
+                      - value: 990
+                        color: "#00ccff"
+                      - value: 995
+                        color: "#00ffcc"
+                      - value: 1000
+                        color: "#00ff99"
+                      - value: 1005
+                        color: "#ccff00"
+                      - value: 1010
+                        color: "#ffff66"
+                      - value: 1015
+                        color: "#ffcc00"
+                      - value: 1020
+                        color: "#ff9933"
+                      - value: 1025
+                        color: "#ff6600"
+                      - value: 1030
+                        color: "#ff3300"
+                      - value: 1035
+                        color: "#cc3300"
+                    show:
+                      fill: fade
+                      icon: false
+                      labels: true
+                      name: false
+                      points: true
+                    entities:
+                      - entity: sensor.dark_sky_pressure
+
+              #
+              # Weather forecast
+              #
+              - type: vertical-stack
+                cards:
+                  - type: "custom:useful-markdown-card"
+                    content: |
+                      <font size="+2">[[ sensor.dark_sky_hourly_summary ]]</font>
+
+                      [[ sensor.dark_sky_daily_summary ]]
+
+                  - type: entities
+                    entities:
+                      - type: "custom:fold-entity-row"
+                        head:
+                          entity: sensor.outside_temperature_0
+                          type: "custom:secondaryinfo-entity-row"
+                          name: Today
+                          secondary_info: >-
+                            <small><strong>
+                            [[ sensor.outside_condition_0 ]],
+                            low [[ sensor.outside_temperature_low_0 ]] [[ sensor.outside_temperature_low_0.attributes.unit_of_measurement ]]
+                            </strong></small>
+                        items:
+                          - sensor.outside_humidity_0
+                          - sensor.precip_probability_0
+                          - entity: sensor.uv_friendly_0
+                            type: "custom:secondaryinfo-entity-row"
+                            secondary_info: >-
+                              <small><strong>
+                              [[ sensor.uv_0 ]]
+                              </strong></small>
+
+                      - type: "custom:fold-entity-row"
+                        head:
+                          entity: sensor.outside_temperature_1
+                          type: "custom:secondaryinfo-entity-row"
+                          secondary_info: >-
+                            <small><strong>
+                            [[ sensor.outside_condition_1 ]],
+                            low [[ sensor.outside_temperature_low_1 ]][[ sensor.outside_temperature_low_1.attributes.unit_of_measurement ]]
+                            </strong></small>
+                        items:
+                          - sensor.outside_humidity_1
+                          - sensor.precip_probability_1
+                          - entity: sensor.uv_friendly_1
+                            type: "custom:secondaryinfo-entity-row"
+                            secondary_info: >-
+                              <small><strong>
+                              [[ sensor.uv_1 ]]
+                              </strong></small>
+
+                      - type: "custom:fold-entity-row"
+                        head:
+                          entity: sensor.outside_temperature_2
+                          type: "custom:secondaryinfo-entity-row"
+                          secondary_info: >-
+                            <small><strong>
+                            [[ sensor.outside_condition_2 ]],
+                            low [[ sensor.outside_temperature_low_2 ]][[ sensor.outside_temperature_low_2.attributes.unit_of_measurement ]]
+                            </strong></small>
+                        items:
+                          - sensor.outside_humidity_2
+                          - sensor.precip_probability_2
+                          - entity: sensor.uv_friendly_2
+                            type: "custom:secondaryinfo-entity-row"
+                            secondary_info: >-
+                              <small><strong>
+                              [[ sensor.uv_2 ]]
+                              </strong></small>
+
+                      - type: "custom:fold-entity-row"
+                        head:
+                          entity: sensor.outside_temperature_3
+                          type: "custom:secondaryinfo-entity-row"
+                          secondary_info: >-
+                            <small><strong>
+                            [[ sensor.outside_condition_3 ]],
+                            low [[ sensor.outside_temperature_low_3 ]][[ sensor.outside_temperature_low_3.attributes.unit_of_measurement ]]
+                            </strong></small>
+                        items:
+                          - sensor.outside_humidity_3
+                          - sensor.precip_probability_3
+                          - entity: sensor.uv_friendly_3
+                            type: "custom:secondaryinfo-entity-row"
+                            secondary_info: >-
+                              <small><strong>
+                              [[ sensor.uv_3 ]]
+                              </strong></small>
+
+                      - type: "custom:fold-entity-row"
+                        head:
+                          entity: sensor.outside_temperature_4
+                          type: "custom:secondaryinfo-entity-row"
+                          secondary_info: >-
+                            <small><strong>
+                            [[ sensor.outside_condition_4 ]],
+                            low [[ sensor.outside_temperature_low_4 ]][[ sensor.outside_temperature_low_4.attributes.unit_of_measurement ]]
+                            </strong></small>
+                        items:
+                          - sensor.outside_humidity_4
+                          - sensor.precip_probability_4
+                          - entity: sensor.uv_friendly_4
+                            type: "custom:secondaryinfo-entity-row"
+                            secondary_info: >-
+                              <small><strong>
+                              [[ sensor.uv_4 ]]
+                              </strong></small>
+
+                      - type: section
                       - sensor.doomsday_clock
 
               #
@@ -982,44 +1088,76 @@ views:
                         type: 'bullets'
                     cards:
                       - type: picture-entity
-                        title: 'Radar: Rain'
+                        name: 'Radar: Rain'
                         entity: camera.environment_canada_rain
                         camera_image: camera.environment_canada_rain
                         aspect_ratio: 4x3
-                        show_info: true
+                        show_name: true
                         show_state: false
 
                       - type: picture-entity
-                        title: 'Radar: Snow'
+                        name: 'Radar: Rain'
+                        entity: camera.environment_canada_rain_2
+                        camera_image: camera.environment_canada_rain
+                        aspect_ratio: 4x3
+                        show_name: true
+                        show_state: false
+
+                      - type: picture-entity
+                        name: 'Radar: Rain'
+                        entity: camera.environment_canada_rain_3
+                        camera_image: camera.environment_canada_rain
+                        aspect_ratio: 4x3
+                        show_name: true
+                        show_state: false
+
+                      - type: picture-entity
+                        name: 'Radar: Snow'
                         entity: camera.environment_canada_snow
                         camera_image: camera.environment_canada_snow
                         aspect_ratio: 4x3
-                        show_info: true
+                        show_name: true
                         show_state: false
 
                       - type: picture-entity
-                        title: 'Satellite: Geocolor'
+                        name: 'Radar: Snow'
+                        entity: camera.environment_canada_snow_2
+                        camera_image: camera.environment_canada_snow
+                        aspect_ratio: 4x3
+                        show_name: true
+                        show_state: false
+
+                      - type: picture-entity
+                        name: 'Radar: Snow'
+                        entity: camera.environment_canada_snow_3
+                        camera_image: camera.environment_canada_snow
+                        aspect_ratio: 4x3
+                        show_name: true
+                        show_state: false
+
+                  - type: "custom:swipe-card"
+                    parameters:
+                      effect: 'fade'
+                      autoplay:
+                        delay: 6000
+                      pagination:
+                        type: 'bullets'
+                    cards:
+                      - type: picture-entity
+                        name: 'Satellite: Geocolour'
                         entity: camera.noaa_geocolor
                         camera_image: camera.noaa_geocolor
                         aspect_ratio: 4x3
-                        show_info: true
+                        show_name: true
                         show_state: false
 
                       - type: picture-entity
-                        title: 'Satellite: Water Vapour'
+                        name: 'Satellite: Water Vapour'
                         entity: camera.noaa_water_vapour
                         camera_image: camera.noaa_water_vapour
                         aspect_ratio: 4x3
-                        show_info: true
+                        show_name: true
                         show_state: false
-
-                  #
-                  # Windy.com widget
-                  #
-                  - type: iframe
-                    url: https://embed.windy.com/embed2.html?lat=45.252&lon=-73.608&zoom=7&level=surface&overlay=rain&menu=&message=&marker=&calendar=now&pressure=true&type=map&location=coordinates&detail=&detailLat=45.481&detailLon=-73.497&metricWind=km%2Fh&metricTemp=%C2%B0C&radarRange=-1
-                    aspect_ratio: 75%
-
 
               #
               # Atmospheric Quality
@@ -1132,6 +1270,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Wallpaper caption
               #
@@ -1159,6 +1298,7 @@ views:
         layout: vertical
         max_width: 100%
         cards:
+
           #
           # Header
           #
@@ -1166,6 +1306,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Compact Custom Header
               #
@@ -1179,7 +1320,7 @@ views:
                 card:
                   type: "custom:useful-markdown-card"
                   content: |
-                    Humidity is [[ sensor.average_humidity_friendly ]].
+                    Humidity: [[ sensor.average_humidity_friendly ]].
 
           #
           # Body
@@ -1285,6 +1426,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Wallpaper caption
               #
@@ -1310,6 +1452,7 @@ views:
         layout: vertical
         max_width: 100%
         cards:
+
           #
           # Header
           #
@@ -1317,6 +1460,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Compact Custom Header
               #
@@ -1598,6 +1742,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Wallpaper caption
               #
@@ -1625,6 +1770,7 @@ views:
         layout: vertical
         max_width: 100%
         cards:
+
           #
           # Header
           #
@@ -1632,6 +1778,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Compact Custom Header
               #
@@ -1777,6 +1924,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Wallpaper caption
               #
@@ -1803,6 +1951,7 @@ views:
         layout: vertical
         max_width: 100%
         cards:
+
           #
           # Header
           #
@@ -1810,6 +1959,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Compact Custom Header
               #
@@ -1823,7 +1973,7 @@ views:
                 card:
                   type: "custom:useful-markdown-card"
                   content: |
-                    On “[[ sensor.git_branch ]]” branch.
+                    On <em>“[[ sensor.git_branch ]]”</em> branch.
 
           #
           # Body
@@ -1834,6 +1984,7 @@ views:
             max_columns: 4
             cards:
 
+
               #
               # Configuration Repository
               #
@@ -1843,6 +1994,9 @@ views:
                     title: Public Configuration Repo
                     show_header_toggle: false
                     entities:
+                      - entity: sensor.git_branch
+                        name: Branch
+
                       - entity: sensor.config_repo_stargazers
                         name: Stargazers
 
@@ -1851,9 +2005,6 @@ views:
 
                       - entity: sensor.config_repo_issues
                         name: Issues
-
-                      - entity: sensor.git_branch
-                        name: Local branch
 
                       - type: weblink
                         icon: mdi:github-circle
@@ -1931,6 +2082,7 @@ views:
             layout: vertical
             max_width: 100%
             cards:
+
               #
               # Wallpaper caption
               #

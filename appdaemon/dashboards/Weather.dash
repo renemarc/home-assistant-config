@@ -143,8 +143,8 @@ weekly_forecast:
 temperature_today:
     widget_type: entitysensor
     title: Today
-    entity: sensor.dark_sky_daytime_high_temperature_0
-    sub_entity: sensor.weather_low_friendly
+    entity: sensor.outside_temperature_high_0
+    sub_entity: sensor.outside_temperature_low_friendly_0
     title2_entity: sensor.feels_like
     widget_style: "background-color:inherit;"
     title_style: "background-color:#555;padding:5px 52% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
@@ -154,8 +154,8 @@ temperature_today:
 temperature_tomorrow:
     widget_type: entitysensor
     title: Tomorrow
-    entity: sensor.dark_sky_daytime_high_temperature_1
-    sub_entity: sensor.weather_low_1_friendly
+    entity: sensor.outside_temperature_high_1
+    sub_entity: sensor.outside_temperature_low_friendly_1
     title2_entity: sensor.feels_like_1
     widget_style: "background-color:inherit;"
     title_style: "background-color:#555;padding:5px 52% 3px;margin-top:-5px;border-radius: 5px 5px 0 0"
@@ -165,8 +165,8 @@ temperature_tomorrow:
 temperature_after_tomorrow:
     widget_type: entitysensor
     title: After Tomorrow
-    entity: sensor.dark_sky_daytime_high_temperature_2
-    sub_entity: sensor.weather_low_2_friendly
+    entity: sensor.outside_temperature_high_2
+    sub_entity: sensor.outside_temperature_low_friendly_2
     title_entity: sensor.after_tomorrow
     title2_entity: sensor.feels_like_2
     widget_style: "background-color:inherit;"

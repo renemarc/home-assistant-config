@@ -9,6 +9,8 @@
     - 0
     - 1
     - 2
+    - 3
+    - 4
   monitored_conditions:
     - summary
     - minutely_summary
@@ -16,7 +18,6 @@
     - daily_summary
     - icon
     - uv_index
-    - ozone
     - temperature
     - temperature_high
     - temperature_low
@@ -27,6 +28,7 @@
     - wind_speed
     - wind_bearing
     - precip_probability
+    - precip_type
 
 
 #
@@ -91,6 +93,261 @@
           Will feel like {{ apparent }}˚
         {% endif %}
 
+    feels_like_3:
+      friendly_name: Feels Like
+      value_template: >-
+        {% set temperature = states('sensor.dark_sky_daytime_high_temperature_3') | round %}
+        {% set apparent = states('sensor.dark_sky_daytime_high_apparent_temperature_3') | round %}
+
+        {% if apparent != 'unknown' and apparent != temperature %}
+          Will feel like {{ apparent }}˚
+        {% endif %}
+
+    feels_like_4:
+      friendly_name: Feels Like
+      value_template: >-
+        {% set temperature = states('sensor.dark_sky_daytime_high_temperature_4') | round %}
+        {% set apparent = states('sensor.dark_sky_daytime_high_apparent_temperature_4') | round %}
+
+        {% if apparent != 'unknown' and apparent != temperature %}
+          Will feel like {{ apparent }}˚
+        {% endif %}
+
+    outside_condition_0:
+      friendly_name: Condition
+      icon_template: >-
+        {% set icon = states('sensor.dark_sky_icon_0') %}
+
+        {% if icon in ['clear-day', 'clear-night'] %}
+          mdi:weather-sunny
+        {% elif icon == 'cloudy' %}
+          mdi:weather-cloudy
+        {% elif icon == 'fog' %}
+          mdi:weather-fog
+        {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
+          mdi:weather-partlycloudy
+        {% elif icon == 'rain' %}
+          mdi:weather-rainy
+        {% elif icon == 'sleet' %}
+          mdi:weather-snowy-rain
+        {% elif icon == 'snow' %}
+          mdi:weather-snowy
+        {% elif icon == 'wind' %}
+          mdi:weather-windy-variant
+        {% else %}
+          unknown
+        {% endif %}
+      value_template: >-
+        {% set icon = states('sensor.dark_sky_icon_0') %}
+
+        {% if icon in ['clear-day', 'clear-night'] %}
+          Clear
+        {% elif icon == 'cloudy' %}
+          Cloudy
+        {% elif icon == 'fog' %}
+          Fog
+        {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
+          Partly Cloudy
+        {% elif icon == 'rain' %}
+          Rain
+        {% elif icon == 'sleet' %}
+          Sleet
+        {% elif icon == 'snow' %}
+          Snow
+        {% elif icon == 'wind' %}
+          Windy
+        {% else %}
+          unknown
+        {% endif %}
+
+    outside_condition_1:
+      friendly_name: Condition
+      icon_template: >-
+        {% set icon = states('sensor.dark_sky_icon_1') %}
+
+        {% if icon in ['clear-day', 'clear-night'] %}
+          mdi:weather-sunny
+        {% elif icon == 'cloudy' %}
+          mdi:weather-cloudy
+        {% elif icon == 'fog' %}
+          mdi:weather-fog
+        {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
+          mdi:weather-partlycloudy
+        {% elif icon == 'rain' %}
+          mdi:weather-rainy
+        {% elif icon == 'sleet' %}
+          mdi:weather-snowy-rain
+        {% elif icon == 'snow' %}
+          mdi:weather-snowy
+        {% elif icon == 'wind' %}
+          mdi:weather-windy-variant
+        {% else %}
+          unknown
+        {% endif %}
+      value_template: >-
+        {% set icon = states('sensor.dark_sky_icon_1') %}
+
+        {% if icon in ['clear-day', 'clear-night'] %}
+          Clear
+        {% elif icon == 'cloudy' %}
+          Cloudy
+        {% elif icon == 'fog' %}
+          Fog
+        {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
+          Partly Cloudy
+        {% elif icon == 'rain' %}
+          Rain
+        {% elif icon == 'sleet' %}
+          Sleet
+        {% elif icon == 'snow' %}
+          Snow
+        {% elif icon == 'wind' %}
+          Windy
+        {% else %}
+          unknown
+        {% endif %}
+
+    outside_condition_2:
+      friendly_name: Condition
+      icon_template: >-
+        {% set icon = states('sensor.dark_sky_icon_2') %}
+
+        {% if icon in ['clear-day', 'clear-night'] %}
+          mdi:weather-sunny
+        {% elif icon == 'cloudy' %}
+          mdi:weather-cloudy
+        {% elif icon == 'fog' %}
+          mdi:weather-fog
+        {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
+          mdi:weather-partlycloudy
+        {% elif icon == 'rain' %}
+          mdi:weather-rainy
+        {% elif icon == 'sleet' %}
+          mdi:weather-snowy-rain
+        {% elif icon == 'snow' %}
+          mdi:weather-snowy
+        {% elif icon == 'wind' %}
+          mdi:weather-windy-variant
+        {% else %}
+          unknown
+        {% endif %}
+      value_template: >-
+        {% set icon = states('sensor.dark_sky_icon_2') %}
+
+        {% if icon in ['clear-day', 'clear-night'] %}
+          Clear
+        {% elif icon == 'cloudy' %}
+          Cloudy
+        {% elif icon == 'fog' %}
+          Fog
+        {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
+          Partly Cloudy
+        {% elif icon == 'rain' %}
+          Rain
+        {% elif icon == 'sleet' %}
+          Sleet
+        {% elif icon == 'snow' %}
+          Snow
+        {% elif icon == 'wind' %}
+          Windy
+        {% else %}
+          unknown
+        {% endif %}
+
+    outside_condition_3:
+      friendly_name: Condition
+      icon_template: >-
+        {% set icon = states('sensor.dark_sky_icon_3') %}
+
+        {% if icon in ['clear-day', 'clear-night'] %}
+          mdi:weather-sunny
+        {% elif icon == 'cloudy' %}
+          mdi:weather-cloudy
+        {% elif icon == 'fog' %}
+          mdi:weather-fog
+        {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
+          mdi:weather-partlycloudy
+        {% elif icon == 'rain' %}
+          mdi:weather-rainy
+        {% elif icon == 'sleet' %}
+          mdi:weather-snowy-rain
+        {% elif icon == 'snow' %}
+          mdi:weather-snowy
+        {% elif icon == 'wind' %}
+          mdi:weather-windy-variant
+        {% else %}
+          unknown
+        {% endif %}
+      value_template: >-
+        {% set icon = states('sensor.dark_sky_icon_3') %}
+
+        {% if icon in ['clear-day', 'clear-night'] %}
+          Clear
+        {% elif icon == 'cloudy' %}
+          Cloudy
+        {% elif icon == 'fog' %}
+          Fog
+        {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
+          Partly Cloudy
+        {% elif icon == 'rain' %}
+          Rain
+        {% elif icon == 'sleet' %}
+          Sleet
+        {% elif icon == 'snow' %}
+          Snow
+        {% elif icon == 'wind' %}
+          Windy
+        {% else %}
+          unknown
+        {% endif %}
+
+    outside_condition_4:
+      friendly_name: Condition
+      icon_template: >-
+        {% set icon = states('sensor.dark_sky_icon_4') %}
+
+        {% if icon in ['clear-day', 'clear-night'] %}
+          mdi:weather-sunny
+        {% elif icon == 'cloudy' %}
+          mdi:weather-cloudy
+        {% elif icon == 'fog' %}
+          mdi:weather-fog
+        {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
+          mdi:weather-partlycloudy
+        {% elif icon == 'rain' %}
+          mdi:weather-rainy
+        {% elif icon == 'sleet' %}
+          mdi:weather-snowy-rain
+        {% elif icon == 'snow' %}
+          mdi:weather-snowy
+        {% elif icon == 'wind' %}
+          mdi:weather-windy-variant
+        {% else %}
+          unknown
+        {% endif %}
+      value_template: >-
+        {% set icon = states('sensor.dark_sky_icon_4') %}
+
+        {% if icon in ['clear-day', 'clear-night'] %}
+          Clear
+        {% elif icon == 'cloudy' %}
+          Cloudy
+        {% elif icon == 'fog' %}
+          Fog
+        {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
+          Partly Cloudy
+        {% elif icon == 'rain' %}
+          Rain
+        {% elif icon == 'sleet' %}
+          Sleet
+        {% elif icon == 'snow' %}
+          Snow
+        {% elif icon == 'wind' %}
+          Windy
+        {% else %}
+          unknown
+        {% endif %}
+
     weather_summary:
       entity_id:
         - sensor.dark_sky_temperature
@@ -148,9 +405,122 @@
 - platform: template
   sensors:
     precip_probability:
-      friendly_name: Probability of Precipitation
+      friendly_name_template: >-
+        {% set precip = states('sensor.dark_sky_precip') %}
+
+        {% if precip != 'unknown' %}
+          Chance of {{ precip | title }}
+        {% else %}
+          Precip Probability
+        {% endif %}
+      icon_template: mdi:percent
       value_template: >-
         {% set precip = states('sensor.dark_sky_precip_probability') | int(-1) %}
+
+        {% if precip < 0 %}
+          unknown
+        {% elif precip > 0 %}
+          {{ precip }} %
+        {% else %}
+          —
+        {% endif %}
+
+    precip_probability_0:
+      friendly_name_template: >-
+        {% set precip = states('sensor.dark_sky_precip_0') %}
+
+        {% if precip != 'unknown' %}
+          Chance of {{ precip | title }}
+        {% else %}
+          Precip Probability
+        {% endif %}
+      icon_template: mdi:percent
+      value_template: >-
+        {% set precip = states('sensor.dark_sky_precip_probability_0') | int(-1) %}
+
+        {% if precip < 0 %}
+          unknown
+        {% elif precip > 0 %}
+          {{ precip }} %
+        {% else %}
+          —
+        {% endif %}
+
+    precip_probability_1:
+      friendly_name_template: >-
+        {% set precip = states('sensor.dark_sky_precip_1') %}
+
+        {% if precip != 'unknown' %}
+          Chance of {{ precip | title }}
+        {% else %}
+          Precip Probability
+        {% endif %}
+      icon_template: mdi:percent
+      value_template: >-
+        {% set precip = states('sensor.dark_sky_precip_probability_1') | int(-1) %}
+
+        {% if precip < 0 %}
+          unknown
+        {% elif precip > 0 %}
+          {{ precip }} %
+        {% else %}
+          —
+        {% endif %}
+
+    precip_probability_2:
+      friendly_name_template: >-
+        {% set precip = states('sensor.dark_sky_precip_2') %}
+
+        {% if precip != 'unknown' %}
+          Chance of {{ precip | title }}
+        {% else %}
+          Precip Probability
+        {% endif %}
+      icon_template: mdi:percent
+      value_template: >-
+        {% set precip = states('sensor.dark_sky_precip_probability_2') | int(-1) %}
+
+        {% if precip < 0 %}
+          unknown
+        {% elif precip > 0 %}
+          {{ precip }} %
+        {% else %}
+          —
+        {% endif %}
+
+    precip_probability_3:
+      friendly_name_template: >-
+        {% set precip = states('sensor.dark_sky_precip_3') %}
+
+        {% if precip != 'unknown' %}
+          Chance of {{ precip | title }}
+        {% else %}
+          Precip Probability
+        {% endif %}
+      icon_template: mdi:percent
+      value_template: >-
+        {% set precip = states('sensor.dark_sky_precip_probability_3') | int(-1) %}
+
+        {% if precip < 0 %}
+          unknown
+        {% elif precip > 0 %}
+          {{ precip }} %
+        {% else %}
+          —
+        {% endif %}
+
+    precip_probability_4:
+      friendly_name_template: >-
+        {% set precip = states('sensor.dark_sky_precip_4') %}
+
+        {% if precip != 'unknown' %}
+          Chance of {{ precip | title }}
+        {% else %}
+          Precip Probability
+        {% endif %}
+      icon_template: mdi:percent
+      value_template: >-
+        {% set precip = states('sensor.dark_sky_precip_probability_4') | int(-1) %}
 
         {% if precip < 0 %}
           unknown
@@ -162,6 +532,7 @@
 
     precip_probability_friendly:
       friendly_name: Probability of Precipitation
+      icon_template: mdi:percent
       value_template: >-
         {% set precip = states('sensor.dark_sky_precip_probability') | int(-1) %}
 
@@ -173,21 +544,9 @@
           no precipitation
         {% endif %}
 
-    precip_probability_1:
-      friendly_name: Probability of Precipitation
-      value_template: >-
-        {% set precip = states('sensor.dark_sky_precip_probability_1') | int(-1) %}
-
-        {% if precip < 0 %}
-          unknown
-        {% elif precip > 0 %}
-          {{ precip }} %
-        {% else %}
-          —
-        {% endif %}
-
     precip_probability_friendly_1:
       friendly_name: Probability of Precipitation
+      icon_template: mdi:percent
       value_template: >-
         {% set precip = states('sensor.dark_sky_precip_probability_1') | int(-1) %}
 
@@ -199,23 +558,39 @@
           no precipitation
         {% endif %}
 
-    precip_probability_2:
+    precip_probability_friendly_2:
       friendly_name: Probability of Precipitation
+      icon_template: mdi:percent
       value_template: >-
         {% set precip = states('sensor.dark_sky_precip_probability_2') | int(-1) %}
 
         {% if precip < 0 %}
           unknown
         {% elif precip > 0 %}
-          {{ precip }} %
+          precip: {{ precip }} %
         {% else %}
-          —
+          no precipitation
         {% endif %}
 
-    precip_probability_friendly_2:
+    precip_probability_friendly_3:
       friendly_name: Probability of Precipitation
+      icon_template: mdi:percent
       value_template: >-
-        {% set precip = states('sensor.dark_sky_precip_probability_2') | int(-1) %}
+        {% set precip = states('sensor.dark_sky_precip_probability_3') | int(-1) %}
+
+        {% if precip < 0 %}
+          unknown
+        {% elif precip > 0 %}
+          precip: {{ precip }} %
+        {% else %}
+          no precipitation
+        {% endif %}
+
+    precip_probability_friendly_4:
+      friendly_name: Probability of Precipitation
+      icon_template: mdi:percent
+      value_template: >-
+        {% set precip = states('sensor.dark_sky_precip_probability_4') | int(-1) %}
 
         {% if precip < 0 %}
           unknown
@@ -227,7 +602,52 @@
 
 
 #
-# Friendly low temperatures
+# Friendly humidity
+#
+# Makes humidity readings easier to understand by rounding them.
+#
+# @see /appdaemon/dashboards/Weather.dash
+#
+- platform: template
+  sensors:
+    outside_humidity_0:
+      friendly_name: Humidity
+      unit_of_measurement: '%'
+      icon_template: mdi:water-percent
+      value_template: >-
+        {{ states('sensor.dark_sky_humidity_0') | round }}
+
+    outside_humidity_1:
+      friendly_name: Humidity
+      unit_of_measurement: '%'
+      icon_template: mdi:water-percent
+      value_template: >-
+        {{ states('sensor.dark_sky_humidity_1') | round }}
+
+    outside_humidity_2:
+      friendly_name: Humidity
+      unit_of_measurement: '%'
+      icon_template: mdi:water-percent
+      value_template: >-
+        {{ states('sensor.dark_sky_humidity_2') | round }}
+
+    outside_humidity_3:
+      friendly_name: Humidity
+      unit_of_measurement: '%'
+      icon_template: mdi:water-percent
+      value_template: >-
+        {{ states('sensor.dark_sky_humidity_3') | round }}
+
+    outside_humidity_4:
+      friendly_name: Humidity
+      unit_of_measurement: '%'
+      icon_template: mdi:water-percent
+      value_template: >-
+        {{ states('sensor.dark_sky_humidity_4') | round }}
+
+
+#
+# Friendly temperatures
 #
 # Makes temperature readings easier to understand by rounding them and adding
 # strings.
@@ -236,36 +656,256 @@
 #
 - platform: template
   sensors:
-    weather_low:
-      friendly_name: Low Temperature
+    outside_temperature_0:
+      friendly_name_template: >-
+        {% set date = states('sensor.date') %}
+        {% set datetime = strptime(date, '%Y-%m-%d') %}
+        {% set timestamp = as_timestamp(datetime) %}
+
+        {{ timestamp | timestamp_custom('%A') }}
+      unit_of_measurement: '°C'
+      icon_template: >-
+        {% set icon = states('sensor.dark_sky_icon_0') %}
+
+        {% if icon == 'clear-day' or icon == 'clear-night' %}
+          mdi:weather-sunny
+        {% elif icon == 'rain' %}
+          mdi:weather-rainy
+        {% elif icon == 'snow' %}
+          mdi:weather-snowy
+        {% elif icon == 'sleet' %}
+          mdi:weather-snowy-rain
+        {% elif icon == 'wind' %}
+          mdi:weather-windy-variant
+        {% elif icon == 'fog' %}
+          mdi:weather-fog
+        {% elif icon == 'cloudy' %}
+          mdi:weather-cloudy
+        {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
+          mdi:weather-partlycloudy
+        {% else %}
+          unknown
+        {% endif %}
+      value_template: >-
+        {{ states('sensor.dark_sky_daytime_high_temperature_0') | round }}
+
+    outside_temperature_1:
+      friendly_name_template: >-
+        {% set date = states('sensor.date') %}
+        {% set datetime = strptime(date, '%Y-%m-%d') %}
+        {% set timestamp = as_timestamp(datetime) + 1*24*60*60 %}
+
+        {{ timestamp | timestamp_custom('%A') }}
+      unit_of_measurement: '°C'
+      icon_template: >-
+        {% set icon = states('sensor.dark_sky_icon_1') %}
+
+        {% if icon == 'clear-day' or icon == 'clear-night' %}
+          mdi:weather-sunny
+        {% elif icon == 'rain' %}
+          mdi:weather-rainy
+        {% elif icon == 'snow' %}
+          mdi:weather-snowy
+        {% elif icon == 'sleet' %}
+          mdi:weather-snowy-rain
+        {% elif icon == 'wind' %}
+          mdi:weather-windy-variant
+        {% elif icon == 'fog' %}
+          mdi:weather-fog
+        {% elif icon == 'cloudy' %}
+          mdi:weather-cloudy
+        {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
+          mdi:weather-partlycloudy
+        {% else %}
+          unknown
+        {% endif %}
+      value_template: >-
+        {{ states('sensor.dark_sky_daytime_high_temperature_1') | round }}
+
+    outside_temperature_2:
+      friendly_name_template: >-
+        {% set date = states('sensor.date') %}
+        {% set datetime = strptime(date, '%Y-%m-%d') %}
+        {% set timestamp = as_timestamp(datetime) + 2*24*60*60 %}
+
+        {{ timestamp | timestamp_custom('%A') }}
+      unit_of_measurement: '°C'
+      icon_template: >-
+        {% set icon = states('sensor.dark_sky_icon_2') %}
+
+        {% if icon == 'clear-day' or icon == 'clear-night' %}
+          mdi:weather-sunny
+        {% elif icon == 'rain' %}
+          mdi:weather-rainy
+        {% elif icon == 'snow' %}
+          mdi:weather-snowy
+        {% elif icon == 'sleet' %}
+          mdi:weather-snowy-rain
+        {% elif icon == 'wind' %}
+          mdi:weather-windy-variant
+        {% elif icon == 'fog' %}
+          mdi:weather-fog
+        {% elif icon == 'cloudy' %}
+          mdi:weather-cloudy
+        {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
+          mdi:weather-partlycloudy
+        {% else %}
+          unknown
+        {% endif %}
+      value_template: >-
+        {{ states('sensor.dark_sky_daytime_high_temperature_2') | round }}
+
+    outside_temperature_3:
+      friendly_name_template: >-
+        {% set date = states('sensor.date') %}
+        {% set datetime = strptime(date, '%Y-%m-%d') %}
+        {% set timestamp = as_timestamp(datetime) + 3*24*60*60 %}
+
+        {{ timestamp | timestamp_custom('%A') }}
+      unit_of_measurement: '°C'
+      icon_template: >-
+        {% set icon = states('sensor.dark_sky_icon_3') %}
+
+        {% if icon == 'clear-day' or icon == 'clear-night' %}
+          mdi:weather-sunny
+        {% elif icon == 'rain' %}
+          mdi:weather-rainy
+        {% elif icon == 'snow' %}
+          mdi:weather-snowy
+        {% elif icon == 'sleet' %}
+          mdi:weather-snowy-rain
+        {% elif icon == 'wind' %}
+          mdi:weather-windy-variant
+        {% elif icon == 'fog' %}
+          mdi:weather-fog
+        {% elif icon == 'cloudy' %}
+          mdi:weather-cloudy
+        {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
+          mdi:weather-partlycloudy
+        {% else %}
+          unknown
+        {% endif %}
+      value_template: >-
+        {{ states('sensor.dark_sky_daytime_high_temperature_3') | round }}
+
+    outside_temperature_4:
+      friendly_name_template: >-
+        {% set date = states('sensor.date') %}
+        {% set datetime = strptime(date, '%Y-%m-%d') %}
+        {% set timestamp = as_timestamp(datetime) + 4*24*60*60 %}
+
+        {{ timestamp | timestamp_custom('%A') }}
+      unit_of_measurement: '°C'
+      icon_template: >-
+        {% set icon = states('sensor.dark_sky_icon_4') %}
+
+        {% if icon == 'clear-day' or icon == 'clear-night' %}
+          mdi:weather-sunny
+        {% elif icon == 'rain' %}
+          mdi:weather-rainy
+        {% elif icon == 'snow' %}
+          mdi:weather-snowy
+        {% elif icon == 'sleet' %}
+          mdi:weather-snowy-rain
+        {% elif icon == 'wind' %}
+          mdi:weather-windy-variant
+        {% elif icon == 'fog' %}
+          mdi:weather-fog
+        {% elif icon == 'cloudy' %}
+          mdi:weather-cloudy
+        {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
+          mdi:weather-partlycloudy
+        {% else %}
+          unknown
+        {% endif %}
+      value_template: >-
+        {{ states('sensor.dark_sky_daytime_high_temperature_4') | round }}
+
+    outside_temperature_high_0:
+      friendly_name: High
+      icon_template: mdi:thermometer
+      unit_of_measurement: '°C'
+      value_template: >-
+        {{ states('sensor.dark_sky_daytime_high_temperature_0') | round }}
+
+    outside_temperature_high_1:
+      friendly_name: High
+      icon_template: mdi:thermometer
+      unit_of_measurement: '°C'
+      value_template: >-
+        {{ states('sensor.dark_sky_daytime_high_temperature_1') | round }}
+
+    outside_temperature_high_2:
+      friendly_name: High
+      icon_template: mdi:thermometer
+      unit_of_measurement: '°C'
+      value_template: >-
+        {{ states('sensor.dark_sky_daytime_high_temperature_2') | round }}
+
+    outside_temperature_high_3:
+      friendly_name: High
+      icon_template: mdi:thermometer
+      unit_of_measurement: '°C'
+      value_template: >-
+        {{ states('sensor.dark_sky_daytime_high_temperature_3') | round }}
+
+    outside_temperature_high_4:
+      friendly_name: High
+      icon_template: mdi:thermometer
+      unit_of_measurement: '°C'
+      value_template: >-
+        {{ states('sensor.dark_sky_daytime_high_temperature_4') | round }}
+
+    outside_temperature_low_0:
+      friendly_name: Low
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
       value_template: >-
         {{ states('sensor.dark_sky_overnight_low_temperature_0') | round }}
 
-    weather_low_friendly:
+    outside_temperature_low_1:
+      friendly_name: Low
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.dark_sky_overnight_low_temperature_1') | round }}
+
+    outside_temperature_low_2:
+      friendly_name: Low
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.dark_sky_overnight_low_temperature_2') | round }}
+
+    outside_temperature_low_3:
+      friendly_name: Low
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.dark_sky_overnight_low_temperature_3') | round }}
+
+    outside_temperature_low_4:
+      friendly_name: Low
+      unit_of_measurement: '°C'
+      icon_template: mdi:thermometer
+      value_template: >-
+        {{ states('sensor.dark_sky_overnight_low_temperature_4') | round }}
+
+    outside_temperature_low_friendly_0:
       friendly_name: Low Temperature
       value_template: >-
         {% set temp = states('sensor.dark_sky_overnight_low_temperature_0') | round %}
 
         low: {{ temp }}˚
 
-    weather_low_1:
-      friendly_name: Low Temperature
-      value_template: >-
-        {{ states('sensor.dark_sky_overnight_low_temperature_1') | round }}
-
-    weather_low_1_friendly:
+    outside_temperature_low_friendly_1:
       friendly_name: Low Temperature
       value_template: >-
         {% set temp = states('sensor.dark_sky_overnight_low_temperature_1') | round %}
 
         low: {{ temp }}˚
 
-    weather_low_2:
-      friendly_name: Low Temperature
-      value_template: >-
-        {{ states('sensor.dark_sky_overnight_low_temperature_2') | round }}
-
-    weather_low_2_friendly:
+    outside_temperature_low_friendly_2:
       friendly_name: Low Temperature
       value_template: >-
         {% set temp = states('sensor.dark_sky_overnight_low_temperature_2') | round %}
@@ -287,8 +927,6 @@
 
         {% if icon == 'clear-day' or icon == 'clear-night' %}
           Clear
-        {% elif icon == 'rain' %}
-          Rain
         {% elif icon == 'rain' %}
           Rain
         {% elif icon == 'snow' %}
@@ -316,8 +954,6 @@
           Clear
         {% elif icon == 'rain' %}
           Rain
-        {% elif icon == 'rain' %}
-          Rain
         {% elif icon == 'snow' %}
           Snow
         {% elif icon == 'sleet' %}
@@ -341,8 +977,6 @@
 
         {% if icon == 'clear-day' or icon == 'clear-night' %}
           Clear
-        {% elif icon == 'rain' %}
-          Rain
         {% elif icon == 'rain' %}
           Rain
         {% elif icon == 'snow' %}

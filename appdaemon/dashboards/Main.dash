@@ -123,8 +123,8 @@ scene:
 #
 temperature_now:
     widget_type: entitysensor
-    entity: sensor.dark_sky_temperature
-    sub_entity: sensor.weather_low_friendly
+    entity: sensor.outside_temperature
+    sub_entity: sensor.outside_temperature_low_friendly_0
     title2_entity: sensor.feels_like
     widget_style: "background-color:inherit;"
     title2_style: "margin-top:3px;"
