@@ -15,11 +15,11 @@ import homeassistant.helpers.config_validation as cv
 from homeassistant.components.http import HomeAssistantView
 from homeassistant.helpers.event import async_track_time_interval
 
-VERSION = '4.2.19'
+VERSION = '5.1.1'
 
 _LOGGER = logging.getLogger(__name__)
 
-REQUIREMENTS = ['pyupdate==1.3.6']
+REQUIREMENTS = ['pyupdate==1.4.0']
 
 CONF_TRACK = 'track'
 CONF_HIDE_SENSOR = 'hide_sensor'
@@ -68,6 +68,8 @@ async def async_setup(hass, config):
 
     _LOGGER.debug('Version %s', VERSION)
     _LOGGER.debug('Mode %s', conf_mode)
+
+    hass.http.register_view(CustomCardsView(str(hass.config.path())))
 
     if conf_mode == 'yaml':
         if not os.path.exists("{}/ui-lovelace.yaml".format(str(hass.config.path()))):
@@ -157,7 +159,6 @@ class CustomCards():
         _LOGGER.debug('CustomCards - extra_init')
         await self.pyupdate.init_local_data()
         await self.cache_versions()
-        await self.serve_dynamic_files()
 
     async def force_reload(self, now=None):
         """Force data refresh"""
@@ -190,10 +191,6 @@ class CustomCards():
         """Install single card."""
         _LOGGER.debug('CustomCards - update_all')
         await self.pyupdate.install(element)
-
-    async def serve_dynamic_files(self):
-        """Serve dynamic cardfiles."""
-        self.hass.http.register_view(CustomCardsView(self.ha_conf_dir))
 
 
 class CustomComponents():
@@ -294,9 +291,8 @@ class CustomCardsView(HomeAssistantView):
     """View to return a custom_card file."""
 
     requires_auth = False
-
     url = r"/customcards/{path:.+}"
-    name = "customcards"
+    name = "customcards:path"
 
     def __init__(self, hadir):
         """Initialize custom_card view."""

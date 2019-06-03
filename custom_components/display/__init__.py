@@ -1,40 +1,65 @@
-import asyncio
+"""
+Home Assistant Display Component
+
+Copyright (c) Darryl Ross, darryl@afoyi.com
+
+Please see https://github.com/daemondazz/homeassistant-displays for instructions and latest updates.
+"""
+
 import logging
 from datetime import timedelta
-from functools import partial
 
 import voluptuous as vol
 
-import homeassistant.core as ha
-from homeassistant.const import (
-    ATTR_ENTITY_ID, SERVICE_TURN_OFF, SERVICE_TURN_ON, STATE_ON
-)
 import homeassistant.helpers.config_validation as cv
+from homeassistant.components.group import (
+    ENTITY_ID_FORMAT as GROUP_ENTITY_ID_FORMAT
+)
+from homeassistant.const import (
+    ATTR_ENTITY_ID,
+    SERVICE_TURN_OFF, SERVICE_TURN_ON,
+    STATE_ON
+)
+from homeassistant.helpers.config_validation import PLATFORM_SCHEMA
 from homeassistant.helpers.entity import ToggleEntity
 from homeassistant.helpers.entity_component import EntityComponent
-from homeassistant.helpers.config_validation import (  # noqa
-    PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE)
 from homeassistant.loader import bind_hass
+
 
 _LOGGER = logging.getLogger(__name__)
 
 DOMAIN = 'display'
 ENTITY_ID_FORMAT = DOMAIN + '.{}'
+
 GROUP_NAME_ALL_DISPLAYS = 'all displays'
+ENTITY_ID_ALL_DISPLAYS = GROUP_ENTITY_ID_FORMAT.format('all_displays')
+
 SCAN_INTERVAL = timedelta(seconds=30)
 
-DISPLAY_SERVICE_SCHEMA = vol.Schema({
-    ATTR_ENTITY_ID: cv.entity_ids,
-})
+ATTR_BRIGHTNESS = 'brightness'
+ATTR_URL = 'url'
 
-SERVICE_TO_METHOD = {
-    SERVICE_TURN_ON: {'method': 'async_turn_on'},
-    SERVICE_TURN_OFF: {'method': 'async_turn_off'},
-}
+SERVICE_LOAD_URL = 'load_url'
+SERVICE_SET_BRIGHTNESS = 'set_brightness'
 
 SUPPORT_TURN_ON = 1
 SUPPORT_TURN_OFF = 2
-SUPPORT_SEND_COMMAND = 4
+SUPPORT_LOAD_URL = 4
+SUPPORT_SET_BRIGHTNESS = 8
+
+DISPLAY_DEVICE_SCHEMA = vol.Schema({
+    ATTR_ENTITY_ID: cv.entity_ids,
+})
+DISPLAY_DEVICE_LOAD_URL_SCHEMA = DISPLAY_DEVICE_SCHEMA.extend({
+    vol.Required(ATTR_URL): cv.string,
+})
+DISPLAY_DEVICE_SET_BRIGHTNESS_SCHEMA = DISPLAY_DEVICE_SCHEMA.extend({
+    vol.Optional(ATTR_BRIGHTNESS, default=None):
+        vol.Any(
+            vol.All(str, vol.Length(min=0, max=0)),
+            vol.All(int, vol.Range(min=0, max=255))
+        )
+})
 
 
 @bind_hass
@@ -43,57 +68,31 @@ def is_on(hass, entity_id=None):
     return hass.states.is_state(entity_id, STATE_ON)
 
 
-@bind_hass
-def send_command(hass, command, params=None, entity_id=None):
-    data = {ATTR_ENTITY_ID: entity_id} if entity_id else {}
-    data[ATTR_COMMAND] = command
-    if params is not None:
-        data[ATTR_PARAMS] = params
-    hass.services.call(DOMAIN, SERVICE_SEND_COMMAND, data)
-
-
-@bind_hass
-def turn_on(hass, entity_id=None):
-    data = {ATTR_ENTITY_ID: entity_id} if entity_id else None
-    hass.services.call(DOMAIN, SERVICE_TURN_ON, data)
-
-
-@bind_hass
-def turn_off(hass, entity_id=None):
-    data = {ATTR_ENTITY_ID: entity_id} if entity_id else None
-    hass.services.call(DOMAIN, SERVICE_TURN_OFF, data)
-
-
-@asyncio.coroutine
-def async_setup(hass, config):
+async def async_setup(hass, config):
     component = EntityComponent(
         _LOGGER, DOMAIN, hass, SCAN_INTERVAL, GROUP_NAME_ALL_DISPLAYS)
 
-    yield from component.async_setup(config)
+    await component.async_setup(config)
 
-    @asyncio.coroutine
-    def async_handle_display_service(service):
-        method = SERVICE_TO_METHOD.get(service.service)
-        target_displays = component.async_extract_from_service(service)
-        params = service.data.copy()
-        params.pop(ATTR_ENTITY_ID, None)
+    component.async_register_entity_service(
+        SERVICE_LOAD_URL, DISPLAY_DEVICE_LOAD_URL_SCHEMA,
+        'async_load_url', [SUPPORT_LOAD_URL]
+    )
 
-        update_tasks = []
-        for display in target_displays:
-            yield from getattr(display, method['method'])(**params)
-            if not display.should_poll:
-                continue
-            update_tasks.append(display.async_update_ha_state(True))
+    component.async_register_entity_service(
+        SERVICE_SET_BRIGHTNESS, DISPLAY_DEVICE_SET_BRIGHTNESS_SCHEMA,
+        'async_set_brightness', [SUPPORT_SET_BRIGHTNESS]
+    )
 
-        if update_tasks:
-            yield from asyncio.wait(update_tasks, loop=hass.loop)
+    component.async_register_entity_service(
+        SERVICE_TURN_ON, DISPLAY_DEVICE_SCHEMA,
+        'async_turn_on', [SUPPORT_TURN_ON]
+    )
 
-    for service in SERVICE_TO_METHOD:
-        schema = SERVICE_TO_METHOD[service].get(
-            'schema', DISPLAY_SERVICE_SCHEMA)
-        hass.services.async_register(
-            DOMAIN, service, async_handle_display_service,
-            schema=schema)
+    component.async_register_entity_service(
+        SERVICE_TURN_OFF, DISPLAY_DEVICE_SCHEMA,
+        'async_turn_off', [SUPPORT_TURN_OFF]
+    )
 
     return True
 
@@ -101,7 +100,7 @@ def async_setup(hass, config):
 class DisplayDevice(ToggleEntity):
     @property
     def supported_features(self):
-        raise NotImplementedError()
+        return 0
 
     @property
     def status(self):
@@ -111,14 +110,26 @@ class DisplayDevice(ToggleEntity):
     def battery_level(self):
         return None
 
-    def turn_on(self, **kwargs):
+    def load_url(self, url):
         raise NotImplementedError()
 
-    def async_turn_on(self, **kwargs):
-        return self.hass.async_add_job(partial(self.turn_on, **kwargs))
+    def async_load_url(self, url):
+        return self.hass.async_add_job(self.load_url, url)
 
-    def turn_off(self, **kwargs):
+    def set_brightness(self, brightness):
         raise NotImplementedError()
 
-    def async_turn_off(self, **kwargs):
-        return self.hass.async_add_job(partial(self.turn_off, **kwargs))
+    def async_set_brightness(self, brightness):
+        return self.hass.async_add_job(self.set_brightness, brightness)
+
+    def turn_off(self):
+        raise NotImplementedError()
+
+    def async_turn_off(self):
+        return self.hass.async_add_job(self.turn_off)
+
+    def turn_on(self):
+        raise NotImplementedError()
+
+    def async_turn_on(self):
+        return self.hass.async_add_job(self.turn_on)

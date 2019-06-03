@@ -9,3 +9,6 @@ card_urls:
   - https://raw.githubusercontent.com/kalkih/mini-graph-card/master/tracker.json
   - https://raw.githubusercontent.com/matisaul/vertical-style-card/master/tracker.json
   - https://raw.githubusercontent.com/MizterB/lovelace-secondaryinfo-entity-row/master/custom_cards.json
+
+component_urls:
+  - https://raw.githubusercontent.com/renemarc/home-assistant-doomsday-clock/develop/tracker.json

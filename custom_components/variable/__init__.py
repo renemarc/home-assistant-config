@@ -79,7 +79,8 @@ async def async_setup(hass, config):
 
         entities.append(Variable(variable_id, name, value, attributes, restore))
 
-    async def async_set_variable_service(call):
+    @asyncio.coroutine
+    def async_set_variable_service(call):
         """Handle calls to the set_variable service."""
 
         entity_id = ENTITY_ID_FORMAT.format(call.data.get(ATTR_VARIABLE))
@@ -95,7 +96,7 @@ async def async_setup(hass, config):
                         call.data.get(ATTR_REPLACE_ATTRIBUTES, False))
                      for variable in target_variables]
             if tasks:
-                await asyncio.wait(tasks, loop=hass.loop)
+                yield from asyncio.wait(tasks, loop=hass.loop)
 
         else:
             _LOGGER.warning('Failed to set unknown variable: %s', entity_id)
@@ -120,7 +121,7 @@ class Variable(RestoreEntity):
 
     async def async_added_to_hass(self):
         """Run when entity about to be added."""
-        super().async_added_to_hass()
+        await super().async_added_to_hass()
         if self._restore == True:
             state = await self.async_get_last_state()
             if state:
@@ -154,7 +155,8 @@ class Variable(RestoreEntity):
         """Return the state attributes."""
         return self._attributes
 
-    async def async_set_variable(self, value, value_template, attributes, attributes_template, replace_attributes):
+    @asyncio.coroutine
+    def async_set_variable(self, value, value_template, attributes, attributes_template, replace_attributes):
         """Update variable."""
 
         current_state = self.hass.states.get(self.entity_id)
@@ -202,4 +204,4 @@ class Variable(RestoreEntity):
         if updated_value is not None:
             self._value = updated_value;
 
-        await self.async_update_ha_state()
+        yield from self.async_update_ha_state()

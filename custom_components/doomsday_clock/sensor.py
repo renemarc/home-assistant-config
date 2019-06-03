@@ -1,32 +1,24 @@
-"""
-Support for Doomsday Clock from the Bulletin of the Atomic Scientists.
-
-Convert data into parsable time from the Timeline page at
-https://thebulletin.org/doomsday-clock/past-announcements/
-
-Based on prior work by Matt Bierner.
-See https://github.com/mattbierner/MinutesToMidnight
-
-For more details about this platform, please refer to the documentation at
-https://github.com/renemarc/home_assistant_doomsday_clock/
-"""
+"""Sensor platform for Doomsday Clock."""
 import datetime
 import logging
 import re
+
 import voluptuous as vol
 
 from homeassistant.components.sensor import PLATFORM_SCHEMA
-from homeassistant.components.sensor.rest import RestData
+from homeassistant.components.rest.sensor import RestData
 from homeassistant.const import (
     ATTR_ATTRIBUTION, CONF_NAME, CONF_ICON, CONF_UNIT_OF_MEASUREMENT,
     CONF_VALUE_TEMPLATE, STATE_UNKNOWN)
+import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity import Entity
 from homeassistant.util import Throttle
-import homeassistant.helpers.config_validation as cv
 
-REQUIREMENTS = ['beautifulsoup4==4.6.0']
+VERSION = '2.0.1'
 
 _LOGGER = logging.getLogger(__name__)
+
+DOMAIN = 'sensor'
 
 DEFAULT_NAME = "Doomsday Clock"
 DEFAULT_ICON = 'mdi:nuke'

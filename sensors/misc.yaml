@@ -247,7 +247,7 @@
 #
 - platform: github
   access_token: !secret github_access_token
-  scan_interval: 3600
+  scan_interval: 300
   repositories:
     - path: 'renemarc/home-assistant-config'
       name: Config Repo

@@ -1,0 +1,43 @@
+load_start_url:
+  description: 'Reload the Fully Kiosk Browser start URL'
+  fields:
+    entity_id:
+      description: 'Name of the Fully Kiosk Browser device'
+      example: 'display.kitchen_wall_pad'
+
+say:
+  description: 'Say phrase using Fully Kiosk Browser text to speech engine'
+  fields:
+    entity_id:
+      description: 'Name of the Fully Kiosk Browser device'
+      example: 'display.kitchen_wall_pad'
+    message:
+      description: 'The message to say'
+      example: 'Hello Bob'
+    locale:
+      description: 'The locale to use, see Fully Kiosk Browser documentation for valid values'
+      example: 'en'
+
+screensaver_start:
+  description: 'Start the Fully Kiosk Browser device screensaver'
+  fields:
+    entity_id:
+      description: 'Name of the Fully Kiosk Browser device'
+      example: 'display.kitchen_wall_pad'
+
+screensaver_stop:
+  description: 'Stop the Fully Kiosk Browser device screensaver'
+  fields:
+    entity_id:
+      description: 'Name of the Fully Kiosk Browser device'
+      example: 'display.kitchen_wall_pad'
+
+set_screensaver_brightness:
+  description: 'Set the Fully Kiosk Browser device screensaver brightness'
+  fields:
+    entity_id:
+      description: 'Name of the Fully Kiosk Browser device'
+      example: 'display.kitchen_wall_pad'
+    brightness:
+      description: 'Brightness level to set'
+      example: '0-255'

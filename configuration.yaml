@@ -54,6 +54,7 @@ counter: !include misc/counters.yaml
 custom_updater: !include misc/custom_updater.yaml
 
 
+
 #
 # Enable the UI customizer
 #
@@ -144,6 +145,10 @@ homeassistant:
   elevation: !secret zone_home_elevation
   unit_system: metric
   time_zone: !secret homeassistant_time_zone
+  auth_providers:
+    - type: homeassistant
+    - type: legacy_api_password
+      api_password: !secret http_password
   customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
   whitelist_external_dirs:
@@ -166,7 +171,6 @@ homekit: !include misc/homekit.yaml
 # @link https://home-assistant.io/components/http/
 #
 http:
-  api_password: !secret http_password
   base_url: !secret http_base_url
   server_port: !secret http_server_port
   cors_allowed_origins: !secret http_cors_allowed_origins
@@ -244,6 +248,7 @@ logger:
     custom_components.light.lightpack: critical # When Lightpack is offline.
     homeassistant.components.device_tracker.unifi: fatal # When Unifi Controller is temporarily unreachable.
     homeassistant.components.media_player.plex: fatal # When Plex is offline.
+    homeassistant.components.sensor.github: debug
     homeassistant.components.switch.tplink: error # When switch is unplugged.
     pyunifi.controller: error # When Unifi Controller is temporarily unreachable.
 
@@ -383,12 +388,19 @@ system_health:
 
 
 #
+# TP-Link
+#
+# @link https://www.home-assistant.io/components/tplink/
+#
+tplink: !include misc/tplink.yaml
+
+#
 # Text to speech
 #
 # @link https://home-assistant.io/components/tts/
 #
 tts:
-  - platform: google
+  - platform: google_translate
 
 
 #

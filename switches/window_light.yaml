@@ -1,9 +1,0 @@
-#
-# 12v warm white 100-LED string fairy lights on a TP-Link Smart WiFi Plug Mini
-#
-# @link https://www.tp-link.com/ca/products/details/cat-5516_HS105.html
-# @link https://home-assistant.io/components/switch.tplink/
-#
-- platform: tplink
-  name: Window Light
-  host: !secret tplink_window_light_host

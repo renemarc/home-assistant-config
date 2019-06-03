@@ -1,0 +1,1 @@
+"""The Lightpack component."""

@@ -416,31 +416,31 @@
       friendly_name: UV Index
       icon_template: mdi:sunglasses
       value_template: >-
-        {{ states('sensor.dark_sky_uv_index_0') }}
+        {{ states('sensor.dark_sky_uv_index_0d') }}
 
     uv_1:
       friendly_name: UV Index
       icon_template: mdi:sunglasses
       value_template: >-
-        {{ states('sensor.dark_sky_uv_index_1') }}
+        {{ states('sensor.dark_sky_uv_index_1d') }}
 
     uv_2:
       friendly_name: UV Index
       icon_template: mdi:sunglasses
       value_template: >-
-        {{ states('sensor.dark_sky_uv_index_2') }}
+        {{ states('sensor.dark_sky_uv_index_2d') }}
 
     uv_3:
       friendly_name: UV Index
       icon_template: mdi:sunglasses
       value_template: >-
-        {{ states('sensor.dark_sky_uv_index_3') }}
+        {{ states('sensor.dark_sky_uv_index_3d') }}
 
     uv_4:
       friendly_name: UV Index
       icon_template: mdi:sunglasses
       value_template: >-
-        {{ states('sensor.dark_sky_uv_index_4') }}
+        {{ states('sensor.dark_sky_uv_index_4d') }}
 
     uv_friendly:
       friendly_name: UV Index
@@ -466,7 +466,7 @@
       friendly_name: UV Index
       icon_template: mdi:sunglasses
       value_template: >-
-        {% set uv = states('sensor.dark_sky_uv_index_0') | int(-1) %}
+        {% set uv = states('sensor.dark_sky_uv_index_0d') | int(-1) %}
 
         {% if uv >= 11 %}
           Extreme
@@ -486,7 +486,7 @@
       friendly_name: UV Index
       icon_template: mdi:sunglasses
       value_template: >-
-        {% set uv = states('sensor.dark_sky_uv_index_1') | int(-1) %}
+        {% set uv = states('sensor.dark_sky_uv_index_1d') | int(-1) %}
 
         {% if uv >= 11 %}
           Extreme
@@ -506,7 +506,7 @@
       friendly_name: UV Index
       icon_template: mdi:sunglasses
       value_template: >-
-        {% set uv = states('sensor.dark_sky_uv_index_2') | int(-1) %}
+        {% set uv = states('sensor.dark_sky_uv_index_2d') | int(-1) %}
 
         {% if uv >= 11 %}
           Extreme
@@ -526,7 +526,7 @@
       friendly_name: UV Index
       icon_template: mdi:sunglasses
       value_template: >-
-        {% set uv = states('sensor.dark_sky_uv_index_3') | int(-1) %}
+        {% set uv = states('sensor.dark_sky_uv_index_3d') | int(-1) %}
 
         {% if uv >= 11 %}
           Extreme
@@ -546,7 +546,7 @@
       friendly_name: UV Index
       icon_template: mdi:sunglasses
       value_template: >-
-        {% set uv = states('sensor.dark_sky_uv_index_4') | int(-1) %}
+        {% set uv = states('sensor.dark_sky_uv_index_4d') | int(-1) %}
 
         {% if uv >= 11 %}
           Extreme

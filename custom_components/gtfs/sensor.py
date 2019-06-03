@@ -1,9 +1,4 @@
-"""
-Support for GTFS (Google/General Transport Format Schema).
-
-For more details about this platform, please refer to the documentation at
-https://home-assistant.io/components/sensor.gtfs/
-"""
+"""Support for GTFS (Google/General Transport Format Schema)."""
 import os
 import logging
 import datetime
@@ -15,8 +10,6 @@ from homeassistant.components.sensor import PLATFORM_SCHEMA
 from homeassistant.const import CONF_NAME
 from homeassistant.helpers.entity import Entity
 import homeassistant.helpers.config_validation as cv
-
-REQUIREMENTS = ['pygtfs-homeassistant==0.1.3.dev0']
 
 _LOGGER = logging.getLogger(__name__)
 

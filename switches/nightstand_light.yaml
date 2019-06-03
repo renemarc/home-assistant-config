@@ -1,8 +1,0 @@
-#
-# Nightstand with added 12v RGB LED strips on a TP-Link Smart WiFi Plug Mini
-#
-# @link https://home-assistant.io/components/switch.tplink/
-#
-- platform: tplink
-  name: Nightstand Light
-  host: !secret tplink_nightstand_light_host

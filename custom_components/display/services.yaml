@@ -1,0 +1,33 @@
+load_url:
+  description: 'Load URL'
+  fields:
+    entity_id:
+      description: 'Name of the Display device to turn off'
+      example: 'display.kitchen_wall_pad'
+    url:
+      description: 'URL to load'
+      example: 'https://afoyi.com/'
+
+set_brightness:
+  description: 'Set the Display device screen brightness'
+  fields:
+    entity_id:
+      description: 'Name of the Display device to turn off'
+      example: 'display.kitchen_wall_pad'
+    brightness:
+      description: 'Brightness level to set'
+      example: '0-255'
+
+turn_off:
+  description: 'Turn off the Display device'
+  fields:
+    entity_id:
+      description: 'Name of the Display device to turn off'
+      example: 'display.kitchen_wall_pad'
+
+turn_on:
+  description: 'Turn on the Display device'
+  fields:
+    entity_id:
+      description: 'Name of the Display device to turn on'
+      example: 'display.kitchen_wall_pad'

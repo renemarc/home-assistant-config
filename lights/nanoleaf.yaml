@@ -8,7 +8,7 @@
 # @link https://nanoleaf.me/
 # @link https://www.home-assistant.io/components/light.nanoleaf_aurora/
 #
-- platform: nanoleaf_aurora
+- platform: nanoleaf
   name: Aurora
   host: !secret aurora_host
   token: !secret aurora_api_key
