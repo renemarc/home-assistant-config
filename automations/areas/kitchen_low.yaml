@@ -32,16 +32,14 @@
       state: 'off'
 
   action:
-    # Turn on some lights.
+    # Turn on essential lights.
     - service: homeassistant.turn_on
       data:
         entity_id:
-          - light.microwave
-          - light.sink
+          - group.kitchen_lights_essential
 
-    # Turn off some lights.
+    # Turn off extra lights.
     - service: homeassistant.turn_off
       data:
         entity_id:
-          - light.countertop
-          - light.island
+          - group.kitchen_lights_extra

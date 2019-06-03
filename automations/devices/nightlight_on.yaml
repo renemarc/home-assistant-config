@@ -8,7 +8,7 @@
 #
 - id: nightlight_on
   alias: Nightlight ON
-  initial_state: 'off'
+  # initial_state: 'off'
 
   trigger:
     # When motion is detected.
@@ -16,24 +16,60 @@
       entity_id: group.motion_sensors_critical
       to: 'on'
 
-  condition:
-    # If it's during the night mode.
-    - condition: state
+    - platform: state
+      entity_id: input_boolean.nap_mode
+      to: 'on'
+
+    - platform: state
       entity_id: input_boolean.night_mode
-      state: 'on'
+      to: 'on'
+
+  condition:
+    - condition: or
+      conditions:
+        # If it's during the nap mode.
+        - condition: state
+          entity_id: input_boolean.nap_mode
+          state: 'on'
+
+        # If it's during the night mode.
+        - condition: state
+          entity_id: input_boolean.night_mode
+          state: 'on'
+
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_select.nightlight_type
+          state: 'On'
+
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: group.motion_sensors_critical
+              state: 'on'
+
+            - condition: state
+              entity_id: input_select.nightlight_type
+              state: 'Motion'
 
   action:
-    # Turn night lights on.
-    - service: light.turn_on
+    # Enable nightlight mode.
+    - service: input_boolean.turn_on
       data:
-        entity_id:
-          - group.lifx_lights
-        brightness_pct: 8
-        transition: 5
+        entity_id: input_boolean.nightlight_mode
 
-    # Enable dedicated kitchen night lights effect.
-    - service: homeassistant.turn_on
-      data:
-        entity_id:
-          - group.kitchen_lights
-        effect: night
+    # # Turn night lights on.
+    # - service: light.turn_on
+    #   data:
+    #     entity_id:
+    #       - group.lifx_lights
+    #     brightness_pct: 8
+    #     transition: 5
+
+    # # Enable dedicated kitchen night lights effect.
+    # - service: homeassistant.turn_on
+    #   data:
+    #     entity_id:
+    #       - group.kitchen_lights
+    #     effect: night

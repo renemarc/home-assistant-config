@@ -30,12 +30,10 @@
         {% endif %}
       data:
         entity_id:
-          - light.countertop
-          - light.island
+          - group.kitchen_lights_extra
 
     # Turn on essential lights.
     - service: homeassistant.turn_on
       data:
         entity_id:
-          - light.sink
-          - light.microwave
+          - group.kitchen_lights_essential

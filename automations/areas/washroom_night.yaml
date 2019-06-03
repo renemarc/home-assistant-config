@@ -1,0 +1,37 @@
+#
+# Set Washroom to night state
+#
+# @subscribe input_boolean.night_mode
+# @subscribe input_boolean.nightlight_mode
+#
+- id: washroom_night
+  alias: Washroom NIGHT
+  # initial_state: 'off'
+
+  trigger:
+    # When nightlights are enabled.
+    - platform: state
+      entity_id: input_boolean.nightlight_mode
+      to: 'on'
+
+  condition:
+    - condition: or
+      conditions:
+        # If nap mode is enabled.
+        - condition: state
+          entity_id: input_boolean.nap_mode
+          state: 'on'
+
+        # If night mode is enabled.
+        - condition: state
+          entity_id: input_boolean.night_mode
+          state: 'on'
+
+  action:
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.shower
+        color_name: red
+        brightness_pct: 8
+        transition: 5

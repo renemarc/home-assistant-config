@@ -19,6 +19,34 @@
       entity_id: input_boolean.night_mode
       to: 'on'
 
+    # When nightlight mode is disabled.
+    - platform: state
+      entity_id: input_boolean.nightlight_mode
+      to: 'off'
+
+  condition:
+    - condition: or
+      conditions:
+        # If nap mode is enabled.
+        - condition: state
+          entity_id: input_boolean.nap_mode
+          state: 'on'
+
+        # If night mode is enabled.
+        - condition: state
+          entity_id: input_boolean.night_mode
+          state: 'on'
+
+    # If nightlight mode is disabled.
+    - condition: state
+      entity_id: input_boolean.nightlight_mode
+      state: 'off'
+
+    # If area nightlight automation is disabled.
+    - condition: state
+      entity_id: automation.washroom_night
+      state: 'off'
+
   action:
     # Turn off all devices.
     - service: homeassistant.turn_off

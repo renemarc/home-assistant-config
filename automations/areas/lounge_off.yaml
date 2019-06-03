@@ -13,6 +13,17 @@
       entity_id: input_boolean.night_mode
       to: 'on'
 
+    # When nightlight mode is disabled.
+    - platform: state
+      entity_id: input_boolean.nightlight_mode
+      to: 'off'
+
+  condition:
+    # If night mode is enabled.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'on'
+
   action:
     # Turn off binary devices.
     - service: homeassistant.turn_off
@@ -23,9 +34,20 @@
           - light.window
 
     # Turn off smart lights.
+    # - service: light.turn_off
+    #   data:
+    #     entity_id:
+    #       - light.aurora
+    #     transition: 10
+
+    # Turn off smart lights.
     - service: light.turn_off
+      data_template:
+        entity_id: >-
+          light.aurora
+          {% if not is_state('input_boolean.nightlight_mode', 'on')
+             or not is_state('automation.lounge_night', 'on') %}
+            , light.spotlight
+          {% endif %}
       data:
-        entity_id:
-          - light.aurora
-          - light.spotlight
         transition: 10

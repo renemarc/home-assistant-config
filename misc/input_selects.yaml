@@ -122,6 +122,17 @@ lightpack_effect:
     - Romantic
 
 
+nightlight_type:
+  name: Nightlight Type
+  # icon: mdi:weather-night
+  icon: mdi:car-light-dimmed
+  initial: "On"
+  options:
+    - "Off"
+    - "On"
+    - Motion
+
+
 #
 # Scene
 #

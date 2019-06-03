@@ -31,6 +31,18 @@ kitchen_lights:
     - light.microwave
     - light.island
 
+kitchen_lights_essential:
+  name: Kitchen Essential Lights
+  entities:
+    - light.sink
+    - light.microwave
+
+kitchen_lights_extra:
+  name: Kitchen Extra Lights
+  entities:
+    - light.countertop
+    - light.island
+
 leak_sensors:
   name: Leak sensors
   entities:

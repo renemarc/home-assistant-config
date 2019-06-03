@@ -39,6 +39,11 @@
       entity_id: input_boolean.night_mode
       to: 'off'
 
+    # When nightlight mode is disabled.
+    - platform: state
+      entity_id: input_boolean.nightlight_mode
+      to: 'off'
+
     # When scenes are disabled.
     - platform: state
       entity_id: input_boolean.scene_mode
@@ -67,18 +72,27 @@
       entity_id: input_boolean.night_mode
       state: 'off'
 
+    # If it's not during the nightlight mode.
+    - condition: state
+      entity_id: input_boolean.nightlight_mode
+      state: 'off'
+
   action:
     # Set light colour and brightness.
     - service: light.turn_on
       data_template:
         entity_id: >-
           {% set entities = '' %}
-          {% if is_state('light.countertop', 'on') %}
-            {% set entities = entities + 'light.countertop ' %}
+
+          {% if is_state('input_boolean.low_mode', 'off') %}
+            {% if is_state('light.countertop', 'on') %}
+              {% set entities = entities + 'light.countertop ' %}
+            {% endif %}
+            {% if is_state('light.island', 'on') %}
+              {% set entities = entities + 'light.island ' %}
+            {% endif %}
           {% endif %}
-          {% if is_state('light.island', 'on') %}
-            {% set entities = entities + 'light.island ' %}
-          {% endif %}
+
           {% if is_state('light.microwave', 'on') %}
             {% set entities = entities + 'light.microwave ' %}
           {% endif %}

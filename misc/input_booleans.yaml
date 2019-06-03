@@ -20,6 +20,10 @@ night_mode:
   name: Night mode
   icon: mdi:weather-night
 
+nightlight_mode:
+  name: Nightlight mode
+  icon: mdi:car-light-dimmed
+
 quiet_mode:
   name: Quiet mode
   icon: mdi:volume-mute

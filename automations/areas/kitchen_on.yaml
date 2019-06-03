@@ -45,8 +45,17 @@
       state: 'off'
 
   action:
-    # Turn on all lights.
+    # Turn on essential lights.
     - service: homeassistant.turn_on
       data:
         entity_id:
-          - group.kitchen_lights
+          - group.kitchen_lights_essential
+
+    # Optionally turn on extra lights.
+    - condition: state
+      entity_id: input_boolean.low_mode
+      state: 'off'
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+          - group.kitchen_lights_extra

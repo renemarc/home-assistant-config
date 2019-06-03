@@ -1,0 +1,83 @@
+#
+# Set Lounge to night state
+#
+# @subscribe input_boolean.night_mode
+# @subscribe input_boolean.nightlight_mode
+#
+- id: lounge_night
+  alias: Lounge NIGHT
+
+  trigger:
+    # When nightlights are enabled.
+    - platform: state
+      entity_id: input_boolean.nightlight_mode
+      to: 'on'
+
+  condition:
+    # If night mode is enabled.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'on'
+
+  action:
+    # - service_template: >-
+    #     {% if is_state('input_boolean.nightlight_mode', 'off') %}
+    #       light.turn_off
+    #     {% else %}
+    #       light.turn_on
+    #     {% endif %}
+    #   # data:
+    #   #   entity_id:
+    #   #     - light.spotlight
+    #   #   color_name: red
+    #   #   brightness_pct: 8
+    #     # transition: 5
+    #   data_template:
+    #     entity_id:
+    #       - light.spotlight
+    #     # color_name: red
+    #     brightness_pct: 8
+    #     transition: >-
+    #       {% if is_state('input_boolean.nightlight_mode', 'off') %}
+    #         10
+    #       {% else %}
+    #         5
+    #       {% endif %}
+    # - condition: state
+    #   entity_id: input_boolean.nightlight_mode
+    #   state: 'on'
+    - service: light.turn_on
+      data:
+        entity_id:
+          - light.spotlight
+        color_name: red
+        brightness_pct: 8
+        transition: 5
+
+    # Toggle red smart lights.
+    # - service_template: >-
+    #     {% set motion = state('group.motion_sensors_critical') %}
+    #     {% set type = state('input_select.nightlight_type') %}
+
+    #     {% if type == 'Motion' and motion == False %}
+    #       light.turn_off
+    #     {% else %}
+    #       light.turn_on
+    #     {% endif %}
+    #   data:
+    #     entity_id:
+    #       - light.spotlight
+    #     rgb_color: [255, 0, 0]
+    #     brightness: 5
+    #   data_template:
+    #     transition: >-
+    #       {% set motion = state('group.motion_sensors_critical') %}
+    #       {% set type = state('input_select.nightlight_type') %}
+
+    #       {% if type == 'Motion' and motion == False %}
+    #         10
+    #       {% else %}
+    #         5
+    #       {% endif %}
+
+

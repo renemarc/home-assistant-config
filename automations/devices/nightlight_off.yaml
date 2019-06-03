@@ -9,7 +9,7 @@
 #
 - id: nightlight_off
   alias: Nightlight OFF
-  initial_state: 'off'
+  # initial_state: 'off'
 
   trigger:
     # Motion no longer detected.
@@ -17,28 +17,58 @@
       entity_id: group.motion_sensors_critical
       to: 'off'
 
-  condition:
-    # If it's during the night mode.
-    - condition: state
+    - platform: state
+      entity_id: input_boolean.nap_mode
+      to: 'off'
+
+    - platform: state
       entity_id: input_boolean.night_mode
-      state: 'on'
+      to: 'off'
+
+  condition:
+    - condition: or
+      conditions:
+        # If it's not during the nap mode.
+        - condition: state
+          entity_id: input_boolean.nap_mode
+          state: 'off'
+
+        # If it's not during the night mode.
+        - condition: state
+          entity_id: input_boolean.night_mode
+          state: 'off'
+
+        - condition: and
+          conditions:
+            - condition: state
+              entity_id: group.motion_sensors_critical
+              state: 'off'
+
+            - condition: state
+              entity_id: input_select.nightlight_type
+              state: 'Motion'
 
   action:
-    # Turn night lights off.
-    - service: light.turn_off
+    # Disable nightlight mode.
+    - service: input_boolean.turn_off
       data:
-        entity_id:
-          - group.lifx_lights
-        transition: 10
+        entity_id: input_boolean.nightlight_mode
 
-    # Disable dedicated kitchen night lights effect.
-    - service: homeassistant.turn_off
-      data:
-        entity_id:
-          - group.kitchen_lights
+    # # Turn night lights off.
+    # - service: light.turn_off
+    #   data:
+    #     entity_id:
+    #       - group.lifx_lights
+    #     transition: 10
 
-    # Turn off kiosk.
-    - service: homeassistant.turn_off
-      data:
-        entity_id:
-          - display.kiosk
+    # # Disable dedicated kitchen night lights effect.
+    # - service: homeassistant.turn_off
+    #   data:
+    #     entity_id:
+    #       - group.kitchen_lights
+
+    # # Turn off kiosk.
+    # - service: homeassistant.turn_off
+    #   data:
+    #     entity_id:
+    #       - display.kiosk

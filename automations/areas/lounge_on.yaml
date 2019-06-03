@@ -12,6 +12,7 @@
 #
 - id: lounge_on
   alias: Lounge ON
+
   trigger:
     # When low-power mode is disabled.
     - platform: state

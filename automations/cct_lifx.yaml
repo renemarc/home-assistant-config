@@ -43,6 +43,11 @@
       entity_id: input_boolean.night_mode
       to: 'off'
 
+    # When nightlight mode is disabled.
+    - platform: state
+      entity_id: input_boolean.nightlight_mode
+      to: 'off'
+
     # When scenes are disabled.
     - platform: state
       entity_id: input_boolean.scene_mode
@@ -57,6 +62,11 @@
     # If it's not during the night mode.
     - condition: state
       entity_id: input_boolean.night_mode
+      state: 'off'
+
+    # If it's not during the nightlight mode.
+    - condition: state
+      entity_id: input_boolean.nightlight_mode
       state: 'off'
 
   action:

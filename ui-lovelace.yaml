@@ -1829,12 +1829,16 @@ views:
                 entities:
                   - automation.low_power_mode_start
                   - automation.low_power_mode_stop
+                  - type: section
                   - automation.nap_mode_start
                   - automation.nap_mode_stop
+                  - type: section
                   - automation.night_mode_start
                   - automation.night_mode_stop
+                  - type: section
                   - automation.quiet_mode_start
                   - automation.quiet_mode_stop
+                  - type: section
                   - automation.tamper_detection_start
                   - automation.tamper_detection_stop
 
@@ -1849,24 +1853,32 @@ views:
                   - automation.aurora_effect
                   - automation.aurora_schedule
                   - automation.aurora_select
+                  - type: section
                   - automation.bed_effect
                   - automation.bed_schedule
                   - automation.bed_select
+                  - type: section
                   - automation.dehumidifier_off
                   - automation.dehumidifier_on
+                  - type: section
                   - automation.kitchen_lights_full
                   - automation.kitchen_lights_init
                   - automation.kitchen_lights_off
                   - automation.kitchen_lights_on
                   - automation.kitchen_lights_toggle
+                  - type: section
                   - automation.kiosk_auto
                   - automation.kiosk_low_power
+                  - type: section
                   - automation.lightpack_auto
                   - automation.lightpack_effect
                   - automation.lightpack_select
+                  - type: section
                   - automation.nightlight_off
                   - automation.nightlight_on
+                  - type: section
                   - automation.tv_off
+                  - type: section
                   - automation.video_player_resume
                   - automation.video_player_stop
 
@@ -1880,19 +1892,26 @@ views:
                   - automation.bedroom_low_power
                   - automation.bedroom_off
                   - automation.bedroom_on
+                  - type: section
                   - automation.ceiling_effect
                   - automation.ceiling_low_power
                   - automation.ceiling_off
                   - automation.ceiling_on
                   - automation.ceiling_schedule
                   - automation.ceiling_select
+                  - type: section
                   - automation.kitchen_low_power
+                  - automation.kitchen_night
                   - automation.kitchen_off
                   - automation.kitchen_on
+                  - type: section
                   - automation.lounge_low_power
+                  - automation.lounge_night
                   - automation.lounge_off
                   - automation.lounge_on
+                  - type: section
                   - automation.washroom_low_power
+                  - automation.washroom_night
                   - automation.washroom_off
                   - automation.washroom_on
 
@@ -2056,6 +2075,9 @@ views:
                 title: Extra Configuration
                 show_header_toggle: false
                 entities:
+                  - input_boolean.nightlight_mode
+                  - input_select.nightlight_type
+                  - type: section
                   - input_boolean.scene_mode
 
                   - type: "custom:fold-entity-row"

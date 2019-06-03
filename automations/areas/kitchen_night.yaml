@@ -1,0 +1,35 @@
+#
+# Set Kitchen to night state
+#
+# @subscribe input_boolean.night_mode
+# @subscribe input_boolean.nightlight_mode
+#
+- id: kitchen_night
+  alias: Kitchen NIGHT
+
+  trigger:
+    # When nightlights are enabled.
+    - platform: state
+      entity_id: input_boolean.nightlight_mode
+      to: 'on'
+
+  condition:
+    - condition: or
+      conditions:
+        # If nap mode is enabled.
+        - condition: state
+          entity_id: input_boolean.nap_mode
+          state: 'on'
+
+        # If night mode is enabled.
+        - condition: state
+          entity_id: input_boolean.night_mode
+          state: 'on'
+
+  action:
+    # Enable dedicated kitchen night lights effect.
+    - service: homeassistant.turn_on
+      data:
+        entity_id:
+          - group.kitchen_lights
+        effect: night

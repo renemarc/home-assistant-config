@@ -13,9 +13,31 @@
       entity_id: input_boolean.night_mode
       to: 'on'
 
+    # When nightlight mode is disabled.
+    - platform: state
+      entity_id: input_boolean.nightlight_mode
+      to: 'off'
+
+  condition:
+    # If night mode is enabled.
+    - condition: state
+      entity_id: input_boolean.night_mode
+      state: 'on'
+
+    # If nightlight mode is disabled.
+    - condition: state
+      entity_id: input_boolean.nightlight_mode
+      state: 'off'
+
+    # If aera nightlight automation is disabled.
+    - condition: state
+      entity_id: automation.kitchen_night
+      state: 'off'
+
   action:
     # Turn off all lights.
     - service: homeassistant.turn_off
       data:
         entity_id:
           - group.kitchen_lights
+
