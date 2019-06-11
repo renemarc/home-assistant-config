@@ -13,7 +13,7 @@ appdaemon:
     HASS:
       type: hass
       ha_url: !secret appdaemon_hass_url
-      ha_key: !secret appdaemon_hass_key
+      token: !secret appdaemon_hass_token
 hadashboard:
   dash_url: !secret hadashboard_dash_url
   dash_dir: !secret hadashboard_dash_dir
