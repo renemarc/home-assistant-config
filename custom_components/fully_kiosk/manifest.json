@@ -1,0 +1,8 @@
+{
+    "domain": "fully_kiosk",
+    "name": "Fully Kiosk Browser",
+    "documentation": "https://github.com/daemondazz/homeassistant-displays",
+    "dependencies": [],
+    "codeowners": ["@daemondazz"],
+    "requirements": ["requests"]
+}

@@ -1,0 +1,8 @@
+{
+    "domain": "displays",
+    "name": "Displays",
+    "documentation": "https://github.com/daemondazz/homeassistant-displays",
+    "dependencies": [],
+    "codeowners": ["@daemondazz"],
+    "requirements": []
+}

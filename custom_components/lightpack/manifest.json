@@ -1,0 +1,10 @@
+{
+  "domain": "lightpack",
+  "name": "Lightpack",
+  "documentation": "https://github.com/kklemm91/Lightpack-HASS",
+  "requirements": [],
+  "dependencies": [],
+  "codeowners": [
+  	"@kklemm91"
+  ]
+}

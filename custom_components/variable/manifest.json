@@ -1,0 +1,10 @@
+{
+    "domain": "variable",
+    "name": "variable",
+    "documentation": "https://github.com/rogro82/hass-variables",
+    "requirements": [],
+    "dependencies": [],
+    "codeowners": [
+        "@rogro82"
+    ]
+}
