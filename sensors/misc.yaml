@@ -262,7 +262,7 @@
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.home_assistant_config', 'clones') }}
+        {{ state_attr('sensor.config_repo', 'clones') }}
 
     config_repo_clones_uniques:
       friendly_name: Config Repo Clones Uniques
@@ -270,7 +270,7 @@
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.home_assistant_config', 'clones_uniques') }}
+        {{ state_attr('sensor.config_repo', 'clones_uniques') }}
 
     config_repo_forks:
       friendly_name: Config Repo Forks
@@ -278,7 +278,7 @@
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.home_assistant_config', 'forks') }}
+        {{ state_attr('sensor.config_repo', 'forks') }}
 
     config_repo_issues:
       friendly_name: Config Repo Issues
@@ -286,7 +286,7 @@
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.home_assistant_config', 'open_issues') }}
+        {{ state_attr('sensor.config_repo', 'open_issues') }}
 
     config_repo_stargazers:
       friendly_name: Config Repo Stargazers
@@ -294,7 +294,7 @@
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.home_assistant_config', 'stargazers') }}
+        {{ state_attr('sensor.config_repo', 'stargazers') }}
 
     config_repo_views:
       friendly_name: Config Repo Views
@@ -302,7 +302,7 @@
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.home_assistant_config', 'views') }}
+        {{ state_attr('sensor.config_repo', 'views') }}
 
     config_repo_views_uniques:
       friendly_name: Config Repo Views Uniques
@@ -310,7 +310,7 @@
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.home_assistant_config', 'views_uniques') }}
+        {{ state_attr('sensor.config_repo', 'views_uniques') }}
 
 
 #

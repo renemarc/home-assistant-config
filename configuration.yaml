@@ -245,11 +245,13 @@ logger:
   logs:
     aiohttp.server: critical # EBOX newer component bug.
     custom_components.display: critical # When tablet is offline.
+    custom_components.gtfs_custom: critical # Until GTFS integration overhaul is complete
     custom_components.light.lightpack: critical # When Lightpack is offline.
     homeassistant.components.device_tracker.unifi: fatal # When Unifi Controller is temporarily unreachable.
     homeassistant.components.media_player.plex: fatal # When Plex is offline.
-    homeassistant.components.sensor.github: debug
-    homeassistant.components.switch.tplink: error # When switch is unplugged.
+    sqlalchemy.exc: critical # Until GTFS integration overhaul is complete
+    sqlalchemy.exc.ProgrammingError: critical # Until GTFS integration overhaul is complete
+    homeassistant.helpers.entity: critical # Until GTFS integration overhaul is complete
     pyunifi.controller: error # When Unifi Controller is temporarily unreachable.
 
 
