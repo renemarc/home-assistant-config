@@ -359,7 +359,7 @@
         {% set summary = states('sensor.dark_sky_minutely_summary') %}
 
         {% if summary == 'unknown' %}
-          {% set summary = '' %}
+          {% set summary = states('sensor.dark_sky_summary') %}
         {% endif %}
 
         {{ summary }} {% if apparent != 'unknown' and apparent != temperature -%}
@@ -385,7 +385,7 @@
         {% set summary = states('sensor.dark_sky_minutely_summary') %}
 
         {% if summary == 'unknown' %}
-          {% set summary = '' %}
+          {% set summary = states('sensor.dark_sky_summary') %}
         {% endif %}
 
         {% if apparent != 'unknown' and apparent != temperature %}
