@@ -1,5 +1,5 @@
 {
-  "domain": "waqi",
+  "domain": "waqi_custom",
   "name": "Waqi",
   "documentation": "https://www.home-assistant.io/components/waqi",
   "requirements": [

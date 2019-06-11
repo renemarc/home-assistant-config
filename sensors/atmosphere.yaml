@@ -19,10 +19,12 @@
 # attribute is available for each station in the "waqi" group. Dead stations and
 # stale values are filtered out and an average attribute value is returned.
 #
+# @see /custom_components/waqi_custom/sensor.py
+#
 # @link https://en.wikipedia.org/wiki/Air_quality_index
 # @link https://home-assistant.io/components/sensor.waqi/
 #
-- platform: waqi
+- platform: waqi_custom
   token: !secret waqi_token
   locations: !secret waqi_locations
 

@@ -242,10 +242,12 @@
 #
 # Github Public Configuration Repository
 #
+# @see /custom_components/github_custom/sensor.py
+#
 # @link https://github.com/renemarc/home-assistant-config
 # @link https://home-assistant.io/components/github/
 #
-- platform: github
+- platform: github_custom
   access_token: !secret github_access_token
   scan_interval: 300
   repositories:

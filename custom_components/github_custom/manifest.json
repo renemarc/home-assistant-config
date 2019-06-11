@@ -1,5 +1,5 @@
 {
-  "domain": "github",
+  "domain": "github_custom",
   "name": "Github",
   "documentation": "https://www.home-assistant.io/components/github",
   "requirements": [

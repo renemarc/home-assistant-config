@@ -1,7 +1,7 @@
 #
 # Public Transit
 #
-# @see /custom_components/gtfs/sensor.py
+# @see /custom_components/gtfs_custom/sensor.py
 # @see /appdaemon/dashboards/Main.dash
 # @see /groups/default.yaml
 # @see /customize.yaml
@@ -9,14 +9,14 @@
 # @link http://gtfs.org/
 # @link https://home-assistant.io/components/sensor.gtfs/
 #
-- platform: gtfs
+- platform: gtfs_custom
   name: 'Home to Metro'
   origin: !secret gtfs_origin_1
   destination: !secret gtfs_destination_1
   data: !secret gtfs_data
   scan_interval: 60
 
-- platform: gtfs
+- platform: gtfs_custom
   name: 'Home to Metro 2'
   origin: !secret gtfs_origin_1
   destination: !secret gtfs_destination_1
@@ -24,7 +24,7 @@
   scan_interval: 60
   position: 2
 
-- platform: gtfs
+- platform: gtfs_custom
   name: 'Home to Metro 3'
   origin: !secret gtfs_origin_1
   destination: !secret gtfs_destination_1
@@ -32,14 +32,14 @@
   scan_interval: 60
   position: 3
 
-- platform: gtfs
+- platform: gtfs_custom
   name: 'Home to Market'
   origin: !secret gtfs_origin_2
   destination: !secret gtfs_destination_2
   data: !secret gtfs_data
   scan_interval: 60
 
-- platform: gtfs
+- platform: gtfs_custom
   name: 'Home to Market 2'
   origin: !secret gtfs_origin_2
   destination: !secret gtfs_destination_2
@@ -47,7 +47,7 @@
   scan_interval: 60
   position: 2
 
-- platform: gtfs
+- platform: gtfs_custom
   name: 'Home to Market 3'
   origin: !secret gtfs_origin_2
   destination: !secret gtfs_destination_2

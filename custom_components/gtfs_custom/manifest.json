@@ -1,5 +1,5 @@
 {
-  "domain": "gtfs",
+  "domain": "gtfs_custom",
   "name": "Gtfs",
   "documentation": "https://www.home-assistant.io/components/gtfs",
   "requirements": [

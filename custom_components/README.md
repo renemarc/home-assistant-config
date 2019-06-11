@@ -22,7 +22,7 @@
 
 ## Community components
 
-### [`🎦 ./display/`](display)
+### [`🎦 ./display/`](display) and [`🎦 ./fully_kiosk/`](fully_kiosk)
 
 Interact with Android devices running the [Fully Kiosk Browser](https://www.ozerov.de/fully-kiosk-browser) thanks to the [Display platform by **@daemondazz**](https://github.com/daemondazz/homeassistant-displays).
 
@@ -39,7 +39,7 @@ Interact with Android devices running the [Fully Kiosk Browser](https://www.ozer
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-### [`📺 ./lightpack/light.py`](lightpack/light.py)
+### [`📺 ./lightpack/`](lightpack)
 
 Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) monitor bias lighting using this [Lightpack component by **@kklemm91**](https://github.com/kklemm91/Lightpack-HASS).
 
@@ -56,7 +56,7 @@ Supports basic operation of [Prismatik](https://github.com/psieg/Lightpack) moni
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-### [`💀 ./doomsday_clock/sensor.py`](doomsday_clock/sensor.py)
+### [`💀 ./doomsday_clock/`](doomsday_clock)
 
 A local copy of my depressing [Doomsday Clock sensor](https://github.com/renemarc/home-assistant-doomsday-clock) that tracks the _Bulletin of the Atomic Scientists_' [world threat assessment index](https://thebulletin.org/doomsday-clock/) indicating how close humanity is to a man-made global catastrophe either through nuclear war or climate change.
 
@@ -73,13 +73,13 @@ A local copy of my depressing [Doomsday Clock sensor](https://github.com/renemar
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-### [`⚡ ./rpi_power/sensor.py`](rpi_power/sensor.py)
+### [`⚡ ./rpi_power/`](rpi_power)
 
 Verifies that the host's power supply is [providing sufficient voltage](https://community.home-assistant.io/t/raspberry-pi-power-sensor-updated-2018-07-25/58155) thanks to this [Raspberry Pi power sensor by **@ludeeus**](https://github.com/custom-components/sensor.rpi_power).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-### [`❓ ./variable.py`](variables.py)
+### [`❓ ./variable/`](variable)
 
 The missing link that allows storage of non-boolean values using the [Variable component by **@rogro82**](https://github.com/rogro82/hass-variables).
 
@@ -89,7 +89,7 @@ The missing link that allows storage of non-boolean values using the [Variable c
 
 These are default Home Assistant components that were copied from the core to alter their behaviour. These changes really should be turned into appropriate [PRs](https://github.com/home-assistant/home-assistant/pulls).
 
-### [`😺 ./github/sensor.py`](github/sensor.py)
+### [`😺 ./github_custom/`](github_custom)
 
 [GitHub](https://www.home-assistant.io/components/github/) component:
 
@@ -100,7 +100,7 @@ These are default Home Assistant components that were copied from the core to al
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 
-### [`🚌 ./gtfs/sensor.py`](gtfs/sensor.py)
+### [`🚌 ./gtfs_custom/`](gtfs_custom)
 
 [GTFS](https://www.home-assistant.io/components/gtfs/) public transit schedules component:
 
@@ -123,7 +123,7 @@ These are default Home Assistant components that were copied from the core to al
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-### [`🌫 ./sensor/waqi.py`](sensor/waqi.py)
+### [`🌫 ./waqi_custom/`](waqi_custom)
 
 [WAQI](https://github.com/home-assistant/home-assistant/blob/master/homeassistant/components/sensor/waqi.py) World Air Quality Index:
 
