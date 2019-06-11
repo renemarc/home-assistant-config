@@ -39,13 +39,13 @@ resources:
     type: js
   - url: /customcards/github/thomasloven/layout-card.js?track=true
     type: js
+  - url: /customcards/github/thomasloven/markdown-mod.js?track=true
+    type: js
   - url: /customcards/github/thomasloven/popup-card.js?track=true
     type: js
   - url: /customcards/github/thomasloven/slider-entity-row.js?track=true
     type: js
   - url: /customcards/github/thomasloven/toggle-lock-entity-row.js?track=true
-    type: js
-  - url: /customcards/github/thomasloven/useful-markdown-card.js?track=true
     type: js
 
 
@@ -190,7 +190,7 @@ views:
               - type: custom:card-modder
                 style: *header-card-style
                 card:
-                  type: "custom:useful-markdown-card"
+                  type: markdown
                   content: |
                     [[ sensor.good_vibes ]]
 
@@ -549,7 +549,7 @@ views:
               - type: custom:card-modder
                 style: *header-card-style
                 card:
-                  type: "custom:useful-markdown-card"
+                  type: markdown
                   content: |
                     [[ sensor.modes_friendly ]] enabled.
 
@@ -857,7 +857,7 @@ views:
               - type: custom:card-modder
                 style: *header-card-style
                 card:
-                  type: "custom:useful-markdown-card"
+                  type: markdown
                   content: >-
                     [[ sensor.dark_sky_minutely_summary ]]
                     [[ sensor.feels_like ]][[ if(sensor.feels_like != '', '.', '') ]]
@@ -967,7 +967,7 @@ views:
               #
               - type: vertical-stack
                 cards:
-                  - type: "custom:useful-markdown-card"
+                  - type: markdown
                     content: |
                       <font size="+2">[[ sensor.dark_sky_hourly_summary ]]</font>
 
@@ -1318,7 +1318,7 @@ views:
               - type: custom:card-modder
                 style: *header-card-style
                 card:
-                  type: "custom:useful-markdown-card"
+                  type: markdown
                   content: |
                     Humidity: [[ sensor.average_humidity_friendly ]].
 
@@ -1472,7 +1472,7 @@ views:
               - type: custom:card-modder
                 style: *header-card-style
                 card:
-                  type: "custom:useful-markdown-card"
+                  type: markdown
                   content: |
                     [[ sensor.version_friendly ]]
 
@@ -1790,7 +1790,7 @@ views:
               - type: custom:card-modder
                 style: *header-card-style
                 card:
-                  type: "custom:useful-markdown-card"
+                  type: markdown
                   content: |
                     [[ sensor.count_automations_friendly ]]
 
@@ -1971,7 +1971,7 @@ views:
               - type: custom:card-modder
                 style: *header-card-style
                 card:
-                  type: "custom:useful-markdown-card"
+                  type: markdown
                   content: |
                     On <em>“[[ sensor.git_branch ]]”</em> branch.
 
