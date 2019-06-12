@@ -16,10 +16,10 @@
         - media_player.kodi
         - media_player.plex_htpc_chrome
         - media_player.plex_htpc_chrome_lan
+        - media_player.plex_htpc_edge
+        - media_player.plex_htpc_edge_lan
         - media_player.plex_htpc_firefox
         - media_player.plex_htpc_firefox_lan
-        - media_player.plex_htpc_microsoft_edge
-        - media_player.plex_htpc_microsoft_edge_lan
       to: 'paused'
 
     # When media playback has been stopped.
@@ -28,10 +28,10 @@
         - media_player.kodi
         - media_player.plex_htpc_chrome
         - media_player.plex_htpc_chrome_lan
+        - media_player.plex_htpc_edge
+        - media_player.plex_htpc_edge_lan
         - media_player.plex_htpc_firefox
         - media_player.plex_htpc_firefox_lan
-        - media_player.plex_htpc_microsoft_edge
-        - media_player.plex_htpc_microsoft_edge_lan
       to: 'idle'
 
     # When media player has been closed down.
@@ -40,10 +40,10 @@
         - media_player.kodi
         - media_player.plex_htpc_chrome
         - media_player.plex_htpc_chrome_lan
+        - media_player.plex_htpc_edge
+        - media_player.plex_htpc_edge_lan
         - media_player.plex_htpc_firefox
         - media_player.plex_htpc_firefox_lan
-        - media_player.plex_htpc_microsoft_edge
-        - media_player.plex_htpc_microsoft_edge_lan
       to: 'off'
 
   condition:
@@ -74,7 +74,22 @@
                 not is_state_attr('media_player.plex_htpc_chrome_lan', 'media_content_type', 'tvshow') and
                 not is_state_attr('media_player.plex_htpc_chrome_lan', 'media_content_type', 'video')
               )
-
+            ) and
+            (
+              not is_state('media_player.plex_htpc_edge', 'playing') or
+              (
+                not is_state_attr('media_player.plex_htpc_edge', 'media_content_type', 'movie') and
+                not is_state_attr('media_player.plex_htpc_edge', 'media_content_type', 'tvshow') and
+                not is_state_attr('media_player.plex_htpc_edge', 'media_content_type', 'video')
+              )
+            ) and
+            (
+              not is_state('media_player.plex_htpc_edge_lan', 'playing') or
+              (
+                not is_state_attr('media_player.plex_htpc_edge_lan', 'media_content_type', 'movie') and
+                not is_state_attr('media_player.plex_htpc_edge_lan', 'media_content_type', 'tvshow') and
+                not is_state_attr('media_player.plex_htpc_edge_lan', 'media_content_type', 'video')
+              )
             ) and
             (
               not is_state('media_player.plex_htpc_firefox', 'playing') or
@@ -90,22 +105,6 @@
                 not is_state_attr('media_player.plex_htpc_firefox_lan', 'media_content_type', 'movie') and
                 not is_state_attr('media_player.plex_htpc_firefox_lan', 'media_content_type', 'tvshow') and
                 not is_state_attr('media_player.plex_htpc_firefox_lan', 'media_content_type', 'video')
-              )
-            ) and
-            (
-              not is_state('media_player.plex_htpc_microsoft_edge', 'playing') or
-              (
-                not is_state_attr('media_player.plex_htpc_microsoft_edge', 'media_content_type', 'movie') and
-                not is_state_attr('media_player.plex_htpc_microsoft_edge', 'media_content_type', 'tvshow') and
-                not is_state_attr('media_player.plex_htpc_microsoft_edge', 'media_content_type', 'video')
-              )
-            ) and
-            (
-              not is_state('media_player.plex_htpc_microsoft_edge_lan', 'playing') or
-              (
-                not is_state_attr('media_player.plex_htpc_microsoft_edge_lan', 'media_content_type', 'movie') and
-                not is_state_attr('media_player.plex_htpc_microsoft_edge_lan', 'media_content_type', 'tvshow') and
-                not is_state_attr('media_player.plex_htpc_microsoft_edge_lan', 'media_content_type', 'video')
               )
             )
         }}

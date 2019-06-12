@@ -15,7 +15,6 @@
 *.xml
 .*
 __pycache__/
-deps/
 gtfs/*
 tts/
 venv/
@@ -25,10 +24,10 @@ OZW_Log.txt
 plex.conf
 secrets.yaml
 
-!.github
-!.gitignore
 !.gitkeep
 !/.codeclimate.yml
+!/.github
+!/.gitignore
 !/.HA_VERSION
 !/.mdlrc
 !/.travis.yml

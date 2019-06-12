@@ -67,8 +67,8 @@ styles:
     - value: 'off'
       color: var(--paper-toggle-button-unchecked-button-color)
   header-card-style: &header-card-style
-    # --paper-card-background-color: rgba(3, 169, 244, 50%)
     --paper-card-background-color: rgba(0, 0, 0, 20%)
+    # --paper-card-background-color: rgba(3, 169, 244, 50%)
     # color: var(--secondary-text-color)
     border: 1px solid rgba(255, 255, 255, 20%)
     color: rgb(255, 255, 255)
@@ -81,7 +81,6 @@ styles:
     --paper-item-icon-color: white
     border: 1px solid rgba(255, 255, 255, 0.2)
     color: rgb(255, 255, 255)
-    padding: 0 1.25em
   graph-card-horizontal: &graph-card-horizontal
     fill: fade
     icon: false
@@ -491,6 +490,7 @@ views:
                   include:
                     - state: "unknown"
                   exclude:
+                    - entity_id: "sensor.dark_sky_*"
                     - entity_id: "sensor.ebox_*"
                     - entity_id: "group.*"
                     - entity_id: "*_filtered"
@@ -1807,7 +1807,7 @@ views:
               # General automations
               #
               - type: entities
-                title: Automations
+                title: General Automations
                 show_header_toggle: false
                 entities:
                   - automation.cct_lifx

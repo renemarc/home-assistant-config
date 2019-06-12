@@ -15,12 +15,12 @@
     - platform: state
       entity_id:
         - media_player.kodi
+        - media_player.plex_htpc_chrome
         - media_player.plex_htpc_chrome_lan
-        - media_player.plex_htpc_chrome_lan
+        - media_player.plex_htpc_edge
+        - media_player.plex_htpc_edge_lan
+        - media_player.plex_htpc_firefox
         - media_player.plex_htpc_firefox_lan
-        - media_player.plex_htpc_firefox_lan
-        - media_player.plex_htpc_microsoft_edge
-        - media_player.plex_htpc_microsoft_edge_lan
       to: 'playing'
 
   condition:
@@ -63,6 +63,22 @@
               )
             ) or
             (
+              is_state('media_player.plex_htpc_edge', 'playing') and
+              (
+                is_state_attr('media_player.plex_htpc_edge', 'media_content_type', 'movie') or
+                is_state_attr('media_player.plex_htpc_edge', 'media_content_type', 'tvshow') or
+                is_state_attr('media_player.plex_htpc_edge', 'media_content_type', 'video')
+              )
+            ) or
+            (
+              is_state('media_player.plex_htpc_edge_lan', 'playing') and
+              (
+                is_state_attr('media_player.plex_htpc_edge_lan', 'media_content_type', 'movie') or
+                is_state_attr('media_player.plex_htpc_edge_lan', 'media_content_type', 'tvshow') or
+                is_state_attr('media_player.plex_htpc_edge_lan', 'media_content_type', 'video')
+              )
+            ) or
+            (
               is_state('media_player.plex_htpc_firefox', 'playing') and
               (
                 is_state_attr('media_player.plex_htpc_firefox', 'media_content_type', 'movie') or
@@ -76,22 +92,6 @@
                 is_state_attr('media_player.plex_htpc_firefox_lan', 'media_content_type', 'movie') or
                 is_state_attr('media_player.plex_htpc_firefox_lan', 'media_content_type', 'tvshow') or
                 is_state_attr('media_player.plex_htpc_firefox_lan', 'media_content_type', 'video')
-              )
-            ) or
-            (
-              is_state('media_player.plex_htpc_microsoft_edge', 'playing') and
-              (
-                is_state_attr('media_player.plex_htpc_microsoft_edge', 'media_content_type', 'movie') or
-                is_state_attr('media_player.plex_htpc_microsoft_edge', 'media_content_type', 'tvshow') or
-                is_state_attr('media_player.plex_htpc_microsoft_edge', 'media_content_type', 'video')
-              )
-            ) or
-            (
-              is_state('media_player.plex_htpc_microsoft_edge_lan', 'playing') and
-              (
-                is_state_attr('media_player.plex_htpc_microsoft_edge_lan', 'media_content_type', 'movie') or
-                is_state_attr('media_player.plex_htpc_microsoft_edge_lan', 'media_content_type', 'tvshow') or
-                is_state_attr('media_player.plex_htpc_microsoft_edge_lan', 'media_content_type', 'video')
               )
             )
         }}
