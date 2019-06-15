@@ -7,46 +7,95 @@
 #
 # External resources
 #
-# Custom updater internally supported items:
-# @link https://github.com/custom-components/information/blob/master/repos.json
+# Most are installed using HACS (Home Assistant Community Store).
+#
+# @link https://custom-components.github.io/hacs/
 #
 resources:
-  - url: /customcards/github/bramkragten/swipe-card.js?track=true
+  # Auto entities
+  - url: /community_plugin/lovelace-auto-entities/auto-entities.js
+    type: js
+    repo: https://github.com/thomasloven/lovelace-auto-entities
+
+  # Bar card
+  - url: /community_plugin/bar-card/bar-card.js
+    type: js
+    repo: https://github.com/custom-cards/bar-card
+
+  # Button card
+  - url: /community_plugin/button-card/button-card.js
     type: module
-  - url: /customcards/github/custom-cards/bar-card.js?track=true
+    repo: https://github.com/custom-cards/button-card
+
+  # Compact custom header
+  - url: /community_plugin/compact-custom-header/compact-custom-header.js
     type: module
-  - url: /customcards/github/custom-cards/button-card.js?track=true
+    repo: https://github.com/maykar/compact-custom-header
+
+  # Card modder
+  - url: /community_plugin/lovelace-card-modder/card-modder.js
+    type: js
+    repo: https://github.com/thomasloven/lovelace-card-modder
+
+  # Card tools
+  - url: /community_plugin/lovelace-card-tools/card-tools.js
+    type: js
+    repo: https://github.com/thomasloven/lovelace-card-tools
+
+  # Dummy entity row
+  - url: /community_plugin/lovelace-dummy-entity-row/dummy-entity-row.js
+    type: js
+    repo: https://github.com/thomasloven/lovelace-dummy-entity-row
+
+  # Fold entity row
+  - url: /community_plugin/lovelace-fold-entity-row/fold-entity-row.js
+    type: js
+    repo: https://github.com/thomasloven/lovelace-fold-entity-row
+
+  # Layout card
+  - url: /community_plugin/lovelace-layout-card/layout-card.js
+    type: js
+    repo: https://github.com/thomasloven/lovelace-layout-card
+
+  # Markdown mod
+  - url: /community_plugin/lovelace-markdown-mod/markdown-mod.js
+    type: js
+    repo: https://github.com/thomasloven/lovelace-markdown-mod
+
+  # Mini graph card
+  - url: /community_plugin/mini-graph-card/mini-graph-card.js
     type: module
-  - url: /customcards/github/custom-cards/tracker-card.js?track=true
+    repo: https://github.com/kalkih/mini-graph-card
+
+  # Popup card
+  - url: /community_plugin/lovelace-popup-card/popup-card.js
+    type: js
+    repo: https://github.com/thomasloven/lovelace-popup-card
+
+  # Secondary info entity row
+  - url: /community_plugin/secondaryinfo-entity-row/secondaryinfo-entity-row.js
+    type: js
+    repo: https://github.com/custom-cards/secondaryinfo-entity-row
+
+  # Slider entity row
+  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+    type: js
+    repo: https://github.com/thomasloven/lovelace-slider-entity-row
+
+  # Swipe card
+  - url: https://cdn.jsdelivr.net/gh/bramkragten/custom-ui@master/swipe-card/swipe-card.js
     type: module
-  - url: /customcards/github/custom-cards/vertical-stack-in-card.js?track=true
+    repo: https://github.com/bramkragten/custom-ui/tree/master/swipe-card
+
+  # Toggle lock entity row
+  - url: /community_plugin/lovelace-toggle-lock-entity-row/toggle-lock-entity-row.js
     type: js
-  - url: /customcards/github/kalkih/mini-graph-card-bundle.js?track=true
-    type: module
-  - url: /customcards/github/maykar/compact-custom-header.js?track=true
-    type: module
-  - url: /customcards/github/MizterB/secondaryinfo-entity-row.js?track=true
-    type: module
-  - url: /customcards/github/thomasloven/auto-entities.js?track=true
+    repo: https://github.com/thomasloven/lovelace-toggle-lock-entity-row
+
+  # Vertical stack in card
+  - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
     type: js
-  - url: /customcards/github/thomasloven/card-modder.js?track=true
-    type: js
-  - url: /customcards/github/thomasloven/card-tools.js?track=true
-    type: js
-  - url: /customcards/github/thomasloven/dummy-entity-row.js?track=true
-    type: js
-  - url: /customcards/github/thomasloven/fold-entity-row.js?track=true
-    type: js
-  - url: /customcards/github/thomasloven/layout-card.js?track=true
-    type: js
-  - url: /customcards/github/thomasloven/markdown-mod.js?track=true
-    type: js
-  - url: /customcards/github/thomasloven/popup-card.js?track=true
-    type: js
-  - url: /customcards/github/thomasloven/slider-entity-row.js?track=true
-    type: js
-  - url: /customcards/github/thomasloven/toggle-lock-entity-row.js?track=true
-    type: js
+    repo: https://github.com/custom-cards/vertical-stack-in-card
 
 
 #
@@ -67,9 +116,9 @@ styles:
     - value: 'off'
       color: var(--paper-toggle-button-unchecked-button-color)
   header-card-style: &header-card-style
-    --paper-card-background-color: rgba(0, 0, 0, 20%)
     # --paper-card-background-color: rgba(3, 169, 244, 50%)
     # color: var(--secondary-text-color)
+    --paper-card-background-color: rgba(0, 0, 0, 20%)
     border: 1px solid rgba(255, 255, 255, 20%)
     color: rgb(255, 255, 255)
     text-align: center
@@ -2068,12 +2117,6 @@ views:
                         name: Reset
 
                   - switch.aeotec_zstick_disco_light
-
-              #
-              # Lovelace UI Custom Updater
-              #
-              - type: "custom:tracker-card"
-                title: UI Updater
 
           #
           # Footer

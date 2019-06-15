@@ -51,8 +51,15 @@ counter: !include misc/counters.yaml
 #
 # @link https://github.com/custom-components/custom_updater/
 #
-custom_updater: !include misc/custom_updater.yaml
+#custom_updater: !include misc/custom_updater.yaml
 
+#
+# Home Assistant Community Store
+#
+# @link https://custom-components.github.io/hacs/
+#
+hacs:
+  token: !secret github_access_token
 
 
 #
