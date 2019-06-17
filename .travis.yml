@@ -3,14 +3,19 @@
 #
 # Simply tests that Home Assistant configuration is valid.
 #
+# @link https://docs.travis-ci.com/user/tutorial/
 # @link https://home-assistant.io/docs/ecosystem/backup/backup_github/#step-7-configuration-file-testing
 #
 
+# Select the base environment
 language: python
-
 python:
   - "3.6"
 
+# Enable Travis caching of Python Packages (per branch)
+cache: pip
+
+# Prepare the CI environment to support Home Assistant
 before_install:
   - cp secrets-dummy.yaml secrets.yaml
   - touch home-assistant_v2.db
@@ -18,10 +23,25 @@ before_install:
   - HA_VERSION=$(<.HA_VERSION)
   # Fix for missing homeassistant-ptozw 0.1.4 and pydispatcher 2.0.5
   # @link https://community.home-assistant.io/t/travis-ci-build-issues/119482
-  - sudo apt-get install -y libudev-dev
+  - sudo apt-get install --assume-yes libudev-dev
 
+# Install Home Assistant
 install:
   - pip3 install homeassistant==${HA_VERSION}
 
+# Test configuration files
 script:
   - hass --script check_config --config . --files
+
+# Setup notifications via Pushover only
+notifications:
+  email: false
+  pushover:
+    api_key:
+      secure: YNjuYCJ/oUYLOqBPdoK7Bw2qDLTmF7fBmzfTs0W4QOEPxUzvd1R8BnAaC/GNGVL8d4D8zIo2pESSPlNSnV+Z5S0SeZ+xhHoJ5QNpl82o5J0Fe75/P7amHzB3qYW7+Jys/q43ysKCZBadFp9ve0SUYkb5+hj+fUEXBqAucKmk9cxA4X2J2KqBrbABWw8DFzSFJ4l69X+EH7PWx7Vh5Dv/DNLJg0md54Fhe5YDqKusf+td0tfmuVKuHwlcr4QOFWVDFfW6FP2UeQ8GMSKcpSBhQSK78SUMWGCTZN8Vgsrx1wCP04zn+u3ijNCYdQL9FokeCcnSgJeVAspbctNvoco95woTFyUYBp/b5V5YkDysBgfjI5Fl4IH71wAfgGAUyV77ENlcMLAzr6KUEAqzqAO1YauG0BTBm+0KQ3WlAxRuCQeIzStl8u3nxAOIx3qnoc89fOsIj2CgNBEpGyWcXa013UlF6L68skkJPFZOY8xH0ya2xziX1qAIotohVhAqUXceEXBIBL4fQUJs58lWssxeyD+SgFrVrefnj25hqhSkfRrpccXoowk0/hi7BnzHnanj18se6myTsuUKl1zZJGVckkDxqm/uWzAElkkfcxq1TzpNwTRvmh13d5w+UUeLWlqXY4wXoeKly3QSVD7DVLxg0hw2ncwi8Kn6wR8tXcpYQQk=
+    users:
+      - secure: rhl+hQwQd2L+ULRFcvrb4XSEvFGlgHKrz2lsWQVzefCIV0MrGuygZPI/leNuIkaUgi8B8/EDK7rBS+pT4A+ryGd5S7zAP5UrWqBIg7c3rSjVW/+/WgPvaiA93yWP+gmsmlSgfCHPyChDySfKPXh4z5zQnjYzZrRoBnBwk+rRgtrshN4L12xHcFu7kCM+4UsyaEeewd3+P8hgTZdNS38+CVTC3AvFSbVTaltNvuojHiyvpE0rCRoT/0eSrKPP27ch9obbivjzgzPlNQ5I1+M//PHmLcZ/BSxvamR3wR2g4pgGCGE1y0h9OkH0RQ0XghDFx+Z7MV8WpOsdxCfH+UbsOpWkrk1c4abvlMFy8DxYPnRULv6pmUMBVGN/NhP/NQ//v9CpgvIrVfDMD1uIZC+j+0G5Y//AailanAhQ5+cEsPIH/LnX1U81ibPLwfoqvFVmghigZRoNrfBRo1VoZLfXZKPNkj8WHbFlPY+PGd2wbxSBAeRGQdIGYnB3/69FAThm1ADDk1TMyOgE1hfHCg7OubyaYgmW1X3Dnv2Fb0IxHjdSiVmt8u7f0vf0Oo1a+PvWytlLs2ZzRViCcawbDFMMhkmHe8a9QsiiJzDH6DM5Bge3qLPwNtxwL2LRBjNw6tWFpbr8qTGJiyNYzpezECjh0hYHaGrg15ZTMX8d4CV9zr0=
+    template: |
+      %{message} [%{duration}]
+      %{repository_name}#%{build_number} (%{branch})
+      %{build_url}
