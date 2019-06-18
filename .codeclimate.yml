@@ -40,4 +40,5 @@ exclude_patterns:
 - "appdaemon/custom_widgets/"
 - "custom_components/"
 - "custom_ui_update.sh"
-- "www/custom_ui"
+- "www/community/"
+- "www/custom_ui/"
