@@ -1,9 +1,0 @@
-.secondary {
-	font-weight: 900;
-	font-size: small;
-}
-
-body{
-	--primary-background-color: blue !important;
-	--paper-card-background-color: green !important;
-}
