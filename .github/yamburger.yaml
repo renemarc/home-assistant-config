@@ -1,0 +1,33 @@
+#
+# Configuration for GitHub app Probot: YAMBURGER
+#
+# Finds YAML syntax errors on files changed in GitHub Pull Requests.
+#
+# @link https://probot.github.io/apps/yamburger/
+# @link https://www.home-assistant.io/docs/configuration/yaml/#using-environment-variables
+# @link https://www.home-assistant.io/docs/configuration/splitting_configuration/
+# @link https://github.com/jnewland/ha-config/blob/master/.github/yamburger.yaml
+#
+
+# Custom tags
+tags:
+- name: env_var
+  kind: scalar
+
+- name: include
+  kind: scalar
+
+- name: secret
+  kind: scalar
+
+- name: include_dir_list
+  kind: scalar
+
+- name: include_dir_merge_list
+  kind: scalar
+
+- name: include_dir_named
+  kind: scalar
+
+- name: include_dir_merge_named
+  kind: scalar

@@ -1,0 +1,17 @@
+#
+# Configuration for GitHub app Probot: Auto-Comment
+#
+# Comments on new issues and pull requests based on your configuration.
+#
+# @link https://probot.github.io/apps/auto-comment/
+#
+
+# Message when new issues are created
+issueOpened: >
+  🥰 Thanks for opening an issue.
+  Someone will get back to you as soon as possible! 😃
+
+# Message when new pull requests are created
+pullRequestOpened: >
+  😍 Thanks for submitting this pull request.
+  Someone will review it as soon as possible! 😃

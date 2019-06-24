@@ -1,0 +1,21 @@
+#
+# Configuration for GitHub app Probot: No Response
+#
+# Automatically closes issues lacking required responses.
+#
+# @link https://probot.github.io/apps/no-response/
+#
+
+# Number of days of inactivity before an Issue is closed for lack of response
+daysUntilClose: 14
+
+# Label requiring a response
+responseRequiredLabel: more-information-needed
+
+# Comment to post when closing an Issue for lack of response. Set to `false` to disable
+closeComment: >
+  😴 This issue has been automatically closed because there has been no response
+  to the request for more information from the original author. 😢 With only the
+  information that is currently in the issue, there is not enough details to
+  take action. Please reach out if you have or find the answers needed so
+  that this can be investigated further. 🙋

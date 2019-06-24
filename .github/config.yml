@@ -1,0 +1,79 @@
+#
+# Probot configuration file
+#
+# Used by GitHub Probot apps with no dedicated configuration files.
+#
+# @link https://probot.github.io/
+#
+
+
+#
+# Probot: helPR
+#
+# Assigns labels to issues based on the status of the PR associated with it.
+#
+# @link https://probot.github.io/apps/helpr/
+#
+
+helpr:
+  opened: 'pr-available'
+  merged: 'pr-merged'
+  rejected: 'pr-rejected'
+
+
+#
+# ProBot: Request Info
+#
+# Requests more info on issues and pull requests with the default title or an
+# empty body.
+#
+# @link https://probot.github.io/apps/request-info/
+#
+
+# Comment to reply with
+requestInfoReplyComment: >-
+  👋 It would be much appreciated if you could provide more information about
+  this issue/pr! 😃
+
+# Label to be added to Issues and PRs with insufficient information given
+requestInfoLabelToAdd: more-information-needed
+
+# Default titles to check against for lack of descriptiveness
+requestInfoDefaultTitles:
+  - update readme.md
+  - updates
+
+# Require Issues to contain more information than an un-edited template
+checkIssueTemplate: true
+
+# Require PRs to contain more information than an un-edited template
+checkPullRequestTemplate: true
+
+# Only warn about insufficient information on these events type
+requestInfoOn:
+  pullRequest: true
+  issue: true
+
+# List of people whose Issues/PRs will not be commented on
+requestInfoUserstoExclude: []
+
+
+#
+# Probot: Welcome
+#
+# Welcomes new users.
+#
+# @link https://probot.github.io/apps/welcome/
+#
+
+# Comment to be posted to on pull requests merged by a first time user
+firstPRMergeComment: >-
+  🎊 Congrats on merging your first pull request! Yay! 🥳
+
+# Comment to be posted to on first time issues
+newIssueWelcomeComment: >-
+  🎉 Thanks for opening your first issue here! 😃
+
+# Comment to be posted to on PRs from first time contributors in repository
+newPRWelcomeComment: >-
+  🍻 Thanks for opening this pull request, you're awesome! 😃
