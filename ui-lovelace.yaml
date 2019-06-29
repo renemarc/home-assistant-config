@@ -163,7 +163,28 @@ styles:
 
 
 #
+# Compact Custom Header
+#
+# @link https://github.com/maykar/compact-custom-header
+#
+cch:
+  clock_format: 24
+  clock_date: true
+  date_locale: en-CA
+  notifications: clock
+  exceptions:
+    - conditions:
+        user_agent: Mobile
+        media_query: "(max-width: 600px)"
+      config:
+        options: hide
+        notifications: hide
+
+
+#
 # Popup cards
+#
+# @link https://github.com/thomasloven/lovelace-popup-card
 #
 popup_cards:
   sensor.apod:
@@ -188,6 +209,7 @@ popup_cards:
         entity: camera.bing_wallpaper_hd
         show_name: false
         show_state: false
+
 
 #
 # Lovelace views
@@ -216,21 +238,6 @@ views:
             layout: vertical
             max_width: 100%
             cards:
-
-              #
-              # Compact Custom Header
-              #
-              - type: "custom:compact-custom-header"
-                main_config: true
-                clock_format: 24
-                notifications: clock
-                exceptions:
-                  - conditions:
-                      user_agent: Mobile
-                      media_query: "(max-width: 600px)"
-                    config:
-                      options: hide
-                      notifications: hide
 
               #
               # Title
@@ -588,11 +595,6 @@ views:
             cards:
 
               #
-              # Compact Custom Header
-              #
-              - type: "custom:compact-custom-header"
-
-              #
               # Title
               #
               - type: custom:card-modder
@@ -894,11 +896,6 @@ views:
             layout: vertical
             max_width: 100%
             cards:
-
-              #
-              # Compact Custom Header
-              #
-              - type: "custom:compact-custom-header"
 
               #
               # Title
@@ -1357,11 +1354,6 @@ views:
             cards:
 
               #
-              # Compact Custom Header
-              #
-              - type: "custom:compact-custom-header"
-
-              #
               # Title
               #
               - type: custom:card-modder
@@ -1509,11 +1501,6 @@ views:
             layout: vertical
             max_width: 100%
             cards:
-
-              #
-              # Compact Custom Header
-              #
-              - type: "custom:compact-custom-header"
 
               #
               # Title
@@ -1829,11 +1816,6 @@ views:
             cards:
 
               #
-              # Compact Custom Header
-              #
-              - type: "custom:compact-custom-header"
-
-              #
               # Title
               #
               - type: custom:card-modder
@@ -2010,11 +1992,6 @@ views:
             cards:
 
               #
-              # Compact Custom Header
-              #
-              - type: "custom:compact-custom-header"
-
-              #
               # Title
               #
               - type: custom:card-modder
@@ -2022,7 +1999,7 @@ views:
                 card:
                   type: markdown
                   content: |
-                    On <em>“[[ sensor.git_branch ]]”</em> branch.
+                    On &OpenCurlyDoubleQuote;<em>[[ sensor.git_branch ]]</em>&CloseCurlyDoubleQuote; branch.
 
           #
           # Body
