@@ -28,6 +28,7 @@ sequence:
   - service: light.lifx_set_state
     data:
       entity_id:
+        - light.lavatory
         - light.lounge_lamp
         - light.shower
         - light.spotlight

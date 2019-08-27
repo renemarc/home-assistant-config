@@ -110,6 +110,50 @@
           0
         {% endif %}
 
+    light_lavatory_brightness:
+      unit_of_measurement: '%'
+      entity_id: light.lavatory
+      value_template: >-
+        {% set element = 'light.lavatory' %}
+        {% if is_state(element, 'on') %}
+          {{ (state_attr(element, 'brightness') | int / 255 * 100) | round }}
+        {% else %}
+          0
+        {% endif %}
+    light_lavatory_color_temp:
+      unit_of_measurement: 'K'
+      entity_id: light.lavatory
+      value_template: >-
+        {% set element = 'light.lavatory' %}
+        {% set color_temp = state_attr(element, 'color_temp') %}
+        {% set steps = 50 %}
+        {% if is_state(element, 'on') and color_temp %}
+          {{ ((1000000 / color_temp / steps) | round * steps) }}
+        {% else %}
+          0
+        {% endif %}
+    light_lavatory_color:
+      entity_id: light.lavatory
+      value_template: >-
+        {% set element = 'light.lavatory' %}
+        {% set hs_color = state_attr(element, 'hs_color') %}
+        {% if is_state(element, 'on') and hs_color %}
+          {% set hs_color = hs_color[0] %}
+          {% if hs_color > 344 or hs_color < 15 %} Red
+          {% elif hs_color > 327 %} Rose
+          {% elif hs_color > 291 %} Magenta
+          {% elif hs_color > 270 %} Purple
+          {% elif hs_color > 260 %} Violet
+          {% elif hs_color > 240 %} Indigo
+          {% elif hs_color > 193 %} Blue
+          {% elif hs_color > 163 %} Cyan
+          {% elif hs_color > 79 %} Green
+          {% elif hs_color > 70 %} Lime
+          {% elif hs_color > 45 %} Yellow
+          {% else %} Orange
+          {% endif %}
+        {% endif %}
+
     light_microwave_brightness:
       unit_of_measurement: '%'
       entity_id: light.microwave

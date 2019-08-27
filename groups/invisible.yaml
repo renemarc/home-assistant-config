@@ -41,6 +41,7 @@ leak_sensors:
 lifx_lights:
   name: LIFX Lights
   entities:
+    - light.lavatory
     - light.lounge_lamp
     - light.spotlight
     - light.shower
@@ -83,4 +84,5 @@ waqi:
 washroom_lights:
   name: Washroom Lights
   entities:
+    - light.lavatory
     - light.shower

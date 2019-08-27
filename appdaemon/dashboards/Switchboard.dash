@@ -194,8 +194,9 @@ light_shower:
     widget_style: "background-color:ROYALBLUE;"
 
 light_lavatory:
-    widget_type: label
+    widget_type: light
     title: Lavatory
+    entity: light.lavatory
     widget_style: "background-color:ROYALBLUE;"
 
 spacer_tetris:

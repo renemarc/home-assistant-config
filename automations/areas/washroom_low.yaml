@@ -50,5 +50,6 @@
     - service: homeassistant.turn_on
       data:
         entity_id:
+          - light.lavatory
           - light.shower
         transition: 5

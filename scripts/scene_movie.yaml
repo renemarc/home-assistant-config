@@ -28,6 +28,7 @@ sequence:
     data:
       entity_id:
         - light.lounge_lamp
+        - light.lavatory
         - light.shower
         - light.spotlight
     data_template:

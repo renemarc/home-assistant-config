@@ -36,9 +36,10 @@ sequence:
   - service: light.lifx_set_state
     data:
       entity_id:
+        - light.lavatory
+        - light.lounge_lamp
         - light.shower
         - light.spotlight
-        - light.lounge_lamp
     data_template:
       kelvin: 6000
       brightness_pct: 100

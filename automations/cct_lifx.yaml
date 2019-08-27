@@ -34,6 +34,7 @@
     # When an item which was turned off or disconnected comes back online.
     - platform: state
       entity_id:
+        - light.lavatory
         - light.shower
         - light.spotlight
       to: 'on'

@@ -76,6 +76,7 @@ lounge:
 washroom:
   name: Washroom
   entities:
+    - light.lavatory
     - light.shower
     - sensor.washroom_temperature
     - sensor.washroom_humidity
