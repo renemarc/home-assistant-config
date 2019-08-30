@@ -462,6 +462,32 @@ light.spotlight:
   state_card_mode: break-slider
 light.souvenirs:
   icon: mdi:trophy
+light.torchiere:
+  extra_data_template: >-
+    if(!attributes.brightness)return null;
+    var t;
+    if (attributes.color_temp) {
+      t = 50 * Math.round(1e6/attributes.color_temp/50) + ' K @ '
+    }
+    else if (attributes.hs_color) {
+      t = parseInt(attributes.hs_color[0]);
+      t>344||t<15? t='Red'  : t>327? t='Rose'
+      : t>291? t='Magenta'  : t>270? t='Purple'
+      : t>260? t='Violet'   : t>240? t='Indigo'
+      : t>193? t='Blue'     : t>163? t='Cyan'
+      : t>79?  t='Green'    : t>70?  t='Lime'
+      : t>45?  t='Yellow'   : t>14 && (t='Orange');
+      t = t + ' @ ';
+    }
+    return t + Math.round(attributes.brightness/255*100) + '%';
+  icon: mdi:floor-lamp
+  slider_theme:
+    max: 255
+    min: 0
+    off_when_min: true
+    pin: true
+    report_when_not_changed: false
+  state_card_mode: break-slider
 light.underbed:
   extra_data_template: >-
     var e = 'sensor.bed_effect_loaded',

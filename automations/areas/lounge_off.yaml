@@ -28,4 +28,5 @@
         entity_id:
           - light.aurora
           - light.spotlight
+          - light.torchiere
         transition: 10

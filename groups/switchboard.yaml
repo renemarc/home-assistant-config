@@ -66,6 +66,7 @@ lounge:
     - sensor.hline_dashed_2
     - light.spotlight
     - light.souvenirs
+    - light.torchiere
     - light.window
     - switch.lounge_tv
     - sensor.lounge_temperature

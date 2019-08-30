@@ -42,9 +42,9 @@ lifx_lights:
   name: LIFX Lights
   entities:
     - light.lavatory
-    - light.lounge_lamp
-    - light.spotlight
     - light.shower
+    - light.spotlight
+    - light.torchiere
 
 motion_sensors:
   name: Motion sensors

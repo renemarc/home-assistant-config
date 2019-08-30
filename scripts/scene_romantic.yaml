@@ -29,9 +29,9 @@ sequence:
     data:
       entity_id:
         - light.lavatory
-        - light.lounge_lamp
         - light.shower
         - light.spotlight
+        - light.torchiere
     data_template:
       color_name: magenta
       brightness_pct: 50

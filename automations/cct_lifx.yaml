@@ -9,9 +9,15 @@
 # White temperature is based on a custom curve, not f.lux nor using the sun,
 # otherwise it would be kind of gloomy to see warm yellows a lot in winter time.
 #
-# LIFX+ bulbs white colour range:
+# LIFX Mini Color:
 #   Mireds: 111 - 400
 #   Kelvins: 9000K - 2500K
+#   Lumens: 800
+#
+# LIFX+:
+#   Mireds: 111 - 400
+#   Kelvins: 9000K - 2500K
+#   Lumens: 1100
 #
 # Todo: User-configurable targets and hours?
 # Todo: Use sun as basis for color temp boundaries?
@@ -37,6 +43,7 @@
         - light.lavatory
         - light.shower
         - light.spotlight
+        - light.torchiere
       to: 'on'
 
     # When night mode is disabled.
@@ -61,13 +68,14 @@
       state: 'off'
 
   action:
-    # Set light colour and brightness using LIFX service.
+    # Set light temperature and brightness for utilitarian LIFX+ bulbs.
     - service: light.lifx_set_state
       data:
         entity_id:
-          - group.lifx_lights
+          - light.shower
+          - light.spotlight
       data_template:
-        color_temp: >
+        color_temp: &color_temp >
           {% set schedule = {
             '00': 3000,
             '01': 2750,
@@ -119,7 +127,7 @@
           {% set color = (1000000 / color_temp) | round(0) %}
 
           {{ color }}
-        brightness: >
+        brightness: &brightness >
           {% set schedule = {
             '00': 50,
             '01': 50,
@@ -171,4 +179,136 @@
           {% set brightness = (brightness_pct / 100 * 255) | round(0) %}
 
           {{ brightness }}
+        transition: 5
+
+    # Set light temperature and lower brightness for more casual LIFX+ bulbs.
+    - service: light.lifx_set_state
+      data:
+        entity_id:
+          - light.torchiere
+      data_template:
+        color_temp: *color_temp
+        brightness: >
+          {% set schedule = {
+            '00': 50,
+            '01': 50,
+            '02': 45,
+            '03': 40,
+            '04': 35,
+            '05': 40,
+
+            '06': 45,
+            '07': 50,
+            '08': 60,
+            '09': 70,
+            '10': 80,
+            '11': 90,
+
+            '12': 100,
+            '13': 100,
+            '14': 100,
+            '15': 100,
+            '16': 95,
+            '17': 85,
+
+            '18': 80,
+            '19': 75,
+            '20': 70,
+            '21': 65,
+            '22': 60,
+            '23': 55,
+          } %}
+          {% set hour = now().hour %}
+          {% set next = hour + 1%}
+          {% if next > 23 %}
+            {% set next = 0 %}
+          {% endif %}
+          {% set hour = '%02d' | format(hour) %}
+          {% set next = '%02d' | format(next) %}
+
+          {% set current = schedule[hour] %}
+          {% set target = schedule[next] %}
+          {% set brightness_pct = current %}
+
+          {% if current != target %}
+            {% set delta = target - current %}
+            {% set seconds = now().second + now().minute * 60 %}
+            {% set diff = (seconds / 3600 * delta) | round(0) %}
+            {% set brightness_pct = current + diff %}
+          {% endif %}
+
+          {# Lower brightness by about 30% (from LIFX+'s to Mini's level). #}
+          {% set brightness_pct = current * 800 / 1100 %}
+
+          {% set brightness = (brightness_pct / 100 * 255) | round(0) %}
+
+          {{ brightness }}
+        transition: 5
+
+    # Set matching light temperature and brightness to LIFX mini bulbs.
+    - service: light.lifx_set_state
+      data:
+        entity_id:
+          - light.lavatory
+      data_template:
+        color_temp: >
+          {% set schedule = {
+            '00': 3000,
+            '01': 2750,
+            '02': 2500,
+            '03': 2500,
+            '04': 2500,
+            '05': 2750,
+
+            '06': 3000,
+            '07': 3500,
+            '08': 4000,
+            '09': 4500,
+            '10': 5000,
+            '11': 5500,
+
+            '12': 6000,
+            '13': 6000,
+            '14': 6000,
+            '15': 6000,
+            '16': 6000,
+            '17': 5500,
+
+            '18': 5000,
+            '19': 4500,
+            '20': 4000,
+            '21': 3500,
+            '22': 3500,
+            '23': 3500,
+          } %}
+          {% set hour = now().hour %}
+          {% set next = hour + 1%}
+          {% if next > 23 %}
+            {% set next = 0 %}
+          {% endif %}
+          {% set hour = '%02d' | format(hour) %}
+          {% set next = '%02d' | format(next) %}
+
+          {% set current = schedule[hour] %}
+          {% set target = schedule[next] %}
+
+          {# Lower colour temperature by 0-1500K, between 2500K to 4500K. #}
+          {% set current_pct = (current-2500) / (6000-2500) %}
+          {% set current = (2500 + (4500-2500) * current_pct) | round(0)  %}
+          {% set target_pct = (target-2500) / (6000-2500) %}
+          {% set target = (2500 + (4500-2500) * target_pct) | round(0)  %}
+
+          {% set color_temp = current %}
+
+          {% if current != target %}
+            {% set delta = target - current %}
+            {% set seconds = now().second + now().minute * 60 %}
+            {% set diff = (seconds / 3600 * delta) | round(0) %}
+            {% set color_temp = current + diff %}
+          {% endif %}
+
+          {% set color = (1000000 / color_temp) | round(0) %}
+
+          {{ color }}
+        brightness: *brightness
         transition: 5

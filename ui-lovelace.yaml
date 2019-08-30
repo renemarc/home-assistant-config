@@ -779,6 +779,16 @@ views:
                           [[ if(sensor.light_spotlight_brightness > 0, sensor.light_spotlight_brightness, '') ]][[ if(sensor.light_spotlight_brightness > 0, sensor.light_spotlight_brightness.attributes.unit_of_measurement , '') ]]
                           </strong></small>
 
+                      - entity: light.torchiere
+                        type: "custom:secondaryinfo-entity-row"
+                        secondary_info: >-
+                          <small><strong>
+                          [[ if(sensor.light_torchiere_color != '', sensor.light_torchiere_color, if(sensor.light_torchiere_color_temp > 0, sensor.light_torchiere_color_temp, '')) ]]
+                          [[ if(sensor.light_torchiere_color != '', '', if(sensor.light_torchiere_color_temp > 0, sensor.light_torchiere_color_temp.attributes.unit_of_measurement, '')) ]]
+                          [[ if(sensor.light_torchiere_brightness > 0, '@', '') ]]
+                          [[ if(sensor.light_torchiere_brightness > 0, sensor.light_torchiere_brightness, '') ]][[ if(sensor.light_torchiere_brightness > 0, sensor.light_torchiere_brightness.attributes.unit_of_measurement , '') ]]
+                          </strong></small>
+
                       - light.souvenirs
                       - light.window
 

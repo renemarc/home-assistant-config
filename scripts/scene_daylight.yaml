@@ -37,9 +37,9 @@ sequence:
     data:
       entity_id:
         - light.lavatory
-        - light.lounge_lamp
         - light.shower
         - light.spotlight
+        - light.torchiere
     data_template:
       kelvin: 6000
       brightness_pct: 100

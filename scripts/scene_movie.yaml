@@ -27,10 +27,10 @@ sequence:
   - service: light.lifx_set_state
     data:
       entity_id:
-        - light.lounge_lamp
         - light.lavatory
         - light.shower
         - light.spotlight
+        - light.torchiere
     data_template:
       kelvin: 2500
       brightness_pct: 40

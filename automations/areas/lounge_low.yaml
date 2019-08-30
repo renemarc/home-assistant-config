@@ -45,6 +45,7 @@
       data:
         entity_id:
           - light.spotlight
+          - light.torchiere
         transition: 5
 
     # Turn off some smart lights.

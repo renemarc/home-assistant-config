@@ -303,9 +303,10 @@ light_spotlight:
     entity: light.spotlight
     widget_style: "background-color:DARKRED;"
 
-light_lamp:
-    widget_type: label
-    title: Lamp
+light_torchiere:
+    widget_type: light
+    title: Torchiere
+    entity: light.torchiere
     widget_style: "background-color:DARKRED;"
 
 light_souvenirs:
@@ -336,5 +337,5 @@ layout:
     - nav_switchboard,  spacer, label_exterior, light_front_porch, spacer(2x1), label_ceiling, washlight_bedroom, washlight_middle, washlight_lounge
     - nav_weather,      label_kitchen, light_microwave, spacer, label_washroom, light_shower, spacer, label_climate, switch_air_filter
     - nav_spacer(1x2),  light_island, light_sink, light_countertop, spacer, light_lavatory, spacer, switch_dehumidifier, switch_humidifier
-    -                   label_bedroom, light_bed_effect, underglow_headboard, underglow_underbed, label_lounge, light_aurora_effect, light_aurora, light_tv_backlight_effect, light_tv_backlight
-    - nav_status,       light_nightstand, light_bedside, fan_bedroom, spacer, light_spotlight, light_souvenirs, light_window, light_lamp, switch_tv
+    -                   label_bedroom, light_bed_effect, underglow_headboard, underglow_underbed, label_lounge, light_aurora_effect, light_aurora, light_souvenirs, light_spotlight
+    - nav_status,       light_nightstand, light_bedside, fan_bedroom, spacer, light_tv_backlight_effect, light_tv_backlight, switch_tv, light_torchiere, light_window
