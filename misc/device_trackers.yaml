@@ -13,25 +13,3 @@
 - platform: bluetooth_tracker
   request_rssi: true
   track_new_devices: true
-
-
-#
-# Ubiquiti UniFi wireless access point
-#
-# Connects to the UniFi controller with a read-only user.
-#
-# @link https://www.ubnt.com/unifi/unifi-cloud-key/
-# @link https://home-assistant.io/components/device_tracker.unifi/
-#
-- platform: unifi
-  host: !secret unifi_host
-  port: !secret unifi_port
-  username: !secret unifi_username
-  password: !secret unifi_password
-  verify_ssl: false
-
-  consider_home: 180
-  detection_time: 60
-  interval_seconds: 12
-  ssid_filter: !secret unifi_ssid_filter
-  track_new_devices: true

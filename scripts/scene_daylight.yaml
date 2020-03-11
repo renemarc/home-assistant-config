@@ -24,7 +24,7 @@ sequence:
         - light.window
 
   # Set smart lights to the max.
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id:
         - group.kitchen_lights
@@ -33,7 +33,7 @@ sequence:
       brightness_pct: 100
 
   # Set LIFX lights to the max.
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id:
         - light.lavatory

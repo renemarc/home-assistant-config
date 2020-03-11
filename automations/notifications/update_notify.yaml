@@ -9,7 +9,7 @@
   trigger:
     # When the updater service finds something new.
     platform: state
-    entity_id: updater.updater
+    entity_id: binary_sensor.updater
 
   action:
     # Send text notification to owner.
@@ -17,5 +17,5 @@
       data:
         title: "Home Assistant update"
         message: |
-          Version {{ states('updater.updater') }} is available.
+          Version {{ state_attr('binary_sensor.updater', 'newest_version') }} is available.
           Installed version: {{ states('sensor.current_version') }}

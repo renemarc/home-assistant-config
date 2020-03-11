@@ -239,7 +239,7 @@ light: !include_dir_merge_list lights/
 #
 # @link https://home-assistant.io/components/logbook/
 #
-# logbook:
+logbook:
 
 
 #
@@ -254,7 +254,7 @@ logger:
     custom_components.display: critical # When tablet is offline.
     custom_components.gtfs_custom: critical # Until GTFS integration overhaul is complete
     custom_components.light.lightpack: critical # When Lightpack is offline.
-    homeassistant.components.device_tracker.unifi: fatal # When Unifi Controller is temporarily unreachable.
+    homeassistant.components.unifi: fatal # When Unifi Controller is temporarily unreachable.
     homeassistant.components.media_player.plex: fatal # When Plex is offline.
     sqlalchemy.exc: critical # Until GTFS integration overhaul is complete
     sqlalchemy.exc.ProgrammingError: critical # Until GTFS integration overhaul is complete
@@ -276,7 +276,7 @@ lovelace:
 #
 # @link https://home-assistant.io/components/map/
 #
-# map:
+map:
 
 
 #
@@ -285,6 +285,15 @@ lovelace:
 # @link https://home-assistant.io/components/media_player/
 #
 media_player: !include misc/media_players.yaml
+
+
+#
+# Mobile companion app
+#
+# @link https://companion.home-assistant.io/
+# @link https://www.home-assistant.io/integrations/mobile_app/
+#
+mobile_app:
 
 
 #
@@ -320,6 +329,14 @@ notify: !include_dir_merge_list notifications/
 # @link https://www.home-assistant.io/components/person/
 #
 person: !include misc/persons.yaml
+
+
+#
+# Plex
+#
+# @link https://www.home-assistant.io/integrations/plex/
+#
+plex: !include misc/plex.yaml
 
 
 #
@@ -410,6 +427,14 @@ tplink: !include misc/tplink.yaml
 #
 tts:
   - platform: google_translate
+
+
+#
+# Ubiquiti UniFi
+#
+# @link https://www.home-assistant.io/integrations/unifi
+#
+unifi: !include misc/unifi.yaml
 
 
 #

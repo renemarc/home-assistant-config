@@ -12,7 +12,6 @@
   latitude: !secret zone_home_latitude
   longitude: !secret zone_home_longitude
   radius: 100
-  track_ios: true
   icon: mdi:home-heart
 
 
@@ -23,7 +22,6 @@
   latitude: !secret zone_terminal_latitude
   longitude: !secret zone_terminal_longitude
   radius: 500
-  track_ios: true
   icon: mdi:subway
 
 

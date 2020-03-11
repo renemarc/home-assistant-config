@@ -1,4 +1,11 @@
-"""Support for Unifi Security Gateway Units."""
+"""
+Support for Unifi Security Gateway Units.
+
+For more details about this platform, please refer to the documentation at
+https://github.com/custom-components/sensor.unifigateway
+
+"""
+
 import logging
 import voluptuous as vol
 from datetime import timedelta
@@ -11,9 +18,7 @@ from homeassistant.const import (
     CONF_NAME, CONF_HOST, CONF_USERNAME, CONF_PASSWORD,
     CONF_MONITORED_CONDITIONS, CONF_VERIFY_SSL)
 
-# from pyunifi.controller import APIError
-
-__version__ = '0.2.1'
+__version__ = '0.2.3'
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -46,8 +51,8 @@ USG_SENSORS = {
     SENSOR_FIRMWARE:['Firmware Upgradable', '', 'mdi:database-plus']
 }
 
-POSSIBLE_MONITORED = [ SENSOR_VPN, SENSOR_WWW, SENSOR_WAN, SENSOR_LAN, SENSOR_WLAN,
-                      SENSOR_ALERTS, SENSOR_FIRMWARE ]
+POSSIBLE_MONITORED = [ SENSOR_VPN, SENSOR_WWW, SENSOR_WAN, SENSOR_LAN, 
+                        SENSOR_WLAN, SENSOR_ALERTS, SENSOR_FIRMWARE ]
 DEFAULT_MONITORED = POSSIBLE_MONITORED
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
@@ -57,15 +62,14 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_PASSWORD): cv.string,
     vol.Required(CONF_USERNAME): cv.string,
     vol.Required(CONF_PORT, default=DEFAULT_PORT): cv.port,
-    vol.Optional(CONF_VERIFY_SSL, default=DEFAULT_VERIFY_SSL): vol.Any(
-        cv.boolean, cv.isfile),
+    vol.Optional(CONF_VERIFY_SSL, default=DEFAULT_VERIFY_SSL): 
+        vol.Any(cv.boolean, cv.isfile),
     vol.Optional(CONF_MONITORED_CONDITIONS, default=DEFAULT_MONITORED):
         vol.All(cv.ensure_list, [vol.In(POSSIBLE_MONITORED)])
-
 })
 
 def setup_platform(hass, config, add_entities, discovery_info=None):
-    """Set up the Unifi device_tracker."""
+    """Set up the Unifi sensor."""
     from pyunifi.controller import Controller, APIError
 
     name = config.get(CONF_NAME)
@@ -80,7 +84,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
         ctrl = Controller(host, username, password, port, version='v4',
                           site_id=site_id, ssl_verify=verify_ssl)
     except APIError as ex:
-        _LOGGER.error("Failed to connect to Unifi: %s", ex)
+        _LOGGER.error("Failed to connect to Unifi Security Gateway: %s", ex)
         return False
 
     for sensor in config.get(CONF_MONITORED_CONDITIONS):
@@ -122,6 +126,7 @@ class UnifiGatewaySensor(Entity):
 
     @Throttle(MIN_TIME_BETWEEN_UPDATES)
     def update(self):
+        """Set up the sensor."""
         from pyunifi.controller import APIError
 
         if self._sensor == SENSOR_ALERTS:

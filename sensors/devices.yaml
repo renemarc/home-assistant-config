@@ -175,9 +175,6 @@
 - platform: syncthru
   resource: !secret syncthru_resource
   name: Printer
-  monitored_conditions:
-    - drum_black
-    - toner_black
 
 - platform: template
   sensors:

@@ -19,16 +19,3 @@
   username: !secret kodi_username
   password: !secret kodi_password
   enable_websocket: true
-
-
-#
-# Plex
-#
-# @link https://www.plex.tv/
-# @link https://home-assistant.io/components/media_player.plex/
-#
-- platform: plex
-  entity_namespace: plex
-  scan_interval: 5
-  show_all_controls: false
-  use_episode_art: true

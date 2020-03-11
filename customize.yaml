@@ -263,7 +263,7 @@ light.bedroom:
     return state === 'on' && v
     ? v
     : null;
-  icon: mdi:led-strip
+  icon: mdi:led-strip-variant
   slider_theme:
     max: 255
     min: 0
@@ -332,7 +332,7 @@ light.lavatory:
       t = t + ' @ ';
     }
     return t + Math.round(attributes.brightness/255*100) + '%';
-  icon: mdi:water-well
+  icon: mdi:wall-sconce-flat
   slider_theme:
     max: 255
     min: 0
@@ -349,7 +349,7 @@ light.lightpack:
     return state === 'on' && v
     ? v
     : null;
-  icon: mdi:television
+  icon: mdi:television-ambient-light
 light.lounge:
   extra_data_template: >-
     var e = 'sensor.ceiling_effect_loaded',
@@ -357,7 +357,7 @@ light.lounge:
     return state === 'on' && v
     ? v
     : null;
-  icon: mdi:led-strip
+  icon: mdi:led-strip-variant
   slider_theme:
     max: 255
     min: 0
@@ -385,7 +385,7 @@ light.middle:
     return state === 'on' && v
     ? v
     : null;
-  icon: mdi:led-strip
+  icon: mdi:led-strip-variant
   slider_theme:
     max: 255
     min: 0
@@ -1080,7 +1080,7 @@ switch.window_light:
 #
 # Updater
 #
-updater.updater:
+binary_sensor.updater:
   custom_ui_state_card: state-card-custom-ui
   extra_data_template: >-
     var e = 'sensor.current_version';

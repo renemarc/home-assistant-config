@@ -34,7 +34,7 @@ nav_weather:
     widget_type: navigate
     dashboard: Weather
     title2: Weather
-    icon_inactive: mdi-weather-partlycloudy
+    icon_inactive: mdi-weather-partly-cloudy
     widget_style: "background: DARKSLATEBLUE;"
 
 nav_status:
@@ -159,10 +159,10 @@ weather_icon_now:
             icon: mdi-weather-cloudy
             style: "$style_active"
         partly-cloudy-day:
-            icon: mdi-weather-partlycloudy
+            icon: mdi-weather-partly-cloudy
             style: "$style_active"
         partly-cloudy-night:
-            icon: mdi-weather-partlycloudy
+            icon: mdi-weather-partly-cloudy
             style: "$style_active"
     title2_entity: sensor.weather_icon_friendly
     sub_entity: sensor.precip_probability_friendly

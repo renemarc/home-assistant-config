@@ -24,7 +24,7 @@ sequence:
 
   # Dim the spot lights.
   # Todo: Investigate moving to https://home-assistant.io/components/light/
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id:
         - light.lavatory

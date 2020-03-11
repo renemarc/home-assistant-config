@@ -54,7 +54,7 @@
       friendly_name: Update Available
       icon_template: mdi:update
       value_template: >-
-        {% set version = states('updater.updater') %}
+        {% set version = state_attr('binary_sensor.updater', 'newest_version') %}
 
         {% if version != 'unknown' %}
           Update available: {{ version }}

@@ -25,7 +25,7 @@ sequence:
         - light.window
 
   # Dim and colourize the spot lights.
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id:
         - light.lavatory

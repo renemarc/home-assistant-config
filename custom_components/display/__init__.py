@@ -16,11 +16,12 @@ from homeassistant.components.group import (
     ENTITY_ID_FORMAT as GROUP_ENTITY_ID_FORMAT
 )
 from homeassistant.const import (
+    MAJOR_VERSION, MINOR_VERSION,
     ATTR_ENTITY_ID,
     SERVICE_TURN_OFF, SERVICE_TURN_ON,
     STATE_ON
 )
-from homeassistant.helpers.config_validation import PLATFORM_SCHEMA
+from homeassistant.helpers.config_validation import PLATFORM_SCHEMA, PLATFORM_SCHEMA_BASE
 from homeassistant.helpers.entity import ToggleEntity
 from homeassistant.helpers.entity_component import EntityComponent
 from homeassistant.loader import bind_hass
@@ -56,7 +57,7 @@ DISPLAY_DEVICE_LOAD_URL_SCHEMA = DISPLAY_DEVICE_SCHEMA.extend({
 DISPLAY_DEVICE_SET_BRIGHTNESS_SCHEMA = DISPLAY_DEVICE_SCHEMA.extend({
     vol.Optional(ATTR_BRIGHTNESS, default=None):
         vol.Any(
-            vol.All(str, vol.Length(min=0, max=0)),
+            vol.All(str, vol.Length(min=0, max=3)),
             vol.All(int, vol.Range(min=0, max=255))
         )
 })
@@ -69,8 +70,12 @@ def is_on(hass, entity_id=None):
 
 
 async def async_setup(hass, config):
-    component = EntityComponent(
-        _LOGGER, DOMAIN, hass, SCAN_INTERVAL, GROUP_NAME_ALL_DISPLAYS)
+    if (MAJOR_VERSION, MINOR_VERSION) >= (0, 104):
+        component = hass.data[DOMAIN] = EntityComponent(
+            _LOGGER, DOMAIN, hass, SCAN_INTERVAL)
+    else:
+        component = hass.data[DOMAIN] = EntityComponent(
+            _LOGGER, DOMAIN, hass, SCAN_INTERVAL, GROUP_NAME_ALL_DISPLAYS)
 
     await component.async_setup(config)
 

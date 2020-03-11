@@ -125,7 +125,7 @@
         {% elif icon == 'fog' %}
           mdi:weather-fog
         {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
-          mdi:weather-partlycloudy
+          mdi:weather-partly-cloudy
         {% elif icon == 'rain' %}
           mdi:weather-rainy
         {% elif icon == 'sleet' %}
@@ -172,7 +172,7 @@
         {% elif icon == 'fog' %}
           mdi:weather-fog
         {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
-          mdi:weather-partlycloudy
+          mdi:weather-partly-cloudy
         {% elif icon == 'rain' %}
           mdi:weather-rainy
         {% elif icon == 'sleet' %}
@@ -219,7 +219,7 @@
         {% elif icon == 'fog' %}
           mdi:weather-fog
         {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
-          mdi:weather-partlycloudy
+          mdi:weather-partly-cloudy
         {% elif icon == 'rain' %}
           mdi:weather-rainy
         {% elif icon == 'sleet' %}
@@ -266,7 +266,7 @@
         {% elif icon == 'fog' %}
           mdi:weather-fog
         {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
-          mdi:weather-partlycloudy
+          mdi:weather-partly-cloudy
         {% elif icon == 'rain' %}
           mdi:weather-rainy
         {% elif icon == 'sleet' %}
@@ -313,7 +313,7 @@
         {% elif icon == 'fog' %}
           mdi:weather-fog
         {% elif icon in ['partly-cloudy-day', 'partly-cloudy-night'] %}
-          mdi:weather-partlycloudy
+          mdi:weather-partly-cloudy
         {% elif icon == 'rain' %}
           mdi:weather-rainy
         {% elif icon == 'sleet' %}
@@ -682,7 +682,7 @@
         {% elif icon == 'cloudy' %}
           mdi:weather-cloudy
         {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
-          mdi:weather-partlycloudy
+          mdi:weather-partly-cloudy
         {% else %}
           unknown
         {% endif %}
@@ -715,7 +715,7 @@
         {% elif icon == 'cloudy' %}
           mdi:weather-cloudy
         {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
-          mdi:weather-partlycloudy
+          mdi:weather-partly-cloudy
         {% else %}
           unknown
         {% endif %}
@@ -748,7 +748,7 @@
         {% elif icon == 'cloudy' %}
           mdi:weather-cloudy
         {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
-          mdi:weather-partlycloudy
+          mdi:weather-partly-cloudy
         {% else %}
           unknown
         {% endif %}
@@ -781,7 +781,7 @@
         {% elif icon == 'cloudy' %}
           mdi:weather-cloudy
         {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
-          mdi:weather-partlycloudy
+          mdi:weather-partly-cloudy
         {% else %}
           unknown
         {% endif %}
@@ -814,7 +814,7 @@
         {% elif icon == 'cloudy' %}
           mdi:weather-cloudy
         {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
-          mdi:weather-partlycloudy
+          mdi:weather-partly-cloudy
         {% else %}
           unknown
         {% endif %}

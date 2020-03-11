@@ -1,0 +1,13 @@
+#
+# Plex
+#
+# @link https://www.plex.tv/
+# @link https://www.home-assistant.io/integrations/plex/
+#
+host: !secret plex_host
+port: !secret plex_port
+token: !secret plex_token
+ssl: false
+media_player:
+  show_all_controls: false
+  use_episode_art: true

@@ -13,24 +13,24 @@
 #
 resources:
   # Auto entities
-  - url: /community_plugin/lovelace-auto-entities/auto-entities.js
-    type: js
+  - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+    type: module
     repo: https://github.com/thomasloven/lovelace-auto-entities
 
   # Bar card
-  - url: /community_plugin/bar-card/bar-card.js
-    type: js
+  - url: /hacsfiles/bar-card/bar-card.js
+    type: module
     repo: https://github.com/custom-cards/bar-card
 
   # Button card
-  - url: /community_plugin/button-card/button-card.js
+  - url: /hacsfiles/button-card/button-card.js
     type: module
     repo: https://github.com/custom-cards/button-card
 
   # Compact custom header
-  - url: /community_plugin/compact-custom-header/compact-custom-header.js
+  - url: /hacsfiles/custom-header/custom-header.js
     type: module
-    repo: https://github.com/maykar/compact-custom-header
+    repo: https://github.com/maykar/custom-header
 
   # Card modder
   - url: /community_plugin/lovelace-card-modder/card-modder.js
@@ -38,32 +38,27 @@ resources:
     repo: https://github.com/thomasloven/lovelace-card-modder
 
   # Card tools
-  - url: /community_plugin/lovelace-card-tools/card-tools.js
-    type: js
+  - url: /hacsfiles/lovelace-card-tools/card-tools.js
+    type: module
     repo: https://github.com/thomasloven/lovelace-card-tools
 
   # Dummy entity row
-  - url: /community_plugin/lovelace-dummy-entity-row/dummy-entity-row.js
-    type: js
+  - url: /hacsfiles/lovelace-dummy-entity-row/dummy-entity-row.js
+    type: module
     repo: https://github.com/thomasloven/lovelace-dummy-entity-row
 
   # Fold entity row
-  - url: /community_plugin/lovelace-fold-entity-row/fold-entity-row.js
-    type: js
+  - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
+    type: module
     repo: https://github.com/thomasloven/lovelace-fold-entity-row
 
   # Layout card
-  - url: /community_plugin/lovelace-layout-card/layout-card.js
-    type: js
+  - url:  /hacsfiles/lovelace-layout-card/layout-card.js
+    type: module
     repo: https://github.com/thomasloven/lovelace-layout-card
 
-  # Markdown mod
-  - url: /community_plugin/lovelace-markdown-mod/markdown-mod.js
-    type: js
-    repo: https://github.com/thomasloven/lovelace-markdown-mod
-
   # Mini graph card
-  - url: /community_plugin/mini-graph-card/mini-graph-card.js
+  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
     type: module
     repo: https://github.com/kalkih/mini-graph-card
 
@@ -72,29 +67,29 @@ resources:
     type: js
     repo: https://github.com/thomasloven/lovelace-popup-card
 
+  # Restriction Card
+  - url: /hacsfiles/restriction-card/restriction-card.js
+    type: module
+    repo: https://github.com/iantrich/restriction-card
+
   # Secondary info entity row
-  - url: /community_plugin/secondaryinfo-entity-row/secondaryinfo-entity-row.js
-    type: js
+  - url: /hacsfiles/secondaryinfo-entity-row/secondaryinfo-entity-row.js
+    type: module
     repo: https://github.com/custom-cards/secondaryinfo-entity-row
 
   # Slider entity row
-  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
-    type: js
+  - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
+    type: module
     repo: https://github.com/thomasloven/lovelace-slider-entity-row
 
   # Swipe card
-  - url: https://cdn.jsdelivr.net/gh/bramkragten/custom-ui@master/swipe-card/swipe-card.js
+  - url: /hacsfiles/swipe-card/swipe-card.js
     type: module
     repo: https://github.com/bramkragten/custom-ui/tree/master/swipe-card
 
-  # Toggle lock entity row
-  - url: /community_plugin/lovelace-toggle-lock-entity-row/toggle-lock-entity-row.js
-    type: js
-    repo: https://github.com/thomasloven/lovelace-toggle-lock-entity-row
-
   # Vertical stack in card
-  - url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
-    type: js
+  - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+    type: module
     repo: https://github.com/custom-cards/vertical-stack-in-card
 
 
@@ -165,20 +160,30 @@ styles:
 #
 # Compact Custom Header
 #
-# @link https://github.com/maykar/compact-custom-header
+# @link https://github.com/maykar/custom-header
+# @link https://maykar.github.io/custom-header/
 #
-cch:
-  clock_format: 24
-  clock_date: true
-  date_locale: en-CA
-  notifications: clock
+custom_header:
+  header_text: '{{ time }}<br>{{ date }}'
+  compact_mode: true
+#  options_hide: true
+  hide_unused: true
   exceptions:
     - conditions:
         user_agent: Mobile
         media_query: "(max-width: 600px)"
-      config:
-        options: hide
-        notifications: hide
+
+#  clock_format: 24
+#  clock_date: true
+#  date_locale: en-CA
+#  notifications: clock
+#  exceptions:
+#    - conditions:
+#        user_agent: Mobile
+#        media_query: "(max-width: 600px)"
+#      config:
+#        options: hide
+#        notifications: hide
 
 
 #
@@ -247,7 +252,7 @@ views:
                 card:
                   type: markdown
                   content: |
-                    [[ sensor.good_vibes ]]
+                    {{ states('sensor.good_vibes') }}
 
           #
           # Body
@@ -347,8 +352,10 @@ views:
                     title: "Climate & Air Quality"
                     show_header_toggle: false
                     entities:
-                      - entity: switch.dehumidifier
-                        type: "custom:toggle-lock-entity-row"
+                      - type: "custom:restriction-card"
+                        card:
+                          entity: switch.dehumidifier
+                        row: true
 
                       - entity: sensor.average_humidity_friendly
                         name: Humidity
@@ -451,36 +458,44 @@ views:
                   - type: "custom:fold-entity-row"
                     head: sensor.door_status
                     items:
-                      - entity: input_boolean.door_test
-                        type: "custom:toggle-lock-entity-row"
-                        name: Test
-                        icon: mdi:check-decagram
+                      - type: "custom:restriction-card"
+                        card:
+                          entity: input_boolean.door_test
+                          name: Test
+                          icon: mdi:check-decagram
+                        row: true
 
                   - type: "custom:fold-entity-row"
                     head: sensor.leak_status
                     items:
-                      - entity: input_boolean.leak_test
-                        type: "custom:toggle-lock-entity-row"
-                        name: Test
-                        icon: mdi:check-decagram
-                        users:
-                          - Rene-Marc
+                      - type: "custom:restriction-card"
+                        card:
+                          entity: input_boolean.leak_test
+                          name: Test
+                          icon: mdi:check-decagram
+                        row: true
+                        exemptions:
+                          - user: renemarc
 
                   - type: "custom:fold-entity-row"
                     head: sensor.motion_status
                     items:
-                      - entity: input_boolean.motion_test
-                        type: "custom:toggle-lock-entity-row"
-                        name: Test
-                        icon: mdi:check-decagram
+                      - type: "custom:restriction-card"
+                        card:
+                          entity: input_boolean.motion_test
+                          name: Test
+                          icon: mdi:check-decagram
+                        row: true
 
                   - type: "custom:fold-entity-row"
                     head: sensor.smoke_status
                     items:
-                      - entity: input_boolean.smoke_test
-                        type: "custom:toggle-lock-entity-row"
-                        name: Test
-                        icon: mdi:check-decagram
+                      - type: "custom:restriction-card"
+                        card:
+                          entity: input_boolean.smoke_test
+                          name: Test
+                          icon: mdi:check-decagram
+                        row: true
 
                   - sensor.tamper_status
 
@@ -602,7 +617,7 @@ views:
                 card:
                   type: markdown
                   content: |
-                    [[ sensor.modes_friendly ]] enabled.
+                    {{ states('sensor.modes_friendly') }} enabled.
 
           #
           # Body
@@ -900,7 +915,7 @@ views:
   #
   - title: Weather
     path: weather
-    icon: mdi:weather-partlycloudy
+    icon: mdi:weather-partly-cloudy
     background: var(--background-weather)
     panel: true
     cards:
@@ -925,8 +940,10 @@ views:
                 card:
                   type: markdown
                   content: >-
-                    [[ sensor.dark_sky_minutely_summary ]]
-                    [[ sensor.feels_like ]][[ if(sensor.feels_like != '', '.', '') ]]
+                    {{ states('sensor.dark_sky_minutely_summary') }}
+                    {% if states('sensor.feels_like') %}
+                      {{- states('sensor.feels_like') }}.
+                    {% endif %}
 
           #
           # Body
@@ -1035,9 +1052,9 @@ views:
                 cards:
                   - type: markdown
                     content: |
-                      <font size="+2">[[ sensor.dark_sky_hourly_summary ]]</font>
+                      <font size="+2">{{ states('sensor.dark_sky_hourly_summary') }}</font>
 
-                      [[ sensor.dark_sky_daily_summary ]]
+                      {{ states('sensor.dark_sky_daily_summary') }}
 
                   - type: entities
                     entities:
@@ -1381,7 +1398,7 @@ views:
                 card:
                   type: markdown
                   content: |
-                    Humidity: [[ sensor.average_humidity_friendly ]].
+                    Humidity: {{ states('sensor.average_humidity_friendly') }}.
 
           #
           # Body
@@ -1530,7 +1547,7 @@ views:
                 card:
                   type: markdown
                   content: |
-                    [[ sensor.version_friendly ]]
+                    {{ states('sensor.version_friendly') }}
 
           #
           # Body
@@ -1548,11 +1565,11 @@ views:
                 title: Home Assistant
                 show_header_toggle: false
                 entities:
-                  - entity: updater.updater
+                  - entity: binary_sensor.updater
                     type: "custom:secondaryinfo-entity-row"
                     secondary_info: >-
                       <small><strong>
-                      <a href="[[ updater.updater.attributes.release_notes ]]" target="_new" style="color:var(--secondary-text-color);"">Release notes</a>
+                      <a href="[[ binary_sensor.updater.attributes.release_notes ]]" target="_new" style="color:var(--secondary-text-color);"">Release notes</a>
                       </strong></small>
 
                   - sensor.ipv4_address_eth0
@@ -1843,7 +1860,7 @@ views:
                 card:
                   type: markdown
                   content: |
-                    [[ sensor.count_automations_friendly ]]
+                    {{ states('sensor.count_automations_friendly') }}
 
           #
           # Body
@@ -2019,7 +2036,7 @@ views:
                 card:
                   type: markdown
                   content: |
-                    On &OpenCurlyDoubleQuote;<em>[[ sensor.git_branch ]]</em>&CloseCurlyDoubleQuote; branch.
+                    On &OpenCurlyDoubleQuote;<em>{{ states('sensor.git_branch') }}</em>&CloseCurlyDoubleQuote; branch.
 
           #
           # Body

@@ -3,7 +3,7 @@
 #
 # @publish input_boolean.tamper_detected
 #
-- id: tamper_detection_start
+- id: tamper_detection_stop
   alias: Tamper detection STOP
   trigger:
     # When front door tamper is no longer detected.

@@ -27,7 +27,7 @@
     {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
     {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
 
-    http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_RAIN.gif
+    https://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_RAIN.gif
 
 
 - platform: generic
@@ -43,7 +43,7 @@
     {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
     {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
 
-    http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_RAIN.gif
+    https://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_RAIN.gif
 
 
 - platform: generic
@@ -59,7 +59,7 @@
     {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
     {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
 
-    http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_RAIN.gif
+    https://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_RAIN.gif
 
 
 # Radar of surrounding snow conditions (10, 20 and 30 minutes ago)
@@ -76,7 +76,7 @@
     {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
     {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
 
-    http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_SNOW.gif
+    https://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_SNOW.gif
 
 
 - platform: generic
@@ -92,7 +92,7 @@
     {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
     {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
 
-    http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_SNOW.gif
+    https://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_SNOW.gif
 
 
 - platform: generic
@@ -108,4 +108,4 @@
     {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
     {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
 
-    http://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_SNOW.gif
+    https://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_SNOW.gif

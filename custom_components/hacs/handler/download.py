@@ -1,21 +1,24 @@
 """Download."""
-import logging
+import os
+import gzip
+import shutil
 
 import aiofiles
 import async_timeout
-
+from integrationhelper import Logger
 import backoff
-from homeassistant.helpers.aiohttp_client import async_get_clientsession
-from ..exceptions import HacsNotSoBasicException
+from ..hacsbase.exceptions import HacsException
 
-_LOGGER = logging.getLogger('custom_components.hacs.download')
+from custom_components.hacs.globals import get_hacs
 
 
-@backoff.on_exception(backoff.expo, Exception, max_tries=3)
-async def async_download_file(hass, url):
+@backoff.on_exception(backoff.expo, Exception, max_tries=5)
+async def async_download_file(url):
     """
     Download files, and return the content.
     """
+    hacs = get_hacs()
+    logger = Logger("hacs.download.downloader")
     if url is None:
         return
 
@@ -23,45 +26,65 @@ async def async_download_file(hass, url):
     if "tags/" in url:
         url = url.replace("tags/", "")
 
-    _LOGGER.debug("Donwloading %s", url)
+    logger.debug(f"Downloading {url}")
 
     result = None
 
-    with async_timeout.timeout(5, loop=hass.loop):
-        request = await async_get_clientsession(hass).get(url)
+    with async_timeout.timeout(60, loop=hacs.hass.loop):
+        request = await hacs.session.get(url)
 
         # Make sure that we got a valid result
         if request.status == 200:
-            if url.endswith(".gz"):
-                result = await request.read()
-            else:
-                result = await request.text()
+            result = await request.read()
         else:
-            raise HacsNotSoBasicException("Got status code {} when trying to download {}".format(request.status, url))
+            raise HacsException(
+                "Got status code {} when trying to download {}".format(
+                    request.status, url
+                )
+            )
 
     return result
 
 
 async def async_save_file(location, content):
     """Save files."""
-    if "-bundle" in location:
-        location = location.replace("-bundle", "")
-
-    _LOGGER.debug("Saving %s", location)
-    mode = 'w'
+    logger = Logger("hacs.download.save")
+    logger.debug(f"Saving {location}")
+    mode = "w"
     encoding = "utf-8"
-    errors="ignore"
+    errors = "ignore"
 
     if not isinstance(content, str):
-        mode = 'wb'
+        mode = "wb"
         encoding = None
         errors = None
 
     try:
-        async with aiofiles.open(location, mode=mode, encoding=encoding, errors=errors) as outfile:
+        async with aiofiles.open(
+            location, mode=mode, encoding=encoding, errors=errors
+        ) as outfile:
             await outfile.write(content)
             outfile.close()
 
+        # Create gz for .js files
+        if os.path.isfile(location):
+            if location.endswith(".js") or location.endswith(".css"):
+                with open(location, "rb") as f_in:
+                    with gzip.open(location + ".gz", "wb") as f_out:
+                        shutil.copyfileobj(f_in, f_out)
+
+        # Remove with 2.0
+        if "themes" in location and location.endswith(".yaml"):
+            filename = location.split("/")[-1]
+            base = location.split("/themes/")[0]
+            combined = f"{base}/themes/{filename}"
+            if os.path.exists(combined):
+                logger.info(f"Removing old theme file {combined}")
+                os.remove(combined)
+
     except Exception as error:  # pylint: disable=broad-except
         msg = "Could not write data to {} - {}".format(location, error)
-        _LOGGER.debug(msg)
+        logger.error(msg)
+        return False
+
+    return os.path.exists(location)

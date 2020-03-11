@@ -69,7 +69,7 @@
 
   action:
     # Set light temperature and brightness for utilitarian LIFX+ bulbs.
-    - service: light.lifx_set_state
+    - service: lifx.set_state
       data:
         entity_id:
           - light.shower
@@ -182,7 +182,7 @@
         transition: 5
 
     # Set light temperature and lower brightness for more casual LIFX+ bulbs.
-    - service: light.lifx_set_state
+    - service: lifx.set_state
       data:
         entity_id:
           - light.torchiere
@@ -246,7 +246,7 @@
         transition: 5
 
     # Set matching light temperature and brightness to LIFX mini bulbs.
-    - service: light.lifx_set_state
+    - service: lifx.set_state
       data:
         entity_id:
           - light.lavatory

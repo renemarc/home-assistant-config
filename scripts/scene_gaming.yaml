@@ -11,7 +11,7 @@ sequence:
       entity_id: input_boolean.scene_mode
 
   # Dim the lounge spot lights.
-  - service: light.lifx_set_state
+  - service: lifx.set_state
     data:
       entity_id:
         - light.spotlight

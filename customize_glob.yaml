@@ -43,7 +43,7 @@ automation.kiosk_*:
 automation.leak_*:
   icon: mdi:pipe-leak
 automation.lightpack_*:
-  icon: mdi:television
+  icon: mdi:television-ambient-light
 automation.lounge_*:
   icon: mdi:sofa
 automation.low_power_mode_*:

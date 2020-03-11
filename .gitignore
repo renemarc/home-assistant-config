@@ -5,6 +5,7 @@
 *.db-journal
 *.db-shm
 *.db-wal
+*.gz
 *.key
 *.log
 *.pid
