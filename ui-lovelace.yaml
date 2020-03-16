@@ -32,10 +32,10 @@ resources:
     type: module
     repo: https://github.com/maykar/custom-header
 
-  # Card modder
-  - url: /community_plugin/lovelace-card-modder/card-modder.js
-    type: js
-    repo: https://github.com/thomasloven/lovelace-card-modder
+  # Card mod
+  - url: /hacsfiles/lovelace-card-mod/card-mod.js
+    type: module
+    repo: https://github.com/thomasloven/lovelace-card-mod
 
   # Card tools
   - url: /hacsfiles/lovelace-card-tools/card-tools.js
@@ -99,60 +99,79 @@ resources:
 styles:
   button-card-styles: &button-card-styles
     card:
-      - border: 5px solid var(--paper-card-background-color)
+      - border: 2px solid var(--secondary-text-color)
       - color: var(--secondary-text-color)
       - font-weight: bold
+
   button-card-states: &button-card-states
     - value: 'on'
-      color: var(--paper-toggle-button-checked-button-color)
       styles:
         card:
-          - color: var(--primary-background-color)
+          - border-color: var(--primary-background-color)
+          - color: var(--secondary-text-color)
     - value: 'off'
-      color: var(--paper-toggle-button-unchecked-button-color)
-  header-card-style: &header-card-style
-    # --paper-card-background-color: rgba(3, 169, 244, 50%)
-    # color: var(--secondary-text-color)
-    --paper-card-background-color: rgba(0, 0, 0, 20%)
-    border: 1px solid rgba(255, 255, 255, 20%)
-    color: rgb(255, 255, 255)
-    text-align: center
-    font-size: 250%
-    font-weight: 500
-    line-height: 1em
-  footer-card-style: &footer-card-style
-    --paper-card-background-color: rgba(0, 0, 0, 50%)
-    --paper-item-icon-color: white
-    border: 1px solid rgba(255, 255, 255, 0.2)
-    color: rgb(255, 255, 255)
+      styles:
+        card:
+          - border-color: var(--secondary-background-color)
+
+  header-card-style: &header-card-style |
+    ha-card {
+      --paper-card-background-color: rgba(0, 0, 0, 20%);
+      border: 1px solid rgba(255, 255, 255, 20%);
+      color: rgb(255, 255, 255);
+      text-align: center;
+      font-size: 250%;
+      font-weight: 500;
+      line-height: 1em;
+      min-height: 2em;
+    }
+
+  footer-card-style: &footer-card-style |
+    ha-card {
+      --paper-card-background-color: rgba(0, 0, 0, 50%);
+      --paper-item-icon-color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: rgb(255, 255, 255);
+    }
+
   graph-card-horizontal: &graph-card-horizontal
     fill: fade
     icon: false
     name: false
     points: true
+
   graph-card-solo: &graph-card-solo
     fill: fade
     icon: false
     labels: true
     name: false
     points: true
+
   graph-color-humidity: &graph-color-humidity DEEPSKYBLUE
+
   graph-color-temperature: &graph-color-temperature ORANGE
+
   transit_divider: &transit_divider
     height: 1px
     margin-left: 20%
     margin-right: auto
     background: var(--secondary-text-color)
+
   background-generic-1: &background-generic-1 >-
     center / cover no-repeat url("/local/images/wallpaper-1.jpg") fixed
+
   background-generic-2: &background-generic-2 >-
     center / cover no-repeat url("/local/images/wallpaper-2.jpg") fixed
+
   background-automations: &background-automations >-
     center / cover no-repeat url("/local/images/wallpaper-automations.jpg") fixed
+
   background-configuration: &background-configuration >-
     center / cover no-repeat url("/local/images/wallpaper-configuration.jpg") fixed
+
   background-hardware: &background-hardware >-
     center / cover no-repeat url("/local/images/wallpaper-hardware.jpg") fixed
+
   background-switchboard: &background-switchboard >-
     center / cover no-repeat url("/local/images/wallpaper-switchboard.jpg") fixed
 
@@ -164,27 +183,21 @@ styles:
 # @link https://maykar.github.io/custom-header/
 #
 custom_header:
-  header_text: '{{ time }}<br>{{ date }}'
   compact_mode: true
-#  options_hide: true
-  hide_unused: true
+  hide_config: true
+  hide_help: true
   exceptions:
     - conditions:
         user_agent: Mobile
         media_query: "(max-width: 600px)"
-
-#  clock_format: 24
-#  clock_date: true
-#  date_locale: en-CA
-#  notifications: clock
-#  exceptions:
-#    - conditions:
-#        user_agent: Mobile
-#        media_query: "(max-width: 600px)"
-#      config:
-#        options: hide
-#        notifications: hide
-
+      config:
+        options_hide: true
+    - conditions:
+        query_string: kiosk
+      config:
+        disable_sidebar: true
+        footer_mode: true
+        indicator_top: true
 
 #
 # Popup cards
@@ -192,28 +205,28 @@ custom_header:
 # @link https://github.com/thomasloven/lovelace-popup-card
 #
 popup_cards:
-  sensor.apod:
+  sensor.apod: &card_apod
     title: Astronomy Picture of the Day
     card:
-      type: custom:card-modder
-      style:
-        border-radius: 0
-      card:
-        type: picture-entity
-        entity: camera.astronomy_picture_of_the_day_hd
-        show_name: false
-        show_state: false
-  sensor.bing_wallpaper:
+      type: picture-entity
+      entity: camera.astronomy_picture_of_the_day_hd
+      style: |
+        ha-card {
+          border-radius: 0;
+        }
+      show_name: false
+      show_state: false
+  sensor.bing_wallpaper: &card_bing_wallpaper
     title: Bing Wallpaper
     card:
-      type: custom:card-modder
-      style:
-        border-radius: 0
-      card:
-        type: picture-entity
-        entity: camera.bing_wallpaper_hd
-        show_name: false
-        show_state: false
+      type: picture-entity
+      entity: camera.bing_wallpaper_hd
+      style: |
+        ha-card {
+          border-radius: 0;
+        }
+      show_name: false
+      show_state: false
 
 
 #
@@ -247,12 +260,10 @@ views:
               #
               # Title
               #
-              - type: custom:card-modder
+              - type: markdown
                 style: *header-card-style
-                card:
-                  type: markdown
-                  content: |
-                    {{ states('sensor.good_vibes') }}
+                content: |
+                  {{ states('sensor.good_vibes') }}
 
           #
           # Body
@@ -266,8 +277,7 @@ views:
               #
               # Action center
               #
-              - type: "custom:vertical-stack-in-card"
-                title: " "
+              - type: "vertical-stack"
                 cards:
                   - type: horizontal-stack
                     cards:
@@ -276,24 +286,24 @@ views:
                         color_type: card
                         icon: mdi:power
                         name: Awaken
-                        state: *button-card-states
                         styles: *button-card-styles
+                        state: *button-card-states
 
                       - entity: input_boolean.nap_mode
                         type: "custom:button-card"
                         color_type: card
                         icon: mdi:sleep
                         name: Sleep
-                        state: *button-card-states
                         styles: *button-card-styles
+                        state: *button-card-states
 
                       - entity: input_boolean.night_mode
                         type: "custom:button-card"
                         color_type: card
                         icon: mdi:weather-night
                         name: Dark
-                        state: *button-card-states
                         styles: *button-card-styles
+                        state: *button-card-states
 
                   - type: horizontal-stack
                     cards:
@@ -305,16 +315,16 @@ views:
                         color_type: card
                         icon: mdi:volume-mute
                         name: Quiet
-                        state: *button-card-states
                         styles: *button-card-styles
+                        state: *button-card-states
 
                       - entity: input_boolean.low_mode
                         type: "custom:button-card"
                         color_type: card
                         icon: mdi:weather-sunset-down
                         name: Eco
-                        state: *button-card-states
                         styles: *button-card-styles
+                        state: *button-card-states
 
                   - type: entities
                     show_header_toggle: false
@@ -577,14 +587,18 @@ views:
               #
               # Wallpaper caption
               #
-              - type: custom:card-modder
+              - type: entities
                 style: *footer-card-style
-                card:
-                  type: entities
-                  entities:
-                    - entity: sensor.bing_wallpaper
-                      name: "Wallpaper: Bing"
-                      icon: mdi:camera-iris
+                entities:
+                  - entity: sensor.bing_wallpaper
+                    name: "Wallpaper: Bing"
+                    icon: mdi:camera-iris
+                    tap_action:
+                      action: call-service
+                      service: browser_mod.popup
+                      service_data:
+                        deviceID: this
+                        <<: *card_bing_wallpaper
 
 
   #
@@ -612,12 +626,10 @@ views:
               #
               # Title
               #
-              - type: custom:card-modder
+              - type: markdown
                 style: *header-card-style
-                card:
-                  type: markdown
-                  content: |
-                    {{ states('sensor.modes_friendly') }} enabled.
+                content: |
+                  {{ states('sensor.modes_friendly') }} enabled.
 
           #
           # Body
@@ -661,15 +673,20 @@ views:
                     title: Bedroom
                     show_header_toggle: true
                     entities:
-                      - input_select.bed_effect
+                      - entity: input_select.bed_effect
+                        icon: mdi:blank
+
                       - light.underbed
                       - light.headboard
                       - type: section
                       - light.nightstand
                       - light.bedside
+
                       - entity: switch.bedroom_fan
                         name: Fan
+
                       - type: section
+
                       - entity: binary_sensor.bedroom_multisensor
                         name: Motion
 
@@ -778,10 +795,19 @@ views:
                         type: "custom:slider-entity-row"
                         toggle: true
 
-                      - input_select.aurora_effect
+                      - entity: input_select.aurora_effect
+                        icon: mdi:blank
+
                       - type: section
+
+                      - entity: switch.lounge_tv
+                        name: TV
+
                       - light.lightpack
-                      - input_select.lightpack_effect
+
+                      - entity: input_select.lightpack_effect
+                        icon: mdi:blank
+
                       - type: section
 
                       - entity: light.spotlight
@@ -806,9 +832,6 @@ views:
 
                       - light.souvenirs
                       - light.window
-
-                      - entity: switch.lounge_tv
-                        name: TV
 
                       - type: section
 
@@ -884,7 +907,9 @@ views:
                 title: Ceiling
                 show_header_toggle: true
                 entities:
-                  - input_select.ceiling_effect
+                  - entity: input_select.ceiling_effect
+                    icon: mdi:blank
+
                   - light.bedroom
                   - light.middle
                   - light.lounge
@@ -900,15 +925,13 @@ views:
               #
               # Wallpaper caption
               #
-              - type: custom:card-modder
+              - type: entities
                 style: *footer-card-style
-                card:
-                  type: entities
-                  entities:
-                    - type: "custom:dummy-entity-row"
-                      entity: camera.wallpaper_switchboard
-                      name: "Wallpaper: Unsplash"
-                      icon: mdi:camera-iris
+                entities:
+                  - type: "custom:dummy-entity-row"
+                    entity: camera.wallpaper_switchboard
+                    name: "Wallpaper: Unsplash"
+                    icon: mdi:camera-iris
 
   #
   # Weather
@@ -935,15 +958,13 @@ views:
               #
               # Title
               #
-              - type: custom:card-modder
+              - type: markdown
                 style: *header-card-style
-                card:
-                  type: markdown
-                  content: >-
-                    {{ states('sensor.dark_sky_minutely_summary') }}
-                    {% if states('sensor.feels_like') %}
-                      {{- states('sensor.feels_like') }}.
-                    {% endif %}
+                content: >-
+                  {{ states('sensor.dark_sky_minutely_summary') }}
+                  {% if states('sensor.feels_like') %}
+                    {{- states('sensor.feels_like') }}.
+                  {% endif %}
 
           #
           # Body
@@ -1357,15 +1378,13 @@ views:
               #
               # Wallpaper caption
               #
-              - type: custom:card-modder
+              - type: entities
                 style: *footer-card-style
-                card:
-                  type: entities
-                  entities:
-                    - type: custom:dummy-entity-row
-                      entity: camera.noaa_geocolor
-                      name: "Wallpaper: NOAA"
-                      icon: mdi:camera-iris
+                entities:
+                  - type: custom:dummy-entity-row
+                    entity: camera.noaa_geocolor
+                    name: "Wallpaper: NOAA"
+                    icon: mdi:camera-iris
 
 
   #
@@ -1393,12 +1412,10 @@ views:
               #
               # Title
               #
-              - type: custom:card-modder
+              - type: markdown
                 style: *header-card-style
-                card:
-                  type: markdown
-                  content: |
-                    Humidity: {{ states('sensor.average_humidity_friendly') }}.
+                content: |
+                  Humidity: {{ states('sensor.average_humidity_friendly') }}.
 
           #
           # Body
@@ -1508,14 +1525,18 @@ views:
               #
               # Wallpaper caption
               #
-              - type: custom:card-modder
+              - type: entities
                 style: *footer-card-style
-                card:
-                  type: entities
-                  entities:
-                    - entity: sensor.apod
-                      name: "Wallpaper: NASA"
-                      icon: mdi:camera-iris
+                entities:
+                  - entity: sensor.apod
+                    name: "Wallpaper: NASA"
+                    icon: mdi:camera-iris
+                    tap_action:
+                      action: call-service
+                      service: browser_mod.popup
+                      service_data:
+                        deviceID: this
+                        <<: *card_apod
 
   #
   # Hardware
@@ -1542,12 +1563,10 @@ views:
               #
               # Title
               #
-              - type: custom:card-modder
+              - type: markdown
                 style: *header-card-style
-                card:
-                  type: markdown
-                  content: |
-                    {{ states('sensor.version_friendly') }}
+                content: |
+                  {{ states('sensor.version_friendly') }}
 
           #
           # Body
@@ -1819,15 +1838,13 @@ views:
               #
               # Wallpaper caption
               #
-              - type: custom:card-modder
+              - type: entities
                 style: *footer-card-style
-                card:
-                  type: entities
-                  entities:
-                    - type: "custom:dummy-entity-row"
-                      entity: camera.wallpaper_hardware
-                      name: "Wallpaper: Unsplash"
-                      icon: mdi:camera-iris
+                entities:
+                  - type: "custom:dummy-entity-row"
+                    entity: camera.wallpaper_hardware
+                    name: "Wallpaper: Unsplash"
+                    icon: mdi:camera-iris
 
 
   #
@@ -1855,12 +1872,10 @@ views:
               #
               # Title
               #
-              - type: custom:card-modder
+              - type: markdown
                 style: *header-card-style
-                card:
-                  type: markdown
-                  content: |
-                    {{ states('sensor.count_automations_friendly') }}
+                content: |
+                  {{ states('sensor.count_automations_friendly') }}
 
           #
           # Body
@@ -1996,15 +2011,13 @@ views:
               #
               # Wallpaper caption
               #
-              - type: custom:card-modder
+              - type: entities
                 style: *footer-card-style
-                card:
-                  type: entities
-                  entities:
-                    - type: "custom:dummy-entity-row"
-                      entity: camera.wallpaper_automations
-                      name: "Wallpaper: Unsplash"
-                      icon: mdi:camera-iris
+                entities:
+                  - type: "custom:dummy-entity-row"
+                    entity: camera.wallpaper_automations
+                    name: "Wallpaper: Unsplash"
+                    icon: mdi:camera-iris
 
   #
   # Configuration
@@ -2031,12 +2044,10 @@ views:
               #
               # Title
               #
-              - type: custom:card-modder
+              - type: markdown
                 style: *header-card-style
-                card:
-                  type: markdown
-                  content: |
-                    On &OpenCurlyDoubleQuote;<em>{{ states('sensor.git_branch') }}</em>&CloseCurlyDoubleQuote; branch.
+                content: |
+                  On &OpenCurlyDoubleQuote;<em>{{ states('sensor.git_branch') }}</em>&CloseCurlyDoubleQuote; branch.
 
           #
           # Body
@@ -2143,12 +2154,10 @@ views:
               #
               # Wallpaper caption
               #
-              - type: custom:card-modder
+              - type: entities
                 style: *footer-card-style
-                card:
-                  type: entities
-                  entities:
-                    - type: "custom:dummy-entity-row"
-                      entity: camera.wallpaper_configuration
-                      name: "Wallpaper: Unsplash"
-                      icon: mdi:camera-iris
+                entities:
+                  - type: "custom:dummy-entity-row"
+                    entity: camera.wallpaper_configuration
+                    name: "Wallpaper: Unsplash"
+                    icon: mdi:camera-iris

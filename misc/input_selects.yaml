@@ -63,7 +63,7 @@ aurora_effect:
 # @see /automations/devices/bed_select.yaml
 #
 bed_effect:
-  name: Bed Underglow Lights Effect
+  name: Bed Light Show
   icon: mdi:motel
   initial: Auto
   options:
@@ -81,8 +81,8 @@ bed_effect:
 # @see /automations/areas/ceiling_select.yaml
 #
 ceiling_effect:
-  name: Ceiling Wash Lights Effect
-  icon: mdi:home
+  name: Ceiling Light Show
+  icon: mdi:led-strip-variant
   initial: Auto
   options:
    - Auto
@@ -111,7 +111,7 @@ ceiling_effect:
 #
 lightpack_effect:
   name: Lightpack Effect
-  icon: mdi:tv
+  icon: mdi:television-ambient-light
   initial: Default
   options:
     - Default

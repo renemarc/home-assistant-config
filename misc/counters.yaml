@@ -34,7 +34,7 @@ door_notify:
 #
 humidor_notify:
   name: Notifications
-  icon: mdi:bow-tie
+  icon: mdi:cigar
   initial: 10
   step: 1
 

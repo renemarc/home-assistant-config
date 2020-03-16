@@ -4,6 +4,7 @@
 # @see /misc/input_boolean.yaml
 #
 alias: Wake up
+icon: mdi:power
 sequence:
   # Disable night mode.
   - service: input_boolean.turn_off

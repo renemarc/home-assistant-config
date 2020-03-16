@@ -1,0 +1,193 @@
+#
+# Groups
+#
+# These are used in automations and scripts in order to reduce redundancy and
+# ease maintenance.
+#
+# @link https://www.home-assistant.io/integrations/group/
+#
+battery:
+  name: Battery Levels
+  entities:
+    - sensor.front_door_sensor_battery
+    - sensor.humidor_multisensor_battery
+    - sensor.kiosk_battery
+    - sensor.kitchen_leak_sensor_battery
+    - sensor.siren_monitor_battery
+    - sensor.washroom_multisensor_battery
+    - sensor.washroom_leak_sensor_battery
+
+bed_lights:
+  name: Bed Lights
+  entities:
+    - light.underbed
+    - light.headboard
+
+bedroom:
+  name: Bedroom
+  entities:
+    - input_select.bed_effect
+    - light.underbed
+    - light.headboard
+    - sensor.hline_dashed
+    - light.nightstand
+    - light.bedside
+    - switch.bedroom_fan
+    - sensor.bedroom_temperature
+    - sensor.bedroom_humidity
+    - sensor.bedroom_luminance_friendly
+    - binary_sensor.bedroom_multisensor
+
+ceiling:
+  name: Ceiling
+  entities:
+    - input_select.ceiling_effect
+    - light.bedroom
+    - light.middle
+    - light.lounge
+
+ceiling_lights:
+  name: Ceiling Lights
+  entities:
+    - light.bedroom
+    - light.middle
+    - light.lounge
+
+door_sensors:
+  name: Doors sensors
+  entities:
+    - binary_sensor.front_door_sensor
+    - input_boolean.door_test
+
+humidity:
+  name: Humidity
+  entities:
+    - sensor.average_humidity
+    - sensor.bedroom_humidity
+    - sensor.humidor_humidity
+    - sensor.lounge_humidity
+    - sensor.radon_detector_humidity
+    - sensor.washroom_humidity
+
+kitchen:
+  name: Kitchen
+  entities:
+    - light.countertop
+    - light.sink
+    - light.microwave
+    - light.island
+    - display.kiosk
+    - sensor.kitchen_temperature
+    - binary_sensor.kiosk_motion_auto
+    - binary_sensor.kitchen_leak_sensor
+
+kitchen_lights:
+  name: Kitchen Lights
+  entities:
+    - light.countertop
+    - light.sink
+    - light.microwave
+    - light.island
+
+leak_sensors:
+  name: Leak sensors
+  entities:
+    - binary_sensor.kitchen_leak_sensor
+    - binary_sensor.washroom_leak_sensor
+    - input_boolean.leak_test
+
+lifx_lights:
+  name: LIFX Lights
+  entities:
+    - light.lavatory
+    - light.shower
+    - light.spotlight
+    - light.torchiere
+
+lounge:
+  name: Lounge
+  entities:
+    - input_select.aurora_effect
+    - light.aurora
+    - sensor.hline_dashed
+    - input_select.lightpack_effect
+    - light.lightpack
+    - sensor.hline_dashed_2
+    - light.spotlight
+    - light.souvenirs
+    - light.torchiere
+    - light.window
+    - switch.lounge_tv
+    - sensor.lounge_temperature
+    - sensor.lounge_humidity
+    - sensor.lounge_luminance_friendly
+    - binary_sensor.lounge_multisensor
+
+motion_sensors:
+  name: Motion sensors
+  entities:
+    - binary_sensor.bedroom_multisensor
+    - binary_sensor.front_door_sensor
+    - binary_sensor.kiosk_motion_auto
+    - binary_sensor.lounge_multisensor
+    - binary_sensor.washroom_multisensor
+    - input_boolean.motion_test
+
+motion_sensors_critical:
+  name: Motion sensors
+  entities:
+    # - binary_sensor.front_door_sensor # Sensor reliability issues.
+    - binary_sensor.kiosk_motion_auto
+    - binary_sensor.lounge_multisensor
+    - binary_sensor.washroom_multisensor
+    - input_boolean.motion_test
+
+presence:
+  name: Presence
+  entities:
+    - device_tracker.cellphone_her
+    - device_tracker.cellphone_him
+
+smoke_sensors:
+  name: Smoke sensors
+  entities:
+    - binary_sensor.siren_monitor_smoke
+    - input_boolean.smoke_test
+
+temperature:
+  name: Temperature
+  entities:
+    - sensor.average_temperature
+    - sensor.bedroom_temperature
+    - sensor.humidor_temperature
+    - sensor.kitchen_temperature
+    - sensor.lounge_temperature
+    - sensor.radon_detector_temperature
+    - sensor.washroom_temperature
+
+waqi:
+  name: World Air Quality Index
+  entities:
+    - sensor.waqi_brossard_secteur_du_parc_sorbonne_quebec_canada
+    - sensor.waqi_drummond_montreal_canada
+    - sensor.waqi_molson_montreal_canada
+    - sensor.waqi_rivesud_de_montreal_quebec_canada
+    - sensor.waqi_stdominique_montreal_canada
+    - sensor.waqi_verdun_montreal_canada
+
+washroom:
+  name: Washroom
+  entities:
+    - light.lavatory
+    - light.shower
+    - sensor.washroom_temperature
+    - sensor.washroom_humidity
+    - sensor.washroom_luminance_friendly
+    - binary_sensor.washroom_multisensor
+    - binary_sensor.washroom_leak_sensor
+
+washroom_lights:
+  name: Washroom Lights
+  entities:
+    - light.lavatory
+    - light.shower

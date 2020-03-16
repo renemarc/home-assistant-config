@@ -4,6 +4,7 @@
 # @see /misc/variables.yaml
 #
 alias: Tamper location reset
+icon: mdi:restart
 sequence:
   # Reset the tamper variable.
   - service: variable.set_variable

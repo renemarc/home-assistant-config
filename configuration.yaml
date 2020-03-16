@@ -15,6 +15,17 @@ binary_sensor: !include misc/binary_sensors.yaml
 
 
 #
+# Browser mod
+#
+# Turns web browsers into controllable entities.
+#
+# @link https://github.com/thomasloven/hass-browser_mod
+#
+browser_mod:
+  prefix: 'browser_'
+
+
+#
 # Cameras
 #
 # @link https://home-assistant.io/components/camera/
@@ -60,15 +71,6 @@ counter: !include misc/counters.yaml
 #
 hacs:
   token: !secret github_access_token
-
-
-#
-# Enable the UI customizer
-#
-# @link https://github.com/andrey-git/home-assistant-customizer
-#
-# customizer:
-#   custom_ui: local
 
 
 #
@@ -119,11 +121,11 @@ frontend:
 
 
 #
-# Combine entities into groups and organize UI
+# Combine entities into groups
 #
 # @link https://home-assistant.io/components/group/
 #
-group: !include_dir_merge_named groups/
+group: !include misc/groups.yaml
 
 
 #

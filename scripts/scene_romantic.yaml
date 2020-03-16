@@ -4,6 +4,7 @@
 # @see /automations/scene_select.yaml
 #
 alias: Romantic scene
+icon: mdi:heart
 sequence:
   # Enable scene mode.
   - service: input_boolean.turn_on
