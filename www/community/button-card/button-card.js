@@ -855,9 +855,9 @@ const it = new WeakMap(),
       }, this.holdTime);
     },
           n = i => {
-      if (i.preventDefault(), ["touchend", "touchcancel"].includes(i.type) && void 0 === this.timer && this.isRepeating && this.repeatTimeout) return clearInterval(this.repeatTimeout), void (this.isRepeating = !1);clearTimeout(this.timer), this.isRepeating && this.repeatTimeout && clearInterval(this.repeatTimeout), this.isRepeating = !1, this.stopAnimation(), this.timer = void 0, this.held ? e.repeat || zt(t, "action", { action: "hold" }) : e.hasDoubleClick ? "click" === i.type && i.detail < 2 || !this.dblClickTimeout ? this.dblClickTimeout = window.setTimeout(() => {
+      i.preventDefault(), ["touchend", "touchcancel"].includes(i.type) && void 0 === this.timer ? this.isRepeating && this.repeatTimeout && (clearInterval(this.repeatTimeout), this.isRepeating = !1) : (clearTimeout(this.timer), this.isRepeating && this.repeatTimeout && clearInterval(this.repeatTimeout), this.isRepeating = !1, this.stopAnimation(), this.timer = void 0, this.held ? e.repeat || zt(t, "action", { action: "hold" }) : e.hasDoubleClick ? "click" === i.type && i.detail < 2 || !this.dblClickTimeout ? this.dblClickTimeout = window.setTimeout(() => {
         this.dblClickTimeout = void 0, zt(t, "action", { action: "tap" });
-      }, 250) : (clearTimeout(this.dblClickTimeout), this.dblClickTimeout = void 0, zt(t, "action", { action: "double_tap" })) : zt(t, "action", { action: "tap" });
+      }, 250) : (clearTimeout(this.dblClickTimeout), this.dblClickTimeout = void 0, zt(t, "action", { action: "double_tap" })) : zt(t, "action", { action: "tap" }));
     };t.addEventListener("touchstart", i, { passive: !0 }), t.addEventListener("touchend", n), t.addEventListener("touchcancel", n), t.addEventListener("mousedown", i, { passive: !0 }), t.addEventListener("click", n), t.addEventListener("keyup", t => {
       13 === t.keyCode && n(t);
     });
@@ -1083,6 +1083,9 @@ const it = new WeakMap(),
     if (t instanceof Q) return t.cssText;if ("number" == typeof t) return t;throw new Error(`Value passed to 'css' function must be a 'css' function result: ${t}. Use 'unsafeCSS' to pass non-literal values, but\n            take care to ensure page security.`);
   })(i) + t[n + 1], t[0]);return new Q(i, K);
 })`
+  :host {
+    position: relative;
+  }
   ha-card {
     cursor: pointer;
     overflow: hidden;
@@ -1466,7 +1469,7 @@ const it = new WeakMap(),
       height: 100%;
     }
   }
-`;console.info("%c  BUTTON-CARD  \n%c Version 3.2.0 ", "color: orange; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");let ve = class extends et {
+`;console.info("%c  BUTTON-CARD  \n%c Version 3.2.1 ", "color: orange; font-weight: bold; background: black", "color: white; font-weight: bold; background: dimgray");let ve = class extends et {
   disconnectedCallback() {
     super.disconnectedCallback(), this._clearInterval();
   }connectedCallback() {
@@ -1663,7 +1666,7 @@ const it = new WeakMap(),
         }default:
         n = o;}this.config.aspect_ratio ? (r["--aspect-ratio"] = this.config.aspect_ratio, n.position = "absolute") : r.display = "inline", this.style.setProperty("--button-card-light-color", this._getColorForLightEntity(this._stateObj, !0)), this.style.setProperty("--button-card-light-color-no-temperature", this._getColorForLightEntity(this._stateObj, !1)), s = Object.assign(Object.assign({}, s), a);const c = document.createElement("style");return c.innerHTML = this.config.extra_styles ? this._getTemplateOrValue(this._stateObj, this.config.extra_styles) : "", j`
       ${c}
-      <div style="position: relative;">
+      <!-- <div id="outside"> -->
         <div id="aspect-ratio" style=${nt(r)}>
           <ha-card
             id="card"
@@ -1674,10 +1677,11 @@ const it = new WeakMap(),
             .config="${this.config}"
           >
             ${this._buttonContent(this._stateObj, t, i)}
+            ${this.config.lock && this._getTemplateOrValue(this._stateObj, this.config.lock.enabled) ? "" : j`<mwc-ripple id="ripple"></mwc-ripple>`}
           </ha-card>
         </div>
         ${this._getLock(s)}
-      </div>
+      <!-- </div> -->
       `;
   }_getLock(t) {
     return this.config.lock && this._getTemplateOrValue(this._stateObj, this.config.lock.enabled) ? j`
@@ -1688,7 +1692,7 @@ const it = new WeakMap(),
         >
           <ha-icon id="lock" icon="mdi:lock-outline"></ha-icon>
         </div>
-      ` : j`<mwc-ripple id="ripple"></mwc-ripple>`;
+      ` : j``;
   }_buttonContent(t, e, i) {
     const n = this._buildName(t, e),
           s = this.config.show_state && this.config.state_display ? this._getTemplateOrValue(t, this.config.state_display) : void 0,

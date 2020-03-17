@@ -47,6 +47,11 @@ resources:
     type: module
     repo: https://github.com/thomasloven/lovelace-dummy-entity-row
 
+  # Favicon counter: show a notification count badge.
+  - url: /hacsfiles/favicon-counter/favicon-counter.js
+    type: module
+    repo: https://github.com/custom-cards/favicon-counter
+
   # Fold entity row
   - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
     type: module
@@ -670,7 +675,7 @@ views:
                             color: *graph-color-humidity
 
                   - type: entities
-                    title: Bedroom
+                    title: Bedroom 🛏️
                     show_header_toggle: true
                     entities:
                       - entity: input_select.bed_effect
@@ -710,7 +715,7 @@ views:
                             color: *graph-color-temperature
 
                   - type: entities
-                    title: Kitchen
+                    title: Kitchen 🍽️
                     show_header_toggle: true
                     entities:
                       - entity: light.countertop
@@ -788,7 +793,7 @@ views:
                             color: *graph-color-humidity
 
                   - type: entities
-                    title: Lounge
+                    title: Lounge 🛋️
                     show_header_toggle: true
                     entities:
                       - entity: light.aurora
@@ -869,7 +874,7 @@ views:
                             color: *graph-color-humidity
 
                   - type: entities
-                    title: Washroom
+                    title: Washroom 🚿
                     show_header_toggle: true
                     entities:
                       - entity: light.lavatory
@@ -904,7 +909,7 @@ views:
               # Ceiling
               #
               - type: entities
-                title: Ceiling
+                title: Ceiling 💡
                 show_header_toggle: true
                 entities:
                   - entity: input_select.ceiling_effect
@@ -1685,7 +1690,7 @@ views:
               # WAN
               #
               - type: entities
-                title: Internet Access
+                title: Internet Access 📡
                 show_header_toggle: false
                 entities:
                   - entity: sensor.wan_ip_address
@@ -1705,14 +1710,18 @@ views:
                     type: "custom:secondaryinfo-entity-row"
                     secondary_info: >-
                       <small><strong>
-                      [[ sensor.ebox_upload_remaining ]] [[ sensor.ebox_upload_remaining.attributes.unit_of_measurement ]] available
+                      [[ if(sensor.ebox_upload_remaining != 'unknown', sensor.ebox_upload_remaining, '') ]]
+                      [[ if(sensor.ebox_upload_remaining != 'unknown', sensor.ebox_upload_remaining.attributes.unit_of_measurement, '') ]]
+                      [[ if(sensor.ebox_upload_remaining != 'unknown', 'available', '') ]]
                       </strong></small>
 
                   - entity: sensor.ebox_download_before_offpeak_rounded
                     type: "custom:secondaryinfo-entity-row"
                     secondary_info: >-
                       <small><strong>
-                      [[ sensor.ebox_download_remaining ]] [[ sensor.ebox_download_remaining.attributes.unit_of_measurement ]] available
+                      [[ if(sensor.ebox_download_remaining != 'unknown', sensor.ebox_download_remaining, '') ]]
+                      [[ if(sensor.ebox_download_remaining != 'unknown', sensor.ebox_download_remaining.attributes.unit_of_measurement, '') ]]
+                      [[ if(sensor.ebox_download_remaining != 'unknown', 'available', '') ]]
                       </strong></small>
 
                   - type: "custom:fold-entity-row"
