@@ -1,0 +1,23 @@
+#
+# Update wallpaper images from cameras
+#
+# @see /automations/wallpaper_create.yaml
+#
+- id: wallpaper_update
+  alias: Wallpaper UPDATE
+
+  trigger:
+    # When a generic IP camera state changes.
+    - platform: state
+      entity_id:
+        - camera.astronomy_picture_of_the_day_proxy
+        - camera.bing_wallpaper_proxy
+        - camera.noaa_geocolor_proxy
+      to: 'idle'
+
+  action:
+    # Take a snapshot from the trigered camera.
+    - service: camera.snapshot
+      data_template:
+        entity_id: '{{ trigger.entity_id }}'
+        filename: '/config/www/cameras/{{ trigger.entity_id | replace("camera.", "") }}.jpg'

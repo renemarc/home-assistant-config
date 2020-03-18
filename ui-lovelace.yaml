@@ -171,14 +171,23 @@ styles:
   background-automations: &background-automations >-
     center / cover no-repeat url("/local/images/wallpaper-automations.jpg") fixed
 
+  background-climate: &background-climate >-
+    center / cover no-repeat url("/local/cameras/astronomy_picture_of_the_day_proxy.jpg") fixed
+
   background-configuration: &background-configuration >-
     center / cover no-repeat url("/local/images/wallpaper-configuration.jpg") fixed
 
   background-hardware: &background-hardware >-
     center / cover no-repeat url("/local/images/wallpaper-hardware.jpg") fixed
 
+  background-main: &background-main >-
+    center / cover no-repeat url("/local/cameras/bing_wallpaper_proxy.jpg") fixed
+
   background-switchboard: &background-switchboard >-
     center / cover no-repeat url("/local/images/wallpaper-switchboard.jpg") fixed
+
+  background-weather: &background-weather >-
+    center / cover no-repeat url("/local/cameras/noaa_geocolor_proxy.jpg") fixed
 
 
 #
@@ -204,35 +213,6 @@ custom_header:
         footer_mode: true
         indicator_top: true
 
-#
-# Popup cards
-#
-# @link https://github.com/thomasloven/lovelace-popup-card
-#
-popup_cards:
-  sensor.apod: &card_apod
-    title: Astronomy Picture of the Day
-    card:
-      type: picture-entity
-      entity: camera.astronomy_picture_of_the_day_hd
-      style: |
-        ha-card {
-          border-radius: 0;
-        }
-      show_name: false
-      show_state: false
-  sensor.bing_wallpaper: &card_bing_wallpaper
-    title: Bing Wallpaper
-    card:
-      type: picture-entity
-      entity: camera.bing_wallpaper_hd
-      style: |
-        ha-card {
-          border-radius: 0;
-        }
-      show_name: false
-      show_state: false
-
 
 #
 # Lovelace views
@@ -246,8 +226,22 @@ views:
   - title: main
     path: main
     icon: mdi:home-assistant
-    background: var(--background-main)
+    background: *background-main
     panel: true
+
+    popup_cards:
+      sensor.bing_wallpaper: &bing_wallpaper_card
+        title: Bing Wallpaper
+        card:
+          type: picture-entity
+          entity: camera.bing_wallpaper_hd
+          style: |
+            ha-card {
+              border-radius: 0;
+            }
+          show_name: false
+          show_state: false
+
     cards:
       - type: "custom:layout-card"
         layout: vertical
@@ -598,12 +592,6 @@ views:
                   - entity: sensor.bing_wallpaper
                     name: "Wallpaper: Bing"
                     icon: mdi:camera-iris
-                    tap_action:
-                      action: call-service
-                      service: browser_mod.popup
-                      service_data:
-                        deviceID: this
-                        <<: *card_bing_wallpaper
 
 
   #
@@ -944,7 +932,7 @@ views:
   - title: Weather
     path: weather
     icon: mdi:weather-partly-cloudy
-    background: var(--background-weather)
+    background: *background-weather
     panel: true
     cards:
       - type: "custom:layout-card"
@@ -1398,8 +1386,22 @@ views:
   - title: Climate
     path: climate
     icon: mdi:air-conditioner
-    background: var(--background-climate)
+    background: *background-climate
     panel: true
+
+    popup_cards:
+      sensor.apod: &apod_card
+        title: Astronomy Picture of the Day
+        card:
+          type: picture-entity
+          entity: camera.astronomy_picture_of_the_day_hd
+          style: |
+            ha-card {
+              border-radius: 0;
+            }
+          show_name: false
+          show_state: false
+
     cards:
       - type: "custom:layout-card"
         layout: vertical
@@ -1536,13 +1538,12 @@ views:
                   - entity: sensor.apod
                     name: "Wallpaper: NASA"
                     icon: mdi:camera-iris
-                    tap_action:
-                      action: call-service
-                      service: browser_mod.popup
-                      service_data:
-                        deviceID: this
-                        <<: *card_apod
-
+                    # tap_action:
+                    #   action: call-service
+                    #   service: browser_mod.popup
+                    #   service_data:
+                    #     deviceID: this
+                    #     <<: *apod_card
   #
   # Hardware
   #
@@ -1899,7 +1900,7 @@ views:
               # General automations
               #
               - type: entities
-                title: General Automations
+                title: General 🤖
                 show_header_toggle: false
                 entities:
                   - automation.cct_lifx
@@ -1911,12 +1912,14 @@ views:
                   - automation.scene_select
                   - automation.theme_auto
                   - automation.wake_up
+                  - automation.wallpaper_create
+                  - automation.wallpaper_update
 
               #
               # Modes automations
               #
               - type: entities
-                title: Modes Automations
+                title: Modes Automations ⚡
                 show_header_toggle: false
                 entities:
                   - automation.low_power_mode_start
@@ -1934,7 +1937,7 @@ views:
               # Device automations
               #
               - type: entities
-                title: Devices Automations
+                title: Devices Automations 🔌
                 show_header_toggle: false
                 entities:
                   - automation.aurora_brightness
@@ -1966,7 +1969,7 @@ views:
               # Areas automations
               #
               - type: entities
-                title: Areas Automations
+                title: Areas Automations 🏠
                 show_header_toggle: false
                 entities:
                   - automation.bedroom_low_power
@@ -1992,7 +1995,7 @@ views:
               # Notifications automations
               #
               - type: entities
-                title: Notifications Automations
+                title: Notifications Automations 🔔
                 show_header_toggle: false
                 entities:
                   - automation.daily_greeting

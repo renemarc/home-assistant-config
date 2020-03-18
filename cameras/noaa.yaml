@@ -67,3 +67,10 @@
     {% set timestamp = (current - (current % offset)) | int %}
 
     https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/10/1200x1200.jpg#{{ timestamp }}
+
+
+- platform: proxy
+  name: NOAA GeoColor Proxy
+  entity_id: camera.noaa_geocolor_hd
+  max_image_width: 1080
+  image_quality: 65

@@ -19,6 +19,7 @@ __pycache__/
 gtfs/*
 tts/
 venv/
+www/cameras/*
 ip_bans.yaml
 known_devices.yaml
 OZW_Log.txt

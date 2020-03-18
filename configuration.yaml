@@ -156,8 +156,8 @@ homeassistant:
   time_zone: !secret homeassistant_time_zone
   auth_providers:
     - type: homeassistant
-    - type: legacy_api_password
-      api_password: !secret http_password
+    # - type: legacy_api_password
+    #   api_password: !secret http_password
   customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
   whitelist_external_dirs:

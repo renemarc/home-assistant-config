@@ -49,6 +49,8 @@ automation.tv_*:
   icon: mdi:television-classic
 automation.video_player_*:
   icon: mdi:plex
+automation.wallpaper_*:
+  icon: mdi:wallpaper
 automation.washroom_*:
   icon: mdi:shower
 

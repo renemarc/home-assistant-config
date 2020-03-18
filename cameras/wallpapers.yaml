@@ -42,6 +42,12 @@
       http://127.0.0.1:{{ port }}/local/images/wallpaper-1.jpg
     {% endif %}
 
+- platform: proxy
+  name: Bing Wallpaper Proxy
+  entity_id: camera.bing_wallpaper_hd
+  max_image_width: 1080
+  image_quality: 65
+
 
 #
 # NASA's Astronomy picture of the day
@@ -109,6 +115,11 @@
 
     {{ image }}
 
+- platform: proxy
+  name: Astronomy Picture of the Day Proxy
+  entity_id: camera.astronomy_picture_of_the_day_hd
+  max_image_width: 1080
+  image_quality: 65
 
 #
 # Local file wallpapers
