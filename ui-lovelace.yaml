@@ -1588,7 +1588,7 @@ views:
                 style: *header-card-style
                 content: |
                   🏡 {{ states('sensor.version_friendly') }}
-                  {%- if states('binary_sensor.updater') -%}
+                  {%- if states('binary_sensor.updater') == 'on' -%}
                     <small><small><small><small> 🆕 <a href="{{ state_attr('binary_sensor.updater', 'release_notes') }}">{{ state_attr('binary_sensor.updater', 'newest_version') }}</a>
                     </small></small></small></small>
                   {% endif %}
@@ -1655,18 +1655,27 @@ views:
                 title: Devices 🔌
                 show_header_toggle: false
                 entities:
-                  - entity: sensor.printer_toner_black
+                  - entity: sensor.printer_status
                     type: "custom:secondaryinfo-entity-row"
                     secondary_info: >-
                       <small><strong>
-                      [[ sensor.printer_toner_remain ]] [[ sensor.printer_drum_remain.attributes.unit_of_measurement ]] remaining
+                      [[ sensor.printer_page_counter ]] prints, [[ sensor.printer_uptime ]] [[ sensor.printer_uptime.attributes.unit_of_measurement ]] online
                       </strong></small>
 
-                  - entity: sensor.printer_drum_black
+                  - entity: sensor.printer_toner
                     type: "custom:secondaryinfo-entity-row"
+                    name: Printer Toner
                     secondary_info: >-
                       <small><strong>
-                      [[ sensor.printer_drum_remain ]] [[ sensor.printer_drum_remain.attributes.unit_of_measurement ]] remaining
+                      [[ sensor.printer_toner_remaining ]] [[ sensor.printer_toner_remaining.attributes.unit_of_measurement ]] remaining
+                      </strong></small>
+
+                  - entity: sensor.printer_drum
+                    type: "custom:secondaryinfo-entity-row"
+                    name: Printer Drum
+                    secondary_info: >-
+                      <small><strong>
+                      [[ sensor.printer_drum_remaining ]] [[ sensor.printer_drum_remaining.attributes.unit_of_measurement ]] remaining
                       </strong></small>
 
               #

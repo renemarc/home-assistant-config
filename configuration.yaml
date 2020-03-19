@@ -15,6 +15,15 @@ binary_sensor: !include misc/binary_sensors.yaml
 
 
 #
+# Brother Printer
+#
+# Reads current data from your local Brother printer.
+#
+# @link https://www.home-assistant.io/integrations/brother/
+#
+brother:
+
+#
 # Browser mod
 #
 # Turns web browsers into controllable entities.

@@ -156,7 +156,9 @@
         {% endif %}
 
 #
-# Samsung SyncThru Laser Printer (now HP)
+# Brother laser printer
+#
+# Actual integration is performed via the UI (YAML not supported).
 #
 # The drum reports on its remaining percentage, while the toner also returns
 # its print count, allowing for more accurate calculations.
@@ -165,69 +167,42 @@
 # `printer_drum_capacity` and `printer_toner_capacity` are integers set in the
 # secrets file.
 #
-# Do note that the `resource` parameter must not have a trailing slash,
-# otherwise the sensor will fail.
-#
 # @see `secrets-dummy.yaml`
 #
-# @link https://www.home-assistant.io/components/sensor.syncthru/
+# @link https://www.home-assistant.io/integrations/brother/
 #
-- platform: syncthru
-  resource: !secret syncthru_resource
-  name: Printer
-
 - platform: template
   sensors:
-    printer_drum_capacity:
-      friendly_name: Drum Capacity
-      icon_template: mdi:printer
-      unit_of_measurement: 'pages'
-      value_template: !secret printer_drum_capacity
-
-    printer_drum_remain:
+    printer_drum_remaining:
       friendly_name: Drum Remaining
       icon_template: mdi:printer
       unit_of_measurement: 'pages'
       value_template: >-
-        {% set capacity = states('sensor.printer_drum_capacity') | int(-1) %}
-        {% set drum = states('sensor.printer_drum_black') | int(-1) %}
-
-        {% if capacity > 0 and drum >= 0 %}
-          {{ (capacity * drum / 100) | round }}
-        {% else %}
-          unknown
-        {% endif %}
+        {{ state_attr('sensor.printer_drum', 'remaining_pages') | int(-1) }}
 
     printer_drum_use:
       friendly_name: Drum Use
       icon_template: mdi:printer
       unit_of_measurement: 'pages'
       value_template: >-
-        {% set capacity = states('sensor.printer_drum_capacity') | int(-1) %}
-        {% set drum = states('sensor.printer_drum_black') | int(-1) %}
+        {{ state_attr('sensor.printer_drum', 'counter') | int(-1) }}
 
-        {% if capacity > 0 and drum >= 0 %}
-          {{ (capacity * (100 - drum) / 100) | round }}
-        {% else %}
-          unknown
-        {% endif %}
-
-    printer_toner_capacity:
-      friendly_name: Toner Capacity
+    printer_toner_yield:
+      friendly_name: Toner Yield
       icon_template: mdi:printer
       unit_of_measurement: 'pages'
-      value_template: !secret printer_toner_capacity
+      value_template: !secret printer_toner_yield
 
-    printer_toner_remain:
+    printer_toner_remaining:
       friendly_name: Toner Remaining
       icon_template: mdi:printer
       unit_of_measurement: 'pages'
       value_template: >-
-        {% set capacity = states('sensor.printer_toner_capacity') | int(-1) %}
-        {% set toner = state_attr('sensor.printer_toner_black', 'cnt') | int(-1) %}
+        {% set yield = states('sensor.printer_toner_yield') | int(-1) %}
+        {% set toner = states('sensor.printer_toner') | int(-1) %}
 
-        {% if capacity > 0 and toner >= 0 %}
-          {{ capacity - toner }}
+        {% if yield > 0 and toner >= 0 %}
+          {{ yield - toner }}
         {% else %}
           unknown
         {% endif %}
@@ -237,10 +212,11 @@
       icon_template: mdi:printer
       unit_of_measurement: 'pages'
       value_template: >-
-        {% set toner = state_attr('sensor.printer_toner_black', 'cnt') | int(-1) %}
+        {% set yield = states('sensor.printer_toner_yield') | int(-1) %}
+        {% set toner = states('sensor.printer_toner') | int(-1) %}
 
-        {% if toner >= 0 %}
-          {{ toner }}
+        {% if yield > 0 and toner >= 0 %}
+          {{ (yield * toner / 100) | int }}
         {% else %}
           unknown
         {% endif %}
