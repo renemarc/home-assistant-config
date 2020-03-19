@@ -50,6 +50,7 @@
       data:
         entity_id:
           - light.lightpack
+          - light.rope
           - light.souvenirs
           - light.window
 

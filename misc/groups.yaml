@@ -29,10 +29,8 @@ bedroom:
     - input_select.bed_effect
     - light.underbed
     - light.headboard
-    - sensor.hline_dashed
     - light.nightstand
     - light.bedside
-    - switch.bedroom_fan
     - sensor.bedroom_temperature
     - sensor.bedroom_humidity
     - sensor.bedroom_luminance_friendly
@@ -109,10 +107,9 @@ lounge:
   entities:
     - input_select.aurora_effect
     - light.aurora
-    - sensor.hline_dashed
     - input_select.lightpack_effect
     - light.lightpack
-    - sensor.hline_dashed_2
+    - light.rope
     - light.spotlight
     - light.souvenirs
     - light.torchiere

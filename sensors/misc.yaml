@@ -1,25 +1,4 @@
 #
-# Horizontal lines, for cosmetic separation of sensors in the UI.
-#
-# Actual styling is done in "customize" files.
-#
-# @see /customize.yaml
-# @see /customize_glob.yaml
-# @see /www/custom_ui/state-card-hline.html
-# @see /www/custom_ui/state-card-hline_es5.html
-#
-# @link https://github.com/covrig/homeassistant-hline
-#
-- platform: template
-  sensors:
-    hline_dashed:
-      value_template: hline
-
-    hline_dashed_2:
-      value_template: hline
-
-
-#
 # Domain statistics
 #
 # Overview of the number of devices/scripts/sensors for some categories.

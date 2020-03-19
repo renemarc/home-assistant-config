@@ -23,9 +23,9 @@
 #
 discovery: false
 switch:
-  - host: !secret tplink_bedroom_fan_host
   - host: !secret tplink_bedside_light_host
   - host: !secret tplink_dehumidifier_host
   - host: !secret tplink_nightstand_light_host
+  - host: !secret tplink_rope_light_host
   - host: !secret tplink_souvenirs_light_host
   - host: !secret tplink_window_light_host

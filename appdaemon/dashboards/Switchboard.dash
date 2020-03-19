@@ -297,6 +297,12 @@ light_tv_backlight_effect:
     state_text_style: "background-color:FIREBRICK;"
     select_style: "background-color:FIREBRICK;color:$white;"
 
+light_rope:
+    widget_type: light
+    title: Rope
+    entity: light.rope
+    widget_style: "background-color:DARKRED;"
+
 light_spotlight:
     widget_type: light
     title: Spotlight
@@ -338,4 +344,4 @@ layout:
     - nav_weather,      label_kitchen, light_microwave, spacer, label_washroom, light_shower, spacer, label_climate, switch_air_filter
     - nav_spacer(1x2),  light_island, light_sink, light_countertop, spacer, light_lavatory, spacer, switch_dehumidifier, switch_humidifier
     -                   label_bedroom, light_bed_effect, underglow_headboard, underglow_underbed, label_lounge, light_aurora_effect, light_aurora, light_souvenirs, light_spotlight
-    - nav_status,       light_nightstand, light_bedside, fan_bedroom, spacer, light_tv_backlight_effect, light_tv_backlight, switch_tv, light_torchiere, light_window
+    - nav_status,       light_nightstand, light_bedside, fan_bedroom, light_rope, light_tv_backlight_effect, light_tv_backlight, switch_tv, light_torchiere, light_window

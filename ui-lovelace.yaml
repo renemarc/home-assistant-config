@@ -678,9 +678,6 @@ views:
                       - light.nightstand
                       - light.bedside
 
-                      - entity: switch.bedroom_fan
-                        name: Fan
-
                       - type: section
 
                       - entity: binary_sensor.bedroom_multisensor
@@ -828,6 +825,7 @@ views:
 
                       - light.souvenirs
                       - light.window
+                      - light.rope
 
                       - type: section
 

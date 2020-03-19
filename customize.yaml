@@ -130,6 +130,8 @@ light.middle:
   icon: mdi:led-strip-variant
 light.nightstand:
   icon: mdi:page-layout-body
+light.rope:
+  icon: mdi:string-lights
 light.shower:
   icon: mdi:spotlight
 light.sink:
@@ -262,8 +264,6 @@ sensor.home_to_metro_3_hour:
 #
 switch.aeotec_zstick_disco_light:
   friendly_name: Z-Stick Light
-switch.bedroom_fan:
-  icon: mdi:fan
 switch.dehumidifier:
   icon: mdi:water-off
 

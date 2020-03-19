@@ -46,4 +46,3 @@
       entity_id:
         - light.bedside
         - light.nightstand
-        - switch.bedroom_fan

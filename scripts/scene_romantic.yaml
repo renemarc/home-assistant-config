@@ -22,6 +22,7 @@ sequence:
       entity_id:
         - light.bedside
         - light.nightstand
+        - light.rope
         - light.souvenirs
         - light.window
 

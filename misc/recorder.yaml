@@ -79,7 +79,6 @@ include:
     - sensor.smoke_status
     - sensor.tamper_status
 
-    - switch.bedroom_fan
     - switch.dehumidifier
 
 exclude:

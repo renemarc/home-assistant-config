@@ -16,6 +16,10 @@
   entity_id: switch.nightstand_light
 
 - platform: switch
+  name: Rope
+  entity_id: switch.rope_light
+
+- platform: switch
   name: Souvenirs
   entity_id: switch.souvenirs_light
 
