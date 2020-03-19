@@ -73,17 +73,3 @@
         Video:
       {%- endif %} {{ value_json.title }}.
     {% endif %}
-
-
-#
-# Environment Canada radar location
-#
-# Used as privacy plaholder for the Environment Canada radar map.
-#
-# @see /cameras/environment_canada.yaml
-#
-- platform: template
-  sensors:
-    environment_canada_radar:
-      friendly_name: Environment Canada Radar
-      value_template: !secret environment_canada_radar

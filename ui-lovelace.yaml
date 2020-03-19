@@ -1179,61 +1179,13 @@ views:
               #
               - type: vertical-stack
                 cards:
-                  - type: "custom:swipe-card"
-                    parameters:
-                      effect: 'fade'
-                      autoplay:
-                        delay: 2000
-                      pagination:
-                        type: 'bullets'
-                    cards:
-                      - type: picture-entity
-                        name: 'Radar: Rain'
-                        entity: camera.environment_canada_rain
-                        camera_image: camera.environment_canada_rain
-                        aspect_ratio: 4x3
-                        show_name: true
-                        show_state: false
-
-                      - type: picture-entity
-                        name: 'Radar: Rain'
-                        entity: camera.environment_canada_rain_2
-                        camera_image: camera.environment_canada_rain
-                        aspect_ratio: 4x3
-                        show_name: true
-                        show_state: false
-
-                      - type: picture-entity
-                        name: 'Radar: Rain'
-                        entity: camera.environment_canada_rain_3
-                        camera_image: camera.environment_canada_rain
-                        aspect_ratio: 4x3
-                        show_name: true
-                        show_state: false
-
-                      - type: picture-entity
-                        name: 'Radar: Snow'
-                        entity: camera.environment_canada_snow
-                        camera_image: camera.environment_canada_snow
-                        aspect_ratio: 4x3
-                        show_name: true
-                        show_state: false
-
-                      - type: picture-entity
-                        name: 'Radar: Snow'
-                        entity: camera.environment_canada_snow_2
-                        camera_image: camera.environment_canada_snow
-                        aspect_ratio: 4x3
-                        show_name: true
-                        show_state: false
-
-                      - type: picture-entity
-                        name: 'Radar: Snow'
-                        entity: camera.environment_canada_snow_3
-                        camera_image: camera.environment_canada_snow
-                        aspect_ratio: 4x3
-                        show_name: true
-                        show_state: false
+                  - type: picture-entity
+                    name: 'Radar'
+                    entity: camera.environment_canada
+                    camera_image: camera.environment_canada
+                    aspect_ratio: 4x3
+                    show_name: true
+                    show_state: false
 
                   - type: "custom:swipe-card"
                     parameters:

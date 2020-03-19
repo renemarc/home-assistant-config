@@ -1,111 +1,12 @@
 #
-# Radar maps of surrounding rain conditions (10, 20 and 30 minutes ago)
-#
-# Radar images are batch created every 10 minutes on the dot, but can take up
-# to 10 minutes to be generated and stored on Environment Canada's servers.
-# We therefore fetch the image for the last batch, which may be up
-# to 19 minute stale.
-#
-# Todo: Replace this opportunistic fetcher with a webpage scraper.
+# Radar maps of surrounding rain conditions (last 2 hours)
 #
 # @see /appdaemon/dashboards/Weather.dash
-# @see /groups/weather.yaml
-# @see /sensors/camera.yaml
 #
+# @link https://www.home-assistant.io/integrations/environment_canada/
 # @link https://weather.gc.ca/radar/
 #
-- platform: generic
-  name: Environment Canada Rain
-  limit_refetch_to_url_change: true
-  content_type: image/gif
-  still_image_url: >-
-    {% set delta = 10 %}
-    {% set time = states('sensor.time') %}
-    {% set location = states('sensor.environment_canada_radar') %}
-    {% set offset = delta * 60 %}
-    {% set timestamp = as_timestamp(utcnow()) - offset %}
-    {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-    {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-    https://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_RAIN.gif
-
-
-- platform: generic
-  name: Environment Canada Rain 2
-  limit_refetch_to_url_change: true
-  content_type: image/gif
-  still_image_url: >-
-    {% set delta = 20 %}
-    {% set time = states('sensor.time') %}
-    {% set location = states('sensor.environment_canada_radar') %}
-    {% set offset = delta * 60 %}
-    {% set timestamp = as_timestamp(utcnow()) - offset %}
-    {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-    {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-    https://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_RAIN.gif
-
-
-- platform: generic
-  name: Environment Canada Rain 3
-  limit_refetch_to_url_change: true
-  content_type: image/gif
-  still_image_url: >-
-    {% set delta = 30 %}
-    {% set time = states('sensor.time') %}
-    {% set location = states('sensor.environment_canada_radar') %}
-    {% set offset = delta * 60 %}
-    {% set timestamp = as_timestamp(utcnow()) - offset %}
-    {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-    {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-    https://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_RAIN.gif
-
-
-# Radar of surrounding snow conditions (10, 20 and 30 minutes ago)
-- platform: generic
-  name: Environment Canada Snow
-  limit_refetch_to_url_change: true
-  content_type: image/gif
-  still_image_url: >-
-    {% set delta = 10 %}
-    {% set time = states('sensor.time') %}
-    {% set location = states('sensor.environment_canada_radar') %}
-    {% set offset = delta * 60 %}
-    {% set timestamp = as_timestamp(utcnow()) - offset %}
-    {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-    {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-    https://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_SNOW.gif
-
-
-- platform: generic
-  name: Environment Canada Snow 2
-  limit_refetch_to_url_change: true
-  content_type: image/gif
-  still_image_url: >-
-    {% set delta = 20 %}
-    {% set time = states('sensor.time') %}
-    {% set location = states('sensor.environment_canada_radar') %}
-    {% set offset = delta * 60 %}
-    {% set timestamp = as_timestamp(utcnow()) - offset %}
-    {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-    {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-    https://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_SNOW.gif
-
-
-- platform: generic
-  name: Environment Canada Snow 3
-  limit_refetch_to_url_change: true
-  content_type: image/gif
-  still_image_url: >-
-    {% set delta = 30 %}
-    {% set time = states('sensor.time') %}
-    {% set location = states('sensor.environment_canada_radar') %}
-    {% set offset = delta * 60 %}
-    {% set timestamp = as_timestamp(utcnow()) - offset %}
-    {% set minutes = ((timestamp | timestamp_custom('%M', false)) | int / 10) | int | string + '0' %}
-    {% set datestamp = timestamp | timestamp_custom('%Y%m%d%H', false) + minutes %}
-
-    https://dd.weather.gc.ca/radar/PRECIPET/GIF/{{location}}/{{datestamp}}_{{location}}_PRECIPET_SNOW.gif
+- platform: environment_canada
+  name: Environment Canada
+  station: !secret environment_canada_radar
+  loop: true

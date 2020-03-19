@@ -69,15 +69,11 @@ label:
 #
 camera_environment_canada:
     widget_type: entitycamera
-    refresh: 1
+    refresh: 2
     cache: 600
     img_list:
-        - !secret camera_environment_canada_rain_3
-        - !secret camera_environment_canada_rain_2
-        - !secret camera_environment_canada_rain_1
-        - !secret camera_environment_canada_snow_3
-        - !secret camera_environment_canada_snow_2
-        - !secret camera_environment_canada_snow_1
+        - !secret camera_environment_canada
+        - !secret camera_environment_canada_alt
     title_style: "background-color: rgba(0, 0, 0, 1);"
 
 camera_noaa:
