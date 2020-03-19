@@ -113,6 +113,41 @@
           Will feel like {{ apparent }}˚
         {% endif %}
 
+    # Based partially on https://en.wikipedia.org/wiki/Heat_index#Table_of_values
+    feels_like_emoji:
+      friendly_name: Feels Like Emoji
+      value_template: >-
+        {% set temperature = states('sensor.outside_temperature') | round %}
+        {% set apparent = states('sensor.dark_sky_apparent_temperature') | round %}
+
+        {% if apparent != 'unknown' and apparent != temperature %}
+          {% set temperature = apparent %}
+        {% endif %}
+
+        {% if temperature >= 52 %}
+          🥵
+        {% elif temperature >= 41 %}
+          🤒
+        {% elif temperature >= 33 %}
+          😓
+        {% elif temperature >= 27 %}
+          😎
+        {% elif temperature >= 19 %}
+          😀
+        {% elif temperature >= 11 %}
+          😕
+        {% elif temperature >= 1 %}
+          😬
+        {% elif temperature >= -10 %}
+          😨
+        {% elif temperature >= -20 %}
+          🥶
+        {% elif temperature <= 30 %}
+          🧊
+        {% else %}
+          ❓
+        {% endif %}
+
     outside_condition_0:
       friendly_name: Condition
       icon_template: >-
@@ -916,12 +951,66 @@
 #
 # Friendly icon equivalents
 #
-# Turns icon names into words.
+# Turns icon names into words and emojis.
 #
 - platform: template
   sensors:
+    weather_emoji:
+      friendly_name: Weather Emoji
+      value_template: >-
+        {% set icon = states('sensor.dark_sky_icon') %}
+
+        {% if icon == 'clear-day' %}
+          🌞
+        {% elif icon == 'clear-night' %}
+          🌜
+        {% elif icon == 'rain' %}
+          ☔
+        {% elif icon == 'snow' %}
+          ❄️
+        {% elif icon == 'sleet' %}
+          ❄️💦
+        {% elif icon == 'wind' %}
+          🌬️
+        {% elif icon == 'fog' %}
+          🌫️
+        {% elif icon == 'cloudy' %}
+          ☁️
+        {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
+          ⛅
+        {% else %}
+          unknown
+        {% endif %}
+
+    weather_emoji_1:
+      friendly_name: Weather Emoji 1
+      value_template: >-
+        {% set icon = states('sensor.dark_sky_icon_1d') %}
+
+        {% if icon == 'clear-day' %}
+          🌞
+        {% elif icon == 'clear-night' %}
+          🌜
+        {% elif icon == 'rain' %}
+          ☔
+        {% elif icon == 'snow' %}
+          ❄️
+        {% elif icon == 'sleet' %}
+          ❄️💦
+        {% elif icon == 'wind' %}
+          🌬️
+        {% elif icon == 'fog' %}
+          🌫️
+        {% elif icon == 'cloudy' %}
+          ☁️
+        {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
+          ⛅
+        {% else %}
+          unknown
+        {% endif %}
+
     weather_icon_friendly:
-      friendly_name: Weather
+      friendly_name: Weather Icon
       value_template: >-
         {% set icon = states('sensor.dark_sky_icon') %}
 
@@ -946,7 +1035,7 @@
         {% endif %}
 
     weather_icon_friendly_1:
-      friendly_name: Weather 1
+      friendly_name: Weather Icon 1
       value_template: >-
         {% set icon = states('sensor.dark_sky_icon_1d') %}
 
@@ -971,7 +1060,7 @@
         {% endif %}
 
     weather_icon_friendly_2:
-      friendly_name: Weather 2
+      friendly_name: Weather Icon 2
       value_template: >-
         {% set icon = states('sensor.dark_sky_icon_2d') %}
 
@@ -1097,6 +1186,20 @@
       value_template: >-
         {% set degrees = states('sensor.dark_sky_wind_bearing') | int(-1) %}
         {% set directions = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'] %}
+
+        {% if degrees >= 0 %}
+          {% set val = (degrees / 45) | int %}
+
+          {{ directions[(val % 8)] }}
+        {% else %}
+          unknown
+        {% endif %}
+
+    wind_bearing_cardinal_arrow:
+      friendly_name: Wind Bearing
+      value_template: >-
+        {% set degrees = states('sensor.dark_sky_wind_bearing') | int(-1) %}
+        {% set directions = ['⬆️','↗️','➡️','↘️','⬇️','↙️','⬅️','↖️'] %}
 
         {% if degrees >= 0 %}
           {% set val = (degrees / 45) | int %}

@@ -12,8 +12,8 @@
       arg: /home
     - type: disk_free
       arg: /home
-    - type: ipv4_address
-      arg: eth0
+    # - type: ipv4_address
+    #   arg: eth0
     - type: load_1m
     - type: load_5m
     - type: load_15m

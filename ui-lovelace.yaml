@@ -121,7 +121,7 @@ styles:
 
   header-card-style: &header-card-style |
     ha-card {
-      --paper-card-background-color: rgba(0, 0, 0, 20%);
+      --paper-card-background-color: rgba(0, 0, 0, 25%);
       border: 1px solid rgba(255, 255, 255, 20%);
       color: rgb(255, 255, 255);
       text-align: center;
@@ -129,6 +129,9 @@ styles:
       font-weight: 500;
       line-height: 1em;
       min-height: 2em;
+      -webkit-text-fill-color: rgb(255, 255, 255);
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: rgba(0, 0, 0, 50%);
     }
 
   footer-card-style: &footer-card-style |
@@ -172,7 +175,7 @@ styles:
     center / cover no-repeat url("/local/images/wallpaper-automations.jpg") fixed
 
   background-climate: &background-climate >-
-    center / cover no-repeat url("/local/cameras/astronomy_picture_of_the_day_proxy.jpg") fixed
+    center / cover no-repeat url("/local/cameras/astronomy_picture_of_the_day_proxy.jpg?jscache={{ sensor.time_date }}") fixed
 
   background-configuration: &background-configuration >-
     center / cover no-repeat url("/local/images/wallpaper-configuration.jpg") fixed
@@ -181,13 +184,13 @@ styles:
     center / cover no-repeat url("/local/images/wallpaper-hardware.jpg") fixed
 
   background-main: &background-main >-
-    center / cover no-repeat url("/local/cameras/bing_wallpaper_proxy.jpg") fixed
+    center / cover no-repeat url("/local/cameras/bing_wallpaper_proxy.jpg?jscache={{ sensor.time_date }}") fixed
 
   background-switchboard: &background-switchboard >-
     center / cover no-repeat url("/local/images/wallpaper-switchboard.jpg") fixed
 
   background-weather: &background-weather >-
-    center / cover no-repeat url("/local/cameras/noaa_geocolor_proxy.jpg") fixed
+    center / cover no-repeat url("/local/cameras/noaa_geocolor_proxy.jpg?jscache={{ sensor.time_date }}") fixed
 
 
 #
@@ -262,7 +265,7 @@ views:
               - type: markdown
                 style: *header-card-style
                 content: |
-                  {{ states('sensor.good_vibes') }}
+                  💕 {{ states('sensor.good_vibes') }} 🤠
 
           #
           # Body
@@ -358,7 +361,7 @@ views:
                             color: *graph-color-humidity
 
                   - type: entities
-                    title: "Climate & Air Quality"
+                    title: "Climate & Air Quality 😌"
                     show_header_toggle: false
                     entities:
                       - type: "custom:restriction-card"
@@ -397,7 +400,7 @@ views:
               # Public transit
               #
               - type: entities
-                title: Transit to the metro
+                title: Transit to the Metro 🚈
                 show_header_toggle: false
                 entities:
                   - entity: sensor.home_to_metro
@@ -461,7 +464,7 @@ views:
               # Security status
               #
               - type: entities
-                title: Security Status
+                title: Security Status 🛡️
                 show_header_toggle: false
                 entities:
                   - type: "custom:fold-entity-row"
@@ -512,7 +515,7 @@ views:
               # Presence
               #
               - type: entities
-                title: Presence
+                title: Presence 👻
                 show_header_toggle: false
                 entities:
                   - entity: person.her
@@ -543,7 +546,7 @@ views:
               - type: "custom:auto-entities"
                 card:
                   type: entities
-                  title: Low Batteries
+                  title: Low Batteries 🕯️
                   show_header_toggle: false
                 filter:
                   include:
@@ -564,7 +567,7 @@ views:
               - type: "custom:auto-entities"
                 card:
                   type: entities
-                  title: Broken Things
+                  title: Broken Things 🏚️
                   show_header_toggle: false
                 filter:
                   include:
@@ -622,7 +625,7 @@ views:
               - type: markdown
                 style: *header-card-style
                 content: |
-                  {{ states('sensor.modes_friendly') }} enabled.
+                  ⚡ {{ states('sensor.modes_friendly') }} enabled.
 
           #
           # Body
@@ -954,10 +957,12 @@ views:
               - type: markdown
                 style: *header-card-style
                 content: >-
+                  {{ states('sensor.weather_emoji') }}
                   {{ states('sensor.dark_sky_minutely_summary') }}
                   {% if states('sensor.feels_like') %}
                     {{- states('sensor.feels_like') }}.
-                  {% endif %}
+                  {%- endif %}
+                  {{ states('sensor.feels_like_emoji') }}
 
           #
           # Body
@@ -1006,7 +1011,7 @@ views:
                         type: "custom:secondaryinfo-entity-row"
                         secondary_info: >-
                           <small><strong>
-                          [[ sensor.wind_bearing_cardinal_16_friendly ]]
+                          [[ sensor.wind_bearing_cardinal_arrow ]] [[ sensor.wind_bearing_cardinal_16_friendly ]]
                           </strong></small>
 
                       - sensor.sun_state
@@ -1066,7 +1071,7 @@ views:
                 cards:
                   - type: markdown
                     content: |
-                      <font size="+2">{{ states('sensor.dark_sky_hourly_summary') }}</font>
+                      <font size="+2">{{ states('sensor.dark_sky_hourly_summary') }} {{ states('sensor.weather_emoji_1') }}</font>
 
                       {{ states('sensor.dark_sky_daily_summary') }}
 
@@ -1422,6 +1427,7 @@ views:
               - type: markdown
                 style: *header-card-style
                 content: |
+                  {{ states('sensor.average_humidity_emoji') }}
                   Humidity: {{ states('sensor.average_humidity_friendly') }}.
 
           #
@@ -1452,31 +1458,37 @@ views:
                             color: *graph-color-temperature
 
                   - type: entities
-                    title: Temperatures
+                    title: Temperatures 🌡️
                     show_header_toggle: false
                     entities:
                       - entity: sensor.bedroom_temperature
+                        name: Bedroom
                         icon: mdi:hotel
                         type: "custom:secondaryinfo-entity-row"
                         secondary_info: >-
-                          <small><strong>Tracked</strong></small>
+                          <small><strong>★ Tracked</strong></small>
 
                       - entity: sensor.humidor_temperature
-                        icon: mdi:bow-tie
+                        name: Humidor
+                        icon: mdi:cigar
 
                       - entity: sensor.kitchen_temperature
+                        name: Kitchen
                         icon: mdi:food-fork-drink
 
                       - entity: sensor.lounge_temperature
+                        name: Lounge
                         icon: mdi:sofa
                         type: "custom:secondaryinfo-entity-row"
                         secondary_info: >-
-                          <small><strong>Tracked</strong></small>
+                          <small><strong>★ Tracked</strong></small>
 
                       - entity: sensor.radon_detector_temperature
+                        name: Radon Detector
                         icon: mdi:radioactive
 
                       - entity: sensor.washroom_temperature
+                        name: Washroom
                         icon: mdi:shower
 
               #
@@ -1497,28 +1509,33 @@ views:
                             color: *graph-color-humidity
 
                   - type: entities
-                    title: Humidity Levels
+                    title: Humidity Levels 💦
                     show_header_toggle: false
                     entities:
                       - entity: sensor.bedroom_humidity
+                        name: Bedroom
                         icon: mdi:hotel
                         type: "custom:secondaryinfo-entity-row"
                         secondary_info: >-
-                          <small><strong>Tracked</strong></small>
+                          <small><strong>★ Tracked</strong></small>
 
                       - entity: sensor.humidor_humidity
-                        icon: mdi:bow-tie
+                        name: Humidor
+                        icon: mdi:cigar
 
                       - entity: sensor.lounge_humidity
+                        name: Lounge
                         icon: mdi:sofa
                         type: "custom:secondaryinfo-entity-row"
                         secondary_info: >-
-                          <small><strong>Tracked</strong></small>
+                          <small><strong>★ Tracked</strong></small>
 
                       - entity: sensor.radon_detector_humidity
+                        name: Radon Detector
                         icon: mdi:radioactive
 
                       - entity: sensor.washroom_humidity
+                        name: Washroom
                         icon: mdi:shower
 
           #
@@ -1572,7 +1589,11 @@ views:
               - type: markdown
                 style: *header-card-style
                 content: |
-                  {{ states('sensor.version_friendly') }}
+                  🏡 {{ states('sensor.version_friendly') }}
+                  {%- if states('binary_sensor.updater') -%}
+                    <small><small><small><small> 🆕 <a href="{{ state_attr('binary_sensor.updater', 'release_notes') }}">{{ state_attr('binary_sensor.updater', 'newest_version') }}</a>
+                    </small></small></small></small>
+                  {% endif %}
 
           #
           # Body
@@ -1587,17 +1608,18 @@ views:
               # System
               #
               - type: entities
-                title: Home Assistant
+                title: Home Assistant 🤖
                 show_header_toggle: false
                 entities:
                   - entity: binary_sensor.updater
                     type: "custom:secondaryinfo-entity-row"
                     secondary_info: >-
                       <small><strong>
-                      <a href="[[ binary_sensor.updater.attributes.release_notes ]]" target="_new" style="color:var(--secondary-text-color);"">Release notes</a>
+                      <a href="[[ binary_sensor.updater.attributes.release_notes ]]" target="_new" style="color:var(--secondary-text-color);">Release notes</a>
                       </strong></small>
 
-                  - sensor.ipv4_address_eth0
+                  - entity: sensor.local_ip
+                    name: Local IP
                   - sensor.uptime_friendly
                   - sensor.uptime_host
                   - type: section
@@ -1632,7 +1654,7 @@ views:
               # Devices
               #
               - type: entities
-                title: Devices
+                title: Devices 🔌
                 show_header_toggle: false
                 entities:
                   - entity: sensor.printer_toner_black
@@ -1653,7 +1675,7 @@ views:
               # Batteries
               #
               - type: "custom:vertical-stack-in-card"
-                title: Sensor Batteries
+                title: Sensor Batteries 🔋
                 cards:
                   - type: "custom:auto-entities"
                     show_header_toggle: false
@@ -1695,7 +1717,7 @@ views:
                 show_header_toggle: false
                 entities:
                   - entity: sensor.wan_ip_address
-                    name: Public IP Address
+                    name: Public IP
                     icon: mdi:wan
 
                   - entity: sensor.speedtest_ping_rounded
@@ -1737,7 +1759,7 @@ views:
               # LAN
               #
               - type: entities
-                title: Local Area Network
+                title: Local Network 📶
                 show_header_toggle: false
                 entities:
                   - entity: sensor.unifi_gateway_alerts
@@ -1777,7 +1799,7 @@ views:
               # Domain overview
               #
               - type: entities
-                title: Domains
+                title: Domains ✨
                 show_header_toggle: false
                 entities:
                   - entity: sensor.count_automations
@@ -1885,7 +1907,7 @@ views:
               - type: markdown
                 style: *header-card-style
                 content: |
-                  {{ states('sensor.count_automations_friendly') }}
+                  🤖 {{ states('sensor.count_automations_friendly') }}
 
           #
           # Body
@@ -1900,7 +1922,7 @@ views:
               # General automations
               #
               - type: entities
-                title: General 🤖
+                title: General 🦾
                 show_header_toggle: false
                 entities:
                   - automation.cct_lifx
@@ -1919,7 +1941,7 @@ views:
               # Modes automations
               #
               - type: entities
-                title: Modes Automations ⚡
+                title: Modes ⚡
                 show_header_toggle: false
                 entities:
                   - automation.low_power_mode_start
@@ -1937,7 +1959,7 @@ views:
               # Device automations
               #
               - type: entities
-                title: Devices Automations 🔌
+                title: Devices 🔌
                 show_header_toggle: false
                 entities:
                   - automation.aurora_brightness
@@ -1969,7 +1991,7 @@ views:
               # Areas automations
               #
               - type: entities
-                title: Areas Automations 🏠
+                title: Areas 🏠
                 show_header_toggle: false
                 entities:
                   - automation.bedroom_low_power
@@ -1995,7 +2017,7 @@ views:
               # Notifications automations
               #
               - type: entities
-                title: Notifications Automations 🔔
+                title: Notifications 🔔
                 show_header_toggle: false
                 entities:
                   - automation.daily_greeting
@@ -2059,7 +2081,7 @@ views:
               - type: markdown
                 style: *header-card-style
                 content: |
-                  On &OpenCurlyDoubleQuote;<em>{{ states('sensor.git_branch') }}</em>&CloseCurlyDoubleQuote; branch.
+                  🌿 On &OpenCurlyDoubleQuote;<em>{{ states('sensor.git_branch') }}</em>&CloseCurlyDoubleQuote; branch.
 
           #
           # Body
@@ -2077,7 +2099,7 @@ views:
               - type: "custom:vertical-stack-in-card"
                 cards:
                   - type: entities
-                    title: Public Configuration Repo
+                    title: GitHub Config Repo 👨‍💻
                     show_header_toggle: false
                     entities:
                       - entity: sensor.git_branch
@@ -2139,7 +2161,7 @@ views:
               # Configuration switches
               #
               - type: entities
-                title: Extra Configuration
+                title: Extra Settings ⚙️
                 show_header_toggle: false
                 entities:
                   - input_boolean.scene_mode

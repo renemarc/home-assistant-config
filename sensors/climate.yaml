@@ -569,3 +569,27 @@
         {% else %}
           unknown
         {% endif %}
+
+    average_humidity_emoji:
+      friendly_name: Humidity
+      icon_template: mdi:water-percent
+      value_template: >-
+        {% set humidity = states('sensor.average_humidity') | int(-1) %}
+
+        {% if humidity > 90 %}
+          ☣️
+        {% elif humidity > 70 %}
+          🍄
+        {% elif humidity > 55 %}
+          🧫
+        {% elif humidity > 50 %}
+          💦
+        {% elif humidity > 35 %}
+          ✅
+        {% elif humidity >= 30 %}
+          🌵
+        {% elif humidity >= 0 %}
+          🏜️
+        {% else %}
+          unknown
+        {% endif %}

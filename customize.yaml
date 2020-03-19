@@ -1,8 +1,8 @@
 #
 # Automations
 #
-# automation.daily_greeting:
-#   icon: mdi:human-greeting
+automation.daily_greeting:
+  icon: mdi:human-greeting
 automation.humidity_notify:
   icon: mdi:water-percent
 automation.front_door_notify:
@@ -217,8 +217,11 @@ sensor.ebox_upload_before_offpeak:
   friendly_name: Uploads
 sensor.ebox_usage:
   friendly_name: Monthly usage
-sensor.ipv4_address_eth0:
-  friendly_name: Local IP Address
+# sensor.ipv4_address_eth0:
+#   friendly_name: Local IP
+sensor.local_ip:
+  # friendly_name: Local IP
+  icon: mdi:server-network
 sensor.speedtest_download:
   friendly_name: Downspeed
   icon: mdi:download-network
@@ -270,3 +273,13 @@ switch.dehumidifier:
 variable.tamper_detected:
   friendly_name: Tamper location
   icon: mdi:shield-home
+
+
+sensor.humidor_humidity:
+  group:
+    group.humidity:
+      icon: mdi:cigar
+sensor.humidor_temperature:
+  group:
+    group.humidity:
+      icon: mdi:cigar
