@@ -63,12 +63,12 @@ include:
     - sensor.uv_friendly
     - sensor.wind_speed
 
-    - sensor.config_repo_clones
-    - sensor.config_repo_clones_uniques
-    - sensor.config_repo_forks
-    - sensor.config_repo_stargazers
-    - sensor.config_repo_views
-    - sensor.config_repo_views_uniques
+    - sensor.repo_config_clones
+    - sensor.repo_config_clones_uniques
+    - sensor.repo_config_forks
+    - sensor.repo_config_stargazers
+    - sensor.repo_config_views
+    - sensor.repo_config_views_uniques
     - sensor.speedtest_ping
     - sensor.speedtest_download
     - sensor.speedtest_upload

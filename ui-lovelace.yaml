@@ -57,6 +57,11 @@ resources:
     type: module
     repo: https://github.com/thomasloven/lovelace-fold-entity-row
 
+  # GitHub entity row
+  - url: /hacsfiles/lovelace-github-entity-row/github-entity-row.js
+    type: module
+    repo: https://github.com/benct/lovelace-github-entity-row
+
   # Layout card
   - url:  /hacsfiles/lovelace-layout-card/layout-card.js
     type: module
@@ -272,7 +277,8 @@ views:
           #
           - type: "custom:layout-card"
             column_num: 1
-            column_width: 300
+            column_width: 280px
+            max_width: 350px
             max_columns: 4
             cards:
 
@@ -632,7 +638,8 @@ views:
           #
           - type: "custom:layout-card"
             column_num: 1
-            column_width: 300
+            column_width: 280px
+            max_width: 350px
             max_columns: 4
             cards:
 
@@ -967,7 +974,8 @@ views:
           #
           - type: "custom:layout-card"
             column_num: 1
-            column_width: 300
+            column_width: 280px
+            max_width: 350px
             max_columns: 4
             cards:
 
@@ -1385,7 +1393,8 @@ views:
           #
           - type: "custom:layout-card"
             column_num: 1
-            column_width: 300
+            column_width: 280px
+            max_width: 350px
             max_columns: 4
             cards:
 
@@ -1550,7 +1559,8 @@ views:
           #
           - type: "custom:layout-card"
             column_num: 1
-            column_width: 300
+            column_width: 280px
+            max_width: 350px
             max_columns: 4
             cards:
 
@@ -1873,7 +1883,8 @@ views:
           #
           - type: "custom:layout-card"
             column_num: 1
-            column_width: 300
+            column_width: 280px
+            max_width: 350px
             max_columns: 4
             cards:
 
@@ -2040,14 +2051,15 @@ views:
               - type: markdown
                 style: *header-card-style
                 content: |
-                  🌿 On &OpenCurlyDoubleQuote;<em>{{ states('sensor.git_branch') }}</em>&CloseCurlyDoubleQuote; branch.
+                  👨‍💻 On &OpenCurlyDoubleQuote;<em>{{ states('sensor.git_branch') }}</em>&CloseCurlyDoubleQuote; branch.
 
           #
           # Body
           #
           - type: "custom:layout-card"
             column_num: 1
-            column_width: 300
+            min_width: 280
+            max_width: 30%
             max_columns: 4
             cards:
 
@@ -2058,19 +2070,19 @@ views:
               - type: "custom:vertical-stack-in-card"
                 cards:
                   - type: entities
-                    title: GitHub Config Repo 👨‍💻
+                    title: GitHub Config Repo 🌟
                     show_header_toggle: false
                     entities:
                       - entity: sensor.git_branch
                         name: Branch
 
-                      - entity: sensor.config_repo_stargazers
+                      - entity: sensor.repo_config_stargazers
                         name: Stargazers
 
-                      - entity: sensor.config_repo_forks
+                      - entity: sensor.repo_config_forks
                         name: Forks
 
-                      - entity: sensor.config_repo_issues
+                      - entity: sensor.repo_config_issues
                         name: Issues
 
                       - type: weblink
@@ -2093,9 +2105,9 @@ views:
                           points: hover
                           state: false
                         entities:
-                          - entity: sensor.config_repo_views
+                          - entity: sensor.repo_config_views
                             name: Views
-                          - entity: sensor.config_repo_views_uniques
+                          - entity: sensor.repo_config_views_uniques
                             name: Uniques
 
                       - type: "custom:mini-graph-card"
@@ -2111,10 +2123,34 @@ views:
                           points: hover
                           state: false
                         entities:
-                          - entity: sensor.config_repo_clones
+                          - entity: sensor.repo_config_clones
                             name: Clones
-                          - entity: sensor.config_repo_clones_uniques
+                          - entity: sensor.repo_config_clones_uniques
                             name: Uniques
+
+              #
+              # Other automation-related GitHub repos
+              #
+              - type: entities
+                title: Related GitHub Repos 💫
+                show_header_toggle: false
+                entities:
+                  - type: "custom:github-entity-row"
+                    entity: sensor.repo_airthings
+                    name: airthings
+
+                  - type: "custom:github-entity-row"
+                    entity: sensor.repo_countdoom
+                    name: countdoom
+
+                  - type: "custom:github-entity-row"
+                    entity: sensor.repo_doomsday_clock
+                    name: doomsday-clock
+
+                  - type: "custom:github-entity-row"
+                    entity: sensor.repo_flic
+                    name: flic
+
 
               #
               # Configuration switches

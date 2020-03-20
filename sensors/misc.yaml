@@ -230,66 +230,75 @@
   access_token: !secret github_access_token
   scan_interval: 300
   repositories:
+    - path: 'renemarc/balena-airthingswave'
+      name: Repo Airthings
+    - path: 'renemarc/balena-flic'
+      name: Repo Flic
+    - path: 'renemarc/countdoom'
+      name: Repo Countdoom
     - path: 'renemarc/home-assistant-config'
-      name: Config Repo
+      name: Repo Config
+    - path: 'renemarc/home-assistant-doomsday-clock'
+      name: Repo Doomsday Clock
+
 
 - platform: template
   sensors:
-    config_repo_clones:
-      friendly_name: Config Repo Clones
+    repo_config_clones:
+      friendly_name: Repo Config Clones
       icon_template: mdi:content-copy
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.config_repo', 'clones') }}
+        {{ state_attr('sensor.repo_config', 'clones') }}
 
-    config_repo_clones_uniques:
-      friendly_name: Config Repo Clones Uniques
+    repo_config_clones_uniques:
+      friendly_name: Repo Config Clones Uniques
       icon_template: mdi:content-copy
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.config_repo', 'clones_uniques') }}
+        {{ state_attr('sensor.repo_config', 'clones_uniques') }}
 
-    config_repo_forks:
-      friendly_name: Config Repo Forks
+    repo_config_forks:
+      friendly_name: Repo Config Forks
       icon_template: mdi:source-fork
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.config_repo', 'forks') }}
+        {{ state_attr('sensor.repo_config', 'forks') }}
 
-    config_repo_issues:
-      friendly_name: Config Repo Issues
+    repo_config_issues:
+      friendly_name: Repo Config Issues
       icon_template: mdi:alert-circle-outline
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.config_repo', 'open_issues') }}
+        {{ state_attr('sensor.repo_config', 'open_issues') }}
 
-    config_repo_stargazers:
-      friendly_name: Config Repo Stargazers
+    repo_config_stargazers:
+      friendly_name: Repo Config Stargazers
       icon_template: mdi:star-face
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.config_repo', 'stargazers') }}
+        {{ state_attr('sensor.repo_config', 'stargazers') }}
 
-    config_repo_views:
-      friendly_name: Config Repo Views
+    repo_config_views:
+      friendly_name: Repo Config Views
       icon_template: mdi:eye
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.config_repo', 'views') }}
+        {{ state_attr('sensor.repo_config', 'views') }}
 
-    config_repo_views_uniques:
-      friendly_name: Config Repo Views Uniques
+    repo_config_views_uniques:
+      friendly_name: Repo Config Views Uniques
       icon_template: mdi:eye
       entity_id:
         - sensor.time
       value_template: >-
-        {{ state_attr('sensor.config_repo', 'views_uniques') }}
+        {{ state_attr('sensor.repo_config', 'views_uniques') }}
 
 
 #
