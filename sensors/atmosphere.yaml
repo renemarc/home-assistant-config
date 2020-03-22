@@ -1,15 +1,4 @@
 #
-# Doomsday Clock
-#
-# @link https://github.com/renemarc/home-assistant-custom-components
-# @link https://thebulletin.org/doomsday-dashboard
-# @link https://github.com/mattbierner/MinutesToMidnight/blob/master/index.js
-#
-- platform: doomsday_clock
-  scan_interval: 86400
-
-
-#
 # World Air Quality Index (WAQI)
 #
 # Ratings for templates below are USA ones instead of Canadians.

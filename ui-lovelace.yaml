@@ -72,10 +72,10 @@ resources:
     type: module
     repo: https://github.com/kalkih/mini-graph-card
 
-  # Popup card
-  - url: /community_plugin/lovelace-popup-card/popup-card.js
-    type: js
-    repo: https://github.com/thomasloven/lovelace-popup-card
+  # Multiple entity row: Show multiple entity states and attributes on entity rows.
+  # - url: /hacsfiles/lovelace-multiple-entity-row/multiple-entity-row.js
+  #   type: module
+  #   repo: https://github.com/benct/lovelace-multiple-entity-row
 
   # Restriction Card
   - url: /hacsfiles/restriction-card/restriction-card.js
@@ -1179,9 +1179,155 @@ views:
                               [[ sensor.uv_4 ]]
                               </strong></small>
 
-                      - type: section
+
+              #
+              # World safety
+              #
+              - type: "custom:vertical-stack-in-card"
+                cards:
+                  - type: entities
+                    title: World Threats 🤯
+                    show_header_toggle: false
+                    entities:
                       - sensor.doomsday_clock
 
+                      - type: section
+                        label: COVID-19 ☣️
+
+                      - type: "custom:fold-entity-row"
+                        head:
+                          type: "custom:secondaryinfo-entity-row"
+                          entity: sensor.coronavirus_world_current
+                          name: World
+                          icon: "mdi:earth"
+                          secondary_info: >-
+                            <small><strong>
+                            [[ sensor.coronavirus_world_estimated ]] est.
+                            </strong></small>
+                        items:
+                          - entity: sensor.coronavirus_world_recovered
+                            name: Recovered
+                          - type: "custom:secondaryinfo-entity-row"
+                            entity: sensor.coronavirus_world_deaths
+                            name: Deceased
+                            secondary_info: >-
+                              <small><strong>
+                              [[ sensor.coronavirus_world_mortality_rate ]] [[ sensor.coronavirus_world_mortality_rate.attributes.unit_of_measurement ]] mortality rate
+                              </strong></small>
+                          - type: "custom:secondaryinfo-entity-row"
+                            entity: sensor.coronavirus_world_estimated_deaths
+                            name: At Risk
+                            secondary_info: >-
+                              <small><strong>Estimated</strong></small>
+
+                      - type: "custom:fold-entity-row"
+                        head:
+                          type: "custom:secondaryinfo-entity-row"
+                          entity: sensor.coronavirus_neighbor_current
+                          name: USA
+                          icon: "mdi:star"
+                          secondary_info: >-
+                            <small><strong>
+                            [[ sensor.coronavirus_neighbor_estimated ]] estimated
+                            </strong></small>
+                        items:
+                          - entity: sensor.coronavirus_neighbor_recovered
+                            name: Recovered
+                          - type: "custom:secondaryinfo-entity-row"
+                            entity: sensor.coronavirus_neighbor_deaths
+                            name: Deceased
+                            secondary_info: >-
+                              <small><strong>
+                              [[ sensor.coronavirus_neighbor_mortality_rate ]] [[ sensor.coronavirus_neighbor_mortality_rate.attributes.unit_of_measurement ]] mortality rate
+                              </strong></small>
+                          - type: "custom:secondaryinfo-entity-row"
+                            entity: sensor.coronavirus_neighbor_estimated_deaths
+                            name: At Risk
+                            secondary_info: >-
+                              <small><strong>Estimated</strong></small>
+
+                      - type: "custom:fold-entity-row"
+                        head:
+                          type: "custom:secondaryinfo-entity-row"
+                          entity: sensor.coronavirus_country_current
+                          name: Canada
+                          icon: "mdi:leaf-maple"
+                          secondary_info: >-
+                            <small><strong>
+                            [[ sensor.coronavirus_country_estimated ]] estimated
+                            </strong></small>
+                        items:
+                          - entity: sensor.coronavirus_country_recovered
+                            name: Recovered
+                          - type: "custom:secondaryinfo-entity-row"
+                            entity: sensor.coronavirus_country_deaths
+                            name: Deceased
+                            secondary_info: >-
+                              <small><strong>
+                              [[ sensor.coronavirus_country_mortality_rate ]] [[ sensor.coronavirus_country_mortality_rate.attributes.unit_of_measurement ]] mortality rate
+                              </strong></small>
+                          - type: "custom:secondaryinfo-entity-row"
+                            entity: sensor.coronavirus_country_estimated_deaths
+                            name: At Risk
+                            secondary_info: >-
+                              <small><strong>Estimated</strong></small>
+
+                      - type: "custom:fold-entity-row"
+                        head:
+                          type: "custom:secondaryinfo-entity-row"
+                          entity: sensor.coronavirus_province_current
+                          name: Quebec
+                          icon: "mdi:castle"
+                          secondary_info: >-
+                            <small><strong>
+                            [[ sensor.coronavirus_province_estimated ]] estimated
+                            </strong></small>
+                        items:
+                          - entity: sensor.coronavirus_province_recovered
+                            name: Recovered
+                          - type: "custom:secondaryinfo-entity-row"
+                            entity: sensor.coronavirus_province_deaths
+                            name: Deceased
+                            secondary_info: >-
+                              <small><strong>
+                              [[ sensor.coronavirus_province_mortality_rate ]] [[ sensor.coronavirus_province_mortality_rate.attributes.unit_of_measurement ]] mortality rate
+                              </strong></small>
+                          - type: "custom:secondaryinfo-entity-row"
+                            entity: sensor.coronavirus_province_estimated_deaths
+                            name: At Risk
+                            secondary_info: >-
+                              <small><strong>Estimated</strong></small>
+
+                  - type: "custom:mini-graph-card"
+                    align_state: right
+                    decimals: 0
+                    hour24: true
+                    hours_to_show: 168
+                    points_per_hour: 0.04166666666666
+                    show:
+                      fill: fade
+                      icon: false
+                      labels: true
+                      name: false
+                      points: true
+                      state: true
+                    entities:
+                      - entity: sensor.coronavirus_province_current
+                        name: Quebec
+                        unit: infected
+                        color: DEEPSKYBLUE
+                      - entity: sensor.coronavirus_province_deaths
+                        name: Qc 😢
+                        unit: deceased
+                        color: Blue
+                      - entity: sensor.coronavirus_roc_current
+                        name: Rest of Canada
+                        unit: infected
+                        color: Pink
+                      - entity: sensor.coronavirus_roc_deaths
+                        name: RoC 😢
+                        unit: deceased
+                        color: Red
               #
               # Weather radar and satellite pictures
               #
@@ -1205,7 +1351,7 @@ views:
                     cards:
                       - type: picture-entity
                         name: 'Satellite: Geocolour'
-                        entity: camera.noaa_geocolor
+                        entity: camera.noaa_geocolor_hd
                         camera_image: camera.noaa_geocolor
                         aspect_ratio: 4x3
                         show_name: true
@@ -1213,7 +1359,7 @@ views:
 
                       - type: picture-entity
                         name: 'Satellite: Water Vapour'
-                        entity: camera.noaa_water_vapour
+                        entity: camera.noaa_water_vapour_hd
                         camera_image: camera.noaa_water_vapour
                         aspect_ratio: 4x3
                         show_name: true

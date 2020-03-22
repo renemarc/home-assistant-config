@@ -55,7 +55,33 @@ include:
     - sensor.washroom_luminance
     - sensor.washroom_temperature
 
+    - sensor.coronavirus_country_confirmed
+    - sensor.coronavirus_country_current
+    - sensor.coronavirus_country_deaths
+    - sensor.coronavirus_country_estimated
+    - sensor.coronavirus_country_recovered
+    - sensor.coronavirus_neighbor_confirmed
+    - sensor.coronavirus_neighbor_current
+    - sensor.coronavirus_neighbor_deaths
+    - sensor.coronavirus_neighbor_estimated
+    - sensor.coronavirus_neighbor_recovered
+    - sensor.coronavirus_province_confirmed
+    - sensor.coronavirus_province_current
+    - sensor.coronavirus_province_deaths
+    - sensor.coronavirus_province_estimated
+    - sensor.coronavirus_province_recovered
+    - sensor.coronavirus_roc_confirmed
+    - sensor.coronavirus_roc_current
+    - sensor.coronavirus_roc_deaths
+    - sensor.coronavirus_roc_estimated
+    - sensor.coronavirus_roc_recovered
+    - sensor.coronavirus_world_confirmed
+    - sensor.coronavirus_world_current
+    - sensor.coronavirus_world_deaths
+    - sensor.coronavirus_world_estimated
+    - sensor.coronavirus_world_recovered
     - sensor.doomsday_clock
+
     - sensor.radon_friendly
     - sensor.radon_daily
     - sensor.radon_long_term

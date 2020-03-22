@@ -65,6 +65,8 @@ input_boolean.*:
 #
 # Sensors
 #
+sensor.coronavirus_*_current:
+  icon: 'mdi:emoticon-neutral-outline'
 sensor.*_humidity:
   device_class: humidity
   icon: mdi:water-percent

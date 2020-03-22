@@ -1,0 +1,467 @@
+#
+# COVID-19
+#
+# Estimations are based on average survival rate, incubation period, and time
+# until death.
+#
+# @link: https://medium.com/@tomaspueyo/coronavirus-act-today-or-people-will-die-f4d3d9cd99ca
+# @link https://community.home-assistant.io/t/help-with-corona-scrape-sensor/174973/
+# @link https://github.com/midas-network/COVID-19/tree/master/parameter_estimates/2019_novel_coronavirus
+#
+- platform: template
+  sensors:
+    coronavirus_time_until_death:
+      friendly_name: Coronavirus Time Until Death
+      icon_template: 'mdi:timer-sand'
+      unit_of_measurement: 'day'
+      value_template: 17.3
+
+    coronavirus_time_doubling:
+      friendly_name: Coronavirus Doubling Time
+      icon_template: 'mdi:expand-all'
+      unit_of_measurement: 'day'
+      value_template: 6.2
+
+- platform: rest
+  name: Coronavirus Country Current
+  resource: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/1/query?f=json&where=(Country_Region%3D%27Canada%27)&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Confirmed%22%2C%22outStatisticFieldName%22%3A%22Confirmed%22%7D%2C%20%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Deaths%22%2C%22outStatisticFieldName%22%3A%22Deaths%22%7D%2C%20%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Recovered%22%2C%22outStatisticFieldName%22%3A%22Recovered%22%7D%5D"
+  value_template: >-
+    {% set confirmed = value_json.features[0].attributes.Confirmed | int %}
+    {% set deaths = value_json.features[0].attributes.Deaths | int %}
+    {% set recovered = value_json.features[0].attributes.Recovered | int %}
+
+    {% if confirmed >= 0 and confirmed >= 0 and confirmed >= 0 %}
+      {{ confirmed - deaths - recovered }}
+    {% endif %}
+  json_attributes_path: "$.features[0].attributes"
+  json_attributes:
+    - Confirmed
+    - Deaths
+    - Recovered
+  scan_interval: 3600
+
+- platform: rest
+  name: Coronavirus Neighbor Current
+  resource: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/1/query?f=json&where=(Country_Region%3D%27US%27)&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Confirmed%22%2C%22outStatisticFieldName%22%3A%22Confirmed%22%7D%2C%20%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Deaths%22%2C%22outStatisticFieldName%22%3A%22Deaths%22%7D%2C%20%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Recovered%22%2C%22outStatisticFieldName%22%3A%22Recovered%22%7D%5D"
+  value_template: >-
+    {% set confirmed = value_json.features[0].attributes.Confirmed | int %}
+    {% set deaths = value_json.features[0].attributes.Deaths | int %}
+    {% set recovered = value_json.features[0].attributes.Recovered | int %}
+
+    {% if confirmed >= 0 and confirmed >= 0 and confirmed >= 0 %}
+      {{ confirmed - deaths - recovered }}
+    {% endif %}
+  json_attributes_path: "$.features[0].attributes"
+  json_attributes:
+    - Confirmed
+    - Deaths
+    - Recovered
+  scan_interval: 3600
+
+- platform: rest
+  name: Coronavirus Province Current
+  resource: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/1/query?f=json&where=(Country_Region%3D%27Canada%27)%20AND%20(Province_State%20LIKE%20%27%25Quebec%27)%20%20&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Confirmed%22%2C%22outStatisticFieldName%22%3A%22Confirmed%22%7D%2C%20%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Deaths%22%2C%22outStatisticFieldName%22%3A%22Deaths%22%7D%2C%20%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Recovered%22%2C%22outStatisticFieldName%22%3A%22Recovered%22%7D%5D"
+  value_template: >-
+    {% set confirmed = value_json.features[0].attributes.Confirmed | int %}
+    {% set deaths = value_json.features[0].attributes.Deaths | int %}
+    {% set recovered = value_json.features[0].attributes.Recovered | int %}
+
+    {% if confirmed >= 0 and confirmed >= 0 and confirmed >= 0 %}
+      {{ confirmed - deaths - recovered }}
+    {% endif %}
+  json_attributes_path: "$.features[0].attributes"
+  json_attributes:
+    - Confirmed
+    - Deaths
+    - Recovered
+  scan_interval: 3600
+
+- platform: rest
+  name: Coronavirus World Current
+  resource: "https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases/FeatureServer/1/query?f=json&outStatistics=%5B%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Confirmed%22%2C%22outStatisticFieldName%22%3A%22Confirmed%22%7D%2C%20%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Deaths%22%2C%22outStatisticFieldName%22%3A%22Deaths%22%7D%2C%20%7B%22statisticType%22%3A%22sum%22%2C%22onStatisticField%22%3A%22Recovered%22%2C%22outStatisticFieldName%22%3A%22Recovered%22%7D%5D"
+  value_template: >-
+    {% set confirmed = value_json.features[0].attributes.Confirmed | int %}
+    {% set deaths = value_json.features[0].attributes.Deaths | int %}
+    {% set recovered = value_json.features[0].attributes.Recovered | int %}
+
+    {% if confirmed >= 0 and confirmed >= 0 and confirmed >= 0 %}
+      {{ confirmed - deaths - recovered }}
+    {% endif %}
+  json_attributes_path: "$.features[0].attributes"
+  json_attributes:
+    - Confirmed
+    - Deaths
+    - Recovered
+  scan_interval: 3600
+
+- platform: template
+  sensors:
+    coronavirus_neighbor_confirmed:
+      friendly_name: Coronavirus Neighbor Confirmed
+      icon_template: 'mdi:hospital-box'
+      value_template: >-
+        {% set val = state_attr('sensor.coronavirus_neighbor_current', 'Confirmed') %}
+        {% if val != None %}
+          {{ val }}
+        {% endif %}
+
+    coronavirus_neighbor_deaths:
+      friendly_name: Coronavirus Neighbor Deaths
+      icon_template: 'mdi:emoticon-cry-outline'
+      value_template: >-
+        {% set val = state_attr('sensor.coronavirus_neighbor_current', 'Deaths') %}
+        {% if val != None %}
+          {{ val }}
+        {% endif %}
+
+    coronavirus_neighbor_recovered:
+      friendly_name: Coronavirus Neighbor Recovered
+      icon_template: 'mdi:emoticon-happy-outline'
+      value_template: >-
+        {% set val = state_attr('sensor.coronavirus_neighbor_current', 'Recovered') %}
+        {% if val != None %}
+          {{ val }}
+        {% endif %}
+
+    coronavirus_neighbor_mortality_rate:
+      friendly_name: Coronavirus Neighbor Mortality Rate
+      icon_template: 'mdi:ticket-percent'
+      unit_of_measurement: '%'
+      value_template: >-
+        {% set confirmed = states('sensor.coronavirus_neighbor_confirmed') | int %}
+        {% set deaths = states('sensor.coronavirus_neighbor_deaths') | int %}
+        {{ (deaths / confirmed * 100) | round(2) }}
+
+    coronavirus_neighbor_estimated:
+      friendly_name: Coronavirus Neighbor Estimated
+      icon_template: 'mdi:emoticon-neutral-outline'
+      value_template: >-
+        {% set deaths = states('sensor.coronavirus_neighbor_deaths') | int %}
+        {% set mortality = states('sensor.coronavirus_neighbor_mortality_rate') | float %}
+        {% set doubling = states('sensor.coronavirus_time_doubling') | float %}
+        {% set ttl = states('sensor.coronavirus_time_until_death') | float %}
+
+        {% set ratio = 2**(ttl/doubling) / mortality * 100 %}
+        {% set estimate = (ratio * deaths) | round %}
+        {% set length = estimate | string | length %}
+        {% set divider = ('1' + '0' * (length - 2)) | int %}
+
+        {{ ((ratio * deaths / divider) | round) * divider }}
+
+    coronavirus_neighbor_estimated_deaths:
+      friendly_name: Coronavirus Neighbor Estimated Deaths
+      icon_template: 'mdi:emoticon-frown-outline'
+      value_template: >-
+        {% set confirmed = states('sensor.coronavirus_neighbor_estimated') | int %}
+        {% set mortality = states('sensor.coronavirus_neighbor_mortality_rate') | float %}
+
+        {% if confirmed > 0 or mortality > 0 %}
+          {{ (confirmed * mortality / 100) | int }}
+        {% endif %}
+      attribute_templates:
+        could_die_within: >-
+          {{ states('sensor.coronavirus_time_until_death') | float }} days
+        formula: >-
+          2^({{ states('sensor.coronavirus_time_until_death') | float }} / {{ states('sensor.coronavirus_time_doubling') | float }}) / {{ states('sensor.coronavirus_neighbor_mortality_rate') }} [2^(days_until_death / case_doubling_time) / world_mortality_rate]
+
+- platform: template
+  sensors:
+    coronavirus_country_confirmed:
+      friendly_name: Coronavirus Country Confirmed
+      icon_template: 'mdi:hospital-box'
+      value_template: >-
+        {% set val = state_attr('sensor.coronavirus_country_current', 'Confirmed') %}
+        {% if val != None %}
+          {{ val }}
+        {% endif %}
+
+    coronavirus_country_deaths:
+      friendly_name: Coronavirus Country Deaths
+      icon_template: 'mdi:emoticon-cry-outline'
+      value_template: >-
+        {% set val = state_attr('sensor.coronavirus_country_current', 'Deaths') %}
+        {% if val != None %}
+          {{ val }}
+        {% endif %}
+
+    coronavirus_country_recovered:
+      friendly_name: Coronavirus Country Recovered
+      icon_template: 'mdi:emoticon-happy-outline'
+      value_template: >-
+        {% set val = state_attr('sensor.coronavirus_country_current', 'Recovered') %}
+        {% if val != None %}
+          {{ val }}
+        {% endif %}
+
+    coronavirus_country_mortality_rate:
+      friendly_name: Coronavirus Country Mortality Rate
+      icon_template: 'mdi:ticket-percent'
+      unit_of_measurement: '%'
+      value_template: >-
+        {% set confirmed = states('sensor.coronavirus_country_confirmed') | int %}
+        {% set deaths = states('sensor.coronavirus_country_deaths') | int %}
+        {{ (deaths / confirmed * 100) | round(2) }}
+
+    coronavirus_country_estimated:
+      friendly_name: Coronavirus Country Estimated
+      icon_template: 'mdi:emoticon-neutral-outline'
+      value_template: >-
+        {% set deaths = states('sensor.coronavirus_country_deaths') | int %}
+        {% set mortality = states('sensor.coronavirus_country_mortality_rate') | float %}
+        {% set doubling = states('sensor.coronavirus_time_doubling') | float %}
+        {% set ttl = states('sensor.coronavirus_time_until_death') | float %}
+
+        {% set ratio = 2**(ttl/doubling) / mortality * 100 %}
+        {% set estimate = (ratio * deaths) | round %}
+        {% set length = estimate | string | length %}
+        {% set divider = ('1' + '0' * (length - 2)) | int %}
+
+        {{ ((ratio * deaths / divider) | round) * divider }}
+
+    coronavirus_country_estimated_deaths:
+      friendly_name: Coronavirus Country Estimated Deaths
+      icon_template: 'mdi:emoticon-frown-outline'
+      value_template: >-
+        {% set confirmed = states('sensor.coronavirus_country_estimated') | int %}
+        {% set mortality = states('sensor.coronavirus_country_mortality_rate') | float %}
+
+        {% if confirmed > 0 or mortality > 0 %}
+          {{ (confirmed * mortality / 100) | int }}
+        {% endif %}
+      attribute_templates:
+        could_die_within: >-
+          {{ states('sensor.coronavirus_time_until_death') | float }} days
+        formula: >-
+          2^({{ states('sensor.coronavirus_time_until_death') | float }} / {{ states('sensor.coronavirus_time_doubling') | float }}) / {{ states('sensor.coronavirus_country_mortality_rate') }} [2^(days_until_death / case_doubling_time) / world_mortality_rate]
+
+- platform: template
+  sensors:
+    coronavirus_province_confirmed:
+      friendly_name: Coronavirus Province Confirmed
+      icon_template: 'mdi:hospital-box'
+      value_template: >-
+        {% set val = state_attr('sensor.coronavirus_province_current', 'Confirmed') %}
+        {% if val != None %}
+          {{ val }}
+        {% endif %}
+
+    coronavirus_province_deaths:
+      friendly_name: Coronavirus Province Deaths
+      icon_template: 'mdi:emoticon-cry-outline'
+      value_template: >-
+        {% set val = state_attr('sensor.coronavirus_province_current', 'Deaths') %}
+        {% if val != None %}
+          {{ val }}
+        {% endif %}
+
+    coronavirus_province_recovered:
+      friendly_name: Coronavirus Province Recovered
+      icon_template: 'mdi:emoticon-happy-outline'
+      value_template: >-
+        {% set val = state_attr('sensor.coronavirus_province_current', 'Recovered') %}
+        {% if val != None %}
+          {{ val }}
+        {% endif %}
+
+    coronavirus_province_mortality_rate:
+      friendly_name: Coronavirus Province Mortality Rate
+      icon_template: 'mdi:ticket-percent'
+      unit_of_measurement: '%'
+      value_template: >-
+        {% set confirmed = states('sensor.coronavirus_province_confirmed') | int %}
+        {% set deaths = states('sensor.coronavirus_province_deaths') | int %}
+        {{ (deaths / confirmed * 100) | round(2) }}
+
+    coronavirus_province_estimated:
+      friendly_name: Coronavirus Province Estimated
+      icon_template: 'mdi:emoticon-neutral-outline'
+      value_template: >-
+        {% set deaths = states('sensor.coronavirus_province_deaths') | int %}
+        {% set mortality = states('sensor.coronavirus_province_mortality_rate') | float %}
+        {% set doubling = states('sensor.coronavirus_time_doubling') | float %}
+        {% set ttl = states('sensor.coronavirus_time_until_death') | float %}
+
+        {% set ratio = 2**(ttl/doubling) / mortality * 100 %}
+        {% set estimate = (ratio * deaths) | round %}
+        {% set length = estimate | string | length %}
+        {% set divider = ('1' + '0' * (length - 2)) | int %}
+
+        {{ ((ratio * deaths / divider) | int) * divider }}
+    coronavirus_province_estimated_deaths:
+      friendly_name: Coronavirus Province Estimated Deaths
+      icon_template: 'mdi:emoticon-frown-outline'
+      value_template: >-
+        {% set estimated = states('sensor.coronavirus_province_estimated') | int %}
+        {% set mortality = states('sensor.coronavirus_province_mortality_rate') | float %}
+
+        {% if estimated > 0 or mortality > 0 %}
+          {{ (estimated * mortality / 100) | int }}
+        {% endif %}
+      attribute_templates:
+        could_die_within: >-
+          {{ states('sensor.coronavirus_time_until_death') | float }} days
+        formula: >-
+          2^({{ states('sensor.coronavirus_time_until_death') | float }} / {{ states('sensor.coronavirus_time_doubling') | float }}) / {{ states('sensor.coronavirus_province_mortality_rate') }} [2^(days_until_death / case_doubling_time) / world_mortality_rate]
+
+- platform: template
+  sensors:
+    coronavirus_roc_current:
+      friendly_name: Coronavirus RoC Current
+      icon_template: 'mdi:emoticon-neutral-outline'
+      value_template: >-
+        {% set country = states('sensor.coronavirus_country_current') | int%}
+        {% set province = states('sensor.coronavirus_province_current') | int%}
+        {% if country != None and province != None %}
+          {{ country - province }}
+        {% endif %}
+
+    coronavirus_roc_confirmed:
+      friendly_name: Coronavirus RoC Confirmed
+      icon_template: 'mdi:hospital-box'
+      value_template: >-
+        {% set country = state_attr('sensor.coronavirus_country_current', 'Confirmed') %}
+        {% set province = state_attr('sensor.coronavirus_province_current', 'Confirmed') %}
+        {% if country != None and province != None %}
+          {{ country - province }}
+        {% endif %}
+
+    coronavirus_roc_deaths:
+      friendly_name: Coronavirus RoC Deaths
+      icon_template: 'mdi:emoticon-cry-outline'
+      value_template: >-
+        {% set country = state_attr('sensor.coronavirus_country_current', 'Deaths') %}
+        {% set province = state_attr('sensor.coronavirus_province_current', 'Deaths') %}
+        {% if country != None and province != None %}
+          {{ country - province }}
+        {% endif %}
+
+    coronavirus_roc_recovered:
+      friendly_name: Coronavirus RoC Recovered
+      icon_template: 'mdi:emoticon-happy-outline'
+      value_template: >-
+        {% set country = state_attr('sensor.coronavirus_country_current', 'Recovered') %}
+        {% set province = state_attr('sensor.coronavirus_province_current', 'Recovered') %}
+        {% if country != None and province != None %}
+          {{ country - province }}
+        {% endif %}
+
+    coronavirus_roc_mortality_rate:
+      friendly_name: Coronavirus RoC Mortality Rate
+      icon_template: 'mdi:ticket-percent'
+      unit_of_measurement: '%'
+      value_template: >-
+        {% set confirmed = states('sensor.coronavirus_roc_confirmed') | int %}
+        {% set deaths = states('sensor.coronavirus_roc_deaths') | int %}
+        {{ (deaths / confirmed * 100) | round(2) }}
+
+    coronavirus_roc_estimated:
+      friendly_name: Coronavirus RoC Estimated
+      icon_template: 'mdi:emoticon-neutral-outline'
+      value_template: >-
+        {% set deaths = states('sensor.coronavirus_roc_deaths') | int %}
+        {% set mortality = states('sensor.coronavirus_roc_mortality_rate') | float %}
+        {% set doubling = states('sensor.coronavirus_time_doubling') | float %}
+        {% set ttl = states('sensor.coronavirus_time_until_death') | float %}
+
+        {% set ratio = 2**(ttl/doubling) / mortality * 100 %}
+        {% set estimate = (ratio * deaths) | round %}
+        {% set length = estimate | string | length %}
+        {% set divider = ('1' + '0' * (length - 2)) | int %}
+
+        {{ ((ratio * deaths / divider) | round) * divider }}
+
+    coronavirus_roc_estimated_deaths:
+      friendly_name: Coronavirus RoC Estimated Deaths
+      icon_template: 'mdi:emoticon-frown-outline'
+      value_template: >-
+        {% set confirmed = states('sensor.coronavirus_roc_estimated') | int %}
+        {% set mortality = states('sensor.coronavirus_roc_mortality_rate') | float %}
+
+        {% if confirmed > 0 or mortality > 0 %}
+          {{ (confirmed * mortality / 100) | int }}
+        {% endif %}
+      attribute_templates:
+        could_die_within: >-
+          {{ states('sensor.coronavirus_time_until_death') | float }} days
+        formula: >-
+          2^({{ states('sensor.coronavirus_time_until_death') | float }} / {{ states('sensor.coronavirus_time_doubling') | float }}) / {{ states('sensor.coronavirus_roc_mortality_rate') }} [2^(days_until_death / case_doubling_time) / world_mortality_rate]
+
+- platform: template
+  sensors:
+    coronavirus_world_confirmed:
+      friendly_name: Coronavirus World Confirmed
+      icon_template: 'mdi:hospital-box'
+      value_template: >-
+        {% set val = state_attr('sensor.coronavirus_world_current', 'Confirmed') %}
+        {% if val != None %}
+          {{ val }}
+        {% endif %}
+
+    coronavirus_world_deaths:
+      friendly_name: Coronavirus World Deaths
+      icon_template: 'mdi:emoticon-cry-outline'
+      value_template: >-
+        {% set val = state_attr('sensor.coronavirus_world_current', 'Deaths') %}
+        {% if val != None %}
+          {{ val }}
+        {% endif %}
+
+    coronavirus_world_recovered:
+      friendly_name: Coronavirus World Recovered
+      icon_template: 'mdi:emoticon-happy-outline'
+      value_template: >-
+        {% set val = state_attr('sensor.coronavirus_world_current', 'Recovered') %}
+        {% if val != None %}
+          {{ val }}
+        {% endif %}
+
+    coronavirus_world_mortality_rate:
+      friendly_name: Coronavirus World Mortality Rate
+      icon_template: 'mdi:ticket-percent'
+      unit_of_measurement: '%'
+      value_template: >-
+        {% set confirmed = states('sensor.coronavirus_world_confirmed') | int %}
+        {% set deaths = states('sensor.coronavirus_world_deaths') | int %}
+        {{ (deaths / confirmed * 100) | round(2) }}
+
+    coronavirus_world_estimated:
+      friendly_name: Coronavirus World Estimated
+      icon_template: 'mdi:emoticon-neutral-outline'
+      value_template: >-
+        {% set deaths = states('sensor.coronavirus_world_deaths') | int %}
+        {% set mortality = states('sensor.coronavirus_world_mortality_rate') | float %}
+        {% set doubling = states('sensor.coronavirus_time_doubling') | float %}
+        {% set ttl = states('sensor.coronavirus_time_until_death') | float %}
+
+        {% set ratio = 2**(ttl/doubling) / mortality * 100 %}
+        {% set estimate = (ratio * deaths) | round %}
+        {% set length = estimate | string | length %}
+        {% set divider = ('1' + '0' * (length - 2)) | int %}
+
+        {{ ((ratio * deaths / divider) | round) * divider }}
+
+    coronavirus_world_estimated_deaths:
+      friendly_name: Coronavirus World Estimated Deaths
+      icon_template: 'mdi:emoticon-frown-outline'
+      value_template: >-
+        {% set estimated = states('sensor.coronavirus_world_estimated') | int %}
+        {% set mortality = states('sensor.coronavirus_world_mortality_rate') | float %}
+
+        {% if estimated > 0 or mortality > 0 %}
+          {{ (estimated * mortality / 100) | int }}
+        {% endif %}
+      attribute_templates:
+        could_die_within: >-
+          {{ states('sensor.coronavirus_time_until_death') | float }} days
+        formula: >-
+          2^({{ states('sensor.coronavirus_time_until_death') | float }} / {{ states('sensor.coronavirus_time_doubling') | float }}) / {{ states('sensor.coronavirus_world_mortality_rate') }} [2^(days_until_death / case_doubling_time) / world_mortality_rate]
+
+
+#
+# Doomsday Clock
+#
+# @link https://github.com/renemarc/home-assistant-doomsday-clock
+# @link https://thebulletin.org/doomsday-dashboard
+#
+- platform: doomsday_clock
+  scan_interval: 86400
