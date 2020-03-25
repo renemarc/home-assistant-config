@@ -1,0 +1,7 @@
+- platform: local_file
+  name: Front Still
+  file_path: /config/www/cameras/camera.front.jpg
+
+- platform: local_file
+  name: Front Animated
+  file_path: /config/www/cameras/camera.front.gif

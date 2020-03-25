@@ -1,0 +1,39 @@
+#
+# Webhook: IFTTT
+#
+# Blink is connected with IFTTT.com which sends a payload to Home Assistant
+# whenevermotion is detected. This is faster than doing server-side polling, but
+# it is not 100% garanteed.
+#
+# Blink payload format:
+#   {
+#       "action": "call_service",
+#       "service": "input_boolean.turn_on",
+#       "entity_id": "input_boolean.motion_front",
+#       "name": "{{CameraName}}",
+#       "time": " {{CreatedAt}}",
+#       "token": "!secret ifttt_token"
+#   }
+#
+# @link https://ifttt.com/applets/111311843d/edit
+
+- id: webhook_ifttt
+  alias: Webhook IFTTT
+
+  trigger:
+    platform: event
+    event_type: ifttt_webhook_received
+    event_data:
+      action: call_service
+      token: !secret ifttt_token
+
+  action:
+    - service_template: '{{ trigger.event.data.service }}'
+      data_template:
+        entity_id: '{{ trigger.event.data.entity_id }}'
+
+    - service: system_log.write
+      data_template:
+        level: info
+        logger: homeassistant.components.ifttt
+        message: "Received request to {{ trigger.event.data.service }} for {{ trigger.event.data.entity_id }} with name {{ trigger.event.data.name }} at {{ trigger.event.data.time }}."

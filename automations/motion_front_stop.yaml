@@ -1,0 +1,22 @@
+#
+# Reset motion sensor
+#
+# Blink retrigger time currently is set to 10s (minimum possible) in the app.
+#
+# @subscribe input_boolean.motion_front
+# @publish input_boolean.motion_front
+#
+- id: motion_front_stop
+  alias: Motion Front STOP
+  trigger:
+    - platform: state
+      entity_id: input_boolean.motion_front
+      to: 'on'
+      for:
+        seconds: 60
+
+  action:
+    # Disable motion alert.
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.motion_front

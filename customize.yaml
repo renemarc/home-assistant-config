@@ -3,12 +3,12 @@
 #
 automation.daily_greeting:
   icon: mdi:human-greeting
-automation.humidity_notify:
-  icon: mdi:water-percent
 automation.front_door_notify:
   icon: mdi:door-open
 automation.go_to_sleep:
   icon: mdi:weather-night
+automation.humidity_notify:
+  icon: mdi:water-percent
 automation.theme_auto:
   icon: mdi:theme-light-dark
 automation.power_supply_notify:

@@ -11,14 +11,16 @@ include:
   domains:
     - device_tracker
   entities:
-    - binary_sensor.front_door_sensor
     - binary_sensor.bedroom_multisensor
+    - binary_sensor.front_door_sensor
     - binary_sensor.kitchen_leak_sensor
     - binary_sensor.lounge_multisensor
+    - binary_sensor.motion_front
     - binary_sensor.washroom_leak_sensor
     - binary_sensor.washroom_multisensor
 
     - input_boolean.low_mode
+    - input_boolean.motion_front
     - input_boolean.nap_mode
     - input_boolean.night_mode
     - input_boolean.quiet_mode
@@ -100,6 +102,7 @@ include:
     - sensor.speedtest_upload
 
     - sensor.door_status
+    - sensor.front_camera_signal_strength
     - sensor.leak_status
     - sensor.motion_status
     - sensor.smoke_status

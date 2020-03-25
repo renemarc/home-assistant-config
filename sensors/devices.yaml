@@ -1,4 +1,45 @@
 #
+# Blink XT2 cameras signal strength monitoring
+#
+# This device/bridge reports its RSSI in dBm. The conversion here to percentage
+# is highly approximative.
+#
+# @link https://www.metageek.com/training/resources/wifi-signal-strength-basics.html
+# @link https://www.speedguide.net/faq/how-does-rssi-dbm-relate-to-signal-quality-percent-439
+# @link https://www.home-assistant.io/integrations/blink/
+#
+- platform: template
+  sensors:
+    front_camera_signal_strength:
+      friendly_name: Front Camera Signal Strength
+      unit_of_measurement: '%'
+      value_template: >-
+        {% set dbm = state_attr('camera.front', 'wifi_strength') %}
+
+        {% set scale = (2 * (dbm + 100)) | round %}
+        {% if scale > 100 %}
+          {% set scale = 100 %}
+        {% elif scale < 0 %}
+          {% set scale = 0 %}
+        {% endif %}
+
+        {{ scale }}
+
+      icon_template: >-
+        {% set dbm = state_attr('camera.front', 'wifi_strength') %}
+
+        {% if dbm >= -55 %}
+          mdi:signal-cellular-3
+        {% elif dbm >= -75 %}
+          mdi:signal-cellular-2
+        {% elif dbm >= -85 %}
+          mdi:signal-cellular-1
+        {% else %}
+          mdi:signal-cellular-outline
+        {% endif %}
+
+
+#
 # UniFi Security Gateway
 #
 # @see `secrets-dummy.yaml`

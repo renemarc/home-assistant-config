@@ -250,6 +250,8 @@ views:
           show_name: false
           show_state: false
 
+
+
     cards:
       - type: "custom:layout-card"
         layout: vertical
@@ -465,6 +467,131 @@ views:
                     type: "custom:secondaryinfo-entity-row"
                     secondary_info: >-
                       <strong style="color:var(--primary-text-color);">[[ sensor.home_to_market_3_hour ]]</strong>
+
+              #
+              # Outdoor cameras
+              #
+              - type: picture-elements
+                image: /local/cameras/camera.front.jpg
+                elements:
+                  - type: image
+                    entity: camera.front_animated
+                    camera_image: camera.front_still
+                    style:
+                      left: 50%
+                      top: 50%
+                      width: 100%
+                      height: 100%
+
+                  - type: state-label
+                    entity: input_datetime.front_motion_last_detected
+                    style:
+                      top: 0
+                      left: 0
+                      padding-left: 24px
+                      transform: initial
+                      color: '#ffffff'
+                      font-size: small
+                      border-radius: 0 0 15px
+                      background-color: 'rgba(0, 0, 0, 0.3)'
+                    tap_action:
+                      action: more-info
+
+                  - type: state-icon
+                    icon: mdi:motion-sensor
+                    entity: binary_sensor.motion_front
+                    style:
+                      top: -5px
+                      left: -3px
+                      transform: initial
+                      padding: 0
+                      margin: 0
+                      '--paper-item-icon-color': rgba(255, 255, 255, 0.3)
+                      '--paper-item-icon-active-color': rgba(255, 0, 0, 0.9)
+                    tap_action:
+                      action: more-info
+
+                  - type: state-label
+                    entity: sensor.camera_front_temperature
+                    style:
+                      top: 0
+                      right: 0
+                      transform: initial
+                      background-color: 'rgba(0, 0, 0, 0.3)'
+                      color: '#ffffff'
+                      height: 100%
+                      font-size: small
+                    tap_action:
+                      action: more-info
+
+                  - type: state-icon
+                    entity: sensor.front_camera_signal_strength
+                    style:
+                      top: 16px
+                      right: 2px
+                      transform: initial
+                      color: '#ffffff'
+                      '--paper-item-icon-color': white
+                    tap_action:
+                      action: more-info
+
+                  - type: conditional
+                    conditions:
+                      - entity: alarm_control_panel.blink_home
+                        state_not: 'disarmed'
+                    elements:
+                      - type: state-icon
+                        icon: mdi:shield-home
+                        entity: alarm_control_panel.blink_home
+                        style: &alarm_control_panel_blink_home_style
+                          top: 46px
+                          right: 2px
+                          transform: initial
+                          padding: 0
+                          margin: 0
+                          '--alarm-color-disarmed': rgba(255, 255, 255, 0.5)
+                          '--alarm-color-armed': rgba(255, 255, 255, 1.0)
+                        tap_action:
+                          action: more-info
+
+                  - type: conditional
+                    conditions:
+                      - entity: alarm_control_panel.blink_home
+                        state: 'disarmed'
+                    elements:
+                      - type: state-icon
+                        icon: mdi:shield-off-outline
+                        entity: alarm_control_panel.blink_home
+                        style: *alarm_control_panel_blink_home_style
+                        tap_action:
+                          action: more-info
+                  - type: icon
+                    icon: mdi:play-circle
+                    title: "Tap: Play MP4 video in another window"
+                    style:
+                      bottom: 40px
+                      right: 10px
+                      transform: initial
+                      color: '#ffffff'
+                    tap_action:
+                      action: url
+                      url_path: /local/cameras/camera.front.mp4
+
+                  - type: icon
+                    icon: mdi:refresh-circle
+                    title: "Tap: Refresh still image"
+                    entity: script.blink_snapshot
+                    tap_action:
+                      action: call-service
+                      service: script.blink_snapshot
+                      service_data:
+                        name: Front
+                        entity_id: camera.front
+                    style:
+                      bottom: 8px
+                      right: 10px
+                      color: '#ffffff'
+                      transform: initial
 
               #
               # Security status
@@ -2044,6 +2171,8 @@ views:
                   - automation.cct_lifx
                   - automation.cct_limitlessled
                   - automation.homekit_start
+                  - automation.motion_front_start
+                  - automation.motion_front_stop
                   - automation.scene_daylight
                   - automation.scene_gaming
                   - automation.scene_romantic
@@ -2052,6 +2181,7 @@ views:
                   - automation.wake_up
                   - automation.wallpaper_create
                   - automation.wallpaper_update
+                  - automation.webhook_ifttt
 
               #
               # Modes automations

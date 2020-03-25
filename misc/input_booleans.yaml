@@ -63,3 +63,7 @@ tamper_detected:
 windows_open:
   name: Windows are open
   icon: mdi:window-open
+
+motion_front:
+  name: Front Motion
+  icon: mdi:motion-sensor

@@ -1,0 +1,13 @@
+#
+# Input datetimes
+#
+# @link https://www.home-assistant.io/integrations/input_datetime/
+#
+
+#
+# Motion sensors
+#
+front_motion_last_detected:
+  name: Front Motion Last Detected
+  has_date: true
+  has_time: true

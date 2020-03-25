@@ -6,6 +6,14 @@
 
 
 #
+# Camera video handling
+#
+download_blink: 'python3 /config/python_scripts/blink_downloader.py --camera {{name}} --destination {{destination}} --output {{output}}'
+video_to_still: "ffmpeg -hide_banner -loglevel panic -y -sseof -00:00:01 -i {{input}} -vframes 1 {{output}}"
+video_to_gif: "ffmpeg -hide_banner -loglevel panic -y -i {{input}} -vf 'fps=3,scale=640:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse' -loop 0 {{output}}"
+
+
+#
 # Fully Kiosk Browser brightness
 #
 # @link https://www.ozerov.de/fully-kiosk-browser/#rest

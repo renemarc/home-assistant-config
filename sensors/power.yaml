@@ -45,6 +45,42 @@
 
 
 #
+# Blink XT2 cameras battery monitoring
+#
+# This device only has both a voltage indicator and a battery status. Since I
+# do not know the minimum operating voltage, let's simply rely on the 'ok'
+# status.
+#
+# @link https://support.blinkforhome.com/en_us/blink-technical-specifications-By2VzxmUB
+# @link https://www.home-assistant.io/integrations/blink/
+#
+- platform: template
+  sensors:
+    front_camera_battery:
+      friendly_name: Front Camera Battery
+      unit_of_measurement: '%'
+      value_template: >-
+        {% set battery = state_attr('camera.front', 'battery') %}
+
+        {% if battery == 'ok' %}
+          100
+        {% else %}
+          10
+        {% endif %}
+
+      icon_template: >-
+        {% set battery = state_attr('camera.front', 'battery') %}
+
+        {% if battery == 'None' %}
+          mdi:battery-unknown
+        {% elif battery == 'ok' %}
+          mdi:battery
+        {% else %}
+          mdi:battery-alert
+        {% endif %}
+
+
+#
 # Fully Browser kiosk battery monitoring
 #
 # Licensed application running in kiosk mode on an Acer B3-A40 Android tablet.

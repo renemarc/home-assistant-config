@@ -1,0 +1,38 @@
+#
+# Fetch video and generate images when motion has been detected in front
+#
+# @subscribe input_boolean.motion_front
+#
+- id: motion_front_start
+  alias: Motion Front START
+  trigger:
+    - platform: state
+      entity_id: input_boolean.motion_front
+      to: 'on'
+
+  action:
+    - service: input_datetime.set_datetime
+      data_template:
+        entity_id: input_datetime.front_motion_last_detected
+        time: '{{ (as_timestamp(now()) | timestamp_custom("%H:%M:%S", true)) }}'
+        date: '{{ (as_timestamp(now()) | timestamp_custom("%Y-%m-%d", true)) }}'
+
+    # - service: blink.save_video
+    #   data_template:
+    #     name: "Front"
+    #     filename: "/config/www/cameras/camera.front.mp4"
+    - service: shell_command.download_blink
+      data_template:
+        name: "Front"
+        destination: "/config/www/cameras"
+        output: "camera.front"
+
+    - service: shell_command.video_to_still
+      data_template:
+        input: "/config/www/cameras/camera.front.mp4"
+        output: "/config/www/cameras/camera.front.jpg"
+
+    - service: shell_command.video_to_gif
+      data_template:
+        input: "/config/www/cameras/camera.front.mp4"
+        output: "/config/www/cameras/camera.front.gif"

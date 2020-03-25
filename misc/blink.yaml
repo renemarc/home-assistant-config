@@ -1,0 +1,12 @@
+#
+# Blink camera and security systems
+#
+# @link https://www.home-assistant.io/integrations/blink/
+#
+
+username: !secret blink_username
+password: !secret blink_password
+sensors:
+  monitored_conditions:
+    - temperature
+    - wifi_strength

@@ -1,0 +1,22 @@
+# https://community.home-assistant.io/t/tap-action-script-variable/124023/6
+
+alias: Blink Snapshot
+sequence:
+
+  - service: blink.trigger_camera
+    data_template:
+      name: '{{ name }}'
+
+  - delay: 00:00:15
+
+  - service: blink.blink_update
+
+  - service: camera.snapshot
+    data_template:
+      entity_id: '{{ entity_id }}'
+      filename: '/config/www/cameras/{{ entity_id }}.jpg'
+
+  # - service: camera.save_video
+  #   data_template:
+  #     name: '{{ name }}'
+  #     filename: '/config/www/cameras/{{ entity_id }}.mp4'

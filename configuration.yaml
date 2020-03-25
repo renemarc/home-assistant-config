@@ -15,6 +15,14 @@ binary_sensor: !include misc/binary_sensors.yaml
 
 
 #
+# Blink camera and security systems
+#
+# @link https://www.home-assistant.io/integrations/blink/
+#
+blink: !include misc/blink.yaml
+
+
+#
 # Brother Printer
 #
 # Reads current data from your local Brother printer.
@@ -179,6 +187,7 @@ homeassistant:
   customize: !include customize.yaml
   whitelist_external_dirs:
     - !secret homeassistant_whitelist_config
+    - !secret homeassistant_whitelist_share
 
 
 #
@@ -207,8 +216,8 @@ http:
 #
 # @link https://home-assistant.io/components/ifttt/
 #
-# ifttt:
-#   key: !secret ifttt_key
+ifttt:
+  key: !secret ifttt_key
 
 
 #
@@ -217,6 +226,14 @@ http:
 # @link https://home-assistant.io/components/input_boolean/
 #
 input_boolean: !include misc/input_booleans.yaml
+
+
+#
+# Input datetimes
+#
+# @link https://www.home-assistant.io/integrations/input_datetime/
+#
+input_datetime: !include misc/input_datetimes.yaml
 
 
 #
