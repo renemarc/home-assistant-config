@@ -979,7 +979,7 @@
         {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
           ⛅
         {% else %}
-          unknown
+          ❓
         {% endif %}
 
     weather_emoji_1:
@@ -1006,7 +1006,7 @@
         {% elif icon == 'partly-cloudy-day' or icon == 'partly-cloudy-night' %}
           ⛅
         {% else %}
-          unknown
+          ❓
         {% endif %}
 
     weather_icon_friendly:

@@ -1,7 +1,18 @@
-- platform: local_file
-  name: Front Still
-  file_path: /config/www/cameras/camera.front.jpg
-
+#
+# Blink placehoder cameras
+#
+# Since Blick cameras do not provide accessible streams, still and aniated
+# images are generated from the latest saved video and provided as local
+# cameras.
+#
+# @see /automations/motion_front_start.yaml
+#
+# @link https://www.home-assistant.io/integrations/blink/
+#
 - platform: local_file
   name: Front Animated
-  file_path: /config/www/cameras/camera.front.gif
+  file_path: !secret camera_front_animated
+
+- platform: local_file
+  name: Front Still
+  file_path: !secret camera_front_still

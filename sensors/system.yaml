@@ -289,15 +289,24 @@
 # because it's quite unlikely that cores change ...often unless one plays with
 # the VM's settings all the time.
 #
+# The actual command is kept in the secrets.yaml file to allow for
+# platform-specific variations.
+#
+# Command for Hassio:
+#   `grep 'model name' /proc/cpuinfo | wc -l`
+#
+# Command under macOS:
+#   `sysctl -n hw.ncpu`
+#
 # @see /customize.yaml
+# @see /secrets.yaml
 #
 # @link https://home-assistant.io/components/sensor.command_line/
 #
 - platform: command_line
   name: CPU Cores
   scan_interval: 86400
-  command: >-
-    grep 'model name' /proc/cpuinfo | wc -l
+  command: !secret cpu_cores_command
 
 
 #
@@ -373,12 +382,20 @@
 # If git were available, the following command would be all we need:
 #   `git -C /config/.git symbolic-ref --short HEAD`
 #
+# The command issued here is:
+#   'cat .git/HEAD | cut -d \  -f 2 | cut -d / -f 3,4,5'
+#
+# The above is kept in the secrets.yaml file to allow for platform-specific
+# variations.
+#
 # source:
 #   https://stackoverflow.com/a/33133769
 #
+# @see /secrets-dummy.yaml
+#
 - platform: command_line
   name: Git branch
-  command: 'cat /config/.git/HEAD | cut -d \  -f 2 | cut -d / -f 3,4,5'
+  command: !secret git_branch_command
 
 
 #

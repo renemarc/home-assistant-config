@@ -17,16 +17,16 @@
         seconds: 30
 
     - service: camera.snapshot
-      data:
+      data_template:
         entity_id: camera.astronomy_picture_of_the_day_proxy
-        filename: '/config/www/cameras/astronomy_picture_of_the_day_proxy.jpg'
+        filename: "{{ states('sensor.camera_folder') }}/astronomy_picture_of_the_day_proxy.jpg"
 
     - service: camera.snapshot
-      data:
+      data_template:
         entity_id: camera.bing_wallpaper_proxy
-        filename: '/config/www/cameras/bing_wallpaper_proxy.jpg'
+        filename: "{{ states('sensor.camera_folder') }}/bing_wallpaper_proxy.jpg"
 
     - service: camera.snapshot
-      data:
+      data_template:
         entity_id: camera.noaa_geocolor_proxy
-        filename: '/config/www/cameras/noaa_geocolor_proxy.jpg'
+        filename: "{{ states('sensor.camera_folder') }}/noaa_geocolor_proxy.jpg"

@@ -20,4 +20,4 @@
     - service: camera.snapshot
       data_template:
         entity_id: '{{ trigger.entity_id }}'
-        filename: '/config/www/cameras/{{ trigger.entity_id | replace("camera.", "") }}.jpg'
+        filename: "{{ states('sensor.camera_folder') }}/{{ trigger.entity_id | replace('camera.', '') }}.jpg"

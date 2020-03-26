@@ -591,5 +591,5 @@
         {% elif humidity >= 0 %}
           🏜️
         {% else %}
-          unknown
+          ❓
         {% endif %}

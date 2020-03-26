@@ -1,4 +1,16 @@
 #
+# Camera folder
+#
+# Since file paths can varybetween systems, the base path for public camera
+# images is saved in the secrets file.
+#
+- platform: template
+  sensors:
+    camera_folder:
+      friendly_name: Camera Folder
+      value_template: !secret camera_folder
+
+#
 # Bing Wallpaper
 #
 # Used for wallpaper cameras. The image changes once per day, but we set scan

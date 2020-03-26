@@ -136,30 +136,30 @@
 #
 - platform: local_file
   name: Wallpaper 1
-  file_path: /config/www/images/wallpaper-1.jpg
+  file_path: !secret wallpaper_1
   scan_interval: 21600
 
 - platform: local_file
   name: Wallpaper 2
-  file_path: /config/www/images/wallpaper-2.jpg
+  file_path: !secret wallpaper_2
   scan_interval: 21600
 
 - platform: local_file
   name: Wallpaper Automations
-  file_path: /config/www/images/wallpaper-automations.jpg
+  file_path: !secret wallpaper_automations
   scan_interval: 21600
 
 - platform: local_file
   name: Wallpaper Configuration
-  file_path: /config/www/images/wallpaper-configuration.jpg
+  file_path: !secret wallpaper_configuration
   scan_interval: 21600
 
 - platform: local_file
   name: Wallpaper Hardware
-  file_path: /config/www/images/wallpaper-hardware.jpg
+  file_path: !secret wallpaper_hardware
   scan_interval: 21600
 
 - platform: local_file
   name: Wallpaper Switchboard
-  file_path: /config/www/images/wallpaper-switchboard.jpg
+  file_path: !secret wallpaper_switchboard
   scan_interval: 21600

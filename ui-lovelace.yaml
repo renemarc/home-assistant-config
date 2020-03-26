@@ -13,92 +13,92 @@
 #
 resources:
   # Auto entities
-  - url: /hacsfiles/lovelace-auto-entities/auto-entities.js
+  - url: /local/community/lovelace-auto-entities/auto-entities.js
     type: module
     repo: https://github.com/thomasloven/lovelace-auto-entities
 
   # Bar card
-  - url: /hacsfiles/bar-card/bar-card.js
+  - url: /local/community/bar-card/bar-card.js
     type: module
     repo: https://github.com/custom-cards/bar-card
 
   # Button card
-  - url: /hacsfiles/button-card/button-card.js
+  - url: /local/community/button-card/button-card.js
     type: module
     repo: https://github.com/custom-cards/button-card
 
   # Compact custom header
-  - url: /hacsfiles/custom-header/custom-header.js
+  - url: /local/community/custom-header/custom-header.js
     type: module
     repo: https://github.com/maykar/custom-header
 
   # Card mod
-  - url: /hacsfiles/lovelace-card-mod/card-mod.js
+  - url: /local/community/lovelace-card-mod/card-mod.js
     type: module
     repo: https://github.com/thomasloven/lovelace-card-mod
 
   # Card tools
-  - url: /hacsfiles/lovelace-card-tools/card-tools.js
+  - url: /local/community/lovelace-card-tools/card-tools.js
     type: module
     repo: https://github.com/thomasloven/lovelace-card-tools
 
   # Dummy entity row
-  - url: /hacsfiles/lovelace-dummy-entity-row/dummy-entity-row.js
+  - url: /local/community/lovelace-dummy-entity-row/dummy-entity-row.js
     type: module
     repo: https://github.com/thomasloven/lovelace-dummy-entity-row
 
   # Favicon counter: show a notification count badge.
-  - url: /hacsfiles/favicon-counter/favicon-counter.js
+  - url: /local/community/favicon-counter/favicon-counter.js
     type: module
     repo: https://github.com/custom-cards/favicon-counter
 
   # Fold entity row
-  - url: /hacsfiles/lovelace-fold-entity-row/fold-entity-row.js
+  - url: /local/community/lovelace-fold-entity-row/fold-entity-row.js
     type: module
     repo: https://github.com/thomasloven/lovelace-fold-entity-row
 
   # GitHub entity row
-  - url: /hacsfiles/lovelace-github-entity-row/github-entity-row.js
+  - url: /local/community/lovelace-github-entity-row/github-entity-row.js
     type: module
     repo: https://github.com/benct/lovelace-github-entity-row
 
   # Layout card
-  - url:  /hacsfiles/lovelace-layout-card/layout-card.js
+  - url:  /local/community/lovelace-layout-card/layout-card.js
     type: module
     repo: https://github.com/thomasloven/lovelace-layout-card
 
   # Mini graph card
-  - url: /hacsfiles/mini-graph-card/mini-graph-card-bundle.js
+  - url: /local/community/mini-graph-card/mini-graph-card-bundle.js
     type: module
     repo: https://github.com/kalkih/mini-graph-card
 
   # Multiple entity row: Show multiple entity states and attributes on entity rows.
-  # - url: /hacsfiles/lovelace-multiple-entity-row/multiple-entity-row.js
+  # - url: /local/community/lovelace-multiple-entity-row/multiple-entity-row.js
   #   type: module
   #   repo: https://github.com/benct/lovelace-multiple-entity-row
 
   # Restriction Card
-  - url: /hacsfiles/restriction-card/restriction-card.js
+  - url: /local/community/restriction-card/restriction-card.js
     type: module
     repo: https://github.com/iantrich/restriction-card
 
   # Secondary info entity row
-  - url: /hacsfiles/secondaryinfo-entity-row/secondaryinfo-entity-row.js
+  - url: /local/community/secondaryinfo-entity-row/secondaryinfo-entity-row.js
     type: module
     repo: https://github.com/custom-cards/secondaryinfo-entity-row
 
   # Slider entity row
-  - url: /hacsfiles/lovelace-slider-entity-row/slider-entity-row.js
+  - url: /local/community/lovelace-slider-entity-row/slider-entity-row.js
     type: module
     repo: https://github.com/thomasloven/lovelace-slider-entity-row
 
   # Swipe card
-  - url: /hacsfiles/swipe-card/swipe-card.js
+  - url: /local/community/swipe-card/swipe-card.js
     type: module
     repo: https://github.com/bramkragten/custom-ui/tree/master/swipe-card
 
   # Vertical stack in card
-  - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+  - url: /local/community/vertical-stack-in-card/vertical-stack-in-card.js
     type: module
     repo: https://github.com/custom-cards/vertical-stack-in-card
 
@@ -180,7 +180,7 @@ styles:
     center / cover no-repeat url("/local/images/wallpaper-automations.jpg") fixed
 
   background-climate: &background-climate >-
-    center / cover no-repeat url("/local/cameras/astronomy_picture_of_the_day_proxy.jpg?jscache={{ sensor.time_date }}") fixed
+    center / cover no-repeat url("/local/cameras/astronomy_picture_of_the_day_proxy.jpg?jscache=var(--jscache)") fixed
 
   background-configuration: &background-configuration >-
     center / cover no-repeat url("/local/images/wallpaper-configuration.jpg") fixed
@@ -189,13 +189,13 @@ styles:
     center / cover no-repeat url("/local/images/wallpaper-hardware.jpg") fixed
 
   background-main: &background-main >-
-    center / cover no-repeat url("/local/cameras/bing_wallpaper_proxy.jpg?jscache={{ sensor.time_date }}") fixed
+    center / cover no-repeat url("/local/cameras/bing_wallpaper_proxy.jpg?jscache=var(--jscache)") fixed
 
   background-switchboard: &background-switchboard >-
     center / cover no-repeat url("/local/images/wallpaper-switchboard.jpg") fixed
 
   background-weather: &background-weather >-
-    center / cover no-repeat url("/local/cameras/noaa_geocolor_proxy.jpg?jscache={{ sensor.time_date }}") fixed
+    center / cover no-repeat url("/local/cameras/noaa_geocolor_proxy.jpg?jscache=var(--jscache)") fixed
 
 
 #
@@ -298,6 +298,8 @@ views:
                         name: Awaken
                         styles: *button-card-styles
                         state: *button-card-states
+                        tap_action:
+                          action: toggle
 
                       - entity: input_boolean.nap_mode
                         type: "custom:button-card"
@@ -472,7 +474,7 @@ views:
               # Outdoor cameras
               #
               - type: picture-elements
-                image: /local/cameras/camera.front.jpg
+                image: /local/cameras/front.jpg
                 elements:
                   - type: image
                     entity: camera.front_animated
@@ -575,7 +577,7 @@ views:
                       color: '#ffffff'
                     tap_action:
                       action: url
-                      url_path: /local/cameras/camera.front.mp4
+                      url_path: /local/cameras/front.mp4
 
                   - type: icon
                     icon: mdi:refresh-circle
@@ -1851,7 +1853,7 @@ views:
                       <a href="[[ binary_sensor.updater.attributes.release_notes ]]" target="_new" style="color:var(--secondary-text-color);">Release notes</a>
                       </strong></small>
 
-                  - entity: sensor.local_ip
+                  - entity: sensor.local_ip_address
                     name: Local IP
                   - sensor.uptime_friendly
                   - sensor.uptime_host

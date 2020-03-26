@@ -14,9 +14,9 @@ sequence:
   - service: camera.snapshot
     data_template:
       entity_id: '{{ entity_id }}'
-      filename: '/config/www/cameras/{{ entity_id }}.jpg'
+      filename: "{{ states('sensor.camera_folder') }}/{{ entity_id | replace('camera.', '') }}.jpg"
 
   # - service: camera.save_video
   #   data_template:
   #     name: '{{ name }}'
-  #     filename: '/config/www/cameras/{{ entity_id }}.mp4'
+  #     filename: "{{ states('sensor.camera_folder') }}/{{ entity_id | replace('camera.', '') }}.mp4"
