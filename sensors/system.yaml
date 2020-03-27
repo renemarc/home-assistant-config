@@ -12,8 +12,6 @@
       arg: /home
     - type: disk_free
       arg: /home
-    # - type: ipv4_address
-    #   arg: eth0
     - type: load_1m
     - type: load_5m
     - type: load_15m
@@ -95,6 +93,7 @@
         {% else %}
           unknown
         {% endif %}
+
 
 #
 # RAM space
@@ -257,6 +256,7 @@
           unknown
         {% endif %}
 
+
 #
 # CPU average load
 #
@@ -292,10 +292,10 @@
 # The actual command is kept in the secrets.yaml file to allow for
 # platform-specific variations.
 #
-# Command for Hassio:
+# On Hassio and others:
 #   `grep 'model name' /proc/cpuinfo | wc -l`
 #
-# Command under macOS:
+# On macOS:
 #   `sysctl -n hw.ncpu`
 #
 # @see /customize.yaml
@@ -306,14 +306,27 @@
 - platform: command_line
   name: CPU Cores
   scan_interval: 86400
-  command: !secret cpu_cores_command
+  command: >-
+    if [ -e /proc/cpuinfo ]; then
+      grep 'model name' /proc/cpuinfo | wc -l
+    elif [ $(uname -s) == 'Darwin' ]; then
+      sysctl -n hw.activecpu
+    fi
 
 
 #
 # CPU temperature
 #
+# On Hassio, Raspberry Pi and others:
+#   `cat /sys/class/thermal/thermal_zone0/temp`
+#
+# On systems with lm_sensors installed:
+#   `/usr/bin/sensors | grep "Core 0" | cut -c16-19`
+#
+# On macOS (osx-cpu-temp available via Homebrew):
+#   `osx-cpu-temp -C`
+#
 # @see /appdaemon/dashboards/Status.dash
-# @see /groups/status.yaml
 #
 # @link https://community.home-assistant.io/t/displaying-cpu-temperature-within-home-assistant/8641
 # @link https://home-assistant.io/components/sensor.command_line/
@@ -323,12 +336,20 @@
   scan_interval: 60
   unit_of_measurement: °C
   command: >-
-    if [ -e /sys/class/thermal/thermal_zone0/temp ]
-      then cat /sys/class/thermal/thermal_zone0/temp
+    if [ -e /sys/class/thermal/thermal_zone0/temp ]; then
+      cat /sys/class/thermal/thermal_zone0/temp
+    elif [ -x /usr/bin/sensors ]; then
+      /usr/bin/sensors | grep "Core 0" | cut -c16-19
+    elif command -v osx-cpu-temp &> /dev/null; then
+      osx-cpu-temp -C
     fi
   value_template: >-
     {% if value != '' %}
-      {{ value | multiply(0.001) | round }}
+      {% set value = value | regex_replace('[^-0-9\.]', '') | float %}
+      {% if value >= 200 %}
+        {% set value = value | multiply(0.001) %}
+      {% endif %}
+      {{ value | round }}
     {% else %}
       unknown
     {% endif %}
@@ -376,26 +397,22 @@
 # Returns the selected local git branch. This command supports up to 3 levels
 # of depth: `group/name/extra`.
 #
-# The command `git` is not installed inside the Docker container used by Hassio,
-# therefore we rely on basic linux commands instead.
-#
-# If git were available, the following command would be all we need:
+# On systems with git installed:
 #   `git -C /config/.git symbolic-ref --short HEAD`
 #
-# The command issued here is:
-#   'cat .git/HEAD | cut -d \  -f 2 | cut -d / -f 3,4,5'
+# On Hassio and others where the git command isn't available:
+#   'cat /config/.git/HEAD | cut -d \  -f 2 | cut -d / -f 3,4,5'
 #
-# The above is kept in the secrets.yaml file to allow for platform-specific
-# variations.
-#
-# source:
-#   https://stackoverflow.com/a/33133769
-#
-# @see /secrets-dummy.yaml
+# @link https://stackoverflow.com/a/33133769
 #
 - platform: command_line
   name: Git branch
-  command: !secret git_branch_command
+  command: >-
+    if command -v git &> /dev/null; then
+      git -C $(pwd)/.git symbolic-ref --short HEAD
+    else
+      cat $(pwd)/.git/HEAD | cut -d \  -f 2 | cut -d / -f 3,4,5
+    fi
 
 
 #

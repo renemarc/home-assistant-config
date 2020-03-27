@@ -173,7 +173,7 @@ history:
 # Setup basic Home Assistant information
 #
 homeassistant:
-  name: Home
+  name: !secret homeassistant_name
   latitude: !secret zone_home_latitude
   longitude: !secret zone_home_longitude
   elevation: !secret zone_home_elevation
