@@ -712,6 +712,9 @@ views:
                     - entity_id: "sensor.ebox_*"
                     - entity_id: "group.*"
                     - entity_id: "*_filtered"
+                sort:
+                  method: name
+                  ignore_case: true
 
           #
           # Footer
@@ -1855,6 +1858,7 @@ views:
 
                   - entity: sensor.local_ip_address
                     name: Local IP
+
                   - sensor.uptime_friendly
                   - sensor.uptime_host
                   - type: section
@@ -1952,6 +1956,9 @@ views:
                     filter:
                       include:
                         - entity_id: "*_battery"
+                    sort:
+                      method: name
+                      ignore_case: true
 
               #
               # WAN

@@ -187,6 +187,8 @@ sensor.aqi_particles:
 #
 # Sensors: Power
 #
+sensor.front_camera_battery:
+  friendly_name: Front Camera
 sensor.front_door_sensor_battery:
   friendly_name: Front Door
 sensor.humidor_multisensor_battery:

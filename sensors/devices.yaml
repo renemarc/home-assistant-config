@@ -219,14 +219,24 @@
       icon_template: mdi:printer
       unit_of_measurement: 'pages'
       value_template: >-
-        {{ state_attr('sensor.printer_drum', 'remaining_pages') | int(-1) }}
+        {% set value = state_attr('sensor.printer_drum', 'remaining_pages') | int(-1) %}
+        {% if value >= 0 %}
+          {{ value }}
+        {% else %}
+          unknown
+        {% endif %}
 
     printer_drum_use:
       friendly_name: Drum Use
       icon_template: mdi:printer
       unit_of_measurement: 'pages'
       value_template: >-
-        {{ state_attr('sensor.printer_drum', 'counter') | int(-1) }}
+        {% set value = state_attr('sensor.printer_drum', 'counter') | int(-1) %}
+        {% if value >= 0 %}
+          {{ value }}
+        {% else %}
+          unknown
+        {% endif %}
 
     printer_toner_yield:
       friendly_name: Toner Yield
