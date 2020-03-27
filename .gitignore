@@ -33,3 +33,4 @@ secrets.yaml
 !/.HA_VERSION
 !/.mdlrc
 !/.travis.yml
+!/custom_components/hacs/.translations/*
