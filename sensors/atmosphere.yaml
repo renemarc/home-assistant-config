@@ -13,9 +13,10 @@
 # @link https://en.wikipedia.org/wiki/Air_quality_index
 # @link https://home-assistant.io/components/sensor.waqi/
 #
-- platform: waqi_custom
+- platform: waqi
   token: !secret waqi_token
   locations: !secret waqi_locations
+  stations: !secret waqi_stations
 
 
 #
