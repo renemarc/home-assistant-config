@@ -1408,7 +1408,7 @@ views:
                         head:
                           type: "custom:secondaryinfo-entity-row"
                           entity: sensor.coronavirus_province_current
-                          name: Quebec
+                          name: Québec
                           icon: "mdi:castle"
                           secondary_info: >-
                             <small><strong>
@@ -1430,36 +1430,54 @@ views:
                             secondary_info: >-
                               <small><strong>Estimated</strong></small>
 
-                  - type: "custom:mini-graph-card"
-                    align_state: right
-                    decimals: 0
-                    hour24: true
-                    hours_to_show: 168
-                    points_per_hour: 0.04166666666666
-                    show:
-                      fill: fade
-                      icon: false
-                      labels: true
-                      name: false
-                      points: true
-                      state: true
-                    entities:
-                      - entity: sensor.coronavirus_province_current
-                        name: Quebec
-                        unit: infected
-                        color: DEEPSKYBLUE
-                      - entity: sensor.coronavirus_province_deaths
-                        name: Qc 😢
-                        unit: deceased
-                        color: Blue
-                      - entity: sensor.coronavirus_roc_current
-                        name: Rest of Canada
-                        unit: infected
-                        color: Pink
-                      - entity: sensor.coronavirus_roc_deaths
-                        name: RoC 😢
-                        unit: deceased
-                        color: Red
+                  - type: horizontal-stack
+                    cards:
+                      - type: "custom:mini-graph-card"
+                        align_state: right
+                        decimals: 0
+                        hour24: true
+                        hours_to_show: 168
+                        points_per_hour: 0.04166666666666
+                        show:
+                          fill: fade
+                          icon: false
+                          labels: true
+                          name: false
+                          points: true
+                          state: true
+                        entities:
+                          - entity: sensor.coronavirus_province_current
+                            name: Québec
+                            unit: 😷
+                            color: DEEPSKYBLUE
+                          - entity: sensor.coronavirus_roc_current
+                            name: RoC
+                            unit: 😷
+                            color: Pink
+
+                      - type: "custom:mini-graph-card"
+                        align_state: right
+                        decimals: 0
+                        hour24: true
+                        hours_to_show: 168
+                        points_per_hour: 0.04166666666666
+                        show:
+                          fill: fade
+                          icon: false
+                          labels: true
+                          name: false
+                          points: true
+                          state: true
+                        entities:
+                          - entity: sensor.coronavirus_province_deaths
+                            name: Québec
+                            unit: 😢
+                            color: Blue
+                          - entity: sensor.coronavirus_roc_deaths
+                            name: RoC
+                            unit: 😢
+                            color: Red
+
               #
               # Weather radar and satellite pictures
               #

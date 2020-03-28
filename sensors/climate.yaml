@@ -408,6 +408,7 @@
   name: Radon Daily
   state_topic: "airthings-wave/Radon-Day"
   unit_of_measurement: 'Bq/m3'
+  icon: mdi:radioactive
   value_template: >-
     {{ value | round }}
 
@@ -415,6 +416,7 @@
   name: Radon Long Term
   state_topic: "airthings-wave/Radon-Long-Term"
   unit_of_measurement: 'Bq/m3'
+  icon: mdi:radioactive
   value_template: >-
     {{ value | round }}
 
@@ -422,6 +424,7 @@
   name: Radon Detector Humidity Exact
   state_topic: "airthings-wave/Humidity"
   unit_of_measurement: '%'
+  icon: mdi:water-percent
   device_class: humidity
   value_template: >-
     {% set calibration = 0 %}
@@ -433,6 +436,7 @@
   name: Radon Detector Temperature Exact
   state_topic: "airthings-wave/Temperature"
   unit_of_measurement: '°C'
+  icon: mdi:thermometer
   device_class: temperature
   value_template: >-
     {% set calibration = 0 %}
