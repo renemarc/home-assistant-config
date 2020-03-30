@@ -1,9 +1,6 @@
-log:
-  logfile: STDOUT
-  errorfile: STDERR
+admin:
+api:
 appdaemon:
-  threads: 10
-  app_dir: !secret appdaemon_app_dir
   disable_apps: 1
   elevation: !secret appdaemon_elevation
   latitude: !secret appdaemon_latitude
@@ -12,9 +9,11 @@ appdaemon:
   plugins:
     HASS:
       type: hass
-      ha_url: !secret appdaemon_hass_url
-      token: !secret appdaemon_hass_token
 hadashboard:
-  dash_url: !secret hadashboard_dash_url
-  dash_dir: !secret hadashboard_dash_dir
-  dash_compile_on_start: 1
+  # dash_url: !secret hadashboard_dash_url
+  # dash_dir: !secret hadashboard_dash_dir
+  # compile_on_start: 1
+  # disable_apps: 1
+  force_compile: 1
+http:
+  url: http://127.0.0.1:5050

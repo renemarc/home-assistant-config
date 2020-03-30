@@ -1,9 +1,9 @@
 widget_type: basemultisensor
-entity: {{entity}}
-entity2: {{entity}}
+entity: "{{entity}}"
+entity2: "{{entity}}"
 fields:
-  title: {{title}}
-  title2: {{title2}}
+  title: "{{title}}"
+  title2: "{{title2}}"
   value: ""
   value2: ""
   unit: ""

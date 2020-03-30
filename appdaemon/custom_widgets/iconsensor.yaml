@@ -1,9 +1,9 @@
 widget_type: baseiconsensor
-entity: {{entity}}
-sub_entity: {{sub_entity}}
+entity: "{{entity}}"
+sub_entity: "{{sub_entity}}"
 fields:
-  title: {{title}}
-  title2: {{title2}}
+  title: "{{title}}"
+  title2: "{{title2}}"
   icon: ""
   icon_style: ""
   state_text: ""

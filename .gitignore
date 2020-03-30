@@ -16,6 +16,7 @@
 *.xml
 .*
 __pycache__/
+appdaemon/compiled/
 gtfs/*
 tts/
 venv/

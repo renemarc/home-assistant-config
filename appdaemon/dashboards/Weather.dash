@@ -68,22 +68,20 @@ label:
 # Current weather
 #
 camera_environment_canada:
-    widget_type: entitycamera
-    refresh: 2
-    cache: 600
-    img_list:
-        - !secret camera_environment_canada
-        - !secret camera_environment_canada_alt
-    title_style: "background-color: rgba(0, 0, 0, 1);"
+    widget_type: entitypicture
+    entity: camera.environment_canada
+    base_url: http://hassio.local:8123
+    # refresh: 300
+    image_style: "top: 0; bottom: 0; left: 0; right: 0;"
 
 camera_noaa:
-    widget_type: entitycamera
-    refresh: 3
-    cache: 600
-    img_list:
-        - !secret camera_noaa_geocolor
-        - !secret camera_noaa_water_vapour
-    title_style: "background-color: rgba(0, 0, 0, 1);"
+    widget_type: slideshow
+    delay: 4
+    slides:
+        - entity: camera.noaa_geocolor
+          title: ""
+        - entity: camera.noaa_water_vapour
+          title: ""
 
 wind:
     widget_type: entitysensor
@@ -212,7 +210,7 @@ weather_icon_today:
 
 weather_icon_tomorrow:
     widget_type: iconsensor
-    entity: sensor.dark_sky_icon_1
+    entity: sensor.dark_sky_icon_1d
     icons:
         clear-day:
             icon: mdi-weather-sunny
@@ -252,7 +250,7 @@ weather_icon_tomorrow:
 
 weather_icon_after_tomorrow:
     widget_type: iconsensor
-    entity: sensor.dark_sky_icon_2
+    entity: sensor.dark_sky_icon_2d
     icons:
         clear-day:
             icon: mdi-weather-sunny

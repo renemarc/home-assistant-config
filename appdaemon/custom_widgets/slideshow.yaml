@@ -1,9 +1,12 @@
-widget_type: baseentityiframe
+widget_type: baseslideshow
 fields:
-  title: "{{title}}"
-  frame_src: ""
-  img_src: ""
+  base_url: ""
   frame_style: "{{frame_style}}"
+  frame_src: ""
+  image_style: ""
+  img_internal_style: ""
+  img_src: ""
+  title: "{{title}}"
 icons: []
 static_css:
   title_style: $camera_title_style

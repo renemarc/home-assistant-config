@@ -65,19 +65,17 @@ label:
 # Slideshow
 #
 slideshow:
-    widget_type: entitycamera
-    refresh: 5
-    cache: 600
-    img_list:
-        - !secret camera_environment_canada
-        - !secret camera_bing
-        - !secret camera_noaa_geocolor
-        - !secret camera_apod
-    title_entity_list:
-        - ""
-        - sensor.bing_wallpaper
-        - ""
-        - sensor.apod
+    widget_type: slideshow
+    delay: 5
+    slides:
+        - entity: camera.environment_canada
+          title: ""
+        - entity: camera.bing_wallpaper
+          entity_title: sensor.bing_wallpaper
+        - entity: camera.noaa_water_vapour
+          title: ""
+        - entity: camera.astronomy_picture_of_the_day
+          entity_title: sensor.apod
     title_style: "line-height:2em;opacity:0.8;"
 
 

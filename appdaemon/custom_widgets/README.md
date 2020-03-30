@@ -10,7 +10,7 @@
 <!-- Hero -->
 <figure>
     <div align="center">
-        <a href="#-entitycamerayaml-and-baseentityiframe" title="Entity camera widget"><img src="../../www/screenshots/widget-entitycamera.gif" alt="Entity camera widget" width="280"></a>
+        <a href="#-slideshowyaml-and-baseslideshow" title="Slideshow widget"><img src="../../www/screenshots/widget-slideshow.gif" alt="Slideshow widget" width="280"></a>
     </div>
     <div align="center">
         <a href="#-iconsensoryaml-and-baseiconsensor" title="Icon sensor widget"><img src="../../www/screenshots/widget-iconsensor.png" alt="Icon sensor widget" width="140"></a>
@@ -86,21 +86,25 @@ Multipurpose widget based on the default [basedisplay](https://github.com/home-a
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-### [`📸 entitycamera.yaml`](entitycamera.yaml) and [`baseentityiframe/`](baseentityiframe)
+### [`📽️ slideshow.yaml`](slideshow.yaml) and [`baseslideshow/`](baseslideshow)
 
-IFrame widget to showcase images and slideshows, based on the default [baseiframe](https://github.com/home-assistant/appdaemon/tree/master/appdaemon/widgets/baseiframe) but includes:
+Camera/image/iframe widget to showcase images and slideshows, based on the default [basecamera](https://github.com/home-assistant/appdaemon/tree/master/appdaemon/widgets/basecamera) and [baseiframe](https://github.com/home-assistant/appdaemon/tree/master/appdaemon/widgets/baseiframe) but also includes:
 
+- Support for camera entities with proper handling of their access tokens.
+- Auto-determine type of content: entity, iframe, or image.
+- Auto-determine camera URL base.
 - Cache-buster added to already parameterized URLs.
 - Optional **cache** integer parameter to add longevity to the cache-buster JS parameter.
 - Optional entity dynamic titles, where an image can have a related title shown if it has a companion entity that provides such textual information.
+- Per slide title, cache, and delay overrides.
 
 <div align="center">
     <figure>
         <div>
-            <img src="../../www/screenshots/widget-entitycamera.gif" alt="Entity camera widget" title="Entity camera widget" width="600">
+            <img src="../../www/screenshots/widget-slideshow.gif" alt="Slideshow widget" title="Slideshow widget" width="600">
         </div>
         <figcaption>
-            <p><strong>Entity camera widget with dynamic titles.</strong></p>
+            <p><strong>Slideshow widget with dynamic titles.</strong></p>
         </figcaption>
     </figure>
 </div>

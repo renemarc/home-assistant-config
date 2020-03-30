@@ -42,7 +42,7 @@
       {% for part in parts %}
         {%- if not loop.last -%}
           {%- if not loop.first %}({% endif %}
-          {{- part -}}
+          {{- part | trim -}}
         {%- endif -%}
       {% endfor %}.
     {% endif %}
@@ -83,5 +83,6 @@
     {% if value_json and value_json.title %}
       {% if value_json.media_type and value_json.media_type == 'video' %}
         Video:
-      {%- endif %} {{ value_json.title }}.
+      {%- endif %} {{ value_json.title }}
+      {%- if not value_json.title | regex_search('[….!?]$') %}.{% endif %}
     {% endif %}

@@ -54,7 +54,7 @@
       value_template: >-
         {% set version = state_attr('binary_sensor.updater', 'newest_version') %}
 
-        {% if version != 'unknown' %}
+        {% if version != None %}
           Update available: {{ version }}
         {% endif %}
 
