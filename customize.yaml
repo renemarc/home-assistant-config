@@ -275,13 +275,3 @@ switch.dehumidifier:
 variable.tamper_detected:
   friendly_name: Tamper location
   icon: mdi:shield-home
-
-
-sensor.humidor_humidity:
-  group:
-    group.humidity:
-      icon: mdi:cigar
-sensor.humidor_temperature:
-  group:
-    group.humidity:
-      icon: mdi:cigar

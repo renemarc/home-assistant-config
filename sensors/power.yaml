@@ -7,41 +7,30 @@
 # @see /rtl4332mqtt/rtl2mqtt.sh
 #
 # @link https://www.acurite.com/indoor-temperature-sensor-and-humidity-gauge.html
-# @link https://home-assistant.io/components/mqtt/
+# @link https://www.home-assistant.io/integrations/sensor.mqtt/
 #
 - platform: mqtt
-  name: Humidor AcuRite Power
+  name: Humidor Multisensor Battery
   state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '%'
+  device_class: battery
+  json_attributes_topic: "home/Acurite_tower_sensor/11846"
+  json_attributes_template: >-
+    {
+      "battery_low": "{{ value_json.battery_low }}"
+    }
   value_template: >-
+    {% set stale_hours = 12 %}
+    {% set last_update = as_timestamp(value_json.time) %}
     {% set battery_low = value_json.battery_low | int %}
 
-    {% if battery_low %}
+    {% if as_timestamp(now()) - last_update > stale_hours*60*60 %}
+      0
+    {% elif battery_low %}
       10
     {% else %}
       100
     {% endif %}
-
-- platform: template
-  sensors:
-    humidor_multisensor_battery:
-      friendly_name: Humidor Multisensor Battery
-      unit_of_measurement: '%'
-      value_template: >-
-        {{ states('sensor.humidor_acurite_power') }}
-
-      icon_template: >-
-        {% set battery_level = states('sensor.humidor_acurite_power') | int(-1) %}
-
-        {% if battery_level < 0 %}
-          mdi:battery-unknown
-        {% elif battery_level > 10 %}
-          mdi:battery
-        {% elif battery_level == 10 %}
-          mdi:battery-alert
-        {% else %}
-          mdi:battery-outline
-        {% endif %}
 
 
 #

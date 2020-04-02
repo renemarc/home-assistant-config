@@ -97,48 +97,65 @@
 #   Temperature: 0.2°C
 #
 - platform: mqtt
-  name: Humidor AcuRite
-  state_topic: "home/Acurite_tower_sensor/11846"
-
-- platform: mqtt
-  name: Humidor Humidity Exact
+  name: Humidor Multisensor
   state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '%'
+  device_class: humidity
+  json_attributes_topic: "home/Acurite_tower_sensor/11846"
+  json_attributes_template: "{{ value_json | tojson }}"
   value_template: >-
     {% set calibration = -0.5 %}
     {% set humidity = value_json.humidity %}
+    {% set stale_hours = 12 %}
+    {% set last_update = as_timestamp(value_json.time) %}
 
-    {{ humidity + calibration }}
+    {% if as_timestamp(now()) - last_update <= stale_hours*60*60 %}
+      {{ humidity + calibration }}
+    {% else %}
+      unknown
+    {% endif %}
 
 - platform: mqtt
   name: Humidor Temperature Exact
   state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '°C'
+  device_class: temperature
+  json_attributes_topic: "home/Acurite_tower_sensor/11846"
+  json_attributes_template: >-
+    {
+      "temperature_C": "{{ value_json.temperature_C }}"
+    }
   value_template: >-
     {% set calibration = 0.2 %}
     {% set temperature = value_json.temperature_C %}
+    {% set stale_hours = 12 %}
+    {% set last_update = as_timestamp(value_json.time) %}
 
-    {{ (temperature + calibration) | round(1) }}
+    {% if as_timestamp(now()) - last_update <= stale_hours*60*60 %}
+      {{ (temperature + calibration) | round(1) }}
+    {% else %}
+      unknown
+    {% endif %}
 
 - platform: template
   sensors:
     humidor_humidity:
       friendly_name: Humidor Humidity
       unit_of_measurement: '%'
-      icon_template: mdi:water-percent
+      device_class: humidity
       value_template: >-
-        {{ states('sensor.humidor_humidity_exact') | round }}
+        {{ states('sensor.humidor_multisensor') | round }}
 
     humidor_temperature:
       friendly_name: Humidor Temperature
       unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
+      device_class: temperature
       value_template: >-
         {{ states('sensor.humidor_temperature_exact') | round }}
 
 - platform: filter
   name: Humidor Humidity Filtered
-  entity_id: sensor.humidor_humidity_exact
+  entity_id: sensor.humidor_multisensor
   filters:
     - filter: outlier
       window_size: 4
