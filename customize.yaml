@@ -161,6 +161,13 @@ person.him:
   friendly_name: !secret nickname_him
   icon: mdi:gender-male
 
+#
+# Sensors: Climate
+#
+sensor.average_humidity_exact:
+  device_class: humidity
+sensor.average_temperature_exact:
+  device_class: temperature
 
 #
 # Sensors: Miscellaneous

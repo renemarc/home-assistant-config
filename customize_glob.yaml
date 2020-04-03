@@ -67,10 +67,27 @@ input_boolean.*:
 #
 # Sensors
 #
+sensor.*_alarm_level:
+  icon: mdi:alarm-note
+sensor.*_alarm_type:
+  icon: mdi:alarm-check
+sensor.*_burglar:
+  icon: mdi:security
+sensor.*_flood:
+  icon: mdi:home-flood
+sensor.*_humidity_filtered:
+  device_class: humidity
+sensor.*_multisensor_luminance:
+  device_class: illuminance
+sensor.*_multisensor_temperature:
+  device_class: temperature
+sensor.*_relative_humidity:
+  device_class: temperature
+sensor.*_sourcenodeid:
+  icon: mdi:z-wave
+sensor.*_temperature_filtered:
+  device_class: temperature
+sensor.*_ultraviolet:
+  icon: mdi:sunglasses
 sensor.coronavirus_*_current:
   icon: 'mdi:emoticon-neutral-outline'
-sensor.*_humidity:
-  device_class: humidity
-  icon: mdi:water-percent
-sensor.[!dark_sky]*_temperature:
-  icon: mdi:thermometer

@@ -12,29 +12,38 @@
     bedroom_humidity_exact:
       friendly_name: Bedroom Humidity Exact
       unit_of_measurement: '%'
-      icon_template: mdi:water-percent
+      device_class: humidity
       value_template: >-
-        {{ states('sensor.bedroom_multisensor_relative_humidity') | round(1) }}
+        {% if state_attr('zwave.bedroom_multisensor', 'lastResponseRTT') > 0 %}
+          {{ states('sensor.bedroom_multisensor_relative_humidity') | round(1) }}
+        {% else %}
+          unknown
+        {% endif %}
 
     bedroom_humidity:
       friendly_name: Bedroom Humidity
       unit_of_measurement: '%'
-      icon_template: mdi:water-percent
+      device_class: humidity
       value_template: >-
-        {{ states('sensor.bedroom_multisensor_relative_humidity') | round }}
+        {{ states('sensor.bedroom_humidity_exact') | round }}
 
     bedroom_luminance:
       friendly_name: Bedroom Luminance
       unit_of_measurement: 'lx'
-      icon_template: mdi:blur
+      device_class: illuminance
       value_template: >-
-        {{ states('sensor.bedroom_multisensor_luminance') | round }}
+        {% if state_attr('zwave.bedroom_multisensor', 'lastResponseRTT') > 0 %}
+          {{ states('sensor.bedroom_multisensor_luminance') | round }}
+        {% else %}
+          unknown
+        {% endif %}
 
     bedroom_luminance_friendly:
       friendly_name: Bedroom Luminance
-      icon_template: mdi:blur
+      icon_template: >-
+        {{ state_attr('sensor.bedroom_luminance', 'icon') }}
       value_template: >-
-        {% set lx = states('sensor.bedroom_multisensor_luminance') | int(-1) %}
+        {% set lx = states('sensor.bedroom_luminance') | int(-1) %}
 
         {% if lx > 5000 %}
           Outdoors
@@ -53,16 +62,20 @@
     bedroom_temperature_exact:
       friendly_name: Bedroom Temperature Exact
       unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
+      device_class: temperature
       value_template: >-
-        {{ states('sensor.bedroom_multisensor_temperature') }}
+        {% if state_attr('zwave.bedroom_multisensor', 'lastResponseRTT') > 0 %}
+          {{ states('sensor.bedroom_multisensor_temperature') }}
+        {% else %}
+          unknown
+        {% endif %}
 
     bedroom_temperature:
       friendly_name: Bedroom Temperature
       unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
+      device_class: temperature
       value_template: >-
-        {{ states('sensor.bedroom_multisensor_temperature') | round }}
+        {{ states('sensor.bedroom_temperature_exact') | round }}
 
 - platform: filter
   name: Bedroom Humidity Filtered
@@ -193,10 +206,13 @@
     kitchen_temperature_exact:
       friendly_name: Kitchen Temperature Exact
       unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
+      device_class: temperature
       value_template: >-
         {% set calibration = -0.5 %}
-        {% set temperature = states('sensor.siren_monitor_temperature') | round(1) %}
+        {% set temperature = 'unknown' %}
+        {% if state_attr('zwave.siren_monitor', 'lastResponseRTT') > 0 %}
+          {% set temperature = states('sensor.siren_monitor_temperature') | round(1) %}
+        {% endif %}
 
         {% if temperature != 'unknown' %}
           {{ temperature + calibration }}
@@ -207,7 +223,7 @@
     kitchen_temperature:
       friendly_name: Kitchen Temperature
       unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
+      device_class: temperature
       value_template: >-
         {{ states('sensor.kitchen_temperature_exact') | round }}
 
@@ -240,29 +256,38 @@
     lounge_humidity_exact:
       friendly_name: Lounge Humidity Exact
       unit_of_measurement: '%'
-      icon_template: mdi:water-percent
+      device_class: humidity
       value_template: >-
-        {{ states('sensor.lounge_multisensor_relative_humidity') }}
+        {% if state_attr('zwave.lounge_multisensor', 'lastResponseRTT') > 0 %}
+          {{ states('sensor.lounge_multisensor_relative_humidity') }}
+        {% else %}
+          unknown
+        {% endif %}
 
     lounge_humidity:
       friendly_name: Lounge Humidity
       unit_of_measurement: '%'
-      icon_template: mdi:water-percent
+      device_class: humidity
       value_template: >-
         {{ states('sensor.lounge_humidity_exact') | round }}
 
     lounge_luminance:
       friendly_name: Lounge Luminance
       unit_of_measurement: 'lx'
-      icon_template: mdi:blur
+      device_class: illuminance
       value_template: >-
-        {{ states('sensor.lounge_multisensor_luminance') | round }}
+        {% if state_attr('zwave.lounge_multisensor', 'lastResponseRTT') > 0 %}
+          {{ states('sensor.lounge_multisensor_luminance') | round }}
+        {% else %}
+          unknown
+        {% endif %}
 
     lounge_luminance_friendly:
       friendly_name: Lounge Luminance
-      icon_template: mdi:blur
+      icon_template: >-
+        {{ state_attr('sensor.lounge_luminance', 'icon') }}
       value_template: >-
-        {% set lx = states('sensor.lounge_multisensor_luminance') | int(-1) %}
+        {% set lx = states('sensor.lounge_luminance') | int(-1) %}
 
         {% if lx > 5000 %}
           Outdoors
@@ -281,14 +306,18 @@
     lounge_temperature_exact:
       friendly_name: Lounge Temperature Exact
       unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
+      device_class: temperature
       value_template: >-
-        {{ states('sensor.lounge_multisensor_temperature') }}
+        {% if state_attr('zwave.lounge_multisensor', 'lastResponseRTT') > 0 %}
+          {{ states('sensor.lounge_multisensor_temperature') }}
+        {% else %}
+          unknown
+        {% endif %}
 
     lounge_temperature:
       friendly_name: Lounge Temperature
       unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
+      device_class: temperature
       value_template: >-
         {{ states('sensor.lounge_temperature_exact') | round }}
 
@@ -331,29 +360,38 @@
     washroom_humidity_exact:
       friendly_name: Washroom Humidity Exact
       unit_of_measurement: '%'
-      icon_template: mdi:water-percent
+      device_class: humidity
       value_template: >-
-        {{ states('sensor.washroom_multisensor_relative_humidity') }}
+        {% if state_attr('zwave.washroom_multisensor', 'lastResponseRTT') > 0 %}
+          {{ states('sensor.washroom_multisensor_relative_humidity') }}
+        {% else %}
+          unknown
+        {% endif %}
 
     washroom_humidity:
       friendly_name: Washroom Humidity
       unit_of_measurement: '%'
-      icon_template: mdi:water-percent
+      device_class: humidity
       value_template: >-
-        {{ states('sensor.washroom_multisensor_relative_humidity') | round }}
+        {{ states('sensor.washroom_humidity_exact') | round }}
 
     washroom_luminance:
       friendly_name: Washroom Luminance
       unit_of_measurement: 'lx'
-      icon_template: mdi:blur
+      device_class: illuminance
       value_template: >-
-        {{ states('sensor.washroom_multisensor_luminance') | round }}
+        {% if state_attr('zwave.washroom_multisensor', 'lastResponseRTT') > 0 %}
+          {{ states('sensor.washroom_multisensor_luminance') | round }}
+        {% else %}
+          unknown
+        {% endif %}
 
     washroom_luminance_friendly:
       friendly_name: Washroom Luminance
-      icon_template: mdi:blur
+      icon_template: >-
+        {{ state_attr('sensor.washroom_luminance', 'icon') }}
       value_template: >-
-        {% set lx = states('sensor.washroom_multisensor_luminance') | int(-1) %}
+        {% set lx = states('sensor.washroom_luminance') | int(-1) %}
 
         {% if lx > 5000 %}
           Outdoors
@@ -372,16 +410,20 @@
     washroom_temperature_exact:
       friendly_name: Washroom Temperature Exact
       unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
+      device_class: temperature
       value_template: >-
-        {{ states('sensor.washroom_multisensor_temperature') }}
+        {% if state_attr('zwave.washroom_multisensor', 'lastResponseRTT') > 0 %}
+          {{ states('sensor.washroom_multisensor_temperature') }}
+        {% else %}
+          unknown
+        {% endif %}
 
     washroom_temperature:
       friendly_name: Washroom Temperature
       unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
+      device_class: temperature
       value_template: >-
-        {{ states('sensor.washroom_multisensor_temperature') | round }}
+        {{ states('sensor.washroom_temperature_exact') | round }}
 
 - platform: filter
   name: Washroom Humidity Filtered
@@ -441,7 +483,6 @@
   name: Radon Detector Humidity Exact
   state_topic: "airthings-wave/Humidity"
   unit_of_measurement: '%'
-  icon: mdi:water-percent
   device_class: humidity
   value_template: >-
     {% set calibration = 0 %}
@@ -453,7 +494,6 @@
   name: Radon Detector Temperature Exact
   state_topic: "airthings-wave/Temperature"
   unit_of_measurement: '°C'
-  icon: mdi:thermometer
   device_class: temperature
   value_template: >-
     {% set calibration = 0 %}
@@ -465,7 +505,8 @@
   sensors:
     radon_friendly:
       friendly_name: Radon
-      icon_template: mdi:radioactive
+      icon_template: >-
+        {{ state_attr('sensor.radon_daily', 'icon') }}
       value_template: >-
         {% set radon = states('sensor.radon_daily') | int(-1) %}
 
@@ -484,14 +525,14 @@
     radon_detector_humidity:
       friendly_name: Radon Detector Humidity
       unit_of_measurement: '%'
-      icon_template: mdi:water-percent
+      device_class: humidity
       value_template: >-
         {{ states('sensor.radon_detector_humidity_exact') | round }}
 
     radon_detector_temperature:
       friendly_name: Radon Detector Temperature
       unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
+      device_class: temperature
       value_template: >-
         {{ states('sensor.radon_detector_temperature_exact') | round }}
 
@@ -533,7 +574,7 @@
     average_temperature:
       friendly_name: Temperature
       unit_of_measurement: '°C'
-      icon_template: mdi:thermometer
+      device_class: temperature
       value_template: >-
         {{ states('sensor.average_temperature_exact') | round }}
 
@@ -561,7 +602,7 @@
     average_humidity:
       friendly_name: Humidity
       unit_of_measurement: '%'
-      icon_template: mdi:water-percent
+      device_class: humidity
       value_template: >-
         {{ states('sensor.average_humidity_exact') | round }}
 
