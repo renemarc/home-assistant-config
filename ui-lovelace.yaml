@@ -1972,8 +1972,10 @@ views:
                       value_style:
                         font-size: small
                     filter:
+                      exclude:
+                        - entity_id: "*phone*"
                       include:
-                        - entity_id: "*_battery"
+                        - entity_id: "*_battery_level"
                     sort:
                       method: name
                       ignore_case: true

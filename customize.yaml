@@ -194,21 +194,21 @@ sensor.aqi_particles:
 #
 # Sensors: Power
 #
-sensor.front_camera_battery:
+sensor.front_camera_battery_level:
   friendly_name: Front Camera
-sensor.front_door_sensor_battery:
+sensor.front_door_battery_level:
   friendly_name: Front Door
-sensor.humidor_multisensor_battery:
+sensor.humidor_multisensor_battery_level:
   friendly_name: Humidor
-sensor.kiosk_battery:
+sensor.kiosk_battery_level:
   friendly_name: Kiosk
-sensor.kitchen_leak_sensor_battery:
+sensor.kitchen_leak_sensor_battery_level:
   friendly_name: Kitchen Leak
-sensor.siren_monitor_battery:
+sensor.siren_monitor_battery_level:
   friendly_name: Siren Monitor
-sensor.washroom_leak_sensor_battery:
+sensor.washroom_leak_sensor_battery_level:
   friendly_name: Washroom Leak
-sensor.washroom_multisensor_battery:
+sensor.washroom_multisensor_battery_level:
   friendly_name: Washroom
 
 

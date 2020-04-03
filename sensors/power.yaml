@@ -10,8 +10,7 @@
 # @link https://www.home-assistant.io/integrations/sensor.mqtt/
 #
 - platform: mqtt
-  name: Humidor Multisensor Battery
-  state_topic: "home/Acurite_tower_sensor/11846"
+  name: Humidor Multisensor Battery Level
   unit_of_measurement: '%'
   device_class: battery
   json_attributes_topic: "home/Acurite_tower_sensor/11846"
@@ -19,6 +18,7 @@
     {
       "battery_low": "{{ value_json.battery_low }}"
     }
+  state_topic: "home/Acurite_tower_sensor/11846"
   value_template: >-
     {% set stale_hours = 12 %}
     {% set last_update = as_timestamp(value_json.time) %}
@@ -45,9 +45,10 @@
 #
 - platform: template
   sensors:
-    front_camera_battery:
-      friendly_name: Front Camera Battery
+    front_camera_battery_level:
+      friendly_name: Front Camera Battery Level
       unit_of_measurement: '%'
+      device_class: battery
       value_template: >-
         {% set battery = state_attr('camera.front', 'battery') %}
 
@@ -55,17 +56,6 @@
           100
         {% else %}
           10
-        {% endif %}
-
-      icon_template: >-
-        {% set battery = state_attr('camera.front', 'battery') %}
-
-        {% if battery == 'None' %}
-          mdi:battery-unknown
-        {% elif battery == 'ok' %}
-          mdi:battery
-        {% else %}
-          mdi:battery-alert
         {% endif %}
 
 
@@ -78,9 +68,10 @@
 #
 - platform: template
   sensors:
-    kiosk_battery:
-      friendly_name: Kiosk Battery
+    kiosk_battery_level:
+      friendly_name: Kiosk Battery Level
       unit_of_measurement: '%'
+      device_class: battery
       value_template: >-
         {% set battery_level = state_attr('display.kiosk', 'battery_level') %}
 
@@ -88,23 +79,6 @@
           {{ battery_level | round }}
         {% else %}
           unknown
-        {% endif %}
-
-      icon_template: >-
-        {% set battery_level = state_attr('display.kiosk', 'battery_level') %}
-
-        {% if battery_level != None %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-outline
-          {% endif %}
-        {% else %}
-          mdi:battery-unknown
         {% endif %}
 
 
@@ -126,146 +100,22 @@
 #
 - platform: template
   sensors:
-    front_door_sensor_battery:
-      friendly_name: Front Door Sensor Battery
+    washroom_multisensor_battery_level:
+      friendly_name: Washroom Multisensor Battery Level
       unit_of_measurement: '%'
+      device_class: battery
       value_template: >-
-        {% set battery_level = state_attr('zwave.front_door', 'battery_level') %}
-
-        {% if battery_level != None %}
-          {{ battery_level | round }}
-        {% else %}
-          unknown
-        {% endif %}
-      icon_template: >-
-        {% set battery_level = state_attr('zwave.front_door', 'battery_level') %}
-
-        {% if battery_level != None %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-outline
-          {% endif %}
-        {% else %}
-          mdi:battery-unknown
-        {% endif %}
-
-    kitchen_leak_sensor_battery:
-      friendly_name: Kitchen Leak Sensor Battery
-      unit_of_measurement: '%'
-      value_template: >-
-        {% set battery_level = state_attr('zwave.kitchen_leak_sensor', 'battery_level') %}
-
-        {% if battery_level != None %}
-          {{ battery_level | round }}
-        {% else %}
-          unknown
-        {% endif %}
-      icon_template: >-
-        {% set battery_level = state_attr('zwave.kitchen_leak_sensor', 'battery_level') %}
-
-        {% if battery_level != None %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-outline
-          {% endif %}
-        {% else %}
-          mdi:battery-unknown
-        {% endif %}
-
-    siren_monitor_battery:
-      friendly_name: Siren Monitor Battery
-      unit_of_measurement: '%'
-      value_template: >-
-        {% set battery_level = states('sensor.siren_monitor_power_management') | int(-1) %}
-
-        {% if battery_level < 0 %}
-          unknown
-        {% elif battery_level == 0 %}
-          100
-        {% elif battery_level == 10 %}
-          10
-        {% elif battery_round == 11 %}
-          5
-        {% else %}
-          0
-        {% endif %}
-      icon_template: >-
-        {% set battery_level = states('sensor.siren_monitor_power_management') | int(-1) %}
-
-        {% if battery_level < 0 %}
-          mdi:battery-unknown
-        {% elif battery_level == 0 %}
-          mdi:battery
-        {% elif battery_level == 10 %}
-          mdi:battery-10
-        {% elif battery_round == 11 %}
-          mdi:battery-alert
-        {% else %}
-          mdi:battery-outline
-        {% endif %}
-
-    washroom_leak_sensor_battery:
-      friendly_name: Washroom Leak Sensor Battery
-      unit_of_measurement: '%'
-      value_template: >-
-        {% set battery_level = state_attr('zwave.washroom_leak_sensor', 'battery_level') %}
-
-        {% if battery_level != None %}
-          {{ battery_level | round }}
-        {% else %}
-          unknown
-        {% endif %}
-      icon_template: >-
-        {% set battery_level = state_attr('zwave.washroom_leak_sensor', 'battery_level') %}
-
-        {% if battery_level != None %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-outline
-          {% endif %}
-        {% else %}
-          mdi:battery-unknown
-        {% endif %}
-
-    washroom_multisensor_battery:
-      friendly_name: Washroom Multisensor Battery
-      unit_of_measurement: '%'
-      value_template: >-
+        {% set batteries_installed = 1 %}
+        {% set batteries_max = 2 %}
         {% set battery_level = state_attr('zwave.washroom_multisensor', 'battery_level') %}
 
         {% if battery_level != None %}
+          {% set min = 100 - batteries_installed/batteries_max * 100 %}
+          {% if min %}
+            {% set battery_level = (battery_level - min) * batteries_max %}
+          {% endif %}
           {{ battery_level | round }}
         {% else %}
           unknown
         {% endif %}
-      icon_template: >-
-        {% set battery_level = state_attr('zwave.washroom_multisensor', 'battery_level') %}
 
-        {% if battery_level != None %}
-          {% set battery_round = (battery_level / 10) | int * 10 %}
-
-          {% if battery_round >= 100 %}
-            mdi:battery
-          {% elif battery_round > 0 %}
-            mdi:battery-{{ battery_round }}
-          {% else %}
-            mdi:battery-outline
-          {% endif %}
-        {% else %}
-          mdi:battery-unknown
-        {% endif %}

@@ -530,5 +530,6 @@ zone: !include misc/zones.yaml
 # @link https://home-assistant.io/components/zwave/
 #
 zwave:
-  usb_path: /dev/ttyACM0
+  device_config: !include zwave_device_config.yaml
   network_key: !secret zwave_network_key
+  usb_path: /dev/ttyACM0
