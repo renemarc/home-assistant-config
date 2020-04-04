@@ -83,13 +83,6 @@ counter: !include misc/counters.yaml
 
 
 #
-# Custom Updater
-#
-# @link https://github.com/custom-components/custom_updater/
-#
-#custom_updater: !include misc/custom_updater.yaml
-
-#
 # Home Assistant Community Store
 #
 # @link https://custom-components.github.io/hacs/
@@ -225,7 +218,7 @@ ifttt:
 #
 # @link https://home-assistant.io/components/input_boolean/
 #
-input_boolean: !include misc/input_booleans.yaml
+input_boolean: !include inputs/input_booleans.yaml
 
 
 #
@@ -233,7 +226,7 @@ input_boolean: !include misc/input_booleans.yaml
 #
 # @link https://www.home-assistant.io/integrations/input_datetime/
 #
-input_datetime: !include misc/input_datetimes.yaml
+input_datetime: !include inputs/input_datetimes.yaml
 
 
 #
@@ -241,7 +234,7 @@ input_datetime: !include misc/input_datetimes.yaml
 #
 # @link https://home-assistant.io/components/input_select/
 #
-input_select: !include misc/input_selects.yaml
+input_select: !include inputs/input_selects.yaml
 
 
 #
@@ -502,7 +495,7 @@ updater:
 #
 # @link https://github.com/rogro82/hass-variables
 #
-variable: !include misc/variables.yaml
+variable: !include inputs/variables.yaml
 
 
 

@@ -9,23 +9,25 @@
 battery:
   name: Battery Levels
   entities:
-    - sensor.front_door_sensor_battery
-    - sensor.humidor_multisensor_battery
-    - sensor.kiosk_battery
-    - sensor.kitchen_leak_sensor_battery
-    - sensor.siren_monitor_battery
-    - sensor.washroom_multisensor_battery
-    - sensor.washroom_leak_sensor_battery
+    - sensor.front_camera_battery_level
+    - sensor.front_door_battery_level
+    - sensor.humidor_multisensor_battery_level
+    - sensor.kiosk_battery_level
+    - sensor.kitchen_leak_sensor_battery_level
+    - sensor.siren_monitor_battery_level
+    - sensor.washroom_leak_sensor_battery_level
+    - sensor.washroom_multisensor_battery_level
 
 bed_lights:
   name: Bed Lights
   entities:
-    - light.underbed
     - light.headboard
+    - light.underbed
 
 bedroom:
   name: Bedroom
   entities:
+    - binary_sensor.bedroom_multisensor
     - input_select.bed_effect
     - light.underbed
     - light.headboard
@@ -34,7 +36,6 @@ bedroom:
     - sensor.bedroom_temperature
     - sensor.bedroom_humidity
     - sensor.bedroom_luminance_friendly
-    - binary_sensor.bedroom_multisensor
 
 ceiling:
   name: Ceiling
@@ -70,22 +71,22 @@ humidity:
 kitchen:
   name: Kitchen
   entities:
-    - light.countertop
-    - light.sink
-    - light.microwave
-    - light.island
-    - display.kiosk
-    - sensor.kitchen_temperature
     - binary_sensor.kiosk_motion_auto
     - binary_sensor.kitchen_leak_sensor
+    - display.kiosk
+    - light.countertop
+    - light.island
+    - light.microwave
+    - light.sink
+    - sensor.kitchen_temperature
 
 kitchen_lights:
   name: Kitchen Lights
   entities:
     - light.countertop
-    - light.sink
-    - light.microwave
     - light.island
+    - light.microwave
+    - light.sink
 
 leak_sensors:
   name: Leak sensors
@@ -105,20 +106,20 @@ lifx_lights:
 lounge:
   name: Lounge
   entities:
+    - binary_sensor.lounge_multisensor
     - input_select.aurora_effect
-    - light.aurora
     - input_select.lightpack_effect
+    - light.aurora
     - light.lightpack
     - light.rope
-    - light.spotlight
     - light.souvenirs
+    - light.spotlight
     - light.torchiere
     - light.window
-    - switch.lounge_tv
-    - sensor.lounge_temperature
     - sensor.lounge_humidity
     - sensor.lounge_luminance_friendly
-    - binary_sensor.lounge_multisensor
+    - sensor.lounge_temperature
+    - switch.lounge_tv
 
 motion_sensors:
   name: Motion sensors
@@ -175,13 +176,13 @@ waqi:
 washroom:
   name: Washroom
   entities:
+    - binary_sensor.washroom_leak_sensor
+    - binary_sensor.washroom_multisensor
     - light.lavatory
     - light.shower
-    - sensor.washroom_temperature
     - sensor.washroom_humidity
     - sensor.washroom_luminance_friendly
-    - binary_sensor.washroom_multisensor
-    - binary_sensor.washroom_leak_sensor
+    - sensor.washroom_temperature
 
 washroom_lights:
   name: Washroom Lights

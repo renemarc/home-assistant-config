@@ -413,62 +413,62 @@ views:
                 title: Transit to the Metro 🚈
                 show_header_toggle: false
                 entities:
-                  - entity: sensor.home_to_metro
+                  - entity: sensor.transit_to_metro
                     name: ' '
                     icon: 'mdi:subway'
                     type: "custom:secondaryinfo-entity-row"
                     secondary_info: >-
-                      <strong style="color:var(--primary-text-color);">[[ sensor.home_to_metro_hour ]]</strong>
+                      <strong style="color:var(--primary-text-color);">[[ sensor.transit_to_metro_hour ]]</strong>
 
                   - type: divider
                     style: *transit_divider
 
-                  - entity: sensor.home_to_metro_2
+                  - entity: sensor.transit_to_metro_2
                     type: "custom:secondaryinfo-entity-row"
                     name: ' '
                     icon: ' '
                     secondary_info: >-
-                      <strong style="color:var(--primary-text-color);">[[ sensor.home_to_metro_2_hour ]]</strong>
+                      <strong style="color:var(--primary-text-color);">[[ sensor.transit_to_metro_2_hour ]]</strong>
 
                   - type: divider
                     style: *transit_divider
 
-                  - entity: sensor.home_to_metro_3
+                  - entity: sensor.transit_to_metro_3
                     type: "custom:secondaryinfo-entity-row"
                     name: ' '
                     icon: ' '
                     secondary_info: >-
-                      <strong style="color:var(--primary-text-color);">[[ sensor.home_to_metro_3_hour ]]</strong>
+                      <strong style="color:var(--primary-text-color);">[[ sensor.transit_to_metro_3_hour ]]</strong>
 
                   - type: section
                     label: To the market
 
-                  - entity: sensor.home_to_market
+                  - entity: sensor.transit_to_market
                     name: ' '
                     icon: 'mdi:cart'
                     type: "custom:secondaryinfo-entity-row"
                     secondary_info: >-
-                      <strong style="color:var(--primary-text-color);">[[ sensor.home_to_market_hour ]]</strong>
+                      <strong style="color:var(--primary-text-color);">[[ sensor.transit_to_market_hour ]]</strong>
 
                   - type: divider
                     style: *transit_divider
 
-                  - entity: sensor.home_to_market_2
+                  - entity: sensor.transit_to_market_2
                     name: ' '
                     icon: ' '
                     type: "custom:secondaryinfo-entity-row"
                     secondary_info: >-
-                      <strong style="color:var(--primary-text-color);">[[ sensor.home_to_market_2_hour ]]</strong>
+                      <strong style="color:var(--primary-text-color);">[[ sensor.transit_to_market_2_hour ]]</strong>
 
                   - type: divider
                     style: *transit_divider
 
-                  - entity: sensor.home_to_market_3
+                  - entity: sensor.transit_to_market_3
                     name: ' '
                     icon: ' '
                     type: "custom:secondaryinfo-entity-row"
                     secondary_info: >-
-                      <strong style="color:var(--primary-text-color);">[[ sensor.home_to_market_3_hour ]]</strong>
+                      <strong style="color:var(--primary-text-color);">[[ sensor.transit_to_market_3_hour ]]</strong>
 
               #
               # Outdoor cameras

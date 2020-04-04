@@ -228,7 +228,7 @@
 #
 - platform: github_custom
   access_token: !secret github_access_token
-  scan_interval: 300
+  scan_interval: 900
   repositories:
     - path: 'renemarc/balena-airthingswave'
       name: Repo Airthings
@@ -248,7 +248,7 @@
       friendly_name: Repo Config Clones
       icon_template: mdi:content-copy
       entity_id:
-        - sensor.time
+        - sensor.time_quarterly
       value_template: >-
         {{ state_attr('sensor.repo_config', 'clones') }}
 
@@ -256,7 +256,7 @@
       friendly_name: Repo Config Clones Uniques
       icon_template: mdi:content-copy
       entity_id:
-        - sensor.time
+        - sensor.time_quarterly
       value_template: >-
         {{ state_attr('sensor.repo_config', 'clones_uniques') }}
 
@@ -264,7 +264,7 @@
       friendly_name: Repo Config Forks
       icon_template: mdi:source-fork
       entity_id:
-        - sensor.time
+        - sensor.time_quarterly
       value_template: >-
         {{ state_attr('sensor.repo_config', 'forks') }}
 
@@ -272,7 +272,7 @@
       friendly_name: Repo Config Issues
       icon_template: mdi:alert-circle-outline
       entity_id:
-        - sensor.time
+        - sensor.time_quarterly
       value_template: >-
         {{ state_attr('sensor.repo_config', 'open_issues') }}
 
@@ -280,7 +280,7 @@
       friendly_name: Repo Config Stargazers
       icon_template: mdi:star-face
       entity_id:
-        - sensor.time
+        - sensor.time_quarterly
       value_template: >-
         {{ state_attr('sensor.repo_config', 'stargazers') }}
 
@@ -288,7 +288,7 @@
       friendly_name: Repo Config Views
       icon_template: mdi:eye
       entity_id:
-        - sensor.time
+        - sensor.time_quarterly
       value_template: >-
         {{ state_attr('sensor.repo_config', 'views') }}
 
@@ -296,7 +296,7 @@
       friendly_name: Repo Config Views Uniques
       icon_template: mdi:eye
       entity_id:
-        - sensor.time
+        - sensor.time_quarterly
       value_template: >-
         {{ state_attr('sensor.repo_config', 'views_uniques') }}
 

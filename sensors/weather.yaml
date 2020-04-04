@@ -5,7 +5,7 @@
 #
 - platform: darksky
   api_key: !secret darksky_api_key
-  scan_interval: 120
+  scan_interval: 180
   forecast:
     - 0
     - 1
@@ -958,6 +958,7 @@
   sensors:
     weather_emoji:
       friendly_name: Weather Emoji
+      icon_template: mdi:sticker-emoji
       value_template: >-
         {% set icon = states('sensor.dark_sky_icon') %}
 
@@ -985,6 +986,7 @@
 
     weather_emoji_1:
       friendly_name: Weather Emoji 1
+      icon_template: mdi:sticker-emoji
       value_template: >-
         {% set icon = states('sensor.dark_sky_icon_1d') %}
 

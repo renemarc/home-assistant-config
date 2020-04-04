@@ -19,21 +19,21 @@
 
 This folder gathers all simpler configuration files.
 
-## Inputs
+## Integrations
 
 These are essentially used as triggers and conditions for [`/automations/`](../automations).
 
-### [`✅ ./input_booleans.yaml`](input_booleans.yaml)
+### [` ./homekit.yaml`](homekit.yaml)
 
-Modes and other binary intermediary state holders for [`/automations/`](../automations).
+### [`💡 ./lifx.yaml`](lifx.yaml)
 
-### [`🔲 ./input_selects.yaml`](input_selects.yaml)
+### [`▶️ ./plex.yaml`](plex.yaml)
 
-List of light effects and global scenes for the frontend and for [`/appdaemon/dashboards/`](../appdaemon/dashboards).
+### [`🚄 ./speedtest.yaml`](speedtest.yaml)
 
-### [`❓ ./variables.yaml`](variables.yaml)
+### [`⚡ ./tplink.yaml`](tplink.yaml)
 
-Flexible intermediary data holder, using the [third-party](https://github.com/rogro82/hass-variables) [`/custom_components/variable.py`](../custom_components/variable.py).
+### [`📶 ./unifi.yaml`](unifi.yaml)
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
@@ -55,9 +55,17 @@ For tracking device presence with ~~Bluetooth and~~ a [UniFi](https://www.ubnt.c
 
 To enable basic control of the [Fully Kiosk Browser](https://www.ozerov.de/fully-kiosk-browser) using the [third-party](https://github.com/daemondazz/homeassistant-displays) [`/custom_components/display/`](../custom_components/display) component.
 
+### [`🏘️ ./groups.yaml`](groups.yaml)
+
+Groups are used in [`/automations`](../automations) and [`/scripts`](../scripts) in order to reduce redundancy and ease maintenance.
+
 ### [`📽 ./media_players.yaml`](media_players.yaml)
 
 For [Kodi](https://kodi.tv) and [Plex](https://www.plex.tv).
+
+### [`👥 ./persons.yaml`](persons.yaml)
+
+### [`⏺️ ./recorder.yaml`](recorder.yaml)
 
 ### [`🌈 ./scenes.yaml`](scenes.yaml)
 
@@ -66,6 +74,10 @@ Simple registration for [LIFX's server-based scenes](https://www.lifx.com/pages/
 ### [`🐚 ./shell_commands.yaml`](shell_commands.yaml)
 
 Reusable command-line directives when no component exists or provides these options reliably.
+
+Connects to the UniFi controller with a read-only user.
+
+### [`⛅ ./weather.yaml`](weather.yaml)
 
 ### [`🗺 ./zones.yaml`](zones.yaml)
 

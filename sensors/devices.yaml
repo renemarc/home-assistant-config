@@ -13,18 +13,6 @@
     front_camera_signal_strength:
       friendly_name: Front Camera Signal Strength
       unit_of_measurement: '%'
-      value_template: >-
-        {% set dbm = state_attr('camera.front', 'wifi_strength') %}
-
-        {% set scale = (2 * (dbm + 100)) | round %}
-        {% if scale > 100 %}
-          {% set scale = 100 %}
-        {% elif scale < 0 %}
-          {% set scale = 0 %}
-        {% endif %}
-
-        {{ scale }}
-
       icon_template: >-
         {% set dbm = state_attr('camera.front', 'wifi_strength') %}
 
@@ -37,6 +25,24 @@
         {% else %}
           mdi:signal-cellular-outline
         {% endif %}
+      value_template: >-
+        {% set dbm = state_attr('camera.front', 'wifi_strength') %}
+
+        {% set scale = (2 * (dbm + 100)) | round %}
+        {% if scale > 100 %}
+          {% set scale = 100 %}
+        {% elif scale < 0 %}
+          {% set scale = 0 %}
+        {% endif %}
+
+        {{ scale }}
+
+    front_camera_wifi_strength:
+      friendly_name: Front Camera Wifi Strength
+      unit_of_measurement: 'dBm'
+      device_class: signal_strength
+      value_template: >-
+        {{ state_attr('camera.front', 'wifi_strength') }}
 
 
 #
@@ -53,11 +59,9 @@
   password: !secret unifi_password
   monitored_conditions:
     - alerts
-    # - firmware
     - lan
     - wan
     - wlan
-    # - www
 
 - platform: template
   sensors:

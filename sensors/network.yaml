@@ -92,13 +92,7 @@
       icon_template: mdi:percent
       unit_of_measurement: '%'
       value_template: >-
-        {% set usage = states('sensor.ebox_usage') %}
-
-        {% if usage != 'unknown' %}
-          {{ usage | round }}
-        {% else %}
-          unknown
-        {% endif %}
+        {{ states('sensor.ebox_usage') | round }}
 
 
 #
@@ -113,36 +107,18 @@
       icon_template: mdi:timer
       unit_of_measurement: 'ms'
       value_template: >-
-        {% set value = states('sensor.speedtest_ping') %}
-
-        {% if value != 'unknown' %}
-          {{ value | round }}
-        {% else %}
-          unknown
-        {% endif %}
+        {{ states('sensor.speedtest_ping') | round }}
 
     speedtest_download_rounded:
       friendly_name: Downspeed
       icon_template: mdi:download-network
       unit_of_measurement: 'Mbit/s'
       value_template: >-
-        {% set value = states('sensor.speedtest_download') %}
-
-        {% if value != 'unknown' %}
-          {{ value | round }}
-        {% else %}
-          unknown
-        {% endif %}
+        {{ states('sensor.speedtest_download') | round }}
 
     speedtest_upload_rounded:
       friendly_name: Upspeed
       icon_template: mdi:upload-network
       unit_of_measurement: 'Mbit/s'
       value_template: >-
-        {% set value = states('sensor.speedtest_upload') %}
-
-        {% if value != 'unknown' %}
-          {{ value | round }}
-        {% else %}
-          unknown
-        {% endif %}
+        {{ states('sensor.speedtest_upload') | round }}

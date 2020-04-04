@@ -204,6 +204,12 @@ Everything weather related.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+### [`🌍 ./world.yaml`](world.yaml)
+
+Outside world safety and threath assessments. 
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 ## Generic sensors
 
 ### [`⏳ ./calendar.yaml`](calendar.yaml)

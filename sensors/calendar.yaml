@@ -347,7 +347,7 @@
               {% set minute_friendly = ' and a half' %}
             {% endif %}
 
-            The sun will rise in about {{hour}}{{ minute_friendly }} hour{% if hour > 0 %}s{% endif %}.
+            The sun will rise in about {{ hour }}{{ minute_friendly }} hour{% if hour > 0 %}s{% endif %}.
           {% else %}
             The sun will rise soon.
           {% endif %}

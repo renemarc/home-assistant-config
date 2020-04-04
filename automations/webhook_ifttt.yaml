@@ -28,12 +28,13 @@
       token: !secret ifttt_token
 
   action:
-    - service_template: '{{ trigger.event.data.service }}'
-      data_template:
-        entity_id: '{{ trigger.event.data.entity_id }}'
-
     - service: system_log.write
       data_template:
         level: info
         logger: homeassistant.components.ifttt
         message: "Received request to {{ trigger.event.data.service }} for {{ trigger.event.data.entity_id }} with name {{ trigger.event.data.name }} at {{ trigger.event.data.time }}."
+
+    - service_template: "{{ trigger.event.data.service }}"
+      data_template:
+        entity_id: "{{ trigger.event.data.entity_id }}"
+
