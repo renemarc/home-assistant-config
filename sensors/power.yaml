@@ -74,8 +74,9 @@
       device_class: battery
       value_template: >-
         {% set battery_level = state_attr('display.kiosk', 'battery_level') %}
+        {% set kiosk = is_state('binary_sensor.kiosk_status', 'on') %}
 
-        {% if battery_level != None %}
+        {% if battery_level != None and kiosk %}
           {{ battery_level | round }}
         {% else %}
           unknown

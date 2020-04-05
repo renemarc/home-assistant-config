@@ -13,3 +13,14 @@
 - platform: bluetooth_tracker
   request_rssi: true
   track_new_devices: true
+
+
+#
+# Ping
+#
+# https://www.home-assistant.io/integrations/ping/
+#
+- platform: ping
+  count: 2
+  hosts:
+    kiosk_ping: !secret fully_kiosk_host

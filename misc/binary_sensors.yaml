@@ -94,3 +94,38 @@
         - input_boolean.motion_front
       value_template: >-
         {{ is_state('input_boolean.motion_front', 'on') }}
+
+#
+# Device online/presence status
+#
+- platform: template
+  sensors:
+    laptop_her:
+      friendly_name: Her Laptop
+      device_class: presence
+      icon_template: mdi:laptop
+      value_template: >-
+        {% set laptop_her = is_state('device_tracker.laptop_her', 'home') %}
+
+        {{ laptop_her }}
+
+    laptop_him:
+      friendly_name: His Laptop
+      device_class: presence
+      icon_template: mdi:laptop
+      value_template: >-
+        {% set laptop_him = is_state('device_tracker.laptop_him', 'home') %}
+        {% set laptop_him_bt = is_state('device_tracker.laptop_him_bt', 'home') %}
+        {% set laptop_him_ethernet = is_state('device_tracker.laptop_him_ethernet', 'home') %}
+
+        {{ laptop_him or laptop_him_bt or laptop_him_ethernet }}
+
+    kiosk_status:
+      friendly_name: Kiosk
+      device_class: connectivity
+      icon_template: mdi:tablet
+      value_template: >-
+        {% set kiosk = is_state('device_tracker.kiosk', 'home') %}
+        {% set kiosk_ping = is_state('device_tracker.kiosk_ping', 'home') %}
+
+        {{ kiosk or kiosk_ping }}
