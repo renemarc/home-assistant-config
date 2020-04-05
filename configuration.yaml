@@ -174,8 +174,6 @@ homeassistant:
   time_zone: !secret homeassistant_time_zone
   auth_providers:
     - type: homeassistant
-    # - type: legacy_api_password
-    #   api_password: !secret http_password
   customize_glob: !include customize_glob.yaml
   customize: !include customize.yaml
   whitelist_external_dirs:
@@ -297,7 +295,6 @@ logger:
     sqlalchemy.exc.ProgrammingError: critical # Until GTFS integration overhaul is complete
     homeassistant.helpers.entity: critical # Until GTFS integration overhaul is complete
     pyunifi.controller: error # When Unifi Controller is temporarily unreachable.
-
 
 #
 # Lovelace interface
