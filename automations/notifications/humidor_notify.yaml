@@ -18,7 +18,7 @@
 # @see automations/notifications/humidor_notify_reset.yaml
 #
 - id: humidor_notify
-  alias: Humidor NOTIFY
+  alias: "Humidor NOTIFY"
 
   trigger:
     # When humidity is way too high.

@@ -11,7 +11,8 @@
 # @see /automations/areas/kitchen_low.yaml
 #
 - id: kitchen_on
-  alias: Kitchen ON
+  alias: "Kitchen ON"
+
   trigger:
     # When low-power mode is disabled.
     - platform: state

@@ -1,7 +1,7 @@
 #
 # Binary sensors
 #
-# @link https://home-assistant.io/components/binary_sensor/
+# @link https://www.home-assistant.io/integrations/binary_sensor/
 #
 
 
@@ -12,7 +12,7 @@
 #
 # @link https://flic.io/
 # @link https://github.com/renemarc/resin-flic
-# @link https://home-assistant.io/components/binary_sensor.flic/
+# @link https://www.home-assistant.io/integrations/flic/
 #
 - platform: flic
   host: !secret flic_host
@@ -44,7 +44,7 @@
 - platform: template
   sensors:
     kiosk_motion_auto:
-      friendly_name: Kiosk Motion
+      friendly_name: "Kiosk Motion"
       device_class: motion
       entity_id:
         - sensor.time
@@ -74,7 +74,7 @@
 - platform: template
   sensors:
     siren_monitor_smoke:
-      friendly_name: Smoke detector
+      friendly_name: "Smoke Detector"
       device_class: smoke
       entity_id:
         - sensor.siren_monitor_smoke
@@ -88,12 +88,13 @@
 - platform: template
   sensors:
     motion_front:
-      friendly_name: Front Motion
+      friendly_name: "Front Motion"
       device_class: motion
       entity_id:
         - input_boolean.motion_front
       value_template: >-
         {{ is_state('input_boolean.motion_front', 'on') }}
+
 
 #
 # Device online/presence status
@@ -101,18 +102,18 @@
 - platform: template
   sensors:
     laptop_her:
-      friendly_name: Her Laptop
+      friendly_name: "Her Laptop"
       device_class: presence
-      icon_template: mdi:laptop
+      icon_template: "mdi:laptop"
       value_template: >-
         {% set laptop_her = is_state('device_tracker.laptop_her', 'home') %}
 
         {{ laptop_her }}
 
     laptop_him:
-      friendly_name: His Laptop
+      friendly_name: "His Laptop"
       device_class: presence
-      icon_template: mdi:laptop
+      icon_template: "mdi:laptop"
       value_template: >-
         {% set laptop_him = is_state('device_tracker.laptop_him', 'home') %}
         {% set laptop_him_bt = is_state('device_tracker.laptop_him_bt', 'home') %}
@@ -121,9 +122,9 @@
         {{ laptop_him or laptop_him_bt or laptop_him_ethernet }}
 
     kiosk_status:
-      friendly_name: Kiosk
+      friendly_name: "Kiosk"
       device_class: connectivity
-      icon_template: mdi:tablet
+      icon_template: "mdi:tablet"
       value_template: >-
         {% set kiosk = is_state('device_tracker.kiosk', 'home') %}
         {% set kiosk_ping = is_state('device_tracker.kiosk_ping', 'home') %}

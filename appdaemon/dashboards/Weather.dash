@@ -1,7 +1,7 @@
 #
 # Main arguments, all optional
 #
-title: Main Panel
+title: "Main Panel"
 widget_dimensions: [121, 122]
 widget_size: [1, 1]
 widget_margins: [5, 5]
@@ -18,30 +18,30 @@ global_parameters:
 #
 nav_main:
     widget_type: navigate
-    dashboard: Main
-    title2: Home
-    icon_inactive: mdi-home-assistant
+    dashboard: "Main"
+    title2: "Home"
+    icon_inactive: "mdi-home-assistant"
     widget_style: "background: DARKSLATEBLUE;"
 
 nav_switchboard:
     widget_type: navigate
-    dashboard: Switchboard
-    title2: Switchboard
-    icon_inactive: mdi-nintendo-switch
+    dashboard: "Switchboard"
+    title2: "Switchboard"
+    icon_inactive: "mdi-nintendo-switch"
     widget_style: "background: DARKSLATEBLUE;"
 
 nav_weather:
     widget_type: navigate
-    dashboard: Weather
-    title2: Weather
-    icon_inactive: mdi-weather-partly-cloudy
+    dashboard: "Weather"
+    title2: "Weather"
+    icon_inactive: "mdi-weather-partly-cloudy"
     widget_style: "background: MEDIUMSLATEBLUE;"
 
 nav_status:
     widget_type: navigate
-    dashboard: Status
-    title2: Status
-    icon_inactive: mdi-information-outline
+    dashboard: "Status"
+    title2: "Status"
+    icon_inactive: "mdi-information-outline"
     widget_style: "background: DARKSLATEBLUE;"
 
 nav_spacer:
@@ -55,13 +55,13 @@ nav_spacer:
 #
 label:
     widget_type: sensor
-    title2: Weather
+    title2: "Weather"
     entity: sensor.weather_summary
     sub_entity: sensor.weather_details
     widget_style: "background: MEDIUMSLATEBLUE;"
     title2_style: "text-transform: uppercase; letter-spacing: 0.35em;"
     text_style: "font-size: 300%;"
-    state_text_style: "font-size:125%;padding-bottom:0.15em;background-color:MEDIUMSLATEBLUE;"
+    state_text_style: "font-size: 125%; padding-bottom: 0.15em; background-color: MEDIUMSLATEBLUE;"
 
 
 #
@@ -70,8 +70,7 @@ label:
 camera_environment_canada:
     widget_type: entitypicture
     entity: camera.environment_canada
-    base_url: http://hassio.local:8123
-    # refresh: 300
+    base_url: "http://hassio.local:8123"
     image_style: "top: 0; bottom: 0; left: 0; right: 0;"
 
 camera_noaa:
@@ -87,7 +86,7 @@ wind:
     widget_type: entitysensor
     entity: sensor.wind_speed
     title2_entity: sensor.wind_scale_friendly
-    widget_style: "background-color:inherit;"
+    widget_style: "background-color: inherit;"
 
 wind_icon:
     widget_type: iconsensor
@@ -95,30 +94,30 @@ wind_icon:
     title2_entity: sensor.wind_bearing_cardinal_friendly
     icons:
         "N":
-            icon: mdi-arrow-up
+            icon: "mdi-arrow-up"
             style: "$style_active"
         "NE":
-            icon: mdi-arrow-top-right
+            icon: "mdi-arrow-top-right"
             style: "$style_active"
         "E":
-            icon: mdi-arrow-right
+            icon: "mdi-arrow-right"
             style: "$style_active"
         "SE":
-            icon: mdi-arrow-bottom-right
+            icon: "mdi-arrow-bottom-right"
             style: "$style_active"
         "S":
-            icon: mdi-arrow-down
+            icon: "mdi-arrow-down"
             style: "$style_active"
         "SW":
-            icon: mdi-arrow-bottom-left
+            icon: "mdi-arrow-bottom-left"
             style: "$style_active"
         "W":
-            icon: mdi-arrow-left
+            icon: "mdi-arrow-left"
             style: "$style_active"
         "NW":
-            icon: mdi-arrow-top-left
+            icon: "mdi-arrow-top-left"
             style: "$style_active"
-    widget_style: "background-color:inherit;"
+    widget_style: "background-color: inherit;"
 
 
 #
@@ -126,35 +125,35 @@ wind_icon:
 #
 daily_forecast:
     widget_type: sensor
-    title: 24h Forecast
+    title: "24h Forecast"
     entity: sensor.dark_sky_hourly_summary
 
 weekly_forecast:
     widget_type: sensor
-    title: Weekly Forecast
+    title: "Weekly Forecast"
     entity: sensor.dark_sky_daily_summary
 
 temperature_today:
     widget_type: entitysensor
-    title: Today
+    title: "Today"
     entity: sensor.outside_temperature_high_0
     sub_entity: sensor.outside_temperature_low_friendly_0
     title2_entity: sensor.feels_like
-    widget_style: "background-color:inherit;"
-    title_style: "background-color:#555;padding:5px 52% 3px;margin-right:-10px;margin-top:-5px;border-radius: 5px 5px 0 0"
+    widget_style: "background-color: inherit;"
+    title_style: "background-color: #555; padding: 5px 52% 3px; margin-right: -10px; margin-top: -5px; border-radius: 5px 5px 0 0;"
     title2_style: "margin-top:3px;"
-    state_text_style: "background-color:inherit"
+    state_text_style: "background-color: inherit;"
 
 temperature_tomorrow:
     widget_type: entitysensor
-    title: Tomorrow
+    title: "Tomorrow"
     entity: sensor.outside_temperature_high_1
     sub_entity: sensor.outside_temperature_low_friendly_1
     title2_entity: sensor.feels_like_1
-    widget_style: "background-color:inherit;"
-    title_style: "background-color:#555;padding:5px 52% 3px;margin-top:-5px;border-radius: 5px 5px 0 0"
-    title2_style: "margin-top:3px;"
-    state_text_style: "background-color:inherit"
+    widget_style: "background-color: inherit;"
+    title_style: "background-color: #555; padding: 5px 52% 3px; margin-top: -5px; border-radius: 5px 5px 0 0;"
+    title2_style: "margin-top: 3px;"
+    state_text_style: "background-color: inherit;"
 
 temperature_after_tomorrow:
     widget_type: entitysensor
@@ -163,130 +162,130 @@ temperature_after_tomorrow:
     sub_entity: sensor.outside_temperature_low_friendly_2
     title_entity: sensor.after_tomorrow
     title2_entity: sensor.feels_like_2
-    widget_style: "background-color:inherit;"
-    title_style: "background-color:#555;padding:5px 52% 3px;margin-top:-5px;border-radius: 5px 5px 0 0"
-    title2_style: "margin-top:3px;"
-    state_text_style: "background-color:inherit"
+    widget_style: "background-color: inherit;"
+    title_style: "background-color: #555; padding: 5px 52% 3px; margin-top: -5px; border-radius: 5px 5px 0 0;"
+    title2_style: "margin-top: 3px;"
+    state_text_style: "background-color: inherit;"
 
 weather_icon_today:
     widget_type: iconsensor
     entity: sensor.dark_sky_icon
     icons:
         clear-day:
-            icon: mdi-weather-sunny
+            icon: "mdi-weather-sunny"
             style: "$style_active"
         clear-night:
-            icon: mdi-weather-night
+            icon: "mdi-weather-night"
             style: "$style_active"
         rain:
-            icon: mdi-weather-rainy
+            icon: "mdi-weather-rainy"
             style: "$style_active"
         snow:
-            icon: mdi-weather-snowy
+            icon: "mdi-weather-snowy"
             style: "$style_active"
         sleet:
-            icon: mdi-weather-snowy-rainy
+            icon: "mdi-weather-snowy-rainy"
             style: "$style_active"
         wind:
-            icon: mdi-weather-windy
+            icon: "mdi-weather-windy"
             style: "$style_active"
         fog:
-            icon: mdi-weather-fog
+            icon: "mdi-weather-fog"
             style: "$style_active"
         cloudy:
-            icon: mdi-weather-cloudy
+            icon: "mdi-weather-cloudy"
             style: "$style_active"
         partly-cloudy-day:
-            icon: mdi-weather-partly-cloudy
+            icon: "mdi-weather-partly-cloudy"
             style: "$style_active"
         partly-cloudy-night:
-            icon: mdi-weather-partly-cloudy
+            icon: "mdi-weather-partly-cloudy"
             style: "$style_active"
     title2_entity: sensor.weather_icon_friendly
     sub_entity: sensor.precip_probability_friendly
-    widget_style: "background-color:inherit;"
-    title2_style: "margin-top:3px;"
-    state_text_style: "background-color:inherit"
+    widget_style: "background-color: inherit;"
+    title2_style: "margin-top: 3px;"
+    state_text_style: "background-color: inherit"
 
 weather_icon_tomorrow:
     widget_type: iconsensor
     entity: sensor.dark_sky_icon_1d
     icons:
         clear-day:
-            icon: mdi-weather-sunny
+            icon: "mdi-weather-sunny"
             style: "$style_active"
         clear-night:
-            icon: mdi-weather-night
+            icon: "mdi-weather-night"
             style: "$style_active"
         rain:
-            icon: mdi-weather-rainy
+            icon: "mdi-weather-rainy"
             style: "$style_active"
         snow:
-            icon: mdi-weather-snowy
+            icon: "mdi-weather-snowy"
             style: "$style_active"
         sleet:
-            icon: mdi-weather-snowy-rainy
+            icon: "mdi-weather-snowy-rainy"
             style: "$style_active"
         wind:
-            icon: mdi-weather-windy
+            icon: "mdi-weather-windy"
             style: "$style_active"
         fog:
-            icon: mdi-weather-fog
+            icon: "mdi-weather-fog"
             style: "$style_active"
         cloudy:
-            icon: mdi-weather-cloudy
+            icon: "mdi-weather-cloudy"
             style: "$style_active"
         partly-cloudy-day:
-            icon: mdi-weather-partly-cloudy
+            icon: "mdi-weather-partly-cloudy"
             style: "$style_active"
         partly-cloudy-night:
-            icon: mdi-weather-partly-cloudy
+            icon: "mdi-weather-partly-cloudy"
             style: "$style_active"
     title2_entity: sensor.weather_icon_friendly_1
     sub_entity: sensor.precip_probability_friendly_1
-    widget_style: "background-color:inherit;"
-    title2_style: "margin-top:3px;"
-    state_text_style: "background-color:inherit"
+    widget_style: "background-color: inherit;"
+    title2_style: "margin-top: 3px;"
+    state_text_style: "background-color: inherit;"
 
 weather_icon_after_tomorrow:
     widget_type: iconsensor
     entity: sensor.dark_sky_icon_2d
     icons:
         clear-day:
-            icon: mdi-weather-sunny
+            icon: "mdi-weather-sunny"
             style: "$style_active"
         clear-night:
-            icon: mdi-weather-night
+            icon: "mdi-weather-night"
             style: "$style_active"
         rain:
-            icon: mdi-weather-rainy
+            icon: "mdi-weather-rainy"
             style: "$style_active"
         snow:
-            icon: mdi-weather-snowy
+            icon: "mdi-weather-snowy"
             style: "$style_active"
         sleet:
-            icon: mdi-weather-snowy-rainy
+            icon: "mdi-weather-snowy-rainy"
             style: "$style_active"
         wind:
-            icon: mdi-weather-windy
+            icon: "mdi-weather-windy"
             style: "$style_active"
         fog:
-            icon: mdi-weather-fog
+            icon: "mdi-weather-fog"
             style: "$style_active"
         cloudy:
-            icon: mdi-weather-cloudy
+            icon: "mdi-weather-cloudy"
             style: "$style_active"
         partly-cloudy-day:
-            icon: mdi-weather-partly-cloudy
+            icon: "mdi-weather-partly-cloudy"
             style: "$style_active"
         partly-cloudy-night:
-            icon: mdi-weather-partly-cloudy
+            icon: "mdi-weather-partly-cloudy"
             style: "$style_active"
     title2_entity: sensor.weather_icon_friendly_2
     sub_entity: sensor.precip_probability_friendly_2
-    widget_style: "background-color:inherit;"
-    title2_style: "margin-top:3px;"
-    state_text_style: "background-color:inherit"
+    widget_style: "background-color: inherit;"
+    title2_style: "margin-top: 3px;"
+    state_text_style: "background-color: inherit;"
 
 
 #
@@ -294,52 +293,52 @@ weather_icon_after_tomorrow:
 #
 aqi:
     widget_type: sensor
-    title: Air Quality Index
+    title: "Air Quality Index"
     entity: sensor.aqi
     sub_entity: sensor.aqi_friendly
-    state_text_style: "background-color:#555;"
+    state_text_style: "background-color: #555;"
 
 aqi_particles:
     widget_type: sensor
-    title: 2.5PM
+    title: "2.5PM"
     entity: sensor.aqi_particles
     sub_entity: sensor.aqi_particles_friendly
-    state_text_style: "background-color:#555;"
+    state_text_style: "background-color: #555;"
 
 aqi_ozone:
     widget_type: sensor
-    title: Ozone
+    title: "Ozone"
     entity: sensor.aqi_ozone
     sub_entity: sensor.aqi_ozone_friendly
-    state_text_style: "background-color:#555;"
+    state_text_style: "background-color: #555;"
 
 aqi_carbon_monoxide:
     widget_type: sensor
-    title: Carbon Monoxide
+    title: "Carbon Monoxide"
     entity: sensor.aqi_carbon_monoxide
     sub_entity: sensor.aqi_carbon_monoxide_friendly
-    state_text_style: "background-color:#555;"
+    state_text_style: "background-color: #555;"
 
 aqi_nitrogen_dioxide:
     widget_type: sensor
-    title: Nitrogen Dioxide
+    title: "Nitrogen Dioxide"
     entity: sensor.aqi_nitrogen_dioxide
     sub_entity: sensor.aqi_nitrogen_dioxide_friendly
-    state_text_style: "background-color:#555;"
+    state_text_style: "background-color: #555;"
 
 aqi_sulphur_dioxide:
     widget_type: sensor
-    title: Sulphur Dioxide
+    title: "Sulphur Dioxide"
     entity: sensor.aqi_sulphur_dioxide
     sub_entity: sensor.aqi_sulphur_dioxide_friendly
-    state_text_style: "background-color:#555;"
+    state_text_style: "background-color: #555;"
 
 uv:
     widget_type: sensor
-    title: UV
+    title: "UV"
     entity: sensor.uv
     sub_entity: sensor.uv_friendly
-    state_text_style: "background-color:#555;"
+    state_text_style: "background-color: #555;"
 
 
 #

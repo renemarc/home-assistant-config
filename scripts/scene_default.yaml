@@ -5,31 +5,33 @@
 #
 # @see /automations/scene_select.yaml
 #
-alias: Default scene
+alias: "Default Scene"
+icon: "mdi:palette"
 sequence:
+
   # Return the Aurora effect to default.
   - service: input_select.select_option
     data:
       entity_id: input_select.aurora_effect
-      option: Auto
+      option: "Auto"
 
   # Return the bed underglow light effect to default.
   - service: input_select.select_option
     data:
       entity_id: input_select.bed_effect
-      option: Auto
+      option: "Auto"
 
   # Return the ceiling wash light effect to default.
   - service: input_select.select_option
     data:
       entity_id: input_select.ceiling_effect
-      option: Auto
+      option: "Auto"
 
   # Return the TV backlight effect to default.
   - service: input_select.select_option
     data:
       entity_id: input_select.lightpack_effect
-      option: Default
+      option: "Default"
 
   # Remove the scene override.
   - service: input_boolean.turn_off

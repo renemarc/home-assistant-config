@@ -16,7 +16,7 @@
 # @link http://www.milight.com/milight-wifi-box/
 # @link https://www.futlight.com/productdetails.aspx?id=293&typeid=146
 # @link https://www.futlight.com/productdetails.aspx?id=239&typeid=125
-# @link https://home-assistant.io/components/light.limitlessled/
+# @link https://www.home-assistant.io/integrations/limitlessled
 #
 - platform: limitlessled
   bridges:
@@ -24,21 +24,21 @@
       port: !secret limitlessled_bridge_port
       groups:
       - number: 1
-        name: Sink
-        type: rgbww
-        fade: on
+        name: "Sink"
+        type: 'rgbww'
+        fade: 'on'
       - number: 2
-        name: Countertop
-        type: rgbww
-        fade: on
+        name: "Countertop"
+        type: 'rgbww'
+        fade: 'on'
       - number: 3
-        name: Microwave
-        type: rgbww
-        fade: on
+        name: "Microwave"
+        type: 'rgbww'
+        fade: 'on'
       - number: 4
-        name: Island
-        type: rgbww
-        fade: on
+        name: "Island"
+        type: 'rgbww'
+        fade: 'on'
 
 
 #
@@ -61,33 +61,33 @@
 # @link http://blog.christophermullins.com/2017/02/11/milight-wifi-gateway-emulator-on-an-esp8266/
 #
 # - platform: mqtt_json
-#   name: MQTT Sink
-#   command_topic: milight/commands/0xCAFE/rgb_cct/1
-#   state_topic: milight/states/0xCAFE/rgb_cct/1
+#   name: "MQTT Sink"
+#   command_topic: "milight/commands/0xCAFE/rgb_cct/1"
+#   state_topic: "milight/states/0xCAFE/rgb_cct/1"
 #   qos: 2
 #   color_temp: true
 #   brightness: true
 
 # - platform: mqtt_json
-#   name: MQTT Countertop
-#   command_topic: milight/commands/0xCAFE/rgb_cct/2
-#   state_topic: milight/states/0xCAFE/rgb_cct/2
+#   name: "MQTT Countertop"
+#   command_topic: "milight/commands/0xCAFE/rgb_cct/2"
+#   state_topic: "milight/states/0xCAFE/rgb_cct/2"
 #   qos: 2
 #   color_temp: true
 #   brightness: true
 
 # - platform: mqtt_json
-#   name: MQTT Microwave
-#   command_topic: milight/commands/0xCAFE/rgb_cct/3
-#   state_topic: milight/states/0xCAFE/rgb_cct/3
+#   name: "MQTT Microwave"
+#   command_topic: "milight/commands/0xCAFE/rgb_cct/3"
+#   state_topic: "milight/states/0xCAFE/rgb_cct/3"
 #   qos: 2
 #   color_temp: true
 #   brightness: true
 
 # - platform: mqtt_json
-#   name: MQTT Island
-#   command_topic: milight/commands/0xCAFE/rgb_cct/4
-#   state_topic: milight/states/0xCAFE/rgb_cct/4
+#   name: "MQTT Island"
+#   command_topic: "milight/commands/0xCAFE/rgb_cct/4"
+#   state_topic: "milight/states/0xCAFE/rgb_cct/4"
 #   qos: 2
 #   color_temp: true
 #   brightness: true

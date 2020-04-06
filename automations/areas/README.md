@@ -22,7 +22,7 @@
 
 Areas represent _rooms_ (bedroom, kitchen, lounge, washroom) and _zones_ (open ceiling, exterior).
 
-Most of these automations are subscribers for modes defined in [`/misc/input_booleans.yaml`](../misc/input_booleans.yaml) and managed through [`/automations/modes/`](../modes/).
+Most of these automations are subscribers for modes defined in [`/inputs/input_booleans.yaml`](../inputs/input_booleans.yaml) and managed through [`/automations/modes/`](../modes/).
 
 Areas are smart enough to understand what to do when a higher-level order (mode) is given. They know which device within their control should be turned on, dimmed or turned off. Like with work teams, areas are the group leaders: indivual team members don't have to worry about making sense of management's desires and instead just follow their team leader's directives.
 
@@ -78,7 +78,7 @@ Ceiling wash lights are three sets of [LIFX Z RGBW strips](https://www.lifx.com/
 
 ### [`🌈 ./ceiling_effect.yaml`](ceiling_effect.yaml)
 
-Change ceiling wash lights based on [LIFX Cloud scenes](https://home-assistant.io/components/scene.lifx_cloud/).
+Change ceiling wash lights based on [LIFX Cloud scenes](https://www.home-assistant.io/integrations/lifx_cloud/).
 
 The LIFX strips have a few effects programmed with the LIFX mobile app and stored on their servers. Each effect mentions which device will receive which colour pattern. Also, each effect has a UUID that can be used to load the effect from the servers and program the LIFX devices accordingly.
 

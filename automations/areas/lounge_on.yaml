@@ -11,7 +11,8 @@
 # @see /automations/areas/lounge_low.yaml
 #
 - id: lounge_on
-  alias: Lounge ON
+  alias: "Lounge ON"
+
   trigger:
     # When low-power mode is disabled.
     - platform: state

@@ -24,7 +24,7 @@ Like wild horses being released 🐎, all lights and devices will naturally run 
 
 Modes are the main published flags used to give higher-level directives to subscriber automations. An intent is broadly defined by a given flag, but the actual work, logic and know-how is handled by subscribers, say by [`/automations/areas/`](../areas/) or [`/automations/devices/`](../devices/).
 
-This being a somewhat open space one-bedroom apartment (think studio or small condo), I have set up the following five modes, defined in [`/misc/input_booleans.yaml`](../misc/input_booleans.yaml):
+This being a somewhat open space one-bedroom apartment (think studio or small condo), I have set up the following five modes, defined in [`/inputs/input_booleans.yaml`](../inputs/input_booleans.yaml):
 
 - **Low-power mode**: Reduce energy expenditure and light output; for instance during bright daytime or warm summer evenings.
 - **Nap mode**: Someone wants to take a nap or sleep, potentially without preventing a partner from being busy.
@@ -34,7 +34,7 @@ This being a somewhat open space one-bedroom apartment (think studio or small co
 
 So, when preparing to go to sleep one can turn off all non-bedroom indoor lights using a [Flic](https://flic.io/) button long-press on the nightstand. Then when everyone is ready to actually sleep, a single click of the Flic button closes bedroom lights. When waking-up, the same Flic button presses will disable the related modes to allow lights and devices to run as they should.
 
-In the interest of redundancy and convenience, mode control is also available using [HomeKit](https://www.home-assistant.io/components/homekit/) controllers (iPhones), a centralized wallmounted Android tablet in kiosk-mode (see [`/appdaemon/dashboards/`](../..//appdaemon/dashboards/)), an Aeotec minimote (now discontinued) and of course the [Home Assistant UI](https://www.home-assistant.io/docs/frontend/).
+In the interest of redundancy and convenience, mode control is also available using [HomeKit](https://www.home-assistant.io/integrations/homekit/) controllers (iPhones), a centralized wallmounted Android tablet in kiosk-mode (see [`/appdaemon/dashboards/`](../..//appdaemon/dashboards/)), an Aeotec minimote (now discontinued) and of course the [Home Assistant UI](https://www.home-assistant.io/docs/frontend/).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 

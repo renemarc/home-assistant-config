@@ -8,7 +8,7 @@
 # @see automations/notifications/radon_notify.yaml
 #
 - id: radon_notify_reset
-  alias: Radon NOTIFY RESET
+  alias: "Radon NOTIFY RESET"
 
   trigger:
     # When radon is back below acceptable levels.

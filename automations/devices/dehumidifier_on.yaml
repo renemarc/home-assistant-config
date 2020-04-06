@@ -9,7 +9,8 @@
 # @subscribe input_boolean.windows_open
 #
 - id: dehumidifier_on
-  alias: Dehumidifier ON
+  alias: "Dehumidifier ON"
+
   trigger:
     # When humidity is getting too high.
     - platform: numeric_state

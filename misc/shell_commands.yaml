@@ -1,14 +1,14 @@
 #
 # Shell commands
 #
-# @link https://home-assistant.io/components/shell_command/
+# @link https://www.home-assistant.io/integrations/shell_command/
 #
 
 
 #
 # Camera video handling
 #
-download_blink: 'python3 /config/python_scripts/blink_downloader.py --camera {{name}} --destination {{destination}} --output {{output}}'
+download_blink: "python3 /config/python_scripts/blink_downloader.py --camera {{name}} --destination {{destination}} --output {{output}}"
 video_to_still: "ffmpeg -hide_banner -loglevel panic -y -sseof -00:00:01 -i {{input}} -vframes 1 {{output}}"
 video_to_gif: "ffmpeg -hide_banner -loglevel panic -y -i {{input}} -vf 'fps=3,scale=640:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse' -loop 0 {{output}}"
 
@@ -18,13 +18,13 @@ video_to_gif: "ffmpeg -hide_banner -loglevel panic -y -i {{input}} -vf 'fps=3,sc
 #
 # @link https://www.ozerov.de/fully-kiosk-browser/#rest
 #
-kiosk_brightness: 'curl -k "http://{{host}}:{{port}}/?cmd=setStringSetting&key=screenBrightness&value={{value}}&type=json&password={{password}}"'
+kiosk_brightness: "curl -k 'http://{{host}}:{{port}}/?cmd=setStringSetting&key=screenBrightness&value={{value}}&type=json&password={{password}}'"
 
 
 #
 # LIFX API command to apply a cloud scene
 #
 # @link https://api.developer.lifx.com/docs/list-scenes
-# @link https://home-assistant.io/components/scene.lifx_cloud/
+# @link https://www.home-assistant.io/integrations/lifx_cloud/
 #
-activate_lifx_cloud_scene: 'curl -X PUT -H "Authorization: Bearer {{key}}" -H "Content-Type: application/json" -d ''{"duration":"{{duration|default(3)}}"}'' "https://api.lifx.com/v1/scenes/scene_id:{{uuid}}/activate"'
+activate_lifx_cloud_scene: "curl -X PUT -H 'Authorization: Bearer {{key}}' -H 'Content-Type: application/json' -d '{\"duration\":\"{{duration|default(3)}}\"}' 'https://api.lifx.com/v1/scenes/scene_id:{{uuid}}/activate'"

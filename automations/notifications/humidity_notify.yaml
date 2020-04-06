@@ -10,7 +10,7 @@
 # @subscribe sensor.average_humidity
 #
 - id: humidity_notify
-  alias: Humidity NOTIFY
+  alias: "Humidity NOTIFY"
 
   trigger:
     # When humidity is way too high.
@@ -117,9 +117,9 @@
       state: 'off'
     - service: notify.sound
       data:
-        message: "alarm"
+        message: 'alarm'
         data:
-          method: "alarm"
+          method: 'alarm'
     - delay:
         seconds: 2
     - service: notify.speech

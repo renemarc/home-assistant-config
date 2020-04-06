@@ -10,7 +10,7 @@
 - platform: template
   sensors:
     bedroom_humidity_exact:
-      friendly_name: Bedroom Humidity Exact
+      friendly_name: "Bedroom Humidity Exact"
       unit_of_measurement: '%'
       device_class: humidity
       value_template: >-
@@ -21,14 +21,14 @@
         {% endif %}
 
     bedroom_humidity:
-      friendly_name: Bedroom Humidity
+      friendly_name: "Bedroom Humidity"
       unit_of_measurement: '%'
       device_class: humidity
       value_template: >-
         {{ states('sensor.bedroom_humidity_exact') | round }}
 
     bedroom_luminance:
-      friendly_name: Bedroom Luminance
+      friendly_name: "Bedroom Luminance"
       unit_of_measurement: 'lx'
       device_class: illuminance
       value_template: >-
@@ -39,7 +39,7 @@
         {% endif %}
 
     bedroom_luminance_friendly:
-      friendly_name: Bedroom Luminance
+      friendly_name: "Bedroom Luminance"
       icon_template: >-
         {{ state_attr('sensor.bedroom_luminance', 'icon') }}
       value_template: >-
@@ -60,7 +60,7 @@
         {% endif %}
 
     bedroom_temperature_exact:
-      friendly_name: Bedroom Temperature Exact
+      friendly_name: "Bedroom Temperature Exact"
       unit_of_measurement: '°C'
       device_class: temperature
       value_template: >-
@@ -71,14 +71,14 @@
         {% endif %}
 
     bedroom_temperature:
-      friendly_name: Bedroom Temperature
+      friendly_name: "Bedroom Temperature"
       unit_of_measurement: '°C'
       device_class: temperature
       value_template: >-
         {{ states('sensor.bedroom_temperature_exact') | round }}
 
 - platform: filter
-  name: Bedroom Humidity Filtered
+  name: "Bedroom Humidity Filtered"
   entity_id: sensor.bedroom_humidity_exact
   filters:
     - filter: outlier
@@ -89,7 +89,7 @@
       precision: 1
 
 - platform: filter
-  name: Bedroom Temperature Filtered
+  name: "Bedroom Temperature Filtered"
   entity_id: sensor.bedroom_temperature_exact
   filters:
     - filter: outlier
@@ -110,7 +110,7 @@
 #   Temperature: 0.2°C
 #
 - platform: mqtt
-  name: Humidor Multisensor
+  name: "Humidor Multisensor"
   state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '%'
   device_class: humidity
@@ -129,7 +129,7 @@
     {% endif %}
 
 - platform: mqtt
-  name: Humidor Temperature Exact
+  name: "Humidor Temperature Exact"
   state_topic: "home/Acurite_tower_sensor/11846"
   unit_of_measurement: '°C'
   device_class: temperature
@@ -153,21 +153,21 @@
 - platform: template
   sensors:
     humidor_humidity:
-      friendly_name: Humidor Humidity
+      friendly_name: "Humidor Humidity"
       unit_of_measurement: '%'
       device_class: humidity
       value_template: >-
         {{ states('sensor.humidor_multisensor') | round }}
 
     humidor_temperature:
-      friendly_name: Humidor Temperature
+      friendly_name: "Humidor Temperature"
       unit_of_measurement: '°C'
       device_class: temperature
       value_template: >-
         {{ states('sensor.humidor_temperature_exact') | round }}
 
 - platform: filter
-  name: Humidor Humidity Filtered
+  name: "Humidor Humidity Filtered"
   entity_id: sensor.humidor_multisensor
   filters:
     - filter: outlier
@@ -178,7 +178,7 @@
       precision: 1
 
 - platform: filter
-  name: Humidor Temperature Filtered
+  name: "Humidor Temperature Filtered"
   entity_id: sensor.humidor_temperature_exact
   filters:
     - filter: outlier
@@ -204,7 +204,7 @@
 - platform: template
   sensors:
     kitchen_temperature_exact:
-      friendly_name: Kitchen Temperature Exact
+      friendly_name: "Kitchen Temperature Exact"
       unit_of_measurement: '°C'
       device_class: temperature
       value_template: >-
@@ -221,14 +221,14 @@
         {% endif %}
 
     kitchen_temperature:
-      friendly_name: Kitchen Temperature
+      friendly_name: "Kitchen Temperature"
       unit_of_measurement: '°C'
       device_class: temperature
       value_template: >-
         {{ states('sensor.kitchen_temperature_exact') | round }}
 
 - platform: filter
-  name: Kitchen Temperature Filtered
+  name: "Kitchen Temperature Filtered"
   entity_id: sensor.kitchen_temperature_exact
   filters:
     - filter: outlier
@@ -254,7 +254,7 @@
 - platform: template
   sensors:
     lounge_humidity_exact:
-      friendly_name: Lounge Humidity Exact
+      friendly_name: "Lounge Humidity Exact"
       unit_of_measurement: '%'
       device_class: humidity
       value_template: >-
@@ -265,14 +265,14 @@
         {% endif %}
 
     lounge_humidity:
-      friendly_name: Lounge Humidity
+      friendly_name: "Lounge Humidity"
       unit_of_measurement: '%'
       device_class: humidity
       value_template: >-
         {{ states('sensor.lounge_humidity_exact') | round }}
 
     lounge_luminance:
-      friendly_name: Lounge Luminance
+      friendly_name: "Lounge Luminance"
       unit_of_measurement: 'lx'
       device_class: illuminance
       value_template: >-
@@ -283,7 +283,7 @@
         {% endif %}
 
     lounge_luminance_friendly:
-      friendly_name: Lounge Luminance
+      friendly_name: "Lounge Luminance"
       icon_template: >-
         {{ state_attr('sensor.lounge_luminance', 'icon') }}
       value_template: >-
@@ -304,7 +304,7 @@
         {% endif %}
 
     lounge_temperature_exact:
-      friendly_name: Lounge Temperature Exact
+      friendly_name: "Lounge Temperature Exact"
       unit_of_measurement: '°C'
       device_class: temperature
       value_template: >-
@@ -315,14 +315,14 @@
         {% endif %}
 
     lounge_temperature:
-      friendly_name: Lounge Temperature
+      friendly_name: "Lounge Temperature"
       unit_of_measurement: '°C'
       device_class: temperature
       value_template: >-
         {{ states('sensor.lounge_temperature_exact') | round }}
 
 - platform: filter
-  name: Lounge Humidity Filtered
+  name: "Lounge Humidity Filtered"
   entity_id: sensor.lounge_humidity_exact
   filters:
     - filter: outlier
@@ -333,7 +333,7 @@
       precision: 1
 
 - platform: filter
-  name: Lounge Temperature Filtered
+  name: "Lounge Temperature Filtered"
   entity_id: sensor.lounge_temperature_exact
   filters:
     - filter: outlier
@@ -358,7 +358,7 @@
 - platform: template
   sensors:
     washroom_humidity_exact:
-      friendly_name: Washroom Humidity Exact
+      friendly_name: "Washroom Humidity Exact"
       unit_of_measurement: '%'
       device_class: humidity
       value_template: >-
@@ -369,14 +369,14 @@
         {% endif %}
 
     washroom_humidity:
-      friendly_name: Washroom Humidity
+      friendly_name: "Washroom Humidity"
       unit_of_measurement: '%'
       device_class: humidity
       value_template: >-
         {{ states('sensor.washroom_humidity_exact') | round }}
 
     washroom_luminance:
-      friendly_name: Washroom Luminance
+      friendly_name: "Washroom Luminance"
       unit_of_measurement: 'lx'
       device_class: illuminance
       value_template: >-
@@ -387,7 +387,7 @@
         {% endif %}
 
     washroom_luminance_friendly:
-      friendly_name: Washroom Luminance
+      friendly_name: "Washroom Luminance"
       icon_template: >-
         {{ state_attr('sensor.washroom_luminance', 'icon') }}
       value_template: >-
@@ -408,7 +408,7 @@
         {% endif %}
 
     washroom_temperature_exact:
-      friendly_name: Washroom Temperature Exact
+      friendly_name: "Washroom Temperature Exact"
       unit_of_measurement: '°C'
       device_class: temperature
       value_template: >-
@@ -419,14 +419,14 @@
         {% endif %}
 
     washroom_temperature:
-      friendly_name: Washroom Temperature
+      friendly_name: "Washroom Temperature"
       unit_of_measurement: '°C'
       device_class: temperature
       value_template: >-
         {{ states('sensor.washroom_temperature_exact') | round }}
 
 - platform: filter
-  name: Washroom Humidity Filtered
+  name: "Washroom Humidity Filtered"
   entity_id: sensor.washroom_humidity_exact
   filters:
     - filter: outlier
@@ -437,7 +437,7 @@
       precision: 1
 
 - platform: filter
-  name: Washroom Temperature Filtered
+  name: "Washroom Temperature Filtered"
   entity_id: sensor.washroom_temperature_exact
   filters:
     - filter: outlier
@@ -464,23 +464,23 @@
 # @link https://airthings.com/wave/
 #
 - platform: mqtt
-  name: Radon Daily
+  name: "Radon Daily"
   state_topic: "airthings-wave/Radon-Day"
   unit_of_measurement: 'Bq/m3'
-  icon: mdi:radioactive
+  icon: "mdi:radioactive"
   value_template: >-
     {{ value | round }}
 
 - platform: mqtt
-  name: Radon Long Term
+  name: "Radon Long Term"
   state_topic: "airthings-wave/Radon-Long-Term"
   unit_of_measurement: 'Bq/m3'
-  icon: mdi:radioactive
+  icon: "mdi:radioactive"
   value_template: >-
     {{ value | round }}
 
 - platform: mqtt
-  name: Radon Detector Humidity Exact
+  name: "Radon Detector Humidity Exact"
   state_topic: "airthings-wave/Humidity"
   unit_of_measurement: '%'
   device_class: humidity
@@ -491,7 +491,7 @@
     {{ (humidity + calibration) | round(1) }}
 
 - platform: mqtt
-  name: Radon Detector Temperature Exact
+  name: "Radon Detector Temperature Exact"
   state_topic: "airthings-wave/Temperature"
   unit_of_measurement: '°C'
   device_class: temperature
@@ -504,7 +504,7 @@
 - platform: template
   sensors:
     radon_friendly:
-      friendly_name: Radon
+      friendly_name: "Radon"
       icon_template: >-
         {{ state_attr('sensor.radon_daily', 'icon') }}
       value_template: >-
@@ -523,21 +523,21 @@
         {% endif %}
 
     radon_detector_humidity:
-      friendly_name: Radon Detector Humidity
+      friendly_name: "Radon Detector Humidity"
       unit_of_measurement: '%'
       device_class: humidity
       value_template: >-
         {{ states('sensor.radon_detector_humidity_exact') | round }}
 
     radon_detector_temperature:
-      friendly_name: Radon Detector Temperature
+      friendly_name: "Radon Detector Temperature"
       unit_of_measurement: '°C'
       device_class: temperature
       value_template: >-
         {{ states('sensor.radon_detector_temperature_exact') | round }}
 
 - platform: filter
-  name: Radon Detector Humidity Filtered
+  name: "Radon Detector Humidity Filtered"
   entity_id: sensor.radon_detector_humidity_exact
   filters:
     - filter: lowpass
@@ -545,7 +545,7 @@
       precision: 1
 
 - platform: filter
-  name: Radon Detector Temperature Filtered
+  name: "Radon Detector Temperature Filtered"
   entity_id: sensor.radon_detector_temperature_exact
   filters:
     - filter: lowpass
@@ -562,7 +562,7 @@
 # Uses the current reading because temperature changes are readily felt.
 #
 - platform: min_max
-  name: Average Temperature Exact
+  name: "Average Temperature Exact"
   type: mean
   round_digits: 0
   entity_ids:
@@ -572,7 +572,7 @@
 - platform: template
   sensors:
     average_temperature:
-      friendly_name: Temperature
+      friendly_name: "Temperature"
       unit_of_measurement: '°C'
       device_class: temperature
       value_template: >-
@@ -590,7 +590,7 @@
 # release of furniture, fabrics and building materials.
 #
 - platform: min_max
-  name: Average Humidity Exact
+  name: "Average Humidity Exact"
   type: mean
   round_digits: 1
   entity_ids:
@@ -600,7 +600,7 @@
 - platform: template
   sensors:
     average_humidity:
-      friendly_name: Humidity
+      friendly_name: "Humidity"
       unit_of_measurement: '%'
       device_class: humidity
       value_template: >-
@@ -609,8 +609,9 @@
 - platform: template
   sensors:
     average_humidity_friendly:
-      friendly_name: Humidity
-      icon_template: mdi:water-percent
+      friendly_name: "Humidity"
+      icon_template: >-
+        {{ state_attr('sensor.average_humidity', 'icon') }}
       value_template: >-
         {% set humidity = states('sensor.average_humidity') | int(-1) %}
 
@@ -633,8 +634,9 @@
         {% endif %}
 
     average_humidity_emoji:
-      friendly_name: Humidity
-      icon_template: mdi:water-percent
+      friendly_name: "Humidity"
+      icon_template: >-
+        {{ state_attr('sensor.average_humidity', 'icon') }}
       value_template: >-
         {% set humidity = states('sensor.average_humidity') | int(-1) %}
 

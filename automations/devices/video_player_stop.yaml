@@ -8,7 +8,8 @@
 # @publish input_select.scene
 #
 - id: video_player_stop
-  alias: Video player STOP
+  alias: "Video Player STOP"
+
   trigger:
     # When media playback has been paused.
     - platform: state
@@ -114,4 +115,4 @@
     - service: input_select.select_option
       data:
         entity_id: input_select.scene
-        option: Default
+        option: "Default"

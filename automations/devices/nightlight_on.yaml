@@ -7,7 +7,7 @@
 # @subscribe input_boolean.night_mode
 #
 - id: nightlight_on
-  alias: Nightlight ON
+  alias: "Nightlight ON"
   initial_state: 'off'
 
   trigger:
@@ -36,4 +36,4 @@
       data:
         entity_id:
           - group.kitchen_lights
-        effect: night
+        effect: 'night'

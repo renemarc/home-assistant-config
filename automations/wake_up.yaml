@@ -4,7 +4,8 @@
 # @see /scripts/wake_up.yaml
 #
 - id: wake_up
-  alias: Wake up
+  alias: "Wake Up"
+
   trigger:
     # When Minimote button 1 is clicked.
     - platform: event

@@ -22,7 +22,7 @@
 
 <h1 align="center">Custom AppDaemon widgets</h1>
 
-[AppDaemon](https://home-assistant.io/docs/ecosystem/appdaemon/) offers [many default widgets](https://github.com/home-assistant/appdaemon/tree/master/appdaemon/widgets/), but can also support third-party and custom ones.
+[AppDaemon](https://www.home-assistant.io/docs/ecosystem/appdaemon/) offers [many default widgets](https://github.com/home-assistant/appdaemon/tree/master/appdaemon/widgets/), but can also support third-party and custom ones.
 
 ## Community widgets
 

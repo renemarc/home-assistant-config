@@ -10,7 +10,7 @@
 # @link https://www.home-assistant.io/integrations/sensor.mqtt/
 #
 - platform: mqtt
-  name: Humidor Multisensor Battery Level
+  name: "Humidor Multisensor Battery Level"
   unit_of_measurement: '%'
   device_class: battery
   json_attributes_topic: "home/Acurite_tower_sensor/11846"
@@ -46,7 +46,7 @@
 - platform: template
   sensors:
     front_camera_battery_level:
-      friendly_name: Front Camera Battery Level
+      friendly_name: "Front Camera Battery Level"
       unit_of_measurement: '%'
       device_class: battery
       value_template: >-
@@ -69,7 +69,7 @@
 - platform: template
   sensors:
     kiosk_battery_level:
-      friendly_name: Kiosk Battery Level
+      friendly_name: "Kiosk Battery Level"
       unit_of_measurement: '%'
       device_class: battery
       value_template: >-
@@ -102,7 +102,7 @@
 - platform: template
   sensors:
     washroom_multisensor_battery_level:
-      friendly_name: Washroom Multisensor Battery Level
+      friendly_name: "Washroom Multisensor Battery Level"
       unit_of_measurement: '%'
       device_class: battery
       value_template: >-

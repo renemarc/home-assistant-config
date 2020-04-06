@@ -11,7 +11,8 @@
 # @see /automations/areas/ceiling_low.yaml
 #
 - id: ceiling_on
-  alias: Ceiling ON
+  alias: "Ceiling ON"
+
   trigger:
     # When low-power mode is disabled.
     - platform: state

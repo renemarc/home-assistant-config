@@ -5,24 +5,24 @@
 #
 # @see /switches/
 #
-# @link https://www.home-assistant.io/components/light.switch/
+# @link https://www.home-assistant.io/integrations/light.switch/
 #
 - platform: switch
-  name: Bedside
+  name: "Bedside"
   entity_id: switch.bedside_light
 
 - platform: switch
-  name: Nightstand
+  name: "Nightstand"
   entity_id: switch.nightstand_light
 
 - platform: switch
-  name: Rope
+  name: "Rope"
   entity_id: switch.rope_light
 
 - platform: switch
-  name: Souvenirs
+  name: "Souvenirs"
   entity_id: switch.souvenirs_light
 
 - platform: switch
-  name: Window
+  name: "Window"
   entity_id: switch.window_light

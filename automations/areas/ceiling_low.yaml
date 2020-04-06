@@ -10,7 +10,8 @@
 # @subscribe input_boolean.night_mode
 #
 - id: ceiling_low_power
-  alias: Ceiling LOW POWER
+  alias: "Ceiling LOW POWER"
+
   trigger:
     # When low-power mode is enabled.
     - platform: state

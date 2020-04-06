@@ -2,59 +2,74 @@
 # Automations
 #
 automation.aurora_*:
-  icon: mdi:vector-triangle
+  icon: "mdi:vector-triangle"
 automation.bed_*:
-  icon: mdi:hotel
+  icon: "mdi:hotel"
 automation.bedroom_*:
-  icon: mdi:hotel
+  icon: "mdi:hotel"
 automation.cct_*:
-  icon: mdi:white-balance-auto
+  icon: "mdi:white-balance-auto"
 automation.ceiling_*:
-  icon: mdi:led-strip-variant
+  icon: "mdi:led-strip-variant"
 automation.dehumidifier_*:
-  icon: mdi:water-off
+  icon: "mdi:water-off"
 automation.door_*:
-  icon: mdi:door-open
+  icon: "mdi:door-open"
 automation.homekit_*:
-  icon: mdi:home-automation
+  icon: "mdi:home-automation"
 automation.humidor_*:
-  icon: mdi:cigar
+  icon: "mdi:cigar"
 automation.kitchen_*:
-  icon: mdi:food-fork-drink
+  icon: "mdi:food-fork-drink"
 automation.kiosk_*:
-  icon: mdi:tablet
+  icon: "mdi:tablet"
 automation.leak_*:
-  icon: mdi:pipe-leak
+  icon: "mdi:pipe-leak"
 automation.lightpack_*:
-  icon: mdi:television-ambient-light
+  icon: "mdi:television-ambient-light"
 automation.lounge_*:
-  icon: mdi:sofa
+  icon: "mdi:sofa"
 automation.low_power_mode_*:
-  icon: mdi:weather-sunset-down
+  icon: "mdi:weather-sunset-down"
 automation.motion_*:
-  icon: mdi:run
+  icon: "mdi:run"
 automation.nap_mode_*:
-  icon: mdi:sleep
+  icon: "mdi:sleep"
 automation.nightlight_*:
-  icon: mdi:walk
+  icon: "mdi:walk"
 automation.night_mode_*:
-  icon: mdi:weather-night
+  icon: "mdi:weather-night"
 automation.quiet_mode_*:
-  icon: mdi:volume-mute
+  icon: "mdi:volume-mute"
 automation.radon_*:
-  icon: mdi:radioactive
+  icon: "mdi:radioactive"
 automation.tamper_*:
-  icon: mdi:shield-home
+  icon: "mdi:shield-home"
 automation.tv_*:
-  icon: mdi:television-classic
+  icon: "mdi:television-classic"
 automation.video_player_*:
-  icon: mdi:plex
+  icon: "mdi:plex"
 automation.wallpaper_*:
-  icon: mdi:wallpaper
+  icon: "mdi:wallpaper"
 automation.washroom_*:
-  icon: mdi:shower
+  icon: "mdi:shower"
 automation.webhook_*:
-  icon: mdi:webhook
+  icon: "mdi:webhook"
+
+
+#
+# Cameras
+#
+camera.astronomy_picture_of_the_day*:
+  icon: "mdi:star"
+camera.bing_wallpaper*:
+  icon: "mdi:wallpaper"
+camera.front*:
+  icon: "mdi:cctv"
+camera.noaa_*:
+  icon: "mdi:satellite"
+camera.wallpaper*:
+  icon: "mdi:wallpaper"
 
 
 #
@@ -65,16 +80,25 @@ input_boolean.*:
 
 
 #
+# Lights
+#
+light.browser_*:
+  icon: "mdi:application"
+
+
+#
 # Sensors
 #
 sensor.*_alarm_level:
-  icon: mdi:alarm-note
+  icon: "mdi:alarm-note"
 sensor.*_alarm_type:
-  icon: mdi:alarm-check
+  icon: "mdi:alarm-check"
 sensor.*_burglar:
-  icon: mdi:security
+  icon: "mdi:security"
+sensor.browser_*:
+  icon: "mdi:application"
 sensor.*_flood:
-  icon: mdi:home-flood
+  icon: "mdi:home-flood"
 sensor.*_humidity_filtered:
   device_class: humidity
 sensor.*_multisensor_luminance:
@@ -82,12 +106,14 @@ sensor.*_multisensor_luminance:
 sensor.*_multisensor_temperature:
   device_class: temperature
 sensor.*_relative_humidity:
-  device_class: temperature
+  device_class: humidity
 sensor.*_sourcenodeid:
-  icon: mdi:z-wave
+  icon: "mdi:z-wave"
 sensor.*_temperature_filtered:
   device_class: temperature
 sensor.*_ultraviolet:
-  icon: mdi:sunglasses
+  icon: "mdi:sunglasses"
 sensor.coronavirus_*_current:
-  icon: 'mdi:emoticon-neutral-outline'
+  icon: "mdi:emoticon-neutral-outline"
+sensor.waqi_*:
+  icon: "mdi:chemical-weapon"

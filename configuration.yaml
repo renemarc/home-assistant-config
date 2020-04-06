@@ -1,7 +1,7 @@
 #
-# Atomations
+# Automations
 #
-# @link https://home-assistant.io/components/automation/
+# @link https://www.home-assistant.io/integrations/automation/
 #
 automation: !include_dir_merge_list automations/
 
@@ -9,7 +9,7 @@ automation: !include_dir_merge_list automations/
 #
 # Binary sensors
 #
-# @link https://home-assistant.io/components/binary_sensor/
+# @link https://www.home-assistant.io/integrations/binary_sensor/
 #
 binary_sensor: !include misc/binary_sensors.yaml
 
@@ -39,13 +39,13 @@ brother:
 # @link https://github.com/thomasloven/hass-browser_mod
 #
 browser_mod:
-  prefix: 'browser_'
+  prefix: "browser_"
 
 
 #
 # Cameras
 #
-# @link https://home-assistant.io/components/camera/
+# @link https://www.home-assistant.io/integrations/camera/
 #
 camera: !include_dir_merge_list cameras/
 
@@ -53,7 +53,7 @@ camera: !include_dir_merge_list cameras/
 #
 # Enable the configuration UI
 #
-# @link https://home-assistant.io/components/config/
+# @link https://www.home-assistant.io/integrations/config/
 #
 config:
 
@@ -61,23 +61,15 @@ config:
 #
 # Allow you to issue voice commands from the frontend in enabled browsers
 #
-# @link https://home-assistant.io/components/conversation/
+# @link https://www.home-assistant.io/integrations/conversation/
 #
 # conversation:
 
 
 #
-# Coronavirus contagion tracker
-#
-# @link https://www.home-assistant.io/integrations/coronavirus/
-#
-coronavirus:
-
-
-#
 # Counters
 #
-# @link https://www.home-assistant.io/components/counter/
+# @link https://www.home-assistant.io/integrations/counter/
 #
 counter: !include misc/counters.yaml
 
@@ -85,7 +77,7 @@ counter: !include misc/counters.yaml
 #
 # Home Assistant Community Store
 #
-# @link https://custom-components.github.io/hacs/
+# @link https://hacs.xyz/
 #
 hacs:
   token: !secret github_access_token
@@ -94,7 +86,7 @@ hacs:
 #
 # Device trackers
 #
-# @link https://home-assistant.io/components/device_tracker/
+# @link https://www.home-assistant.io/integrations/device_tracker/
 #
 device_tracker: !include misc/device_trackers.yaml
 
@@ -102,7 +94,7 @@ device_tracker: !include misc/device_trackers.yaml
 #
 # Discover some devices automatically
 #
-# @link https://home-assistant.io/components/discovery/
+# @link https://www.home-assistant.io/integrations/discovery/
 #
 discovery:
   ignore:
@@ -123,25 +115,16 @@ display: !include misc/displays.yaml
 #
 # Enable the official UI
 #
-# @link https://home-assistant.io/components/frontend/
+# @link https://www.home-assistant.io/integrations/frontend/
 #
 frontend:
-  # javascript_version: latest
-  # extra_html_url:
-  #   - /local/custom_ui/state-card-custom-ui.html
-  #   - /local/custom_ui/state-card-hline.html
-  #   - /local/custom_ui/state-card-value_only.html
-  # extra_html_url_es5:
-  #   - /local/custom_ui/state-card-custom-ui-es5.html
-  #   - /local/custom_ui/state-card-hline.html
-  #   - /local/custom_ui/state-card-value_only.html
   themes: !include_dir_named themes/
 
 
 #
 # Combine entities into groups
 #
-# @link https://home-assistant.io/components/group/
+# @link https://www.home-assistant.io/integrations/group/
 #
 group: !include misc/groups.yaml
 
@@ -157,13 +140,15 @@ hassio:
 #
 # Enable support for tracking state changes over time
 #
-# @link https://home-assistant.io/components/history/
+# @link https://www.home-assistant.io/integrations/history/
 #
 history:
 
 
 #
 # Setup basic Home Assistant information
+#
+# @link https://www.home-assistant.io/docs/configuration/basic/
 #
 homeassistant:
   name: !secret homeassistant_name
@@ -172,10 +157,10 @@ homeassistant:
   elevation: !secret zone_home_elevation
   unit_system: metric
   time_zone: !secret homeassistant_time_zone
+  customize: !include customize.yaml
+  customize_glob: !include customize_glob.yaml
   auth_providers:
     - type: homeassistant
-  customize_glob: !include customize_glob.yaml
-  customize: !include customize.yaml
   whitelist_external_dirs:
     - !secret homeassistant_whitelist_config
     - !secret homeassistant_whitelist_share
@@ -184,7 +169,7 @@ homeassistant:
 #
 # HomeKit
 #
-# @link https://www.home-assistant.io/components/homekit/
+# @link https://www.home-assistant.io/integrations/homekit/
 #
 homekit: !include misc/homekit.yaml
 
@@ -194,7 +179,7 @@ homekit: !include misc/homekit.yaml
 #
 # `cors_allowed_origins` includes the domain:port for AppDaemon.
 #
-# @link https://home-assistant.io/components/http/
+# @link https://www.home-assistant.io/integrations/http/
 #
 http:
   base_url: !secret http_base_url
@@ -205,7 +190,7 @@ http:
 #
 # IFTTT integration
 #
-# @link https://home-assistant.io/components/ifttt/
+# @link https://www.home-assistant.io/integrations/ifttt/
 #
 ifttt:
   key: !secret ifttt_key
@@ -214,7 +199,7 @@ ifttt:
 #
 # Input booleans
 #
-# @link https://home-assistant.io/components/input_boolean/
+# @link https://www.home-assistant.io/integrations/input_boolean/
 #
 input_boolean: !include inputs/input_booleans.yaml
 
@@ -230,7 +215,7 @@ input_datetime: !include inputs/input_datetimes.yaml
 #
 # Lists of selectable values
 #
-# @link https://home-assistant.io/components/input_select/
+# @link https://www.home-assistant.io/integrations/input_select/
 #
 input_select: !include inputs/input_selects.yaml
 
@@ -239,7 +224,7 @@ input_select: !include inputs/input_selects.yaml
 # iOS companion component for the  Home Assistant iOS app
 #
 # @link https://itunes.apple.com/us/app/home-assistant-open-source-home-automation/id1099568401
-# @link https://home-assistant.io/docs/ecosystem/ios/
+# @link https://companion.home-assistant.io/
 #
 ios:
 
@@ -247,7 +232,7 @@ ios:
 #
 # LIFX
 #
-# @link https://www.home-assistant.io/components/lifx/
+# @link https://www.home-assistant.io/integrations/lifx/
 #
 lifx: !include misc/lifx.yaml
 
@@ -255,7 +240,7 @@ lifx: !include misc/lifx.yaml
 #
 # Lights
 #
-# @link https://home-assistant.io/components/light/
+# @link https://www.home-assistant.io/integrations/light/
 #
 light: !include_dir_merge_list lights/
 
@@ -272,7 +257,7 @@ local_ip:
 #
 # View all events in a logbook
 #
-# @link https://home-assistant.io/components/logbook/
+# @link https://www.home-assistant.io/integrations/logbook/
 #
 logbook:
 
@@ -280,7 +265,7 @@ logbook:
 #
 # Log some details
 #
-# @link https://home-assistant.io/components/logger/
+# @link https://www.home-assistant.io/integrations/logger/
 #
 logger:
   default: warning
@@ -297,7 +282,7 @@ logger:
     pyunifi.controller: error # When Unifi Controller is temporarily unreachable.
 
 #
-# Lovelace interface
+# Lovelace user interface
 #
 # @link https://www.home-assistant.io/lovelace/
 #
@@ -308,7 +293,7 @@ lovelace:
 #
 # Enable a map showing the location of tracked devices
 #
-# @link https://home-assistant.io/components/map/
+# @link https://www.home-assistant.io/integrations/map/
 #
 map:
 
@@ -316,7 +301,7 @@ map:
 #
 # Media players
 #
-# @link https://home-assistant.io/components/media_player/
+# @link https://www.home-assistant.io/integrations/media_player/
 #
 media_player: !include misc/media_players.yaml
 
@@ -333,7 +318,7 @@ mobile_app:
 #
 # MQTT Integration
 #
-# @link https://home-assistant.io/components/mqtt/
+# @link https://www.home-assistant.io/integrations/mqtt/
 #
 mqtt:
   broker: !secret mqtt_broker
@@ -342,17 +327,17 @@ mqtt:
   password: !secret mqtt_password
   client_id: home-assistant
   birth_message:
-    topic: 'hass/status'
-    payload: 'online'
+    topic: "hass/status"
+    payload: "online"
   will_message:
-    topic: 'hass/status'
-    payload: 'offline'
+    topic: "hass/status"
+    payload: "offline"
 
 
 #
 # Notification services
 #
-# @link https://home-assistant.io/components/notify/
+# @link https://www.home-assistant.io/integrations/notify/
 #
 notify: !include_dir_merge_list notifications/
 
@@ -360,13 +345,13 @@ notify: !include_dir_merge_list notifications/
 #
 # Person presence detection
 #
-# @link https://www.home-assistant.io/components/person/
+# @link https://www.home-assistant.io/integrations/person/
 #
 person: !include misc/persons.yaml
 
 
 #
-# Plex
+# Plex Media Server
 #
 # @link https://www.home-assistant.io/integrations/plex/
 #
@@ -378,7 +363,7 @@ plex: !include misc/plex.yaml
 #
 # Limit the number of tracked entities and length of history.
 #
-# @link https://home-assistant.io/components/recorder/
+# @link https://www.home-assistant.io/integrations/recorder/
 #
 recorder: !include misc/recorder.yaml
 
@@ -386,7 +371,7 @@ recorder: !include misc/recorder.yaml
 #
 # Scenes
 #
-# @link https://home-assistant.io/components/scene/
+# @link https://www.home-assistant.io/integrations/scene/
 #
 scene: !include misc/scenes.yaml
 
@@ -394,7 +379,7 @@ scene: !include misc/scenes.yaml
 #
 # Scripts
 #
-# @link https://home-assistant.io/components/script/
+# @link https://www.home-assistant.io/integrations/script/
 #
 script: !include_dir_named scripts/
 
@@ -402,7 +387,7 @@ script: !include_dir_named scripts/
 #
 # Sensors
 #
-# @link https://home-assistant.io/components/sensor/
+# @link https://www.home-assistant.io/integrations/sensor/
 #
 sensor: !include_dir_merge_list sensors/
 
@@ -410,7 +395,7 @@ sensor: !include_dir_merge_list sensors/
 #
 # Shell commands
 #
-# @link https://home-assistant.io/components/shell_command/
+# @link https://www.home-assistant.io/integrations/shell_command/
 #
 shell_command: !include misc/shell_commands.yaml
 
@@ -418,7 +403,7 @@ shell_command: !include misc/shell_commands.yaml
 #
 # Speedtest.net
 #
-# @link https://home-assistant.io/components/speedtestdotnet/
+# @link https://www.home-assistant.io/integrations/speedtestdotnet/
 #
 speedtestdotnet: !include misc/speedtest.yaml
 
@@ -426,7 +411,7 @@ speedtestdotnet: !include misc/speedtest.yaml
 #
 # Track the sun
 #
-# @link https://home-assistant.io/components/sun/
+# @link https://www.home-assistant.io/integrations/sun/
 #
 sun:
 
@@ -434,7 +419,7 @@ sun:
 #
 # Switches
 #
-# @link https://home-assistant.io/components/switch/
+# @link https://www.home-assistant.io/integrations/switch/
 #
 switch: !include_dir_merge_list switches/
 
@@ -442,22 +427,22 @@ switch: !include_dir_merge_list switches/
 #
 # System health
 #
-# @link https://home-assistant.io/components/system_health/
+# @link https://www.home-assistant.io/integrations/system_health/
 #
 system_health:
 
 
 #
-# TP-Link
+# TP-Link Kasa Smart
 #
-# @link https://www.home-assistant.io/components/tplink/
+# @link https://www.home-assistant.io/integrations/tplink/
 #
 tplink: !include misc/tplink.yaml
 
 #
-# Text to speech
+# Text-to-Speech
 #
-# @link https://home-assistant.io/components/tts/
+# @link https://www.home-assistant.io/integrations/tts/
 #
 tts:
   - platform: google_translate
@@ -478,8 +463,8 @@ unifi: !include misc/unifi.yaml
 # the developers to assist with development of Home Assistant.
 # Optionally allow Home Assistant developers to focus on popular components.
 #
-# @link https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
-# @link https://home-assistant.io/components/updater/
+# @link https://www.home-assistant.io/blog/2016/10/25/explaining-the-updater/
+# @link https://www.home-assistant.io/integrations/updater/
 #
 updater:
   include_used_components: true
@@ -499,7 +484,7 @@ variable: !include inputs/variables.yaml
 #
 # Weather
 #
-# @link https://www.home-assistant.io/components/weather/
+# @link https://www.home-assistant.io/integrations/weather/
 #
 weather: !include misc/weather.yaml
 
@@ -507,17 +492,17 @@ weather: !include misc/weather.yaml
 #
 # Zones
 #
-# @link https://home-assistant.io/components/zone/
+# @link https://www.home-assistant.io/integrations/zone/
 #
 zone: !include misc/zones.yaml
 
 
 #
-# ZWave integration
+# Z-Wave integration
 #
-# @link https://home-assistant.io/docs/z-wave/adding/
-# @link https://home-assistant.io/docs/z-wave/
-# @link https://home-assistant.io/components/zwave/
+# @link https://www.home-assistant.io/docs/z-wave/adding/
+# @link https://www.home-assistant.io/docs/z-wave/
+# @link https://www.home-assistant.io/integrations/zwave/
 #
 zwave:
   device_config: !include zwave_device_config.yaml

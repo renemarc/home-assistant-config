@@ -3,9 +3,10 @@
 #
 # @see /automations/scene_select.yaml
 #
-alias: Romantic scene
-icon: mdi:heart
+alias: "Romantic Scene"
+icon: "mdi:heart"
 sequence:
+
   # Enable scene mode.
   - service: input_boolean.turn_on
     data:
@@ -35,22 +36,22 @@ sequence:
         - light.spotlight
         - light.torchiere
     data_template:
-      color_name: magenta
+      color_name: "Magenta"
       brightness_pct: 50
       transition: 5
-      power: True
+      power: true
 
   # Set Aurora effect.
   - service: input_select.select_option
     data:
       entity_id: input_select.aurora_effect
-      option: Romantic
+      option: "Romantic"
 
   # Set bed underglow light effect.
   - service: input_select.select_option
     data:
       entity_id: input_select.bed_effect
-      option: Neon
+      option: "Neon"
   - service: homeassistant.turn_on
     data:
       entity_id:
@@ -75,4 +76,4 @@ sequence:
   - service: input_select.select_option
     data:
       entity_id: input_select.lightpack_effect
-      option: Romantic
+      option: "Romantic"

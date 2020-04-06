@@ -1,13 +1,14 @@
 #
 # Reset tamper variable
 #
-# @see /misc/variables.yaml
+# @see /inputs/variables.yaml
 #
-alias: Tamper location reset
-icon: mdi:restart
+alias: "Tamper location reset"
+icon: "mdi:restart"
 sequence:
+
   # Reset the tamper variable.
   - service: variable.set_variable
     data:
       variable: tamper_detected
-      value_template: False
+      value_template: false

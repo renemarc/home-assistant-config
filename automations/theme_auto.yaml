@@ -4,8 +4,9 @@
 # @subscribe input_boolean.night_mode
 #
 - id: theme_auto
-  alias: Theme AUTO
-  initial_state: True
+  alias: "Theme AUTO"
+  initial_state: true
+
   trigger:
     # When Home Assistant starts.
     - platform: homeassistant

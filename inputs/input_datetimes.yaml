@@ -8,6 +8,6 @@
 # Motion sensors
 #
 front_motion_last_detected:
-  name: Front Motion Last Detected
+  name: "Front Motion Last Detected"
   has_date: true
   has_time: true

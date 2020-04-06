@@ -1,14 +1,14 @@
 #
 # Device trackers
 #
-# @link https://home-assistant.io/components/device_tracker/
+# @link https://www.home-assistant.io/integrations/device_tracker/
 #
 
 
 #
 # Bluetooth
 #
-# https://home-assistant.io/components/device_tracker.bluetooth_tracker/
+# https://www.home-assistant.io/integrations/bluetooth_tracker/
 #
 - platform: bluetooth_tracker
   request_rssi: true

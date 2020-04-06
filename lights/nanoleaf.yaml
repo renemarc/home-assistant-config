@@ -1,14 +1,14 @@
 #
-# Nanoleaf Aurora smart light panels
+# Nanoleaf smart light panels
 #
 # @see /automations/devices/aurora_effect.yaml
 # @see /automations/devices/aurora_schedule.yaml
 # @see /configure.yaml
 #
 # @link https://nanoleaf.me/
-# @link https://www.home-assistant.io/components/light.nanoleaf_aurora/
+# @link https://www.home-assistant.io/integrations/nanoleaf/
 #
 - platform: nanoleaf
-  name: Aurora
+  name: "Aurora"
   host: !secret aurora_host
   token: !secret aurora_api_key

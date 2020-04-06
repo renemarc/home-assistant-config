@@ -4,7 +4,7 @@
 # @subscribe binary_sensors.siren_monitor_smoke
 #
 - id: smoke_notify
-  alias: Smoke NOTIFY
+  alias: "Smoke NOTIFY"
 
   trigger:
     # When smoke is detected.

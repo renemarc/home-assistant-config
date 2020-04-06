@@ -17,11 +17,11 @@
 
 <h1 align="center">Scripts</h1>
 
-For the most part, actions and requirements are based on publish–subscribe pattern where devices and rooms are smart-enough to respond themselves to global parameters and responsible for their own states. See [`/automations/`](../automations) and [`/misc/input_booleans.yaml`](../misc/input_booleans.yaml) for details.
+For the most part, actions and requirements are based on publish–subscribe pattern where devices and rooms are smart-enough to respond themselves to global parameters and responsible for their own states. See [`/automations/`](../automations) and [`/inputs/input_booleans.yaml`](../inputs/input_booleans.yaml) for details.
 
 ## Smart scenes
 
-Smart scenes are a hybrid approach, where global parameters are used when appropriate, and some direct control is employed to achieve a specific setup. They are used both in [`/automations/`](../automations) and as a manual selector in [`/misc/input_selects.yaml`](../misc/input_selects.yaml) and [`/appdaemon/dashboards/Main.dash`](../appdaemon/dashboards/Main.dash).
+Smart scenes are a hybrid approach, where global parameters are used when appropriate, and some direct control is employed to achieve a specific setup. They are used both in [`/automations/`](../automations) and as a manual selector in [`/inputs/input_selects.yaml`](../inputs/input_selects.yaml) and [`/appdaemon/dashboards/Main.dash`](../appdaemon/dashboards/Main.dash).
 
 ### [`🔆 ./scene_daylight.yaml`](scene_daylight.yaml)
 

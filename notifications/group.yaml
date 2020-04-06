@@ -4,20 +4,20 @@
 # All notifications are sent to groups to mimimize hard-coding notification
 # services throughout the code base.
 #
-# @link https://home-assistant.io/components/notify.group/
+# @link https://www.home-assistant.io/integrations/notify.group/
 #
 - platform: group
-  name: Sound
+  name: "Sound"
   services:
     - service: lannouncer
 
 - platform: group
-  name: Speech
+  name: "Speech"
   services:
     # - service: fully_kiosk
     - service: lannouncer
 
 - platform: group
-  name: Text
+  name: "Text"
   services:
     - service: pushover

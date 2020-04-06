@@ -12,7 +12,8 @@
 # @see /lights/nanoleaf.yaml
 #
 - id: aurora_effect
-  alias: Aurora EFFECT
+  alias: "Aurora EFFECT"
+
   trigger:
     # When an effect is changed.
     - platform: state

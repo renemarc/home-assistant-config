@@ -6,7 +6,7 @@
 # @link https://domeha.com/z-wave-leak-sensor
 #
 - id: leak_notify
-  alias: Leak NOTIFY
+  alias: "Leak NOTIFY"
 
   trigger:
     # When a leak is detected somewhere.
@@ -45,9 +45,9 @@
     # Play a warning sound and message.
     - service: notify.sound
       data:
-        message: "alarm"
+        message: 'alarm'
         data:
-          method: "alarm"
+          method: 'alarm'
     - delay:
         seconds: 2
     - service: notify.speech

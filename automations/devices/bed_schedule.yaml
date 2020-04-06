@@ -15,7 +15,8 @@
 # @link https://api.developer.lifx.com/docs/activate-scene
 #
 - id: bed_schedule
-  alias: Bed SCHEDULE
+  alias: "Bed SCHEDULE"
+
   trigger:
     # Every hour on the hour.
     - platform: time_pattern
@@ -41,7 +42,7 @@
     # When the selected effect is switched to default.
     - platform: state
       entity_id: input_select.bed_effect
-      to: 'Auto'
+      to: "Auto"
 
   condition:
     # If automation was not trigered lately.
@@ -60,7 +61,7 @@
     # If the selected effect is the default.
     - condition: state
       entity_id: input_select.bed_effect
-      state: 'Auto'
+      state: "Auto"
 
     # If no scenes are enabled.
     - condition: state

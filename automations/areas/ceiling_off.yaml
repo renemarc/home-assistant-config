@@ -7,7 +7,8 @@
 # @subscribe input_boolean.night_mode
 #
 - id: ceiling_off
-  alias: Ceiling OFF
+  alias: "Ceiling OFF"
+
   trigger:
     # When nap mode is enabled.
     - platform: state

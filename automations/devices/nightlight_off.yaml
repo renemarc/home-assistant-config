@@ -8,7 +8,7 @@
 # @subscribe input_boolean.night_mode
 #
 - id: nightlight_off
-  alias: Nightlight OFF
+  alias: "Nightlight OFF"
   initial_state: 'off'
 
   trigger:

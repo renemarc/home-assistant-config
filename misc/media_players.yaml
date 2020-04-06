@@ -1,7 +1,7 @@
 #
 # Media players
 #
-# @link https://home-assistant.io/components/media_player/
+# @link https://www.home-assistant.io/integrations/media_player/
 #
 
 
@@ -9,10 +9,10 @@
 # Kodi
 #
 # @link https://kodi.tv/
-# @link https://home-assistant.io/components/media_player.kodi/
+# @link https://www.home-assistant.io/integrations/kodi/
 #
 - platform: kodi
-  name: Kodi
+  name: "Kodi"
   host: !secret kodi_host
   port: !secret kodi_port
   tcp_port: !secret kodi_tcp_port

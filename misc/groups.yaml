@@ -7,7 +7,8 @@
 # @link https://www.home-assistant.io/integrations/group/
 #
 battery:
-  name: Battery Levels
+  name: "Battery Levels"
+  icon: "mdi:battery"
   entities:
     - sensor.front_camera_battery_level
     - sensor.front_door_battery_level
@@ -19,13 +20,15 @@ battery:
     - sensor.washroom_multisensor_battery_level
 
 bed_lights:
-  name: Bed Lights
+  name: "Bed Lights"
+  icon: "mdi:hotel"
   entities:
     - light.headboard
     - light.underbed
 
 bedroom:
-  name: Bedroom
+  name: "Bedroom"
+  icon: "mdi:hotel"
   entities:
     - binary_sensor.bedroom_multisensor
     - input_select.bed_effect
@@ -38,7 +41,8 @@ bedroom:
     - sensor.bedroom_luminance_friendly
 
 ceiling:
-  name: Ceiling
+  name: "Ceiling"
+  icon: "mdi:led-strip-variant"
   entities:
     - input_select.ceiling_effect
     - light.bedroom
@@ -46,20 +50,23 @@ ceiling:
     - light.lounge
 
 ceiling_lights:
-  name: Ceiling Lights
+  name: "Ceiling Lights"
+  icon: "mdi:led-strip-variant"
   entities:
     - light.bedroom
     - light.middle
     - light.lounge
 
 door_sensors:
-  name: Doors sensors
+  name: "Doors Sensors"
+  icon: "mdi:door-closed-lock"
   entities:
     - binary_sensor.front_door_sensor
     - input_boolean.door_test
 
 humidity:
-  name: Humidity
+  name: "Humidity"
+  icon: "mdi:water-percent"
   entities:
     - sensor.average_humidity
     - sensor.bedroom_humidity
@@ -69,7 +76,8 @@ humidity:
     - sensor.washroom_humidity
 
 kitchen:
-  name: Kitchen
+  name: "Kitchen"
+  icon: "mdi:food-fork-drink"
   entities:
     - binary_sensor.kiosk_motion_auto
     - binary_sensor.kitchen_leak_sensor
@@ -81,7 +89,8 @@ kitchen:
     - sensor.kitchen_temperature
 
 kitchen_lights:
-  name: Kitchen Lights
+  name: "Kitchen Lights"
+  icon: "mdi:food-fork-drink"
   entities:
     - light.countertop
     - light.island
@@ -89,14 +98,16 @@ kitchen_lights:
     - light.sink
 
 leak_sensors:
-  name: Leak sensors
+  name: "Leak Sensors"
+  icon: "mdi:pipe-leak"
   entities:
     - binary_sensor.kitchen_leak_sensor
     - binary_sensor.washroom_leak_sensor
     - input_boolean.leak_test
 
 lifx_lights:
-  name: LIFX Lights
+  name: "LIFX Lights"
+  icon: "mdi:lightbulb-group"
   entities:
     - light.lavatory
     - light.shower
@@ -104,7 +115,8 @@ lifx_lights:
     - light.torchiere
 
 lounge:
-  name: Lounge
+  name: "Lounge"
+  icon: "mdi:sofa"
   entities:
     - binary_sensor.lounge_multisensor
     - input_select.aurora_effect
@@ -122,7 +134,8 @@ lounge:
     - switch.lounge_tv
 
 motion_sensors:
-  name: Motion sensors
+  name: "Motion Sensors"
+  icon: "mdi:motion-sensor"
   entities:
     - binary_sensor.bedroom_multisensor
     - binary_sensor.front_door_sensor
@@ -132,7 +145,8 @@ motion_sensors:
     - input_boolean.motion_test
 
 motion_sensors_critical:
-  name: Motion sensors
+  name: "Motion Sensors (critical)"
+  icon: "mdi:motion-sensor"
   entities:
     # - binary_sensor.front_door_sensor # Sensor reliability issues.
     - binary_sensor.kiosk_motion_auto
@@ -141,19 +155,22 @@ motion_sensors_critical:
     - input_boolean.motion_test
 
 presence:
-  name: Presence
+  name: "Presence"
+  icon: "mdi:account-circle"
   entities:
     - device_tracker.cellphone_her
     - device_tracker.cellphone_him
 
 smoke_sensors:
-  name: Smoke sensors
+  name: "Smoke Sensors"
+  icon: "mdi:smoke-detector"
   entities:
     - binary_sensor.siren_monitor_smoke
     - input_boolean.smoke_test
 
 temperature:
-  name: Temperature
+  name: "Temperature"
+  icon: "mdi:thermometer"
   entities:
     - sensor.average_temperature
     - sensor.bedroom_temperature
@@ -164,7 +181,8 @@ temperature:
     - sensor.washroom_temperature
 
 waqi:
-  name: World Air Quality Index
+  name: "World Air Quality Index"
+  icon: "mdi:chemical-weapon"
   entities:
     - sensor.waqi_brossard_secteur_du_parc_sorbonne_quebec_canada
     - sensor.waqi_drummond_montreal_canada
@@ -174,7 +192,8 @@ waqi:
     - sensor.waqi_verdun_montreal_canada
 
 washroom:
-  name: Washroom
+  name: "Washroom"
+  icon: "mdi:shower"
   entities:
     - binary_sensor.washroom_leak_sensor
     - binary_sensor.washroom_multisensor
@@ -185,7 +204,8 @@ washroom:
     - sensor.washroom_temperature
 
 washroom_lights:
-  name: Washroom Lights
+  name: "Washroom Lights"
+  icon: "mdi:shower"
   entities:
     - light.lavatory
     - light.shower

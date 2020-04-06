@@ -4,7 +4,8 @@
 # @subscribe input_boolean.night_mode
 #
 - id: kiosk_auto
-  alias: Kiosk AUTO
+  alias: "Kiosk AUTO"
+
   trigger:
     # When night mode is changed.
     - platform: state

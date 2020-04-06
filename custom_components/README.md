@@ -90,7 +90,7 @@ These are default Home Assistant components that were copied from the core to al
 
 ### [`😺 ./github_custom/`](github_custom)
 
-[GitHub](https://www.home-assistant.io/components/github/) component:
+[GitHub](https://www.home-assistant.io/integrations/github/) component:
 
 - Added support for forks count.
 - Added support for 14-day clones count.
@@ -101,7 +101,7 @@ These are default Home Assistant components that were copied from the core to al
 
 ### [`🚌 ./gtfs_custom/`](gtfs_custom)
 
-[GTFS](https://www.home-assistant.io/components/gtfs/) public transit schedules component:
+[GTFS](https://www.home-assistant.io/integrations/gtfs/) public transit schedules component:
 
 - Added support for next bus departures.
 - Simplified query, making it cacheable in order to increase IO performance.

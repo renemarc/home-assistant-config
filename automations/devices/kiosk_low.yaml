@@ -4,7 +4,8 @@
 # @subscribe input_boolean.low_mode
 #
 - id: kiosk_low_power
-  alias: Kiosk LOW POWER
+  alias: "Kiosk LOW POWER"
+
   trigger:
     # When low-power mode is changed.
     - platform: state

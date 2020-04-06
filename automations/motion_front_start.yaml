@@ -2,9 +2,11 @@
 # Fetch video and generate images when motion has been detected in front
 #
 # @subscribe input_boolean.motion_front
+# @publish input_datetime.set_datetime
 #
 - id: motion_front_start
-  alias: Motion Front START
+  alias: "Motion Front START"
+
   trigger:
     - platform: state
       entity_id: input_boolean.motion_front

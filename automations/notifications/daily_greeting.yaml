@@ -5,7 +5,7 @@
 # @subscribe input_boolean.night_mode
 #
 - id: daily_greeting
-  alias: Daily greeting
+  alias: "Daily Greeting"
 
   trigger:
     # When night mode is disabled.
@@ -25,9 +25,9 @@
     # Sound the day.
     - service: notify.sound
       data:
-        message: "doorbell"
+        message: 'doorbell'
         data:
-          method: "alarm"
+          method: 'alarm'
     - delay:
         seconds: 2
 

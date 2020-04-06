@@ -3,7 +3,7 @@
 #
 # Actual performance is limited by the hosts NIC throughout.
 #
-# @link https://home-assistant.io/components/speedtestdotnet/
+# @link https://www.home-assistant.io/integrations/speedtestdotnet/
 #
 
 monitored_conditions:

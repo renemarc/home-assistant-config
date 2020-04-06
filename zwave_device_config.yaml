@@ -7,20 +7,21 @@ sensor.bedroom_multisensor_alarm_type:
 sensor.bedroom_multisensor_battery_level:
   ignored: true
   polling_intensity: 0
-sensor.bedroom_multisensor_burglar:
-  ignored: true
-  polling_intensity: 0
 sensor.bedroom_multisensor_sourcenodeid:
   ignored: true
   polling_intensity: 0
 sensor.bedroom_multisensor_ultraviolet:
   ignored: true
   polling_intensity: 0
-
+sensor.front_door_access_control:
+  ignored: true
+  polling_intensity: 0
 sensor.front_door_sourcenodeid:
   ignored: true
   polling_intensity: 0
-
+sensor.kitchen_leak_sensor_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
 sensor.lounge_multisensor_alarm_level:
   ignored: true
   polling_intensity: 0
@@ -30,20 +31,21 @@ sensor.lounge_multisensor_alarm_type:
 sensor.lounge_multisensor_battery_level:
   ignored: true
   polling_intensity: 0
-sensor.lounge_multisensor_burglar:
-  ignored: true
-  polling_intensity: 0
 sensor.lounge_multisensor_sourcenodeid:
   ignored: true
   polling_intensity: 0
 sensor.lounge_multisensor_ultraviolet:
   ignored: true
   polling_intensity: 0
-
+sensor.siren_monitor_power_management:
+  ignored: true
+  polling_intensity: 0
 sensor.siren_monitor_sourcenodeid:
   ignored: true
   polling_intensity: 0
-
+sensor.washroom_leak_sensor_sourcenodeid:
+  ignored: true
+  polling_intensity: 0
 sensor.washroom_multisensor_alarm_level:
   ignored: true
   polling_intensity: 0
@@ -53,16 +55,9 @@ sensor.washroom_multisensor_alarm_type:
 sensor.washroom_multisensor_battery_level:
   ignored: true
   polling_intensity: 0
-sensor.washroom_multisensor_burglar:
-  ignored: true
-  polling_intensity: 0
 sensor.washroom_multisensor_sourcenodeid:
   ignored: true
   polling_intensity: 0
 sensor.washroom_multisensor_ultraviolet:
-  ignored: true
-  polling_intensity: 0
-
-sensor.washroom_leak_sensor_sourcenodeid:
   ignored: true
   polling_intensity: 0

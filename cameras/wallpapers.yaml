@@ -7,11 +7,12 @@
 #
 # @link https://bing.com
 # @link https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US
+# @link https://www.home-assistant.io/integrations/generic_ip_camera/
 #
 - platform: generic
-  name: Bing Wallpaper
+  name: "Bing Wallpaper"
   limit_refetch_to_url_change: true
-  content_type: image/jpg
+  content_type: "image/jpg"
   still_image_url: >-
     {% set images = state_attr('sensor.bing_wallpaper', 'images') %}
 
@@ -26,9 +27,9 @@
     {% endif %}
 
 - platform: generic
-  name: Bing Wallpaper HD
+  name: "Bing Wallpaper HD"
   limit_refetch_to_url_change: true
-  content_type: image/jpg
+  content_type: "image/jpg"
   still_image_url: >-
     {% set images = state_attr('sensor.bing_wallpaper', 'images') %}
 
@@ -43,7 +44,7 @@
     {% endif %}
 
 - platform: proxy
-  name: Bing Wallpaper Proxy
+  name: "Bing Wallpaper Proxy"
   entity_id: camera.bing_wallpaper_hd
   max_image_width: 1080
   image_quality: 65
@@ -62,9 +63,9 @@
 # @link https://apod.nasa.gov
 #
 - platform: generic
-  name: Astronomy Picture of the Day
+  name: "Astronomy Picture of the Day"
   limit_refetch_to_url_change: true
-  content_type: image/jpg
+  content_type: "image/jpg"
   still_image_url: >-
     {% set image = None %}
     {% set url = state_attr('sensor.apod', 'url') %}
@@ -89,7 +90,7 @@
     {{ image }}
 
 - platform: generic
-  name: Astronomy Picture of the Day HD
+  name: "Astronomy Picture of the Day HD"
   limit_refetch_to_url_change: true
   content_type: image/jpg
   still_image_url: >-
@@ -116,7 +117,7 @@
     {{ image }}
 
 - platform: proxy
-  name: Astronomy Picture of the Day Proxy
+  name: "Astronomy Picture of the Day Proxy"
   entity_id: camera.astronomy_picture_of_the_day_hd
   max_image_width: 1080
   image_quality: 65
@@ -135,31 +136,31 @@
 #   wallpaper 2: https://pxhere.com/en/photo/1087220
 #
 - platform: local_file
-  name: Wallpaper 1
+  name: "Wallpaper 1"
   file_path: !secret wallpaper_1
   scan_interval: 21600
 
 - platform: local_file
-  name: Wallpaper 2
+  name: "Wallpaper 2"
   file_path: !secret wallpaper_2
   scan_interval: 21600
 
 - platform: local_file
-  name: Wallpaper Automations
+  name: "Wallpaper Automations"
   file_path: !secret wallpaper_automations
   scan_interval: 21600
 
 - platform: local_file
-  name: Wallpaper Configuration
+  name: "Wallpaper Configuration"
   file_path: !secret wallpaper_configuration
   scan_interval: 21600
 
 - platform: local_file
-  name: Wallpaper Hardware
+  name: "Wallpaper Hardware"
   file_path: !secret wallpaper_hardware
   scan_interval: 21600
 
 - platform: local_file
-  name: Wallpaper Switchboard
+  name: "Wallpaper Switchboard"
   file_path: !secret wallpaper_switchboard
   scan_interval: 21600

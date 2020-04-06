@@ -3,7 +3,7 @@
 #
 # Limit the number of tracked entities and length of history.
 #
-# @link https://home-assistant.io/components/recorder/
+# @link https://www.home-assistant.io/integrations/recorder/
 #
 purge_interval: 2
 purge_keep_days: 5

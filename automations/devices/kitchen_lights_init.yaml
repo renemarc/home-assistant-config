@@ -5,7 +5,8 @@
 # on the current conditions.
 #
 - id: kitchen_lights_init
-  alias: Kitchen lights INIT
+  alias: "Kitchen Lights INIT"
+
   trigger:
     # When Home Assistant starts.
     - platform: homeassistant

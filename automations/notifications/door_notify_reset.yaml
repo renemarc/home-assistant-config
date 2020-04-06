@@ -7,7 +7,7 @@
 # @see automations/notifications/door_notify.yaml
 #
 - id: door_notify_reset
-  alias: Door NOTIFY RESET
+  alias: "Door NOTIFY RESET"
 
   trigger:
     # When all doors are closed.

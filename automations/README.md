@@ -19,7 +19,7 @@
 
 ## Publishers and subscribers
 
-To prevent [spaghetti code](https://www.youtube.com/watch?v=vZA6h7djGmc) in automations as this project grows, I employ a [publish–subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) (kind of a lightweight [mediator pattern](https://en.wikipedia.org/wiki/Mediator_pattern)) where some automations will trigger changes on [`/misc/input_booleans.yaml`](../misc/input_booleans.yaml) and [`/misc/variables.yaml`](../misc/variables.yaml) while others listen to those changes.
+To prevent [spaghetti code](https://www.youtube.com/watch?v=vZA6h7djGmc) in automations as this project grows, I employ a [publish–subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern) (kind of a lightweight [mediator pattern](https://en.wikipedia.org/wiki/Mediator_pattern)) where some automations will trigger changes on [`/inputs/input_booleans.yaml`](../inputs/input_booleans.yaml) and [`/inputs/variables.yaml`](../inputs/variables.yaml) while others listen to those changes.
 
 <div align="center">
     <figure>

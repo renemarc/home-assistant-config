@@ -8,7 +8,8 @@
 # @see /scenes/lifx_cloud.yaml
 #
 - id: bed_select
-  alias: Bed SELECT
+  alias: "Bed SELECT"
+
   trigger:
     # When an effect has been selected.
     - platform: state

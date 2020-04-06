@@ -7,7 +7,8 @@
 - platform: template
   sensors:
     camera_folder:
-      friendly_name: Camera Folder
+      friendly_name: "Camera Folder"
+      icon_template: "mdi:folder-image"
       value_template: !secret camera_folder
 
 #
@@ -27,11 +28,11 @@
 # @see /cameras/wallpapers.yaml
 #
 # @link https://bing.com
-# @link https://www.home-assistant.io/components/sensor.rest/
+# @link https://www.home-assistant.io/integrations/rest/
 #
 - platform: rest
-  name: Bing Wallpaper
-  resource: https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US
+  name: "Bing Wallpaper"
+  resource: "https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US"
   scan_interval: 21600
   json_attributes:
     - images
@@ -68,7 +69,7 @@
 # @link https://apod.nasa.gov
 #
 - platform: rest
-  name: APOD
+  name: "APOD"
   resource: !secret apod_api_url
   scan_interval: 21600
   json_attributes:

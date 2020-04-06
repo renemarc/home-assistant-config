@@ -10,7 +10,8 @@
 # @see /automations/modes/night_mode_start.yaml
 #
 - id: nap_mode_start
-  alias: Nap mode START
+  alias: "Nap Mode START"
+
   trigger:
     # When Minimote button 2 pressed once.
     - platform: event
@@ -23,8 +24,8 @@
     - platform: event
       event_type: flic_click
       event_data:
-        button_name: flic_80e4da737711
-        click_type: single
+        button_name: "flic_80e4da737711"
+        click_type: 'single'
 
   condition:
     # If nap mode is not currently enabled.

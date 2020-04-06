@@ -8,7 +8,8 @@
 # @see /scenes/lifx_cloud.yaml
 #
 - id: ceiling_select
-  alias: Ceiling SELECT
+  alias: "Ceiling SELECT"
+
   trigger:
     # When an effect has been selected.
     - platform: state

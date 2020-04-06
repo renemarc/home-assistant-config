@@ -1,7 +1,7 @@
 #
 # Counters
 #
-# @link https://www.home-assistant.io/components/counter/
+# @link https://www.home-assistant.io/integrations/counter
 #
 
 
@@ -16,8 +16,8 @@
 # @see /automations/notifications/door_notify_reset.yaml
 #
 door_notify:
-  name: Notifications
-  icon: mdi:door-open
+  name: "Door Notifications"
+  icon: "mdi:door-open"
   initial: 10
   step: 1
 
@@ -33,8 +33,8 @@ door_notify:
 # @see /automations/notifications/humidor_notify_reset.yaml
 #
 humidor_notify:
-  name: Notifications
-  icon: mdi:cigar
+  name: "Humidor Notifications"
+  icon: "mdi:cigar"
   initial: 10
   step: 1
 
@@ -50,7 +50,7 @@ humidor_notify:
 # @see /automations/notifications/radon_notify_reset.yaml
 #
 radon_notify:
-  name: Notifications
-  icon: mdi:radioactive
+  name: "Radon Notifications"
+  icon: "mdi:radioactive"
   initial: 20
   step: 1

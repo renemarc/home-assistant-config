@@ -30,7 +30,8 @@
 # @link https://sigmaluminous.com/the-circadian-rhythm-and-color-temperature/
 #
 - id: cct_lifx
-  alias: CCT LIFX
+  alias: "CCT LIFX"
+
   trigger:
     # Every five minutes.
     - platform: time_pattern

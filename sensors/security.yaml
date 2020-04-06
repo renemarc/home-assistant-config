@@ -8,6 +8,13 @@
 - platform: template
   sensors:
     door_location:
+      friendly_name: "Door Open Location"
+      icon_template: &door-location-icon >-
+        {% if is_state('group.door_sensors', 'on') %}
+          mdi:door-open
+        {% else %}
+          mdi:door-closed
+        {% endif %}
       value_template: >-
         {% set entities = [
             states.binary_sensor.front_door_sensor,
@@ -24,19 +31,13 @@
         {{ value }}
 
     door_status:
-      friendly_name: Doors
       friendly_name_template: >-
         {% if is_state('group.door_sensors', 'on') %}
-          Door open
+          Door Open
         {% else %}
-          External doors
+          External Doors
         {% endif %}
-      icon_template: >-
-        {% if is_state('group.door_sensors', 'on') %}
-          mdi:door-open
-        {% else %}
-          mdi:door-closed
-        {% endif %}
+      icon_template: *door-location-icon
       value_template: >-
         {% set value = states('sensor.door_location') %}
 
@@ -57,13 +58,8 @@
 - platform: template
   sensors:
     leak_location:
-      friendly_name_template: >-
-        {% if is_state('group.leak_sensors', 'on') %}
-          Leak detected
-        {% else %}
-          Leaks
-        {% endif %}
-      icon_template: >-
+      friendly_name: "Leak Location"
+      icon_template: &leak-location-icon >-
         {% if is_state('group.leak_sensors', 'on') %}
           mdi:pipe-leak
         {% else %}
@@ -85,19 +81,13 @@
         {{ value }}
 
     leak_status:
-      friendly_name: Leaks
       friendly_name_template: >-
         {% if is_state('group.leak_sensors', 'on') %}
-          Leak detected
+          Leak Detected
         {% else %}
           Leaks
         {% endif %}
-      icon_template: >-
-        {% if is_state('group.leak_sensors', 'on') %}
-          mdi:pipe-leak
-        {% else %}
-          mdi:pipe
-        {% endif %}
+      icon_template: *leak-location-icon
       value_template: >-
         {% set value = states('sensor.leak_location') %}
 
@@ -118,6 +108,13 @@
 - platform: template
   sensors:
     motion_location:
+      friendly_name: "Motion Location"
+      icon_template: &motion_location-icon >-
+        {% if is_state('group.motion_sensors', 'on') %}
+          mdi:run
+        {% else %}
+          mdi:radar
+        {% endif %}
       value_template: >-
         {% set entities = [
             states.binary_sensor.bedroom_multisensor,
@@ -139,19 +136,13 @@
         {{ value }}
 
     motion_status:
-      friendly_name: Motion
       friendly_name_template: >-
         {% if is_state('group.motion_sensors', 'on') %}
-          Motion detected
+          Motion Detected
         {% else %}
           Motion
         {% endif %}
-      icon_template: >-
-        {% if is_state('group.motion_sensors', 'on') %}
-          mdi:run
-        {% else %}
-          mdi:radar
-        {% endif %}
+      icon_template: *motion_location-icon
       value_template: >-
         {% set value = states('sensor.motion_location') %}
 
@@ -173,6 +164,8 @@
 - platform: template
   sensors:
     smoke_location:
+      friendly_name: "Smoke Location"
+      icon_template: "mdi:smoke-detector"
       value_template: >-
         {% set entities = [
             states.binary_sensor.siren_monitor_smoke,
@@ -189,7 +182,6 @@
         {{ value }}
 
     smoke_status:
-      friendly_name: Smoke
       friendly_name_template: >-
         {% if is_state('group.smoke_sensors', 'on') %}
           Smoke detected
@@ -218,12 +210,11 @@
 # Returns a comma-separated list of perimeter devices being tampered with.
 #
 # @see /automations/modes/tamper_start.yaml
-# @see /misc/variables.yaml
+# @see /inputs/variables.yaml
 #
 - platform: template
   sensors:
     tamper_status:
-      friendly_name: Tampering
       friendly_name_template: >-
         {% if is_state('input_boolean.tamper_detected', 'on') %}
           Tampering detected

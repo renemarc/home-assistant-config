@@ -4,7 +4,7 @@
 # @subscribe sensor.rpi_power_status
 #
 - id: power_supply_notify
-  alias: Power supply NOTIFY
+  alias: "Power Supply NOTIFY"
 
   trigger:
     # When supplied power is out of spec.

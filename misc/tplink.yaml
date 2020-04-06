@@ -1,5 +1,5 @@
 #
-# TP-Link
+# TP-Link Kasa Smart
 #
 # Multiple "dumb" devices are made available through binary switches:
 #   - 12v warm white 100-LED string fairy lights (x3)
@@ -19,7 +19,7 @@
 # @see /automations/devices/dehumidifier_off.yaml
 #
 # @link https://www.tp-link.com/ca/products/details/cat-5516_HS105.html
-# @link https://www.home-assistant.io/components/tplink/
+# @link https://www.home-assistant.io/integrations/tplink/
 #
 discovery: false
 switch:

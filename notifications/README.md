@@ -22,7 +22,7 @@ Useful during development of automations, I later keep using them for simple war
 
 ### [`👪 ./group.yaml`](group.yaml)
 
-Notifications services are organized into higher-level [notification groups](https://home-assistant.io/components/notify.group/), to avoid peppering hard-coded services throughout automations.
+Notifications services are organized into higher-level [notification groups](https://www.home-assistant.io/integrations/notify.group/), to avoid peppering hard-coded services throughout automations.
 
 ### [`📢 ./lannouncer.yaml`](lannouncer.yaml)
 

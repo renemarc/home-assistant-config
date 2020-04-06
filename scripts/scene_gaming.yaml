@@ -3,8 +3,10 @@
 #
 # @see /automations/scene_select.yaml
 #
-alias: Gaming scene
+alias: "Gaming Scene"
+icon: "mdi:space-invaders"
 sequence:
+
   # Enable scene mode.
   - service: input_boolean.turn_on
     data:
@@ -25,7 +27,7 @@ sequence:
   - service: input_select.select_option
     data:
       entity_id: input_select.aurora_effect
-      option: Synthwave
+      option: "Synthwave"
 
   # Turn on ceiling wash lights.
   - service: homeassistant.turn_on
@@ -38,7 +40,7 @@ sequence:
   - service: input_select.select_option
     data:
       entity_id: input_select.ceiling_effect
-      option: Blissful
+      option: "Blissful"
 
   # Turn on the lounge's TV.
   - service: switch.turn_on
@@ -48,7 +50,7 @@ sequence:
   - service: input_select.select_option
     data:
       entity_id: input_select.lightpack_effect
-      option: Gaming
+      option: "Gaming"
 
   # Turn off some glaring kitchen lights.
   - service: homeassistant.turn_off

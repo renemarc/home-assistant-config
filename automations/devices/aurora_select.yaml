@@ -8,7 +8,8 @@
 # @see /automations/devices/aurora_effect.yaml
 #
 - id: aurora_select
-  alias: Aurora SELECT
+  alias: "Aurora SELECT"
+
   trigger:
     # When an effect has been selected.
     - platform: state

@@ -16,7 +16,7 @@
 # @see automations/notifications/door_notify_reset.yaml
 #
 - id: door_notify
-  alias: Door NOTIFY
+  alias: "Door NOTIFY"
 
   trigger:
     # When a door has been left open for a while.

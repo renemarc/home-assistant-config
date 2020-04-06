@@ -49,7 +49,7 @@ Contains minor improvements over Home Assistant's [default theme](https://github
 
 ### [`🌜 ./dark.yaml`](dark.yaml)
 
-Automtically set by [`/automations/theme_auto.yaml`](../automations/theme_auto.yaml) whenever **night_mode** in [`/misc/input_booleans.yaml`](../misc/input_booleans.yaml) is enabled. Based on [PmxMononight](https://community.home-assistant.io/t/share-your-themes/22018/38) by PhysicalMagic.
+Automtically set by [`/automations/theme_auto.yaml`](../automations/theme_auto.yaml) whenever **night_mode** in [`/inputs/input_booleans.yaml`](../inputs/input_booleans.yaml) is enabled. Based on [PmxMononight](https://community.home-assistant.io/t/share-your-themes/22018/38) by PhysicalMagic.
 
 <div align="center">
     <figure>

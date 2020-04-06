@@ -1,7 +1,7 @@
 #
 # Scenes
 #
-# @link https://home-assistant.io/components/scene/
+# @link https://www.home-assistant.io/integrations/scene/
 #
 
 
@@ -11,7 +11,7 @@
 # @see /misc/lifx.yaml
 #
 # @link https://api.developer.lifx.com/docs/list-scenes
-# @link https://home-assistant.io/components/scene.lifx_cloud/
+# @link https://www.home-assistant.io/integrations/lifx_cloud/
 #
 - platform: lifx_cloud
   token: !secret lifx_cloud_token

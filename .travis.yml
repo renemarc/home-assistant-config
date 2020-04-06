@@ -4,7 +4,7 @@
 # Simply tests that Home Assistant configuration is valid.
 #
 # @link https://docs.travis-ci.com/user/tutorial/
-# @link https://home-assistant.io/docs/ecosystem/backup/backup_github/#step-7-configuration-file-testing
+# @link https://www.home-assistant.io/docs/ecosystem/backup/backup_github/#step-7-configuration-file-testing
 #
 
 # Select the base environment

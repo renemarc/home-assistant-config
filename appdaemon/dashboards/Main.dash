@@ -1,7 +1,7 @@
 #
 # Main arguments, all optional
 #
-title: Main Panel
+title: "Main Panel"
 widget_dimensions: [121, 122]
 widget_size: [1, 1]
 widget_margins: [5, 5]
@@ -18,30 +18,30 @@ global_parameters:
 #
 nav_main:
     widget_type: navigate
-    dashboard: Main
-    title2: Home
-    icon_inactive: mdi-home-assistant
+    dashboard: "Main"
+    title2: "Home"
+    icon_inactive: "mdi-home-assistant"
     widget_style: "background: MEDIUMSLATEBLUE;"
 
 nav_switchboard:
     widget_type: navigate
-    dashboard: Switchboard
-    title2: Switchboard
-    icon_inactive: mdi-nintendo-switch
+    dashboard: "Switchboard"
+    title2: "Switchboard"
+    icon_inactive: "mdi-nintendo-switch"
     widget_style: "background: DARKSLATEBLUE;"
 
 nav_weather:
     widget_type: navigate
-    dashboard: Weather
-    title2: Weather
-    icon_inactive: mdi-weather-partly-cloudy
+    dashboard: "Weather"
+    title2: "Weather"
+    icon_inactive: "mdi-weather-partly-cloudy"
     widget_style: "background: DARKSLATEBLUE;"
 
 nav_status:
     widget_type: navigate
-    dashboard: Status
-    title2: Status
-    icon_inactive: mdi-information-outline
+    dashboard: "Status"
+    title2: "Status"
+    icon_inactive: "mdi-information-outline"
     widget_style: "background: DARKSLATEBLUE;"
 
 nav_spacer:
@@ -54,7 +54,7 @@ nav_spacer:
 #
 label:
     widget_type: sensor
-    title2: Home Assistant
+    title2: "Home Assistant"
     entity: sensor.good_vibes
     text_style: "font-size: 300%;"
     widget_style: "background: MEDIUMSLATEBLUE;"
@@ -76,7 +76,7 @@ slideshow:
           title: ""
         - entity: camera.astronomy_picture_of_the_day
           entity_title: sensor.apod
-    title_style: "line-height:2em;opacity:0.8;"
+    title_style: "line-height: 2em; opacity: 0.8;"
 
 
 #
@@ -85,35 +85,35 @@ slideshow:
 good_morning:
     widget_type: script
     entity: script.wake_up
-    title2: Awaken
+    title2: "Awaken"
 
 quiet_mode:
     widget_type: input_boolean
     entity: input_boolean.quiet_mode
-    title2: Quiet
+    title2: "Quiet"
 
 low_power_mode:
     widget_type: input_boolean
     entity: input_boolean.low_mode
-    title2: Eco
+    title2: "Eco"
 
 nap_mode:
     widget_type: input_boolean
     entity: input_boolean.nap_mode
-    title2: Sleep
+    title2: "Sleep"
 
 night_mode:
     widget_type: input_boolean
     entity: input_boolean.night_mode
-    title2: Dark
+    title2: "Dark"
 
 scene:
     widget_type: input_select
-    title2: Set a scene
+    title2: "Set a scene"
     entity: input_select.scene
     sub_entity: input_select.scene
-    state_text_style: "background-color:#555;"
-    select_style: "background-color:#555;color:$white;"
+    state_text_style: "background-color: #555;"
+    select_style: "background-color: #555; color: $white;"
 
 
 #
@@ -124,65 +124,65 @@ temperature_now:
     entity: sensor.outside_temperature
     sub_entity: sensor.outside_temperature_low_friendly_0
     title2_entity: sensor.feels_like
-    widget_style: "background-color:inherit;"
-    title2_style: "margin-top:3px;"
-    state_text_style: "background-color:inherit"
+    widget_style: "background-color: inherit;"
+    title2_style: "margin-top: 3px;"
+    state_text_style: "background-color: inherit;"
 
 weather_icon_now:
     widget_type: iconsensor
     entity: sensor.dark_sky_icon
     icons:
         clear-day:
-            icon: mdi-weather-sunny
+            icon: "mdi-weather-sunny"
             style: "$style_active"
         clear-night:
-            icon: mdi-weather-night
+            icon: "mdi-weather-night"
             style: "$style_active"
         rain:
-            icon: mdi-weather-rainy
+            icon: "mdi-weather-rainy"
             style: "$style_active"
         snow:
-            icon: mdi-weather-snowy
+            icon: "mdi-weather-snowy"
             style: "$style_active"
         sleet:
-            icon: mdi-weather-snowy-rainy
+            icon: "mdi-weather-snowy-rainy"
             style: "$style_active"
         wind:
-            icon: mdi-weather-windy
+            icon: "mdi-weather-windy"
             style: "$style_active"
         fog:
-            icon: mdi-weather-fog
+            icon: "mdi-weather-fog"
             style: "$style_active"
         cloudy:
-            icon: mdi-weather-cloudy
+            icon: "mdi-weather-cloudy"
             style: "$style_active"
         partly-cloudy-day:
-            icon: mdi-weather-partly-cloudy
+            icon: "mdi-weather-partly-cloudy"
             style: "$style_active"
         partly-cloudy-night:
-            icon: mdi-weather-partly-cloudy
+            icon: "mdi-weather-partly-cloudy"
             style: "$style_active"
     title2_entity: sensor.weather_icon_friendly
     sub_entity: sensor.precip_probability_friendly
-    widget_style: "background-color:inherit;"
-    title2_style: "margin-top:3px;"
-    state_text_style: "background-color:inherit"
+    widget_style: "background-color: inherit;"
+    title2_style: "margin-top: 3px;"
+    state_text_style: "background-color: inherit;"
 
 daily_forecast:
     widget_type: entitysensor
-    title: 24h Forecast
+    title: "24h Forecast"
     title_entity: sensor.dark_sky_minutely_summary
     entity: sensor.dark_sky_hourly_summary
-    widget_style: "background-color:inherit;"
-    title_style: "background-color:#555;width:150%;margin-left:-50%;margin-top:-5px;padding:5px 0 3px;border-radius:5px;"
+    widget_style: "background-color: inherit;"
+    title_style: "background-color: #555; width: 150%; margin-left: -50%; margin-top: -5px; padding: 5px 0 3px; border-radius: 5px;"
 
 wind:
     widget_type: entitysensor
     entity: sensor.wind_speed
     title2_entity: sensor.wind_scale_friendly
     sub_entity: sensor.wind_bearing_cardinal_friendly
-    widget_style: "background-color:inherit;"
-    state_text_style: "background-color:inherit;"
+    widget_style: "background-color: inherit;"
+    state_text_style: "background-color: inherit;"
 
 
 #
@@ -193,8 +193,8 @@ outdoor_safety:
     title2: "AQI           UV "
     entity: sensor.aqi
     entity2: sensor.uv
-    widget_style: "background-color:inherit;"
-    title2_style: "top:35px;"
+    widget_style: "background-color: inherit;"
+    title2_style: "top: 35px;"
 
 
 #
@@ -202,16 +202,16 @@ outdoor_safety:
 #
 to_metro:
     widget_type: sensor
-    title: Bus to Metro
+    title: "Bus to Metro"
     entity: sensor.transit_to_metro_countdown
     sub_entity: sensor.transit_to_metro_hour
-    value_style: "color:orange;"
-    text_style: "color:orange;font-size:250%;"
-    state_text_style: "background-color:#555;"
+    value_style: "color: orange;"
+    text_style: "color: orange; font-size: 250%;"
+    state_text_style: "background-color: #555;"
 
 to_metro_2:
     widget_type: sensor
-    title2: Next
+    title2: "Next"
     entity: sensor.transit_to_metro_2_countdown
     sub_entity: sensor.transit_to_metro_2_hour
     text_style: "color:#00aaff;font-size:250%;"
@@ -219,7 +219,7 @@ to_metro_2:
 
 to_metro_3:
     widget_type: sensor
-    title2: After
+    title2: "After"
     entity: sensor.transit_to_metro_3_countdown
     sub_entity: sensor.transit_to_metro_3_hour
     text_style: "color:#00aaff;font-size:250%;"
@@ -227,27 +227,27 @@ to_metro_3:
 
 to_market:
     widget_type: sensor
-    title: Bus to Market
+    title: "Bus to Market"
     entity: sensor.transit_to_market_countdown
     sub_entity: sensor.transit_to_market_hour
-    value_style: "color:orange;"
-    text_style: "color:orange;font-size:250%;"
-    state_text_style: "background-color:#555;"
+    value_style: "color: orange;"
+    text_style: "color: orange; font-size: 250%;"
+    state_text_style: "background-color: #555;"
 
 to_market_2:
     widget_type: sensor
-    title2: Next
+    title2: "Next"
     entity: sensor.transit_to_market_2_countdown
     sub_entity: sensor.transit_to_market_2_hour
-    text_style: "color:#00aaff;font-size:250%;"
-    state_text_style: "background-color:#555;"
+    text_style: "color: #00aaff; font-size: 250%;"
+    state_text_style: "background-color: #555;"
 to_market_3:
     widget_type: sensor
-    title2: After
+    title2: "After"
     entity: sensor.transit_to_market_3_countdown
     sub_entity: sensor.transit_to_market_3_hour
-    text_style: "color:#00aaff;font-size:250%;"
-    state_text_style: "background-color:#555;"
+    text_style: "color: #00aaff; font-size: 250%;"
+    state_text_style: "background-color: #555;"
 
 
 #

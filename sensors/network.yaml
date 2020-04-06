@@ -4,7 +4,7 @@
 # @see /custom_components/ebox/sensor.py
 #
 # @link https://client.ebox.ca/
-# @link https://home-assistant.io/components/sensor.ebox/
+# @link https://www.home-assistant.io/integrations/ebox/
 #
 - platform: ebox
   username: !secret ebox_username
@@ -29,8 +29,8 @@
         {{ states('sensor.ebox_download_before_offpeak') | round }}
 
     ebox_download_remaining:
-      friendly_name: Remaining Downloads
-      icon_template: mdi:briefcase-download
+      friendly_name: "Remaining Downloads"
+      icon_template: "mdi:briefcase-download"
       unit_of_measurement: 'Gb'
       value_template: >-
         {% set limit = states('sensor.ebox_data_limit') | float(-1) %}
@@ -45,8 +45,8 @@
         {% endif %}
 
     ebox_download_daily_capacity:
-      friendly_name: Daily Capacity
-      icon_template: mdi:speedometer
+      friendly_name: "Daily Capacity"
+      icon_template: "mdi:speedometer"
       unit_of_measurement: 'Gb'
       value_template: >-
         {% set days = states('sensor.days_remaining_in_month') | int(-1) %}
@@ -72,8 +72,8 @@
         {{ states('sensor.ebox_upload_before_offpeak') | round }}
 
     ebox_upload_remaining:
-      friendly_name: Remaining Uploads
-      icon_template: mdi:briefcase-upload
+      friendly_name: "Remaining Uploads"
+      icon_template: "mdi:briefcase-upload"
       unit_of_measurement: 'Gb'
       value_template: >-
         {% set limit = states('sensor.ebox_data_limit') | float(-1) %}
@@ -88,8 +88,8 @@
         {% endif %}
 
     ebox_usage_friendly:
-      friendly_name: Monthly Usage
-      icon_template: mdi:percent
+      friendly_name: "Monthly Usage"
+      icon_template: "mdi:percent"
       unit_of_measurement: '%'
       value_template: >-
         {{ states('sensor.ebox_usage') | round }}
@@ -98,27 +98,27 @@
 #
 # Speedtest.net network speed testing
 #
-# https://home-assistant.io/components/speedtestdotnet/
+# https://www.home-assistant.io/integrations/speedtestdotnet/
 #
 - platform: template
   sensors:
     speedtest_ping_rounded:
-      friendly_name: Ping
-      icon_template: mdi:timer
+      friendly_name: "Ping"
+      icon_template: "mdi:timer"
       unit_of_measurement: 'ms'
       value_template: >-
         {{ states('sensor.speedtest_ping') | round }}
 
     speedtest_download_rounded:
-      friendly_name: Downspeed
-      icon_template: mdi:download-network
+      friendly_name: "Downspeed"
+      icon_template: "mdi:download-network"
       unit_of_measurement: 'Mbit/s'
       value_template: >-
         {{ states('sensor.speedtest_download') | round }}
 
     speedtest_upload_rounded:
-      friendly_name: Upspeed
-      icon_template: mdi:upload-network
+      friendly_name: "Upspeed"
+      icon_template: "mdi:upload-network"
       unit_of_measurement: 'Mbit/s'
       value_template: >-
         {{ states('sensor.speedtest_upload') | round }}

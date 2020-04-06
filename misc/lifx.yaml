@@ -12,7 +12,7 @@
 #
 # @link https://www.lifx.com/products/lifx-plus
 # @link https://www.lifx.com/products/lifx-z-with-homekit
-# @link https://home-assistant.io/components/light.lifx/
-# @link https://home-assistant.io/components/scene.lifx_cloud/
+# @link https://www.home-assistant.io/integrations/lifx/
+# @link https://www.home-assistant.io/integrations/lifx_cloud/
 #
 light:

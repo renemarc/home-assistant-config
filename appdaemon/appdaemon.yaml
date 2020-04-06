@@ -10,10 +10,6 @@ appdaemon:
     HASS:
       type: hass
 hadashboard:
-  # dash_url: !secret hadashboard_dash_url
-  # dash_dir: !secret hadashboard_dash_dir
-  # compile_on_start: 1
-  # disable_apps: 1
   force_compile: 1
 http:
-  url: http://127.0.0.1:5050
+  url: "http://127.0.0.1:5050"

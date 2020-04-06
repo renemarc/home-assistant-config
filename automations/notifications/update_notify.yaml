@@ -4,7 +4,7 @@
 # An updated Hass.io version usually follows shortly.
 #
 - id: update_notify
-  alias: Update NOTIFY
+  alias: "Update NOTIFY"
 
   trigger:
     # When the updater service finds something new.

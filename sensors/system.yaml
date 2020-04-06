@@ -3,7 +3,7 @@
 #
 # Lots of geeky details about the server hardware.
 #
-# @link https://home-assistant.io/components/sensor.systemmonitor/
+# @link https://www.home-assistant.io/integrations/systemmonitor/
 #
 - platform: systemmonitor
   scan_interval: 60
@@ -24,7 +24,7 @@
 #
 # Version
 #
-# @link https://home-assistant.io/components/sensor.version/
+# @link https://www.home-assistant.io/integrations/version/
 #
 - platform: version
 
@@ -40,7 +40,7 @@
   sensors:
     version_friendly:
       friendly_name: Home Assistant Version
-      icon_template: mdi:update
+      icon_template: "mdi:update"
       value_template: >-
         {% set version = states('sensor.current_version') %}
 
@@ -50,7 +50,7 @@
 
     update_available:
       friendly_name: Update Available
-      icon_template: mdi:update
+      icon_template: "mdi:update"
       value_template: >-
         {% set version = state_attr('binary_sensor.updater', 'newest_version') %}
 
@@ -69,7 +69,7 @@
   sensors:
     disk_use_percent:
       friendly_name: Disk Use /home
-      icon_template: mdi:harddisk
+      icon_template: "mdi:harddisk"
       unit_of_measurement: '%'
       value_template: >-
         {% set disk_use = states('sensor.disk_use_home') | float(-1) %}
@@ -83,7 +83,7 @@
 
     disk_free_percent:
       friendly_name: Disk Free /home
-      icon_template: mdi:harddisk
+      icon_template: "mdi:harddisk"
       unit_of_measurement: '%'
       value_template: >-
         {% set disk_use = states('sensor.disk_use_percent') | int(-1) %}
@@ -105,7 +105,7 @@
   sensors:
     memory_use_percent:
       friendly_name: Memory Use
-      icon_template: mdi:memory
+      icon_template: "mdi:memory"
       unit_of_measurement: '%'
       value_template: >-
         {% set memory_use = states('sensor.memory_use') | float(-1) %}
@@ -119,7 +119,7 @@
 
     memory_free_percent:
       friendly_name: Memory Free
-      icon_template: mdi:memory
+      icon_template: "mdi:memory"
       unit_of_measurement: '%'
       value_template: >-
         {% set memory_use = states('sensor.memory_use_percent') | int(-1) %}
@@ -141,7 +141,7 @@
   sensors:
     uptime_host:
       friendly_name: Server Uptime
-      icon_template: mdi:server
+      icon_template: "mdi:server"
       value_template: >-
         {% set lb = states('sensor.last_boot') %}
 
@@ -199,18 +199,18 @@
 # @see /appdaemon/dashboards/Status.dash
 # @see /groups/status.yaml
 #
-# @link https://home-assistant.io/components/sensor.uptime/
+# @link https://www.home-assistant.io/integrations/uptime/
 #
 - platform: uptime
   name: Uptime
   scan_interval: 60
-  unit_of_measurement: hours
+  unit_of_measurement: 'hours'
 
 - platform: template
   sensors:
     uptime_friendly:
-      friendly_name: Uptime
-      icon_template: mdi:home-assistant
+      friendly_name: HASS Uptime
+      icon_template: "mdi:home-assistant"
       value_template: >-
         {% set uptime = states('sensor.uptime') | float(-1) %}
 
@@ -267,7 +267,7 @@
   sensors:
     average_load:
       friendly_name: Average load
-      icon_template: mdi:chip
+      icon_template: "mdi:chip"
       value_template: >-
         {% set load1 = states('sensor.load_1m') | float(-1) %}
         {% set load5 = states('sensor.load_5m') | float(-1) %}
@@ -301,7 +301,7 @@
 # @see /customize.yaml
 # @see /secrets.yaml
 #
-# @link https://home-assistant.io/components/sensor.command_line/
+# @link https://www.home-assistant.io/integrations/command_line/
 #
 - platform: command_line
   name: CPU Cores
@@ -329,12 +329,12 @@
 # @see /appdaemon/dashboards/Status.dash
 #
 # @link https://community.home-assistant.io/t/displaying-cpu-temperature-within-home-assistant/8641
-# @link https://home-assistant.io/components/sensor.command_line/
+# @link https://www.home-assistant.io/integrations/command_line/
 #
 - platform: command_line
   name: CPU Temp
   scan_interval: 60
-  unit_of_measurement: °C
+  unit_of_measurement: '°C'
   command: >-
     if [ -e /sys/class/thermal/thermal_zone0/temp ]; then
       cat /sys/class/thermal/thermal_zone0/temp
@@ -361,7 +361,7 @@
 # @see /appdaemon/dashboards/Status.dash
 # @see /groups/status.yaml
 #
-# @link https://www.home-assistant.io/components/sensor.filesize/
+# @link https://www.home-assistant.io/integrations/filesize/
 #
 - platform: filesize
   file_paths:
@@ -371,15 +371,15 @@
 - platform: template
   sensors:
     database_size:
-      friendly_name: Database Size
-      icon_template: mdi:database
+      friendly_name: "Database Size"
+      icon_template: "mdi:database"
       unit_of_measurement: 'MiB'
       value_template: >-
         {{ states('sensor.home_assistant_v2_db') | round }}
 
     log_size:
-      friendly_name: Log Size
-      icon_template: mdi:history
+      friendly_name: "Log Size"
+      icon_template: "mdi:history"
       unit_of_measurement: 'KiB'
       value_template: >-
         {% set size = state_attr('sensor.home_assistant_log', 'bytes') %}
@@ -406,7 +406,7 @@
 # @link https://stackoverflow.com/a/33133769
 #
 - platform: command_line
-  name: Git branch
+  name: "Git Branch"
   command: >-
     if command -v git &> /dev/null; then
       git -C $(pwd)/.git symbolic-ref --short HEAD
@@ -420,11 +420,11 @@
 #
 # Used as a flexible placeholder for cameras.
 #
-# @see /cameras/environment_canada.yaml
 # @see /cameras/wallpapers.yaml
 #
 - platform: template
   sensors:
     server_port:
-      friendly_name: Server Port
+      friendly_name: "Server Port"
+      icon_template: "mdi:ethernet"
       value_template: !secret http_server_port

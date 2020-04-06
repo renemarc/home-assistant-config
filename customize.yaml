@@ -2,151 +2,133 @@
 # Automations
 #
 automation.daily_greeting:
-  icon: mdi:human-greeting
+  icon: "mdi:human-greeting"
 automation.front_door_notify:
-  icon: mdi:door-open
+  icon: "mdi:door-open"
 automation.go_to_sleep:
-  icon: mdi:weather-night
+  icon: "mdi:weather-night"
 automation.humidity_notify:
-  icon: mdi:water-percent
+  icon: "mdi:water-percent"
 automation.theme_auto:
-  icon: mdi:theme-light-dark
+  icon: "mdi:theme-light-dark"
 automation.power_supply_notify:
-  icon: mdi:flash-circle
+  icon: "mdi:flash-circle"
 automation.scene_daylight:
-  icon: mdi:weather-sunny
+  icon: "mdi:weather-sunny"
 automation.scene_gaming:
-  icon: mdi:google-controller
+  icon: "mdi:google-controller"
 automation.scene_romantic:
-  icon: mdi:home-heart
+  icon: "mdi:home-heart"
 automation.scene_select:
-  icon: mdi:looks
+  icon: "mdi:looks"
 automation.smoke_notify:
-  icon: mdi:smoke-detector
+  icon: "mdi:smoke-detector"
 automation.update_notify:
-  icon: mdi:cloud-upload
+  icon: "mdi:cloud-upload"
 automation.wake_up:
-  icon: mdi:power
+  icon: "mdi:power"
 
 
 #
 # Binary sensors
 #
 binary_sensor.flic_80e4da72e890:
-  friendly_name: Flic White
+  friendly_name: "Flic White"
 binary_sensor.flic_80e4da737711:
-  friendly_name: Flic Blue
+  friendly_name: "Flic Blue"
 binary_sensor.front_door_sensor:
   device_class: door
-  friendly_name: Front Door
+  friendly_name: "Front Door"
 binary_sensor.kitchen_leak_sensor:
   device_class: moisture
-  friendly_name: Kitchen Floor
-  icon: mdi:pipe-leak
+  friendly_name: "Kitchen Floor"
+  icon: "mdi:pipe-leak"
 binary_sensor.bedroom_multisensor:
   device_class: motion
-  friendly_name: Bedroom Motion
+  friendly_name: "Bedroom Motion"
 binary_sensor.lounge_multisensor:
   device_class: motion
+  friendly_name: "Lounge Motion"
 binary_sensor.kiosk_motion_auto:
   device_class: motion
 binary_sensor.siren_monitor_smoke:
   device_class: smoke
 binary_sensor.updater:
-  icon: mdi:cloud-download
+  icon: "mdi:cloud-download"
 binary_sensor.washroom_leak_sensor:
   device_class: moisture
-  friendly_name: Washroom Floor
-  icon: mdi:pipe-leak
+  friendly_name: "Washroom Floor"
+  icon: "mdi:pipe-leak"
 binary_sensor.washroom_multisensor:
   device_class: motion
-  friendly_name: Washroom Motion
+  friendly_name: "Washroom Motion"
 
 
 #
 # Cameras
 #
-camera.bing_wallpaper:
-  hide_control: true
-camera.environment_canada_rain:
-  friendly_name: "Radar: Rain"
-  hide_control: true
-camera.environment_canada_snow:
-  friendly_name: "Radar: Snow"
-  hide_control: true
+camera.environment_canada:
+  icon: "mdi:radar"
 camera.noaa_geocolor:
   friendly_name: "Satellite: Geocolor"
-  hide_control: true
 camera.noaa_water_vapour:
   friendly_name: "Satellite: Water Vapour"
-  hide_control: true
-
-
-#
-# Device trackers
-#
-device_tracker.laptop_her:
-  friendly_name: Her laptop
-  icon: mdi:laptop
-device_tracker.laptop_him:
-  friendly_name: His laptop
-  icon: mdi:laptop
 
 
 #
 # Displays
 #
 display.kiosk:
-  icon: mdi:tablet
+  icon: "mdi:tablet"
 
 
 #
 # Lights
 #
 light.aurora:
-  icon: mdi:vector-triangle
+  icon: "mdi:vector-triangle"
 light.bedroom:
-  icon: mdi:led-strip-variant
+  icon: "mdi:led-strip-variant"
 light.bedside:
-  icon: mdi:creation
+  icon: "mdi:creation"
 light.countertop:
-  icon: mdi:border-top
   assumed_state: false
+  icon: "mdi:border-top"
 light.island:
-  icon: mdi:table-column
   assumed_state: false
+  icon: "mdi:table-column"
 light.headboard:
-  icon: mdi:gate
+  icon: "mdi:gate"
 light.lavatory:
-  icon: mdi:wall-sconce-flat
+  icon: "mdi:wall-sconce-flat"
 light.lightpack:
-  icon: mdi:television-ambient-light
+  icon: "mdi:television-ambient-light"
 light.lounge:
-  icon: mdi:led-strip-variant
+  icon: "mdi:led-strip-variant"
 light.microwave:
-  icon: mdi:gradient
   assumed_state: false
+  icon: "mdi:gradient"
 light.middle:
-  icon: mdi:led-strip-variant
+  icon: "mdi:led-strip-variant"
 light.nightstand:
-  icon: mdi:page-layout-body
+  icon: "mdi:page-layout-body"
 light.rope:
-  icon: mdi:string-lights
+  icon: "mdi:string-lights"
 light.shower:
-  icon: mdi:spotlight
+  icon: "mdi:spotlight"
 light.sink:
-  icon: mdi:water-pump
   assumed_state: false
+  icon: "mdi:water-pump"
 light.spotlight:
-  icon: mdi:spotlight-beam
+  icon: "mdi:spotlight-beam"
 light.souvenirs:
-  icon: mdi:trophy
+  icon: "mdi:trophy"
 light.torchiere:
-  icon: mdi:floor-lamp
+  icon: "mdi:floor-lamp"
 light.underbed:
-  icon: mdi:hotel
+  icon: "mdi:hotel"
 light.window:
-  icon: mdi:creation
+  icon: "mdi:creation"
 
 
 #
@@ -155,11 +137,11 @@ light.window:
 person.her:
   entity_picture: !secret picture_her
   friendly_name: !secret nickname_her
-  icon: mdi:gender-female
+  icon: "mdi:gender-female"
 person.him:
   entity_picture: !secret picture_him
   friendly_name: !secret nickname_him
-  icon: mdi:gender-male
+  icon: "mdi:gender-male"
 
 
 #
@@ -175,16 +157,21 @@ sensor.average_temperature_exact:
 # Sensors: Miscellaneous
 #
 sensor.apod:
-  icon: mdi:star
+  icon: "mdi:star"
 sensor.bing_wallpaper:
-  icon: mdi:bing
+  icon: "mdi:bing"
 sensor.git_branch:
-  icon: mdi:git
+  icon: "mdi:git"
+sensor.hacs:
+  friendly_name: "HACS"
 sensor.printer_drum_black:
-  friendly_name: Printer Drum
+  friendly_name: "Printer Drum"
 sensor.printer_toner_black:
-  friendly_name: Printer Toner
-
+  friendly_name: "Printer Toner"
+sensor.siren_monitor_carbon_monoxide:
+  icon: "mdi:fire"
+sensor.siren_monitor_smoke:
+  icon: "mdi:smoke-detector"
 
 #
 # Sensors: Outdoor Life Quality
@@ -197,67 +184,64 @@ sensor.aqi_particles:
 # Sensors: Power
 #
 sensor.front_camera_battery_level:
-  friendly_name: Front Camera
+  friendly_name: "Front Camera"
 sensor.front_door_battery_level:
-  friendly_name: Front Door
+  friendly_name: "Front Door"
 sensor.humidor_multisensor_battery_level:
-  friendly_name: Humidor
+  friendly_name: "Humidor"
 sensor.kiosk_battery_level:
-  friendly_name: Kiosk
+  friendly_name: "Kiosk"
 sensor.kitchen_leak_sensor_battery_level:
-  friendly_name: Kitchen Leak
+  friendly_name: "Kitchen Leak"
 sensor.siren_monitor_battery_level:
-  friendly_name: Siren Monitor
+  friendly_name: "Siren Monitor"
 sensor.washroom_leak_sensor_battery_level:
-  friendly_name: Washroom Leak
+  friendly_name: "Washroom Leak"
 sensor.washroom_multisensor_battery_level:
-  friendly_name: Washroom
+  friendly_name: "Washroom"
 
 
 #
 # Sensors: System
 #
 sensor.cpu_cores:
-  icon: mdi:chip
+  icon: "mdi:chip"
 sensor.cpu_temp:
   device_class: temperature
 sensor.processor_use:
-  friendly_name: CPU Load
-  icon: mdi:chip
+  friendly_name: "CPU Load"
+  icon: "mdi:chip"
 sensor.ebox_download_before_offpeak:
-  friendly_name: Downloads
+  friendly_name: "Downloads"
 sensor.ebox_upload_before_offpeak:
-  friendly_name: Uploads
+  friendly_name: "Uploads"
 sensor.ebox_usage:
-  friendly_name: Monthly usage
-# sensor.ipv4_address_eth0:
-#   friendly_name: Local IP
-sensor.local_ip:
-  # friendly_name: Local IP
-  icon: mdi:server-network
+  friendly_name: "Monthly usage"
+sensor.local_ip_address:
+  icon: "mdi:server-network"
 sensor.speedtest_download:
-  friendly_name: Downspeed
-  icon: mdi:download-network
+  friendly_name: "Downspeed"
+  icon: "mdi:download-network"
 sensor.speedtest_ping:
-  friendly_name: Ping
-  icon: mdi:timer
+  friendly_name: "Ping"
+  icon: "mdi:timer"
 sensor.speedtest_upload:
-  friendly_name: Upspeed
-  icon: mdi:upload-network
+  friendly_name: "Upspeed"
+  icon: "mdi:upload-network"
 sensor.uptime_os:
-  icon: mdi:pi
+  icon: "mdi:pi"
 
 
 #
 # Sensors: Transit
 #
-sensor.home_to_market_2_hour:
+sensor.transit_to_market_2_hour:
   friendly_name: "Home to Market: Next"
-sensor.home_to_market_3_hour:
+sensor.transit_to_market_3_hour:
   friendly_name: "Home to Market: After"
-sensor.home_to_metro_2_hour:
+sensor.transit_to_metro_2_hour:
   friendly_name: "Home to Metro: Next"
-sensor.home_to_metro_3_hour:
+sensor.transit_to_metro_3_hour:
   friendly_name: "Home to Metro: After"
 
 
@@ -275,13 +259,24 @@ sensor.camera_front_temperature:
 # Switches
 #
 switch.aeotec_zstick_disco_light:
-  friendly_name: Z-Stick Light
+  friendly_name: "Z-Stick Light"
+  icon: "mdi:usb-flash-drive-outline"
+switch.bedside_light:
+  icon: "mdi:creation"
 switch.dehumidifier:
-  icon: mdi:water-off
+  icon: "mdi:water-off"
+switch.nightstand_light:
+  icon: "mdi:page-layout-body"
+switch.rope_light:
+  icon: "mdi:string-lights"
+switch.souvenirs_light:
+  icon: "mdi:trophy"
+switch.window_light:
+  icon: "mdi:creation"
 
 #
 # Variables
 #
 variable.tamper_detected:
-  friendly_name: Tamper location
-  icon: mdi:shield-home
+  friendly_name: "Tamper location"
+  icon: "mdi:shield-home"

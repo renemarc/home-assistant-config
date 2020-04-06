@@ -6,7 +6,8 @@
 # @publish input_boolean.nap_mode
 #
 - id: nap_mode_stop
-  alias: Nap mode STOP
+  alias: "Nap Mode STOP"
+
   trigger:
     # When Minimote button 2 pressed once.
     - platform: event
@@ -19,8 +20,8 @@
     - platform: event
       event_type: flic_click
       event_data:
-        button_name: flic_80e4da737711
-        click_type: single
+        button_name: "flic_80e4da737711"
+        click_type: 'single'
 
   condition:
     # If nap time is in effect.

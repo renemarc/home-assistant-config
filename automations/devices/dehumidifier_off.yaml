@@ -6,7 +6,8 @@
 # @subscribe input_boolean.windows_open
 #
 - id: dehumidifier_off
-  alias: Dehumidifier OFF
+  alias: "Dehumidifier OFF"
+
   trigger:
     # When humidity is getting too low.
     - platform: numeric_state

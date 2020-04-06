@@ -1,7 +1,7 @@
 #
 # Input booleans
 #
-# @link https://home-assistant.io/components/input_boolean/
+# @link https://www.home-assistant.io/integrations/input_boolean/
 #
 
 
@@ -9,61 +9,61 @@
 # Modes
 #
 low_mode:
-  name: Low power mode
-  icon: mdi:weather-sunset-down
+  name: "Low Power Mode"
+  icon: "mdi:weather-sunset-down"
 
 nap_mode:
-  name: Nap mode
-  icon: mdi:sleep
+  name: "Nap Mode"
+  icon: "mdi:sleep"
 
 night_mode:
-  name: Night mode
-  icon: mdi:weather-night
+  name: "Night Mode"
+  icon: "mdi:weather-night"
 
 quiet_mode:
-  name: Quiet mode
-  icon: mdi:volume-mute
+  name: "Quiet Mode"
+  icon: "mdi:volume-mute"
 
 scene_mode:
-  name: Scene mode
-  icon: mdi:looks
+  name: "Scene Mode"
+  icon: "mdi:looks"
 
 
 #
 # Manual effect overrides
 #
 kitchen_lights_override:
-  name: Kitchen Lights have overriding effect set
-  icon: mdi:food-fork-drink
+  name: "Kitchen Lights have overriding effect set"
+  icon: "mdi:food-fork-drink"
 
 
 #
 # Security
 #
 door_test:
-  name: Door test
-  icon: mdi:door-open
+  name: "Door Test"
+  icon: "mdi:door-open"
 
 leak_test:
-  name: Leak test
-  icon: mdi:pipe-leak
+  name: "Leak Test"
+  icon: "mdi:pipe-leak"
 
 motion_test:
-  name: Motion test
-  icon: mdi:run
+  name: "Motion Test"
+  icon: "mdi:run"
 
 smoke_test:
-  name: Smoke test
-  icon: mdi:smoke-detector
+  name: "Smoke Test"
+  icon: "mdi:smoke-detector"
 
 tamper_detected:
-  name: Tamper detected
-  icon: mdi:shield-home
+  name: "Tamper Detected"
+  icon: "mdi:shield-home"
 
 windows_open:
-  name: Windows are open
-  icon: mdi:window-open
+  name: "Windows Are Open"
+  icon: "mdi:window-open"
 
 motion_front:
-  name: Front Motion
-  icon: mdi:motion-sensor
+  name: "Front Motion"
+  icon: "mdi:motion-sensor"

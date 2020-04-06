@@ -18,7 +18,7 @@
 # @link https://ifttt.com/applets/111311843d/edit
 
 - id: webhook_ifttt
-  alias: Webhook IFTTT
+  alias: "Webhook IFTTT"
 
   trigger:
     platform: event
@@ -30,9 +30,10 @@
   action:
     - service: system_log.write
       data_template:
-        level: info
+        level: 'info'
         logger: homeassistant.components.ifttt
-        message: "Received request to {{ trigger.event.data.service }} for {{ trigger.event.data.entity_id }} with name {{ trigger.event.data.name }} at {{ trigger.event.data.time }}."
+        message: >-
+          Received request to {{ trigger.event.data.service }} for {{ trigger.event.data.entity_id }} with name {{ trigger.event.data.name }} at {{ trigger.event.data.time }}.
 
     - service_template: "{{ trigger.event.data.service }}"
       data_template:

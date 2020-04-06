@@ -6,7 +6,8 @@
 # @subscribe input_boolean.nap_mode
 #
 - id: bedroom_off
-  alias: Bedroom OFF
+  alias: "Bedroom OFF"
+
   trigger:
     # When nap mode is enabled.
     - platform: state

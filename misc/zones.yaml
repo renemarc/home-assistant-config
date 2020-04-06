@@ -1,35 +1,35 @@
 #
 # Zones
 #
-# @link https://home-assistant.io/components/zone/
+# @link https://www.home-assistant.io/integrations/zone/
 #
 
 
 #
 # Home zone
 #
-- name: Home
+- name: "Home"
   latitude: !secret zone_home_latitude
   longitude: !secret zone_home_longitude
   radius: 100
-  icon: mdi:home-heart
+  icon: "mdi:home-heart"
 
 
 #
 # Bus terminal zone
 #
-- name: Bus Terminal
+- name: "Bus Terminal"
   latitude: !secret zone_terminal_latitude
   longitude: !secret zone_terminal_longitude
   radius: 500
-  icon: mdi:subway
+  icon: "mdi:subway"
 
 
 #
 # Work zone
 #
-- name: Work
+- name: "Work"
   latitude: !secret zone_work_latitude
   longitude: !secret zone_work_longitude
   radius: 500
-  icon: mdi:worker
+  icon: "mdi:worker"

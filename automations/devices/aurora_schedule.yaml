@@ -16,7 +16,8 @@
 # @link https://forum.nanoleaf.me/docs/openapi
 #
 - id: aurora_schedule
-  alias: Aurora SCHEDULE
+  alias: "Aurora SCHEDULE"
+
   trigger:
     # Every hour on the hour.
     - platform: time_pattern
@@ -37,7 +38,7 @@
     # When the selected effect is switched to default.
     - platform: state
       entity_id: input_select.aurora_effect
-      to: 'Auto'
+      to: "Auto"
 
   condition:
     # If automation was not trigered lately (debounce).

@@ -6,7 +6,8 @@
 # @subscribe input_boolean.night_mode
 #
 - id: kitchen_off
-  alias: Kitchen OFF
+  alias: "Kitchen OFF"
+
   trigger:
     # When night mode is enabled.
     - platform: state

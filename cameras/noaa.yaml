@@ -11,12 +11,13 @@
 # @see /groups/weather.yaml
 #
 # @link https://www.star.nesdis.noaa.gov/GOES/GOES16_sectors.php?sector=ne
+# @link https://www.home-assistant.io/integrations/generic_ip_camera/
 #
 - platform: generic
-  name: NOAA GeoColor
+  name: "NOAA GeoColor"
   scan_interval: 10800
   limit_refetch_to_url_change: true
-  content_type: image/jpeg
+  content_type: "image/jpeg"
   still_image_url: >-
     {% set delta = 180 %}
     {% set time = states('sensor.time') %}
@@ -27,10 +28,10 @@
     https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/GEOCOLOR/600x600.jpg#{{ timestamp }}
 
 - platform: generic
-  name: NOAA GeoColor HD
+  name: "NOAA GeoColor HD"
   scan_interval: 10800
   limit_refetch_to_url_change: true
-  content_type: image/jpeg
+  content_type: "image/jpeg"
   still_image_url: >-
     {% set delta = 180 %}
     {% set time = states('sensor.time') %}
@@ -41,10 +42,10 @@
     https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/GEOCOLOR/1200x1200.jpg#{{ timestamp }}
 
 - platform: generic
-  name: NOAA Water Vapour
+  name: "NOAA Water Vapour"
   scan_interval: 10800
   limit_refetch_to_url_change: true
-  content_type: image/jpeg
+  content_type: "image/jpeg"
   still_image_url: >-
     {% set delta = 180 %}
     {% set time = states('sensor.time') %}
@@ -55,10 +56,10 @@
     https://cdn.star.nesdis.noaa.gov/GOES16/ABI/SECTOR/ne/10/600x600.jpg#{{ timestamp }}
 
 - platform: generic
-  name: NOAA Water Vapour HD
+  name: "NOAA Water Vapour HD"
   scan_interval: 10800
   limit_refetch_to_url_change: true
-  content_type: image/jpeg
+  content_type: "image/jpeg"
   still_image_url: >-
     {% set delta = 180 %}
     {% set time = states('sensor.time') %}
@@ -70,7 +71,7 @@
 
 
 - platform: proxy
-  name: NOAA GeoColor Proxy
+  name: "NOAA GeoColor Proxy"
   entity_id: camera.noaa_geocolor_hd
   max_image_width: 1080
   image_quality: 65

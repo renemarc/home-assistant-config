@@ -9,7 +9,8 @@
 #
 
 - id: tv_off
-  alias: TV OFF
+  alias: "Television OFF"
+
   trigger:
     # No known person is home.
     - platform: state

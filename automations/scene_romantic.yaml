@@ -6,7 +6,8 @@
 # @see /scripts/scene_romantic.yaml
 #
 - id: scene_romantic
-  alias: Scene ROMANTIC
+  alias: "Scene ROMANTIC"
+
   trigger:
     # When Minimote button 4 is held.
     - platform: event
@@ -19,8 +20,8 @@
     - platform: event
       event_type: flic_click
       event_data:
-        button_name: flic_80e4da737711
-        click_type: double
+        button_name: "flic_80e4da737711"
+        click_type: 'double'
 
   action:
     # Toggle the romantic scene.

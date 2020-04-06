@@ -7,7 +7,8 @@
 # @publish input_boolean.motion_front
 #
 - id: motion_front_stop
-  alias: Motion Front STOP
+  alias: "Motion Front STOP"
+
   trigger:
     - platform: state
       entity_id: input_boolean.motion_front

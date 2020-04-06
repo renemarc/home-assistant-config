@@ -10,7 +10,7 @@
 [![Build Status][img-travis-ci]][link-travis-ci]
 [![Tweet][img-twitter]][link-twitter]
 
-Configuration for [Home Assistant](https://home-assistant.io/) running [Hass.io](https://home-assistant.io/hassio/) on a [Raspberry Pi](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) for a one bedroom apartment, offering convenience automations over lights and climate while providing multiple intuitive user controls.
+Configuration for [Home Assistant](https://www.home-assistant.io/) running [Hass.io](https://www.home-assistant.io/hassio/) on a [Raspberry Pi](https://www.raspberrypi.org/products/raspberry-pi-3-model-b/) for a one bedroom apartment, offering convenience automations over lights and climate while providing multiple intuitive user controls.
 
 <div align="center">
     <p><strong>Be sure to <a href="#" title="star">⭐️</a> my repo if you find it useful! 😃</strong></p>
@@ -235,7 +235,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 ### General information 🛎
 
-- **[Local bus schedules](https://home-assistant.io/components/sensor.gtfs/)** with the next 3 departures. See [`/gtfs/`](gtfs) for optimization hints.
+- **[Local bus schedules](https://www.home-assistant.io/integrations/gtfs)** with the next 3 departures. See [`/gtfs/`](gtfs) for optimization hints.
 - **[Doomsday Clock](https://github.com/renemarc/home-assistant-doomsday-clock)** in case egocentric psychopaths keep on playing Russian roulette with humanity's future.
 - **Network status monitoring** for latency, upspeed, downspeed, and monthly consumption.
 - **Home Assistant status monitoring** for geek cred with average load, RAM use, disk use, uptime, and update availability. 🤓
@@ -259,9 +259,9 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 - **Aeotec Minimote** to quickly control global scenes and modes.
 - **[Flic buttons](https://flic.io)** on nightstand and in the kitchen for triggering modes and controlling localized lights, depending on current states and click types.
-- **[HADashboard](https://home-assistant.io/docs/ecosystem/hadashboard/)** for wall-mounted tablet, featuring indoor sensors reports, transit schedules, weather forecast and radar/sattelite maps, wrapped in an obvious navigation scheme for much UX goodness. Have a look at [`/appdaemon/dashboards/`](appdaemon/dashboards), you'll like! 😍
+- **[HADashboard](https://www.home-assistant.io/docs/ecosystem/hadashboard/)** for wall-mounted tablet, featuring indoor sensors reports, transit schedules, weather forecast and radar/sattelite maps, wrapped in an obvious navigation scheme for much UX goodness. Have a look at [`/appdaemon/dashboards/`](appdaemon/dashboards), you'll like! 😍
 - **[Home Assistant Companion](https://itunes.apple.com/us/app/home-assistant-companion/id1099568401?mt=8) iPhone app** for full UI access in the palm of my hand. _Muahahaha!_
-- **[HomeKit](https://www.home-assistant.io/components/homekit)** for using some key sensors and devices with iPhones.
+- **[HomeKit](https://www.home-assistant.io/integrations/homekit/)** for using some key sensors and devices with iPhones.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
@@ -302,7 +302,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 ### Systems and bridges 🌉
 
 - **[Aeotec Z-Stick Gen5](https://aeotec.com/z-wave-usb-stick)** Z-Wave USB dongle.
-- **[Milight iBox2 WiFi Bridge](https://www.futlight.com/productdetails.aspx?id=239&typeid=125)** for kitchen RF LED strip controllers, using [LimitlessLED](https://home-assistant.io/components/light.limitlessled/) integration.
+- **[Milight iBox2 WiFi Bridge](https://www.futlight.com/productdetails.aspx?id=239&typeid=125)** for kitchen RF LED strip controllers, using [LimitlessLED](https://www.home-assistant.io/integrations/limitlessled) integration.
 - **[NooElec NESDR SMArt](http://www.nooelec.com/store/nesdr-smart.html)** RTL-SDR (software-defined radio) USB dongle for reading AcuRite sensors.
 - **[Raspberry Pi 3 Model B+](https://www.raspberrypi.org/products/raspberry-pi-3-model-b-plus/)** running Hass.io.
 - **[Raspberry Pi Zero W](https://www.raspberrypi.org/products/raspberry-pi-zero-w/)** (x3), each managed through [resin.io](https://resin.io/) to run as simple, dedicated plug-in bridges for the following services:
@@ -358,7 +358,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 - **[Docker](https://www.docker.com)** on local machine (for development). True, Hass.io is Docker-based too… 😉
 - **[Fully Kiosk Browser](https://www.ozerov.de/fully-kiosk-browser/)** on wallmounted tablet for display and input.
-- **[Hass.io](https://home-assistant.io)** on Raspberry Pi 3 Model B+ (production setup).
+- **[Hass.io](https://www.home-assistant.io/)** on Raspberry Pi 3 Model B+ (production setup).
 - **[LANnouncer](http://www.keybounce.com/lannouncer/)** on wallmounted tablet for simple audio and text-to-speech messaging.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
@@ -366,11 +366,11 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 #### Hass.io add-ons ➕
 
 - **[AppDaemon](https://github.com/home-assistant/appdaemon)** for HADashboard tablet UI.
-- **[Check Home Assistant configuration](https://home-assistant.io/addons/check_config/)** to validate current configuration before upgrading.
+- **[Check Home Assistant configuration](https://github.com/home-assistant/hassio-addons/tree/master/check_config)** to validate current configuration before upgrading.
 - **[Log Viewer](https://github.com/hassio-addons/addon-log-viewer)** to stream the log file to a browser window.
 - **[MQTT Server & Web client](https://github.com/hassio-addons/addon-mqtt)** for standard IoT messaging using [Mosquitto](https://mosquitto.org/), plus a [HiveMQ](https://www.hivemq.com/) web interface.
 - **[RTL_433 to MQTT Bridge](https://github.com/james-fry/hassio-addons)** to receive and decode AcuRite radio signals.
-- **[Samba share](https://home-assistant.io/addons/samba)** for configuration file sharing.
+- **[Samba share](https://github.com/home-assistant/hassio-addons/tree/master/samba)** for configuration file sharing.
 - **[SSH & Web Terminal](https://github.com/hassio-addons/addon-ssh)** for secure command-line access.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
@@ -417,7 +417,7 @@ Actual secrets and auto-generated sensitive files are obviously kept off this re
 
 Kudos to:
 
-- **The [dedicated core team](https://home-assistant.io/blog)** that builds and manages Home Assistant. They work fast and humbly.
+- **The [dedicated core team](https://www.home-assistant.io/blog)** that builds and manages Home Assistant. They work fast and humbly.
 - **The horde of volunteer developers** of all components and add-ons.
 - **The [vibrant community](https://community.home-assistant.io)**, always willing to help and share code samples.
 - **The [BRUH Automation](https://www.youtube.com/c/bruhautomation1) YouTube channel**, Ben's videos got me hooked on using Home Assistant.
@@ -438,7 +438,7 @@ Thank you for all your dedication, helpfulness and valuable insights. Cheers! �
 
 [link-board]:https://github.com/renemarc/home-assistant-config/projects/1
 [link-ha-version]:https://github.com/home-assistant/home-assistant/tree/0.88.2
-[link-hassio]:https://home-assistant.io/hassio/
+[link-hassio]:https://www.home-assistant.io/hassio/
 [link-issues]:https://github.com/renemarc/home-assistant-config/issues
 [link-license]:LICENSE.txt
 [link-release]:https://github.com/renemarc/home-assistant-config/releases

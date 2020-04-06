@@ -7,7 +7,8 @@
 # @subscribe input_boolean.night_mode
 #
 - id: washroom_off
-  alias: Washroom OFF
+  alias: "Washroom OFF"
+
   trigger:
     # When nap mode is enabled.
     - platform: state

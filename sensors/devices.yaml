@@ -11,7 +11,7 @@
 - platform: template
   sensors:
     front_camera_signal_strength:
-      friendly_name: Front Camera Signal Strength
+      friendly_name: "Front Camera Signal Strength"
       unit_of_measurement: '%'
       icon_template: >-
         {% set dbm = state_attr('camera.front', 'wifi_strength') %}
@@ -38,7 +38,7 @@
         {{ scale }}
 
     front_camera_wifi_strength:
-      friendly_name: Front Camera Wifi Strength
+      friendly_name: "Front Camera Wifi Strength"
       unit_of_measurement: 'dBm'
       device_class: signal_strength
       value_template: >-
@@ -66,7 +66,7 @@
 - platform: template
   sensors:
     unifi_gateway_lan_clients:
-      friendly_name: Ethernet Clients
+      friendly_name: "Ethernet Clients"
       icon_template: >-
         {{ state_attr('sensor.unifi_gateway_lan', 'icon') }}
       value_template: >-
@@ -77,28 +77,28 @@
         {{ guest + iot + user }}
 
     unifi_gateway_lan_guests:
-      friendly_name: Ethernet Guests
+      friendly_name: "Ethernet Guests"
       icon_template: >-
         {{ state_attr('sensor.unifi_gateway_lan', 'icon') }}
       value_template: >-
         {{ state_attr('sensor.unifi_gateway_lan', 'num_guest') }}
 
     unifi_gateway_lan_iots:
-      friendly_name: Ethernet IoT
+      friendly_name: "Ethernet IoT"
       icon_template: >-
         {{ state_attr('sensor.unifi_gateway_lan', 'icon') }}
       value_template: >-
         {{ state_attr('sensor.unifi_gateway_lan', 'num_iot') }}
 
     unifi_gateway_lan_users:
-      friendly_name: Ethernet Users
+      friendly_name: "Ethernet Users"
       icon_template: >-
         {{ state_attr('sensor.unifi_gateway_lan', 'icon') }}
       value_template: >-
         {{ state_attr('sensor.unifi_gateway_lan', 'num_user') }}
 
     unifi_gateway_wlan_clients:
-      friendly_name: Wireless Clients
+      friendly_name: "Wireless Clients"
       icon_template: >-
         {{ state_attr('sensor.unifi_gateway_wlan', 'icon') }}
       value_template: >-
@@ -109,49 +109,49 @@
         {{ guest + iot + user }}
 
     unifi_gateway_wlan_guests:
-      friendly_name: Wireless Guests
+      friendly_name: "Wireless Guests"
       icon_template: >-
         {{ state_attr('sensor.unifi_gateway_wlan', 'icon') }}
       value_template: >-
         {{ state_attr('sensor.unifi_gateway_wlan', 'num_guest') }}
 
     unifi_gateway_wlan_iots:
-      friendly_name: Wireless IoT
+      friendly_name: "Wireless IoT"
       icon_template: >-
         {{ state_attr('sensor.unifi_gateway_wlan', 'icon') }}
       value_template: >-
         {{ state_attr('sensor.unifi_gateway_wlan', 'num_iot') }}
 
     unifi_gateway_wlan_users:
-      friendly_name: Wireless Users
+      friendly_name: "Wireless Users"
       icon_template: >-
         {{ state_attr('sensor.unifi_gateway_wlan', 'icon') }}
       value_template: >-
         {{ state_attr('sensor.unifi_gateway_wlan', 'num_user') }}
 
     unifi_gateway_processor_use:
-      friendly_name: UniFi Gateway Processor Use
+      friendly_name: "UniFi Gateway Processor Use"
       unit_of_measurement: '%'
-      icon_template: mdi:chip
+      icon_template: "mdi:chip"
       value_template: >-
         {{ state_attr('sensor.unifi_gateway_wan', 'gw_system-stats').cpu | int }}
 
     unifi_gateway_memory_use:
-      friendly_name: UniFi Gateway Memory Use
+      friendly_name: "UniFi Gateway Memory Use"
       unit_of_measurement: '%'
-      icon_template: mdi:memory
+      icon_template: "mdi:memory"
       value_template: >-
         {{ state_attr('sensor.unifi_gateway_wan', 'gw_system-stats').mem | int }}
 
     wan_ip_address:
-      friendly_name: WAN IP Address
-      icon_template: mdi:wan
+      friendly_name: "WAN IP Address"
+      icon_template: "mdi:wan"
       value_template: >-
         {{ state_attr('sensor.unifi_gateway_wan', 'wan_ip') }}
 
     unifi_uptime:
-      friendly_name: UniFi Gateway Uptime
-      icon_template: mdi:av-timer
+      friendly_name: "UniFi Gateway Uptime"
+      icon_template: "mdi:av-timer"
       value_template: >-
         {% set seconds = state_attr('sensor.unifi_gateway_wan', 'gw_system-stats').uptime %}
 
@@ -219,8 +219,8 @@
 - platform: template
   sensors:
     printer_drum_remaining:
-      friendly_name: Drum Remaining
-      icon_template: mdi:printer
+      friendly_name: "Drum Remaining"
+      icon_template: "mdi:printer"
       unit_of_measurement: 'pages'
       value_template: >-
         {% set value = state_attr('sensor.printer_drum', 'remaining_pages') | int(-1) %}
@@ -231,8 +231,8 @@
         {% endif %}
 
     printer_drum_use:
-      friendly_name: Drum Use
-      icon_template: mdi:printer
+      friendly_name: "Drum Use"
+      icon_template: "mdi:printer"
       unit_of_measurement: 'pages'
       value_template: >-
         {% set value = state_attr('sensor.printer_drum', 'counter') | int(-1) %}
@@ -243,14 +243,14 @@
         {% endif %}
 
     printer_toner_yield:
-      friendly_name: Toner Yield
-      icon_template: mdi:printer
+      friendly_name: "Toner Yield"
+      icon_template: "mdi:printer"
       unit_of_measurement: 'pages'
       value_template: !secret printer_toner_yield
 
     printer_toner_remaining:
-      friendly_name: Toner Remaining
-      icon_template: mdi:printer
+      friendly_name: "Toner Remaining"
+      icon_template: "mdi:printer"
       unit_of_measurement: 'pages'
       value_template: >-
         {% set yield = states('sensor.printer_toner_yield') | int(-1) %}
@@ -263,8 +263,8 @@
         {% endif %}
 
     printer_toner_use:
-      friendly_name: Toner Use
-      icon_template: mdi:printer
+      friendly_name: "Toner Use"
+      icon_template: "mdi:printer"
       unit_of_measurement: 'pages'
       value_template: >-
         {% set yield = states('sensor.printer_toner_yield') | int(-1) %}

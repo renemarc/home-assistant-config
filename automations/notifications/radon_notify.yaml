@@ -30,7 +30,7 @@
 # @see automations/notifications/radon_notify_reset.yaml
 #
 - id: radon_notify
-  alias: Radon NOTIFY
+  alias: "Radon NOTIFY"
 
   trigger:
     # When radon levels are over the recommended maximum.
@@ -151,9 +151,9 @@
       state: 'off'
     - service: notify.sound
       data:
-        message: "alarm"
+        message: 'alarm'
         data:
-          method: "alarm"
+          method: 'alarm'
     - delay:
         seconds: 2
     - service: notify.speech

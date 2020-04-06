@@ -18,7 +18,8 @@
 # @link https://sigmaluminous.com/the-circadian-rhythm-and-color-temperature/
 #
 - id: cct_limitlessled
-  alias: CCT LimitlessLED
+  alias: "CCT LimitlessLED"
+
   trigger:
     # Every five minutes.
     - platform: time_pattern

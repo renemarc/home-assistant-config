@@ -5,7 +5,7 @@
 # without loosing the disabled accessories' settings.
 #
 - id: homekit_start
-  alias: HomeKit START
+  alias: "HomeKit START"
 
   trigger:
     # When Z-Wave is ready.

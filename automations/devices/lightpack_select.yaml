@@ -8,7 +8,8 @@
 # @see /automations/devices/lightpack_effect.yaml
 #
 - id: lightpack_select
-  alias: Lightpack SELECT
+  alias: "Lightpack SELECT"
+
   trigger:
     # When an effect has been selected.
     - platform: state

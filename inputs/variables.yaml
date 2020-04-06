@@ -11,45 +11,61 @@
 # Nanoleaf Aurora effect and brightness
 #
 aurora_brightness:
-  value: False
-  restore: True
+  value: false
+  restore: true
+  attributes:
+    friendly_name: "Aurora Brightness"
+    icon: "mdi:brightness-percent"
 
 aurora_effect:
-  value: False
-  restore: True
+  value: false
+  restore: true
+  attributes:
+    friendly_name: "Aurora Effect"
+    icon: "mdi:vector-triangle"
 
 
 #
 # Bed underglow lights effect
 #
 bed_effect:
-  value: False
-  restore: True
+  value: false
+  restore: true
   attributes:
-    uuid: ''
+    friendly_name: "Bed Effect"
+    icon: "mdi:hotel"
+    uuid: ""
 
 
 #
 # Ceiling wash lights effect
 #
 ceiling_effect:
-  value: False
-  restore: True
+  value: false
+  restore: true
   attributes:
-    uuid: ''
+    friendly_name: "Ceiling Effect"
+    icon: "mdi:led-strip-variant"
+    uuid: ""
 
 
 #
 # Lightpack effect
 #
 lightpack_effect:
-  value: False
-  restore: True
+  value: false
+  restore: true
+  attributes:
+    friendly_name: "Lightpack Effect"
+    icon: "mdi:television-ambient-light"
 
 
 #
 # Perimeter tamper detection
 #
 tamper_detected:
-  value: False
-  restore: False
+  value: false
+  restore: false
+  attributes:
+    friendly_name: "Tampering Detected"
+    icon: "mdi:shield-home"

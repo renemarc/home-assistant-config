@@ -1,11 +1,12 @@
 #
 # Disable all blocking modes
 #
-# @see /misc/input_boolean.yaml
+# @see /inputs/input_boolean.yaml
 #
-alias: Wake up
-icon: mdi:power
+alias: "Wake up"
+icon: "mdi:power"
 sequence:
+
   # Disable night mode.
   - service: input_boolean.turn_off
     data:
@@ -30,4 +31,4 @@ sequence:
   - service: input_select.select_option
     data:
       entity_id: input_select.scene
-      option: Default
+      option: "Default"

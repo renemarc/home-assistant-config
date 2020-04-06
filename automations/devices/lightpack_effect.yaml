@@ -14,7 +14,8 @@
 # @link https://github.com/psieg/Lightpack
 #
 - id: lightpack_effect
-  alias: Lightpack EFFECT
+  alias: "Lightpack EFFECT"
+
   trigger:
     # When an effect is changed.
     - platform: state

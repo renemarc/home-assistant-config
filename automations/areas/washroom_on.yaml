@@ -11,7 +11,8 @@
 # @see /automations/areas/washroom_low.yaml
 #
 - id: washroom_on
-  alias: Washroom ON
+  alias: "Washroom ON"
+
   trigger:
     # When low-power mode is disabled.
     - platform: state

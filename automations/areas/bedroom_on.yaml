@@ -10,7 +10,8 @@
 # @see /automations/areas/bedroom_low.yaml
 #
 - id: bedroom_on
-  alias: Bedroom ON
+  alias: "Bedroom ON"
+
   trigger:
     # When low-power mode is disabled.
     - platform: state

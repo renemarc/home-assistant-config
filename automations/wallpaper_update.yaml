@@ -4,7 +4,7 @@
 # @see /automations/wallpaper_create.yaml
 #
 - id: wallpaper_update
-  alias: Wallpaper UPDATE
+  alias: "Wallpaper UPDATE"
 
   trigger:
     # When a generic IP camera state changes.
@@ -19,5 +19,5 @@
     # Take a snapshot from the trigered camera.
     - service: camera.snapshot
       data_template:
-        entity_id: '{{ trigger.entity_id }}'
+        entity_id: "{{ trigger.entity_id }}"
         filename: "{{ states('sensor.camera_folder') }}/{{ trigger.entity_id | replace('camera.', '') }}.jpg"

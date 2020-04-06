@@ -7,8 +7,9 @@
 # @publish input_boolean.low_mode
 #
 - id: low_power_mode_stop
-  alias: Low power mode STOP
+  alias: "Low Power Mode STOP"
   initial_state: 'off'
+
   trigger:
     # When nap mode is disabled.
     - platform: state

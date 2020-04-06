@@ -16,7 +16,8 @@
 #
 
 - id: lightpack_auto
-  alias: Lightpack AUTO
+  alias: "Lightpack AUTO"
+
   trigger:
     # When the Lightpack is turned on.
     - platform: state

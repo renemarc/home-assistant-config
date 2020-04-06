@@ -4,14 +4,15 @@
 # Turn on all kitchen lights when Flic button is single clicked.
 #
 - id: kitchen_lights_on
-  alias: Kitchen lights ON
+  alias: "Kitchen Lights ON"
+
   trigger:
     # When kitchen Flic button is pressed once.
     - platform: event
       event_type: flic_click
       event_data:
-        button_name: flic_80e4da72e890
-        click_type: single
+        button_name: "flic_80e4da72e890"
+        click_type: 'single'
 
   condition:
     # If all kitchen lights are off.

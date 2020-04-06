@@ -9,7 +9,8 @@
 # @publish input_boolean.quiet_mode
 #
 - id: quiet_mode_start
-  alias: Quiet mode START
+  alias: "Quiet Mode START"
+
   trigger:
     # When it's too late.
     - platform: time

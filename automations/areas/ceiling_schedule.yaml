@@ -15,7 +15,8 @@
 # @link https://api.developer.lifx.com/docs/activate-scene
 #
 - id: ceiling_schedule
-  alias: Ceiling SCHEDULE
+  alias: "Ceiling SCHEDULE"
+
   trigger:
     # Every hour on the hour.
     - platform: time_pattern
@@ -42,7 +43,7 @@
     # When the selected effect is switched to default.
     - platform: state
       entity_id: input_select.ceiling_effect
-      to: 'Auto'
+      to: "Auto"
 
   condition:
     # If automation was not trigered lately (debounce).
@@ -61,7 +62,7 @@
     # If the selected effect is the default.
     - condition: state
       entity_id: input_select.ceiling_effect
-      state: 'Auto'
+      state: "Auto"
 
     # If no scenes are enabled.
     - condition: state

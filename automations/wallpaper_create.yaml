@@ -4,7 +4,7 @@
 # @see /automations/wallpaper_update.yaml
 #
 - id: wallpaper_create
-  alias: Wallpaper CREATE
+  alias: "Wallpaper CREATE"
 
   trigger:
     # When Home Assistant starts.

@@ -6,7 +6,8 @@
 # @subscribe input_boolean.night_mode
 #
 - id: lounge_off
-  alias: Lounge OFF
+  alias: "Lounge OFF"
+
   trigger:
     # When night mode is enabled.
     - platform: state

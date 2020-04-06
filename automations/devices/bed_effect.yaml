@@ -13,7 +13,8 @@
 # @see /scenes/lifx_cloud.yaml
 #
 - id: bed_effect
-  alias: Bed EFFECT
+  alias: "Bed EFFECT"
+
   trigger:
     # When an effect is changed.
     - platform: state

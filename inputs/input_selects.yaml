@@ -1,7 +1,7 @@
 #
 # Lists of selectable values
 #
-# @link https://home-assistant.io/components/input_select/
+# @link https://www.home-assistant.io/integrations/input_select/
 #
 
 
@@ -12,9 +12,9 @@
 # @see /automations/devices/aurora_select.yaml
 #
 aurora_effect:
-  name: Aurora Effect
-  icon: mdi:vector-triangle
-  initial: Auto
+  name: "Aurora Effect"
+  icon: "mdi:vector-triangle"
+  initial: "Auto"
   options:
    - Auto
    - Be Productive
@@ -63,9 +63,9 @@ aurora_effect:
 # @see /automations/devices/bed_select.yaml
 #
 bed_effect:
-  name: Bed Light Show
-  icon: mdi:motel
-  initial: Auto
+  name: "Bed Light Show"
+  icon: "mdi:motel"
+  initial: "Auto"
   options:
    - Auto
    - Neon
@@ -81,9 +81,9 @@ bed_effect:
 # @see /automations/areas/ceiling_select.yaml
 #
 ceiling_effect:
-  name: Ceiling Light Show
-  icon: mdi:led-strip-variant
-  initial: Auto
+  name: "Ceiling Light Show"
+  icon: "mdi:led-strip-variant"
+  initial: "Auto"
   options:
    - Auto
    - Blissful
@@ -110,9 +110,9 @@ ceiling_effect:
 # @see /automations/devices/lightpack_select.yaml
 #
 lightpack_effect:
-  name: Lightpack Effect
-  icon: mdi:television-ambient-light
-  initial: Default
+  name: "Lightpack Effect"
+  icon: "mdi:television-ambient-light"
+  initial: "Default"
   options:
     - Default
     - Daylight
@@ -126,12 +126,11 @@ lightpack_effect:
 # Scene
 #
 # @see /automations/scene_select.yaml
-# @see /misc/input_boolean
+# @see /inputs/input_boolean
 #
 scene:
-  name: Scene
-  icon: mdi:star
-  # initial: Default
+  name: "Scene"
+  icon: "mdi:star"
   options:
     - Default
     - Daylight

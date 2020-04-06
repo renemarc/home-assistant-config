@@ -16,7 +16,7 @@
 
 <h1 align="center">GTFS: General transit feed specification</h1>
 
-GTFS data serves to calculate public transit routes and times. The [GTFS](https://home-assistant.io/components/sensor.gtfs/) sensor indicates how to convert new feeds into a database for local queries.
+GTFS data serves to calculate public transit routes and times. The [GTFS](https://www.home-assistant.io/integrations/gtfs/) sensor indicates how to convert new feeds into a database for local queries.
 
 <div align="center">
     <figure>

@@ -3,8 +3,10 @@
 #
 # @see /automations/scene_select.yaml
 #
-alias: Daylight scene
+alias: "Daylight Scene"
+icon: "mdi:white-balance-sunny"
 sequence:
+
   # Enable scene mode.
   - service: input_boolean.turn_on
     data:
@@ -49,13 +51,13 @@ sequence:
   - service: input_select.select_option
     data:
       entity_id: input_select.aurora_effect
-      option: Daylight
+      option: "Daylight"
 
   # Set bed underglow light effect.
   - service: input_select.select_option
     data:
       entity_id: input_select.bed_effect
-      option: Reading
+      option: "Reading"
   - service: homeassistant.turn_on
     data:
       entity_id:
@@ -66,7 +68,7 @@ sequence:
   - service: input_select.select_option
     data:
       entity_id: input_select.ceiling_effect
-      option: Daylight
+      option: "Daylight"
   - service: homeassistant.turn_on
     data:
       entity_id:
@@ -77,4 +79,4 @@ sequence:
   - service: input_select.select_option
     data:
       entity_id: input_select.lightpack_effect
-      option: Daylight
+      option: "Daylight"

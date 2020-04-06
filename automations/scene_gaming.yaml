@@ -6,7 +6,8 @@
 # @see /scripts/scene_gaming.yaml
 #
 - id: scene_gaming
-  alias: Scene GAMING
+  alias: "Scene GAMING"
+
   trigger:
     # When Minimote button 4 is clicked.
     - platform: event

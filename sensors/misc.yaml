@@ -6,16 +6,16 @@
 - platform: template
   sensors:
     count_automations:
-      friendly_name: Automations Count
-      icon_template: mdi:arrow-decision-auto
+      friendly_name: "Automations Count"
+      icon_template: "mdi:arrow-decision-auto"
       entity_id:
         - sensor.time
       value_template: >-
         {{ states.automation | count }}
 
     count_automations_disabled:
-      friendly_name: Disabled Automations Count
-      icon_template: mdi:arrow-decision-auto
+      friendly_name: "Disabled Automations Count"
+      icon_template: "mdi:arrow-decision-auto"
       entity_id:
         - sensor.time
       value_template: >-
@@ -24,8 +24,8 @@
                              | count }}
 
     count_automations_friendly:
-      friendly_name: Automations Count
-      icon_template: mdi:arrow-decision-auto
+      friendly_name: "Automations Count"
+      icon_template: "mdi:arrow-decision-auto"
       entity_id:
         - sensor.time
       value_template: >-
@@ -44,8 +44,8 @@
         {% endif %}
 
     count_interfaces:
-      friendly_name: Interfaces Count
-      icon_template: mdi:gesture-tap
+      friendly_name: "Interfaces Count"
+      icon_template: "mdi:gesture-tap"
       entity_id:
         - sensor.time
       value_template: >-
@@ -61,16 +61,16 @@
         {{ buttons + displays + remotes }}
 
     count_lights:
-      friendly_name: Lights Count
-      icon_template: mdi:lightbulb
+      friendly_name: "Lights Count"
+      icon_template: "mdi:lightbulb"
       entity_id:
         - sensor.time
       value_template: >-
         {{ states.light | list | count }}
 
     count_lights_unavailable:
-      friendly_name: Lights Unavailable Count
-      icon_template: mdi:lightbulb
+      friendly_name: "Lights Unavailable Count"
+      icon_template: "mdi:lightbulb"
       entity_id:
         - sensor.time
       value_template: >-
@@ -79,8 +79,8 @@
                         | count }}
 
     count_motion_sensors:
-      friendly_name: Motion Sensors Count
-      icon_template: mdi:walk
+      friendly_name: "Motion Sensors Count"
+      icon_template: "mdi:walk"
       entity_id:
         - sensor.time
       value_template: >-
@@ -89,8 +89,8 @@
                                 | count }}
 
     count_motion_sensors_unavailable:
-      friendly_name: Motion Sensors Unavailable Count
-      icon_template: mdi:walk
+      friendly_name: "Motion Sensors Unavailable Count"
+      icon_template: "mdi:walk"
       entity_id:
         - sensor.time
       value_template: >-
@@ -100,8 +100,8 @@
                                 | count }}
 
     count_security_sensors:
-      friendly_name: Security Sensors Count
-      icon_template: mdi:shield-home
+      friendly_name: "Security Sensors Count"
+      icon_template: "mdi:shield-home"
       entity_id:
         - sensor.time
       value_template: >-
@@ -115,8 +115,8 @@
         {{ burglar + classes }}
 
     count_security_sensors_unavailable:
-      friendly_name: Security Sensors Count
-      icon_template: mdi:shield-home
+      friendly_name: "Security Sensors Count"
+      icon_template: "mdi:shield-home"
       entity_id:
         - sensor.time
       value_template: >-
@@ -132,16 +132,16 @@
         {{ burglar + classes }}
 
     count_switches:
-      friendly_name: Switches Count
-      icon_template: mdi:toggle-switch
+      friendly_name: "Switches Count"
+      icon_template: "mdi:toggle-switch"
       entity_id:
         - sensor.time
       value_template: >-
         {{ states.switch | list | count }}
 
     count_switches_unavailable:
-      friendly_name: Switches Unavailable Count
-      icon_template: mdi:arrow-decision-auto
+      friendly_name: "Switches Unavailable Count"
+      icon_template: "mdi:arrow-decision-auto"
       entity_id:
         - sensor.time
       value_template: >-
@@ -150,16 +150,16 @@
                          | count }}
 
     count_zwave:
-      friendly_name: Zwave Nodes Count
-      icon_template: mdi:z-wave
+      friendly_name: "Z-Wave Nodes Count"
+      icon_template: "mdi:z-wave"
       entity_id:
         - sensor.time
       value_template: >-
         {{ states.zwave | list | count }}
 
     count_zwave_unavailable:
-      friendly_name: Zwave Nodes Unavailable Count
-      icon_template: mdi:z-wave
+      friendly_name: "Zwave Nodes Unavailable Count"
+      icon_template: "mdi:z-wave"
       entity_id:
         - sensor.time
       value_template: >-
@@ -176,8 +176,8 @@
 - platform: template
   sensors:
     modes_friendly:
-      friendly_name: Mode
-      icon_template: mdi:emoticon-happy
+      friendly_name: "Mode"
+      icon_template: "mdi:emoticon-happy"
       value_template: >-
         {% set counter = 0 %}
         {% set modes = '' %}
@@ -224,77 +224,77 @@
 # @see /custom_components/github_custom/sensor.py
 #
 # @link https://github.com/renemarc/home-assistant-config
-# @link https://home-assistant.io/components/github/
+# @link https://www.home-assistant.io/integrations/github/
 #
 - platform: github_custom
   access_token: !secret github_access_token
   scan_interval: 900
   repositories:
-    - path: 'renemarc/balena-airthingswave'
-      name: Repo Airthings
-    - path: 'renemarc/balena-flic'
-      name: Repo Flic
-    - path: 'renemarc/countdoom'
-      name: Repo Countdoom
-    - path: 'renemarc/home-assistant-config'
-      name: Repo Config
-    - path: 'renemarc/home-assistant-doomsday-clock'
-      name: Repo Doomsday Clock
+    - path: "renemarc/balena-airthingswave"
+      name: "Repo Airthings"
+    - path: "renemarc/balena-flic"
+      name: "Repo Flic"
+    - path: "renemarc/countdoom"
+      name: "Repo Countdoom"
+    - path: "renemarc/home-assistant-config"
+      name: "Repo Config"
+    - path: "renemarc/home-assistant-doomsday-clock"
+      name: "Repo Doomsday Clock"
 
 
 - platform: template
   sensors:
     repo_config_clones:
-      friendly_name: Repo Config Clones
-      icon_template: mdi:content-copy
+      friendly_name: "Repo Config Clones"
+      icon_template: "mdi:checkbox-multiple-blank-outline"
       entity_id:
         - sensor.time_quarterly
       value_template: >-
         {{ state_attr('sensor.repo_config', 'clones') }}
 
     repo_config_clones_uniques:
-      friendly_name: Repo Config Clones Uniques
-      icon_template: mdi:content-copy
+      friendly_name: "Repo Config Clones Uniques"
+      icon_template: "mdi:check-box-multiple-outline"
       entity_id:
         - sensor.time_quarterly
       value_template: >-
         {{ state_attr('sensor.repo_config', 'clones_uniques') }}
 
     repo_config_forks:
-      friendly_name: Repo Config Forks
-      icon_template: mdi:source-fork
+      friendly_name: "Repo Config Forks"
+      icon_template: "mdi:source-fork"
       entity_id:
         - sensor.time_quarterly
       value_template: >-
         {{ state_attr('sensor.repo_config', 'forks') }}
 
     repo_config_issues:
-      friendly_name: Repo Config Issues
-      icon_template: mdi:alert-circle-outline
+      friendly_name: "Repo Config Issues"
+      icon_template: "mdi:alert-circle-outline"
       entity_id:
         - sensor.time_quarterly
       value_template: >-
         {{ state_attr('sensor.repo_config', 'open_issues') }}
 
     repo_config_stargazers:
-      friendly_name: Repo Config Stargazers
-      icon_template: mdi:star-face
+      friendly_name: "Repo Config Stargazers"
+      icon_template: "mdi:star-face"
       entity_id:
         - sensor.time_quarterly
       value_template: >-
         {{ state_attr('sensor.repo_config', 'stargazers') }}
 
     repo_config_views:
-      friendly_name: Repo Config Views
-      icon_template: mdi:eye
+      friendly_name: "Repo Config Views"
+      icon_template: "mdi:eye-outline"
       entity_id:
         - sensor.time_quarterly
       value_template: >-
         {{ state_attr('sensor.repo_config', 'views') }}
 
     repo_config_views_uniques:
-      friendly_name: Repo Config Views Uniques
-      icon_template: mdi:eye
+      friendly_name: "Repo Config Views Uniques"
+      icon_template: "mdi:eye-check-outline"
       entity_id:
         - sensor.time_quarterly
       value_template: >-
@@ -309,8 +309,8 @@
 - platform: template
   sensors:
     good_vibes:
-      friendly_name: Good Vibes
-      icon_template: mdi:emoticon-happy
+      friendly_name: "Good Vibes"
+      icon_template: "mdi:emoticon-happy"
       entity_id:
         - sensor.time
       value_template: >-

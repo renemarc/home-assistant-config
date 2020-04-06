@@ -10,9 +10,9 @@
 # @link https://www.home-assistant.io/integrations/blink/
 #
 - platform: local_file
-  name: Front Animated
+  name: "Front Animated"
   file_path: !secret camera_front_animated
 
 - platform: local_file
-  name: Front Still
+  name: "Front Still"
   file_path: !secret camera_front_still

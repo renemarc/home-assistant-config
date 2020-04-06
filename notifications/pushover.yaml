@@ -2,9 +2,9 @@
 # Pushover notification service for cellphones and tablets
 #
 # @link https://pushover.net/
-# @link https://home-assistant.io/components/notify.pushover/
+# @link https://www.home-assistant.io/integrations/pushover/
 #
 - platform: pushover
-  name: Pushover
+  name: "Pushover"
   api_key: !secret pushover_api_key
   user_key: !secret pushover_user_key

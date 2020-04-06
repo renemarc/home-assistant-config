@@ -5,7 +5,7 @@
 #
 # Using a date sensor instead of now() inside templates avoids constant updates.
 #
-# @link https://home-assistant.io/components/sensor.time_date/
+# @link https://www.home-assistant.io/integrations/time_date/
 #
 - platform: time_date
   display_options:
@@ -17,8 +17,8 @@
 - platform: template
   sensors:
     date_friendly:
-      friendly_name: Date
-      icon_template: mdi:calendar-today
+      friendly_name: "Date (Friendly)"
+      icon_template: "mdi:calendar-today"
       friendly_name_template: >-
         {% set date = states('sensor.date') %}
         {% set datetime = strptime(date, '%Y-%m-%d') %}
@@ -32,8 +32,8 @@
         {{ month }} {{ day }}
 
     date_long:
-      friendly_name: Date
-      icon_template: mdi:calendar-today
+      friendly_name: "Date (Long)"
+      icon_template: "mdi:calendar-today"
       value_template: >-
         {% set date = states('sensor.date') %}
         {% set datetime = strptime(date, '%Y-%m-%d') %}
@@ -50,8 +50,8 @@
         {{ weekday }} {{ month }} {{ day }}{{ suffix }}
 
     time_friendly:
-      friendly_name: Time
-      icon_template: mdi:clock
+      friendly_name: "Time (Friendly)"
+      icon_template: "mdi:clock"
       value_template: >-
         {% set hour = states('sensor.time').split(':')[0] | int %}
         {% set minutes = states('sensor.time').split(':')[1] %}
@@ -59,8 +59,8 @@
         {{ hour }}:{{ minutes }}
 
     time_long:
-      friendly_name: Time
-      icon_template: mdi:clock
+      friendly_name: "Time (Long)"
+      icon_template: "mdi:clock"
       value_template: >-
         {% set hour = states('sensor.time').split(':')[0] | int %}
         {% set minute = states('sensor.time').split(':')[1] | int %}
@@ -115,8 +115,8 @@
         {% endif %}
 
     time_quarterly:
-      friendly_name: Time
-      icon_template: mdi:clock
+      friendly_name: "Time (Quarterly)"
+      icon_template: "mdi:clock"
       value_template: >-
         {% set hour = states('sensor.time').split(':')[0] | int %}
         {% set minutes = states('sensor.time').split(':')[1] | int %}
@@ -134,7 +134,8 @@
         {{ hour }}:{{ minute }}
 
     after_tomorrow:
-      friendly_name: After Tomorrow
+      friendly_name: "After Tomorrow"
+      icon_template: "mdi:calendar-arrow-right"
       value_template: >-
         {% set date = states('sensor.date') %}
         {% set datetime = strptime(date, '%Y-%m-%d') %}
@@ -153,8 +154,8 @@
 - platform: template
   sensors:
     days_in_month:
-      friendly_name: Days in Month
-      icon_template: mdi:calendar
+      friendly_name: "Days in Month"
+      icon_template: "mdi:calendar"
       value_template: >-
         {% set date = states('sensor.date') %}
         {% set datetime = strptime(date, '%Y-%m-%d') %}
@@ -169,8 +170,8 @@
         {{ days }}
 
     days_remaining_in_month:
-      friendly_name: Days Remaining in Month
-      icon_template: mdi:calendar
+      friendly_name: "Days Remaining in Month"
+      icon_template: "mdi:calendar"
       value_template: >-
         {% set days_in_month = states('sensor.days_in_month') | int %}
 
@@ -183,7 +184,6 @@
 - platform: template
   sensors:
     sun_state:
-      friendly_name: Sun
       friendly_name_template: >-
         {% set next_dawn = as_timestamp(state_attr('sun.sun', 'next_dawn')) %}
         {% set next_rising = as_timestamp(state_attr('sun.sun', 'next_rising')) %}
@@ -199,7 +199,7 @@
         {% else %}
           Sun is down
         {% endif %}
-      icon_template: >-
+      icon_template: &sun_state_icon >-
         {% set next_dawn = as_timestamp(state_attr('sun.sun', 'next_dawn')) %}
         {% set next_rising = as_timestamp(state_attr('sun.sun', 'next_rising')) %}
         {% set next_setting = as_timestamp(state_attr('sun.sun', 'next_setting')) %}
@@ -242,22 +242,8 @@
     #   - The sun rise in soon.
     #
     sun_state_friendly:
-      friendly_name: Sun
-      icon_template: >-
-        {% set next_dawn = as_timestamp(state_attr('sun.sun', 'next_dawn')) %}
-        {% set next_rising = as_timestamp(state_attr('sun.sun', 'next_rising')) %}
-        {% set next_setting = as_timestamp(state_attr('sun.sun', 'next_setting')) %}
-        {% set next_dusk = as_timestamp(state_attr('sun.sun', 'next_dusk')) %}
-
-        {% if next_dawn >= next_rising %}
-          mdi:weather-sunset-up
-        {% elif next_rising >= next_setting %}
-          mdi:weather-sunny
-        {% elif next_setting >= next_dusk %}
-          mdi:weather-sunset-down
-        {% else %}
-          mdi:weather-night
-        {% endif %}
+      friendly_name: "Sun"
+      icon_template: *sun_state_icon
       value_template: >-
         {% set current = as_timestamp(strptime(states('sensor.time_date'), '%H:%M, %Y-%m-%d')) %}
         {% set next_dawn = as_timestamp(state_attr('sun.sun', 'next_dawn')) %}

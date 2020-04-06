@@ -1,3 +1,8 @@
+#
+# HomeKit
+#
+# @link https://www.home-assistant.io/integrations/homekit/
+#
 auto_start: false
 port: !secret homekit_port
 filter:

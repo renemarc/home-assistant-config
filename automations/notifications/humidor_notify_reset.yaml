@@ -8,7 +8,7 @@
 # @see automations/notifications/humidor_notify.yaml
 #
 - id: humidor_notify_reset
-  alias: Humidor NOTIFY RESET
+  alias: "Humidor NOTIFY RESET"
 
   trigger:
     # When humidity is back within acceptable range.

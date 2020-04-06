@@ -4,7 +4,7 @@
 # @subscribe input_boolean.tamper_detected
 #
 - id: tamper_detection_notify
-  alias: Tamper detection NOTIFY
+  alias: "Tamper Detection NOTIFY"
 
   trigger:
     # When the tamper flag has changed.

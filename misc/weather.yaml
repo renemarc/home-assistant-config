@@ -1,8 +1,14 @@
 #
 # Weather
 #
-# @link https://www.home-assistant.io/components/weather/
+# @link https://www.home-assistant.io/integrations/weather/
 #
 
+
+#
+# Dark Sky
+#
+# @link https://www.home-assistant.io/integrations/weather.darksky/
+#
 - platform: darksky
   api_key: !secret darksky_api_key

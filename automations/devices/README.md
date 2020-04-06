@@ -81,7 +81,7 @@ The bed has two sets of [LIFX Z RGBW lights strips](https://www.lifx.com/product
 
 ### [`🌈 ./bed_effect.yaml`](bed_effect.yaml)
 
-Change bed underglow lights based on [LIFX Cloud scenes](https://home-assistant.io/components/scene.lifx_cloud/).
+Change bed underglow lights based on [LIFX Cloud scenes](https://www.home-assistant.io/integrations/lifx_cloud/).
 
 The LIFX strips have some effects programmed with the LIFX mobile app and stored on their servers. Each effect mentions which device will receive which colour pattern. Also, each effect has a UUID that can be used to load the effect from the servers and program the LIFX devices accordingly.
 

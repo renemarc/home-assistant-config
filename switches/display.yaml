@@ -14,8 +14,8 @@
 - platform: template
   switches:
     kiosk:
-      friendly_name: Kiosk
-      icon_template: mdi:tablet
+      friendly_name: "Kiosk"
+      icon_template: "mdi:tablet"
       value_template: >-
         {{ states('display.kiosk') }}
       turn_on:

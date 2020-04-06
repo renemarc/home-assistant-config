@@ -7,6 +7,6 @@
 # @link https://weather.gc.ca/radar/
 #
 - platform: environment_canada
-  name: Environment Canada
+  name: "Environment Canada"
   station: !secret environment_canada_radar
   loop: true

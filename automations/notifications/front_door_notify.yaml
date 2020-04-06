@@ -9,7 +9,7 @@
 # @see /misc/lifx.yaml
 #
 - id: front_door_notify
-  alias: Front door NOTIFY
+  alias: "Front door NOTIFY"
 
   trigger:
     # When the front door sensor senses openness or closure.
@@ -47,6 +47,6 @@
       state: 'off'
     - service: notify.sound
       data:
-        message: "chime"
+        message: 'chime'
         data:
-          method: "alarm"
+          method: 'alarm'

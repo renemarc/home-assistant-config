@@ -4,7 +4,8 @@
 # @publish input_boolean.tamper_detected
 #
 - id: tamper_detection_start
-  alias: Tamper detection START
+  alias: "Tamper Detection START"
+
   trigger:
     # When front door tamper is detected.
     - platform: state

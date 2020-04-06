@@ -6,7 +6,8 @@
 # @see /scripts/
 #
 - id: scene_select
-  alias: Scene SELECT
+  alias: "Scene SELECT"
+
   trigger:
     # When a scene has been selected.
     - platform: state

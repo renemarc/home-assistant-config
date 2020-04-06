@@ -89,7 +89,7 @@ A few sets of [LIFX Z RGBW strips](https://www.lifx.com/products/lifx-z) are use
 To make the ceiling strips glow prettily in unison:
 
 1. First, ceiling strips are organized in a dedicated group using the LIFX app.
-2. Then [cloud-based scenes](https://home-assistant.io/components/scene.lifx_cloud/) are defined with the LIFX app and applied to a this ceiling group.
+2. Then [cloud-based scenes](https://www.home-assistant.io/integrations/lifx_cloud/) are defined with the LIFX app and applied to a this ceiling group.
 3. Afterwards the scenes' UUID are manually retrieved [via the API](https://api.developer.lifx.com/docs/list-scenes).
 4. These scenes UUID are copied over to [`/automations/areas/ceiling_effect.yaml`](../automations/areas/ceiling_effect.yaml).
 5. Scenes can then either be changed manually using an **input_select** with [`/automations/areas/ceiling_select.yaml`](../automations/areas/ceiling_select.yaml) or automatically throughout the day with [`/automations/areas/ceiling_schedule.yaml`](../automations/areas/ceiling_schedule.yaml).

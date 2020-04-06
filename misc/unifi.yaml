@@ -4,7 +4,7 @@
 # Connects to the UniFi controller with a read-only user.
 #
 # @link https://www.ubnt.com/unifi/unifi-cloud-key/
-# @link https://www.home-assistant.io/integrations/unifi
+# @link https://www.home-assistant.io/integrations/unifi/
 #
 controllers:
   - host: !secret unifi_host
