@@ -131,7 +131,12 @@ function basemultisensor(widget_id, url, skin, parameters)
         self.set_field(self, "valueunit_style", self.parameters.css.valueunit_style);
 
         value = self.map_state(self, state.state);
-        if (isNaN(value))
+        if (value === 'unknown') {
+            value = '?';
+            self.set_field(self, "value_style", self.parameters.css.value_style);
+            self.set_field(self, "value", self.map_state(self, value));
+        }
+        else if (isNaN(value))
         {
             self.set_field(self, "value_style", self.parameters.css.text_style);
             self.set_field(self, "value", self.map_state(self, value));
@@ -155,7 +160,12 @@ function basemultisensor(widget_id, url, skin, parameters)
     function set_value2(self, state)
     {
         value = self.map_state(self, state.state);
-        if (isNaN(value))
+        if (value === 'unknown') {
+            value = '?';
+            self.set_field(self, "value2_style", self.parameters.css.value2_style);
+            self.set_field(self, "value2", self.map_state(self, value));
+        }
+        else if (isNaN(value))
         {
             self.set_field(self, "value2_style", self.parameters.css.text2_style);
             self.set_field(self, "value2", self.map_state(self, value));
