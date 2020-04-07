@@ -14,6 +14,39 @@ global_parameters:
 
 
 #
+# Styles: Common
+#
+style_header: &style_header >-
+    background: MediumSlateBlue;
+style_header_title2: &style_header_title2 >-
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+style_header_text: &style_header_text >-
+    font-size: 300%;
+style_header_state: &style_header_state >-
+    font-size: 125%;
+    padding-bottom: 0.15em;
+    background-color: MediumSlateBlue;
+style_nav: &style_nav >-
+    background: DarkSlateBlue;
+style_nav_active: &style_nav_active >-
+    background: MediumSlateBlue;
+
+
+#
+# Styles: Specific
+#
+style_state_text: &style_state_text >-
+    background-color: #555;
+style_title: &style_title >-
+    background-color: #555;
+    padding: 5px 156% 3px;
+    margin-right: -10px;
+    margin-top: -5px;
+    border-radius: 5px 5px 0 0;
+
+
+#
 # Common navigation
 #
 nav_main:
@@ -21,32 +54,32 @@ nav_main:
     dashboard: "Main"
     title2: "Home"
     icon_inactive: "mdi-home-assistant"
-    widget_style: "background: DARKSLATEBLUE;"
+    widget_style: *style_nav
 
 nav_switchboard:
     widget_type: navigate
     dashboard: "Switchboard"
     title2: "Switchboard"
     icon_inactive: "mdi-nintendo-switch"
-    widget_style: "background: DARKSLATEBLUE;"
+    widget_style: *style_nav
 
 nav_weather:
     widget_type: navigate
     dashboard: "Weather"
     title2: "Weather"
     icon_inactive: "mdi-weather-partly-cloudy"
-    widget_style: "background: DARKSLATEBLUE;"
+    widget_style: *style_nav
 
 nav_status:
     widget_type: navigate
     dashboard: "Status"
     title2: "Status"
     icon_inactive: "mdi-information-outline"
-    widget_style: "background: MEDIUMSLATEBLUE;"
+    widget_style: *style_nav_active
 
 nav_spacer:
     widget_type: label
-    widget_style: "background: DARKSLATEBLUE;"
+    widget_style: *style_nav
 
 
 #
@@ -57,10 +90,10 @@ label:
     title2: "Status"
     entity: sensor.version_friendly
     sub_entity: sensor.update_available
-    widget_style: "background: MEDIUMSLATEBLUE;"
-    title2_style: "text-transform: uppercase; letter-spacing: 0.35em;"
-    text_style: "font-size: 300%;"
-    state_text_style: "font-size: 125%; padding-bottom: 0.15em; background-color: MEDIUMSLATEBLUE;"
+    widget_style: *style_header
+    title2_style: *style_header_title2
+    text_style: *style_header_text
+    state_text_style: *style_header_state
 
 
 #
@@ -96,21 +129,21 @@ cpu_use:
     entity: sensor.processor_use
     sub_entity: sensor.average_load
     title: "CPU Load"
-    state_text_style: "background-color:#555;"
+    state_text_style: *style_state_text
 
 memory_use:
     widget_type: entitysensor
     entity: sensor.memory_use_percent
     sub_entity: sensor.memory_use
     title: "Memory Use"
-    state_text_style: "background-color: #555;"
+    state_text_style: *style_state_text
 
 disk_use:
     widget_type: entitysensor
     entity: sensor.disk_use_percent
     sub_entity: sensor.disk_use_home
     title: "Disk Use"
-    state_text_style: "background-color: #555;"
+    state_text_style: *style_state_text
 
 
 #
@@ -135,7 +168,7 @@ radon:
     title: "Radon"
     entity: sensor.radon_daily
     sub_entity: sensor.radon_friendly
-    state_text_style: "background-color: #555;"
+    state_text_style: *style_state_text
 
 
 #
@@ -146,32 +179,36 @@ average_temperature:
     entity: sensor.bedroom_temperature
     title: "Temperature"
     title2: "Average"
-    widget_style: "background-color:inherit;"
-    title_style: "background-color: #555; padding: 5px 156% 3px; margin-right: -10px; margin-top: -5px; border-radius: 5px 5px 0 0;"
-    title2_style: "margin-top: 3px;"
-    value_style: "color: orange;"
-    unit_style: "color: orange;"
+    widget_style: &style_temperature >-
+        background-color: inherit;
+    title_style: *style_title
+    title2_style: &style_temperature_title2 >-
+        margin-top: 3px;
+    value_style: &style_average >-
+        color: Orange;
+    unit_style: *style_average
 
 bedroom_temperature:
     widget_type: sensor
     entity: sensor.bedroom_temperature
     title2: "Bedroom"
-    widget_style: "background-color: inherit;"
-    title2_style: "margin-top: 3px;"
+    widget_style: *style_temperature
+    title2_style: *style_temperature_title2
 
 lounge_temperature:
     widget_type: sensor
     entity: sensor.lounge_temperature
     title2: "Lounge"
-    widget_style: "background-color: inherit;"
-    title2_style: "margin-top: 3px;"
+    widget_style: *style_temperature
+    title2_style: *style_temperature_title2
 
 washroom_temperature:
     widget_type: sensor
     entity: sensor.washroom_temperature
     title2: "Washroom"
-    widget_style: "background-color: inherit;"
-    title2_style: "margin-top: 3px;"
+    widget_style: *style_temperature
+    title2_style: *style_temperature_title2
+
 
 #
 # Humidity
@@ -181,32 +218,34 @@ average_humidity:
     entity: sensor.average_humidity
     title: "Humidity"
     title2: "Average"
-    widget_style: "background-color: inherit;"
-    title_style: "background-color: #555; padding: 5px 156% 3px; margin-right: -10px; margin-top: -5px; border-radius: 5px 5px 0 0;"
-    title2_style: "margin-top: 3px;"
-    value_style: "color: orange;"
-    unit_style: "color: orange;"
+    widget_style: &style_humidity >-
+        background-color: inherit;
+    title_style: *style_title
+    title2_style: &style_humidity_title2 >-
+        margin-top: 3px;
+    value_style: *style_average
+    unit_style: *style_average
 
 bedroom_humidity:
     widget_type: sensor
     entity: sensor.bedroom_humidity
     title2: "Bedroom"
-    widget_style: "background-color: inherit;"
-    title2_style: "margin-top: 3px;"
+    widget_style: *style_humidity
+    title2_style: *style_humidity_title2
 
 lounge_humidity:
     widget_type: sensor
     entity: sensor.lounge_humidity
     title2: "Lounge"
-    widget_style: "background-color: inherit;"
-    title2_style: "margin-top: 3px;"
+    widget_style: *style_humidity
+    title2_style: *style_humidity_title2
 
 washroom_humidity:
     widget_type: sensor
     entity: sensor.washroom_humidity
     title2: "Washroom"
-    widget_style: "background-color: inherit;"
-    title2_style: "margin-top: 3px;"
+    widget_style: *style_humidity
+    title2_style: *style_humidity_title2
 
 
 #
@@ -217,54 +256,56 @@ front_camera_battery:
     entity: sensor.front_camera_battery_level
     title: "Battery Status"
     title2: "Front Camera"
-    widget_style: "background-color: inherit;"
-    title_style: "background-color: #555; padding: 5px 156% 3px; margin-right: -10px; margin-top: -5px; border-radius: 5px 5px 0 0;"
-    title2_style: "margin-top: 3px;"
+    widget_style: &style_battery >-
+        background-color: inherit;
+    title_style: *style_title
+    title2_style: &style_battery_title2 >-
+        margin-top: 3px;
 
 front_door_sensor_battery:
     widget_type: sensor
     entity: sensor.front_door_battery_level
     title2: "Front Door"
-    widget_style: "background-color: inherit;"
-    title2_style: "margin-top: 3px;"
+    widget_style: *style_battery
+    title2_style: *style_battery_title2
 
 humidor_multisensor_battery:
     widget_type: sensor
     entity: sensor.humidor_multisensor_battery_level
     title2: "Humidor"
-    widget_style: "background-color: inherit;"
-    title2_style: "margin-top: 3px;"
+    widget_style: *style_battery
+    title2_style: *style_battery_title2
 
 kiosk_battery:
     widget_type: sensor
     entity: sensor.kiosk_battery_level
     title2: "Kiosk"
-    widget_style: "background-color: inherit;"
-    title2_style: "margin-top: 3px;"
+    widget_style: *style_battery
+    title2_style: *style_battery_title2
 
 kitchen_leak_sensor_battery:
     widget_type: sensor
     entity: sensor.kitchen_leak_sensor_battery_level
     title2: "Kitchen Leak"
-    widget_style: "background-color: inherit;"
+    widget_style: *style_battery
 
 siren_monitor_battery:
     widget_type: sensor
     entity: sensor.siren_monitor_battery_level
     title2: "Siren Monitor"
-    widget_style: "background-color: inherit;"
+    widget_style: *style_battery
 
 washroom_multisensor_battery:
     widget_type: sensor
     entity: sensor.washroom_multisensor_battery_level
     title2: "Washroom"
-    widget_style: "background-color: inherit;"
+    widget_style: *style_battery
 
 washroom_leak_sensor_battery:
     widget_type: sensor
     entity: sensor.washroom_leak_sensor_battery_level
     title2: "Washroom Leak"
-    widget_style: "background-color: inherit;"
+    widget_style: *style_battery
 
 
 #

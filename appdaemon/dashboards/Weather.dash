@@ -14,6 +14,26 @@ global_parameters:
 
 
 #
+# Styles: Common
+#
+style_header: &style_header >-
+    background: MediumSlateBlue;
+style_header_title2: &style_header_title2 >-
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+style_header_text: &style_header_text >-
+    font-size: 300%;
+style_header_state: &style_header_state >-
+    font-size: 125%;
+    padding-bottom: 0.15em;
+    background-color: MediumSlateBlue;
+style_nav: &style_nav >-
+    background: DarkSlateBlue;
+style_nav_active: &style_nav_active >-
+    background: MediumSlateBlue;
+
+
+#
 # Common navigation
 #
 nav_main:
@@ -21,33 +41,32 @@ nav_main:
     dashboard: "Main"
     title2: "Home"
     icon_inactive: "mdi-home-assistant"
-    widget_style: "background: DARKSLATEBLUE;"
+    widget_style: *style_nav
 
 nav_switchboard:
     widget_type: navigate
     dashboard: "Switchboard"
     title2: "Switchboard"
     icon_inactive: "mdi-nintendo-switch"
-    widget_style: "background: DARKSLATEBLUE;"
+    widget_style: *style_nav
 
 nav_weather:
     widget_type: navigate
     dashboard: "Weather"
     title2: "Weather"
     icon_inactive: "mdi-weather-partly-cloudy"
-    widget_style: "background: MEDIUMSLATEBLUE;"
+    widget_style: *style_nav_active
 
 nav_status:
     widget_type: navigate
     dashboard: "Status"
     title2: "Status"
     icon_inactive: "mdi-information-outline"
-    widget_style: "background: DARKSLATEBLUE;"
+    widget_style: *style_nav
 
 nav_spacer:
     widget_type: label
-    widget_style: "background: DARKSLATEBLUE;"
-
+    widget_style: *style_nav
 
 
 #
@@ -58,10 +77,10 @@ label:
     title2: "Weather"
     entity: sensor.weather_summary
     sub_entity: sensor.weather_details
-    widget_style: "background: MEDIUMSLATEBLUE;"
-    title2_style: "text-transform: uppercase; letter-spacing: 0.35em;"
-    text_style: "font-size: 300%;"
-    state_text_style: "font-size: 125%; padding-bottom: 0.15em; background-color: MEDIUMSLATEBLUE;"
+    widget_style: *style_header
+    title2_style: *style_header_title2
+    text_style: *style_header_text
+    state_text_style: *style_header_state
 
 
 #
@@ -71,7 +90,11 @@ camera_environment_canada:
     widget_type: entitypicture
     entity: camera.environment_canada
     base_url: "http://hassio.local:8123"
-    image_style: "top: 0; bottom: 0; left: 0; right: 0;"
+    image_style: >-
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
 
 camera_noaa:
     widget_type: slideshow
@@ -82,11 +105,16 @@ camera_noaa:
         - entity: camera.noaa_water_vapour
           title: ""
 
+
+#
+# Wind
+#
 wind:
     widget_type: entitysensor
     entity: sensor.wind_speed
     title2_entity: sensor.wind_scale_friendly
-    widget_style: "background-color: inherit;"
+    widget_style: &style_wind >-
+        background-color: inherit;
 
 wind_icon:
     widget_type: iconsensor
@@ -117,7 +145,7 @@ wind_icon:
         "NW":
             icon: "mdi-arrow-top-left"
             style: "$style_active"
-    widget_style: "background-color: inherit;"
+    widget_style: *style_wind
 
 
 #
@@ -139,10 +167,17 @@ temperature_today:
     entity: sensor.outside_temperature_high_0
     sub_entity: sensor.outside_temperature_low_friendly_0
     title2_entity: sensor.feels_like
-    widget_style: "background-color: inherit;"
-    title_style: "background-color: #555; padding: 5px 52% 3px; margin-right: -10px; margin-top: -5px; border-radius: 5px 5px 0 0;"
-    title2_style: "margin-top:3px;"
-    state_text_style: "background-color: inherit;"
+    widget_style: &style_temperature >-
+        background-color: inherit;
+    title_style: &style_temperature_title >-
+        background-color: #555;
+        padding: 5px 52% 3px;
+        margin-right: -10px;
+        margin-top: -5px;
+        border-radius: 5px 5px 0 0;
+    title2_style: &style_temperature_title2 >-
+        margin-top:3px;
+    state_text_style: *style_temperature
 
 temperature_tomorrow:
     widget_type: entitysensor
@@ -150,10 +185,10 @@ temperature_tomorrow:
     entity: sensor.outside_temperature_high_1
     sub_entity: sensor.outside_temperature_low_friendly_1
     title2_entity: sensor.feels_like_1
-    widget_style: "background-color: inherit;"
-    title_style: "background-color: #555; padding: 5px 52% 3px; margin-top: -5px; border-radius: 5px 5px 0 0;"
-    title2_style: "margin-top: 3px;"
-    state_text_style: "background-color: inherit;"
+    widget_style: *style_temperature
+    title_style: *style_temperature_title
+    title2_style: *style_temperature_title2
+    state_text_style: *style_temperature
 
 temperature_after_tomorrow:
     widget_type: entitysensor
@@ -162,10 +197,10 @@ temperature_after_tomorrow:
     sub_entity: sensor.outside_temperature_low_friendly_2
     title_entity: sensor.after_tomorrow
     title2_entity: sensor.feels_like_2
-    widget_style: "background-color: inherit;"
-    title_style: "background-color: #555; padding: 5px 52% 3px; margin-top: -5px; border-radius: 5px 5px 0 0;"
-    title2_style: "margin-top: 3px;"
-    state_text_style: "background-color: inherit;"
+    widget_style: *style_temperature
+    title_style: *style_temperature_title
+    title2_style: *style_temperature_title2
+    state_text_style: *style_temperature
 
 weather_icon_today:
     widget_type: iconsensor
@@ -203,9 +238,9 @@ weather_icon_today:
             style: "$style_active"
     title2_entity: sensor.weather_icon_friendly
     sub_entity: sensor.precip_probability_friendly
-    widget_style: "background-color: inherit;"
-    title2_style: "margin-top: 3px;"
-    state_text_style: "background-color: inherit"
+    widget_style: *style_temperature
+    title2_style: *style_temperature_title2
+    state_text_style: *style_temperature
 
 weather_icon_tomorrow:
     widget_type: iconsensor
@@ -243,9 +278,9 @@ weather_icon_tomorrow:
             style: "$style_active"
     title2_entity: sensor.weather_icon_friendly_1
     sub_entity: sensor.precip_probability_friendly_1
-    widget_style: "background-color: inherit;"
-    title2_style: "margin-top: 3px;"
-    state_text_style: "background-color: inherit;"
+    widget_style: *style_temperature
+    title2_style: *style_temperature_title2
+    state_text_style: *style_temperature
 
 weather_icon_after_tomorrow:
     widget_type: iconsensor
@@ -283,9 +318,9 @@ weather_icon_after_tomorrow:
             style: "$style_active"
     title2_entity: sensor.weather_icon_friendly_2
     sub_entity: sensor.precip_probability_friendly_2
-    widget_style: "background-color: inherit;"
-    title2_style: "margin-top: 3px;"
-    state_text_style: "background-color: inherit;"
+    widget_style: *style_temperature
+    title2_style: *style_temperature_title2
+    state_text_style: *style_temperature
 
 
 #
@@ -296,49 +331,50 @@ aqi:
     title: "Air Quality Index"
     entity: sensor.aqi
     sub_entity: sensor.aqi_friendly
-    state_text_style: "background-color: #555;"
+    state_text_style: &style_outdoor_state >-
+        "background-color: #555;
 
 aqi_particles:
     widget_type: sensor
     title: "2.5PM"
     entity: sensor.aqi_particles
     sub_entity: sensor.aqi_particles_friendly
-    state_text_style: "background-color: #555;"
+    state_text_style: *style_outdoor_state
 
 aqi_ozone:
     widget_type: sensor
     title: "Ozone"
     entity: sensor.aqi_ozone
     sub_entity: sensor.aqi_ozone_friendly
-    state_text_style: "background-color: #555;"
+    state_text_style: *style_outdoor_state
 
 aqi_carbon_monoxide:
     widget_type: sensor
     title: "Carbon Monoxide"
     entity: sensor.aqi_carbon_monoxide
     sub_entity: sensor.aqi_carbon_monoxide_friendly
-    state_text_style: "background-color: #555;"
+    state_text_style: *style_outdoor_state
 
 aqi_nitrogen_dioxide:
     widget_type: sensor
     title: "Nitrogen Dioxide"
     entity: sensor.aqi_nitrogen_dioxide
     sub_entity: sensor.aqi_nitrogen_dioxide_friendly
-    state_text_style: "background-color: #555;"
+    state_text_style: *style_outdoor_state
 
 aqi_sulphur_dioxide:
     widget_type: sensor
     title: "Sulphur Dioxide"
     entity: sensor.aqi_sulphur_dioxide
     sub_entity: sensor.aqi_sulphur_dioxide_friendly
-    state_text_style: "background-color: #555;"
+    state_text_style: *style_outdoor_state
 
 uv:
     widget_type: sensor
     title: "UV"
     entity: sensor.uv
     sub_entity: sensor.uv_friendly
-    state_text_style: "background-color: #555;"
+    state_text_style: *style_outdoor_state
 
 
 #

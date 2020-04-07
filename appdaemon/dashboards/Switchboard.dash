@@ -14,6 +14,34 @@ global_parameters:
 
 
 #
+# Styles: Common
+#
+style_header: &style_header >-
+    background: MediumSlateBlue;
+style_header_title2: &style_header_title2 >-
+    text-transform: uppercase;
+    letter-spacing: 0.35em;
+style_header_text: &style_header_text >-
+    font-size: 300%;
+style_header_state: &style_header_state >-
+    font-size: 125%;
+    padding-bottom: 0.15em;
+    background-color: MediumSlateBlue;
+style_nav: &style_nav >-
+    background: DarkSlateBlue;
+style_nav_active: &style_nav_active >-
+    background: MediumSlateBlue;
+
+
+#
+# Styles: Specific
+#
+style_label_title2: &style_label_title2 >-
+    font-size: 175%;
+    font-weight: 400;
+
+
+#
 # Common navigation
 #
 nav_main:
@@ -21,32 +49,32 @@ nav_main:
     dashboard: "Main"
     title2: "Home"
     icon_inactive: "mdi-home-assistant"
-    widget_style: "background: DARKSLATEBLUE;"
+    widget_style: *style_nav
 
 nav_switchboard:
     widget_type: navigate
     dashboard: "Switchboard"
     title2: "Switchboard"
     icon_inactive: "mdi-nintendo-switch"
-    widget_style: "background: MEDIUMSLATEBLUE;"
+    widget_style: *style_nav_active
 
 nav_weather:
     widget_type: navigate
     dashboard: "Weather"
     title2: "Weather"
     icon_inactive: "mdi-weather-partly-cloudy"
-    widget_style: "background: DARKSLATEBLUE;"
+    widget_style: *style_nav
 
 nav_status:
     widget_type: navigate
     dashboard: "Status"
     title2: "Status"
     icon_inactive: "mdi-information-outline"
-    widget_style: "background: DARKSLATEBLUE;"
+    widget_style: *style_nav
 
 nav_spacer:
     widget_type: label
-    widget_style: "background: DARKSLATEBLUE;"
+    widget_style: *style_nav
 
 
 #
@@ -56,10 +84,9 @@ label:
     widget_type: sensor
     title2: "Switchboard"
     entity: sensor.modes_friendly
-    text_style: "font-size: 300%;"
-    widget_style: "background: MEDIUMSLATEBLUE;"
-    title2_style: "text-transform: uppercase; letter-spacing: 0.35em;"
-
+    text_style: *style_header_text
+    widget_style: *style_header
+    title2_style: *style_header_title2
 
 #
 # Exterior
@@ -69,13 +96,14 @@ label_exterior:
     title2: "Exterior"
     entity: sensor.outside_temperature
     entity2: sensor.outside_humidity
-    widget_style: "background-color: DARKOLIVEGREEN;"
-    title2_style: "font-size: 175%; font-weight: 400;"
+    widget_style: &style_exterior >-
+        background-color: DarkOliveGreen;
+    title2_style: *style_label_title2
 
 light_front_porch:
     widget_type: label
     title: "Front Porch"
-    widget_style: "background-color: DARKOLIVEGREEN;"
+    widget_style: *style_exterior
 
 
 #
@@ -86,29 +114,34 @@ label_ceiling:
     title2: "Ceiling"
     entity: input_select.ceiling_effect
     sub_entity: sensor.ceiling_effect_loaded
-    widget_style: "background-color: DARKGOLDENROD;"
-    title2_style: "font-size: 175%; font-weight: 400;"
-    state_text_style: "background-color: GOLDENROD;"
-    selectcontainer_style: "top: 53px;"
-    select_style: "background-color: GOLDENROD; color: $white;"
+    widget_style: &style_ceiling >-
+        background-color: DarkGoldenRod;
+    title2_style: *style_label_title2
+    state_text_style: >-
+        background-color: GoldenRod;
+    select_style: >-
+        background-color: GoldenRod;
+        color: $white;
+    selectcontainer_style: >-
+        top: 53px;
 
 washlight_bedroom:
     widget_type: switch
     title: "Bedroom"
     entity: light.bedroom
-    widget_style: "background-color: DARKGOLDENROD;"
+    widget_style: *style_ceiling
 
 washlight_middle:
     widget_type: switch
     title: "Middle"
     entity: light.middle
-    widget_style: "background-color: DARKGOLDENROD;"
+    widget_style: *style_ceiling
 
 washlight_lounge:
     widget_type: switch
     title: "Lounge"
     entity: light.lounge
-    widget_style: "background-color: DARKGOLDENROD;"
+    widget_style: *style_ceiling
 
 
 #
@@ -119,24 +152,25 @@ label_climate:
     title2: "Climate"
     entity: sensor.average_temperature
     entity2: sensor.average_humidity
-    widget_style: "background-color: TEAL;"
-    title2_style: "font-size: 175%; font-weight: 400;"
+    widget_style: &style_climate >-
+        background-color: Teal;
+    title2_style: *style_label_title2
 
 switch_humidifier:
     widget_type: label
     title: "Humidifier"
-    widget_style: "background-color: TEAL;"
+    widget_style: *style_climate
 
 switch_dehumidifier:
     widget_type: switch
     title: "Dehumidifier"
     entity: switch.dehumidifier
-    widget_style: "background-color: TEAL;"
+    widget_style: *style_climate
 
 switch_air_filter:
     widget_type: label
     title: "Air Filter"
-    widget_style: "background-color: TEAL;"
+    widget_style: *style_climate
 
 
 #
@@ -147,32 +181,33 @@ label_kitchen:
     title2: "Kitchen"
     entity: sensor.kitchen_temperature
     entity2: ""
-    widget_style: "background-color: SADDLEBROWN;"
-    title2_style: "font-size: 175%; font-weight: 400;"
+    widget_style: &style_kitchen >-
+        background-color: SaddleBrown;
+    title2_style: *style_label_title2
 
 light_countertop:
     widget_type: light
     title: "Countertop"
     entity: light.countertop
-    widget_style: "background-color: SADDLEBROWN;"
+    widget_style: *style_kitchen
 
 light_island:
     widget_type: light
     title: "Island"
     entity: light.island
-    widget_style: "background-color: SADDLEBROWN;"
+    widget_style: *style_kitchen
 
 light_microwave:
     widget_type: light
     title: "Microwave"
     entity: light.microwave
-    widget_style: "background-color: SADDLEBROWN;"
+    widget_style: *style_kitchen
 
 light_sink:
     widget_type: light
     title: "Sink"
     entity: light.sink
-    widget_style: "background-color: SADDLEBROWN;"
+    widget_style: *style_kitchen
 
 
 #
@@ -183,24 +218,25 @@ label_washroom:
     title2: "Toilet"
     entity: sensor.washroom_temperature
     entity2: sensor.washroom_humidity
-    widget_style: "background-color: ROYALBLUE;"
-    title2_style: "font-size: 175%; font-weight: 400;"
+    widget_style: &style_washroom >-
+        background-color: RoyalBlue;
+    title2_style: *style_label_title2
 
 light_shower:
     widget_type: light
     title: "Shower"
     entity: light.shower
-    widget_style: "background-color: ROYALBLUE;"
+    widget_style: *style_washroom
 
 light_lavatory:
     widget_type: light
     title: "Lavatory"
     entity: light.lavatory
-    widget_style: "background-color: ROYALBLUE;"
+    widget_style: *style_washroom
 
 spacer_tetris:
     widget_type: label
-    widget_style: "background-color:ROYALBLUE;"
+    widget_style: *style_washroom
 
 
 #
@@ -211,41 +247,45 @@ label_bedroom:
     title2: "Bedroom"
     entity: sensor.bedroom_temperature
     entity2: sensor.bedroom_humidity
-    widget_style: "background-color: INDIGO;"
-    title2_style: "font-size: 175%; font-weight: 400;"
+    widget_style: &style_bedroom >-
+        background-color: Indigo;
+    title2_style: *style_label_title2
 
 light_bed_effect:
     widget_type: input_select
     title2: "Bed Effect"
     entity: input_select.bed_effect
     sub_entity: sensor.bed_effect_loaded
-    widget_style: "background-color: INDIGO;"
-    state_text_style: "background-color: PURPLE;"
-    select_style: "background-color: PURPLE; color: $white;"
+    widget_style: *style_bedroom
+    state_text_style: >-
+        background-color: Purple;
+    select_style: >-
+        background-color: Purple;
+        color: $white;
 
 underglow_headboard:
     widget_type: light
     title: "Headboard"
     entity: light.headboard
-    widget_style: "background-color: INDIGO;"
+    widget_style: *style_bedroom
 
 underglow_underbed:
     widget_type: light
     title: "Underbed"
     entity: light.underbed
-    widget_style: "background-color: INDIGO;"
+    widget_style: *style_bedroom
 
 light_bedside:
     widget_type: switch
     title: "Bedside"
     entity: light.bedside
-    widget_style: "background-color: INDIGO;"
+    widget_style: *style_bedroom
 
 light_nightstand:
     widget_type: switch
     title: "Nightstand"
     entity: light.nightstand
-    widget_style: "background-color:INDIGO;"
+    widget_style: *style_bedroom
 
 
 #
@@ -256,30 +296,34 @@ label_lounge:
     title2: "Lounge"
     entity: sensor.lounge_temperature
     entity2: sensor.lounge_humidity
-    widget_style: "background-color: DARKRED;"
-    title2_style: "font-size: 175%; font-weight: 400;"
+    widget_style: &style_lounge >-
+        background-color: DarkRed;
+    title2_style: *style_label_title2
 
 light_aurora:
     widget_type: light
     title: "Aurora"
     entity: light.aurora
-    widget_style: "background-color: DARKRED;"
-    state_text_style: "background-color: FIREBRICK;"
+    widget_style: *style_lounge
+    state_text_style: &style_lounge_state >-
+        background-color: FireBrick;
 
 light_aurora_effect:
     widget_type: input_select
     title2: "Aurora Effect"
     entity: input_select.aurora_effect
     sub_entity: sensor.aurora_effect_loaded
-    widget_style: "background-color: DARKRED;"
-    state_text_style: "background-color: FIREBRICK;"
-    select_style: "background-color: FIREBRICK; color: $white;"
+    widget_style: *style_lounge
+    state_text_style: *style_lounge_state
+    select_style: &style_lounge_select >-
+        background-color: FireBrick;
+        color: $white;
 
 light_tv_backlight:
     widget_type: switch
     title: "Lightpack"
     entity: light.lightpack
-    widget_style: "background-color: DARKRED;"
+    widget_style: *style_lounge
     use_hass_icon: 0
     icon_on: "mdi-television"
     icon_off: "mdi-television"
@@ -289,15 +333,15 @@ light_tv_backlight_effect:
     title2: "Lightpack Effect"
     entity: input_select.lightpack_effect
     sub_entity: sensor.lightpack_effect_loaded
-    widget_style: "background-color: DARKRED;"
-    state_text_style: "background-color: FIREBRICK;"
-    select_style: "background-color: FIREBRICK; color: $white;"
+    widget_style: *style_lounge
+    state_text_style: *style_lounge_state
+    select_style: *style_lounge_select
 
 light_rope:
     widget_type: switch
     title: "Rope"
     entity: light.rope
-    widget_style: "background-color: DARKRED;"
+    widget_style: *style_lounge
     use_hass_icon: 0
     icon_on: "mdi-led-strip"
     icon_off: "mdi-led-strip"
@@ -306,31 +350,31 @@ light_spotlight:
     widget_type: light
     title: "Spotlight"
     entity: light.spotlight
-    widget_style: "background-color: DARKRED;"
+    widget_style: *style_lounge
 
 light_torchiere:
     widget_type: light
     title: "Torchiere"
     entity: light.torchiere
-    widget_style: "background-color: DARKRED;"
+    widget_style: *style_lounge
 
 light_souvenirs:
     widget_type: switch
     title: "Souvenirs"
     entity: light.souvenirs
-    widget_style: "background-color: DARKRED;"
+    widget_style: *style_lounge
 
 light_window:
     widget_type: switch
     title: "Window"
     entity: light.window
-    widget_style: "background-color: DARKRED;"
+    widget_style: *style_lounge
 
 switch_tv:
     widget_type: switch
     title: "TV"
     entity: switch.lounge_tv
-    widget_style: "background-color: DARKRED;"
+    widget_style: *style_lounge
 
 
 #

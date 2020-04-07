@@ -4,19 +4,24 @@
 reload:
     widget_type: reload
     title2: "Reload"
-    widget_style: "background: MEDIUMSLATEBLUE;"
+    widget_style: >-
+        background: MediumSlateBlue;
 
 temperature:
     widget_type: multisensor
     entity: sensor.average_temperature
     entity2: sensor.average_humidity
-    widget_style: "background: DARKSLATEBLUE;"
-    value_style: "margin-top: -8px; font-size: 225%;"
-    unit_style: "margin-top: -3px;"
-    value2_style: "margin-top: -8px; font-size: 225%;"
-    unit2_style: "margin-top: -3px;"
+    widget_style: &style_header >-
+        background: DarkSlateBlue;
+    value_style: &style_header_value >-
+        margin-top: -8px;
+        font-size: 225%;
+    unit_style: &style_header_unit >-
+        margin-top: -3px;
+    value2_style: *style_header_value
+    unit2_style: *style_header_unit
 
 clock:
     widget_type: clock
     time_format: '24hr'
-    widget_style: "background: DARKSLATEBLUE;"
+    widget_style: *style_header
