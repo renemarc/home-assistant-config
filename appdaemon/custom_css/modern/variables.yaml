@@ -46,6 +46,7 @@ head_includes:
 
 body_includes:
  - <! body tags go here ->
+ - !secret appdaemon_hass_token_js
  - !secret appdaemon_hass_url_motion_js
  - |
     <script>
@@ -55,14 +56,19 @@ body_includes:
      * It turns off the sensor before turning it on again, to make sure that
      * any change is registered. A bit dirty, but it works!
      *
-     * Variable "appdaemon_hass_url_motion_js" is defined in the secrets file,
+     * Variable `appdaemon_hass_token_js` contains a long lived access token
+     * generated through Home Assistant's profile UI. It is defined in the
+     * secrets file.
+     *
+     * Variable `appdaemon_hass_url_motion_js` is defined in the secrets file,
      * with the format:
-     *   [HOST]:[PORT]/api/states/binary_sensor.kiosk_motion?api_password=[PASS]
+     *   [HOST]:[PORT]/api/states/binary_sensor.kiosk_motion
      */
     function reportKioskMotion() {
       var xhttp = new XMLHttpRequest();
       xhttp.open('POST', appdaemon_hass_url_motion_js, false);
       xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      xhttp.setRequestHeader('Authorization', 'Bearer ' + appdaemon_hass_token_js);
       xhttp.send(JSON.stringify({
         'state': 'off',
         'attributes': {
@@ -71,6 +77,7 @@ body_includes:
       }));
       xhttp.open('POST', appdaemon_hass_url_motion_js, false);
       xhttp.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+      xhttp.setRequestHeader('Authorization', 'Bearer ' + appdaemon_hass_token_js);
       xhttp.send(JSON.stringify({
         'state': 'on',
         'attributes': {
