@@ -10,7 +10,7 @@
 # Select the base environment
 language: python
 python:
-  - "3.6"
+  - "3.7"
 
 # Enable Travis caching of Python Packages (per branch)
 cache: pip
