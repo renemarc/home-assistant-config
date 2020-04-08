@@ -58,7 +58,7 @@ if args.username and args.password:
     PASSWORD = args.password
 else:
     with open(args.secrets, "r") as secrets_file:
-        secrets = yaml.load(secrets_file, Loader=yaml.BaseLoader)
+        secrets = yaml.safe_load(secrets_file)
     USERNAME = secrets[args.secrets_username]
     PASSWORD = secrets[args.secrets_password]
 blink = blinkpy.Blink(username=USERNAME, password=PASSWORD)
@@ -106,4 +106,3 @@ if videos:
 
     with open(VIDEO_FILE, "wb") as video_file_content:
         video_file_content.write(response.content)
-
