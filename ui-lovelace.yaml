@@ -2423,7 +2423,7 @@ views:
                         entities:
                           - entity: sensor.repo_config_views
                             name: "Views"
-                          - entity: sensor.repo_config_views_uniques
+                          - entity: sensor.repo_config_views_unique
                             name: "Uniques"
 
                       - type: "custom:mini-graph-card"
@@ -2441,7 +2441,7 @@ views:
                         entities:
                           - entity: sensor.repo_config_clones
                             name: "Clones"
-                          - entity: sensor.repo_config_clones_uniques
+                          - entity: sensor.repo_config_clones_unique
                             name: "Uniques"
 
               #

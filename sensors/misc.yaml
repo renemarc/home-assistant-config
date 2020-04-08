@@ -252,13 +252,13 @@
       value_template: >-
         {{ state_attr('sensor.repo_config', 'clones') }}
 
-    repo_config_clones_uniques:
-      friendly_name: "Repo Config Clones Uniques"
+    repo_config_clones_unique:
+      friendly_name: "Repo Config Unique Clones"
       icon_template: "mdi:check-box-multiple-outline"
       entity_id:
         - sensor.time_quarterly
       value_template: >-
-        {{ state_attr('sensor.repo_config', 'clones_uniques') }}
+        {{ state_attr('sensor.repo_config', 'clones_unique') }}
 
     repo_config_forks:
       friendly_name: "Repo Config Forks"
@@ -292,13 +292,13 @@
       value_template: >-
         {{ state_attr('sensor.repo_config', 'views') }}
 
-    repo_config_views_uniques:
-      friendly_name: "Repo Config Views Uniques"
+    repo_config_views_unique:
+      friendly_name: "Repo Config Unique Views"
       icon_template: "mdi:eye-check-outline"
       entity_id:
         - sensor.time_quarterly
       value_template: >-
-        {{ state_attr('sensor.repo_config', 'views_uniques') }}
+        {{ state_attr('sensor.repo_config', 'views_unique') }}
 
 
 #
