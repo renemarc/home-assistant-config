@@ -6,6 +6,9 @@
 /*global
     WidgetBase
 */
+/*exported
+    baseslideshow
+ */
 function baseslideshow(widget_id, url, skin, parameters) {
 
     // Initialize widget.
@@ -99,12 +102,12 @@ function baseslideshow(widget_id, url, skin, parameters) {
 
         // Monitor image entities.
         if (entry.hasOwnProperty('entity')) {
-            funcAvailable = function(self, state, $i) {
+            funcAvailable = function(self, state) {
                 _slides[i].entity_loaded = true;
                 _slides[i].src = state.attributes.entity_picture;
                 _slides[i].name = state.attributes.friendly_name;
             };
-            funcUpdate = function(self, state, $i) {
+            funcUpdate = function(self, state) {
                 _slides[i].src = state.attributes.entity_picture;
                 _slides[i].name = state.attributes.friendly_name;
             };
@@ -118,7 +121,7 @@ function baseslideshow(widget_id, url, skin, parameters) {
 
         // Monitor optional descriptions.
         if (entry.hasOwnProperty('entity_title')) {
-            funcUpdate = function(self, state, $i) {
+            funcUpdate = function(self, state) {
                 _slides[i].title = state.state;
             };
 
@@ -140,37 +143,10 @@ function baseslideshow(widget_id, url, skin, parameters) {
         callbacks
     );
 
-    self.index = 0;
-    function refresh_frame(self) {
-        var cache;
-        var date;
-        var delay;
-        var separator = '?';
-        var slide;
+    // Determines the media source.
+    function get_slide_source(slide) {
         var src;
-        var timestamp;
-        var title;
 
-        slide = _slides[self.index];
-
-        // Restart frame if entity is not dinamycally loaded yet.
-        if (slide.type === 'entity' && slide.entity_loaded === false) {
-            self.set_field(self, 'frame_src', '');
-            self.set_field(self, 'img_internal_style', 'display: none;');
-            self.set_field(self, 'img_src', '/images/Blank.gif');
-            self.set_field(self, 'title', '');
-
-            clearTimeout(self.timeout);
-            self.timeout = setTimeout(
-                function() {
-                    refresh_frame(self);
-                },
-                100
-            );
-            return;
-        }
-
-        // Determine media source.
         switch (slide.type) {
         case 'entity':
             // Set camera API endpoint.
@@ -189,14 +165,16 @@ function baseslideshow(widget_id, url, skin, parameters) {
             break;
         }
 
-        // Apply friend name if slide title doesn't exist.
-        title = slide.title;
-        if (title === undefined) {
-            title = slide.name;
-        }
+        return src;
+    }
 
-        // Modify the link to bust the cache.
-        cache = slide.cache;
+    // Modifies the media link to bust the cache.
+    function get_cachebusted_source(slide, src) {
+        var cache = slide.cache;
+        var date;
+        var separator = '?';
+        var timestamp;
+
         if (cache === undefined) {
             cache = self.cache;
         }
@@ -213,8 +191,23 @@ function baseslideshow(widget_id, url, skin, parameters) {
             src += separator + 'time=' + timestamp;
         }
 
-        // Update widget template.
-        switch (slide.type) {
+        return src;
+    }
+
+    // Applies friend name if slide title doesn't exist.
+    function get_slide_title(slide) {
+        var title = slide.title;
+
+        if (title === undefined) {
+            title = slide.name;
+        }
+
+        return title;
+    }
+
+    // Updates widget template.
+    function set_slide_fields(type = null, src = '', title = '') {
+        switch (type) {
         case 'entity':
         case 'image':
             self.set_field(self, 'frame_src', '');
@@ -227,26 +220,50 @@ function baseslideshow(widget_id, url, skin, parameters) {
             self.set_field(self, 'img_internal_style', 'display: none;');
             self.set_field(self, 'img_src', '/images/Blank.gif');
             break;
+
+        default:
+            self.set_field(self, 'frame_src', '');
+            self.set_field(self, 'img_internal_style', 'display: none;');
+            self.set_field(self, 'img_src', '/images/Blank.gif');
         }
         self.set_field(self, 'title', title);
+    }
 
-        // Iterate array position.
-        self.index = self.index + 1;
-        if (self.index === _slides.length) {
-            self.index = 0;
+    self.index = 0;
+    function refresh_frame(self) {
+        var delay = 100;
+        var slide = _slides[self.index];
+        var src;
+        var title;
+
+        // Restart frame if entity is not dinamycally loaded yet.
+        if (slide.type === 'entity' && slide.entity_loaded === false) {
+            set_slide_fields();
+        } else {
+            src = get_slide_source(slide);
+            src = get_cachebusted_source(slide, src);
+            title = get_slide_title(slide);
+            set_slide_fields(slide.type, src, title);
+
+            // Iterate array position.
+            self.index = self.index + 1;
+            if (self.index === _slides.length) {
+                self.index = 0;
+            }
+
+            // Wait a few seconds.
+            delay = slide.delay * 1000;
+            if (delay <= 0) {
+                delay = self.delay * 1000;
+            }
         }
 
-        // Wait a few seconds.
-        delay = slide.delay;
-        if (delay <= 0) {
-            delay = self.delay;
-        }
         clearTimeout(self.timeout);
         self.timeout = setTimeout(
             function() {
                 refresh_frame(self);
             },
-            delay * 1000
+            delay
         );
     }
     refresh_frame(self);
