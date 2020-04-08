@@ -56,7 +56,7 @@ function baseselect(widget_id, url, skin, parameters)
     function OnStateAvailable(self, state)
     {
         self.state = state.state;
-        set_options(self, state.attributes.options, state);
+        set_options(self, state.attributes.options);
         set_value(self, state);
     }
 
@@ -111,7 +111,7 @@ function baseselect(widget_id, url, skin, parameters)
         },500);
     }
 
-    function set_options(self, options, state)
+    function set_options(self, options)
     {
         self.set_field(self, "inputoptions", options);
     }

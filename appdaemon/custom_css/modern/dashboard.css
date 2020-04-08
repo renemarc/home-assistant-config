@@ -83,11 +83,11 @@ input {
 }
 
 .dashboard_main {
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 .gridster {
-  margin: 0px auto;
+  margin: 0 auto;
 }
 
 .icon-background {
@@ -126,7 +126,7 @@ input {
   border-radius: 5px;}
 
 .widget {
-  padding: 0px 0px;
+  padding: 0;
   text-align: center;
   width: 100%;
   display: table-cell;
@@ -150,7 +150,7 @@ input {
 
 
 #container {
-  padding-top: 0px;
+  padding-top: 0;
 }
 
 .modalDialog {
@@ -182,7 +182,7 @@ input {
   width: 275px;
   position: relative;
   margin: 3% auto;
-  padding: 5px 20px 13px 20px;
+  padding: 5px 20px 13px;
   border-radius: 10px;
 }
 
@@ -201,24 +201,3 @@ input {
 }
 
 .modalDialogCloseButton:hover { background: #444; }
-
-.loader {
-  display: none;
-  border: 3px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 3px solid #00aaff;
-  width: 10px;
-  height: 10px;
-  -webkit-animation: spin 2s linear infinite;
-  animation: spin 2s linear infinite;
-}
-
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
