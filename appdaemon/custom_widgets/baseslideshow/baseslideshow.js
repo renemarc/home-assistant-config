@@ -6,9 +6,7 @@
 /*global
     WidgetBase
 */
-/*exported
-    baseslideshow
- */
+/* exported baseslideshow */
 function baseslideshow(widget_id, url, skin, parameters) {
 
     // Initialize widget.

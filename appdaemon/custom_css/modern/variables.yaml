@@ -324,8 +324,8 @@ light_icon_style_inactive: $style_inactive
 light_state_text_style: "color: $white"
 light_level_style: "color: $white"
 light_unit_style:  "color: $white"
-light_level_up_style: "color: $gray_light"
-light_level_down_style: "color: $gray_light"
+# light_level_up_style: "color: $gray_light"
+# light_level_down_style: "color: $gray_light"
 light_widget_style: $background_style
 
 input_number_title_style: $style_title
@@ -396,7 +396,7 @@ rss_widget_style: $background_style
 input_select_title_style: $style_title
 input_select_title2_style: $style_title2
 input_select_widget_style: $background_style
-input_select_select_style: "background-color: #999;color:black"
+# input_select_select_style: "background-color: #999;color:black"
 input_select_container_style: ""
 
 input_slider_icon_up: fas-plus
