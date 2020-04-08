@@ -4,10 +4,10 @@
 
 [![Price][badge-price]][link-license]
 [![Home Assistant version][badge-ha-version]][link-ha-version]
-[![Hass.io][badge-hassio]][link-hassio]
-[![Commits to be deployed][badge-commits]][link-commits]
+[![Commits since last release][badge-commits]][link-commits]
 [![GitHub Release][badge-release]][link-release]
 [![Code Climate maintainability][badge-codeclimate-maintainability]][link-codeclimate-maintainability]
+[![CodeFactor rating][badge-codefactor]][link-codeclimate-maintainability]
 [![Build Status][badge-travis-ci]][link-travis-ci]
 [![License][badge-license]][link-license]
 [![Tweet][badge-twitter]][link-twitter]
@@ -26,7 +26,7 @@ Configuration for [Home Assistant](https://www.home-assistant.io/) running [Hass
     </figure>
 </div>
 
-> **Note:** Images are still from States UI days and still nned to be updated in the documentation. This configuration now uses Lovelace UI and AppDaemon _exclusively_.
+> **Note:** Images are still from States UI days and still need to be updated in the documentation. This configuration now uses Lovelace UI and AppDaemon _exclusively_.
 
 <div align="center">
     <figure>
@@ -338,7 +338,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[Aeotec Door / Window Sensor Gen5](https://aeotec.com/z-wave-door-window-sensor)** <sup>[Z-Wave]</sup> for front door.
 - **[Aeotec MultiSensor 6](https://aeotec.com/z-wave-sensor)** <sup>[Z-Wave]</sup> (x3) for temperature/humidity/presence detection.
 - **[Airthings Wave radon detector](https://airthings.com/wave/)** <sup>[Bluetooth Low Energy]</sup> to keep an eye on this cancer-causing radioactive gas.
-- **[Blink XT2](https://blinkforhome.com/products)** <sup>[WiFi]</sup> to keep a record of any movement outside.
+- **[Blink XT2](https://blinkforhome.com/products)** <sup>[WiFi & 900MHz]</sup> to keep a record of any movement outside.
 - **[Dome Leak Sensor](https://domeha.com/z-wave-leak-sensor)** <sup>[Z-Wave]</sup> (x2) in case the dishwasher breaks a seal, a shower curtain has not been closed properly â€¦or a toilet has overflowed. ðŸ¤¢
 - **[Ecolink Firefighter](https://products.z-wavealliance.org/products/1827)** <sup>[Z-Wave]</sup> to warn those outside that the fire alarm has been triggered.
 
@@ -436,7 +436,9 @@ Thank you for all your dedication, helpfulness and valuable insights. Cheers! ðŸ
 
 [badge-codeclimate-maintainability]:https://img.shields.io/codeclimate/maintainability/renemarc/home-assistant-config.svg?logo=code-climate&cacheSeconds=300
 
-[badge-commits]:https://img.shields.io/github/commits-since/renemarc/home-assistant-config/latest.svg?label=commits%20to%20be%20deployed&logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KCTxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMy41LDhIMTJWMTNMMTYuMjgsMTUuNTRMMTcsMTQuMzNMMTMuNSwxMi4yNVY4TTEzLDNBOSw5IDAgMCwwIDQsMTJIMUw0Ljk2LDE2LjAzTDksMTJINkE3LDcgMCAwLDEgMTMsNUE3LDcgMCAwLDEgMjAsMTJBNyw3IDAgMCwxIDEzLDE5QzExLjA3LDE5IDkuMzIsMTguMjEgOC4wNiwxNi45NEw2LjY0LDE4LjM2QzguMjcsMjAgMTAuNSwyMSAxMywyMUE5LDkgMCAwLDAgMjIsMTJBOSw5IDAgMCwwIDEzLDMiIC8+Cjwvc3ZnPgo=&cacheSeconds=300
+[badge-codefactor]:https://img.shields.io/codefactor/grade/github/renemarc/home-assistant-config?logo=codefactor&logoColor=white&cacheSeconds=300
+
+[badge-commits]:https://img.shields.io/github/commits-since/renemarc/home-assistant-config/latest.svg?label=commits%20since%20last%20release&logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1czQy8vRFREIFNWRyAxLjEvL0VOIiAiaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkIj4KPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij4KCTxwYXRoIGZpbGw9IiNmZmZmZmYiIGQ9Ik0xMy41LDhIMTJWMTNMMTYuMjgsMTUuNTRMMTcsMTQuMzNMMTMuNSwxMi4yNVY4TTEzLDNBOSw5IDAgMCwwIDQsMTJIMUw0Ljk2LDE2LjAzTDksMTJINkE3LDcgMCAwLDEgMTMsNUE3LDcgMCAwLDEgMjAsMTJBNyw3IDAgMCwxIDEzLDE5QzExLjA3LDE5IDkuMzIsMTguMjEgOC4wNiwxNi45NEw2LjY0LDE4LjM2QzguMjcsMjAgMTAuNSwyMSAxMywyMUE5LDkgMCAwLDAgMjIsMTJBOSw5IDAgMCwwIDEzLDMiIC8+Cjwvc3ZnPgo=&cacheSeconds=300
 
 [badge-ha-version]:https://img.shields.io/badge/works_with-Home_Assistant_0.106.5-53c1f1.svg?logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZD0iTTIxLjgsMTNIMjBWMjFIMTNWMTcuNjdMMTUuNzksMTQuODhMMTYuNSwxNUMxNy42NiwxNSAxOC42LDE0LjA2IDE4LjYsMTIuOUMxOC42LDExLjc0IDE3LjY2LDEwLjggMTYuNSwxMC44QTIuMSwyLjEgMCAwLDAgMTQuNCwxMi45TDE0LjUsMTMuNjFMMTMsMTUuMTNWOS42NUMxMy42Niw5LjI5IDE0LjEsOC42IDE0LjEsNy44QTIuMSwyLjEgMCAwLDAgMTIsNS43QTIuMSwyLjEgMCAwLDAgOS45LDcuOEM5LjksOC42IDEwLjM0LDkuMjkgMTEsOS42NVYxNS4xM0w5LjUsMTMuNjFMOS42LDEyLjlBMi4xLDIuMSAwIDAsMCA3LjUsMTAuOEEyLjEsMi4xIDAgMCwwIDUuNCwxMi45QTIuMSwyLjEgMCAwLDAgNy41LDE1TDguMjEsMTQuODhMMTEsMTcuNjdWMjFINFYxM0gyLjI1QzEuODMsMTMgMS40MiwxMyAxLjQyLDEyLjc5QzEuNDMsMTIuNTcgMS44NSwxMi4xNSAyLjI4LDExLjcyTDExLDNDMTEuMzMsMi42NyAxMS42NywyLjMzIDEyLDIuMzNDMTIuMzMsMi4zMyAxMi42NywyLjY3IDEzLDNMMTcsN1Y2SDE5VjlMMjEuNzgsMTEuNzhDMjIuMTgsMTIuMTggMjIuNTksMTIuNTkgMjIuNiwxMi44QzIyLjYsMTMgMjIuMiwxMyAyMS44LDEzTTcuNSwxMkEwLjksMC45IDAgMCwxIDguNCwxMi45QTAuOSwwLjkgMCAwLDEgNy41LDEzLjhBMC45LDAuOSAwIDAsMSA2LjYsMTIuOUEwLjksMC45IDAgMCwxIDcuNSwxMk0xNi41LDEyQzE3LDEyIDE3LjQsMTIuNCAxNy40LDEyLjlDMTcuNCwxMy40IDE3LDEzLjggMTYuNSwxMy44QTAuOSwwLjkgMCAwLDEgMTUuNiwxMi45QTAuOSwwLjkgMCAwLDEgMTYuNSwxMk0xMiw2LjlDMTIuNSw2LjkgMTIuOSw3LjMgMTIuOSw3LjhDMTIuOSw4LjMgMTIuNSw4LjcgMTIsOC43QzExLjUsOC43IDExLjEsOC4zIDExLjEsNy44QzExLjEsNy4zIDExLjUsNi45IDEyLDYuOVoiIGZpbGw9IiNmZmZmZmYiIC8+PC9zdmc+Cg==&maxAge=21600
 
@@ -446,12 +448,14 @@ Thank you for all your dedication, helpfulness and valuable insights. Cheers! ðŸ
 
 [badge-release]:https://img.shields.io/github/release/renemarc/home-assistant-config/all.svg?logo=github&logoColor=white&maxAge=21600
 
-[badge-travis-ci]:https://img.shields.io/travis/renemarc/home-assistant-config.svg?branch=master&logo=travis
+[badge-travis-ci]:https://img.shields.io/travis/renemarc/home-assistant-config.svg?branch=master&logo=travis&logoColor=white
 
 [badge-twitter]:https://img.shields.io/twitter/url/http/shields.io.svg?style=social&maxAge=86400
 
 [link-board]:https://github.com/renemarc/home-assistant-config/projects/1
 [link-codeclimate-maintainability]:https://codeclimate.com/github/renemarc/home-assistant-config
+[link-codefactor]:https://www.codefactor.io/repository/github/renemarc/home-assistant-config
+[link-commits]:https://github.com/renemarc/home-assistant-config/compare/v2018.12.18...master
 [link-ha-version]:https://github.com/home-assistant/home-assistant/tree/0.106.5
 [link-issues]:https://github.com/renemarc/home-assistant-config/issues
 [link-license]:LICENSE.txt
