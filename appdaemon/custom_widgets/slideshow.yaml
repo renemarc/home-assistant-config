@@ -9,7 +9,7 @@ fields:
   title: "{{title}}"
 icons: []
 static_css:
-  title_style: $camera_title_style
-  widget_style: $camera_widget_style
+  title_style: $slideshow_title_style
+  widget_style: $slideshow_widget_style
 css: []
 static_icons: []

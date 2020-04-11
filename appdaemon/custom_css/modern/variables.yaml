@@ -477,6 +477,7 @@ input_datetime_container_style: ""
 #
 
 style_state_text: "color: $white; font-size: 100%; opacity: 0.8; font-weight: 500; margin-bottom: 3px; padding: 3px 0; border-radius: 0 0 5px 5px"
+style_title: "color: $white; font-weight: 500; opacity: 0.6;"
 sensor_state_text_style: $style_state_text
 
 input_select_select_style: ""
@@ -510,3 +511,6 @@ multisensor_state_text_style: $style_state_text
 multisensor_unit_style: "color: $orange; font-size: 85%;"
 multisensor_unit2_style: "color: $blue; font-size: 85%;"
 multisensor_widget_style: $background_style
+
+slideshow_widget_style: $background_style
+slideshow_title_style: "$style_title; background-color: rgba(0, 0, 0, 0.5); border-radius: 0 0 5px 5px; line-height: 2em; opacity: 0.8;"

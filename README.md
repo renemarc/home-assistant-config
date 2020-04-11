@@ -297,7 +297,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 - **Dedicated, firewalled VLAN** (Virtual LAN) to segregate all IoT devices from other equipment …because I cannot trust that my vacuum cleaner won't go on a killing spree. Ever seen [_Runaway (1984)_](https://www.youtube.com/watch?v=zCZY9Z6WvSY) with Tom Selleck? Eek! 😱
 - **Local static IPs** for all devices to minimize random drops.
-- **Local development** on a local virtual machine using Docker, then pulled with GIT on a Raspberry Pi.
+- **Local development** on a local virtual machine using Python Virtual Env and Docker, then pulled with GIT on a Raspberry Pi.
 - **Plentiful documentation**, for my later self and to help out others.
 - **Shareable code** with all identifiers kept in a non-committed, _secrets_ file.
 
@@ -355,8 +355,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 #### Switches and other devices 🔌
 
-- **Daikin 19 Series Mini Split Heat Pump** via [WiFi adapter](http://www.daikinac.com/content/residential/residential-controllers/daikin-comfort-control-app/) or [Broadlink RM Mini 3](https://www.ibroadlink.com/rmMini3/) _(upcoming)_.
-- **Rowenta VU2660U2 Turbo Silence Extreme** via [Broadlink RM Mini 3](https://www.ibroadlink.com/rmMini3/) _(upcoming)_.
+- **[Daikin 19 Series Mini Split Heat Pump](https://daikincomfort.com/products/heating-cooling/single-zone/heat-pumps/wall-mount-19-series-heat-pump)** via the [optional WiFi adapter](http://www.daikinac.com/content/residential/residential-controllers/daikin-comfort-control-app/) or [Broadlink RM Mini 3](https://www.ibroadlink.com/rmMini3/) _(upcoming)_.
+- **[Rowenta VU2660U2 Turbo Silence Extreme](https://www.rowenta.ca/en/Home-Comfort/Fans/Turbo-Silence-12%E2%80%9D-Table-Fan/p/1830006169)** via [Broadlink RM Mini 3](https://www.ibroadlink.com/rmMini3/) _(upcoming)_.
 - **[TP-Link Smart Plug Mini outlets](http://www.tp-link.com/us/products/details/cat-5516_HS105.html)** <sup>[WiFi]</sup> to control dumb devices (x4).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
@@ -367,6 +367,7 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[Fully Kiosk Browser](https://www.ozerov.de/fully-kiosk-browser/)** on wallmounted tablet for display and input.
 - **[Hass.io](https://www.home-assistant.io/)** on Raspberry Pi 3 Model B+ (production setup).
 - **[LANnouncer](http://www.keybounce.com/lannouncer/)** on wallmounted tablet for simple audio and text-to-speech messaging.
+- **[Python Virtual Environment](https://docs.python.org/3/tutorial/venv.html)** on local machine (for quick development).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
@@ -387,10 +388,10 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 - **[Browser Mod](https://github.com/thomasloven/hass-browser_mod)** to add pop-up support to [`ui-lovelace.yaml`](./ui-lovelace.yaml).
 - **[Display platform](https://github.com/daemondazz/homeassistant-displays)** for integration with the Fully Kiosk Browser.
 - **[Doomsday Clock component](https://github.com/renemarc/home-assistant-doomsday-clock)** to track how close humanity is to a man-made global catastrophe.
-- **[Home Assistant Commnunity Store](https://hacs.xyz/)** to ease maintenance and pretty-up [`ui-lovelace.yaml`](./ui-lovelace.yaml).
+- **[HACS (Home Assistant Commnunity Store)](https://hacs.xyz/)** to ease maintenance and pretty-up [`ui-lovelace.yaml`](./ui-lovelace.yaml).
 - **[Lightpack component](https://github.com/kklemm91/Lightpack-HASS)** to control TV bias lights.
-- **[Raspberry Pi power sensor](https://github.com/custom-components/sensor.rpi_power)** to warn in case of insufficient power supply.
-- **[Unifi Gateway component](https://github.com/custom-components/sensor.unifigateway)** for extra network stats.
+- **[Raspberry Pi Power Supply Checker](https://github.com/custom-components/sensor.rpi_power)** to warn in case of insufficient power delivery.
+- **[UniFi Gateway component](https://github.com/custom-components/sensor.unifigateway)** for extra network stats.
 - **[Variable component](https://github.com/rogro82/hass-variables)** for non-boolean values.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>

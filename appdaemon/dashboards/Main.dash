@@ -96,9 +96,6 @@ slideshow:
           title: ""
         - entity: camera.astronomy_picture_of_the_day
           entity_title: sensor.apod
-    title_style: >-
-        line-height: 2em;
-        opacity: 0.8;
 
 
 #
