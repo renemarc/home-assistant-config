@@ -374,11 +374,6 @@ views:
                     title: "Climate & Air Quality 😌"
                     show_header_toggle: false
                     entities:
-                      - type: "custom:restriction-card"
-                        card:
-                          entity: switch.dehumidifier
-                        row: true
-
                       - entity: sensor.average_humidity_friendly
                         name: "Humidity"
 
@@ -2255,8 +2250,6 @@ views:
                   - automation.bed_effect
                   - automation.bed_schedule
                   - automation.bed_select
-                  - automation.dehumidifier_off
-                  - automation.dehumidifier_on
                   - automation.kitchen_lights_full
                   - automation.kitchen_lights_init
                   - automation.kitchen_lights_off

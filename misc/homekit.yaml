@@ -43,5 +43,4 @@ filter:
     - sensor.outside_temperature
     - sensor.washroom_humidity
     - sensor.washroom_temperature
-    - switch.dehumidifier
     - switch.lounge_tv

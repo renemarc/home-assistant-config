@@ -77,10 +77,10 @@
           {% set humidity = states('sensor.average_humidity') | int %}
           {% if (humidity > 65) %}
             {{ states('sensor.average_humidity') }}% = Risk of mold!<br>
-            <strong>Check the dehumidifier NOW!<strong>
+            <strong>Reduce the humidity NOW!<strong>
           {% elif (humidity >= 55) %}
             {{ states('sensor.average_humidity') }}% is excessive.<br>
-            <strong>Check the dehumidifier.<strong>
+            <strong>Try to reduce the humidity.<strong>
           {% else %}
             {{ states('sensor.average_humidity') }}% is too dry.<br>
             <strong>Check the humidifier.</strong>
@@ -102,10 +102,10 @@
           {% set humidity = states('sensor.average_humidity') | int %}
           {% if (humidity > 65) %}
           {{ states('sensor.average_humidity') }}% = Risk of mold!
-          Check the dehumidifier NOW!
+          Reduce the humidity NOW!
           {% elif (humidity >= 55) %}
           {{ states('sensor.average_humidity') }}% is excessive.
-          Check the dehumidifier.
+          Try to reduce the humidity.
           {% else %}
           {{ states('sensor.average_humidity') }}% is too dry.
           Check the humidifier.
@@ -130,11 +130,11 @@
             Indoor humidity is way too high.
             Currently at {{ states('sensor.average_humidity') }}%.
             There is a risk of mold!
-            Do check the dehumidifier NOW!
+            Do reduce the humidity NOW!
           {% elif (humidity >= 55) %}
             Indoor humidity is too high.
             Currently at {{ states('sensor.average_humidity') }}% which is excessive.
-            Check the dehumidifier.
+            Try to reduce the humidity.
           {% else %}
             Indoor humidity is too low.
             Currently at {{ states('sensor.average_humidity') }}% which is too dry.

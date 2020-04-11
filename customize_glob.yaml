@@ -11,8 +11,6 @@ automation.cct_*:
   icon: "mdi:white-balance-auto"
 automation.ceiling_*:
   icon: "mdi:led-strip-variant"
-automation.dehumidifier_*:
-  icon: "mdi:water-off"
 automation.door_*:
   icon: "mdi:door-open"
 automation.homekit_*:

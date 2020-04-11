@@ -122,10 +122,8 @@ Tasks are defined in the [issue queue][link-issues] and the development progress
 
 - **Temperature monitoring**, averaged and rounded to compensate for sensor calibration issues.
 - **Humidity monitoring**, also averaged and rounded.
-- **Toggle dehumidifier when needed**, based on humidity averaged from multiple sensors, and only during the afternoon so not to bother anyone.
-- **Turn dehumidifier off when windows/doors are opened**, instantly for windows and after a few minutes for doors.
-- **Low/High humidity status and alerts**, in case something is wrong with the dehumidifier or the humidifier.
-- **Mold conditions status and alert**, in case dehumidifier is full/overwhelmed or someone transformed the place into a steam room.
+- **Low/High humidity status and alerts**, in case something is wrong with the humidifier.
+- **Mold conditions status and alert**, in case someone transformed the place into a steam room.
 
 <div align="center">
     <figure>

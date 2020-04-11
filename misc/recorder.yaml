@@ -108,8 +108,6 @@ include:
     - sensor.smoke_status
     - sensor.tamper_status
 
-    - switch.dehumidifier
-
 exclude:
   domains:
     - switch

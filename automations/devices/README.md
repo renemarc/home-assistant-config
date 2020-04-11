@@ -17,7 +17,6 @@
         <a href="limitlessled-kitchen-lights" title="LimitlessLED kitchen lights"><img src="../../www/screenshots/group-kitchen.png" alt="Kitchen group" width="140"></a>
         <a href="#nanoleaf-aurora" title="Nanoleaf Aurora"><img src="../../www/screenshots/card-aurora.png" alt="Nanoleaf Aurora card" width="140"></a>
         <a href="#lightpack-dynamic-tv-bias-light" title="Lightpack dynamic TV bias light"><img src="../../www/screenshots/card-lightpack.png" alt="Lightpack card" width="140"></a>
-        <a href="#dehumidifier" title="Dehumidifier"><img src="../../www/screenshots/group-climate.png" alt="Climate control group" width="140"></a>
     </div>
 </figure>
 
@@ -94,31 +93,6 @@ Unless an effect is manually selected, this scheduler will do its thing.
 ### [`🔘️ ./bed_select.yaml`](bed_select.yaml)
 
 Manually select a LIFX cloud effect for the bed underglow lights.
-
-<p align="right"><a href="#top" title="Back to top">🔝</a></p>
-
-## Dehumidifier
-
-<div align="center">
-    <figure>
-        <div>
-            <img src="../../www/screenshots/group-climate.png" alt="Climate control group" title="Climate control group" width="325">
-        </div>
-        <figcaption>
-            <p><strong>Climate control group.</strong></p>
-        </figcaption>
-    </figure>
-</div>
-
-### [`⏹ ./dehumidifier_off.yaml`](dehumidifier_off.yaml)
-
-Turn off the dehumidifier when it's no longer relevant.
-
-### [`▶️ ./dehumidifier_on.yaml`](dehumidifier_on.yaml)
-
-Turn on the dehumidifier when appropriate if humidify levels are too high.
-
-Only if doors and windows are closed, and only when we're allowed to mame some noise.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 

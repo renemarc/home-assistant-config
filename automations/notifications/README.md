@@ -98,8 +98,8 @@ Comfort level should be between 35% and 55%. Mold grows above 55% relative humid
 > Currently at 85%.
 >
 > There is a risk of mold!
->
-> Do check the dehumidifier NOW!
+> 
+> Do reduce the humidity NOW!
 >
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
