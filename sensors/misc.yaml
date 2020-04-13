@@ -141,7 +141,7 @@
 
     count_switches_unavailable:
       friendly_name: "Switches Unavailable Count"
-      icon_template: "mdi:arrow-decision-auto"
+      icon_template: "mdi:toggle-switch"
       entity_id:
         - sensor.time
       value_template: >-

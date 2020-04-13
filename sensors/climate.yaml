@@ -40,8 +40,7 @@
 
     bedroom_luminance_friendly:
       friendly_name: "Bedroom Luminance"
-      icon_template: >-
-        {{ state_attr('sensor.bedroom_luminance', 'icon') }}
+      icon_template: "mdi:blur"
       value_template: >-
         {% set lx = states('sensor.bedroom_luminance') | int(-1) %}
 
@@ -284,8 +283,7 @@
 
     lounge_luminance_friendly:
       friendly_name: "Lounge Luminance"
-      icon_template: >-
-        {{ state_attr('sensor.lounge_luminance', 'icon') }}
+      icon_template: "mdi:blur"
       value_template: >-
         {% set lx = states('sensor.lounge_luminance') | int(-1) %}
 
@@ -388,8 +386,7 @@
 
     washroom_luminance_friendly:
       friendly_name: "Washroom Luminance"
-      icon_template: >-
-        {{ state_attr('sensor.washroom_luminance', 'icon') }}
+      icon_template: "mdi:blur"
       value_template: >-
         {% set lx = states('sensor.washroom_luminance') | int(-1) %}
 
@@ -603,6 +600,7 @@
       friendly_name: "Humidity"
       unit_of_measurement: '%'
       device_class: humidity
+      icon_template: "mdi:water-percent"
       value_template: >-
         {{ states('sensor.average_humidity_exact') | round }}
 
