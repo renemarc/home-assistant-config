@@ -38,9 +38,45 @@
 #
 - platform: template
   sensors:
+    version:
+      friendly_name: Version
+      friendly_name_template: >-
+        {% if state_attr('binary_sensor.updater', 'newest_version') != None %}
+          Update Available
+        {% else %}
+          Version Installed
+        {% endif %}
+      icon_template: >-
+        {% if state_attr('binary_sensor.updater', 'newest_version') != None %}
+          mdi:update
+        {% else %}
+          mdi:home-assistant
+        {% endif %}
+      value_template: >-
+        {% set version = state_attr('binary_sensor.updater', 'newest_version') %}
+
+        {% if version != None %}
+          {{ version }}
+        {% else %}
+          {{ states('sensor.current_version') }}
+        {% endif %}
+      attribute_templates:
+        current_version: >-
+          {{ states('sensor.current_version') }}
+        newest_version: >-
+          {{ state_attr('binary_sensor.updater', 'newest_version') }}
+        release_notes: >-
+          {{ state_attr('binary_sensor.updater', 'release_notes') }}
+        release_notes_html: >-
+          {% set release_notes = state_attr('binary_sensor.updater', 'release_notes') %}
+
+          {% if release_notes != None %}
+            <a href="{{ release_notes }}" target="_new" style="color:var(--secondary-text-color);">Release notes</a>
+          {% endif %}
+
     version_friendly:
       friendly_name: Home Assistant Version
-      icon_template: "mdi:update"
+      icon_template: "mdi:home-assistant"
       value_template: >-
         {% set version = states('sensor.current_version') %}
 

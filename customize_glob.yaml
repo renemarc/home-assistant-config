@@ -45,6 +45,8 @@ automation.tamper_*:
   icon: "mdi:shield-home"
 automation.tv_*:
   icon: "mdi:television-classic"
+automation.update_*:
+  icon: "mdi:update"
 automation.video_player_*:
   icon: "mdi:plex"
 automation.wallpaper_*:

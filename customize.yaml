@@ -23,8 +23,6 @@ automation.scene_select:
   icon: "mdi:looks"
 automation.smoke_notify:
   icon: "mdi:smoke-detector"
-automation.update_notify:
-  icon: "mdi:cloud-upload"
 automation.wake_up:
   icon: "mdi:power"
 

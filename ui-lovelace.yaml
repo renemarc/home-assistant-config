@@ -1866,14 +1866,15 @@ views:
                 title: "Home Assistant 🤖"
                 show_header_toggle: false
                 entities:
-                  - entity: binary_sensor.updater
+                  - entity: sensor.version
                     type: "custom:secondaryinfo-entity-row"
                     secondary_info: >-
                       <small><strong>
-                      <a href="[[ binary_sensor.updater.attributes.release_notes ]]" target="_new" style="color:var(--secondary-text-color);">Release notes</a>
+                      [[ sensor.version.attributes.release_notes_html ]]
                       </strong></small>
 
                   - sensor.hacs
+                  - type: "section"
 
                   - entity: sensor.local_ip_address
                     name: "Local IP"
@@ -2219,6 +2220,7 @@ views:
                   - automation.scene_romantic
                   - automation.scene_select
                   - automation.theme_auto
+                  - automation.update_verify
                   - automation.wake_up
                   - automation.wallpaper_create
                   - automation.wallpaper_update

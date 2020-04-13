@@ -1,0 +1,25 @@
+#
+# Check for new Home Assistant Version
+#
+- id: update_verify
+  alias: "Update VERIFY"
+
+  trigger:
+    # When Home Assistant starts.
+    - platform: homeassistant
+      event: start
+
+    # Every 6 hours.
+    - platform: time_pattern
+      hours: '/6'
+      minutes: 00
+      seconds: 00
+
+  action:
+    # Wait a while so that everything is ready.
+    - delay:
+        seconds: 30
+
+    # Force a refresh of the updater component.
+    - service: homeassistant.update_entity
+      entity_id: binary_sensor.updater
