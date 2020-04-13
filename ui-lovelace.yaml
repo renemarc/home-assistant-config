@@ -678,6 +678,8 @@ views:
                   type: "entities"
                   title: "Low Batteries 🕯️"
                   show_header_toggle: false
+                show_empty: false
+                unique: true
                 filter:
                   include:
                     - entity_id: "*battery*"
@@ -699,6 +701,8 @@ views:
                   type: "entities"
                   title: "Broken Things 🏚️"
                   show_header_toggle: false
+                show_empty: false
+                unique: true
                 filter:
                   include:
                     - state: 'unknown'
@@ -1868,6 +1872,8 @@ views:
                       <small><strong>
                       <a href="[[ binary_sensor.updater.attributes.release_notes ]]" target="_new" style="color:var(--secondary-text-color);">Release notes</a>
                       </strong></small>
+
+                  - sensor.hacs
 
                   - entity: sensor.local_ip_address
                     name: "Local IP"

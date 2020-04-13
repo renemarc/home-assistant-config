@@ -64,7 +64,7 @@ aurora_effect:
 #
 bed_effect:
   name: "Bed Light Show"
-  icon: "mdi:motel"
+  icon: "mdi:hotel"
   initial: "Auto"
   options:
    - Auto

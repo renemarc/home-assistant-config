@@ -219,6 +219,10 @@ sensor.ebox_usage:
   friendly_name: "Monthly usage"
 sensor.local_ip_address:
   icon: "mdi:server-network"
+sensor.memory_free:
+  friendly_name: "Memory Free"
+sensor.memory_use:
+  friendly_name: "Memory Use"
 sensor.speedtest_download:
   friendly_name: "Downspeed"
   icon: "mdi:download-network"
