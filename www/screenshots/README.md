@@ -5,7 +5,7 @@
 <a name="top"></a>
 <code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / [www](..) / **screenshots** /</code>
 
-<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo!</strong></sub></p>
 
 <!-- Hero -->
 <figure>
@@ -57,17 +57,6 @@ Screenshots of UI elements features in this repository. A [screenshot making gui
         </div>
         <figcaption>
             <p><strong>Secondary Title card, used to replace the sensor name with the temperature's value.</strong></p>
-        </figcaption>
-    </figure>
-</div>
-
-<div align="center">
-    <figure>
-        <div>
-            <img src="card-horizontal-line.png" alt="Horizontal line state card" title="Custom UI + Horizontal line state card" width="325">
-        </div>
-        <figcaption>
-            <p><strong>Horizontal line state card.</strong></p>
         </figcaption>
     </figure>
 </div>
@@ -463,7 +452,7 @@ These are the steps I used to make these screenshots and animated GIFs. The resu
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo! 😃</strong></p>
 
 [🔙 Back to `/www/`](../)
 

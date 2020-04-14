@@ -5,7 +5,7 @@
 <a name="top"></a>
 <code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **automations** /</code>
 
-<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo!</strong></sub></p>
 
 <!-- Hero -->
 <figure>
@@ -74,6 +74,14 @@ Adjust LimitlessLED/MiLight colour temperature (CCT) based on cyrcadian rythm.
 
 Start the HomeKit server when everything is ready.
 
+### [`🎥 ./motion_front_start.yaml`](motion_front_start.yaml)
+
+Fetch video and generate images when motion has been detected outside in front.
+
+### [`🛑 ./motion_front_stop.yaml`](motion_front_stop.yaml)
+
+Reset motion sensor for outside in front.
+
 ### [`🔆️ ./scene_daylight.yaml`](scene_daylight.yaml)
 
 Toggle the daylight scene.
@@ -94,7 +102,23 @@ Manually select a global scene.
 
 Set theme to "normal" during daytime and "dark" during night mode.
 
+### [`🆕 ./update_verify.yaml`](update_verify.yaml)
+
+Check for new Home Assistant version availability.
+
 ### [`⏰️ ./wake_up.yaml`](wake_up.yaml)
+
+Wake up all devices.
+
+### [`🖼️ ./wallpaper_create.yaml`](wallpaper_create.yaml)
+
+Create wallpaper images from cameras.
+
+### [`🖼️ ./wallpaper_update.yaml`](wallpaper_update.yaml)
+
+Update wallpaper images from cameras.
+
+### [`📞 ./webhook_ifttt.yaml`](webhook_ifttt.yaml)
 
 Wake up all devices.
 
@@ -102,13 +126,11 @@ Wake up all devices.
 
 ## Customization
 
-The bulk of the customization is done in [`/customize.yaml`](../customize.yaml) and [`/customize_glob.yaml`](../customize_glob.yaml).
-
-The looks of many state cards depend on Custom UI and other templates in [`/www/custom_ui/`](../www/custom_ui).
+The bulk of the customization is done in [`/ui-lovelace.yaml`](../ui-lovelace.yaml), [`/customize.yaml`](../customize.yaml), and [`/customize_glob.yaml`](../customize_glob.yaml).
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo! 😃</strong></p>
 
 [🏠 Home][link-repo]

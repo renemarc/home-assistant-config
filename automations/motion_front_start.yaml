@@ -1,5 +1,5 @@
 #
-# Fetch video and generate images when motion has been detected in front
+# Fetch video and generate images when motion has been detected outside in front
 #
 # @subscribe input_boolean.motion_front
 # @publish input_datetime.set_datetime

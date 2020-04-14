@@ -5,7 +5,7 @@
 <a name="top"></a>
 <code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **cameras** /</code>
 
-<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo!</strong></sub></p>
 
 <!-- Hero -->
 <figure>
@@ -61,6 +61,10 @@ NOAA's (U.S. National Oceanic and Atmospheric Administration) colourized and wat
 
 ## Other
 
+### [`🎥 ./blink.yaml`](blink.yaml)
+
+Blink XT2 placehoder cameras. Since Blink cameras do not provide accessible streams, still and aniated images are generated from the latest saved video and provided as local cameras.
+
 ### [`🖼 ./wallpapers.yaml`](wallpapers.yaml)
 
 Pretty daily pictures from [Bing](https://bing.com) and [NASA](https://apod.nasa.gov/apod/astropix.html), showcased in [`/appdaemon/dashboards/Main.dash`](../appdaemon/dashboards/Main.dash).
@@ -68,6 +72,6 @@ Pretty daily pictures from [Bing](https://bing.com) and [NASA](https://apod.nasa
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo! 😃</strong></p>
 
 [🏠 Home][link-repo]

@@ -99,7 +99,6 @@
 # Disk space
 #
 # @see /appdaemon/dashboards/Status.dash
-# @see /groups/status.yaml
 #
 - platform: template
   sensors:
@@ -135,7 +134,6 @@
 # RAM space
 #
 # @see /appdaemon/dashboards/Status.dash
-# @see /groups/status.yaml
 #
 - platform: template
   sensors:
@@ -171,7 +169,6 @@
 # Host uptime
 #
 # @see /appdaemon/dashboards/Status.dash
-# @see /groups/status.yaml
 #
 - platform: template
   sensors:
@@ -233,7 +230,6 @@
 # For Home Assistant process/container.
 #
 # @see /appdaemon/dashboards/Status.dash
-# @see /groups/status.yaml
 #
 # @link https://www.home-assistant.io/integrations/uptime/
 #
@@ -297,7 +293,6 @@
 # CPU average load
 #
 # @see /appdaemon/dashboards/Status.dash
-# @see /groups/status.yaml
 #
 - platform: template
   sensors:
@@ -335,7 +330,7 @@
 #   `sysctl -n hw.ncpu`
 #
 # @see /customize.yaml
-# @see /secrets.yaml
+# @see /secrets-dummy.yaml
 #
 # @link https://www.home-assistant.io/integrations/command_line/
 #
@@ -395,7 +390,6 @@
 # File sizes
 #
 # @see /appdaemon/dashboards/Status.dash
-# @see /groups/status.yaml
 #
 # @link https://www.home-assistant.io/integrations/filesize/
 #

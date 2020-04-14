@@ -3,7 +3,7 @@
 Blink camera latest image downloader
 
 This command-line script continuously polls Blink for a video created in the
-last 60 seconds (arg --offset) for any device or a speficis one (arg --device).
+last 60 seconds (arg --offset) for any device or a speficic one (arg --device).
 Once found, the video is downloaded.
 
 Based on Dullage's script:

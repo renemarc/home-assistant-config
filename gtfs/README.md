@@ -5,7 +5,7 @@
 <a name="top"></a>
 <code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **gtfs** /</code>
 
-<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo!</strong></sub></p>
 
 <!-- Hero -->
 <figure>
@@ -114,6 +114,6 @@ Customization for the GTFS sensor is done in [`/customize.yaml`](../customize.ya
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo! 😃</strong></p>
 
 [🏠 Home][link-repo]

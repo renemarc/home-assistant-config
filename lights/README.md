@@ -5,7 +5,7 @@
 <a name="top"></a>
 <code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **lights** /</code>
 
-<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo!</strong></sub></p>
 
 <!-- Hero -->
 <figure>
@@ -216,15 +216,19 @@ While a great Canadian product 🇨🇦, it does have very minor drawbacks:
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+## TP-Link HS105 smart Wi-Fi plug mini outlets
+
+A few [TP-Link smart plug mini outlets](http://www.tp-link.com/us/products/details/cat-5516_HS105.html) are used to toggle non-smart light fixtures. These switches are therefore reassigned as lights.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 ## Customization
 
-The bulk of the customization is done in [`/customize.yaml`](../customize.yaml) and [`/customize_glob.yaml`](../customize_glob.yaml).
-
-The looks of the light state cards depend on Custom UI and other templates in [`/www/custom_ui/`](../www/custom_ui).
+The bulk of the customization is done in [`/ui-lovelace.yaml`](../ui-lovelace.yaml), [`/customize.yaml`](../customize.yaml), and [`/customize_glob.yaml`](../customize_glob.yaml).
 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo! 😃</strong></p>
 
 [🏠 Home][link-repo]

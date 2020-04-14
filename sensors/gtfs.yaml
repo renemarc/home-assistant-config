@@ -3,7 +3,6 @@
 #
 # @see /custom_components/gtfs_custom/sensor.py
 # @see /appdaemon/dashboards/Main.dash
-# @see /groups/default.yaml
 # @see /customize.yaml
 #
 # @link http://gtfs.org/

@@ -1,7 +1,7 @@
 #
 # Blink placehoder cameras
 #
-# Since Blick cameras do not provide accessible streams, still and aniated
+# Since Blink cameras do not provide accessible streams, still and aniated
 # images are generated from the latest saved video and provided as local
 # cameras.
 #

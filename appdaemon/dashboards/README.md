@@ -5,7 +5,7 @@
 <a name="top"></a>
 <code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / [appdaemon](..) / **dashboards** /</code>
 
-<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo!</strong></sub></p>
 
 <!-- Hero -->
 <figure>
@@ -41,7 +41,7 @@ Contains fixed elements showing at the top of each dashboard.
 
 ## Organization
 
-Dashboards are split into 4 pages, organized in a similar fashion as [`/groups/`](../../groups) only with less administrative features and prettier colours.
+Dashboards are split into 4 pages, organized in a similar fashion as [`/ui-lovelace.yaml/`](../../ui-lovelace.yaml) only with less administrative features and prettier colours.
 
 ### [`🏠 ./Main.dash`](Main.dash)
 
@@ -122,7 +122,7 @@ Footer starts.
 -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo! 😃</strong></p>
 
 [🔙 Back to `/appdaemon/`](../)
 

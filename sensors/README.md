@@ -5,7 +5,7 @@
 <a name="top"></a>
 <code>[renemarc][link-profile] / **[home-assistant-config][link-repo]** / **sensors** /</code>
 
-<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> this repo!</strong></sub></p>
+<p align="right"><sub><strong><a href="https://github.com/renemarc/home-assistant-config">🏠 Home Assistant configuration for a smart-looking place! 😎</a><br>Be sure to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo!</strong></sub></p>
 
 <!-- Hero -->
 <figure>
@@ -238,7 +238,7 @@ Everything else, including printer consumables status.
 
 ## Usage
 
-Some sensors are used for information display only in [`/groups/`](../groups) and [`/appdaemon/dashboards/`](../appdaemon/dashboards), while others are also used for [`/automations/`](../automations).
+Some sensors are used for information display only in [`/ui-lovelace.yaml`](../ui-lovelace.yaml) and [`/appdaemon/dashboards/`](../appdaemon/dashboards), while others are also used for [`/automations/`](../automations).
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
@@ -249,6 +249,6 @@ The bulk of the customization is done in [`/customize.yaml`](../customize.yaml) 
 <!-- Footer -->
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
-<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> this repo! 😃</strong></p>
+<p align="center"><strong>Don't forget to <a href="#" title="star">⭐️</a> or <a href="#" title="fork">🔱</a> this repo! 😃</strong></p>
 
 [🏠 Home][link-repo]

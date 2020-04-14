@@ -8,7 +8,6 @@
 # we are using a provider-friendly timestamp anchor that changes every 3 hours.
 #
 # @see /appdaemon/dashboards/Weather.dash
-# @see /groups/weather.yaml
 #
 # @link https://www.star.nesdis.noaa.gov/GOES/GOES16_sectors.php?sector=ne
 # @link https://www.home-assistant.io/integrations/generic_ip_camera/

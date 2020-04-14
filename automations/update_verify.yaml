@@ -1,5 +1,5 @@
 #
-# Check for new Home Assistant Version
+# Check for new Home Assistant version availability
 #
 - id: update_verify
   alias: "Update VERIFY"

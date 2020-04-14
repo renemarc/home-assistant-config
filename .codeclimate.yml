@@ -39,6 +39,4 @@ exclude_patterns:
 - "**/*.dash"
 - "appdaemon/custom_widgets/"
 - "custom_components/"
-- "custom_ui_update.sh"
 - "www/community/"
-- "www/custom_ui/"
