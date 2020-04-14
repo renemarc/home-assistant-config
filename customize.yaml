@@ -273,10 +273,3 @@ switch.souvenirs_light:
   icon: "mdi:trophy"
 switch.window_light:
   icon: "mdi:creation"
-
-#
-# Variables
-#
-variable.tamper_detected:
-  friendly_name: "Tamper location"
-  icon: "mdi:shield-home"
