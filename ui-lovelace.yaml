@@ -705,12 +705,15 @@ views:
                 unique: true
                 filter:
                   include:
+                    - state: 'unavailable'
                     - state: 'unknown'
                   exclude:
+                    - entity_id: "*_filtered"
+                    - entity_id: "group.*"
+                    - entity_id: "media_player.*"
+                    - entity_id: "person.*"
                     - entity_id: "sensor.dark_sky_*"
                     - entity_id: "sensor.ebox_*"
-                    - entity_id: "group.*"
-                    - entity_id: "*_filtered"
                 sort:
                   method: 'name'
                   ignore_case: true
