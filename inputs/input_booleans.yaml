@@ -48,6 +48,10 @@ leak_test:
   name: "Leak Test"
   icon: "mdi:pipe-leak"
 
+motion_front:
+  name: "Front Motion"
+  icon: "mdi:motion-sensor"
+
 motion_test:
   name: "Motion Test"
   icon: "mdi:run"
@@ -63,7 +67,3 @@ tamper_detected:
 windows_open:
   name: "Windows Are Open"
   icon: "mdi:window-open"
-
-motion_front:
-  name: "Front Motion"
-  icon: "mdi:motion-sensor"

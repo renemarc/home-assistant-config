@@ -685,12 +685,13 @@ views:
                     - entity_id: "*battery*"
                       state: 'unknown'
                     - entity_id: "*battery*"
-                      state: '< 40'
+                      state: '< 30'
                     - attributes:
-                        battery: '< 40'
+                        battery: '< 30'
                     - attributes:
-                        battery_level: '< 40'
+                        battery_level: '< 30'
                   exclude:
+                    - entity_id: "display.*"
                     - entity_id: "group.*"
 
               #
@@ -708,6 +709,8 @@ views:
                     - state: 'unavailable'
                     - state: 'unknown'
                   exclude:
+                    - attributes:
+                        type: 'browser_mod'
                     - entity_id: "*_filtered"
                     - entity_id: "group.*"
                     - entity_id: "media_player.*"
