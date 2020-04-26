@@ -41,21 +41,22 @@
     version:
       friendly_name: Version
       friendly_name_template: >-
-        {% if state_attr('binary_sensor.updater', 'newest_version') != None %}
+        {% if states('binary_sensor.updater') == 'on' %}
           Update Available
         {% else %}
           Version Installed
         {% endif %}
       icon_template: >-
-        {% if state_attr('binary_sensor.updater', 'newest_version') != None %}
+        {% if states('binary_sensor.updater') == 'on' %}
           mdi:update
         {% else %}
           mdi:home-assistant
         {% endif %}
       value_template: >-
+        {% set update = states('binary_sensor.updater') %}
         {% set version = state_attr('binary_sensor.updater', 'newest_version') %}
 
-        {% if version != None %}
+        {% if update == 'on' and version != None %}
           {{ version }}
         {% else %}
           {{ states('sensor.current_version') }}
@@ -175,6 +176,8 @@
     uptime_host:
       friendly_name: Server Uptime
       icon_template: "mdi:server"
+      entity_id:
+        - sensor.time
       value_template: >-
         {% set lb = states('sensor.last_boot') %}
 
@@ -243,6 +246,8 @@
     uptime_friendly:
       friendly_name: HASS Uptime
       icon_template: "mdi:home-assistant"
+      entity_id:
+        - sensor.uptime
       value_template: >-
         {% set uptime = states('sensor.uptime') | float(-1) %}
 
