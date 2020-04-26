@@ -24,6 +24,9 @@ before_install:
   - mkdir share
   - HA_VERSION=$(<.HA_VERSION)
 
+  # Add Beautiful Soup (otherwise Travis cannot find its alias bs4)
+  - pip3 install beautifulsoup4
+
   # Fix for missing homeassistant-ptozw 0.1.4 and pydispatcher 2.0.5
   # @link https://community.home-assistant.io/t/travis-ci-build-issues/119482
   - sudo apt-get install --assume-yes libudev-dev
