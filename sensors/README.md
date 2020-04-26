@@ -206,7 +206,7 @@ Everything weather related.
 
 ### [`🌍 ./world.yaml`](world.yaml)
 
-Outside world safety and threath assessments. 
+Outside world safety and threath assessments.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
