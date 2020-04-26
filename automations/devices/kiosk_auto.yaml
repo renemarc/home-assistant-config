@@ -1,6 +1,10 @@
 #
 # Toggle kiosk display
 #
+# Max brightness is capped at 25% of 256, otherwise the power supply cannot cope
+# with the constant-on backlight power needs of an Acer Iconia One 10. Even with
+# a quality 2.4 amps charger, which is weird.
+#
 # @subscribe input_boolean.night_mode
 #
 - id: kiosk_auto
@@ -21,7 +25,7 @@
       data_template:
         value: >-
           {% if is_state('input_boolean.night_mode', 'off') %}
-            255
+            64
           {% else %}
             0
           {% endif %}
