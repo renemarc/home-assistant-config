@@ -33,10 +33,6 @@ Defines which entities should be exposed to [Apple's HomeKit](https://www.apple.
 
 Discover and control [LIFX smart WiFi lights](https://www.lifx.com/).
 
-### [`▶️ ./plex.yaml`](plex.yaml)
-
-Tracks and control [Plex Media Server](https://www.plex.tv/).
-
 ### [`🚄 ./speedtest.yaml`](speedtest.yaml)
 
 Test network speed regularly using [Speedtest.net](https://www.speedtest.net/).
@@ -46,10 +42,6 @@ Test network speed regularly using [Speedtest.net](https://www.speedtest.net/).
 Register [TP-Link smart plugs](https://www.tp-link.com/ca/home-networking/smart-plug/hs105/) and other devices. The are used to toggle dumb devices.
 
 They were first setup with the manufaturer's [Kasa app](https://www.tp-link.com/us/home-networking/smart-home/kasa.html). Then they were assigned static IP addresses in my router to avoid occasional drops due to DHCP renewal limbo.
-
-### [`📶 ./unifi.yaml`](unifi.yaml)
-
-Connects to [Ubiquiti Networks' UniFi](https://www.ubnt.com/unifi/unifi-cloud-key/) controller with a read-only user.
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 

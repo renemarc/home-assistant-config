@@ -5,7 +5,6 @@
 #
 # @link https://www.home-assistant.io/integrations/recorder/
 #
-purge_interval: 2
 purge_keep_days: 5
 include:
   domains:

@@ -251,7 +251,6 @@ light: !include_dir_merge_list lights/
 # @link https://www.home-assistant.io/integrations/local_ip/
 #
 local_ip:
-  name: Local IP Address
 
 
 #
@@ -288,6 +287,7 @@ logger:
 #
 lovelace:
   mode: yaml
+  resources: !include misc/lovelace_resources.yaml
 
 
 #
@@ -348,14 +348,6 @@ notify: !include_dir_merge_list notifications/
 # @link https://www.home-assistant.io/integrations/person/
 #
 person: !include misc/persons.yaml
-
-
-#
-# Plex Media Server
-#
-# @link https://www.home-assistant.io/integrations/plex/
-#
-plex: !include misc/plex.yaml
 
 
 #
@@ -439,6 +431,7 @@ system_health:
 #
 tplink: !include misc/tplink.yaml
 
+
 #
 # Text-to-Speech
 #
@@ -446,14 +439,6 @@ tplink: !include misc/tplink.yaml
 #
 tts:
   - platform: google_translate
-
-
-#
-# Ubiquiti UniFi
-#
-# @link https://www.home-assistant.io/integrations/unifi
-#
-unifi: !include misc/unifi.yaml
 
 
 #

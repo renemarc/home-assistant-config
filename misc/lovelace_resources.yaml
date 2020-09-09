@@ -1,0 +1,168 @@
+#
+# External resources
+#
+# Most are installed using HACS (Home Assistant Community Store).
+#
+# @link https://custom-components.github.io/hacs/
+#
+
+#
+# Auto entities
+#
+# @link https://github.com/thomasloven/lovelace-auto-entities
+#
+- url: "/local/community/lovelace-auto-entities/auto-entities.js"
+  type: module
+
+
+#
+# Bar card: format entities as animated bars
+#
+# @link https://github.com/custom-cards/bar-card
+#
+- url: "/local/community/bar-card/bar-card.js"
+  type: module
+
+
+#
+# Button card
+#
+# @link https://github.com/custom-cards/button-card
+#
+- url: "/local/community/button-card/button-card.js"
+  type: module
+
+
+#
+# Compact custom header
+#
+# @link https://github.com/maykar/custom-header
+#
+- url: "/local/community/custom-header/custom-header.js"
+  type: module
+
+
+#
+# Card mod
+#
+# @link https://github.com/thomasloven/lovelace-card-mod
+#
+- url: "/local/community/lovelace-card-mod/card-mod.js"
+  type: module
+
+
+#
+# Card tools
+#
+# @link https://github.com/thomasloven/lovelace-card-tools
+#
+- url: "/local/community/lovelace-card-tools/card-tools.js"
+  type: module
+
+
+#
+# Dummy entity row
+#
+# @link https://github.com/thomasloven/lovelace-dummy-entity-row
+#
+- url: "/local/community/lovelace-dummy-entity-row/dummy-entity-row.js"
+  type: module
+
+
+#
+# Favicon counter: show a notification count badge.
+#
+# @link https://github.com/custom-cards/favicon-counter
+#
+- url: "/local/community/favicon-counter/favicon-counter.js"
+  type: module
+
+
+#
+# Fold entity row
+#
+# @link https://github.com/thomasloven/lovelace-fold-entity-row
+#
+- url: "/local/community/lovelace-fold-entity-row/fold-entity-row.js"
+  type: module
+
+
+#
+# GitHub entity row
+#
+# @link https://github.com/benct/lovelace-github-entity-row
+#
+- url: "/local/community/lovelace-github-entity-row/github-entity-row.js"
+  type: module
+
+
+#
+# Layout card
+#
+# @link https://github.com/thomasloven/lovelace-layout-card
+#
+- url: "/local/community/lovelace-layout-card/layout-card.js"
+  type: module
+
+
+#
+# Mini graph card
+#
+# @link https://github.com/kalkih/mini-graph-card
+#
+- url: "/local/community/mini-graph-card/mini-graph-card-bundle.js"
+  type: module
+
+
+#
+# Multiple entity row: Show multiple entity states and attributes on entity rows.
+#
+# @link https://github.com/benct/lovelace-multiple-entity-row
+#
+# - url: "/local/community/lovelace-multiple-entity-row/multiple-entity-row.js"
+#   type: module
+
+
+#
+# Restriction Card
+#
+# @link https://github.com/iantrich/restriction-card
+#
+- url: "/local/community/restriction-card/restriction-card.js"
+  type: module
+
+
+#
+# Secondary info entity row
+#
+# @link https://github.com/custom-cards/secondaryinfo-entity-row
+#
+- url: "/local/community/secondaryinfo-entity-row/secondaryinfo-entity-row.js"
+  type: module
+
+
+#
+# Slider entity row
+#
+# @link https://github.com/thomasloven/lovelace-slider-entity-row
+#
+- url: "/local/community/lovelace-slider-entity-row/slider-entity-row.js"
+  type: module
+
+
+#
+# Swipe card
+#
+# @link https://github.com/bramkragten/custom-ui/tree/master/swipe-card
+#
+- url: "/local/community/swipe-card/swipe-card.js"
+  type: module
+
+
+#
+# Vertical stack in card
+#
+# @link https://github.com/custom-cards/vertical-stack-in-card
+#
+- url: "/local/community/vertical-stack-in-card/vertical-stack-in-card.js"
+  type: module
