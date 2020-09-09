@@ -706,6 +706,7 @@ views:
                 unique: true
                 filter:
                   include:
+                    - state: 'dead'
                     - state: 'unavailable'
                     - state: 'unknown'
                   exclude:
@@ -887,6 +888,18 @@ views:
                           </strong></small>
 
                       - switch.kiosk
+                      - type: "section"
+
+                      - type: "custom:restriction-card"
+                        card:
+                          entity: switch.toaster_oven
+                          type: "custom:secondaryinfo-entity-row"
+                          secondary_info: >-
+                            <small><strong>
+                            [[ if(switch.toaster_oven == 'on', sensor.toaster_oven_uptime, '') ]]
+                            [[ if(switch.toaster_oven == 'on', 'ago, '') ]]
+                            </strong></small>
+                        row: true
                       - type: "section"
 
                       - entity: binary_sensor.kitchen_leak_sensor
@@ -2276,6 +2289,7 @@ views:
                   - automation.lightpack_select
                   - automation.nightlight_off
                   - automation.nightlight_on
+                  - automation.toaster_oven_off
                   - automation.tv_off
                   - automation.video_player_resume
                   - automation.video_player_stop

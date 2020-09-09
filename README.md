@@ -371,6 +371,7 @@ Tasks are hopefully defined in the [issue queue][link-issues] and their developm
 | `Device` | `Usage` | `Connection` |
 |---------:|:--------|:------------:|
 | **[Daikin 19 Series mini split heat pump](https://daikincomfort.com/products/heating-cooling/single-zone/heat-pumps/wall-mount-19-series-heat-pump)** | to cool, warm, and dehumidify the apartment. Connected via the [optional WiFi adapter](http://www.daikinac.com/content/residential/residential-controllers/daikin-comfort-control-app/) or [Broadlink RM Mini 3](https://www.ibroadlink.com/rmMini3/) _(upcoming)_. | IR / WiFi
+| **[Leviton DZPA1 Plug-In Outlet](https://www.leviton.com/en/products/dzpa1-2bw)** | (x1) to automatically power off the toaster oven, without fearing WiFi interference from the microwave oven. | Z-Wave
 | **[Rowenta VU2660U2 Turbo Silence Extreme oscillating fan](https://www.rowenta.ca/en/Home-Comfort/Fans/Turbo-Silence-12%E2%80%9D-Table-Fan/p/1830006169)** | to create a gentle, silent breeze in the bedroom. Connected via [Broadlink RM Mini 3](https://www.ibroadlink.com/rmMini3/) _(upcoming)_. | IR
 | **[TP-Link HS105 Smart Plugs](http://www.tp-link.com/us/products/details/cat-5516_HS105.html)** | (x4) to toggle power to dumb devices. | WiFi
 

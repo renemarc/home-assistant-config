@@ -1,0 +1,30 @@
+#
+# Turn off toaster oven
+#
+# Turn off the toaster oven after it has been powered on for a while, or if
+# no-one seems to be home, for safety reasons.
+#
+- id: toaster_oven_off
+  alias: "Toaster Oven OFF"
+
+  trigger:
+    # Toaster over has been powered for long enough.
+    - platform: state
+      entity_id: switch.toaster_oven
+      to: 'on'
+      for:
+        minutes: 45
+
+    # Motion is no longer detected.
+    - platform: state
+      entity_id: group.motion_sensors
+      to: 'off'
+      for:
+        hours: 2
+
+  action:
+    # Turn off toaster oven.
+    - service: homeassistant.turn_off
+      data:
+        entity_id:
+          - switch.toaster_oven

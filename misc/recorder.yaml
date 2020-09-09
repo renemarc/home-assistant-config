@@ -108,6 +108,8 @@ include:
     - sensor.smoke_status
     - sensor.tamper_status
 
+    - switch.toaster_oven
+
 exclude:
   domains:
     - switch

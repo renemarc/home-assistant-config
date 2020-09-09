@@ -165,7 +165,7 @@
           {% set seconds = seconds % 60 %}
 
           {% if hours == 0 and minutes == 0 %}
-            {{ time }} seconds
+            {{ seconds }} seconds
           {% else %}
             {%- if days > 0 -%}
               {%- if days == 1 -%}
@@ -274,4 +274,63 @@
           {{ (yield * toner / 100) | int }}
         {% else %}
           unknown
+        {% endif %}
+
+
+#
+# Toaster oven
+#
+- platform: template
+  sensors:
+    toaster_oven_uptime:
+      friendly_name: "Toaster Oven Uptime"
+      icon_template: "mdi:av-timer"
+      entity_id:
+        - sensor.time
+        - switch.toaster_oven
+      value_template: >-
+        {% if is_state('switch.toaster_oven', 'on') %}
+          {% set last_changed = as_timestamp(states.switch.toaster_oven.last_changed) %}
+          {% set seconds = as_timestamp(now()) - last_changed %}
+
+          {% set seconds = seconds|int %}
+          {% set days = (seconds / 86400)|int %}
+          {% set seconds = seconds % 86400 %}
+          {% set hours = (seconds / 3600)|int %}
+          {% set seconds = seconds % 3600 %}
+          {% set minutes = (seconds / 60)|int %}
+          {% set seconds = seconds % 60 %}
+
+          {% if hours == 0 and minutes == 0 %}
+            {{ seconds }} seconds
+          {% else %}
+            {%- if days > 0 -%}
+              {%- if days == 1 -%}
+                1 day
+              {%- else -%}
+                {{ days }} days
+              {%- endif -%}
+            {%- endif -%}
+            {%- if hours > 0 and days < 7 -%}
+              {%- if days > 0 -%}
+                {{ ', ' }}
+              {%- endif -%}
+              {%- if hours == 1 -%}
+                1 hour
+              {%- else -%}
+                {{ hours }} hours
+              {%- endif -%}
+            {%- endif -%}
+            {%- if days == 0 and minutes > 0 -%}
+              {%- if hours > 0 -%}
+                {{ ', ' }}{{ minutes }} min
+              {%- else -%}
+                {%- if minutes == 1 -%}
+                  1 minute
+                {%- else -%}
+                  {{ minutes }} minutes
+                {%- endif -%}
+              {%- endif -%}
+            {%- endif -%}
+          {% endif %}
         {% endif %}

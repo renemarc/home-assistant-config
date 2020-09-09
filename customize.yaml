@@ -23,6 +23,8 @@ automation.scene_select:
   icon: "mdi:looks"
 automation.smoke_notify:
   icon: "mdi:smoke-detector"
+automation.toaster_oven_off:
+  icon: "mdi:toaster-oven"
 automation.wake_up:
   icon: "mdi:power"
 
@@ -269,6 +271,8 @@ switch.nightstand_light:
   icon: "mdi:page-layout-body"
 switch.rope_light:
   icon: "mdi:string-lights"
+switch.toaster_oven:
+  icon: "mdi:toaster-oven"
 switch.souvenirs_light:
   icon: "mdi:trophy"
 switch.window_light:

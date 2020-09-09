@@ -61,3 +61,6 @@ sensor.washroom_multisensor_sourcenodeid:
 sensor.washroom_multisensor_ultraviolet:
   ignored: true
   polling_intensity: 0
+switch.toaster_oven:
+  ignored: false
+  polling_intensity: 1

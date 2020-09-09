@@ -233,6 +233,14 @@ This automation only responds to the pausing/stopping of HTPC video playback. If
 
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
+## Others
+
+### [`🍞 ./toaster_oven_off.yaml`](toaster_oven_off.yaml)
+
+Turn off the toaster oven after it has been powered on for a while, or if no-one seems to be home, for safety reasons.
+
+<p align="right"><a href="#top" title="Back to top">🔝</a></p>
+
 ## Customization
 
 The bulk of the customization is done in [`/ui-lovelace.yaml`](../../ui-lovelace.yaml), [`/customize.yaml`](../../customize.yaml), and [`/customize_glob.yaml`](../../customize_glob.yaml).
