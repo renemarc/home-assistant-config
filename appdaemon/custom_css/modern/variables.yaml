@@ -120,7 +120,7 @@ style_inactive: "color: $gray_light"
 style_active: "color: $green"
 style_active_warn: "color: $red"
 style_info: "color: $blue"
-style_title: "color: $white"
+# style_title: "color: $white"
 style_title2: "color: $white"
 
 # Widget Default Definitions

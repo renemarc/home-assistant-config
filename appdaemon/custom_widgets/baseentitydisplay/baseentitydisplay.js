@@ -3,7 +3,7 @@ function baseentitydisplay(widget_id, url, skin, parameters)
     // Will be using "self" throughout for the various flavors of "this"
     // so for consistency ...
 
-    self = this;
+    var self = this;
 
     // Initialization
 
