@@ -11,7 +11,7 @@ sequence:
   # Take a new still image.
   - service: blink.trigger_camera
     data_template:
-      name: "{{ name }}"
+      entity_id: blink.front
 
   # Wait fot the command to complete.
   - delay: 00:00:15
