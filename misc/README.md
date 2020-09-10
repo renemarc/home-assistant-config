@@ -21,10 +21,6 @@ This folder gathers all simpler configuration files.
 
 ## Integrations
 
-### [`🎥 ./blink.yaml`](blink.yaml)
-
-Connects to [Blink XT2 camera](https://blinkforhome.com/).
-
 ### [` ./homekit.yaml`](homekit.yaml)
 
 Defines which entities should be exposed to [Apple's HomeKit](https://www.apple.com/ca/ios/home/).
@@ -32,10 +28,6 @@ Defines which entities should be exposed to [Apple's HomeKit](https://www.apple.
 ### [`💡 ./lifx.yaml`](lifx.yaml)
 
 Discover and control [LIFX smart WiFi lights](https://www.lifx.com/).
-
-### [`🚄 ./speedtest.yaml`](speedtest.yaml)
-
-Test network speed regularly using [Speedtest.net](https://www.speedtest.net/).
 
 ### [`⚡ ./tplink.yaml`](tplink.yaml)
 
