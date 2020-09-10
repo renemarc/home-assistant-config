@@ -1,10 +1,10 @@
 """Class for netdaemon apps in HACS."""
-from integrationhelper import Logger
-
-from .repository import HacsRepository
-from ..hacsbase.exceptions import HacsException
-
-from custom_components.hacs.helpers.filters import get_first_directory_in_directory
+from custom_components.hacs.helpers.classes.exceptions import HacsException
+from custom_components.hacs.helpers.classes.repository import HacsRepository
+from custom_components.hacs.helpers.functions.filters import (
+    get_first_directory_in_directory,
+)
+from custom_components.hacs.helpers.functions.logger import getLogger
 
 
 class HacsNetdaemon(HacsRepository):
@@ -14,10 +14,11 @@ class HacsNetdaemon(HacsRepository):
         """Initialize."""
         super().__init__()
         self.data.full_name = full_name
+        self.data.full_name_lower = full_name.lower()
         self.data.category = "netdaemon"
         self.content.path.local = self.localpath
         self.content.path.remote = "apps"
-        self.logger = Logger(f"hacs.repository.{self.data.category}.{full_name}")
+        self.logger = getLogger(f"repository.{self.data.category}.{full_name}")
 
     @property
     def localpath(self):
@@ -58,22 +59,9 @@ class HacsNetdaemon(HacsRepository):
                     self.logger.error(error)
         return self.validate.success
 
-    async def registration(self):
-        """Registration."""
-        if not await self.validate_repository():
-            return False
-
-        # Run common registration steps.
-        await self.common_registration()
-
-        # Set local path
-        self.content.path.local = self.localpath
-
-    async def update_repository(self):
+    async def update_repository(self, ignore_issues=False):
         """Update."""
-        if self.hacs.github.ratelimits.remaining == 0:
-            return
-        await self.common_update()
+        await self.common_update(ignore_issues)
 
         # Get appdaemon objects.
         if self.repository_manifest:
@@ -88,3 +76,12 @@ class HacsNetdaemon(HacsRepository):
 
         # Set local path
         self.content.path.local = self.localpath
+
+    async def async_post_installation(self):
+        """Run post installation steps."""
+        try:
+            await self.hacs.hass.services.async_call(
+                "hassio", "addon_restart", {"addon": "c6a2317c_netdaemon"}
+            )
+        except (Exception, BaseException):  # pylint: disable=broad-except
+            pass

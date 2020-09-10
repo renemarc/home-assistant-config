@@ -1,7 +1,8 @@
 """HACS Configuration."""
 import attr
-from integrationhelper import Logger
-from custom_components.hacs.hacsbase.exceptions import HacsException
+
+from custom_components.hacs.helpers.classes.exceptions import HacsException
+from custom_components.hacs.helpers.functions.logger import getLogger
 
 
 @attr.s(auto_attribs=True)
@@ -20,13 +21,15 @@ class Configuration:
     dev: bool = False
     frontend_mode: str = "Grid"
     frontend_compact: bool = False
+    frontend_repo: str = ""
+    frontend_repo_url: str = ""
     options: dict = {}
     onboarding_done: bool = False
     plugin_path: str = "www/community/"
     python_script_path: str = "python_scripts/"
     python_script: bool = False
-    sidepanel_icon: str = "mdi:alpha-c-box"
-    sidepanel_title: str = "Community"
+    sidepanel_icon: str = "hacs:hacs"
+    sidepanel_title: str = "HACS"
     theme_path: str = "themes/"
     theme: bool = False
     token: str = None
@@ -42,7 +45,7 @@ class Configuration:
 
     def print(self):
         """Print the current configuration to the log."""
-        logger = Logger("hacs.configuration")
+        logger = getLogger("configuration")
         config = self.to_json()
         for key in config:
             if key in ["config", "config_entry", "options", "token"]:
@@ -50,7 +53,7 @@ class Configuration:
             logger.debug(f"{key}: {config[key]}")
 
     @staticmethod
-    def from_dict(configuration: dict, options: dict):
+    def from_dict(configuration: dict, options: dict = None):
         """Set attributes from dicts."""
         if isinstance(options, bool) or isinstance(configuration.get("options"), bool):
             raise HacsException("Configuration is not valid.")

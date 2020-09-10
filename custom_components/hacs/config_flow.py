@@ -1,19 +1,22 @@
 """Adds config flow for HACS."""
-# pylint: disable=dangerous-default-value
-import logging
 import voluptuous as vol
-from aiogithubapi import AIOGitHubException, AIOGitHubAuthentication
+from aiogithubapi import AIOGitHubAPIAuthenticationException, AIOGitHubAPIException
 from homeassistant import config_entries
 from homeassistant.core import callback
 from homeassistant.helpers import aiohttp_client
 
-from .const import DOMAIN
-from .configuration_schema import hacs_base_config_schema, hacs_config_option_schema
+from custom_components.hacs.const import DOMAIN
+from custom_components.hacs.helpers.functions.configuration_schema import (
+    hacs_base_config_schema,
+    hacs_config_option_schema,
+)
+from custom_components.hacs.helpers.functions.information import get_repository
 
-from custom_components.hacs.globals import get_hacs
-from custom_components.hacs.helpers.information import get_repository
+# pylint: disable=dangerous-default-value
+from custom_components.hacs.helpers.functions.logger import getLogger
+from custom_components.hacs.share import get_hacs
 
-_LOGGER = logging.getLogger(__name__)
+_LOGGER = getLogger(__name__)
 
 
 class HacsFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
@@ -47,7 +50,7 @@ class HacsFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
         """Show the configuration form to edit location data."""
         return self.async_show_form(
             step_id="user",
-            data_schema=vol.Schema(hacs_base_config_schema(user_input, True)),
+            data_schema=vol.Schema(hacs_base_config_schema(user_input)),
             errors=self._errors,
         )
 
@@ -56,23 +59,16 @@ class HacsFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     def async_get_options_flow(config_entry):
         return HacsOptionsFlowHandler(config_entry)
 
-    async def async_step_import(self, user_input):
-        """Import a config entry.
-        Special type of import, we're not actually going to store any data.
-        Instead, we're going to rely on the values that are in config file.
-        """
-        if self._async_current_entries():
-            return self.async_abort(reason="single_instance_allowed")
-
-        return self.async_create_entry(title="configuration.yaml", data={})
-
     async def _test_token(self, token):
         """Return true if token is valid."""
         try:
             session = aiohttp_client.async_get_clientsession(self.hass)
             await get_repository(session, token, "hacs/org")
             return True
-        except (AIOGitHubException, AIOGitHubAuthentication) as exception:
+        except (
+            AIOGitHubAPIException,
+            AIOGitHubAPIAuthenticationException,
+        ) as exception:
             _LOGGER.error(exception)
         return False
 
@@ -98,5 +94,7 @@ class HacsOptionsFlowHandler(config_entries.OptionsFlow):
             schema = {vol.Optional("not_in_use", default=""): str}
         else:
             schema = hacs_config_option_schema(self.config_entry.options)
+            del schema["frontend_repo"]
+            del schema["frontend_repo_url"]
 
         return self.async_show_form(step_id="user", data_schema=vol.Schema(schema))

@@ -1,9 +1,8 @@
 """Class for python_scripts in HACS."""
-from integrationhelper import Logger
-
-from .repository import HacsRepository
-from ..hacsbase.exceptions import HacsException
-from ..helpers.information import find_file_name
+from custom_components.hacs.helpers.classes.exceptions import HacsException
+from custom_components.hacs.helpers.classes.repository import HacsRepository
+from custom_components.hacs.helpers.functions.information import find_file_name
+from custom_components.hacs.helpers.functions.logger import getLogger
 
 
 class HacsPythonScript(HacsRepository):
@@ -15,11 +14,17 @@ class HacsPythonScript(HacsRepository):
         """Initialize."""
         super().__init__()
         self.data.full_name = full_name
+        self.data.full_name_lower = full_name.lower()
         self.data.category = "python_script"
         self.content.path.remote = "python_scripts"
-        self.content.path.local = f"{self.hacs.system.config_path}/python_scripts"
+        self.content.path.local = self.localpath
         self.content.single = True
-        self.logger = Logger(f"hacs.repository.{self.data.category}.{full_name}")
+        self.logger = getLogger(f"repository.{self.data.category}.{full_name}")
+
+    @property
+    def localpath(self):
+        """Return localpath."""
+        return f"{self.hacs.system.config_path}/python_scripts"
 
     async def validate_repository(self):
         """Validate."""
@@ -49,23 +54,14 @@ class HacsPythonScript(HacsRepository):
                     self.logger.error(error)
         return self.validate.success
 
-    async def registration(self):
+    async def async_post_registration(self):
         """Registration."""
-        if not await self.validate_repository():
-            return False
-
-        # Run common registration steps.
-        await self.common_registration()
-
         # Set name
         find_file_name(self)
 
-    async def update_repository(self):  # lgtm[py/similar-function]
+    async def update_repository(self, ignore_issues=False):
         """Update."""
-        if self.hacs.github.ratelimits.remaining == 0:
-            return
-        # Run common update steps.
-        await self.common_update()
+        await self.common_update(ignore_issues)
 
         # Get python_script objects.
         if self.data.content_in_root:
