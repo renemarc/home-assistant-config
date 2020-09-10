@@ -4,7 +4,7 @@ import telnetlib
 import voluptuous as vol
 
 # Import the device class from the component that you want to support
-from homeassistant.components.light import Light, DOMAIN, PLATFORM_SCHEMA
+from homeassistant.components.light import LightEntity, DOMAIN, PLATFORM_SCHEMA
 from homeassistant.const import CONF_HOST, CONF_PORT, CONF_API_KEY
 import homeassistant.helpers.config_validation as cv
 
@@ -36,7 +36,7 @@ def setup_platform(hass, config, add_entities, discovery_info=None):
 
     hass.services.register(DOMAIN, set_profile.__name__, set_profile)
 
-class Lightpack(Light):
+class Lightpack(LightEntity):
     """Representation of a Lightpack"""
     def __init__(self, host, port, api_key):
         """Initialize a Lightpack."""

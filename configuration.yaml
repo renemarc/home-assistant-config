@@ -15,14 +15,6 @@ binary_sensor: !include misc/binary_sensors.yaml
 
 
 #
-# Blink camera and security systems
-#
-# @link https://www.home-assistant.io/integrations/blink/
-#
-blink: !include misc/blink.yaml
-
-
-#
 # Brother Printer
 #
 # Reads current data from your local Brother printer.
@@ -182,7 +174,6 @@ homekit: !include misc/homekit.yaml
 # @link https://www.home-assistant.io/integrations/http/
 #
 http:
-  base_url: !secret http_base_url
   server_port: !secret http_server_port
   cors_allowed_origins: !secret http_cors_allowed_origins
 
@@ -279,6 +270,7 @@ logger:
     sqlalchemy.exc.ProgrammingError: critical # Until GTFS integration overhaul is complete
     homeassistant.helpers.entity: critical # Until GTFS integration overhaul is complete
     pyunifi.controller: error # When Unifi Controller is temporarily unreachable.
+
 
 #
 # Lovelace user interface
