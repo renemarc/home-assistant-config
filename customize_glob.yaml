@@ -4,9 +4,9 @@
 automation.aurora_*:
   icon: "mdi:vector-triangle"
 automation.bed_*:
-  icon: "mdi:hotel"
+  icon: "mdi:bed"
 automation.bedroom_*:
-  icon: "mdi:hotel"
+  icon: "mdi:bed"
 automation.cct_*:
   icon: "mdi:white-balance-auto"
 automation.ceiling_*:

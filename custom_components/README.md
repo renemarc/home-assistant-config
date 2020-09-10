@@ -104,16 +104,6 @@ The missing link that allows storage of non-boolean values using the [Variable c
 
 These are default Home Assistant components that were copied from the core to alter their behaviour. These changes really should be turned into appropriate [PRs](https://github.com/home-assistant/home-assistant/pulls).
 
-### [`😺 ./github_custom/`](github_custom)
-
-[GitHub](https://www.home-assistant.io/integrations/github/) component:
-
-- Added support for forks count.
-- Added support for 14-day clones count.
-- Added support for 14-day view count.
-
-[Now integrated into Home Assistant Core](https://github.com/home-assistant/core/pull/33300), this custom integration will soon be removed.
-
 <p align="right"><a href="#top" title="Back to top">🔝</a></p>
 
 

@@ -132,7 +132,7 @@ views:
   #
   # Main view
   #
-  - title: "main"
+  - title: "Main"
     path: "main"
     icon: "mdi:home-assistant"
     background: *background-main
@@ -1637,7 +1637,7 @@ views:
                     entities:
                       - entity: sensor.bedroom_temperature
                         name: "Bedroom"
-                        icon: "mdi:hotel"
+                        icon: "mdi:bed"
                         type: "custom:secondaryinfo-entity-row"
                         secondary_info: >-
                           <small><strong>★ Tracked</strong></small>
@@ -1688,7 +1688,7 @@ views:
                     entities:
                       - entity: sensor.bedroom_humidity
                         name: "Bedroom"
-                        icon: "mdi:hotel"
+                        icon: "mdi:bed"
                         type: "custom:secondaryinfo-entity-row"
                         secondary_info: >-
                           <small><strong>★ Tracked</strong></small>
@@ -2266,7 +2266,7 @@ views:
   #
   - title: "Configuration"
     path: "configuration"
-    icon: "mdi:settings"
+    icon: "mdi:cog"
     background: *background-configuration
     panel: true
     cards:
@@ -2324,7 +2324,7 @@ views:
                         name: "Issues"
 
                       - type: "weblink"
-                        icon: "mdi:github-circle"
+                        icon: "mdi:github"
                         name: "renemarc/home-assistant-config"
                         url: "https://github.com/renemarc/home-assistant-config"
 

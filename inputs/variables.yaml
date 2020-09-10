@@ -33,7 +33,7 @@ bed_effect:
   value: false
   restore: true
   attributes:
-    icon: "mdi:hotel"
+    icon: "mdi:bed"
     uuid: ""
 
 

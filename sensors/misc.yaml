@@ -226,7 +226,7 @@
 # @link https://github.com/renemarc/home-assistant-config
 # @link https://www.home-assistant.io/integrations/github/
 #
-- platform: github_custom
+- platform: github
   access_token: !secret github_access_token
   scan_interval: 900
   repositories:

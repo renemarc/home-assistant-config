@@ -21,14 +21,14 @@ battery:
 
 bed_lights:
   name: "Bed Lights"
-  icon: "mdi:hotel"
+  icon: "mdi:bed"
   entities:
     - light.headboard
     - light.underbed
 
 bedroom:
   name: "Bedroom"
-  icon: "mdi:hotel"
+  icon: "mdi:bed"
   entities:
     - binary_sensor.bedroom_multisensor
     - input_select.bed_effect

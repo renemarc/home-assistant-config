@@ -126,7 +126,7 @@ light.souvenirs:
 light.torchiere:
   icon: "mdi:floor-lamp"
 light.underbed:
-  icon: "mdi:hotel"
+  icon: "mdi:bed"
 light.window:
   icon: "mdi:creation"
 
