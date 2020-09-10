@@ -38,6 +38,7 @@
         {% set max_hours_behind = 4 %}
         {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
         {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('state', 'eq', 'unavailable')
                                  | rejectattr('attributes.time', 'lt', cutoff)
                                  | selectattr(attribute)
                                  | map(attribute=attribute)
@@ -78,6 +79,7 @@
         {% set max_hours_behind = 4 %}
         {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
         {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('state', 'eq', 'unavailable')
                                  | rejectattr('attributes.time', 'lt', cutoff)
                                  | selectattr(attribute)
                                  | map(attribute=attribute)
@@ -133,6 +135,7 @@
         {% set max_hours_behind = 4 %}
         {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
         {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('state', 'eq', 'unavailable')
                                  | rejectattr('attributes.time', 'lt', cutoff)
                                  | selectattr(attribute)
                                  | map(attribute=attribute)
@@ -188,6 +191,7 @@
         {% set max_hours_behind = 4 %}
         {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
         {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('state', 'eq', 'unavailable')
                                  | rejectattr('attributes.time', 'lt', cutoff)
                                  | selectattr(attribute)
                                  | map(attribute=attribute)
@@ -243,6 +247,7 @@
         {% set max_hours_behind = 4 %}
         {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
         {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('state', 'eq', 'unavailable')
                                  | rejectattr('attributes.time', 'lt', cutoff)
                                  | selectattr(attribute)
                                  | map(attribute=attribute)
@@ -298,6 +303,7 @@
         {% set max_hours_behind = 4 %}
         {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
         {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('state', 'eq', 'unavailable')
                                  | rejectattr('attributes.time', 'lt', cutoff)
                                  | selectattr(attribute)
                                  | map(attribute=attribute)
@@ -353,6 +359,7 @@
         {% set max_hours_behind = 4 %}
         {% set cutoff = (as_timestamp(now())|int - max_hours_behind * 60 * 60) | timestamp_local %}
         {% set stations = states | selectattr('entity_id', 'in', state_attr('group.waqi', 'entity_id'))
+                                 | rejectattr('state', 'eq', 'unavailable')
                                  | rejectattr('attributes.time', 'lt', cutoff)
                                  | selectattr(attribute)
                                  | map(attribute=attribute)
