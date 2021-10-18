@@ -29,7 +29,7 @@ styles:
     ha-card {
       min-height: 2em;
       border: 1px solid rgba(255, 255, 255, 20%);
-      --paper-card-background-color: rgba(0, 0, 0, 25%);
+      --ha-card-background: rgba(0, 0, 0, 25%);
       text-align: center;
       font-size: 250%;
       font-weight: 500;
@@ -43,7 +43,7 @@ styles:
   footer-card-style: &footer-card-style |
     ha-card {
       border: 1px solid rgba(255, 255, 255, 0.2);
-      --paper-card-background-color: rgba(0, 0, 0, 50%);
+      --ha-card-background: rgba(0, 0, 0, 50%);
       color: rgb(255, 255, 255);
       --paper-item-icon-color: white;
     }
